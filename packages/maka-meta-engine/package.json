@@ -1,0 +1,34 @@
+{
+  "name": "@makajs/meta-engine",
+  "version": "0.0.1",
+  "description": "maka meta engine",
+  "main": "./lib/index.js",
+  "scripts": {
+    "compile": "babel -d lib/ src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makajs/maka/packages/maka-meta-engine.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/makajs/maka/packages/maka-meta-engine/issues"
+  },
+  "homepage": "https://github.com/makajs/maka/packages/maka-meta-engine#readme",
+  "dependencies": {
+    "@makajs/utils": "*",
+    "immutable": "*",
+    "lodash": "*",
+    "react": "*",
+    "react-dom": "*"
+  },
+  "devDependencies": {
+    "@babel/cli": "*",
+    "@babel/core": "*",
+    "@babel/plugin-proposal-class-properties": "*",
+    "@babel/plugin-proposal-decorators": "*",
+    "@babel/plugin-transform-runtime": "*",
+    "@babel/preset-env": "*",
+    "@babel/preset-react": "*"
+  }
+}

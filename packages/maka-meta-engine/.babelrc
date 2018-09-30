@@ -1,0 +1,22 @@
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "targets": {
+        "browsers": [ "ie >= 11", "chrome >= 60" ]
+      }      
+    }],
+    ["@babel/preset-react"]
+  ],
+  "plugins": [
+    ["@babel/plugin-transform-runtime", {
+      "corejs": false,
+      "helpers": true,
+      "regenerator": true,
+      "useESModules": false
+    }],
+      ["@babel/plugin-proposal-class-properties"],
+    ["@babel/plugin-proposal-decorators",{
+      "legacy": true
+    }]
+  ]
+}
