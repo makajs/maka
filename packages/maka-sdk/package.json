@@ -1,0 +1,43 @@
+{
+  "name": "@makajs/sdk",
+  "version": "0.0.2",
+  "description": "maka sdk",
+  "main": "lib/index.js",
+  "scripts": {
+    "compile": "babel -d lib/ src/",
+    "build": "webpack  && node script/download.js",
+    "build-min": "cross-env NODE_ENV=production COMPRESS=1 webpack && node script/download.js production",
+    "build-only": "webpack ",
+    "build-only-min": "cross-env NODE_ENV=production COMPRESS=1 webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makajs/maka/packages/maka-sdk.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/makajs/maka/packages/maka-sdk/issues"
+  },
+  "homepage": "https://github.com/makajs/maka/packages/maka-sdk#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "*",
+    "@babel/core": "*",
+    "@babel/plugin-proposal-class-properties": "*",
+    "@babel/plugin-proposal-decorators": "*",
+    "@babel/plugin-transform-runtime": "*",
+    "@babel/preset-env": "*",
+    "@babel/preset-react": "*",
+    "@babel/runtime": "*",
+    "@makajs/app-loader": "*",
+    "@makajs/meta-engine": "*",
+    "@makajs/utils": "*",
+    "babel-loader": "*",
+    "cross-env": "*",
+    "react": "*",
+    "react-dom": "*",
+    "uglifyjs-webpack-plugin": "*",
+    "webpack": "*",
+    "webpack-cli": "*"
+  }
+}
