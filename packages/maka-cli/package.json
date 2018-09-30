@@ -1,0 +1,67 @@
+{
+  "name": "@makajs/cli",
+  "version": "0.0.2",
+  "description": "maka cli",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makajs/maka/packages/maka-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/maka/packages/maka-cli/issues"
+  },
+  "homepage": "https://github.com/makajs/maka/packages/maka-cli#readme",
+  "bin": {
+    "maka": "./bin/maka-cli.js"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "@babel/cli": "*",
+    "@babel/core": "*",
+    "@babel/plugin-proposal-class-properties": "*",
+    "@babel/plugin-proposal-decorators": "*",
+    "@babel/plugin-transform-runtime": "*",
+    "@babel/preset-env": "*",
+    "@babel/preset-react": "*",
+    "@babel/runtime": "*",
+    "@makajs/sdk": "*",
+    "alphabetjs": "*",
+    "art-template": "*",
+    "babel-loader": "*",
+    "case-sensitive-paths-webpack-plugin": "*",
+    "chalk": "*",
+    "commander": "*",
+    "cross-env": "*",
+    "css-loader": "*",
+    "dotenv": "*",
+    "dotenv-expand": "*",
+    "envinfo": "*",
+    "file-loader": "*",
+    "fs-extra": "*",
+    "fsevents": "*",
+    "hyperquest": "*",
+    "less": "*",
+    "less-loader": "*",
+    "mini-css-extract-plugin": "*",
+    "optimize-css-assets-webpack-plugin": "*",
+    "react": "*",
+    "react-dev-utils": "*",
+    "react-dom": "*",
+    "resolve": "*",
+    "semver": "*",
+    "tar-pack": "*",
+    "uglifyjs-webpack-plugin": "*",
+    "url-loader": "*",
+    "validate-npm-package-name": "*",
+    "webpack": "*",
+    "webpack-cli": "*",
+    "webpack-dev-server": "*",
+    "which": "*"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
+  "devDependencies": {}
+}
