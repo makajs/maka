@@ -1,5 +1,6 @@
 
 src
 node_modules
-.lock
-.log
+*.lock
+*.log
+package-lock.json
