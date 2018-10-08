@@ -120,10 +120,10 @@ program
     })
 
 program
-    .command('adduser')
-    .description('增加用户')
+    .command('login')
+    .description('login')
     .action(function (...args) {
-        let s = run('adduser', args);
+        let s = run('login', args);
         process.exit(s);
     })
 

@@ -55,8 +55,7 @@ function scanLocalApps(dir) {
 
 function scanRemoteApps(json) {
   Object.keys(json.dependencies).forEach(k => {
-
-    let pkg = JSON.parse(fs.readFileSync(path.join(depPath, 'package.json'), 'utf-8'))
+    let pkg = JSON.parse(fs.readFileSync(path.resolve(paths.appSrc, 'node_modules', k, 'package.json'), 'utf-8'))
     if (pkg.isMakaApp) {
       let appPath = path.join(paths.appSrc, 'node_modules', k)
       if (depPaths.indexOf(appPath) == -1) {
