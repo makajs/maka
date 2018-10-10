@@ -16,4 +16,4 @@ if (typeof appName === 'undefined') {
     process.exit(1);
 }
 
-utils.yarn(['add', `http://www.makajs.org/${appName}/-/@latest`, '--exact'], paths.appSrc)
+utils.yarn(['add', `http://hub.makajs.org/${appName}/-/@latest`, '--exact'], paths.appSrc)
