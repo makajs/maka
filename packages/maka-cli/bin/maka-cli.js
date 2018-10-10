@@ -120,10 +120,10 @@ program
     })
 
 program
-    .command('login')
-    .description('login')
+    .command('adduser')
+    .description('adduser')
     .action(function (...args) {
-        let s = run('login', args);
+        let s = run('adduser', args);
         process.exit(s);
     })
 

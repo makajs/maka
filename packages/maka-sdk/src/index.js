@@ -27,7 +27,7 @@ var Hoc,
     registerTemplate = metaEngine.templateFactory.registerTemplate.bind(metaEngine.templateFactory),
     actionMixin = metaEngine.actionMixin,
     fetch = utils.fetch,
-    history = utils.history
+    navigate = utils.navigate
 
 
 //初始化Maka环境
@@ -58,7 +58,7 @@ async function render(appName, targetDomId) {
         domRender((
             <Hoc>
                 <Provider store={window.__maka_store__}>
-                    <appLoader.AppLoader name={appName} />
+                    <metaEngine.rootElement appName={appName} />
                 </Provider>
             </Hoc>
         ), document.getElementById(targetDomId))
@@ -66,7 +66,7 @@ async function render(appName, targetDomId) {
     else {
         domRender((
             <Provider store={window.__maka_store__}>
-                <appLoader.AppLoader name={appName} />
+                <metaEngine.rootElement appName={appName} />
             </Provider>
         ), document.getElementById(targetDomId))
     }
@@ -86,7 +86,7 @@ export default {
     actionMixin,
     setHoc,
     fetch,
-    history,
+    navigate,
     createElement,
     render
 }
@@ -105,7 +105,7 @@ export {
     actionMixin,
     setHoc,
     fetch,
-    history,
+    navigate,
     createElement,
     render
 }

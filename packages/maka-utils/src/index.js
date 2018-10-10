@@ -3,7 +3,7 @@ import path from './path'
 import expression from './expression'
 import string from './string'
 import exception from './exception'
-import history from './history'
+import navigate from './navigate'
 
 export default {
 	fetch,
@@ -11,7 +11,7 @@ export default {
 	path,
 	expression,
 	exception,
-	history
+	navigate
 }
 
 export {
@@ -20,5 +20,5 @@ export {
 	path,
 	expression,
 	exception,
-	history
+	navigate
 }

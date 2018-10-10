@@ -7,6 +7,7 @@ import componentFactory from './componentFactory'
 import templateFactory from './templateFactory'
 import actionFactory from './actionFactory'
 import defaultComponent from './defaultComponent'
+import rootElement from './rootElement'
 const defaultAction = action
 const defaultReducer = reducer
 
@@ -21,7 +22,8 @@ export default {
 	actionFactory,
 	defaultComponent,
 	defaultAction,
-	defaultReducer
+	defaultReducer,
+	rootElement
 }
 
 
@@ -36,5 +38,6 @@ export {
 	actionFactory,
 	defaultComponent,
 	defaultAction,
-	defaultReducer
+	defaultReducer,
+	rootElement
 }

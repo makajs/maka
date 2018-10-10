@@ -23,6 +23,24 @@ async function yarn(args, root) {
     spawn.sync(command, args, { stdio: 'inherit' });
 }
 
+
+async function npm (args, root){
+    let command;
+    let isOnline = await checkIfOnline()
+
+    command = 'npm';
+    if (!isOnline) {
+        args.push('--offline');
+    }
+    args.push('--cwd');
+
+    if (!isOnline) {
+        console.log(chalk.yellow('Please connect to the network.'));
+        console.log();
+    }
+    spawn.sync(command, args, { stdio: 'inherit' });
+}
+
 function getProxy() {
     if (process.env.https_proxy) {
         return process.env.https_proxy;
@@ -91,6 +109,7 @@ function delSdkFiles(dir){
 
 module.exports = {
     yarn,
+    npm,
     fixName,
     delSdkFiles
 }

@@ -72,7 +72,7 @@ export default (actionInjections, reducerInjections) => (store) => {
 				appInfo = appFactory.getApp(parsedName.name)
 
 				if (!appInfo) {
-					console.error(`Loading app ${parsed.name} failed`)
+					console.error(`Loading app ${parsedName.name} failed`)
 					return next(action)
 				}
 
