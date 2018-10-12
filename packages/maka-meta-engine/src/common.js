@@ -91,10 +91,12 @@ export function getMetaMap(appInfo) {
 }
 
 export function getField(state, fieldPath) {
+    var r
     if (!fieldPath) {
-        return state.get('data')
+        r = state.get('data')
+        return r && r.toJS ? r.toJS() : r
     }
-    var r = fieldPath instanceof Array
+    r = fieldPath instanceof Array
         ? state.getIn(fieldPath)
         : state.getIn(fieldPath.split('.'))
 

@@ -347,7 +347,9 @@ export default class action {
 		const meta = common.getMeta(this.appInfo, fullPath, propertys)
 
 		if (!fullPath) {
-			fullPath = common.getMetaMap(this.appInfo).keys().next().value
+			var metaMap = common.getMetaMap(this.appInfo)
+			fullPath = metaMap.keySeq().toList().find(o=>o.indexOf('.') == -1)
+			//fullPath = common.getMetaMap(this.appInfo).keys().next().value
 		}
 
 		const parsedPath = utils.path.parsePath(fullPath),
@@ -356,7 +358,7 @@ export default class action {
 			vars = parsedPath.vars
 
 		if (!data)
-			data = common.getField(this.injections.getState()).toJS()
+			data = common.getField(this.injections.getState())
 
 		meta._power = undefined
 		meta.path = fullPath

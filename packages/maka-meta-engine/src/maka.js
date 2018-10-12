@@ -89,8 +89,8 @@ function metaToComponent(meta, props, data) {
 
                 let items = props.base.gs(p)
 
-                if (!items || items.size == 0) return
-                items = items.toJS()
+                if (!items || items.length == 0) return
+                items = items
                 return items.map((o, index) => {
                     let childMeta = props.base.gm(meta.path + ',' + index, undefined, data)
                     delete childMeta._power
@@ -174,7 +174,7 @@ function metaToComponent(meta, props, data) {
 
 const MonkeyKing = (props) => {
     const { base } = props
-    const data = base.gs().toJS()
+    const data = base.gs()
     return metaToComponent(base.gm(undefined, undefined, data), props, data)
 }
 

@@ -23,7 +23,10 @@ export default class Root extends React.PureComponent {
             currentApp
         }
 
-        navigate.redirect(currentApp)
+        if(!full || full == '/')
+            navigate.redirect('/' + currentApp)
+        else
+            navigate.redirect('/' + full)
     }
 
     listen = (location, action) => {
