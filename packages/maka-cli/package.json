@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -41,6 +41,7 @@
     "file-loader": "*",
     "fs-extra": "*",
     "fsevents": "*",
+    "got": "^9.2.2",
     "hyperquest": "*",
     "less": "*",
     "less-loader": "*",
