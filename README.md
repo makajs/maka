@@ -123,8 +123,33 @@ const view = {
 }
 ```
 
+### 4.2、view节有哪些系统属性
 
-### 4.2、ActionMixin
+```javascript
+{
+    component: 'div',
+    children: '{{data.list[_rowIndex].name}}',
+    _visible: true,
+    _notRender: false,
+    _power: 'for in data.list'
+}
+```
+
+- _visible
+是否显示，值支持表达式,默认true
+
+- notRender
+是否render, 值支持表达式,默认false，只有使用AppLoader组件时有效，和_visible的区别是notRender能保留app状态
+
+- _power
+超能力，支持两种语法
+    -  for in [state path]
+    将元素节点根据状态转为为数组
+    - (rowIndex)=>rowIndex
+    将元素节点转化为函数
+
+
+### 4.3、ActionMixin
 
 *ActionMixin提供了低耦合方式混入外部行为的可能，缺省并至少需要混入了Maka框架的base行为*
 
@@ -163,7 +188,7 @@ const view = {
 ```
 
 
-### 4.3、如何使用自定义组件?
+### 4.4、如何使用自定义组件?
 
 *view可以使用自定义组件或者外部的react组件，见下面示例*
 
@@ -184,7 +209,7 @@ const view = {
 }
 ```
 
-### 4.4、如何自定义模板组件？
+### 4.5、如何自定义模板组件？
 *模板组件是为了减少view json的代码量提出的概念，把相似度很高、并且经常使用的一些json定义为模板组件，在使用中能有效减少代码量，见下面示例*
 
 ```javascript
@@ -213,7 +238,7 @@ const view = {
 
 ```
 
-### 4.5、如何调用外部App
+### 4.6、如何调用外部App
 
 *把一个大型网站拆分成许多开发模式相同的app，这些app又可以独立运行、调试、分享，通过弱耦合的方式又能组合在一起成为一个网站*
 
@@ -234,6 +259,10 @@ const view = {
 
 ## 5、maka Api
 
+```javascript 
+import {registerComponent, registerAction} from 'maka'
+```
+
 api | 参数 |  描述 | 
 --- | -- | -- | 
 registerComponent | (key, component)  | 注册组件
@@ -243,9 +272,140 @@ getComponent | (key) | 通过组件名获取组件
 load | [应用名...] | 加载应用
 setHoc | （hoc） | 设置最外层高阶组件
 fetch |  | 提供fetch对象，可以调用后台接口，或者mock
+navigate | | 提供navigate对象
 render | (appName, targetHtmlElementName) | render
 
-## 6、maka cli 命令
+## 6、如何调用webapi或者mock？
+
+### 6.1、调用webapi
+
+*action.js*
+```javascript
+import {fetch} from 'maka'
+
+...
+fetch.post('/v1/login',{user: 'admin', password: '123'})
+...
+```
+
+*index.html*
+```javascript
+    window.main = function (maka) {
+        maka.utils.fetch.config({
+            mock: false,
+            token: '',
+            after: function (response, url) {
+                return response
+            }
+        })
+    }
+```
+
+*package.json*
+```javascript
+...
+"server": {
+    "proxy": {
+        "/v1/*": {
+            "target": "http://www.***.com:8080/"
+        }
+    },
+    "port": 8000
+  }
+...
+```
+
+### 6.2、使用纯前端mock
+
+*action.js*
+```javascript
+import {fetch} from 'maka'
+
+...
+fetch.post('/v1/login',{user: 'admin', password: '123'})
+...
+```
+
+
+*mock.js*
+```javascript
+import { fetch } from 'maka'
+
+const mockData = fetch.mockData
+
+function initMockData() {
+    if (!mockData.users) {
+         mockData.users = [{
+            id: 1,
+            account: 13334445556,
+            password: 'c4ca4238a0b923820dcc509a6f75849b',
+            name: 'zlj'
+        }]
+    }
+}
+
+fetch.mock('/v1/login', (option, headers) => {
+    initMockData()
+    const user = mockData.users.find(o => o.account == option.account && o.password == option.password)
+    if (user) {
+        return {
+            result: true,
+            token: `${user.id},${user.account},${user.password},${user.name ? user.name : ''}`,
+            value: option
+        }
+    }
+    else {
+        return { result: false, error: { message: '请输入正确的用户名密码（系统内置用户user:13334445556,pwd:1）' } }
+    }
+})
+```
+
+*index.js*
+```javascript
+import 'mock.js'
+```
+
+*index.html*
+```javascript
+window.main = function (maka) {
+    maka.utils.fetch.config({
+        mock: true
+    })
+}
+```
+
+
+## 6、如何使单页网站具备类似router的能力？
+
+### 6.1、redirect
+
+```javascript
+import {navigate} from 'maka'
+navigate.redirect('/portal') //https://www.***.com/#/portal
+```
+
+### 6.2、goBack
+
+```javascript
+import {navigate} from 'maka'
+...
+navigate.redirect('/sign-in') //https://www.***.com/#/sign-in
+...
+navigate.redirect('/portal') //https://www.***.com/#/portal
+...
+navigate.goBack() //https://www.***.com/#/sign-in
+```
+
+### 6.3、listen 
+```javascript
+navigate.listen((location.action)=>{
+    debugger
+    //自定义处理
+})
+```
+
+
+## 7、maka cli 命令
 
 命令 | 描述
 --- | -- 
