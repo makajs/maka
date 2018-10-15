@@ -92,9 +92,9 @@ const view = {
 
 ### 4.1、表达式
 
-*表达式可以支持非常复杂的形式，见下面示例*
+*表达式可以支持js语法，见下面示例*
 
-- A、绑定state中path为data.content的数据
+- 绑定state中path为data.content的数据
 ```js
 {
     ...
@@ -103,17 +103,17 @@ const view = {
 }
 ```
 
-- B、绑定action中方法名为onChange的函数
+- 绑定action中方法名为onChange的函数
 ```js
 {
     ...
-    onChange:`{{$onChange}}` // onChange = action.onChange 
+    onChange:`{{$onChange}}` // onChange = action.$onChange
     ...
 }
 
 ```
 
-- C、复杂的
+- 函数体
 ```js
 {
     onChange: `{{{
@@ -121,174 +121,127 @@ const view = {
         return $onChange
     }}}`
 
-    /*
-    onChange = eval({
-        debugger
+    /* 
+    onChange = new Function(`
+        debugger;
         return action.onChange
-    })
+    `)() 
     */
 }
 ```
 
-### 4.2、view节有哪些系统属性
+### 4.2、view节有哪些系统属性?
+
 
 ```javascript
 {
     component: 'div',
-    children: '{{data.list[_rowIndex].name}}',
-    _visible: '{{data.is}}',
-    _for
-    _function
+    children: 'hello',
+    _visible: 'true'
 }
+```
+
+ 这里说的系统属性就是上面例子中的component、children、_visible等;
+ 除系统属性外还可以设置控件支持的任何属性;
+ 主要支持下面描述的几种系统属性;
+
+- component
+组件名，缺省可使用所有html元素
+```javascript
+{ component: 'div' } //<div></div>
+```
+- children
+子组件
+```javascript
+{
+    component: 'div'
+    children: {
+        component: 'div',
+        children: 'children'
+    }
+}
+
+/*
+<div>
+    <div>chidlren</div>
+</div>
+*/
 ```
 
 - _visible
-是否显示，值支持表达式,默认true
+是否显示，值支持表达式, 默认true
 
-- notRender
-是否render, 值支持表达式,默认false，只有使用AppLoader组件时有效，和_visible的区别是notRender能保留app状态
-
-- _power
-超能力，支持两种语法
-    -  for in [state path]
-    将元素节点根据状态转为为数组
-
-     
-    
 ```javascript
-state = {
-    data: {
-        list: [{a:1}, {a:2}]
-    }
+{
+    component: 'div',
+    _visible: false
 }
+
 ```
+*_visible设置为false,将不创建该组件*
 
-    - (rowIndex)=>rowIndex
-    将元素节点转化为函数
-
-<fixedDataTable>
-    <Column
-        cell = （rowindex） => {return <div>{rowIndex}</div>}
-        
-    >
-    </Column>
-</>
-
-{
-    component: 'fixedDataTable',
-    children: {
-        component: 'column'
-
-        cell:{ 
-            _type:'function'
-            _args:'arg1,arg2',
-            component: 'div',
-            children: '{{rowindex}}',
-        }, 
-        cell:{ 
-            _type:'for', 
-            _list:'data.list',
-            component: 'div',
-            children: '{{rowindex}}',
-        }, 
-
-        cell:{ 
-            _for:'data.list'
-            component: 'div',
-            children: '{{_item,_index}}', 
-        },   
-        cell:{ 
-            _function:'rowIndex'
-            component: 'div',
-            children: '{{rowindex}}', 
-        },
-        cell:{ 
-            new function:'arg1,arg2'
-            component: 'div',
-            children: '{{rowindex}}',
-        },
-
-
-        cell:{  
-            component: 'div',
-            children: '{{rowindex}}',
-        },
-    }
-}
-{
-    componet: 'ul',
-    children: {
-        {
-            component: 'li'
-            children: 'a'
-
-        },
-        {
-            component: 'li',
-            children: '{{item.a}}'
-            _for: 'item in data.list'
-        }
-    }
-}
-
-{
-    componet: 'ul',
-    children: 
-        {
-            component: 'li',
-            children: '{{item.a}}'
-            _for: 'item in data.list'
-        }
-    
-}
-
-
-### 4.3、ActionMixin
-
-*ActionMixin提供了低耦合方式混入外部行为的可能，缺省并至少需要混入了Maka框架的base行为*
-
-
-- A、base 提供了哪些可用行为？
-
-方法名 | 描述 | action中使用示例 | view中使用示例
---- | -- | --- | ---
-getState  | 获取状态 | this.base.getState('data.input') | $base.getState('data.input')
-setState  | 设置状态 | this.base.setState({'data.input', 'hello'}) | $base.setState({'data.input', 'hello'})
-
-- B、如何混入自定义的行为类？
+- _for
+循环,支持for嵌套
 
 ```javascript
-import { actionMixin, registerAction } from 'maka'
-
-class customAction {
-    fun1 = () => {
-        alert()
-    }
-}
-
-registerAction('customAction', customAction)
-
-@actionMixin('base', 'customAction')
-class action {
-    constructor(option) {
-        Object.assign(this, option.mixins)
+const state = {
+    data: {
+        list: [{a:1}, {a:2}, {a:3}]
     }
 }
 
 const view = {
     component: 'div',
-    onClick: '{{$customAction.fun1}}'
+    children: {
+        _for: 'item in data.list', // or (item,index) in data.list
+        component: 'div',
+        children: '{{item.a}}'
+    }
 }
 ```
 
+- _function
+函数,当组件的某个属性要求是一个函数并返回react 元素时使用它
 
-### 4.4、如何使用自定义组件?
+```javascript
+
+import {registerComponent} from 'maka'
+
+class CustomComponent extends React.PureComponent {
+    render(){
+        var {getSub}  = this.props
+        return (
+            <div>
+                {getSub('aaa','bbb')}
+            </div>
+        )
+    }
+}
+
+registerComponent('CustomComponent', CustomComponent)
+
+const view = {
+    component: 'div',
+    children: {
+        component: 'CustomComponet'
+        getSub: {
+            _function: '(a,b)',
+            component: 'div',
+            children: '{{a+b}}'
+        }
+    }
+}
+
+```
+
+### 4.3、如何使用自定义组件?
 
 *view可以使用自定义组件或者外部的react组件，见下面示例*
 
 ```javascript
 import React from 'react'
 import { registerComponent } from 'maka'
+import { Button } from 'antd'
 
 class CustomComponent extends React.PureComponent {
     render() {
@@ -297,19 +250,27 @@ class CustomComponent extends React.PureComponent {
 }
 
 registerComponent('CustomComponent', CustomComponent)
+registerComponent('antd.Button', Button)
 
 const view = {
-    component: 'CustomComponent'
+    component: 'div',
+    children: [{
+        component: 'CustomComponent'
+    },{
+        component: 'antd.Button',
+        children: 'Button'
+    }]
 }
 ```
 
-### 4.5、如何自定义模板组件？
+
+### 4.4、如何自定义模板组件？
 *模板组件是为了减少view json的代码量提出的概念，把相似度很高、并且经常使用的一些json定义为模板组件，在使用中能有效减少代码量，见下面示例*
 
 ```javascript
 import { registerTemplate } from 'maka'
 
-const customTemplate = function(props) {
+const CustomTemplate = function(props) {
     return {
         component: 'div',
         children: [{
@@ -323,14 +284,57 @@ const customTemplate = function(props) {
     }
 }
 
-registerTemplate( 'customTemplate', customTemplate)
+registerTemplate( 'CustomTemplate', customTemplate)
 
 const view = {
-    component: 'customTemplate'，
+    component: 'CustomTemplate'，
     content: 'hello'
 }
 
 ```
+
+
+### 4.5、ActionMixin
+
+*ActionMixin提供了低耦合方式混入外部行为的可能，缺省并至少需要混入了Maka框架的base行为*
+
+
+- maka引擎混入的base提供了哪些可用行为？
+
+方法名 | 描述 | action中使用示例 | view中使用示例
+--- | -- | --- | ---
+getState  | 获取状态 | this.base.getState('data.input') | $base.getState('data.input')
+setState  | 设置状态 | this.base.setState({'data.input', 'hello'}) | $base.setState({'data.input', 'hello'})
+gs | =getState |  this.base.gs('data.input') | $base.gs('data.input')
+ss | =setState | this.base.ss({'data.input', 'hello'}) |$base.ss({'data.input', 'hello'})
+context | 上下文,支持get、set方法 | this.base.context.get('currentUser') or this.base.context.set('currentUser', {name: 'zhang'}) | $base.context.get('currentUser')
+
+- 如何混入自定义的行为类？
+
+```javascript
+import { actionMixin, registerAction } from 'maka'
+
+class CustomAction {
+    alert = () => {
+        alert()
+    }
+}
+
+registerAction('CustomAction', CustomAction)
+
+@actionMixin('base', 'CustomAction')
+class action {
+    constructor(option) {
+        Object.assign(this, option.mixins)
+    }
+}
+
+const view = {
+    component: 'div',
+    onClick: '{{$CustomAction.alert}}'
+}
+```
+
 
 ### 4.6、如何调用外部App
 
