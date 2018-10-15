@@ -118,30 +118,37 @@ export default class action {
 		}
 	}
 
-	parseExpreesion = (v) => {
+	parseExpreesion = (v, extParas) => {
 		if (!this.cache.expression)
 			this.cache.expression = {}
 
-		if (this.cache.expression[v]) {
-			return this.cache.expression[v]
+		var key = v
+		if (extParas && extParas.length > 0) {
+			key = key + extParas.toString()
+		}
+		if (this.cache.expression[key]) {
+			return this.cache.expression[key]
 		}
 
 		if (!this.cache.expressionParams) {
 			this.cache.expressionParams = ['data']
 				.concat(Object.keys(this.metaHandlers)
 					.map(k => "$" + k))
-				.concat(['_path', '_rowIndex', '_vars', '_ctrlPath', '_lastIndex'])
+				.concat(['_path', '_vars'])
 		}
 
 		var params = this.cache.expressionParams
 
-		var body = utils.expression.getExpressionBody(v)
+		if (extParas && extParas.length > 0) {
+			params = params.concat(extParas)
+		}
 
+		var body = utils.expression.getExpressionBody(v)
 		this.cache.expression[v] = new Function(...params, body)
 		return this.cache.expression[v]
 	}
 
-	execExpression = (expressContent, data, path, rowIndex, vars, ctrlPath) => {
+	execExpression = (expressContent, data, path, vars, extParas) => {
 		var values = [data]
 
 		var metaHandlerKeys = Object.keys(this.metaHandlers),
@@ -154,12 +161,20 @@ export default class action {
 		}
 
 		values.push(path)
-		values.push(rowIndex)
 		values.push(vars)
-		values.push(ctrlPath)
-		values.push(vars && vars[vars.length - 1])
+
+		var extParaKeys
+		if (extParas) {
+			extParaKeys = Object.keys(extParas)
+
+			if (extParaKeys && extParaKeys.length > 0) {
+				extParaKeys.forEach(k => {
+					values.push(extParas[k])
+				})
+			}
+		}
 		try {
-			return this.parseExpreesion(expressContent).apply(this, values)
+			return this.parseExpreesion(expressContent, extParaKeys).apply(this, values)
 		}
 		catch (e) {
 			this.metaHandlers
@@ -197,11 +212,8 @@ export default class action {
 			|| meta._visible === false)
 	}
 
-	updateMeta = (meta, path, rowIndex, vars, data, ctrlPath) => {
-
-		if (!this.needUpdate(meta))
-			return
-
+	updateMeta = (meta, data, path, vars, extParas) => {
+		//path && (meta.path = path)
 		if (meta instanceof Array) {
 			for (let i = 0; i < meta.length; i++) {
 				let sub = meta[i]
@@ -210,16 +222,24 @@ export default class action {
 				if (!sub)
 					continue
 
-				if (sub._power) {
-					currentPath = `${path}.${sub._name}`
-					sub.path = vars ? `${currentPath}, ${vars.join(',')}` : currentPath
+				if (sub._for) {
+					sub._vars = vars
+					sub._extParas = extParas
+					sub.path = `${path}.${sub._name}`
+					continue
+				}
+
+				if (sub._function) {
+					sub._vars = vars
+					sub._extParas = extParas
+					sub.path = `${path}.${sub._name}`
 					continue
 				}
 
 				let subType = typeof sub, isExpression = false, isMeta = false
 
 				if (subType == 'string' && utils.expression.isExpression(sub)) {
-					sub = this.execExpression(sub, data, path, rowIndex, vars, ctrlPath)
+					sub = this.execExpression(sub, data, path, vars, extParas)
 					isExpression = true
 					if (sub && sub._isMeta === true)
 						isMeta = true
@@ -244,29 +264,24 @@ export default class action {
 
 				if (sub instanceof Array) {
 					currentPath = `${path}.${i}`
-					sub.path = vars ? `${currentPath}, ${vars.join(',')}` : currentPath
-					this.updateMeta(sub, currentPath, rowIndex, vars, data, ctrlPath)
+					this.updateMeta(sub, data, currentPath, vars, extParas)
 					continue
 				}
-
 				if (sub._name && sub.component) {
 					currentPath = `${path}.${sub._name}`
-					sub.path = vars ? `${currentPath}, ${vars.join(',')}` : currentPath
-					this.updateMeta(sub, currentPath, rowIndex, vars, data, sub.path)
+					sub.path = currentPath
+					this.updateMeta(sub, data, currentPath, vars, extParas)
+					continue
 				}
-				else {
-					currentPath = `${path}.${i}`
-					sub.path = vars ? `${currentPath}, ${vars.join(',')}` : currentPath
-					this.updateMeta(sub, currentPath, rowIndex, vars, data, ctrlPath)
-				}
-
+				currentPath = `${path}.${i}`
+				this.updateMeta(sub, data, currentPath, vars, extParas)
 			}
 			return
 		}
 
 		var excludeProps = meta._excludeProps
 		if (excludeProps && utils.expression.isExpression(excludeProps)) {
-			excludeProps = this.execExpression(excludeProps, data, path, rowIndex, vars, ctrlPath)
+			excludeProps = this.execExpression(excludeProps, data, path, vars, extParas)
 		}
 
 		if (excludeProps && excludeProps instanceof Array) {
@@ -275,7 +290,6 @@ export default class action {
 					delete meta[excludeProps[i]]
 			}
 			delete meta['_excludeProps']
-
 		}
 
 		var keys = Object.keys(meta),
@@ -284,22 +298,18 @@ export default class action {
 		for (j = 0; key = keys[j++];) {
 			let v = meta[key],
 				t = typeof v,
-				currentPath = path
-
+				currentPath = `${path}.${key}`
 
 			if (!v)
 				continue
 
-			if (v._power) {
-				currentPath = `${path}.${key}.${v._name}`
-				v.path = vars ? `${currentPath}, ${vars.join(',')}` : currentPath
+			if (key == '_vars' || key == '_extParas')
 				continue
-			}
 
 			let isExpression = false, isMeta = false
 			if (t == 'string' && utils.expression.isExpression(v)) {
-				v = this.execExpression(v, data, `${path}.${key}`, rowIndex, vars, ctrlPath)
 				isExpression = true
+				v = this.execExpression(v, data, currentPath, vars, extParas)
 				if (key == '...' && v && typeof v == 'object') {
 					Object.keys(v).forEach(kk => {
 						meta[kk] = v[kk]
@@ -316,53 +326,62 @@ export default class action {
 				}
 			}
 
-			t = typeof t
-
 			if (!this.needUpdate(v))
 				continue
+
+
+			if (v._for) {
+				v._vars = vars
+				v._extParas = extParas
+				v.path = `${path}.${key}.${v._name}`
+				continue
+			}
+
+			if (v._function) {
+				v._vars = vars
+				v._extParas = extParas
+				v.path = `${path}.${key}.${v._name}`
+				continue
+			}
 
 			if (isExpression && !isMeta) {
 				continue
 			}
 
-			if (v instanceof Array) {
-				this.updateMeta(v, `${path}.${key}`, rowIndex, vars, data, ctrlPath)
+			if (v._name && v.component) {
+				v.path = `${path}.${key}.${v._name}`
+				this.updateMeta(v, data, `${path}.${key}.${v._name}`, vars, extParas)
 				continue
 			}
 
-			if (v._name && v.component) {
-				currentPath = `${path}.${key}.${v._name}`
-				v.path = vars ? `${currentPath}, ${vars.join(',')}` : currentPath
-				this.updateMeta(v, currentPath, rowIndex, vars, data, v.path)
+			if (v instanceof Array) {
+				this.updateMeta(v, data, currentPath, vars, extParas)
+				continue
 			}
-			else {
-				currentPath = `${path}.${key}`
-				v.path = vars ? `${currentPath}, ${vars.join(',')}` : currentPath
-				this.updateMeta(v, currentPath, rowIndex, vars, data, ctrlPath)
-			}
+
+			this.updateMeta(v, data, currentPath, vars, extParas)
 		}
 	}
 
-	getMeta = (fullPath, propertys, data) => {
-		const meta = common.getMeta(this.appInfo, fullPath, propertys)
+	getMeta = (path, propertys, data, vars, extParas) => {
+		const meta = common.getMeta(this.appInfo, path, propertys)
 
-		if (!fullPath) {
+		if (!path) {
 			var metaMap = common.getMetaMap(this.appInfo)
-			fullPath = metaMap.keySeq().toList().find(o=>o.indexOf('.') == -1)
-			//fullPath = common.getMetaMap(this.appInfo).keys().next().value
+			path = metaMap.keySeq().toList().find(o => o.indexOf('.') == -1)
 		}
-
-		const parsedPath = utils.path.parsePath(fullPath),
-			path = parsedPath.path,
-			rowIndex = parsedPath.vars ? parsedPath.vars[0] : undefined,
-			vars = parsedPath.vars
 
 		if (!data)
 			data = common.getField(this.injections.getState())
 
 		meta._power = undefined
-		meta.path = fullPath
-		this.updateMeta(meta, path, rowIndex, vars, data, fullPath)
+		meta._for = undefined
+		meta._function = undefined
+		meta.path = path
+		if (vars)
+			meta._vars = vars
+
+		this.updateMeta(meta, data, path, vars, extParas)
 		return meta
 	}
 
@@ -375,8 +394,6 @@ export default class action {
 	gs = this.getState
 
 	ss = this.setState
-
-	fromJS = fromJS
 
 	context = contextManager
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import componentFactory from './componentFactory'
 import memoize from 'lodash/memoize'
+import utils from '@makajs/utils'
 
 function parseMetaProps(meta, props, data) {
     const ret = {}
@@ -67,7 +68,7 @@ function metaToComponent(meta, props, data) {
     }
     else if (metaType == 'object') {
         if (meta.component) {
-            
+
             if (meta._visible === false)
                 return null
 
@@ -78,35 +79,65 @@ function metaToComponent(meta, props, data) {
                 meta.component = meta.component()
             }
 
-            //for in data.list
-            if (meta['_power'] && /for[ ]+in/.test(meta._power)) {
-                var p = meta._power
-                    .replace(/for[ ]+in/, '')
-                    .replace(' ', '')
+            //_for: 'data.list' or 'data.list[_index].sub'
+            if (meta._for) {
+                let _for = meta._for,
+                    paraNames = ['data'],
+                    paraValues = [data]
 
-                if (p.indexOf('_rowIndex') != -1)
-                    p = p.replace('_rowIndex', meta.path.split(',').length > 1 ? meta.path.split(',')[1].replace(' ', '') : 0)
+                if (meta['_vars']) {
+                    paraNames.push('_vars')
+                    paraValues.push(meta['_vars'])
+                }
 
-                let items = props.base.gs(p)
+                if (meta._extParas) {
+                    let extParaKeys = Object.keys(meta._extParas)
+                    if (extParaKeys && extParaKeys.length > 0) {
+                        extParaKeys.forEach(k => {
+                            paraNames.push(k)
+                            paraValues.push(meta._extParas[k])
+                        })
+                    }
+                }
+
+                let tmp = _for.replace('in', '#').split('#'),
+                    dsPath = utils.string.trim(tmp[1]),
+                    extParaNames = tmp[0].replace('(', '').replace(')', '').split(',')
+
+                let items = (new Function(...paraNames, `return ${dsPath}`))
+                    .apply(null, paraValues)
 
                 if (!items || items.length == 0) return
-                items = items
                 return items.map((o, index) => {
-                    let childMeta = props.base.gm(meta.path + ',' + index, undefined, data)
-                    delete childMeta._power
+                    let _vars = meta['_vars'] || []
+                    _vars.push({ _index: index, _item: o })
+
+                    let _extParas = meta._extParas || {}
+                    _extParas[utils.string.trim(extParaNames[0])] = o
+                    extParaNames.length > 1 && (_extParas[utils.string.trim(extParaNames[1])] = index)
+
+                    let childMeta = props.base.gm(meta.path, undefined, data, _vars, _extParas)
+                    delete childMeta._for
                     return metaToComponent(childMeta, props, data)
                 })
             }
 
-            //({rowIndex})=>rowIndex
-            if (meta._power && meta._power.indexOf('=>') != -1) {
+            //_function: '(arg1,arg2)
+            if (meta._function !== undefined) {
+                let _function = meta._function.replace('(', '').replace(')', '')
                 return (...args) => {
-                    var varsString = (toFunction('return ' + meta['_power']))()(...args)
-                    var childMeta = props.base.gm(meta.path + ',' + varsString, undefined, data)
-                    childMeta._power = undefined
+                    let _extParas = meta._extParas || {}
+
+                    _function.split(',').forEach((paraName, index) => {
+                        _extParas[utils.string.trim(paraName)] = args[index]
+                    })
+
+                    var childMeta = props.base.gm(meta.path, undefined, data, meta['_vars'], _extParas)
+                    childMeta._function = undefined
                     return metaToComponent(childMeta, props, data)
                 }
             }
+
 
             const componentName = meta.component,
                 component = componentFactory.getComponent(componentName)
@@ -114,7 +145,9 @@ function metaToComponent(meta, props, data) {
 
             var allProps = parseMetaProps(meta, props, data)
             if (!allProps.key) {
-                allProps.key = meta.path
+                let strVars = (meta._vars && meta._vars.map(o => o._index).join(',')) || ''
+                allProps.key = strVars ? meta.path + ',' + strVars : meta.path
+
             }
 
             delete allProps.component

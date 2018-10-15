@@ -98,7 +98,7 @@ const view = {
 ```js
 {
     ...
-    value: `{{data.content}}`
+    value: `{{data.content}}`  //value = state.data.content
     ...
 }
 ```
@@ -107,7 +107,7 @@ const view = {
 ```js
 {
     ...
-    onChange:`{{$onChange}}`
+    onChange:`{{$onChange}}` // onChange = action.onChange 
     ...
 }
 
@@ -118,8 +118,15 @@ const view = {
 {
     onChange: `{{{
         debugger;
-        return (e)=>$base.setState({'data.input',e.target.value)})
+        return $onChange
     }}}`
+
+    /*
+    onChange = eval({
+        debugger
+        return action.onChange
+    })
+    */
 }
 ```
 
@@ -129,9 +136,9 @@ const view = {
 {
     component: 'div',
     children: '{{data.list[_rowIndex].name}}',
-    _visible: true,
-    _notRender: false,
-    _power: 'for in data.list'
+    _visible: '{{data.is}}',
+    _for
+    _function
 }
 ```
 
@@ -145,8 +152,95 @@ const view = {
 超能力，支持两种语法
     -  for in [state path]
     将元素节点根据状态转为为数组
+
+     
+    
+```javascript
+state = {
+    data: {
+        list: [{a:1}, {a:2}]
+    }
+}
+```
+
     - (rowIndex)=>rowIndex
     将元素节点转化为函数
+
+<fixedDataTable>
+    <Column
+        cell = （rowindex） => {return <div>{rowIndex}</div>}
+        
+    >
+    </Column>
+</>
+
+{
+    component: 'fixedDataTable',
+    children: {
+        component: 'column'
+
+        cell:{ 
+            _type:'function'
+            _args:'arg1,arg2',
+            component: 'div',
+            children: '{{rowindex}}',
+        }, 
+        cell:{ 
+            _type:'for', 
+            _list:'data.list',
+            component: 'div',
+            children: '{{rowindex}}',
+        }, 
+
+        cell:{ 
+            _for:'data.list'
+            component: 'div',
+            children: '{{_item,_index}}', 
+        },   
+        cell:{ 
+            _function:'rowIndex'
+            component: 'div',
+            children: '{{rowindex}}', 
+        },
+        cell:{ 
+            new function:'arg1,arg2'
+            component: 'div',
+            children: '{{rowindex}}',
+        },
+
+
+        cell:{  
+            component: 'div',
+            children: '{{rowindex}}',
+        },
+    }
+}
+{
+    componet: 'ul',
+    children: {
+        {
+            component: 'li'
+            children: 'a'
+
+        },
+        {
+            component: 'li',
+            children: '{{item.a}}'
+            _for: 'item in data.list'
+        }
+    }
+}
+
+{
+    componet: 'ul',
+    children: 
+        {
+            component: 'li',
+            children: '{{item.a}}'
+            _for: 'item in data.list'
+        }
+    
+}
 
 
 ### 4.3、ActionMixin
