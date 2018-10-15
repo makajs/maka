@@ -41,7 +41,7 @@ const state = {
 ```
 
 - state很简单，可以理解为是应用的数据部分
-- 引擎内部状态的存储机构是immutable
+- 引擎内部状态的存储结构是immutable类型
 - 每次状态变化会通知view,重新render
 
 
@@ -84,13 +84,14 @@ const view = {
 }
 ```
 
-- view很简单，可以理解为react的json表示
+- view很简单，可以理解为react的json化表示
 - component是react组件名
 - 详细参见后面高级概念
 
 ## 4、高级概念
 
 ### 4.1、表达式
+*view的所有属性值支持表达式语法*
 
 *表达式可以支持js语法，见下面示例*
 
@@ -336,9 +337,18 @@ const view = {
 ```
 
 
-### 4.6、如何调用外部App
+## 5、app & hub
+
+### 5.1 app
 
 *把一个大型网站拆分成许多开发模式相同的app，这些app又可以独立运行、调试、分享，通过弱耦合的方式又能组合在一起成为一个网站*
+
+- app来源
+  - maka add 命令增加依赖， 会从hub.makajs.org下载依赖，类似yarn add
+  - package.json中subAppDir属性指向的目录，目录中如果存在应用代码会被扫描到
+  - 手动拷贝app.js 和 app.css到发布目录
+  
+- 组合使用
 
 ```javascript
 const view = {
@@ -346,20 +356,45 @@ const view = {
     className: 'hello',
     children: [{
         component: 'AppLoader',
-        appName: 'app-test' 
+        appName: 'app-test', //app name
+        content: 'hello' //app支持的属性
     }]
 }
 ```
-- 上面示例中app-test是一个独立app
-- 它可能来源与package.json中subAppDir指向目录下存在的应用，也可能是通过maka add 引入的外部应用
-- 所使用的子应用需要执行maka build 和 maka build --dev生成相应的js和css
-- yarn start 会自动将应用子应用资源copy 到dist目录下,yarn pkg也是相同道理
 
-## 5、maka Api
+- 手工创建
+```javascript
+import {createAppElement} from 'maka'
+...
+var ele = createAppElement('appName', {content: 'hello'}) //第一个参数：app name,第二参数：app props
+...
+```
+
+- 预加载
+修改index.html
+```javascript
+ maka.load(['appName1', 'appName2']).then(()=>{
+     ...
+ }
+```
+
+- navigate切换
+
+```javascript
+import {navigate} from 'maka'
+
+navigate.redirect('/appName/')
+```
+### 5.2 hub
+- maka提供hub.makajs.org网站用于分享开发者开发的应用 
+- 您可以通过maka publish分享您的应用，publish前请使用 maka build 、maka build --dev 、maka pkg 构建应用资源
+
+## 6、maka Api
 
 ```javascript 
 import {registerComponent, registerAction} from 'maka'
 ```
+*如上registerComponent,reigsterAction是两个api,所有支持的api如下*
 
 api | 参数 |  描述 | 
 --- | -- | -- | 
@@ -368,14 +403,16 @@ registerAction | (key, action) | 注册行为
 registerTemplate | (key, template) | 注册模板
 getComponent | (key) | 通过组件名获取组件
 load | [应用名...] | 加载应用
-setHoc | （hoc） | 设置最外层高阶组件
-fetch |  | 提供fetch对象，可以调用后台接口，或者mock
-navigate | | 提供navigate对象
+createAppElement | (appName, appProps) | 创建app React Element
+setHoc | （hoc） | 设置最外层高阶React Element
+fetch | 对象类型，不需要参数  | 提供fetch对象，可以调用后台接口，或者mock
+navigate | 对象类型，不需要参数 | 提供navigate对象
 render | (appName, targetHtmlElementName) | render
 
-## 6、如何调用webapi或者mock？
+## 7、ajax & mock
 
-### 6.1、调用webapi
+### 7.1、ajax
+*可以使用maka引擎提供fetch对象实现ajax，示例如下*
 
 *action.js*
 ```javascript
@@ -386,12 +423,12 @@ fetch.post('/v1/login',{user: 'admin', password: '123'})
 ...
 ```
 
-*index.html*
+*index.html, 配置fetch对象*
 ```javascript
     window.main = function (maka) {
         maka.utils.fetch.config({
-            mock: false,
-            token: '',
+            mock: false, //默认是true
+            token: '', 
             after: function (response, url) {
                 return response
             }
@@ -399,7 +436,7 @@ fetch.post('/v1/login',{user: 'admin', password: '123'})
     }
 ```
 
-*package.json*
+*package.json，配置本地调试的webpack dev server proxy*
 ```javascript
 ...
 "server": {
@@ -413,7 +450,8 @@ fetch.post('/v1/login',{user: 'admin', password: '123'})
 ...
 ```
 
-### 6.2、使用纯前端mock
+### 7.2、使用纯前端mock
+*可以使用maka引擎提供fetch对象实现mock，示例如下*
 
 *action.js*
 ```javascript
@@ -473,16 +511,16 @@ window.main = function (maka) {
 ```
 
 
-## 6、如何使单页网站具备类似router的能力？
+## 8、类似router的能力
 
-### 6.1、redirect
+### 8.1、redirect
 
 ```javascript
 import {navigate} from 'maka'
 navigate.redirect('/portal') //https://www.***.com/#/portal
 ```
 
-### 6.2、goBack
+### 8.2、goBack
 
 ```javascript
 import {navigate} from 'maka'
@@ -494,7 +532,7 @@ navigate.redirect('/portal') //https://www.***.com/#/portal
 navigate.goBack() //https://www.***.com/#/sign-in
 ```
 
-### 6.3、listen 
+### 8.3、listen 
 ```javascript
 navigate.listen((location.action)=>{
     debugger
@@ -503,22 +541,58 @@ navigate.listen((location.action)=>{
 ```
 
 
-## 7、maka cli 命令
+## 9、maka cli 命令
 
-命令 | 描述
---- | -- 
-maka app  | 创建一个应用
-maka start | 启动app，支持--dev参数
-maka build | 编译应用,支持--dev参数
-maka pkg | 打包应用，支持--dev参数
-maka add | 增加依赖应用, 类似yarn add
-maka publish | 发布应用, 类似yarn publish
-maka install | 安装依赖，类似yarn install
-maka upgrade | 更新依赖，类似yarn upgrade
-maka remove | 移除依赖, 类似yarn remove
+*maka cli 支持的所有命令如下*
+
+- maka app
+
+```bash
+maka app test 
+```
+创建一个名为test应用
+
+- maka start
+```bash
+maka start 
+maka start --dev //dev模式启动
+```
+启动app，可以通过浏览器访问应用的运行结果,http://127.0.0.1:8000
+
+- maka build
+```bash
+maka build 
+maka build --dev //dev模式编译
+```
+编译应用，会在当前目录build目录下生成编译结果
+
+- maka pkg
+```bash
+maka pkg
+maka pkg --dev //dev模式打包
+```
+打包应用, 会在当前目录build目录下生成打包结果，打包结果可用于网站直接部署使用
+
+- maka add
+```bash
+maka add appName
+```
+增加依赖，增加依赖会修改package.json文件，start或者pkg命令时会把依赖app的编译结果copy当前应用运行目录下
+
+- maka adduser
+```bash
+maka adduser
+```
+类似npm adduser功能，成功会在hub.makajs.org创建用户，并登录
+
+- maka publish
+```bash
+maka publish
+```
+使用publish命令分享您的app到hub.makajs.org,其他开发人员就可以通过maka add来引用您发布的应用，注意publish前请使用 maka build 、maka build --dev 、maka pkg 构建应用资源
 
 
-## 7、结束
+## 10、结束
 
 - 感谢您对maka的关注！
 
