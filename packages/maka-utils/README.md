@@ -1,1 +1,1 @@
-# maka-utils
+# @makajs/utils

@@ -182,7 +182,7 @@ export default class action {
 				&& this.metaHandlers.componentDidCatch != this.componentDidCatch
 				&& this.metaHandlers.componentDidCatch(e)
 			setTimeout(() => {
-				console.error(`表达式解析错误：${expressContent}`)
+				console.error(`expression parsing error：${expressContent}`)
 				utils.exception.error(e)
 			}, 500)
 

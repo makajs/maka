@@ -1,1 +1,1 @@
-# maka-meta-engine
+# @makajs/meta-engine

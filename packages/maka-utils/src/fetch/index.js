@@ -104,7 +104,7 @@ function get(url, headers, option) {
 					json = response.json()
 				}else if(contentType == 'application/octet-stream' ){
 						response.blob().then(blob => { let a = document.createElement('a')
-						let url = window.URL.createObjectURL(blob)   // 获取 blob 本地文件连接 (blob 为纯二进制对象，不能够直接保存到磁盘上)
+						let url = window.URL.createObjectURL(blob)   
 						let name = response.headers.get('Content-Disposition')
 						name = name.split('name=')[1].split(';')[0]
 						a.href = url
@@ -136,7 +136,7 @@ function post(url, data, headers, option) {
 					}
 					var mockFun = mockApi[url]
 					if (!mockFun || typeof mockFun != 'function') {
-						throw (url + ':对应的handler无效')
+						throw (url + ':handler is invalid')
 					}
 					var resp = mockFun(data, headers)
 					if (resp.then && resp.catch) {
@@ -182,7 +182,7 @@ function post(url, data, headers, option) {
 				}else if(contentDisposition != null){
 					response.blob().then(blob => { 
 						let a = document.createElement('a')
-						let url = window.URL.createObjectURL(blob)   // 获取 blob 本地文件连接 (blob 为纯二进制对象，不能够直接保存到磁盘上)
+						let url = window.URL.createObjectURL(blob)   
 						let name = response.headers.get('Content-Disposition')
 						name = name.split('name=')[1].split(';')[0]
 						a.href = url
@@ -210,7 +210,7 @@ function formPost(url, data, isFree) {
 		data.token = accessToken
 	}
 
-	var postForm = document.createElement("form")//表单对象
+	var postForm = document.createElement("form")//form object
 	postForm.method = "post"
 	postForm.action = url
 	postForm.target = "_blank"

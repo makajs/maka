@@ -1,1 +1,1 @@
-# maka-cli
+# @makajs/cli

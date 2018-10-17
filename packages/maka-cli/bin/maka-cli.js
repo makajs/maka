@@ -7,14 +7,14 @@ var currentNodeVersion = process.versions.node;
 var semver = currentNodeVersion.split('.');
 var major = semver[0];
 
-if (major < 4) {
+if (major < 8) {
     console.error(
         chalk.red(
-            '您当前的node版本是 ' +
+            'You are running Node ' +
             currentNodeVersion +
             '.\n' +
-            'maka依赖>=4的版本. \n' +
-            '请升级您的node版本.'
+            'Maka requires Node 8 or higher.maka. \n' +
+            'Please update your version of Node.'
         )
     );
     process.exit(1);
@@ -32,8 +32,8 @@ try {
     console.log(err)
 }
 if (!flag) {
-    console.log(chalk.yellowBright('maka依赖yarn，您没有安装 \n'))
-    console.log(chalk.greenBright('请先安装yarn \n'))
+    console.log(chalk.yellowBright('Maka depends on yarn, you do not install it. \n'))
+    console.log(chalk.greenBright('Please install yarn first.\n'))
     console.log(chalk.cyan('npm i -g yarn'))
     process.exit(1);
 }
@@ -46,7 +46,7 @@ program
 
 program
     .command('app <appName>')
-    .description('创建app')
+    .description('create app')
     .action(function (...args) {
         let s = run('app', args);
         process.exit(s);
@@ -54,7 +54,7 @@ program
 
 program
     .command('build')
-    .description('构建app')
+    .description('build app')
     .option('-d, --dev', 'development')
     .action(function (...args) {
         let s = run('build', args)
@@ -63,7 +63,7 @@ program
 
 program
     .command('pkg')
-    .description('打包app')
+    .description('packaging app')
     .option('-d, --dev', 'development')
     .action(function (...args) {
         let s = run('pkg', args);
@@ -81,7 +81,7 @@ program
 
 program
     .command('install')
-    .description('安装依赖')
+    .description('install depends')
     .action(function (...args) {
         let s = run('install', args);
         process.exit(s);
@@ -89,7 +89,7 @@ program
 
 program
     .command('upgrade')
-    .description('更新依赖')
+    .description('upgrade depends')
     .action(function (...args) {
         let s = run('upgrade', args);
         process.exit(s);
@@ -97,7 +97,7 @@ program
 
 program
     .command('add')
-    .description('增加依赖')
+    .description('add depends')
     .action(function (...args) {
         let s = run('add', args);
         process.exit(s);
@@ -105,7 +105,7 @@ program
 
 program
     .command('remove')
-    .description('删除依赖')
+    .description('remove depends')
     .action(function (...args) {
         let s = run('remove', args);
         process.exit(s);
@@ -113,7 +113,7 @@ program
 
 program
     .command('publish')
-    .description('发布app')
+    .description('publish app')
     .action(function (...args) {
         let s = run('publish', args);
         process.exit(s);
@@ -130,7 +130,7 @@ program
 program
     .command('*')
     .action(function (env) {
-        console.log('没有这个命令 "%s"', env)
+        console.log('Unknown command "%s"', env)
     })
 
 program.parse(process.argv)
@@ -158,9 +158,13 @@ function run(script, args) {
     );
     if (result.signal) {
         if (result.signal === 'SIGKILL') {
-            console.log("构建失败，内存溢出或者进程太早退出导致，使用 kill -9 删除进程");
+            console.log('The build failed because the process exited too early. ' +
+            'This probably means the system ran out of memory or someone called ' +
+            '`kill -9` on the process.');
         } else if (result.signal === 'SIGTERM') {
-            console.log('构建失败，进程太早退出，可能有人调用kill 或者killall或者系统关闭. ');
+            console.log('The build failed because the process exited too early. ' +
+            'Someone might have called `kill` or `killall`, or the system could ' +
+            'be shutting down.');
         }
         process.exit(1);
     }

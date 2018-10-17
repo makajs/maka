@@ -5,7 +5,7 @@ import appLoader from '@makajs/app-loader'
 import utils from '@makajs/utils'
 import metaEngine from '@makajs/meta-engine'
 
-//默认配置fetch
+
 utils.fetch.config({
     mock: true
 })
@@ -30,22 +30,26 @@ var Hoc,
     navigate = utils.navigate
 
 
-//初始化Maka环境
+//Initialize maka environment
 function init(option) {
     appLoader.init(option)
 }
 
-//配置元数据引擎
+//Configure the metadata engine
 function config(option) {
     metaEngine.config(option)
 }
 
-//加载app
+//load app
 async function load(app) {
     return await appLoader.loadApp(app, isProduction)
 }
 
-//设置高阶组件
+function createAppElement(appName, appProps){
+    return (<appLoader.AppLoader name={appName} {...appProps}></appLoader.AppLoader>)
+}
+
+//Set high order component
 function setHoc(hoc) {
     Hoc = hoc
 }
@@ -88,6 +92,7 @@ export default {
     fetch,
     navigate,
     createElement,
+    createAppElement,
     render
 }
 
@@ -107,5 +112,6 @@ export {
     fetch,
     navigate,
     createElement,
+    createAppElement,
     render
 }
