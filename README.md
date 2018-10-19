@@ -1,35 +1,97 @@
 # maka
 
--  maka源于中文码咖，意为写代码的大咖
-- 一眼即可看懂的前端框架，简约而不简单
+## Introduction
 
+### What is maka?
 
-## 1、安装
+> 'Maka' comes from the Chinese word '码咖'(mǎkā), which means code guru.
+
+> A front-end framework that you can understand at a glance, simplicity does not mean simple.
+
+### Installation
 
 ``` bash
 sudo npm i -g @makajs/cli
 ```
 
-依赖项：
+Dependencies：
 - npm 
 - yarn
 ``` bash
 sudo npm i -g yarn
 ```
 
-## 2、快速上手
+### Getting Started
+
+> The following example is to create a new maka app 'hello-world', and start the development server(<a href='http://localhost:8000' target='maka dev'>http://localhost:8000</a>)
 
 ``` bash
-maka app helloworld
-cd helloworld
+maka app hello-world
+cd hello-world
 yarn start
 ```
-*创建一个名叫helloworld的应用,并且运行起来*
+
+### Command Line Tool
+
+#### Commands
+
+- maka app
+> Create a maka app called 'test'
+```bash
+maka app test 
+```
 
 
-## 3、入门概念
+- maka start
+> Start the app webpack dev server, browse <a href='http://localhost:8000' target='maka dev'>http://localhost:8000</a> to view the running results of the maka app.
+```bash
+maka start 
+maka start --dev //Start in dev mode
+```
 
-### 3.1、State
+
+- maka build
+> Compile the maka app and generate the compilation result in the 'build' directory.
+```bash
+maka build 
+maka build --dev //Start in dev mode
+```
+
+
+- maka pkg
+> Package the maka app, generate the package result in the 'build' directory
+```bash
+maka pkg
+maka pkg --dev //Start in dev mode
+```
+
+
+- maka add
+> Add a sub-application will modify the package.json file. When the start or pkg command is executed, the compilation result of the sub-application will be copied under the running directory.
+```bash
+maka add appName
+```
+
+
+- maka adduser
+> Create a user at hub.makajs.org and log in, similar to the npm adduser function
+```bash
+maka adduser
+```
+
+
+- maka publish
+> Publish current maka app to hub.makajs.org, other developers can refer to your published app via 'maka add'. Please use 'maka build', 'maka pkg' to build application resources before publishing.
+
+```bash
+maka publish
+```
+
+
+## Main Concepts
+
+### State
+
 
 ``` js
 const state = {
@@ -40,13 +102,12 @@ const state = {
 }
 ```
 
-- state很简单，可以理解为是应用的数据部分
-- 引擎内部状态的存储结构是immutable类型
-- 每次状态变化会通知view,重新render
+- The state object provides data for the maka app
+- The storage structure of the internal state of the maka engine is immutable type
+- Every change of the state object will notify view and rerender
 
 
-### 3.2、Action
-
+### Action
 ``` js
 @actionMixin('base')
 class action {
@@ -61,12 +122,14 @@ class action {
 }
 ```
 
-- action很简单，可以理解为是一些提供给ui调用的函数
-- actionMixin，混入外部action,默认混入了maka引擎base
-- 详细参见后面高级概念
+- The Action object contains functions that are provided to the view.
+- The 'actionMixin' means the Action object mix up with external Action. The 'base' is required.
+- Please refer Advanced Concepts for more information.
 
 
-### 3.3、View
+### View
+
+``` js
 
 ``` js
 const view = {
@@ -84,18 +147,16 @@ const view = {
 }
 ```
 
-- view很简单，可以理解为react的json化表示
-- component是react组件名
-- 详细参见后面高级概念
+- The View object is JSON representation of react components.
+- Please refer Advanced Concepts for more information.
 
-## 4、高级概念
 
-### 4.1、表达式
-*view的所有属性值支持表达式语法*
+## Advanced Concepts
 
-*表达式可以支持js语法，见下面示例*
+### Expression
 
-- 绑定state中path为data.content的数据
+
+- Bind the data that path is 'data.content' in state.
 ```js
 {
     ...
@@ -104,7 +165,7 @@ const view = {
 }
 ```
 
-- 绑定action中方法名为onChange的函数
+- Bind the function 'onChange' in the Action.
 ```js
 {
     ...
@@ -114,7 +175,7 @@ const view = {
 
 ```
 
-- 函数体
+- Bind the anonymous function
 ```js
 {
     onChange: `{{{
@@ -131,28 +192,36 @@ const view = {
 }
 ```
 
-### 4.2、view节有哪些系统属性?
+### View reserved keywords
 
 
 ```javascript
 {
     component: 'div',
     children: 'hello',
-    _visible: 'true'
+    _visible: 'true',
+    _for: 'item in data.list',
+    _function: '(a,b)'
 }
 ```
 
- 这里说的系统属性就是上面例子中的component、children、_visible等;
- 除系统属性外还可以设置控件支持的任何属性;
- 主要支持下面描述的几种系统属性;
+ - The reserved keywords: component, children, _visible, _for, _function
+
+ - In addition to the reserved keywords, you can set any properties supported by the component.
+
+ #### Props
 
 - component
-组件名，缺省可使用所有html元素
+
+Component name, all html elements are available by default
+
 ```javascript
 { component: 'div' } //<div></div>
 ```
 - children
-子组件
+
+Child component
+
 ```javascript
 {
     component: 'div'
@@ -170,7 +239,8 @@ const view = {
 ```
 
 - _visible
-是否显示，值支持表达式, 默认true
+
+visible: the value can use expression, default value is true
 
 ```javascript
 {
@@ -179,10 +249,11 @@ const view = {
 }
 
 ```
-*_visible设置为false,将不创建该组件*
+*If _visible is set to false, the component will not be created.*
 
 - _for
-循环,支持for嵌套
+
+For loop, support multi-level for loop
 
 ```javascript
 const state = {
@@ -202,7 +273,8 @@ const view = {
 ```
 
 - _function
-函数,当组件的某个属性要求是一个函数并返回react 元素时使用它
+
+Function that is used when a component's property requires a function and returns a react element
 
 ```javascript
 
@@ -235,9 +307,10 @@ const view = {
 
 ```
 
-### 4.3、如何使用自定义组件?
+### Custom components
 
-*view可以使用自定义组件或者外部的react组件，见下面示例*
+
+*The View object can use custom components or external react components, see the example below.*
 
 ```javascript
 import React from 'react'
@@ -264,9 +337,9 @@ const view = {
 }
 ```
 
+### Custom template components
 
-### 4.4、如何自定义模板组件？
-*模板组件是为了减少view json的代码量提出的概念，把相似度很高、并且经常使用的一些json定义为模板组件，在使用中能有效减少代码量，见下面示例*
+*Define some of the json fragments in the view object that are highly similar and frequently used as template components. When using this, the amount of code in the view object can be effectively reduced. See the example below.*
 
 ```javascript
 import { registerTemplate } from 'maka'
@@ -295,22 +368,20 @@ const view = {
 ```
 
 
-### 4.5、ActionMixin
+### ActionMixin
 
-*ActionMixin提供了低耦合方式混入外部行为的可能，缺省并至少需要混入了Maka框架的base行为*
+*The 'actionMixin' means the Action object mix up with external Action. The 'base' is required.*
 
+- What functions are available from the base of the maka engine?
 
-- maka引擎混入的base提供了哪些可用行为？
-
-方法名 | 描述 | action中使用示例 | view中使用示例
+Function Name | Description | Example in Action | Example in View
 --- | -- | --- | ---
-getState  | 获取状态 | this.base.getState('data.input') | $base.getState('data.input')
-setState  | 设置状态 | this.base.setState({'data.input', 'hello'}) | $base.setState({'data.input', 'hello'})
+getState  | get value in the state by path | this.base.getState('data.input') | $base.getState('data.input')
+setState  | set value in the state by path | this.base.setState({'data.input', 'hello'}) | $base.setState({'data.input', 'hello'})
 gs | =getState |  this.base.gs('data.input') | $base.gs('data.input')
 ss | =setState | this.base.ss({'data.input', 'hello'}) |$base.ss({'data.input', 'hello'})
-context | 上下文,支持get、set方法 | this.base.context.get('currentUser') or this.base.context.set('currentUser', {name: 'zhang'}) | $base.context.get('currentUser')
 
-- 如何混入自定义的行为类？
+- To mix in custom action classes
 
 ```javascript
 import { actionMixin, registerAction } from 'maka'
@@ -337,59 +408,72 @@ const view = {
 ```
 
 
-## 5、app & hub
 
-### 5.1 app
+## App && Hub
 
-*把一个大型网站拆分成许多开发模式相同的app，这些app又可以独立运行、调试、分享，通过弱耦合的方式又能组合在一起成为一个网站*
+### App
 
-- app来源
-  - maka add 命令增加依赖， 会从hub.makajs.org下载依赖，类似yarn add
-  - package.json中subAppDir属性指向的目录，目录中如果存在应用代码会被扫描到
-  - 手动拷贝app.js 和 app.css到发布目录
+
+*The maka app can be run, debugged, shared, or combined into a website by weak coupling.*
+
+
+- Create a app
+  - The 'maka app test' command will create a maka app called 'test'
+
+- Add a sub-application
+  - The 'maka add' command downloads the app from hub.makajs.org, similar to 'yarn add'.
+  - The 'subAppDir' attribute in package.json points to the storage directory of the maka application.
+  - Copy app.js and app.css to the distribution directory.
   
-- 组合使用
+- Load a sub-application through the 'AppLoader' component
 
 ```javascript
 const view = {
     component: 'div',
     className: 'hello',
     children: [{
-        component: 'AppLoader',
+        component: 'AppLoader',//AppLoader component provided by maka engine
         appName: 'app-test', //app name
-        content: 'hello' //app支持的属性
+        content: 'hello' //app supported properties
     }]
 }
 ```
 
-- 手工创建
+- Load a sub-application through the 'createAppElement' function
 ```javascript
 import {createAppElement} from 'maka'
 ...
-var ele = createAppElement('appName', {content: 'hello'}) //第一个参数：app name,第二参数：app props
+@actionMixin('base')
+class action {
 ...
+var subApp = createAppElement('appName', {content: 'hello'}) //The first parameter: app name, the second parameter: app props
+...
+}
 ```
 
-- 预加载
-修改index.html
+- Preloading a sub-application
+change index.html
 ```javascript
  maka.load(['appName1', 'appName2']).then(()=>{
      ...
  }
 ```
 
-- navigate切换
+- Navigate to a sub-application
 
 ```javascript
 import {navigate} from 'maka'
 
 navigate.redirect('/appName/')
 ```
-### 5.2 hub
-- maka提供hub.makajs.org网站用于分享开发者开发的应用 
-- 您可以通过maka publish分享您的应用，publish前请使用 maka build 、maka build --dev 、maka pkg 构建应用资源
 
-## 6、maka Api
+### Hub
+
+- Developers can upload the maka application to the hub.makajs.org website
+- You can share your app via 'maka publish'. Before using publish, please use 'maka build', 'maka build --dev', 'maka pkg' to build application resources.
+
+
+## Maka API
 
 ```javascript 
 import {registerComponent, registerAction} from 'maka'
@@ -409,10 +493,13 @@ fetch | 对象类型，不需要参数  | 提供fetch对象，可以调用后台
 navigate | 对象类型，不需要参数 | 提供navigate对象
 render | (appName, targetHtmlElementName) | render
 
-## 7、ajax & mock
 
-### 7.1、ajax
-*可以使用maka引擎提供fetch对象实现ajax，示例如下*
+
+## Ajax && Mock
+
+### Ajax
+
+*You can use the 'fetch' object that provided by the maka engine to implement the ajax call. The followings is an example:*
 
 *action.js*
 ```javascript
@@ -423,11 +510,11 @@ fetch.post('/v1/login',{user: 'admin', password: '123'})
 ...
 ```
 
-*index.html, 配置fetch对象*
+*index.html, config the fetch object*
 ```javascript
     window.main = function (maka) {
         maka.utils.fetch.config({
-            mock: false, //默认是true
+            mock: false, //default value is 'true'
             token: '', 
             after: function (response, url) {
                 return response
@@ -436,7 +523,7 @@ fetch.post('/v1/login',{user: 'admin', password: '123'})
     }
 ```
 
-*package.json，配置本地调试的webpack dev server proxy*
+*package.json, configuring local debug webpack dev server proxy*
 ```javascript
 ...
 "server": {
@@ -450,8 +537,9 @@ fetch.post('/v1/login',{user: 'admin', password: '123'})
 ...
 ```
 
-### 7.2、使用纯前端mock
-*可以使用maka引擎提供fetch对象实现mock，示例如下*
+### Mock
+
+*The maka engine provides a 'fetch' object for implementing the mock mechanism. The followings is an example:*
 
 *action.js*
 ```javascript
@@ -491,7 +579,7 @@ fetch.mock('/v1/login', (option, headers) => {
         }
     }
     else {
-        return { result: false, error: { message: '请输入正确的用户名密码（系统内置用户user:13334445556,pwd:1）' } }
+        return { result: false, error: { message: 'Please enter the correct username and password.(default user:13334445556,password:1)' } }
     }
 })
 ```
@@ -509,18 +597,19 @@ window.main = function (maka) {
     })
 }
 ```
+## Navigate
 
 
-## 8、类似router的能力
-
-### 8.1、redirect
+- redirect
 
 ```javascript
 import {navigate} from 'maka'
+...
 navigate.redirect('/portal') //https://www.***.com/#/portal
+...
 ```
 
-### 8.2、goBack
+- goBack
 
 ```javascript
 import {navigate} from 'maka'
@@ -532,67 +621,21 @@ navigate.redirect('/portal') //https://www.***.com/#/portal
 navigate.goBack() //https://www.***.com/#/sign-in
 ```
 
-### 8.3、listen 
+- listen event
 ```javascript
 navigate.listen((location.action)=>{
     debugger
-    //自定义处理
+    //code
 })
 ```
 
+## Team
 
-## 9、maka cli 命令
+- ziaochina   <ziaochina@gmail.com>
+- LI Shengguo  <lishengguo@qq.com>
+- Jeffy Cai   <caixiaobing@live.cn>
 
-*maka cli 支持的所有命令如下*
+## Done
 
-- maka app
-
-```bash
-maka app test 
-```
-创建一个名为test应用
-
-- maka start
-```bash
-maka start 
-maka start --dev //dev模式启动
-```
-启动app，可以通过浏览器访问应用的运行结果,http://127.0.0.1:8000
-
-- maka build
-```bash
-maka build 
-maka build --dev //dev模式编译
-```
-编译应用，会在当前目录build目录下生成编译结果
-
-- maka pkg
-```bash
-maka pkg
-maka pkg --dev //dev模式打包
-```
-打包应用, 会在当前目录build目录下生成打包结果，打包结果可用于网站直接部署使用
-
-- maka add
-```bash
-maka add appName
-```
-增加依赖，增加依赖会修改package.json文件，start或者pkg命令时会把依赖app的编译结果copy当前应用运行目录下
-
-- maka adduser
-```bash
-maka adduser
-```
-类似npm adduser功能，成功会在hub.makajs.org创建用户，并登录
-
-- maka publish
-```bash
-maka publish
-```
-使用publish命令分享您的app到hub.makajs.org,其他开发人员就可以通过maka add来引用您发布的应用，注意publish前请使用 maka build 、maka build --dev 、maka pkg 构建应用资源
-
-
-## 10、结束
-
-- 感谢您对maka的关注！
+Thank you for your interest in maka!
 
