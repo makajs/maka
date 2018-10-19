@@ -474,25 +474,23 @@ navigate.redirect('/appName/')
 
 
 ## Maka API
-
 ```javascript 
 import {registerComponent, registerAction} from 'maka'
 ```
-*如上registerComponent,reigsterAction是两个api,所有支持的api如下*
+*As the example above, registerComponent and reigsterAction are two apis. All of the supported apis are as the followings:*
 
-api | 参数 |  描述 | 
+api | arguments |  description | 
 --- | -- | -- | 
-registerComponent | (key, component)  | 注册组件
-registerAction | (key, action) | 注册行为
-registerTemplate | (key, template) | 注册模板
-getComponent | (key) | 通过组件名获取组件
-load | [应用名...] | 加载应用
-createAppElement | (appName, appProps) | 创建app React Element
-setHoc | （hoc） | 设置最外层高阶React Element
-fetch | 对象类型，不需要参数  | 提供fetch对象，可以调用后台接口，或者mock
-navigate | 对象类型，不需要参数 | 提供navigate对象
+registerComponent | (key, component)  | register customer component
+registerAction | (key, action) | register customer action
+registerTemplate | (key, template) | register template component
+getComponent | (key) | get component by name
+load | [appName...] | load app
+createAppElement | (appName, appProps) | create app React Element
+setHoc | （hoc） | Set the outermost high-level React Element
+fetch | Object type, no arguments required  | Provide a fetch object, you can call the background interface, or mock
+navigate | Object type, no arguments required | Provide navigate object
 render | (appName, targetHtmlElementName) | render
-
 
 
 ## Ajax && Mock
