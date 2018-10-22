@@ -26,8 +26,17 @@ function ensureSlash(path, needsSlash) {
     }
 }
 
-const getPublicUrl = appPackageJson =>
-    envPublicUrl || require(appPackageJson).homepage;
+
+
+const getPublicUrl = appPackageJson => {
+    try {
+        var obj = require(appPackageJson)
+        return envPublicUrl || (obj && obj.homepage);
+    }
+    catch (ex) {
+        return
+    }
+}
 
 
 function getServedPath(appPackageJson) {
@@ -37,9 +46,9 @@ function getServedPath(appPackageJson) {
     return ensureSlash(servedUrl, true);
 }
 
-function fixName(name){
-    if(name.indexOf('@') == -1) return name
-    return name.replace('@','').replace('makajs','makajs').replace('/', '-')
+function fixName(name) {
+    if (name.indexOf('@') == -1) return name
+    return name.replace('@', '').replace('makajs', 'makajs').replace('/', '-')
 }
 
 
@@ -61,5 +70,5 @@ module.exports = {
     servedPath: getServedPath(resolveApp('package.json')),
     ownPath: resolveOwn('.'),
     ownNodeModules: resolveOwn('node_modules'),
-    
+
 };
