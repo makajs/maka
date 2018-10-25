@@ -76,7 +76,7 @@ Whereas the business developer is usually responsible for developing a module. I
     |---package.json
     |---actions
             |---loginAction.js
-            |---portalReducer.js
+            |---portalAction.js
     |---reducers
             |---loginReducer.js
             |---portalReducer.js
