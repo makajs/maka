@@ -74,6 +74,7 @@ Whereas the business developer is usually responsible for developing a module. I
 ```javascript
 |---website
     |---package.json
+    |---index.js
     |---actions
             |---loginAction.js
             |---portalAction.js
@@ -92,7 +93,8 @@ MakaJs proposes the concept of App, which divides a website into multiple apps w
 
 ```javascript
 |---website
-    |---package.json
+    |---package.json (can use yarn start)
+    |---index.js
     |---apps
           |---login
                 |---view.js
