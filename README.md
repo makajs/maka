@@ -46,11 +46,11 @@ From Json's tree structure, we can clearly know what the ui is.
     component: 'div',
     children:[{
         component:'div',
-        children:1,
+        children: '1',
         _visible: `{{data.status == '1'}}`
     },{
         component:'div',
-        children:1,
+        children: '2',
         _visible: `{{data.status != '1'}}`
     },{
         _for: 'item in data.list',
