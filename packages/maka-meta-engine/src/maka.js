@@ -30,6 +30,7 @@ function parseMetaProps(meta, props, data) {
         }
         else if (t == 'object') {
             if (v && v._notParse) {
+                delete v._notParse
                 ret[key] = v
             }
             else {
