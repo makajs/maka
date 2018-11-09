@@ -8,6 +8,8 @@
 
 > A front-end framework that you can understand at a glance, simplicity does not mean simple.
 
+![image](https://makajs.org/img/framework.png)
+
 ### Why Maka.js
 Use maka.js to resolve these problems:
 #### 1、 React -- ugly syntax
