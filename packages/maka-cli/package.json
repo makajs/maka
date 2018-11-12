@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -41,7 +41,7 @@
     "file-loader": "*",
     "fs-extra": "*",
     "fsevents": "*",
-    "got": "^9.2.2",
+    "got": "*",
     "hyperquest": "*",
     "less": "*",
     "less-loader": "*",
@@ -50,6 +50,7 @@
     "react": "*",
     "react-dev-utils": "*",
     "react-dom": "*",
+    "readline-sync": "*",
     "resolve": "*",
     "semver": "*",
     "tar-pack": "*",

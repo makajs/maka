@@ -184,6 +184,9 @@ function parseMetaTemplate(meta) {
                 return ll
             })
         }
+        else if(seg == ''){
+            meta = t[1]
+        }
         else {
             meta = meta.setIn(seg, t[1])
         }

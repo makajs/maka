@@ -25,7 +25,13 @@ scanRemoteApps(packageJson)
 
 depPaths.forEach(p => {
   let buildPath = path.resolve(p, 'build', isDev ? 'dev' : 'prod')
-  fs.copySync(buildPath, targetPath);
+  var stat = fs.statSync(buildPath);
+  if(stat.isDirectory()){
+    fs.copySync(buildPath, targetPath);
+  }
+  else{
+    console.log('fewfew')
+  }
 })
 
 

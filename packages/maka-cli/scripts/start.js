@@ -28,7 +28,7 @@ const isDev = process.argv[process.argv.length - 1] === 'true'
 const outputPath = paths.appPublic
 
 const createWebpackConfig = require('../config/webpack.config');
-const config = createWebpackConfig({ isProd: !isDev, outputPath: outputPath });
+const config = createWebpackConfig({ isProd: !isDev, outputPath: outputPath, isStart: true });
 
 const {
   choosePort,
@@ -82,8 +82,8 @@ function copyCoreLib() {
 
 function copyDep() {
   spawn.sync('node',
-      [path.resolve(__dirname, '..', 'scripts', 'copy-dep.js'), isDev, outputPath],
-      { stdio: 'inherit' }
+    [path.resolve(__dirname, '..', 'scripts', 'copy-dep.js'), isDev, outputPath],
+    { stdio: 'inherit' }
   );
 }
 
@@ -153,7 +153,7 @@ function startServer(option) {
       return console.log(err);
     }
 
-    clearConsole();
+    //clearConsole();
     console.log(chalk.cyan('Start the server...\n'));
     //openBrowser(urls.localUrlForBrowser);
   });

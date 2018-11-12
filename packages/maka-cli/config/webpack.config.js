@@ -14,7 +14,7 @@ const appName = utils.fixName(appPackageJson.name)
 const fs = require('fs');
 
 module.exports = function (option) {
-    var { isProd, outputPath } = option,
+    var { isProd, outputPath, isStart } = option,
         minimizer = isProd ? [new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }), new OptimizeCSSAssetsPlugin({})] : [],
         outputJsFileName = isProd ? `${appName}.min.js` : `${appName}.js`,
         outputCssFieldName = isProd ? `${appName}.min.css` : `${appName}.css`,
@@ -29,8 +29,15 @@ module.exports = function (option) {
         externals = {...externals, ...appPackageJson.webpack.externals}
     }
 
+    var ext = {}
+
+    if (isStart) {
+        ext = { devtool: 'source-map' }
+    }
+
     return {
         mode: 'production',
+        ...ext,
         optimization: {
             minimizer
         },

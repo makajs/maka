@@ -32,7 +32,6 @@ export default class action {
 			//app: config.getApps()[component.props.appName],
 			instance: component
 		}
-
 		var initState = (this.appInfo.state && this.appInfo.state.data) || {}
 		this.ss('data', fromJS(initState))
 
