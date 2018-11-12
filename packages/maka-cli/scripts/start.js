@@ -18,6 +18,7 @@ const clearConsole = require('react-dev-utils/clearConsole');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const paths = require('../config/paths');
 const utils = require('./utils');
+var readlineSync = require('readline-sync');
 
 const createDevServerConfig = require('../config/webpackDevServer.config');
 const spawn = require('react-dev-utils/crossSpawn');
@@ -81,10 +82,20 @@ function copyCoreLib() {
 
 
 function copyDep() {
-  spawn.sync('node',
-    [path.resolve(__dirname, '..', 'scripts', 'copy-dep.js'), isDev, outputPath],
-    { stdio: 'inherit' }
+  var r = spawn.sync('node',
+      [path.resolve(__dirname, '..', 'scripts', 'copy-dep.js'), isDev, outputPath],
+     // { stdio: 'inherit' }
   );
+
+  var stdout = r.stdout && r.stdout.toString()
+  if(stdout){
+      console.log(chalk.yellow(stdout))
+      if(readlineSync.keyInYN('Exists warning, Continue?')) {
+      }
+      else{
+        process.exit(0)
+      }
+  }
 }
 
 function createMainJsFile() {

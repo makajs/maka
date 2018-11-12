@@ -15,6 +15,7 @@ const paths = require('../config/paths');
 
 const packageJson = require(paths.appPackageJson);
 var appsDirectory = path.join(paths.appPath, packageJson.subAppDir);
+const chalk = require('chalk');
 const targetPath = process.argv[3];
 const isDev = process.argv[2] === 'true';
 var depPaths = [];
@@ -22,18 +23,21 @@ var depPaths = [];
 scanLocalApps(appsDirectory)
 scanRemoteApps(packageJson)
 
-
 depPaths.forEach(p => {
-  let buildPath = path.resolve(p, 'build', isDev ? 'dev' : 'prod')
-  var stat = fs.statSync(buildPath);
-  if(stat.isDirectory()){
+  let buildPath = path.resolve(p[0], 'build', isDev ? 'dev' : 'prod')
+  if (fs.existsSync(buildPath)) {
     fs.copySync(buildPath, targetPath);
   }
-  else{
-    console.log('fewfew')
+  else {
+    console.log(chalk.yellow(`[Warn] Please compile app`));
+    console.log(chalk.yellow(`       Name: ${p[1]}`))
+    console.log(chalk.yellow(`       Path: ${path.relative(paths.appPath, p[0])}`))
+    console.log(chalk.yellow(`       Command: yarn build ${isDev ? '--dev' : ''}`))
+    console.log()
   }
 })
 
+process.exit(1)
 
 function scanLocalApps(dir) {
   if (!fs.existsSync(dir))
@@ -48,7 +52,7 @@ function scanLocalApps(dir) {
         if (subAppJson.isMakaApp) {
           let appPath = path.relative(paths.appPath, dir)
           if (depPaths.indexOf(appPath) == -1) {
-            depPaths.push(appPath)
+            depPaths.push([appPath, subAppJson.name])
             scanRemoteApps(subAppJson)
           }
         }
@@ -65,7 +69,7 @@ function scanRemoteApps(json) {
     if (pkg.isMakaApp) {
       let appPath = path.join(paths.appSrc, 'node_modules', k)
       if (depPaths.indexOf(appPath) == -1) {
-        depPaths.push(appPath)
+        depPaths.push([appPath,pkg.name])
         scanRemoteApps(pkg)
       }
     }
