@@ -636,9 +636,7 @@ fetch.post('/v1/login',{user: 'admin', password: '123'})
 ...
 "server": {
     "proxy": {
-        "/v1/*": {
-            "target": "http://www.***.com:8080/"
-        }
+        "/api": "http://www.***.com"
     },
     "port": 8000
   }
