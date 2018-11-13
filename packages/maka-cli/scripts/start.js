@@ -149,8 +149,8 @@ function startServer(option) {
 
   const compiler = createCompiler(webpack, config, appName, urls, true);
   // Load agent configuration
-  const proxySetting = serverOption.proxy;
-  const proxyConfig = prepareProxy(proxySetting, paths.appPublic);
+  const proxyConfig = serverOption.proxy || undefined;
+  //const proxyConfig = prepareProxy(proxySetting, paths.appPublic);
   // server configuration
   const serverConfig = createDevServerConfig(
     proxyConfig,
