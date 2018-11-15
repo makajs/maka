@@ -64,13 +64,17 @@ function scanLocalApps(dir) {
 }
 
 function scanRemoteApps(json) {
+  if(!json.dependencies) return
   Object.keys(json.dependencies).forEach(k => {
-    let pkg = JSON.parse(fs.readFileSync(path.resolve(paths.appSrc, 'node_modules', k, 'package.json'), 'utf-8'))
-    if (pkg.isMakaApp) {
-      let appPath = path.join(paths.appSrc, 'node_modules', k)
-      if (depPaths.indexOf(appPath) == -1) {
-        depPaths.push([appPath,pkg.name])
-        scanRemoteApps(pkg)
+    var filePath = path.resolve(paths.appSrc, 'node_modules', k, 'package.json')
+    if (fs.existsSync(filePath)) {
+      let pkg = JSON.parse(fs.readFileSync(path.resolve(paths.appSrc, 'node_modules', k, 'package.json'), 'utf-8'))
+      if (pkg.isMakaApp) {
+        let appPath = path.join(paths.appSrc, 'node_modules', k)
+        if (depPaths.indexOf(appPath) == -1) {
+          depPaths.push([appPath,pkg.name])
+          scanRemoteApps(pkg)
+        }
       }
     }
   })
