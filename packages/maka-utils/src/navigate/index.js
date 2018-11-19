@@ -36,6 +36,8 @@ function goBack() {
 }
 
 function redirect(app) {
+    if(!hashHistory) return
+    if(location.hash === `#${app}`) return
     hashHistory && hashHistory.push(app)
 }
 

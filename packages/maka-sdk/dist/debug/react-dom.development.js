@@ -14279,6 +14279,8 @@ function updateMemoComponent(current$$1, workInProgress, Component, nextProps, u
       return bailoutOnAlreadyFinishedWork(current$$1, workInProgress, renderExpirationTime);
     }
   }
+  // React DevTools reads this flag.
+  workInProgress.effectTag |= PerformedWork;
   var newChild = createWorkInProgress(currentChild, nextProps, renderExpirationTime);
   newChild.ref = workInProgress.ref;
   newChild.return = workInProgress;
@@ -14558,7 +14560,7 @@ function updateHostText(current$$1, workInProgress) {
 function mountLazyComponent(_current, workInProgress, elementType, updateExpirationTime, renderExpirationTime) {
   if (_current !== null) {
     // An lazy component only mounts if it suspended inside a non-
-    // concurrent tree, in an inconsistent state. We want to tree it like
+    // concurrent tree, in an inconsistent state. We want to treat it like
     // a new mount, even though an empty version of it already committed.
     // Disconnect the alternate pointers.
     _current.alternate = null;
@@ -14602,7 +14604,7 @@ function mountLazyComponent(_current, workInProgress, elementType, updateExpirat
       }
     default:
       {
-        // This message intentionally doesn't metion ForwardRef or MemoComponent
+        // This message intentionally doesn't mention ForwardRef or MemoComponent
         // because the fact that it's a separate type of work is an
         // implementation detail.
         invariant(false, 'Element type is invalid. Received a promise that resolves to: %s. Promise elements must resolve to a class or function.', Component);
@@ -14614,7 +14616,7 @@ function mountLazyComponent(_current, workInProgress, elementType, updateExpirat
 function mountIncompleteClassComponent(_current, workInProgress, Component, nextProps, renderExpirationTime) {
   if (_current !== null) {
     // An incomplete component only mounts if it suspended inside a non-
-    // concurrent tree, in an inconsistent state. We want to tree it like
+    // concurrent tree, in an inconsistent state. We want to treat it like
     // a new mount, even though an empty version of it already committed.
     // Disconnect the alternate pointers.
     _current.alternate = null;
@@ -14649,7 +14651,7 @@ function mountIncompleteClassComponent(_current, workInProgress, Component, next
 function mountIndeterminateComponent(_current, workInProgress, Component, renderExpirationTime) {
   if (_current !== null) {
     // An indeterminate component only mounts if it suspended inside a non-
-    // concurrent tree, in an inconsistent state. We want to tree it like
+    // concurrent tree, in an inconsistent state. We want to treat it like
     // a new mount, even though an empty version of it already committed.
     // Disconnect the alternate pointers.
     _current.alternate = null;
@@ -14830,7 +14832,7 @@ function updateSuspenseComponent(current$$1, workInProgress, renderExpirationTim
         // Outside of concurrent mode, we commit the effects from the
         var progressedState = workInProgress.memoizedState;
         var progressedPrimaryChild = progressedState !== null ? workInProgress.child.child : workInProgress.child;
-        reuseProgressedPrimaryChild(workInProgress, primaryChildFragment, progressedPrimaryChild);
+        primaryChildFragment.child = progressedPrimaryChild;
       }
 
       var fallbackChildFragment = createFiberFromFragment(nextFallbackChildren, mode, renderExpirationTime, null);
@@ -14859,21 +14861,32 @@ function updateSuspenseComponent(current$$1, workInProgress, renderExpirationTim
         // its fragment. We're going to skip over these entirely.
         var _nextFallbackChildren = nextProps.fallback;
         var _primaryChildFragment = createWorkInProgress(currentPrimaryChildFragment, currentPrimaryChildFragment.pendingProps, NoWork);
-        _primaryChildFragment.effectTag |= Placement;
 
         if ((workInProgress.mode & ConcurrentMode) === NoContext) {
           // Outside of concurrent mode, we commit the effects from the
           var _progressedState = workInProgress.memoizedState;
           var _progressedPrimaryChild = _progressedState !== null ? workInProgress.child.child : workInProgress.child;
           if (_progressedPrimaryChild !== currentPrimaryChildFragment.child) {
-            reuseProgressedPrimaryChild(workInProgress, _primaryChildFragment, _progressedPrimaryChild);
+            _primaryChildFragment.child = _progressedPrimaryChild;
           }
+        }
+
+        // Because primaryChildFragment is a new fiber that we're inserting as the
+        // parent of a new tree, we need to set its treeBaseDuration.
+        if (enableProfilerTimer && workInProgress.mode & ProfileMode) {
+          // treeBaseDuration is the sum of all the child tree base durations.
+          var treeBaseDuration = 0;
+          var hiddenChild = _primaryChildFragment.child;
+          while (hiddenChild !== null) {
+            treeBaseDuration += hiddenChild.treeBaseDuration;
+            hiddenChild = hiddenChild.sibling;
+          }
+          _primaryChildFragment.treeBaseDuration = treeBaseDuration;
         }
 
         // Clone the fallback child fragment, too. These we'll continue
         // working on.
         var _fallbackChildFragment = _primaryChildFragment.sibling = createWorkInProgress(currentFallbackChildFragment, _nextFallbackChildren, currentFallbackChildFragment.expirationTime);
-        _fallbackChildFragment.effectTag |= Placement;
         child = _primaryChildFragment;
         _primaryChildFragment.childExpirationTime = NoWork;
         // Skip the primary children, and continue working on the
@@ -14885,15 +14898,20 @@ function updateSuspenseComponent(current$$1, workInProgress, renderExpirationTim
         // and remove the intermediate fragment fiber.
         var _nextPrimaryChildren = nextProps.children;
         var currentPrimaryChild = currentPrimaryChildFragment.child;
-        var currentFallbackChild = currentFallbackChildFragment.child;
         var primaryChild = reconcileChildFibers(workInProgress, currentPrimaryChild, _nextPrimaryChildren, renderExpirationTime);
-        // Delete the fallback children.
-        reconcileChildFibers(workInProgress, currentFallbackChild, null, renderExpirationTime);
+
+        // If this render doesn't suspend, we need to delete the fallback
+        // children. Wait until the complete phase, after we've confirmed the
+        // fallback is no longer needed.
+        // TODO: Would it be better to store the fallback fragment on
+        // the stateNode?
+
         // Continue rendering the children, like we normally do.
         child = next = primaryChild;
       }
     } else {
       // The current tree has not already timed out. That means the primary
+      // children are not wrapped in a fragment fiber.
       var _currentPrimaryChild = current$$1.child;
       if (nextDidTimeout) {
         // Timed out. Wrap the children in a fragment fiber to keep them
@@ -14903,15 +14921,31 @@ function updateSuspenseComponent(current$$1, workInProgress, renderExpirationTim
         // It shouldn't matter what the pending props are because we aren't
         // going to render this fragment.
         null, mode, NoWork, null);
-        _primaryChildFragment2.effectTag |= Placement;
         _primaryChildFragment2.child = _currentPrimaryChild;
-        _currentPrimaryChild.return = _primaryChildFragment2;
+
+        // Even though we're creating a new fiber, there are no new children,
+        // because we're reusing an already mounted tree. So we don't need to
+        // schedule a placement.
+        // primaryChildFragment.effectTag |= Placement;
 
         if ((workInProgress.mode & ConcurrentMode) === NoContext) {
           // Outside of concurrent mode, we commit the effects from the
           var _progressedState2 = workInProgress.memoizedState;
           var _progressedPrimaryChild2 = _progressedState2 !== null ? workInProgress.child.child : workInProgress.child;
-          reuseProgressedPrimaryChild(workInProgress, _primaryChildFragment2, _progressedPrimaryChild2);
+          _primaryChildFragment2.child = _progressedPrimaryChild2;
+        }
+
+        // Because primaryChildFragment is a new fiber that we're inserting as the
+        // parent of a new tree, we need to set its treeBaseDuration.
+        if (enableProfilerTimer && workInProgress.mode & ProfileMode) {
+          // treeBaseDuration is the sum of all the child tree base durations.
+          var _treeBaseDuration = 0;
+          var _hiddenChild = _primaryChildFragment2.child;
+          while (_hiddenChild !== null) {
+            _treeBaseDuration += _hiddenChild.treeBaseDuration;
+            _hiddenChild = _hiddenChild.sibling;
+          }
+          _primaryChildFragment2.treeBaseDuration = _treeBaseDuration;
         }
 
         // Create a fragment from the fallback children, too.
@@ -14935,45 +14969,6 @@ function updateSuspenseComponent(current$$1, workInProgress, renderExpirationTim
   workInProgress.memoizedState = nextState;
   workInProgress.child = child;
   return next;
-}
-
-function reuseProgressedPrimaryChild(workInProgress, primaryChildFragment, progressedChild) {
-  // This function is only called outside concurrent mode. Usually, if a work-
-  // in-progress primary tree suspends, we throw it out and revert back to
-  // current. Outside concurrent mode, though, we commit the suspended work-in-
-  // progress, even though it didn't complete. This function reuses the children
-  // and transfers the effects.
-  var child = primaryChildFragment.child = progressedChild;
-  while (child !== null) {
-    // Ensure that the first and last effect of the parent corresponds
-    // to the children's first and last effect.
-    if (primaryChildFragment.firstEffect === null) {
-      primaryChildFragment.firstEffect = child.firstEffect;
-    }
-    if (child.lastEffect !== null) {
-      if (primaryChildFragment.lastEffect !== null) {
-        primaryChildFragment.lastEffect.nextEffect = child.firstEffect;
-      }
-      primaryChildFragment.lastEffect = child.lastEffect;
-    }
-
-    // Append all the effects of the subtree and this fiber onto the effect
-    // list of the parent. The completion order of the children affects the
-    // side-effect order.
-    if (child.effectTag > PerformedWork) {
-      if (primaryChildFragment.lastEffect !== null) {
-        primaryChildFragment.lastEffect.nextEffect = child;
-      } else {
-        primaryChildFragment.firstEffect = child;
-      }
-      primaryChildFragment.lastEffect = child;
-    }
-    child.return = primaryChildFragment;
-    child = child.sibling;
-  }
-
-  workInProgress.firstEffect = primaryChildFragment.firstEffect;
-  workInProgress.lastEffect = primaryChildFragment.lastEffect;
 }
 
 function updatePortalComponent(current$$1, workInProgress, renderExpirationTime) {
@@ -15726,12 +15721,32 @@ function completeWork(current, workInProgress, renderExpirationTime) {
         if ((workInProgress.effectTag & DidCapture) !== NoEffect) {
           // Something suspended. Re-render with the fallback children.
           workInProgress.expirationTime = renderExpirationTime;
-          workInProgress.firstEffect = workInProgress.lastEffect = null;
+          // Do not reset the effect list.
           return workInProgress;
         }
 
         var nextDidTimeout = nextState !== null;
         var prevDidTimeout = current !== null && current.memoizedState !== null;
+
+        if (current !== null && !nextDidTimeout && prevDidTimeout) {
+          // We just switched from the fallback to the normal children. Delete
+          // the fallback.
+          // TODO: Would it be better to store the fallback fragment on
+          var currentFallbackChild = current.child.sibling;
+          if (currentFallbackChild !== null) {
+            // Deletions go at the beginning of the return fiber's effect list
+            var first = workInProgress.firstEffect;
+            if (first !== null) {
+              workInProgress.firstEffect = currentFallbackChild;
+              currentFallbackChild.nextEffect = first;
+            } else {
+              workInProgress.firstEffect = workInProgress.lastEffect = currentFallbackChild;
+              currentFallbackChild.nextEffect = null;
+            }
+            currentFallbackChild.effectTag = Deletion;
+          }
+        }
+
         // The children either timed out after previously being visible, or
         // were restored after previously being hidden. Schedule an effect
         // to update their visiblity.
@@ -16189,6 +16204,12 @@ function hideOrUnhideAllChildren(finishedWork, isHidden) {
         } else {
           unhideTextInstance(_instance3, node.memoizedProps);
         }
+      } else if (node.tag === SuspenseComponent && node.memoizedState !== null) {
+        // Found a nested Suspense component that timed out. Skip over the
+        var fallbackChildFragment = node.child.sibling;
+        fallbackChildFragment.return = node;
+        node = fallbackChildFragment;
+        continue;
       } else if (node.child !== null) {
         node.child.return = node;
         node = node.child;
@@ -16867,15 +16888,10 @@ function throwException(root, returnFiber, sourceFiber, value, renderExpirationT
         if ((_workInProgress.mode & ConcurrentMode) === NoEffect) {
           _workInProgress.effectTag |= DidCapture;
 
-          // Unmount the source fiber's children
-          var nextChildren = null;
-          reconcileChildren(sourceFiber.alternate, sourceFiber, nextChildren, renderExpirationTime);
-          sourceFiber.effectTag &= ~Incomplete;
-
           // We're going to commit this fiber even though it didn't complete.
           // But we shouldn't call any lifecycle methods or callbacks. Remove
           // all lifecycle effect tags.
-          sourceFiber.effectTag &= ~LifecycleEffectMask;
+          sourceFiber.effectTag &= ~(LifecycleEffectMask | Incomplete);
 
           if (sourceFiber.tag === ClassComponent) {
             var _current = sourceFiber.alternate;
@@ -17088,8 +17104,8 @@ var warnAboutInvalidUpdates = void 0;
 
 if (enableSchedulerTracing) {
   // Provide explicit error message when production+profiling bundle of e.g. react-dom
-  // is used with production (non-profiling) bundle of schedule/tracing
-  !(__interactionsRef != null && __interactionsRef.current != null) ? invariant(false, 'It is not supported to run the profiling version of a renderer (for example, `react-dom/profiling`) without also replacing the `schedule/tracing` module with `schedule/tracing-profiling`. Your bundler might have a setting for aliasing both modules. Learn more at http://fb.me/react-profiling') : void 0;
+  // is used with production (non-profiling) bundle of scheduler/tracing
+  !(__interactionsRef != null && __interactionsRef.current != null) ? invariant(false, 'It is not supported to run the profiling version of a renderer (for example, `react-dom/profiling`) without also replacing the `scheduler/tracing` module with `scheduler/tracing-profiling`. Your bundler might have a setting for aliasing both modules. Learn more at http://fb.me/react-profiling') : void 0;
 }
 
 {
@@ -17775,7 +17791,6 @@ function completeUnitOfWork(workInProgress) {
 
       if (nextUnitOfWork !== null) {
         // Completing this fiber spawned new work. Work on that next.
-        nextUnitOfWork.firstEffect = nextUnitOfWork.lastEffect = null;
         return nextUnitOfWork;
       }
 
@@ -17830,9 +17845,18 @@ function completeUnitOfWork(workInProgress) {
         return null;
       }
     } else {
-      if (workInProgress.mode & ProfileMode) {
+      if (enableProfilerTimer && workInProgress.mode & ProfileMode) {
         // Record the render duration for the fiber that errored.
         stopProfilerTimerIfRunningAndRecordDelta(workInProgress, false);
+
+        // Include the time spent working on failed children before continuing.
+        var actualDuration = workInProgress.actualDuration;
+        var child = workInProgress.child;
+        while (child !== null) {
+          actualDuration += child.actualDuration;
+          child = child.sibling;
+        }
+        workInProgress.actualDuration = actualDuration;
       }
 
       // This fiber did not complete because something threw. Pop values off
@@ -17855,19 +17879,6 @@ function completeUnitOfWork(workInProgress) {
         stopWorkTimer(workInProgress);
         if (true && ReactFiberInstrumentation_1.debugTool) {
           ReactFiberInstrumentation_1.debugTool.onCompleteWork(workInProgress);
-        }
-
-        if (enableProfilerTimer) {
-          // Include the time spent working on failed children before continuing.
-          if (next.mode & ProfileMode) {
-            var actualDuration = next.actualDuration;
-            var child = next.child;
-            while (child !== null) {
-              actualDuration += child.actualDuration;
-              child = child.sibling;
-            }
-            next.actualDuration = actualDuration;
-          }
         }
 
         // If completing this work spawned new work, do that next. We'll come
@@ -18074,6 +18085,12 @@ function renderRoot(root, isYieldy) {
         didFatal = true;
         onUncaughtError(thrownValue);
       } else {
+        if (enableProfilerTimer && nextUnitOfWork.mode & ProfileMode) {
+          // Record the time spent rendering before an error was thrown.
+          // This avoids inaccurate Profiler durations in the case of a suspended render.
+          stopProfilerTimerIfRunningAndRecordDelta(nextUnitOfWork, true);
+        }
+
         {
           // Reset global debug state
           // We assume this is defined in DEV
@@ -18438,6 +18455,43 @@ function scheduleWorkToRoot(fiber, expirationTime) {
     }
   }
 
+  if (enableSchedulerTracing) {
+    if (root !== null) {
+      var interactions = __interactionsRef.current;
+      if (interactions.size > 0) {
+        var pendingInteractionMap = root.pendingInteractionMap;
+        var pendingInteractions = pendingInteractionMap.get(expirationTime);
+        if (pendingInteractions != null) {
+          interactions.forEach(function (interaction) {
+            if (!pendingInteractions.has(interaction)) {
+              // Update the pending async work count for previously unscheduled interaction.
+              interaction.__count++;
+            }
+
+            pendingInteractions.add(interaction);
+          });
+        } else {
+          pendingInteractionMap.set(expirationTime, new Set(interactions));
+
+          // Update the pending async work count for the current interactions.
+          interactions.forEach(function (interaction) {
+            interaction.__count++;
+          });
+        }
+
+        var subscriber = __subscriberRef.current;
+        if (subscriber !== null) {
+          var threadID = computeThreadID(expirationTime, root.interactionThreadID);
+          subscriber.onWorkScheduled(interactions, threadID);
+        }
+      }
+    }
+  }
+  return root;
+}
+
+function scheduleWork(fiber, expirationTime) {
+  var root = scheduleWorkToRoot(fiber, expirationTime);
   if (root === null) {
     {
       switch (fiber.tag) {
@@ -18452,46 +18506,6 @@ function scheduleWorkToRoot(fiber, expirationTime) {
           break;
       }
     }
-    return null;
-  }
-
-  if (enableSchedulerTracing) {
-    var interactions = __interactionsRef.current;
-    if (interactions.size > 0) {
-      var pendingInteractionMap = root.pendingInteractionMap;
-      var pendingInteractions = pendingInteractionMap.get(expirationTime);
-      if (pendingInteractions != null) {
-        interactions.forEach(function (interaction) {
-          if (!pendingInteractions.has(interaction)) {
-            // Update the pending async work count for previously unscheduled interaction.
-            interaction.__count++;
-          }
-
-          pendingInteractions.add(interaction);
-        });
-      } else {
-        pendingInteractionMap.set(expirationTime, new Set(interactions));
-
-        // Update the pending async work count for the current interactions.
-        interactions.forEach(function (interaction) {
-          interaction.__count++;
-        });
-      }
-
-      var subscriber = __subscriberRef.current;
-      if (subscriber !== null) {
-        var threadID = computeThreadID(expirationTime, root.interactionThreadID);
-        subscriber.onWorkScheduled(interactions, threadID);
-      }
-    }
-  }
-
-  return root;
-}
-
-function scheduleWork(fiber, expirationTime) {
-  var root = scheduleWorkToRoot(fiber, expirationTime);
-  if (root === null) {
     return;
   }
 
@@ -19326,7 +19340,7 @@ implementation) {
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.6.1';
+var ReactVersion = '16.6.3';
 
 // TODO: This type is shared between the reconciler and ReactDOM, but will
 // eventually be lifted out to the renderer.

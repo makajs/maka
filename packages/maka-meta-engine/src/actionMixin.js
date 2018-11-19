@@ -14,17 +14,36 @@ export default function actionMixin(...mixins) {
                     let actCls, act
                     if (typeof m == 'string') {
                         actCls = actionFactory.getAction(m)
-                        act = new actCls({ ...option, mixins: mixinInstances })
-                        if (act) {
-                            mixinInstances[m] = act
+                        if(typeof actCls == 'object'){
+                            mixinInstances[m] = actCls
                         }
-
+                        else if(typeof actCls == 'function'){
+                            if(actCls._isFunction){
+                                mixinInstances[m] = actCls
+                            }
+                            else{
+                                act = new actCls({ ...option, mixins: mixinInstances })
+                                if (act) {
+                                    mixinInstances[m] = act
+                                }
+                            }
+                        }
                     }
                     else if (typeof m == 'object' && m.name) {
                         actCls = actionFactory.getAction(m.name)
-                        act = new actCls({ ...option, ...m.option, mixins: mixinInstances })
-                        if (act) {
-                            mixinInstances[m.name] = act
+                        if(typeof actCls == 'object'){
+                            mixinInstances[m] = actCls
+                        }
+                        else if(typeof actCls == 'function'){
+                            if(actCls._isFunction){
+                                mixinInstances[m] = actCls
+                            }
+                            else{
+                                act = new actCls({ ...option, ...m.option, mixins: mixinInstances })
+                                if (act) {
+                                    mixinInstances[m.name] = act
+                                }
+                            }
                         }
                     }
                 }

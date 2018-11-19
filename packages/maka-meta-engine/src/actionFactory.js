@@ -3,9 +3,13 @@ class actionFactory {
         this.actions = {}
     }
 
-    registerAction(name, action) {
+    registerAction(name, action, isFunction) {
         if (this.actions[name]) {
             console.log(`Action already exists. name: ${name}, please ignore!`)
+        }
+
+        if(isFunction){
+            action._isFunction = true
         }
         this.actions[name] = action
     }
@@ -14,7 +18,7 @@ class actionFactory {
     registerActions(actions) {
         if (!actions || actions.length == 0)
             return
-        actions.forEach(c => this.registerAction(c.name, c.action))
+        actions.forEach(c => this.registerAction(c.name, c.action, c.isFunction))
     }
 
     getAction(name) {

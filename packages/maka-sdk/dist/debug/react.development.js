@@ -17,7 +17,7 @@
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.6.1';
+var ReactVersion = '16.6.3';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -540,7 +540,8 @@ function createRef() {
 var ImmediatePriority = 1;
 var UserBlockingPriority = 2;
 var NormalPriority = 3;
-var IdlePriority = 4;
+var LowPriority = 4;
+var IdlePriority = 5;
 
 // Max 31 bit integer. The max integer size in V8 for 32-bit systems.
 // Math.pow(2, 30) - 1
@@ -552,6 +553,7 @@ var IMMEDIATE_PRIORITY_TIMEOUT = -1;
 // Eventually times out
 var USER_BLOCKING_PRIORITY = 250;
 var NORMAL_PRIORITY_TIMEOUT = 5000;
+var LOW_PRIORITY_TIMEOUT = 10000;
 // Never times out
 var IDLE_PRIORITY = maxSigned31BitInt;
 
@@ -739,6 +741,7 @@ function unstable_runWithPriority(priorityLevel, eventHandler) {
     case ImmediatePriority:
     case UserBlockingPriority:
     case NormalPriority:
+    case LowPriority:
     case IdlePriority:
       break;
     default:
@@ -797,6 +800,9 @@ function unstable_scheduleCallback(callback, deprecated_options) {
         break;
       case IdlePriority:
         expirationTime = startTime + IDLE_PRIORITY;
+        break;
+      case LowPriority:
+        expirationTime = startTime + LOW_PRIORITY_TIMEOUT;
         break;
       case NormalPriority:
       default:
@@ -2360,6 +2366,9 @@ function createContext(defaultValue, calculateChangedBits) {
     // Secondary renderers store their context values on separate fields.
     _currentValue: defaultValue,
     _currentValue2: defaultValue,
+    // Used to track how many concurrent renderers this context currently
+    // supports within in a single renderer. Such as parallel server rendering.
+    _threadCount: 0,
     // These are circular
     Provider: null,
     Consumer: null
@@ -2410,6 +2419,14 @@ function createContext(defaultValue, calculateChangedBits) {
         },
         set: function (_currentValue2) {
           context._currentValue2 = _currentValue2;
+        }
+      },
+      _threadCount: {
+        get: function () {
+          return context._threadCount;
+        },
+        set: function (_threadCount) {
+          context._threadCount = _threadCount;
         }
       },
       Consumer: {

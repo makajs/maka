@@ -1234,10 +1234,6 @@
   });
   var reactIs_1 = reactIs.isValidElementType;
 
-  var _ReactIs$ForwardRef;
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
   /**
    * Copyright 2015, Yahoo! Inc.
    * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
@@ -1246,6 +1242,7 @@
 
   var REACT_STATICS = {
       childContextTypes: true,
+      contextType: true,
       contextTypes: true,
       defaultProps: true,
       displayName: true,
@@ -1266,7 +1263,13 @@
       arity: true
   };
 
-  var TYPE_STATICS = _defineProperty({}, reactIs.ForwardRef, (_ReactIs$ForwardRef = {}, _defineProperty(_ReactIs$ForwardRef, '$$typeof', true), _defineProperty(_ReactIs$ForwardRef, 'render', true), _ReactIs$ForwardRef));
+  var FORWARD_REF_STATICS = {
+      '$$typeof': true,
+      render: true
+  };
+
+  var TYPE_STATICS = {};
+  TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
 
   var defineProperty = Object.defineProperty;
   var getOwnPropertyNames = Object.getOwnPropertyNames;
@@ -1758,13 +1761,15 @@
    */
   function isPlainObject(obj) {
     if (typeof obj !== 'object' || obj === null) return false;
-    var proto = obj;
+    var proto = Object.getPrototypeOf(obj);
+    if (proto === null) return true;
+    var baseProto = proto;
 
-    while (Object.getPrototypeOf(proto) !== null) {
-      proto = Object.getPrototypeOf(proto);
+    while (Object.getPrototypeOf(baseProto) !== null) {
+      baseProto = Object.getPrototypeOf(baseProto);
     }
 
-    return Object.getPrototypeOf(obj) === proto;
+    return proto === baseProto;
   }
 
   function verifyPlainObject(value, displayName, methodName) {
