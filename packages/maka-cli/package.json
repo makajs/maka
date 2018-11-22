@@ -60,7 +60,8 @@
     "webpack": "*",
     "webpack-cli": "*",
     "webpack-dev-server": "*",
-    "which": "*"
+    "which": "*",
+    "html2json-loader": "*"
   },
   "optionalDependencies": {
     "fsevents": "*"
