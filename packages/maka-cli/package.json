@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -42,6 +42,7 @@
     "fs-extra": "*",
     "fsevents": "*",
     "got": "*",
+    "html2json-loader": "*",
     "hyperquest": "*",
     "less": "*",
     "less-loader": "*",
@@ -60,8 +61,7 @@
     "webpack": "*",
     "webpack-cli": "*",
     "webpack-dev-server": "*",
-    "which": "*",
-    "html2json-loader": "*"
+    "which": "*"
   },
   "optionalDependencies": {
     "fsevents": "*"
