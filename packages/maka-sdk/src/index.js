@@ -47,7 +47,14 @@ async function load(app) {
 }
 
 function createAppElement(appName, appProps){
-    return (<appLoader.AppLoader name={appName} {...appProps}></appLoader.AppLoader>)
+    if (Hoc) {
+        return (<Hoc>
+            <appLoader.AppLoader name={appName} {...appProps}  store={window.__maka_store__}></appLoader.AppLoader>
+        </Hoc>)
+    }
+    else{
+        return (<appLoader.AppLoader name={appName} {...appProps}  store={window.__maka_store__}></appLoader.AppLoader>)
+    }
 }
 
 //Set high order component

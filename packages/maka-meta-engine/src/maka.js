@@ -2,6 +2,7 @@ import React from 'react'
 import componentFactory from './componentFactory'
 import memoize from 'lodash/memoize'
 import utils from '@makajs/utils'
+import {  existsApp } from '@makajs/app-loader'
 
 function parseMetaProps(meta, props, data) {
     const ret = {}
@@ -185,8 +186,7 @@ function metaToComponent(meta, props, data) {
                 if (!allProps.appName)
                     return null
 
-                //if (allProps._notRender === true && !getApps()[allProps.appName]) {
-                if (allProps._notRender === true) {
+                if (allProps._notRender === true && !existsApp(allProps.appName)) {
                     return null
                 }
 

@@ -16,10 +16,7 @@ class appFactory {
     }
 
     registerApps = (apps) => {
-        this.apps = {
-            ...this.apps,
-            ...apps
-        }
+        Object.assign(this.apps, apps)
     }
 
     existsApp = (name) => {

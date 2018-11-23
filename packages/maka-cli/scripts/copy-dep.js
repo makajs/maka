@@ -14,13 +14,26 @@ const fs = require('fs-extra');
 const paths = require('../config/paths');
 
 const packageJson = require(paths.appPackageJson);
-var appsDirectory = path.join(paths.appPath, packageJson.subAppDir);
+var appsDirectorys = []
+
+if(packageJson.subAppDir instanceof Array){
+  packageJson.subAppDir.forEach(o=>{
+    appsDirectorys.push(path.join(paths.appPath, o))
+  })
+}
+else {
+  appsDirectorys.push(path.join(paths.appPath, packageJson.subAppDir))
+}
+
+//var appsDirectory = path.join(paths.appPath, packageJson.subAppDir);
 const chalk = require('chalk');
 const targetPath = process.argv[3];
 const isDev = process.argv[2] === 'true';
 var depPaths = [];
+appsDirectorys.forEach(p=>{
+  scanLocalApps(p)
+})
 
-scanLocalApps(appsDirectory)
 scanRemoteApps(packageJson)
 
 depPaths.forEach(p => {
