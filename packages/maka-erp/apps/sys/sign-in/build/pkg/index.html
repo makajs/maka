@@ -1,0 +1,34 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>sign in</title>
+</head>
+<body>
+    <div id='app' style="width:100%;height: 100%"></div>
+    <script>
+        window.main = function (maka) {
+            maka.utils.fetch.config({
+                mock: true,
+                token: '',
+                after: function (response, url) {
+                    if (response.result) {
+                        if (response.token) {
+                            maka.utils.fetch.config({ token: response.token });
+                        }
+                        return response.value;
+                    }
+                    else {
+                        let msg = maka.getComponent('antd.Message')
+                        msg.error(response.error.message);
+                        throw { url:url, response:response };
+                    }
+                },
+            })
+            maka.load(['zlj-antd']).then(()=>{
+                maka.render('sign-in','app')
+            })
+        }
+    </script>
+     <script src="require.min.js" data-main='main.min.js'></script>
+</body>
+</html>

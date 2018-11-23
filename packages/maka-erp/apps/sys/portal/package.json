@@ -1,0 +1,29 @@
+{
+  "isMakaApp": true,
+  "name": "portal",
+  "description": "portal application, a simple example of portal.",
+  "version": "1.0.5",
+  "license": "MIT",
+  "author": "ziaochina",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ziaochina/portal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ziaochina/portal/issues"
+  },
+  "homepage": "https://github.com/ziaochina/portal#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {
+  },
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": ["./apps", "../sign-in", "../../base", "../../set"]
+}

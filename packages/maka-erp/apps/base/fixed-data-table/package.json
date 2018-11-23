@@ -1,0 +1,33 @@
+{
+  "isMakaApp": true,
+  "name": "fixed-data-table",
+  "description": "fixed-data-table",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "ziaochina",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/maka/maka-erp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/maka/maka-erp/issues"
+  },
+  "homepage": "https://github.com/makajs/maka/maka-erp#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": "./apps",
+  "dependencies": {},
+  "devDependencies": {
+    "classnames": "*",
+    "maka-fixed-data-table": "*",
+    "omit.js": "*"
+  }
+}
