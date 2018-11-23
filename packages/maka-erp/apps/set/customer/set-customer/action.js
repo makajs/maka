@@ -65,16 +65,6 @@ export default class action {
     }
 
 
-    loadSex = async () => {
-        return [{
-            id: 0,
-            name: '女'
-        }, {
-            id: 1,
-            name: '男'
-        }]
-    }
-
     loadCustomerGroup = async () => {
         return await fetch.post('/v1/customer/gourp/queryAll', {})
     }

@@ -26,7 +26,7 @@ export default class SelectComponent extends Component {
     }
     */
     changeHandler = (v) => {
-        var r = v || '', obj,
+        var r = (v === 0 || v) ? v : '', obj,
             idField = this.props.idField || 'id',
             displayField = this.props.displayField || 'name',
             value = this.props.value
@@ -41,13 +41,13 @@ export default class SelectComponent extends Component {
                         if(!hit && value && value instanceof Array){
                             hit = value.find(x => x[idField] == o || x[displayField] == o)
                         }
-                        if(hit && obj.findIndex(y=> y[idField] == hit[idField] ) == -1)
+                        if(hit && obj.findIndex(y=> y[idField] === hit[idField] ) == -1)
                             obj.push(hit)
                     })
                 }
             }
             else {
-                obj = this.state.dataSource.find(o => o[idField] == r)
+                obj = this.state.dataSource.find(o => o[idField] === r)
             }
         }
         this.props.onChange && this.props.onChange(obj)

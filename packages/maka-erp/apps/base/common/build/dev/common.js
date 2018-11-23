@@ -50598,7 +50598,7 @@ function (_Component) {
     })));
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "changeHandler", function (v) {
-      var r = v || '',
+      var r = v === 0 || v ? v : '',
           obj,
           idField = _this.props.idField || 'id',
           displayField = _this.props.displayField || 'name',
@@ -50621,13 +50621,13 @@ function (_Component) {
               }
 
               if (hit && obj.findIndex(function (y) {
-                return y[idField] == hit[idField];
+                return y[idField] === hit[idField];
               }) == -1) obj.push(hit);
             });
           }
         } else {
           obj = _this.state.dataSource.find(function (o) {
-            return o[idField] == r;
+            return o[idField] === r;
           });
         }
       }
