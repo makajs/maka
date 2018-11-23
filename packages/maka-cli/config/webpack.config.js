@@ -85,6 +85,9 @@ module.exports = function (option) {
                     ]
                 }
             }, {
+                test: /\.html$/,
+                use: path.resolve(__dirname, '..', 'node_modules', 'html2json-loader')
+            }, {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, path.resolve(__dirname, '..', 'node_modules', 'css-loader')]
             }, {
