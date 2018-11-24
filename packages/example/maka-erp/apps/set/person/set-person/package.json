@@ -7,12 +7,12 @@
   "author": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/makajs/set-person.git"
+    "url": "https://github.com/makajs/maka-erp.git"
   },
   "bugs": {
-    "url": "https://github.com/makajs/set-person/issues"
+    "url": "https://github.com/makajs/maka-erp/issues"
   },
-  "homepage": "https://github.com/makajs/set-person#readme",
+  "homepage": "https://github.com/makajs/maka-erp#readme",
   "scripts": {
     "start": "maka start",
     "dev": "maka start --dev",

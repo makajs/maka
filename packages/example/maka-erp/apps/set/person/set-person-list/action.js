@@ -104,7 +104,7 @@ export default class action {
             persons: [{ id }]
         })
 
-        this.message.success('删除职员成功')
+        this.message.success('删除人员成功')
         this.reload()
     }
 
@@ -112,14 +112,14 @@ export default class action {
         const lst = this.base.gs('data.list')
 
         if (!lst || lst.length == 0) {
-            this.message.error('请选中要删除的职员')
+            this.message.error('请选中要删除的人员')
             return
         }
 
         const selectRows = lst.filter(o => o.isSelected)
 
         if (!selectRows || selectRows.length == 0) {
-            this.message.error('请选中要删除的职员')
+            this.message.error('请选中要删除的人员')
             return
         }
 

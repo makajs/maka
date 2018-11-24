@@ -7,12 +7,12 @@
   "author": "ziaochina",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ziaochina/sign-in.git"
+    "url": "https://github.com/makajs/maka-erp.git"
   },
   "bugs": {
-    "url": "https://github.com/ziaochina/sign-in/issues"
+    "url": "https://github.com/makajs/maka-erp/issues"
   },
-  "homepage": "https://github.com/ziaochina/sign-in#readme",
+  "homepage": "https://github.com/makajs/maka-erp#readme",
   "scripts": {
     "start": "maka start",
     "dev": "maka start --dev",

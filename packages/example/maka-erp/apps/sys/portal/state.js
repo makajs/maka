@@ -21,8 +21,7 @@ const menu = [{
     },{
         key: '301',
         title: '客户',
-        appName: 'set-customer-list',
-        noBorder: true
+        appName: 'set-customer-list'
     }]
 }]
 

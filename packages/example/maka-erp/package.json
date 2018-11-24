@@ -1,18 +1,18 @@
 {
   "isMakaApp": true,
-  "name": "erp",
-  "description": "erp",
+  "name": "maka-erp",
+  "description": "maka-erp",
   "version": "1.0.0",
   "license": "MIT",
   "author": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/makajs/erp.git"
+    "url": "https://github.com/makajs/maka-erp.git"
   },
   "bugs": {
-    "url": "https://github.com/makajs/erp/issues"
+    "url": "https://github.com/makajs/maka-erp/issues"
   },
-  "homepage": "https://github.com/makajs/erp#readme",
+  "homepage": "https://github.com/makajs/maka-erp#readme",
   "scripts": {
     "start": "maka start",
     "dev": "maka start --dev",
