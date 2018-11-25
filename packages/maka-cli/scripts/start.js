@@ -39,7 +39,7 @@ const {
 } = require('react-dev-utils/WebpackDevServerUtils');
 
 if (!checkRequiredFiles([paths.appIndexJs])) {
-  process.exit(1);
+  process.exit(0);
 }
 
 try {
@@ -49,7 +49,7 @@ catch (err) {
   if (err && err.message) {
     console.log(err)
   }
-  process.exit(1);
+  process.exit(0);
 }
 
 

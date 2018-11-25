@@ -13,20 +13,21 @@ require('../config/env');
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const webpack = require('webpack');
+const path = require('path');
 
 const paths = require('../config/paths');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printBuildError = require('react-dev-utils/printBuildError');
 const isDev = process.argv[process.argv.length - 1] === 'true'
-const outputPath = isDev ? paths.appDevBuild : paths.appProdBuild
+const outputPath = isDev ? path.resolve(process.cwd(), 'build/dev') : path.resolve(process.cwd(), 'build/prod') 
 
 const createWebpackConfig = require('../config/webpack.config');
 const config = createWebpackConfig({ isProd: !isDev, outputPath: outputPath });
 
 //file does not exist
 if (!checkRequiredFiles([paths.appIndexJs])) {
-  process.exit(1);
+  process.exit(0);
 }
 
 console.log(chalk.green(`Start compiling ...`));
@@ -38,7 +39,7 @@ catch (err) {
   console.log(chalk.red('Compile failed.\n'));
   //Output compilation exception
   printBuildError(err);
-  process.exit(1);
+  process.exit(0);
 }
 
 

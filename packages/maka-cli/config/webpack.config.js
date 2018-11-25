@@ -21,6 +21,9 @@ module.exports = function (option) {
         externals = {
             "react": "react",
             "react-dom": "react-dom",
+            "prop-types": "prop-types",
+            "redux": "redux",
+            "react-redux": "react-redux",
             "immutable": "immutable",
             "maka": "maka"
         }

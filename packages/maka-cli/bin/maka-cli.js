@@ -56,8 +56,13 @@ program
     .command('build')
     .description('build app')
     .option('-d, --dev', 'development')
+    .option('-a, --all', 'all')
     .action(function (...args) {
-        let s = run('build', args)
+        let s
+        if(args[args.length-1].all)
+            s = run('build-all', args)
+        else
+            s = run('build', args)
         process.exit(s);
     })
 

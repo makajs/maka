@@ -50,7 +50,7 @@ depPaths.forEach(p => {
   }
 })
 
-process.exit(1)
+process.exit(0)
 
 function scanLocalApps(dir) {
   if (!fs.existsSync(dir))

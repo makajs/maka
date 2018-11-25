@@ -14,7 +14,7 @@ if (typeof appName === 'undefined') {
     console.log('example:');
     console.log(`  maka add ${chalk.green('login')}`);
     console.log();
-    process.exit(1);
+    process.exit(0);
 }
 
 const add = async()=>{

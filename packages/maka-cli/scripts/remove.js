@@ -11,7 +11,7 @@ if (typeof appName === 'undefined') {
     console.log('example:');
     console.log(`  maka remove ${chalk.green('login')}`);
     console.log();
-    process.exit(1);
+    process.exit(0);
 }
 
 utils.yarn(['remove', appName, '--exact'], paths.appSrc)

@@ -13,7 +13,7 @@ if (typeof projectName === 'undefined') {
   console.log('example:');
   console.log(`  maka app ${chalk.green('hello-world')}`);
   console.log();
-  process.exit(1);
+  process.exit(0);
 }
 console.log(chalk.green(`Start creating an app...`));
 
@@ -131,5 +131,5 @@ function exceptionHandler(reason, root) {
     fs.removeSync(path.join(root));
   }
   console.log('Done.');
-  process.exit(1);
+  process.exit(0);
 }

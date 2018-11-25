@@ -28,7 +28,7 @@ const createWebpackConfig = require('../config/webpack.config');
 const config = createWebpackConfig({ isProd: !isDev, outputPath: outputPath });
 
 if (!checkRequiredFiles([paths.appIndexJs])) {
-    process.exit(1);
+    process.exit(0);
 }
 console.log(chalk.green(`Start packaging ...`));
 
@@ -39,7 +39,7 @@ catch (err) {
     console.log(chalk.red('Package failure.\n'));
     //Output compilation exception
     printBuildError(err);
-    process.exit(1);
+    process.exit(0);
 }
 
 
