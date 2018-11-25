@@ -201,7 +201,7 @@ module.exports = _objectSpread;
 /* 5 */
 /***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"set-customer-list","description":"set-customer-list","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/set-customer-list.git"},"bugs":{"url":"https://github.com/makajs/set-customer-list/issues"},"homepage":"https://github.com/makajs/set-customer-list#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base","../set-customer-group","../set-customer"]};
+module.exports = {"isMakaApp":true,"name":"set-customer-list","description":"set-customer-list","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base","../set-customer-group","../set-customer"]};
 
 /***/ }),
 /* 6 */

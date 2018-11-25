@@ -7,12 +7,12 @@
   "author": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/makajs/set-customer-list.git"
+    "url": "https://github.com/makajs/maka.git"
   },
   "bugs": {
-    "url": "https://github.com/makajs/set-customer-list/issues"
+    "url": "https://github.com/makajs/maka/issues"
   },
-  "homepage": "https://github.com/makajs/set-customer-list#readme",
+  "homepage": "https://github.com/makajs/maka#readme",
   "scripts": {
     "start": "maka start",
     "dev": "maka start --dev",

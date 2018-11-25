@@ -174,7 +174,7 @@ module.exports = _asyncToGenerator;
 /* 4 */
 /***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"portal","description":"portal application, a simple example of portal.","version":"1.0.5","license":"MIT","author":"ziaochina","repository":{"type":"git","url":"https://github.com/ziaochina/portal.git"},"bugs":{"url":"https://github.com/ziaochina/portal/issues"},"homepage":"https://github.com/ziaochina/portal#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{"zlj-antd":"https://hub.makajs.org/zlj-antd/-/@1.0.4","zlj-sign-in":"https://hub.makajs.org/zlj-sign-in/-/@1.0.4"},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../sign-in","../../base","../../set"]};
+module.exports = {"isMakaApp":true,"name":"portal","description":"portal application, a simple example of portal.","version":"1.0.0","license":"MIT","author":"ziaochina","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../sign-in","../../base","../../set","../"]};
 
 /***/ }),
 /* 5 */
@@ -1307,7 +1307,16 @@ function () {
       _this.load();
 
       external_maka_["navigate"].listen(_this.listen);
-      external_maka_["navigate"].redirect(external_maka_["navigate"].getLocation().pathname + external_maka_["navigate"].getLocation().search);
+      var local = external_maka_["navigate"].getLocation();
+      var target;
+
+      if (external_maka_["navigate"].getLocation().pathname == '/portal') {
+        target = '/portal/home';
+      } else {
+        target = local.pathname + local.search;
+      }
+
+      external_maka_["navigate"].redirect(target);
     });
 
     defineProperty_default()(this, "load",
@@ -1628,15 +1637,14 @@ function () {
 // CONCATENATED MODULE: ./state.js
 var state_menu = [{
   key: '1',
-  title: 'Home',
-  appName: 'zlj-home',
+  title: '首页',
+  appName: 'home',
   appProps: {},
-  icon: 'home',
-  isDefault: true
+  icon: 'home'
 }, {
   key: '2',
-  title: 'Board',
-  appName: 'zlj-board',
+  title: '仪表盘',
+  appName: 'dashboard',
   appProps: {},
   icon: 'dashboard'
 }, {
@@ -1649,8 +1657,7 @@ var state_menu = [{
   }, {
     key: '301',
     title: '客户',
-    appName: 'set-customer-list',
-    noBorder: true
+    appName: 'set-customer-list'
   }]
 }];
 /* harmony default export */ var state = ({
@@ -1662,7 +1669,8 @@ var state_menu = [{
     openTabs: [],
     isTabsStyle: true,
     isFoldMenu: true,
-    other: {}
+    other: {},
+    aa: 1
   }
 });
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/slicedToArray.js

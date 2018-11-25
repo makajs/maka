@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("react-dom"), require("maka"));
+		module.exports = factory(require("prop-types"), require("react"), require("react-dom"), require("maka"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "react-dom", "maka"], factory);
+		define(["prop-types", "react", "react-dom", "maka"], factory);
 	else if(typeof exports === 'object')
-		exports["MakaApp-common"] = factory(require("react"), require("react-dom"), require("maka"));
+		exports["MakaApp-common"] = factory(require("prop-types"), require("react"), require("react-dom"), require("maka"));
 	else
-		root["MakaApp-common"] = factory(root["react"], root["react-dom"], root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__11__) {
+		root["MakaApp-common"] = factory(root["prop-types"], root["react"], root["react-dom"], root["maka"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__11__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -96,21 +96,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (false) { var throwOnDirectAccess, isValidElement, REACT_ELEMENT_TYPE; } else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(262)();
-}
-
+module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
@@ -1950,7 +1938,7 @@ if (false) { var throwOnDirectAccess, isValidElement, REACT_ELEMENT_TYPE; } else
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(284)("./" + name);
+                __webpack_require__(282)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -5045,15 +5033,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.create = exports.connect = exports.Provider = undefined;
 
-var _Provider2 = __webpack_require__(266);
+var _Provider2 = __webpack_require__(264);
 
 var _Provider3 = _interopRequireDefault(_Provider2);
 
-var _connect2 = __webpack_require__(267);
+var _connect2 = __webpack_require__(265);
 
 var _connect3 = _interopRequireDefault(_connect2);
 
-var _create2 = __webpack_require__(270);
+var _create2 = __webpack_require__(268);
 
 var _create3 = _interopRequireDefault(_create2);
 
@@ -5182,9 +5170,9 @@ var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
 var external_react_ = __webpack_require__(2);
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
-// EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(0);
-var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
+// EXTERNAL MODULE: external "prop-types"
+var external_prop_types_ = __webpack_require__(0);
+var external_prop_types_default = /*#__PURE__*/__webpack_require__.n(external_prop_types_);
 
 // CONCATENATED MODULE: ./node_modules/rc-animate/es/ChildrenUtils.js
 
@@ -5737,7 +5725,7 @@ var AnimateChild_AnimateChild = function (_React$Component) {
 }(external_react_default.a.Component);
 
 AnimateChild_AnimateChild.propTypes = {
-  children: prop_types_default.a.any
+  children: external_prop_types_default.a.any
 };
 /* harmony default export */ var es_AnimateChild = (AnimateChild_AnimateChild);
 // EXTERNAL MODULE: ./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js
@@ -6091,23 +6079,23 @@ function genCSSMotion(transitionSupport) {
   }(external_react_default.a.Component);
 
   CSSMotion.propTypes = {
-    visible: prop_types_default.a.bool,
-    children: prop_types_default.a.func,
-    motionName: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.object]),
-    motionAppear: prop_types_default.a.bool,
-    motionEnter: prop_types_default.a.bool,
-    motionLeave: prop_types_default.a.bool,
-    motionLeaveImmediately: prop_types_default.a.bool, // Trigger leave motion immediately
-    removeOnLeave: prop_types_default.a.bool,
-    onAppearStart: prop_types_default.a.func,
-    onAppearActive: prop_types_default.a.func,
-    onAppearEnd: prop_types_default.a.func,
-    onEnterStart: prop_types_default.a.func,
-    onEnterActive: prop_types_default.a.func,
-    onEnterEnd: prop_types_default.a.func,
-    onLeaveStart: prop_types_default.a.func,
-    onLeaveActive: prop_types_default.a.func,
-    onLeaveEnd: prop_types_default.a.func
+    visible: external_prop_types_default.a.bool,
+    children: external_prop_types_default.a.func,
+    motionName: external_prop_types_default.a.oneOfType([external_prop_types_default.a.string, external_prop_types_default.a.object]),
+    motionAppear: external_prop_types_default.a.bool,
+    motionEnter: external_prop_types_default.a.bool,
+    motionLeave: external_prop_types_default.a.bool,
+    motionLeaveImmediately: external_prop_types_default.a.bool, // Trigger leave motion immediately
+    removeOnLeave: external_prop_types_default.a.bool,
+    onAppearStart: external_prop_types_default.a.func,
+    onAppearActive: external_prop_types_default.a.func,
+    onAppearEnd: external_prop_types_default.a.func,
+    onEnterStart: external_prop_types_default.a.func,
+    onEnterActive: external_prop_types_default.a.func,
+    onEnterEnd: external_prop_types_default.a.func,
+    onLeaveStart: external_prop_types_default.a.func,
+    onLeaveActive: external_prop_types_default.a.func,
+    onLeaveEnd: external_prop_types_default.a.func
   };
   CSSMotion.defaultProps = {
     visible: true,
@@ -6370,20 +6358,20 @@ var Animate_Animate = function (_React$Component) {
 Animate_Animate.isAnimate = true;
 Animate_Animate.CSSMotion = es_CSSMotion;
 Animate_Animate.propTypes = {
-  component: prop_types_default.a.any,
-  componentProps: prop_types_default.a.object,
-  animation: prop_types_default.a.object,
-  transitionName: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.object]),
-  transitionEnter: prop_types_default.a.bool,
-  transitionAppear: prop_types_default.a.bool,
-  exclusive: prop_types_default.a.bool,
-  transitionLeave: prop_types_default.a.bool,
-  onEnd: prop_types_default.a.func,
-  onEnter: prop_types_default.a.func,
-  onLeave: prop_types_default.a.func,
-  onAppear: prop_types_default.a.func,
-  showProp: prop_types_default.a.string,
-  children: prop_types_default.a.node
+  component: external_prop_types_default.a.any,
+  componentProps: external_prop_types_default.a.object,
+  animation: external_prop_types_default.a.object,
+  transitionName: external_prop_types_default.a.oneOfType([external_prop_types_default.a.string, external_prop_types_default.a.object]),
+  transitionEnter: external_prop_types_default.a.bool,
+  transitionAppear: external_prop_types_default.a.bool,
+  exclusive: external_prop_types_default.a.bool,
+  transitionLeave: external_prop_types_default.a.bool,
+  onEnd: external_prop_types_default.a.func,
+  onEnter: external_prop_types_default.a.func,
+  onLeave: external_prop_types_default.a.func,
+  onAppear: external_prop_types_default.a.func,
+  showProp: external_prop_types_default.a.string,
+  children: external_prop_types_default.a.node
 };
 Animate_Animate.defaultProps = {
   animation: {},
@@ -6955,7 +6943,7 @@ function polyfill(Component) {
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(264)
+/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(262)
   , root = typeof window === 'undefined' ? global : window
   , vendors = ['moz', 'webkit']
   , suffix = 'AnimationFrame'
@@ -7672,7 +7660,7 @@ ClassList.prototype.contains = function(name){
 "use strict";
 
 
-module.exports = __webpack_require__(275);
+module.exports = __webpack_require__(273);
 
 /***/ }),
 /* 64 */
@@ -7701,9 +7689,9 @@ var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
 var external_react_ = __webpack_require__(2);
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
-// EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(0);
-var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
+// EXTERNAL MODULE: external "prop-types"
+var external_prop_types_ = __webpack_require__(0);
+var external_prop_types_default = /*#__PURE__*/__webpack_require__.n(external_prop_types_);
 
 // EXTERNAL MODULE: external "react-dom"
 var external_react_dom_ = __webpack_require__(7);
@@ -7825,14 +7813,14 @@ var ContainerRender_ContainerRender = function (_React$Component) {
 }(external_react_default.a.Component);
 
 ContainerRender_ContainerRender.propTypes = {
-  autoMount: prop_types_default.a.bool,
-  autoDestroy: prop_types_default.a.bool,
-  visible: prop_types_default.a.bool,
-  forceRender: prop_types_default.a.bool,
-  parent: prop_types_default.a.any,
-  getComponent: prop_types_default.a.func.isRequired,
-  getContainer: prop_types_default.a.func.isRequired,
-  children: prop_types_default.a.func.isRequired
+  autoMount: external_prop_types_default.a.bool,
+  autoDestroy: external_prop_types_default.a.bool,
+  visible: external_prop_types_default.a.bool,
+  forceRender: external_prop_types_default.a.bool,
+  parent: external_prop_types_default.a.any,
+  getComponent: external_prop_types_default.a.func.isRequired,
+  getContainer: external_prop_types_default.a.func.isRequired,
+  children: external_prop_types_default.a.func.isRequired
 };
 ContainerRender_ContainerRender.defaultProps = {
   autoMount: true,
@@ -7904,9 +7892,9 @@ var Portal_Portal = function (_React$Component) {
 }(external_react_default.a.Component);
 
 Portal_Portal.propTypes = {
-  getContainer: prop_types_default.a.func.isRequired,
-  children: prop_types_default.a.node.isRequired,
-  didUpdate: prop_types_default.a.func
+  getContainer: external_prop_types_default.a.func.isRequired,
+  children: external_prop_types_default.a.node.isRequired,
+  didUpdate: external_prop_types_default.a.func
 };
 /* harmony default export */ var es_Portal = (Portal_Portal);
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
@@ -9381,19 +9369,19 @@ var Align_Align = function (_Component) {
 }(external_react_["Component"]);
 
 Align_Align.propTypes = {
-  childrenProps: prop_types_default.a.object,
-  align: prop_types_default.a.object.isRequired,
-  target: prop_types_default.a.oneOfType([prop_types_default.a.func, prop_types_default.a.shape({
-    clientX: prop_types_default.a.number,
-    clientY: prop_types_default.a.number,
-    pageX: prop_types_default.a.number,
-    pageY: prop_types_default.a.number
+  childrenProps: external_prop_types_default.a.object,
+  align: external_prop_types_default.a.object.isRequired,
+  target: external_prop_types_default.a.oneOfType([external_prop_types_default.a.func, external_prop_types_default.a.shape({
+    clientX: external_prop_types_default.a.number,
+    clientY: external_prop_types_default.a.number,
+    pageX: external_prop_types_default.a.number,
+    pageY: external_prop_types_default.a.number
   })]),
-  onAlign: prop_types_default.a.func,
-  monitorBufferTime: prop_types_default.a.number,
-  monitorWindowResize: prop_types_default.a.bool,
-  disabled: prop_types_default.a.bool,
-  children: prop_types_default.a.any
+  onAlign: external_prop_types_default.a.func,
+  monitorBufferTime: external_prop_types_default.a.number,
+  monitorWindowResize: external_prop_types_default.a.bool,
+  disabled: external_prop_types_default.a.bool,
+  children: external_prop_types_default.a.any
 };
 Align_Align.defaultProps = {
   target: function target() {
@@ -9459,10 +9447,10 @@ var LazyRenderBox_LazyRenderBox = function (_Component) {
 }(external_react_["Component"]);
 
 LazyRenderBox_LazyRenderBox.propTypes = {
-  children: prop_types_default.a.any,
-  className: prop_types_default.a.string,
-  visible: prop_types_default.a.bool,
-  hiddenClassName: prop_types_default.a.string
+  children: external_prop_types_default.a.any,
+  className: external_prop_types_default.a.string,
+  visible: external_prop_types_default.a.bool,
+  hiddenClassName: external_prop_types_default.a.string
 };
 
 
@@ -9512,14 +9500,14 @@ var PopupInner_PopupInner = function (_Component) {
 }(external_react_["Component"]);
 
 PopupInner_PopupInner.propTypes = {
-  hiddenClassName: prop_types_default.a.string,
-  className: prop_types_default.a.string,
-  prefixCls: prop_types_default.a.string,
-  onMouseEnter: prop_types_default.a.func,
-  onMouseLeave: prop_types_default.a.func,
-  onMouseDown: prop_types_default.a.func,
-  onTouchStart: prop_types_default.a.func,
-  children: prop_types_default.a.any
+  hiddenClassName: external_prop_types_default.a.string,
+  className: external_prop_types_default.a.string,
+  prefixCls: external_prop_types_default.a.string,
+  onMouseEnter: external_prop_types_default.a.func,
+  onMouseLeave: external_prop_types_default.a.func,
+  onMouseDown: external_prop_types_default.a.func,
+  onTouchStart: external_prop_types_default.a.func,
+  children: external_prop_types_default.a.any
 };
 
 
@@ -9783,24 +9771,24 @@ var Popup_Popup = function (_Component) {
 }(external_react_["Component"]);
 
 Popup_Popup.propTypes = {
-  visible: prop_types_default.a.bool,
-  style: prop_types_default.a.object,
-  getClassNameFromAlign: prop_types_default.a.func,
-  onAlign: prop_types_default.a.func,
-  getRootDomNode: prop_types_default.a.func,
-  align: prop_types_default.a.any,
-  destroyPopupOnHide: prop_types_default.a.bool,
-  className: prop_types_default.a.string,
-  prefixCls: prop_types_default.a.string,
-  onMouseEnter: prop_types_default.a.func,
-  onMouseLeave: prop_types_default.a.func,
-  onMouseDown: prop_types_default.a.func,
-  onTouchStart: prop_types_default.a.func,
-  stretch: prop_types_default.a.string,
-  children: prop_types_default.a.node,
-  point: prop_types_default.a.shape({
-    pageX: prop_types_default.a.number,
-    pageY: prop_types_default.a.number
+  visible: external_prop_types_default.a.bool,
+  style: external_prop_types_default.a.object,
+  getClassNameFromAlign: external_prop_types_default.a.func,
+  onAlign: external_prop_types_default.a.func,
+  getRootDomNode: external_prop_types_default.a.func,
+  align: external_prop_types_default.a.any,
+  destroyPopupOnHide: external_prop_types_default.a.bool,
+  className: external_prop_types_default.a.string,
+  prefixCls: external_prop_types_default.a.string,
+  onMouseEnter: external_prop_types_default.a.func,
+  onMouseLeave: external_prop_types_default.a.func,
+  onMouseDown: external_prop_types_default.a.func,
+  onTouchStart: external_prop_types_default.a.func,
+  stretch: external_prop_types_default.a.string,
+  children: external_prop_types_default.a.node,
+  point: external_prop_types_default.a.shape({
+    pageX: external_prop_types_default.a.number,
+    pageY: external_prop_types_default.a.number
   })
 };
 
@@ -9899,8 +9887,8 @@ var ALL_HANDLERS = ['onClick', 'onMouseDown', 'onTouchStart', 'onMouseEnter', 'o
 var IS_REACT_16 = !!external_react_dom_["createPortal"];
 
 var contextTypes = {
-  rcTrigger: prop_types_default.a.shape({
-    onPopupMouseDown: prop_types_default.a.func
+  rcTrigger: external_prop_types_default.a.shape({
+    onPopupMouseDown: external_prop_types_default.a.func
   })
 };
 
@@ -10283,41 +10271,41 @@ var es_Trigger = function (_React$Component) {
 }(external_react_default.a.Component);
 
 es_Trigger.propTypes = {
-  children: prop_types_default.a.any,
-  action: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.arrayOf(prop_types_default.a.string)]),
-  showAction: prop_types_default.a.any,
-  hideAction: prop_types_default.a.any,
-  getPopupClassNameFromAlign: prop_types_default.a.any,
-  onPopupVisibleChange: prop_types_default.a.func,
-  afterPopupVisibleChange: prop_types_default.a.func,
-  popup: prop_types_default.a.oneOfType([prop_types_default.a.node, prop_types_default.a.func]).isRequired,
-  popupStyle: prop_types_default.a.object,
-  prefixCls: prop_types_default.a.string,
-  popupClassName: prop_types_default.a.string,
-  className: prop_types_default.a.string,
-  popupPlacement: prop_types_default.a.string,
-  builtinPlacements: prop_types_default.a.object,
-  popupTransitionName: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.object]),
-  popupAnimation: prop_types_default.a.any,
-  mouseEnterDelay: prop_types_default.a.number,
-  mouseLeaveDelay: prop_types_default.a.number,
-  zIndex: prop_types_default.a.number,
-  focusDelay: prop_types_default.a.number,
-  blurDelay: prop_types_default.a.number,
-  getPopupContainer: prop_types_default.a.func,
-  getDocument: prop_types_default.a.func,
-  forceRender: prop_types_default.a.bool,
-  destroyPopupOnHide: prop_types_default.a.bool,
-  mask: prop_types_default.a.bool,
-  maskClosable: prop_types_default.a.bool,
-  onPopupAlign: prop_types_default.a.func,
-  popupAlign: prop_types_default.a.object,
-  popupVisible: prop_types_default.a.bool,
-  defaultPopupVisible: prop_types_default.a.bool,
-  maskTransitionName: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.object]),
-  maskAnimation: prop_types_default.a.string,
-  stretch: prop_types_default.a.string,
-  alignPoint: prop_types_default.a.bool // Maybe we can support user pass position in the future
+  children: external_prop_types_default.a.any,
+  action: external_prop_types_default.a.oneOfType([external_prop_types_default.a.string, external_prop_types_default.a.arrayOf(external_prop_types_default.a.string)]),
+  showAction: external_prop_types_default.a.any,
+  hideAction: external_prop_types_default.a.any,
+  getPopupClassNameFromAlign: external_prop_types_default.a.any,
+  onPopupVisibleChange: external_prop_types_default.a.func,
+  afterPopupVisibleChange: external_prop_types_default.a.func,
+  popup: external_prop_types_default.a.oneOfType([external_prop_types_default.a.node, external_prop_types_default.a.func]).isRequired,
+  popupStyle: external_prop_types_default.a.object,
+  prefixCls: external_prop_types_default.a.string,
+  popupClassName: external_prop_types_default.a.string,
+  className: external_prop_types_default.a.string,
+  popupPlacement: external_prop_types_default.a.string,
+  builtinPlacements: external_prop_types_default.a.object,
+  popupTransitionName: external_prop_types_default.a.oneOfType([external_prop_types_default.a.string, external_prop_types_default.a.object]),
+  popupAnimation: external_prop_types_default.a.any,
+  mouseEnterDelay: external_prop_types_default.a.number,
+  mouseLeaveDelay: external_prop_types_default.a.number,
+  zIndex: external_prop_types_default.a.number,
+  focusDelay: external_prop_types_default.a.number,
+  blurDelay: external_prop_types_default.a.number,
+  getPopupContainer: external_prop_types_default.a.func,
+  getDocument: external_prop_types_default.a.func,
+  forceRender: external_prop_types_default.a.bool,
+  destroyPopupOnHide: external_prop_types_default.a.bool,
+  mask: external_prop_types_default.a.bool,
+  maskClosable: external_prop_types_default.a.bool,
+  onPopupAlign: external_prop_types_default.a.func,
+  popupAlign: external_prop_types_default.a.object,
+  popupVisible: external_prop_types_default.a.bool,
+  defaultPopupVisible: external_prop_types_default.a.bool,
+  maskTransitionName: external_prop_types_default.a.oneOfType([external_prop_types_default.a.string, external_prop_types_default.a.object]),
+  maskAnimation: external_prop_types_default.a.string,
+  stretch: external_prop_types_default.a.string,
+  alignPoint: external_prop_types_default.a.bool // Maybe we can support user pass position in the future
 };
 es_Trigger.contextTypes = contextTypes;
 es_Trigger.childContextTypes = contextTypes;
@@ -10619,7 +10607,7 @@ var _Option2 = _interopRequireDefault(_Option);
 
 var _PropTypes = __webpack_require__(82);
 
-var _OptGroup = __webpack_require__(280);
+var _OptGroup = __webpack_require__(278);
 
 var _OptGroup2 = _interopRequireDefault(_OptGroup);
 
@@ -11069,7 +11057,7 @@ var _extends2 = __webpack_require__(3);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _zh_CN = __webpack_require__(282);
+var _zh_CN = __webpack_require__(280);
 
 var _zh_CN2 = _interopRequireDefault(_zh_CN);
 
@@ -22887,9 +22875,9 @@ var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
 var external_react_ = __webpack_require__(2);
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
-// EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(0);
-var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
+// EXTERNAL MODULE: external "prop-types"
+var external_prop_types_ = __webpack_require__(0);
+var external_prop_types_default = /*#__PURE__*/__webpack_require__.n(external_prop_types_);
 
 // EXTERNAL MODULE: ./node_modules/mini-store/lib/index.js
 var lib = __webpack_require__(20);
@@ -23859,34 +23847,34 @@ var SubMenu_SubMenu = function (_React$Component) {
 }(external_react_default.a.Component);
 
 SubMenu_SubMenu.propTypes = {
-  parentMenu: prop_types_default.a.object,
-  title: prop_types_default.a.node,
-  children: prop_types_default.a.any,
-  selectedKeys: prop_types_default.a.array,
-  openKeys: prop_types_default.a.array,
-  onClick: prop_types_default.a.func,
-  onOpenChange: prop_types_default.a.func,
-  rootPrefixCls: prop_types_default.a.string,
-  eventKey: prop_types_default.a.string,
-  multiple: prop_types_default.a.bool,
-  active: prop_types_default.a.bool, // TODO: remove
-  onItemHover: prop_types_default.a.func,
-  onSelect: prop_types_default.a.func,
-  triggerSubMenuAction: prop_types_default.a.string,
-  onDeselect: prop_types_default.a.func,
-  onDestroy: prop_types_default.a.func,
-  onMouseEnter: prop_types_default.a.func,
-  onMouseLeave: prop_types_default.a.func,
-  onTitleMouseEnter: prop_types_default.a.func,
-  onTitleMouseLeave: prop_types_default.a.func,
-  onTitleClick: prop_types_default.a.func,
-  popupOffset: prop_types_default.a.array,
-  isOpen: prop_types_default.a.bool,
-  store: prop_types_default.a.object,
-  mode: prop_types_default.a.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
-  manualRef: prop_types_default.a.func,
-  itemIcon: prop_types_default.a.oneOfType([prop_types_default.a.func, prop_types_default.a.node]),
-  expandIcon: prop_types_default.a.oneOfType([prop_types_default.a.func, prop_types_default.a.node])
+  parentMenu: external_prop_types_default.a.object,
+  title: external_prop_types_default.a.node,
+  children: external_prop_types_default.a.any,
+  selectedKeys: external_prop_types_default.a.array,
+  openKeys: external_prop_types_default.a.array,
+  onClick: external_prop_types_default.a.func,
+  onOpenChange: external_prop_types_default.a.func,
+  rootPrefixCls: external_prop_types_default.a.string,
+  eventKey: external_prop_types_default.a.string,
+  multiple: external_prop_types_default.a.bool,
+  active: external_prop_types_default.a.bool, // TODO: remove
+  onItemHover: external_prop_types_default.a.func,
+  onSelect: external_prop_types_default.a.func,
+  triggerSubMenuAction: external_prop_types_default.a.string,
+  onDeselect: external_prop_types_default.a.func,
+  onDestroy: external_prop_types_default.a.func,
+  onMouseEnter: external_prop_types_default.a.func,
+  onMouseLeave: external_prop_types_default.a.func,
+  onTitleMouseEnter: external_prop_types_default.a.func,
+  onTitleMouseLeave: external_prop_types_default.a.func,
+  onTitleClick: external_prop_types_default.a.func,
+  popupOffset: external_prop_types_default.a.array,
+  isOpen: external_prop_types_default.a.bool,
+  store: external_prop_types_default.a.object,
+  mode: external_prop_types_default.a.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
+  manualRef: external_prop_types_default.a.func,
+  itemIcon: external_prop_types_default.a.oneOfType([external_prop_types_default.a.func, external_prop_types_default.a.node]),
+  expandIcon: external_prop_types_default.a.oneOfType([external_prop_types_default.a.func, external_prop_types_default.a.node])
 };
 SubMenu_SubMenu.defaultProps = {
   onMouseEnter: noop,
@@ -24162,7 +24150,7 @@ var MENUITEM_OVERFLOWED_CLASSNAME = 'menuitem-overflowed';
 
 // Fix ssr
 if (canUseDOM) {
-  __webpack_require__(274);
+  __webpack_require__(272);
 }
 
 var DOMWrap_DOMWrap = function (_React$Component) {
@@ -24457,17 +24445,17 @@ var DOMWrap_DOMWrap = function (_React$Component) {
 }(external_react_default.a.Component);
 
 DOMWrap_DOMWrap.propTypes = {
-  className: prop_types_default.a.string,
-  children: prop_types_default.a.node,
-  mode: prop_types_default.a.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
-  prefixCls: prop_types_default.a.string,
-  level: prop_types_default.a.number,
-  theme: prop_types_default.a.string,
-  overflowedIndicator: prop_types_default.a.node,
-  visible: prop_types_default.a.bool,
-  hiddenClassName: prop_types_default.a.string,
-  tag: prop_types_default.a.string,
-  style: prop_types_default.a.object
+  className: external_prop_types_default.a.string,
+  children: external_prop_types_default.a.node,
+  mode: external_prop_types_default.a.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
+  prefixCls: external_prop_types_default.a.string,
+  level: external_prop_types_default.a.number,
+  theme: external_prop_types_default.a.string,
+  overflowedIndicator: external_prop_types_default.a.node,
+  visible: external_prop_types_default.a.bool,
+  hiddenClassName: external_prop_types_default.a.string,
+  tag: external_prop_types_default.a.string,
+  style: external_prop_types_default.a.object
 };
 
 DOMWrap_DOMWrap.defaultProps = {
@@ -24659,39 +24647,39 @@ var SubPopupMenu_SubPopupMenu = function (_React$Component) {
   return SubPopupMenu;
 }(external_react_default.a.Component);
 SubPopupMenu_SubPopupMenu.propTypes = {
-  onSelect: prop_types_default.a.func,
-  onClick: prop_types_default.a.func,
-  onDeselect: prop_types_default.a.func,
-  onOpenChange: prop_types_default.a.func,
-  onDestroy: prop_types_default.a.func,
-  openTransitionName: prop_types_default.a.string,
-  openAnimation: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.object]),
-  openKeys: prop_types_default.a.arrayOf(prop_types_default.a.string),
-  visible: prop_types_default.a.bool,
-  children: prop_types_default.a.any,
-  parentMenu: prop_types_default.a.object,
-  eventKey: prop_types_default.a.string,
-  store: prop_types_default.a.shape({
-    getState: prop_types_default.a.func,
-    setState: prop_types_default.a.func
+  onSelect: external_prop_types_default.a.func,
+  onClick: external_prop_types_default.a.func,
+  onDeselect: external_prop_types_default.a.func,
+  onOpenChange: external_prop_types_default.a.func,
+  onDestroy: external_prop_types_default.a.func,
+  openTransitionName: external_prop_types_default.a.string,
+  openAnimation: external_prop_types_default.a.oneOfType([external_prop_types_default.a.string, external_prop_types_default.a.object]),
+  openKeys: external_prop_types_default.a.arrayOf(external_prop_types_default.a.string),
+  visible: external_prop_types_default.a.bool,
+  children: external_prop_types_default.a.any,
+  parentMenu: external_prop_types_default.a.object,
+  eventKey: external_prop_types_default.a.string,
+  store: external_prop_types_default.a.shape({
+    getState: external_prop_types_default.a.func,
+    setState: external_prop_types_default.a.func
   }),
 
   // adding in refactor
-  focusable: prop_types_default.a.bool,
-  multiple: prop_types_default.a.bool,
-  style: prop_types_default.a.object,
-  defaultActiveFirst: prop_types_default.a.bool,
-  activeKey: prop_types_default.a.string,
-  selectedKeys: prop_types_default.a.arrayOf(prop_types_default.a.string),
-  defaultSelectedKeys: prop_types_default.a.arrayOf(prop_types_default.a.string),
-  defaultOpenKeys: prop_types_default.a.arrayOf(prop_types_default.a.string),
-  level: prop_types_default.a.number,
-  mode: prop_types_default.a.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
-  triggerSubMenuAction: prop_types_default.a.oneOf(['click', 'hover']),
-  inlineIndent: prop_types_default.a.oneOfType([prop_types_default.a.number, prop_types_default.a.string]),
-  manualRef: prop_types_default.a.func,
-  itemIcon: prop_types_default.a.oneOfType([prop_types_default.a.func, prop_types_default.a.node]),
-  expandIcon: prop_types_default.a.oneOfType([prop_types_default.a.func, prop_types_default.a.node])
+  focusable: external_prop_types_default.a.bool,
+  multiple: external_prop_types_default.a.bool,
+  style: external_prop_types_default.a.object,
+  defaultActiveFirst: external_prop_types_default.a.bool,
+  activeKey: external_prop_types_default.a.string,
+  selectedKeys: external_prop_types_default.a.arrayOf(external_prop_types_default.a.string),
+  defaultSelectedKeys: external_prop_types_default.a.arrayOf(external_prop_types_default.a.string),
+  defaultOpenKeys: external_prop_types_default.a.arrayOf(external_prop_types_default.a.string),
+  level: external_prop_types_default.a.number,
+  mode: external_prop_types_default.a.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
+  triggerSubMenuAction: external_prop_types_default.a.oneOf(['click', 'hover']),
+  inlineIndent: external_prop_types_default.a.oneOfType([external_prop_types_default.a.number, external_prop_types_default.a.string]),
+  manualRef: external_prop_types_default.a.func,
+  itemIcon: external_prop_types_default.a.oneOfType([external_prop_types_default.a.func, external_prop_types_default.a.node]),
+  expandIcon: external_prop_types_default.a.oneOfType([external_prop_types_default.a.func, external_prop_types_default.a.node])
 };
 SubPopupMenu_SubPopupMenu.defaultProps = {
   prefixCls: 'rc-menu',
@@ -24967,35 +24955,35 @@ var Menu_Menu = function (_React$Component) {
 }(external_react_default.a.Component);
 
 Menu_Menu.propTypes = {
-  defaultSelectedKeys: prop_types_default.a.arrayOf(prop_types_default.a.string),
-  defaultActiveFirst: prop_types_default.a.bool,
-  selectedKeys: prop_types_default.a.arrayOf(prop_types_default.a.string),
-  defaultOpenKeys: prop_types_default.a.arrayOf(prop_types_default.a.string),
-  openKeys: prop_types_default.a.arrayOf(prop_types_default.a.string),
-  mode: prop_types_default.a.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
-  getPopupContainer: prop_types_default.a.func,
-  onClick: prop_types_default.a.func,
-  onSelect: prop_types_default.a.func,
-  onDeselect: prop_types_default.a.func,
-  onDestroy: prop_types_default.a.func,
-  openTransitionName: prop_types_default.a.string,
-  openAnimation: prop_types_default.a.oneOfType([prop_types_default.a.string, prop_types_default.a.object]),
-  subMenuOpenDelay: prop_types_default.a.number,
-  subMenuCloseDelay: prop_types_default.a.number,
-  forceSubMenuRender: prop_types_default.a.bool,
-  triggerSubMenuAction: prop_types_default.a.string,
-  level: prop_types_default.a.number,
-  selectable: prop_types_default.a.bool,
-  multiple: prop_types_default.a.bool,
-  children: prop_types_default.a.any,
-  className: prop_types_default.a.string,
-  style: prop_types_default.a.object,
-  activeKey: prop_types_default.a.string,
-  prefixCls: prop_types_default.a.string,
-  builtinPlacements: prop_types_default.a.object,
-  itemIcon: prop_types_default.a.oneOfType([prop_types_default.a.func, prop_types_default.a.node]),
-  expandIcon: prop_types_default.a.oneOfType([prop_types_default.a.func, prop_types_default.a.node]),
-  overflowedIndicator: prop_types_default.a.node
+  defaultSelectedKeys: external_prop_types_default.a.arrayOf(external_prop_types_default.a.string),
+  defaultActiveFirst: external_prop_types_default.a.bool,
+  selectedKeys: external_prop_types_default.a.arrayOf(external_prop_types_default.a.string),
+  defaultOpenKeys: external_prop_types_default.a.arrayOf(external_prop_types_default.a.string),
+  openKeys: external_prop_types_default.a.arrayOf(external_prop_types_default.a.string),
+  mode: external_prop_types_default.a.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
+  getPopupContainer: external_prop_types_default.a.func,
+  onClick: external_prop_types_default.a.func,
+  onSelect: external_prop_types_default.a.func,
+  onDeselect: external_prop_types_default.a.func,
+  onDestroy: external_prop_types_default.a.func,
+  openTransitionName: external_prop_types_default.a.string,
+  openAnimation: external_prop_types_default.a.oneOfType([external_prop_types_default.a.string, external_prop_types_default.a.object]),
+  subMenuOpenDelay: external_prop_types_default.a.number,
+  subMenuCloseDelay: external_prop_types_default.a.number,
+  forceSubMenuRender: external_prop_types_default.a.bool,
+  triggerSubMenuAction: external_prop_types_default.a.string,
+  level: external_prop_types_default.a.number,
+  selectable: external_prop_types_default.a.bool,
+  multiple: external_prop_types_default.a.bool,
+  children: external_prop_types_default.a.any,
+  className: external_prop_types_default.a.string,
+  style: external_prop_types_default.a.object,
+  activeKey: external_prop_types_default.a.string,
+  prefixCls: external_prop_types_default.a.string,
+  builtinPlacements: external_prop_types_default.a.object,
+  itemIcon: external_prop_types_default.a.oneOfType([external_prop_types_default.a.func, external_prop_types_default.a.node]),
+  expandIcon: external_prop_types_default.a.oneOfType([external_prop_types_default.a.func, external_prop_types_default.a.node]),
+  overflowedIndicator: external_prop_types_default.a.node
 };
 Menu_Menu.defaultProps = {
   selectable: true,
@@ -25318,26 +25306,26 @@ var MenuItem_MenuItem = function (_React$Component) {
 }(external_react_default.a.Component);
 
 MenuItem_MenuItem.propTypes = {
-  attribute: prop_types_default.a.object,
-  rootPrefixCls: prop_types_default.a.string,
-  eventKey: prop_types_default.a.string,
-  active: prop_types_default.a.bool,
-  children: prop_types_default.a.any,
-  selectedKeys: prop_types_default.a.array,
-  disabled: prop_types_default.a.bool,
-  title: prop_types_default.a.string,
-  onItemHover: prop_types_default.a.func,
-  onSelect: prop_types_default.a.func,
-  onClick: prop_types_default.a.func,
-  onDeselect: prop_types_default.a.func,
-  parentMenu: prop_types_default.a.object,
-  onDestroy: prop_types_default.a.func,
-  onMouseEnter: prop_types_default.a.func,
-  onMouseLeave: prop_types_default.a.func,
-  multiple: prop_types_default.a.bool,
-  isSelected: prop_types_default.a.bool,
-  manualRef: prop_types_default.a.func,
-  itemIcon: prop_types_default.a.oneOfType([prop_types_default.a.func, prop_types_default.a.node])
+  attribute: external_prop_types_default.a.object,
+  rootPrefixCls: external_prop_types_default.a.string,
+  eventKey: external_prop_types_default.a.string,
+  active: external_prop_types_default.a.bool,
+  children: external_prop_types_default.a.any,
+  selectedKeys: external_prop_types_default.a.array,
+  disabled: external_prop_types_default.a.bool,
+  title: external_prop_types_default.a.string,
+  onItemHover: external_prop_types_default.a.func,
+  onSelect: external_prop_types_default.a.func,
+  onClick: external_prop_types_default.a.func,
+  onDeselect: external_prop_types_default.a.func,
+  parentMenu: external_prop_types_default.a.object,
+  onDestroy: external_prop_types_default.a.func,
+  onMouseEnter: external_prop_types_default.a.func,
+  onMouseLeave: external_prop_types_default.a.func,
+  multiple: external_prop_types_default.a.bool,
+  isSelected: external_prop_types_default.a.bool,
+  manualRef: external_prop_types_default.a.func,
+  itemIcon: external_prop_types_default.a.oneOfType([external_prop_types_default.a.func, external_prop_types_default.a.node])
 };
 MenuItem_MenuItem.defaultProps = {
   onSelect: noop,
@@ -25432,11 +25420,11 @@ var MenuItemGroup_MenuItemGroup = function (_React$Component) {
 }(external_react_default.a.Component);
 
 MenuItemGroup_MenuItemGroup.propTypes = {
-  renderMenuItem: prop_types_default.a.func,
-  index: prop_types_default.a.number,
-  className: prop_types_default.a.string,
-  subMenuKey: prop_types_default.a.string,
-  rootPrefixCls: prop_types_default.a.string
+  renderMenuItem: external_prop_types_default.a.func,
+  index: external_prop_types_default.a.number,
+  className: external_prop_types_default.a.string,
+  subMenuKey: external_prop_types_default.a.string,
+  rootPrefixCls: external_prop_types_default.a.string
 };
 MenuItemGroup_MenuItemGroup.defaultProps = {
   disabled: true
@@ -25478,9 +25466,9 @@ var Divider_Divider = function (_React$Component) {
 }(external_react_default.a.Component);
 
 Divider_Divider.propTypes = {
-  className: prop_types_default.a.string,
-  rootPrefixCls: prop_types_default.a.string,
-  style: prop_types_default.a.object
+  className: external_prop_types_default.a.string,
+  rootPrefixCls: external_prop_types_default.a.string,
+  style: external_prop_types_default.a.object
 };
 Divider_Divider.defaultProps = {
   // To fix keyboard UX.
@@ -25510,7 +25498,7 @@ Divider_Divider.defaultProps = {
 /* 210 */
 /***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"common","description":"common","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/maka/maka-erp.git"},"bugs":{"url":"https://github.com/makajs/maka/maka-erp/issues"},"homepage":"https://github.com/makajs/maka/maka-erp#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../antd","../fixed-data-table"],"devDependencies":{"antd":"*","lodash":"*","moment":"*","mk-rc-select":"*"}};
+module.exports = {"isMakaApp":true,"name":"common","description":"common","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../antd","../fixed-data-table"],"devDependencies":{"antd":"*","lodash":"*","moment":"*","mk-rc-select":"*"}};
 
 /***/ }),
 /* 211 */
@@ -26558,7 +26546,7 @@ exports['default'] = addEventListener;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _EventObject = __webpack_require__(271);
+var _EventObject = __webpack_require__(269);
 
 var _EventObject2 = _interopRequireDefault(_EventObject);
 
@@ -26612,7 +26600,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _zh_CN = __webpack_require__(281);
+var _zh_CN = __webpack_require__(279);
 
 var _zh_CN2 = _interopRequireDefault(_zh_CN);
 
@@ -26624,7 +26612,7 @@ var _zh_CN5 = __webpack_require__(84);
 
 var _zh_CN6 = _interopRequireDefault(_zh_CN5);
 
-var _zh_CN7 = __webpack_require__(283);
+var _zh_CN7 = __webpack_require__(281);
 
 var _zh_CN8 = _interopRequireDefault(_zh_CN7);
 
@@ -43782,7 +43770,7 @@ module.exports = exports['default'];
 /* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(285);
+module.exports = __webpack_require__(283);
 
 
 /***/ }),
@@ -44654,7 +44642,7 @@ var _componentClasses2 = _interopRequireDefault(_componentClasses);
 
 var _rcMenu = __webpack_require__(209);
 
-var _warning = __webpack_require__(277);
+var _warning = __webpack_require__(275);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -44664,7 +44652,7 @@ var _Option2 = _interopRequireDefault(_Option);
 
 var _util = __webpack_require__(60);
 
-var _SelectTrigger = __webpack_require__(278);
+var _SelectTrigger = __webpack_require__(276);
 
 var _SelectTrigger2 = _interopRequireDefault(_SelectTrigger);
 
@@ -47419,91 +47407,6 @@ $export($export.S + $export.F * !__webpack_require__(25), 'Object', { defineProp
 /* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = __webpack_require__(263);
-
-function emptyFunction() {}
-
-module.exports = function() {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret) {
-      // It is still safe when called from React.
-      return;
-    }
-    var err = new Error(
-      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-      'Use PropTypes.checkPropTypes() to call them. ' +
-      'Read more at http://fb.me/use-check-prop-types'
-    );
-    err.name = 'Invariant Violation';
-    throw err;
-  };
-  shim.isRequired = shim;
-  function getShim() {
-    return shim;
-  };
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim
-  };
-
-  ReactPropTypes.checkPropTypes = emptyFunction;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
-
-/***/ }),
-/* 263 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-
-/***/ }),
-/* 264 */
-/***/ (function(module, exports, __webpack_require__) {
-
 /* WEBPACK VAR INJECTION */(function(process) {// Generated by CoffeeScript 1.12.2
 (function() {
   var getNanoSeconds, hrtime, loadTime, moduleLoadTime, nodeLoadTime, upTime;
@@ -47541,10 +47444,10 @@ module.exports = ReactPropTypesSecret;
 
 //# sourceMappingURL=performance-now.js.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(265)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(263)))
 
 /***/ }),
-/* 265 */
+/* 263 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -47734,7 +47637,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 266 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47795,7 +47698,7 @@ Provider.childContextTypes = {
 exports.default = Provider;
 
 /***/ }),
-/* 267 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47815,11 +47718,11 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _shallowequal = __webpack_require__(268);
+var _shallowequal = __webpack_require__(266);
 
 var _shallowequal2 = _interopRequireDefault(_shallowequal);
 
-var _hoistNonReactStatics = __webpack_require__(269);
+var _hoistNonReactStatics = __webpack_require__(267);
 
 var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
@@ -47964,7 +47867,7 @@ function connect(mapStateToProps) {
 }
 
 /***/ }),
-/* 268 */
+/* 266 */
 /***/ (function(module, exports) {
 
 //
@@ -48016,7 +47919,7 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
 
 
 /***/ }),
-/* 269 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48091,7 +47994,7 @@ module.exports = hoistNonReactStatics;
 
 
 /***/ }),
-/* 270 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48136,7 +48039,7 @@ function create(initialState) {
 }
 
 /***/ }),
-/* 271 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48154,11 +48057,11 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _EventBaseObject = __webpack_require__(272);
+var _EventBaseObject = __webpack_require__(270);
 
 var _EventBaseObject2 = _interopRequireDefault(_EventBaseObject);
 
-var _objectAssign = __webpack_require__(273);
+var _objectAssign = __webpack_require__(271);
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
@@ -48420,7 +48323,7 @@ exports['default'] = DomEventObject;
 module.exports = exports['default'];
 
 /***/ }),
-/* 272 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48489,7 +48392,7 @@ exports["default"] = EventBaseObject;
 module.exports = exports["default"];
 
 /***/ }),
-/* 273 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48586,7 +48489,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 274 */
+/* 272 */
 /***/ (function(module, exports) {
 
 // mutationobserver-shim v0.3.2 (github.com/megawac/MutationObserver.js)
@@ -48602,13 +48505,13 @@ a:!(!b.characterData&&!b.characterDataOldValue)},d=this.i,f=0;f<d.length;f++)d[f
 
 
 /***/ }),
-/* 275 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var util = __webpack_require__(276);
+var util = __webpack_require__(274);
 
 function scrollIntoView(elem, container, config) {
   config = config || {};
@@ -48737,7 +48640,7 @@ function scrollIntoView(elem, container, config) {
 module.exports = scrollIntoView;
 
 /***/ }),
-/* 276 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49182,7 +49085,7 @@ module.exports = _extends({
 }, domUtils);
 
 /***/ }),
-/* 277 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49251,7 +49154,7 @@ module.exports = warning;
 
 
 /***/ }),
-/* 278 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49295,7 +49198,7 @@ var _classnames = __webpack_require__(14);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _DropdownMenu = __webpack_require__(279);
+var _DropdownMenu = __webpack_require__(277);
 
 var _DropdownMenu2 = _interopRequireDefault(_DropdownMenu);
 
@@ -49503,7 +49406,7 @@ SelectTrigger.displayName = 'SelectTrigger';
 module.exports = exports['default'];
 
 /***/ }),
-/* 279 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49780,7 +49683,7 @@ exports['default'] = DropdownMenu;
 module.exports = exports['default'];
 
 /***/ }),
-/* 280 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49822,7 +49725,7 @@ exports['default'] = OptGroup;
 module.exports = exports['default'];
 
 /***/ }),
-/* 281 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49849,7 +49752,7 @@ exports['default'] = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 282 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49886,7 +49789,7 @@ exports['default'] = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 283 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49906,7 +49809,7 @@ exports['default'] = _zh_CN2['default'];
 module.exports = exports['default'];
 
 /***/ }),
-/* 284 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -50177,10 +50080,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 284;
+webpackContext.id = 282;
 
 /***/ }),
-/* 285 */
+/* 283 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50205,6 +50108,7 @@ var action_namespaceObject = {};
 __webpack_require__.r(action_namespaceObject);
 __webpack_require__.d(action_namespaceObject, "tableHelper", function() { return tableHelper_action; });
 __webpack_require__.d(action_namespaceObject, "treeHelper", function() { return treeHelper_action; });
+__webpack_require__.d(action_namespaceObject, "numberHelper", function() { return numberHelper; });
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__(13);
@@ -52061,7 +51965,131 @@ function () {
 }();
 
 
+// CONCATENATED MODULE: ./action/numberHelper.js
+/**
+ * 获取精度 
+ * @param {*值} value 
+ * 111.05 => 2
+ */
+function getPrecision(value) {
+  var valueString = value.toString(); //取e-后字符转换成int,e-10=>10
+
+  if (valueString.indexOf('e-') >= 0) {
+    return parseInt(valueString.slice(valueString.indexOf('e-') + 1), 10);
+  }
+
+  var precision = 0; //取小数点后字符长度0.0001=>4
+
+  if (valueString.indexOf('.') >= 0) {
+    precision = valueString.length - valueString.indexOf('.') - 1;
+  } //否则0
+
+
+  return precision;
+}
+/**
+ * 数字格式化
+ * @param {*值} number 
+ * @param {*小数位数} decimals 
+ * @param {*千分符} thousandsSep 
+ * @param {*小数点字符} decPoint 
+ */
+
+
+function numberHelper_format(number) {
+  var decimals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+  var thousandsSep = arguments.length > 2 ? arguments[2] : undefined;
+  var decPoint = arguments.length > 3 ? arguments[3] : undefined;
+  number = (number + '').replace(/[^0-9+-Ee.]/g, '');
+  var n = !isFinite(+number) ? 0 : +number,
+      prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+      sep = thousandsSep,
+      dec = typeof decPoint !== 'string' ? '.' : decPoint,
+      s = '';
+  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+
+  if (sep) {
+    var re = /(-?\d+)(\d{3})/;
+
+    while (re.test(s[0])) {
+      s[0] = s[0].replace(re, "$1" + sep + "$2");
+    }
+  }
+
+  if ((s[1] || '').length < prec) {
+    s[1] = s[1] || '';
+    s[1] += new Array(prec - s[1].length + 1).join('0');
+  }
+
+  return s.join(dec);
+}
+/**
+ * 浮点精度
+ */
+
+
+function toFixedFix(number, prec) {
+  number = (number + '').replace(/[^0-9+-Ee.]/g, '');
+  var k = Math.pow(10, prec);
+  return '' + Math.round(number * k) / k;
+}
+/**
+ * 四舍5入
+ */
+
+
+function round(number, prec) {
+  number = number == undefined ? 0 : number;
+  number = (number + '').replace(/[^0-9+-Ee.]/g, '');
+  var n = !isFinite(+number) ? 0 : +number,
+      prec = !isFinite(+prec) ? 0 : Math.abs(prec);
+  var k = Math.pow(10, prec);
+  return Math.round(number * k) / k;
+}
+/**
+ * 小写转大写金额
+ * @param {*小写金额} n 
+ */
+
+
+function moneySmalltoBig(n) {
+  if (!_.isNumber(n) || _.isNaN(n)) return '';
+  var fraction = ['角', '分'];
+  var digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+  var unit = [['元', '万', '亿'], ['', '拾', '佰', '仟']];
+  var head = n < 0 ? '欠' : '';
+  n = Math.abs(n);
+  var s = '';
+
+  for (var i = 0; i < fraction.length; i++) {
+    s += (digit[Math.floor(n * 10 * Math.pow(10, i)) % 10] + fraction[i]).replace(/零./, '');
+  }
+
+  s = s || '整';
+  n = Math.floor(n);
+
+  for (var i = 0; i < unit[0].length && n > 0; i++) {
+    var p = '';
+
+    for (var j = 0; j < unit[1].length && n > 0; j++) {
+      p = digit[n % 10] + unit[1][j] + p;
+      n = Math.floor(n / 10);
+    }
+
+    s = p.replace(/(零.)*零$/, '').replace(/^$/, '零') + unit[0][i] + s;
+  }
+
+  return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');
+}
+
+/* harmony default export */ var numberHelper = ({
+  toFixedFix: toFixedFix,
+  format: numberHelper_format,
+  moneySmalltoBig: moneySmalltoBig,
+  round: round
+});
 // CONCATENATED MODULE: ./action/index.js
+
 
 
 // EXTERNAL MODULE: ./node_modules/moment/moment.js
@@ -52101,7 +52129,7 @@ Object(external_maka_["registerAction"])('modal', modal, true);
 Object(external_maka_["registerAction"])('message', Object(external_maka_["getComponent"])('antd.message'), true);
 Object(external_maka_["registerAction"])('notification', Object(external_maka_["getComponent"])('antd.notification'), true);
 Object.keys(action_namespaceObject).forEach(function (key) {
-  return Object(external_maka_["registerAction"])(key, action_namespaceObject[key]);
+  Object(external_maka_["registerAction"])(key, action_namespaceObject[key], key == 'numberHelper');
 }); //setHoc(components["LocaleProvider"])
 
 var index_name = package_0.name;

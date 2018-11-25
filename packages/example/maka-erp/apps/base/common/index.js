@@ -18,7 +18,9 @@ registerAction('modal', components.Modal, true)
 registerAction('message', getComponent('antd.message'), true)
 registerAction('notification', getComponent('antd.notification'), true)
 
-Object.keys(actions).forEach(key => registerAction(key, actions[key]))
+Object.keys(actions).forEach(key => {
+    registerAction(key, actions[key], key == 'numberHelper')
+})
 
 //setHoc(components["LocaleProvider"])
 

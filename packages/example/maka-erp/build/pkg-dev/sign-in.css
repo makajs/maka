@@ -1,0 +1,115 @@
+.sign-in {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sign-in .ant-btn {
+  font-size: 14px;
+}
+.sign-in .ant-row {
+  height: auto;
+}
+.sign-in .ant-form-item-control-wrapper {
+  height: auto;
+}
+.sign-in .ant-input {
+  font-size: 18px;
+}
+.sign-in a {
+  font-size: 14px;
+}
+.sign-in-header {
+  height: 58px;
+  flex: 0 0 58px;
+  background: #fff;
+  border-bottom: 1px solid #d9d9d9;
+  font-size: 20px;
+  font-weight: bold;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+}
+.sign-in-header-logo {
+  width: 58px;
+  height: 58px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.sign-in-content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+.sign-in-content-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.sign-in-content-form .ant-form-item {
+  margin-bottom: 30px;
+}
+.sign-in-content-form .ant-form-item-control-wrapper,
+.sign-in-content-form .ant-input-group-wrapper {
+  width: 400px;
+}
+.sign-in-content-form .ant-form-item-control,
+.sign-in-content-form .ant-input-wrapper {
+  height: 50px;
+}
+.sign-in-content-form .ant-input-prefix {
+  line-height: 50px;
+}
+.sign-in-content-form .ant-input {
+  height: 50px;
+}
+.sign-in-content-form .ant-input-affix-wrapper .ant-input:not(:first-child) {
+  padding-left: 34px;
+}
+.sign-in-content-form .ant-form-explain {
+  margin-top: 5px;
+}
+.sign-in-content-form-title {
+  text-align: center;
+  font-size: xx-large;
+}
+.sign-in-content-form-mobile .ant-input {
+  padding-left: 32px !important;
+  font-size: large;
+}
+.sign-in-content-form-password {
+  margin-bottom: 20px !important;
+}
+.sign-in-content-form-password .ant-input {
+  padding-left: 32px !important;
+  font-size: large;
+}
+.sign-in-content-form-forget {
+  margin-bottom: 5px !important;
+  height: auto;
+}
+.sign-in-content-form-forget .ant-form-item-control {
+  height: auto;
+}
+.sign-in-content-form-login {
+  margin-bottom: 5px !important;
+}
+.sign-in-content-form-login .ant-btn {
+  width: 100%;
+  height: 100%;
+}
+.sign-in-content-form .ant-input-prefix {
+  font-size: large;
+  color: #ccc;
+}
+.sign-in-footer {
+  display: flex;
+  height: 50px;
+  flex: 0 0 58px;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa;
+}
+

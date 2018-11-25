@@ -7,12 +7,12 @@
   "author": "ziaochina",
   "repository": {
     "type": "git",
-    "url": "https://github.com/makajs/maka-erp.git"
+    "url": "https://github.com/makajs/maka.git"
   },
   "bugs": {
-    "url": "https://github.com/makajs/maka-erp/issues"
+    "url": "https://github.com/makajs/maka/issues"
   },
-  "homepage": "https://github.com/makajs/maka-erp#readme",
+  "homepage": "https://github.com/makajs/maka#readme",
   "scripts": {
     "start": "maka start",
     "dev": "maka start --dev",
@@ -25,5 +25,5 @@
     "proxy": null,
     "port": 8000
   },
-  "subAppDir": ["./apps", "../sign-in", "../../base", "../../set"]
+  "subAppDir": ["./apps", "../sign-in", "../../base", "../../set", "../"]
 }

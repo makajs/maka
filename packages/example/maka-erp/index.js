@@ -25,15 +25,10 @@ class action {
 
 const view = {
     component: 'div',
-    className: 'erp',
+    className:'home-chart',
     children: [{
-        component: 'div',
-        children: '{{data.content + data.input}}'
-    }, {
-        component: 'input',
-        placeholder: 'world',
-        value: '{{data.input}}',
-        onChange: '{{$onChange}}'
+        component: 'Echarts',
+        option: '{{$getOption()}}'
     }]
 }
 

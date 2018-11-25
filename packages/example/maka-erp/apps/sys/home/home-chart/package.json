@@ -1,0 +1,28 @@
+{
+  "isMakaApp": true,
+  "name": "home-chart",
+  "description": "home-chart",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/home-chart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/home-chart/issues"
+  },
+  "homepage": "https://github.com/makajs/home-chart#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": ["./apps", "../../../base"]
+}

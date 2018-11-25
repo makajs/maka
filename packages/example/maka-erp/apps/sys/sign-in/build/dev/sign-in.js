@@ -213,7 +213,7 @@ module.exports = charenc;
 /* 5 */
 /***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"sign-in","description":"sign-in application, a simple example of login.","version":"1.0.7","license":"MIT","author":"ziaochina","repository":{"type":"git","url":"https://github.com/ziaochina/sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/sign-in/issues"},"homepage":"https://github.com/ziaochina/sign-in#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{"zlj-antd":"https://hub.makajs.org/zlj-antd/-/@1.0.4"},"devDependencies":{"md5":"*"},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../portal","../../base"]};
+module.exports = {"isMakaApp":true,"name":"sign-in","description":"sign-in application, a simple example of login.","version":"1.0.7","license":"MIT","author":"ziaochina","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"devDependencies":{"md5":"*"},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../portal","../../base"]};
 
 /***/ }),
 /* 6 */

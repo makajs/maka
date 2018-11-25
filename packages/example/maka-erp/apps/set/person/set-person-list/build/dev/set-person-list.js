@@ -174,7 +174,7 @@ module.exports = _asyncToGenerator;
 /* 4 */
 /***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"set-person-list","description":"set-person-list","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/set-person-list.git"},"bugs":{"url":"https://github.com/makajs/set-person-list/issues"},"homepage":"https://github.com/makajs/set-person-list#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base","../set-person"]};
+module.exports = {"isMakaApp":true,"name":"set-person-list","description":"set-person-list","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base","../set-person"]};
 
 /***/ }),
 /* 5 */
@@ -1342,7 +1342,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
                 });
 
               case 8:
-                _this.message.success('删除职员成功');
+                _this.message.success('删除人员成功');
 
                 _this.reload();
 
@@ -1373,7 +1373,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
               break;
             }
 
-            _this.message.error('请选中要删除的职员');
+            _this.message.error('请选中要删除的人员');
 
             return _context6.abrupt("return");
 
@@ -1387,7 +1387,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
               break;
             }
 
-            _this.message.error('请选中要删除的职员');
+            _this.message.error('请选中要删除的人员');
 
             return _context6.abrupt("return");
 

@@ -180,7 +180,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 /* 5 */
 /***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"set-customer","description":"set-customer","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/set-customer.git"},"bugs":{"url":"https://github.com/makajs/set-customer/issues"},"homepage":"https://github.com/makajs/set-customer#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base"]};
+module.exports = {"isMakaApp":true,"name":"set-customer","description":"set-customer","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base"]};
 
 /***/ }),
 /* 6 */
@@ -1025,8 +1025,9 @@ var package_0 = __webpack_require__(5);
       title: '客户组',
       required: true,
       bindPath: 'data.form.customerGroup',
-      displayField: 'name',
-      onLoadOption: '{{$loadCustomerGroup}}'
+      showSearch: true,
+      onLoadOption: '{{$loadCustomerGroup}}',
+      onChange: "{{(v)=>{console.log(v);debugger;$base.setState({'data.form.customerGroup': v })}}}"
     }, {
       type: 'input',
       title: '编码',
@@ -1048,12 +1049,7 @@ var package_0 = __webpack_require__(5);
 // CONCATENATED MODULE: ./state.js
 /* harmony default export */ var state = ({
   data: {
-    form: {
-      sex: {
-        id: 0,
-        name: '女'
-      }
-    },
+    form: {},
     other: {}
   }
 });
@@ -1234,7 +1230,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
     return msg;
   });
 
-  defineProperty_default()(this, "loadSex",
+  defineProperty_default()(this, "loadCustomerGroup",
   /*#__PURE__*/
   asyncToGenerator_default()(
   /*#__PURE__*/
@@ -1243,43 +1239,18 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            return _context4.abrupt("return", [{
-              id: 0,
-              name: '女'
-            }, {
-              id: 1,
-              name: '男'
-            }]);
+            _context4.next = 2;
+            return external_maka_["fetch"].post('/v1/customer/gourp/queryAll', {});
 
-          case 1:
+          case 2:
+            return _context4.abrupt("return", _context4.sent);
+
+          case 3:
           case "end":
             return _context4.stop();
         }
       }
     }, _callee4, this);
-  })));
-
-  defineProperty_default()(this, "loadCustomerGroup",
-  /*#__PURE__*/
-  asyncToGenerator_default()(
-  /*#__PURE__*/
-  regenerator_default.a.mark(function _callee5() {
-    return regenerator_default.a.wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.next = 2;
-            return external_maka_["fetch"].post('/v1/customer/gourp/queryAll', {});
-
-          case 2:
-            return _context5.abrupt("return", _context5.sent);
-
-          case 3:
-          case "end":
-            return _context5.stop();
-        }
-      }
-    }, _callee5, this);
   })));
 
   Object.assign(this, option.mixins);

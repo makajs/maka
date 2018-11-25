@@ -1,14 +1,13 @@
 const menu = [{
     key: '1',
-    title: 'Home',
-    appName: 'zlj-home',
+    title: '首页',
+    appName: 'home',
     appProps: {},
-    icon: 'home',
-    isDefault: true
+    icon: 'home'
 },{
     key: '2',
-    title: 'Board',
-    appName: 'zlj-board',
+    title: '仪表盘',
+    appName: 'dashboard',
     appProps: {},
     icon: 'dashboard'
 }, {
@@ -24,16 +23,16 @@ const menu = [{
         appName: 'set-customer-list'
     }]
 }]
-
 export default {
     data: {
         menu,
         menuSelectedKeys: [],
         menuDefaultOpenKeys: [],
-        content: { },
+        content: {},
         openTabs: [],
         isTabsStyle: true,
         isFoldMenu: true,
-        other: {}
+        other: {},
+        aa:1
     }
 }

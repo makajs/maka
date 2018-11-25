@@ -9,8 +9,18 @@ export default class action {
 
     onInit = () => {
         this.load()
+        
         navigate.listen(this.listen)
-        navigate.redirect(navigate.getLocation().pathname + navigate.getLocation().search)
+        
+        var local = navigate.getLocation()
+        var target
+        if(navigate.getLocation().pathname == '/portal'){
+            target = '/portal/home'
+        }
+        else{
+            target = local.pathname + local.search
+        }
+        navigate.redirect(target)
     }
 
     load = async () => {
