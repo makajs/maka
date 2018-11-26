@@ -30,7 +30,7 @@
                         return response.value;
                     }
                     else {
-                        let msg = maka.getComponent('antd.Message')
+                        let msg = maka.getComponent('antd.message')
                         msg.error(response.error.message);
                         throw { url: url, response: response };
                     }

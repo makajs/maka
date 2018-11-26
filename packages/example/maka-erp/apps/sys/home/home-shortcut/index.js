@@ -25,6 +25,10 @@ class action {
     openCustomer = () => {
         this.component.props.setPortalContent && this.component.props.setPortalContent('客户', 'set-customer-list')
     }
+
+    openBOM = () => {
+        this.component.props.setPortalContent && this.component.props.setPortalContent('BOM', 'set-bom-list')
+    }
 }
 
 const view = {
@@ -50,6 +54,17 @@ const view = {
         }, {
             component: 'a',
             children: '客户',
+            href: '#'
+        }]
+    }, {
+        component: 'div',
+        onClick: '{{$openBOM}}',
+        children: [{
+            component: 'img',
+            src: '{{$getFunImg()}}'
+        }, {
+            component: 'a',
+            children: 'BOM',
             href: '#'
         }]
     }]

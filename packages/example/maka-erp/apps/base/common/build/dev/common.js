@@ -7,7 +7,7 @@
 		exports["MakaApp-common"] = factory(require("prop-types"), require("react"), require("react-dom"), require("maka"));
 	else
 		root["MakaApp-common"] = factory(root["prop-types"], root["react"], root["react-dom"], root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__11__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__11__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -4622,6 +4622,33 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var objectWithoutPropertiesLoose = __webpack_require__(220);
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -4648,7 +4675,7 @@ exports.default = _assign2.default || function (target) {
 };
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 function _defineProperty(obj, key, value) {
@@ -4669,34 +4696,34 @@ function _defineProperty(obj, key, value) {
 module.exports = _defineProperty;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var objectWithoutPropertiesLoose = __webpack_require__(220);
+var defineProperty = __webpack_require__(5);
 
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-  var target = objectWithoutPropertiesLoose(source, excluded);
-  var key, i;
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
 
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
     }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
   }
 
   return target;
 }
 
-module.exports = _objectWithoutProperties;
+module.exports = _objectSpread;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4719,13 +4746,13 @@ exports.default = function (self, call) {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4740,7 +4767,7 @@ exports.default = function (instance, Constructor) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4777,33 +4804,6 @@ exports.default = function (subClass, superClass) {
   });
   if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
 };
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var defineProperty = __webpack_require__(4);
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      defineProperty(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
-module.exports = _objectSpread;
 
 /***/ }),
 /* 11 */
@@ -5143,7 +5143,7 @@ module.exports = function (it, key) {
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(3);
+var helpers_extends = __webpack_require__(4);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/defineProperty.js
@@ -5151,7 +5151,7 @@ var defineProperty = __webpack_require__(36);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(8);
+var classCallCheck = __webpack_require__(9);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/createClass.js
@@ -5159,11 +5159,11 @@ var createClass = __webpack_require__(18);
 var createClass_default = /*#__PURE__*/__webpack_require__.n(createClass);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/possibleConstructorReturn.js
-var possibleConstructorReturn = __webpack_require__(6);
+var possibleConstructorReturn = __webpack_require__(7);
 var possibleConstructorReturn_default = /*#__PURE__*/__webpack_require__.n(possibleConstructorReturn);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/inherits.js
-var inherits = __webpack_require__(9);
+var inherits = __webpack_require__(10);
 var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
 
 // EXTERNAL MODULE: external "react"
@@ -5277,7 +5277,7 @@ function mergeChildren(prev, next) {
   return ret;
 }
 // EXTERNAL MODULE: external "react-dom"
-var external_react_dom_ = __webpack_require__(7);
+var external_react_dom_ = __webpack_require__(8);
 var external_react_dom_default = /*#__PURE__*/__webpack_require__.n(external_react_dom_);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/typeof.js
@@ -7670,19 +7670,19 @@ module.exports = __webpack_require__(273);
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(3);
+var helpers_extends = __webpack_require__(4);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(8);
+var classCallCheck = __webpack_require__(9);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/possibleConstructorReturn.js
-var possibleConstructorReturn = __webpack_require__(6);
+var possibleConstructorReturn = __webpack_require__(7);
 var possibleConstructorReturn_default = /*#__PURE__*/__webpack_require__.n(possibleConstructorReturn);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/inherits.js
-var inherits = __webpack_require__(9);
+var inherits = __webpack_require__(10);
 var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
 
 // EXTERNAL MODULE: external "react"
@@ -7694,7 +7694,7 @@ var external_prop_types_ = __webpack_require__(0);
 var external_prop_types_default = /*#__PURE__*/__webpack_require__.n(external_prop_types_);
 
 // EXTERNAL MODULE: external "react-dom"
-var external_react_dom_ = __webpack_require__(7);
+var external_react_dom_ = __webpack_require__(8);
 var external_react_dom_default = /*#__PURE__*/__webpack_require__.n(external_react_dom_);
 
 // CONCATENATED MODULE: ./node_modules/rc-util/es/Dom/contains.js
@@ -10921,15 +10921,15 @@ var storeShape = exports.storeShape = _propTypes2.default.shape({
 
 exports.__esModule = true;
 
-var _classCallCheck2 = __webpack_require__(8);
+var _classCallCheck2 = __webpack_require__(9);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(6);
+var _possibleConstructorReturn2 = __webpack_require__(7);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(9);
+var _inherits2 = __webpack_require__(10);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -11053,7 +11053,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends2 = __webpack_require__(3);
+var _extends2 = __webpack_require__(4);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
@@ -22852,7 +22852,7 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(3);
+var helpers_extends = __webpack_require__(4);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/objectWithoutProperties.js
@@ -22860,15 +22860,15 @@ var objectWithoutProperties = __webpack_require__(16);
 var objectWithoutProperties_default = /*#__PURE__*/__webpack_require__.n(objectWithoutProperties);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(8);
+var classCallCheck = __webpack_require__(9);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/possibleConstructorReturn.js
-var possibleConstructorReturn = __webpack_require__(6);
+var possibleConstructorReturn = __webpack_require__(7);
 var possibleConstructorReturn_default = /*#__PURE__*/__webpack_require__.n(possibleConstructorReturn);
 
 // EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/inherits.js
-var inherits = __webpack_require__(9);
+var inherits = __webpack_require__(10);
 var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
 
 // EXTERNAL MODULE: external "react"
@@ -23492,7 +23492,7 @@ var setStyle = function setStyle(elem, styleProperty, value) {
   }
 };
 // EXTERNAL MODULE: external "react-dom"
-var external_react_dom_ = __webpack_require__(7);
+var external_react_dom_ = __webpack_require__(8);
 var external_react_dom_default = /*#__PURE__*/__webpack_require__.n(external_react_dom_);
 
 // EXTERNAL MODULE: ./node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
@@ -44594,19 +44594,19 @@ module.exports = _objectWithoutPropertiesLoose;
 
 exports.__esModule = true;
 
-var _extends2 = __webpack_require__(3);
+var _extends2 = __webpack_require__(4);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _classCallCheck2 = __webpack_require__(8);
+var _classCallCheck2 = __webpack_require__(9);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(6);
+var _possibleConstructorReturn2 = __webpack_require__(7);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(9);
+var _inherits2 = __webpack_require__(10);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -44614,7 +44614,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(7);
+var _reactDom = __webpack_require__(8);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -49162,7 +49162,7 @@ module.exports = warning;
 
 exports.__esModule = true;
 
-var _extends2 = __webpack_require__(3);
+var _extends2 = __webpack_require__(4);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
@@ -49170,15 +49170,15 @@ var _objectWithoutProperties2 = __webpack_require__(16);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-var _classCallCheck2 = __webpack_require__(8);
+var _classCallCheck2 = __webpack_require__(9);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(6);
+var _possibleConstructorReturn2 = __webpack_require__(7);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(9);
+var _inherits2 = __webpack_require__(10);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -49202,7 +49202,7 @@ var _DropdownMenu = __webpack_require__(277);
 
 var _DropdownMenu2 = _interopRequireDefault(_DropdownMenu);
 
-var _reactDom = __webpack_require__(7);
+var _reactDom = __webpack_require__(8);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -49414,19 +49414,19 @@ module.exports = exports['default'];
 
 exports.__esModule = true;
 
-var _extends2 = __webpack_require__(3);
+var _extends2 = __webpack_require__(4);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _classCallCheck2 = __webpack_require__(8);
+var _classCallCheck2 = __webpack_require__(9);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(6);
+var _possibleConstructorReturn2 = __webpack_require__(7);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(9);
+var _inherits2 = __webpack_require__(10);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -49434,7 +49434,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(7);
+var _reactDom = __webpack_require__(8);
 
 var _propTypes = __webpack_require__(0);
 
@@ -49691,15 +49691,15 @@ module.exports = exports['default'];
 
 exports.__esModule = true;
 
-var _classCallCheck2 = __webpack_require__(8);
+var _classCallCheck2 = __webpack_require__(9);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(6);
+var _possibleConstructorReturn2 = __webpack_require__(7);
 
 var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(9);
+var _inherits2 = __webpack_require__(10);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -50103,7 +50103,7 @@ __webpack_require__.d(template_namespaceObject, "Select", function() { return se
 __webpack_require__.d(template_namespaceObject, "MonthPicker", function() { return monthPicker; });
 __webpack_require__.d(template_namespaceObject, "DatePicker", function() { return datePicker; });
 __webpack_require__.d(template_namespaceObject, "Form", function() { return form_form; });
-__webpack_require__.d(template_namespaceObject, "ReadonlyTable", function() { return readonlyTable; });
+__webpack_require__.d(template_namespaceObject, "Table", function() { return table; });
 var action_namespaceObject = {};
 __webpack_require__.r(action_namespaceObject);
 __webpack_require__.d(action_namespaceObject, "tableHelper", function() { return tableHelper_action; });
@@ -50123,7 +50123,7 @@ var classCallCheck = __webpack_require__(15);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(4);
+var defineProperty = __webpack_require__(5);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: external "react"
@@ -50429,7 +50429,7 @@ function (_Component) {
 
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectWithoutProperties.js
-var objectWithoutProperties = __webpack_require__(5);
+var objectWithoutProperties = __webpack_require__(3);
 var objectWithoutProperties_default = /*#__PURE__*/__webpack_require__.n(objectWithoutProperties);
 
 // EXTERNAL MODULE: ./node_modules/mk-rc-select/lib/index.js
@@ -50500,6 +50500,14 @@ function (_Component) {
         }
       }, _callee, this);
     })));
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "blurHandler", function () {
+      _this.setState({
+        dataSource: []
+      });
+
+      _this.props.onBlur && _this.props.onBlur();
+    });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "changeHandler", function (v) {
       var r = v === 0 || v ? v : '',
@@ -50606,7 +50614,10 @@ function (_Component) {
           codeField = _this$props.codeField,
           _this$props$displayFi = _this$props.displayField,
           displayField = _this$props$displayFi === void 0 ? 'name' : _this$props$displayFi,
-          other = objectWithoutProperties_default()(_this$props, ["className", "notFoundContent", "optionLabelProp", "mode", "combobox", "tags", "multiple", "size", "idField", "codeField", "displayField"]);
+          displayGetter = _this$props.displayGetter,
+          filterGetter = _this$props.filterGetter,
+          titleGetter = _this$props.titleGetter,
+          other = objectWithoutProperties_default()(_this$props, ["className", "notFoundContent", "optionLabelProp", "mode", "combobox", "tags", "multiple", "size", "idField", "codeField", "displayField", "displayGetter", "filterGetter", "titleGetter"]);
 
       var Icon = Object(external_maka_["getComponent"])('antd.Icon');
       className = classnames_default()((_classNames = {
@@ -50645,13 +50656,29 @@ function (_Component) {
         className: "ant-select-remove-icon"
       });
       var val;
+      titleGetter = titleGetter || displayGetter;
+      filterGetter = filterGetter || displayGetter;
 
       if (mode === 'multiple' && this.props.value instanceof Array) {
-        val = this.props.value.map(function (o) {
-          return o[displayField];
-        });
+        if (titleGetter) {
+          val = this.props.value.map(function (o) {
+            return titleGetter(o);
+          });
+        } else {
+          val = this.props.value.map(function (o) {
+            return o[displayField];
+          });
+        }
       } else {
-        val = this.state.dataSource && this.state.dataSource.length > 0 && this.props.value && this.props.value[idField] || this.props.value && this.props.value[displayField];
+        if (this.state.dataSource && this.state.dataSource.length > 0 && this.props.value) {
+          val = this.props.value[idField];
+        } else {
+          if (titleGetter) {
+            val = this.props.value && titleGetter(this.props.value);
+          } else {
+            val = this.props.value && this.props.value[displayField];
+          }
+        }
       }
 
       return external_react_default.a.createElement(lib_default.a, extends_default()({
@@ -50660,13 +50687,12 @@ function (_Component) {
       }, other, modeConfig, {
         prefixCls: "ant-select",
         className: className,
-        optionLabelProp: "title" //filterOption={false}
-        ,
+        optionLabelProp: "title",
         optionFilterProp: "filter",
         notFoundContent: notFoundContent,
         suffix: suffix,
-        onFocus: this.focusHandler //onBlur={this.blurHandler}
-        ,
+        onFocus: this.focusHandler,
+        onBlur: this.blurHandler,
         onChange: this.changeHandler,
         onSearch: this.searchHandler,
         value: val
@@ -50674,9 +50700,9 @@ function (_Component) {
         return external_react_default.a.createElement(lib_default.a.Option, {
           key: o[idField],
           value: o[idField],
-          title: o[displayField],
-          filter: o[displayField]
-        }, o[displayField]);
+          title: titleGetter ? titleGetter(o) : o[displayField],
+          filter: filterGetter ? filterGetter(o) : o[displayField]
+        }, displayGetter ? displayGetter(o) : o[displayField]);
       }));
     }
   }]);
@@ -50686,7 +50712,7 @@ function (_Component) {
 
 
 // EXTERNAL MODULE: external "react-dom"
-var external_react_dom_ = __webpack_require__(7);
+var external_react_dom_ = __webpack_require__(8);
 var external_react_dom_default = /*#__PURE__*/__webpack_require__.n(external_react_dom_);
 
 // CONCATENATED MODULE: ./component/modal/info.js
@@ -51026,7 +51052,7 @@ function LocaleProviderComponent(props) {
 
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(10);
+var objectSpread = __webpack_require__(6);
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
 // CONCATENATED MODULE: ./template/helper.js
@@ -51389,10 +51415,12 @@ function textColumn(option) {
       _option$align = option.align,
       align = _option$align === void 0 ? 'left' : _option$align,
       component = option.component,
+      required = option.required,
       fixed = option.fixed,
+      fixedRight = option.fixedRight,
       _visible = option._visible,
       footer = option.footer,
-      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "align", "component", "fixed", "_visible", "footer"]);
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "align", "component", "required", "fixed", "fixedRight", "_visible", "footer"]);
 
   var value = "{{{\n        var _rowIndex = row.rowIndex\n        return ".concat(textColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n    }}}");
   return {
@@ -51404,6 +51432,7 @@ function textColumn(option) {
       component: 'FDT.Cell',
       children: [{
         component: 'label',
+        className: required ? 'ant-form-item-required' : '',
         children: title
       }]
     },
@@ -51415,6 +51444,7 @@ function textColumn(option) {
     }, ext),
     footer: footer,
     fixed: fixed,
+    fixedRight: fixedRight,
     _visible: _visible
   };
 }
@@ -51486,9 +51516,10 @@ function linkColumn(option) {
       align = _option$align === void 0 ? 'left' : _option$align,
       component = option.component,
       fixed = option.fixed,
+      fixedRight = option.fixedRight,
       _visible = option._visible,
       footer = option.footer,
-      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "onClick", "align", "component", "fixed", "_visible", "footer"]);
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "onClick", "align", "component", "fixed", "fixedRight", "_visible", "footer"]);
 
   return {
     component: 'FDT.Column',
@@ -51514,6 +51545,7 @@ function linkColumn(option) {
     }, ext),
     fixed: fixed,
     footer: footer,
+    fixedRight: fixedRight,
     _visible: _visible
   };
 }
@@ -51532,9 +51564,10 @@ function sequenceColumn(option) {
       _option$fixed = option.fixed,
       fixed = _option$fixed === void 0 ? true : _option$fixed,
       paginationPath = option.paginationPath,
+      fixedRight = option.fixedRight,
       _visible = option._visible,
       footer = option.footer,
-      ext = objectWithoutProperties_default()(option, ["title", "width", "flexGrow", "align", "component", "fixed", "paginationPath", "_visible", "footer"]);
+      ext = objectWithoutProperties_default()(option, ["title", "width", "flexGrow", "align", "component", "fixed", "paginationPath", "fixedRight", "_visible", "footer"]);
 
   return {
     component: 'FDT.Column',
@@ -51575,11 +51608,373 @@ function customColumn(option) {
       _option$align = option.align,
       align = _option$align === void 0 ? 'left' : _option$align,
       component = option.component,
+      required = option.required,
       fixed = option.fixed,
+      fixedRight = option.fixedRight,
       _visible = option._visible,
       footer = option.footer,
       cellContent = option.cellContent,
-      ext = objectWithoutProperties_default()(option, ["bindPath", "title", "width", "flexGrow", "align", "component", "fixed", "_visible", "footer", "cellContent"]);
+      ext = objectWithoutProperties_default()(option, ["bindPath", "title", "width", "flexGrow", "align", "component", "required", "fixed", "fixedRight", "_visible", "footer", "cellContent"]);
+
+  return {
+    component: 'FDT.Column',
+    flexGrow: flexGrow,
+    width: width,
+    header: {
+      component: 'FDT.Cell',
+      children: [{
+        component: 'label',
+        className: required ? 'ant-form-item-required' : '',
+        children: title
+      }]
+    },
+    cell: objectSpread_default()({
+      _function: '(row)',
+      component: "FDT.Cell",
+      className: "fdt-cell fdt-cell-".concat(align),
+      children: cellContent
+    }, ext),
+    fixed: fixed,
+    footer: footer,
+    fixedRight: fixedRight,
+    _visible: _visible
+  };
+}
+// CONCATENATED MODULE: ./template/table/column/inputColumn.js
+
+
+
+var inputColumn_fixPath = helper.fixPath;
+function inputColumn(option) {
+  var bindPath = option.bindPath,
+      bindField = option.bindField,
+      title = option.title,
+      _option$width = option.width,
+      width = _option$width === void 0 ? 130 : _option$width,
+      _option$flexGrow = option.flexGrow,
+      flexGrow = _option$flexGrow === void 0 ? 0 : _option$flexGrow,
+      component = option.component,
+      required = option.required,
+      fixed = option.fixed,
+      fixedRight = option.fixedRight,
+      _visible = option._visible,
+      footer = option.footer,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer"]);
+
+  var value = "{{{\n        var _rowIndex = row.rowIndex\n        return ".concat(inputColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n    }}}");
+  return {
+    component: 'FDT.Column',
+    columnKey: bindField,
+    flexGrow: flexGrow,
+    width: width,
+    header: {
+      component: 'FDT.Cell',
+      children: [{
+        component: 'label',
+        className: required ? 'ant-form-item-required' : '',
+        children: title
+      }]
+    },
+    cell: {
+      _function: '(row)',
+      component: "FDT.Cell",
+      className: "fdt-cell",
+      children: objectSpread_default()({
+        component: 'antd.Input',
+        value: value,
+        onChange: "{{(e)=>{\n                    var path = '".concat(bindPath, ".' + row.rowIndex + '.").concat(bindField, "'\n                    $base.setState({[path]:e.target.value})\n                }}}")
+      }, ext)
+    },
+    footer: footer,
+    fixed: fixed,
+    fixedRight: fixedRight,
+    _visible: _visible
+  };
+}
+// CONCATENATED MODULE: ./template/table/column/numberColumn.js
+
+
+
+var numberColumn_fixPath = helper.fixPath;
+function numberColumn(option) {
+  var bindPath = option.bindPath,
+      bindField = option.bindField,
+      title = option.title,
+      _option$width = option.width,
+      width = _option$width === void 0 ? 130 : _option$width,
+      _option$flexGrow = option.flexGrow,
+      flexGrow = _option$flexGrow === void 0 ? 0 : _option$flexGrow,
+      component = option.component,
+      required = option.required,
+      fixed = option.fixed,
+      fixedRight = option.fixedRight,
+      _visible = option._visible,
+      footer = option.footer,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer"]);
+
+  var value = "{{{\n        var _rowIndex = row.rowIndex\n        return ".concat(numberColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n    }}}");
+  return {
+    component: 'FDT.Column',
+    columnKey: bindField,
+    flexGrow: flexGrow,
+    width: width,
+    header: {
+      component: 'FDT.Cell',
+      children: [{
+        component: 'label',
+        className: required ? 'ant-form-item-required' : '',
+        children: title
+      }]
+    },
+    cell: {
+      _function: '(row)',
+      component: "FDT.Cell",
+      className: "fdt-cell",
+      children: objectSpread_default()({
+        component: 'ctrl.InputNumber',
+        value: value,
+        onChange: "{{(v)=>{\n                    var path = '".concat(bindPath, ".' + row.rowIndex + '.").concat(bindField, "'\n                    $base.setState({[path]:v})\n                }}}")
+      }, ext)
+    },
+    footer: footer,
+    fixed: fixed,
+    fixedRight: fixedRight,
+    _visible: _visible
+  };
+}
+// CONCATENATED MODULE: ./template/table/column/checkboxColumn.js
+
+
+
+var checkboxColumn_fixPath = helper.fixPath;
+function checkboxColumn(option) {
+  var bindPath = option.bindPath,
+      bindField = option.bindField,
+      title = option.title,
+      _option$width = option.width,
+      width = _option$width === void 0 ? 130 : _option$width,
+      _option$flexGrow = option.flexGrow,
+      flexGrow = _option$flexGrow === void 0 ? 0 : _option$flexGrow,
+      component = option.component,
+      required = option.required,
+      fixed = option.fixed,
+      fixedRight = option.fixedRight,
+      _visible = option._visible,
+      footer = option.footer,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer"]);
+
+  var checked = "{{{\n        var _rowIndex = row.rowIndex\n        return ".concat(checkboxColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n    }}}");
+  return {
+    component: 'FDT.Column',
+    columnKey: bindField,
+    flexGrow: flexGrow,
+    width: width,
+    header: {
+      component: 'FDT.Cell',
+      children: [{
+        component: 'label',
+        children: title,
+        className: required ? 'ant-form-item-required' : ''
+      }]
+    },
+    cell: {
+      _function: '(row)',
+      component: "FDT.Cell",
+      className: "fdt-cell",
+      children: objectSpread_default()({
+        component: 'antd.Checkbox',
+        checked: checked,
+        onChange: "{{(e)=>{\n                    var path = '".concat(bindPath, ".' + row.rowIndex + '.").concat(bindField, "'\n                    $base.setState({[path]:e.target.checked})\n                }}}")
+      }, ext)
+    },
+    footer: footer,
+    fixed: fixed,
+    fixedRight: fixedRight,
+    _visible: _visible
+  };
+}
+// CONCATENATED MODULE: ./template/table/column/datePickerColumn.js
+
+
+
+var datePickerColumn_fixPath = helper.fixPath;
+function datePickerColumn(option) {
+  var bindPath = option.bindPath,
+      bindField = option.bindField,
+      title = option.title,
+      _option$width = option.width,
+      width = _option$width === void 0 ? 130 : _option$width,
+      _option$flexGrow = option.flexGrow,
+      flexGrow = _option$flexGrow === void 0 ? 0 : _option$flexGrow,
+      component = option.component,
+      required = option.required,
+      fixed = option.fixed,
+      fixedRight = option.fixedRight,
+      _visible = option._visible,
+      footer = option.footer,
+      format = option.format,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer", "format"]);
+
+  var value = "{{{\n        var _rowIndex = row.rowIndex\n        var v = ".concat(datePickerColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n        return v && $moment(new Date(v))\n    }}}");
+  format = format || 'YYYY-MM-DD';
+  return {
+    component: 'FDT.Column',
+    columnKey: bindField,
+    flexGrow: flexGrow,
+    width: width,
+    header: {
+      component: 'FDT.Cell',
+      children: [{
+        component: 'label',
+        className: required ? 'ant-form-item-required' : '',
+        children: title
+      }]
+    },
+    cell: {
+      _function: '(row)',
+      component: "FDT.Cell",
+      className: "fdt-cell",
+      children: objectSpread_default()({
+        component: 'antd.DatePicker',
+        value: value,
+        onChange: "{{(v)=>{\n                    var path = '".concat(bindPath, ".' + row.rowIndex + '.").concat(bindField, "'\n                    v = v && $moment(v).format('").concat(format, "')\n                    $base.setState({[path]:v})\n                }}}")
+      }, ext)
+    },
+    footer: footer,
+    fixed: fixed,
+    fixedRight: fixedRight,
+    _visible: _visible
+  };
+}
+// CONCATENATED MODULE: ./template/table/column/monthPickerColumn.js
+
+
+
+var monthPickerColumn_fixPath = helper.fixPath;
+function monthPickerColumn(option) {
+  var bindPath = option.bindPath,
+      bindField = option.bindField,
+      title = option.title,
+      _option$width = option.width,
+      width = _option$width === void 0 ? 130 : _option$width,
+      _option$flexGrow = option.flexGrow,
+      flexGrow = _option$flexGrow === void 0 ? 0 : _option$flexGrow,
+      component = option.component,
+      required = option.required,
+      fixed = option.fixed,
+      fixedRight = option.fixedRight,
+      _visible = option._visible,
+      footer = option.footer,
+      format = option.format,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer", "format"]);
+
+  var value = "{{{\n        var _rowIndex = row.rowIndex\n        return ".concat(monthPickerColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n    }}}");
+  return {
+    component: 'FDT.Column',
+    columnKey: bindField,
+    flexGrow: flexGrow,
+    width: width,
+    header: {
+      component: 'FDT.Cell',
+      children: [{
+        component: 'label',
+        className: required ? 'ant-form-item-required' : '',
+        children: title
+      }]
+    },
+    cell: {
+      _function: '(row)',
+      component: "FDT.Cell",
+      className: "fdt-cell",
+      children: objectSpread_default()({
+        component: 'antd.DatePicker.MonthPicker',
+        value: value,
+        onChange: "{{(v)=>{\n                    var path = '".concat(bindPath, ".' + row.rowIndex + '.").concat(bindField, "'\n                    $base.setState({[path]:v})\n                }}}")
+      }, ext)
+    },
+    footer: footer,
+    fixed: fixed,
+    fixedRight: fixedRight,
+    _visible: _visible
+  };
+}
+// CONCATENATED MODULE: ./template/table/column/selectColumn.js
+
+
+
+var selectColumn_fixPath = helper.fixPath;
+function selectColumn(option) {
+  var bindPath = option.bindPath,
+      bindField = option.bindField,
+      title = option.title,
+      _option$width = option.width,
+      width = _option$width === void 0 ? 130 : _option$width,
+      _option$flexGrow = option.flexGrow,
+      flexGrow = _option$flexGrow === void 0 ? 0 : _option$flexGrow,
+      component = option.component,
+      required = option.required,
+      fixed = option.fixed,
+      fixedRight = option.fixedRight,
+      _visible = option._visible,
+      footer = option.footer,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer"]);
+
+  var value = "{{{\n        var _rowIndex = row.rowIndex\n        return ".concat(selectColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n    }}}");
+  return {
+    component: 'FDT.Column',
+    columnKey: bindField,
+    flexGrow: flexGrow,
+    width: width,
+    header: {
+      component: 'FDT.Cell',
+      children: [{
+        component: 'label',
+        className: required ? 'ant-form-item-required' : '',
+        children: title
+      }]
+    },
+    cell: {
+      _function: '(row)',
+      component: "FDT.Cell",
+      className: "fdt-cell",
+      children: objectSpread_default()({
+        component: 'ctrl.Select',
+        showSearch: true,
+        dropdownStyle: {
+          maxHeight: 400,
+          overflow: 'auto'
+        },
+        notFoundContent: ' ',
+        allowClear: true,
+        value: value,
+        onChange: "{{(v)=>{\n                    var path = '".concat(bindPath, ".' + row.rowIndex + '.").concat(bindField, "'\n                    $base.setState({[path]:v})\n                }}}")
+      }, ext)
+    },
+    footer: footer,
+    fixed: fixed,
+    fixedRight: fixedRight,
+    _visible: _visible
+  };
+}
+// CONCATENATED MODULE: ./template/table/column/delColumn.js
+
+
+function addAndDelColumn(option) {
+  var bindPath = option.bindPath,
+      title = option.title,
+      _option$width = option.width,
+      width = _option$width === void 0 ? 50 : _option$width,
+      _option$flexGrow = option.flexGrow,
+      flexGrow = _option$flexGrow === void 0 ? 0 : _option$flexGrow,
+      align = option.align,
+      component = option.component,
+      _option$fixed = option.fixed,
+      fixed = _option$fixed === void 0 ? true : _option$fixed,
+      fixedRight = option.fixedRight,
+      _visible = option._visible,
+      footer = option.footer,
+      onDel = option.onDel,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "title", "width", "flexGrow", "align", "component", "fixed", "fixedRight", "_visible", "footer", "onDel"]);
 
   return {
     component: 'FDT.Column',
@@ -51596,14 +51991,85 @@ function customColumn(option) {
       _function: '(row)',
       component: "FDT.Cell",
       className: "fdt-cell fdt-cell-".concat(align),
-      children: cellContent
+      children: [{
+        component: 'antd.Icon',
+        className: 'icon-showy',
+        type: 'close',
+        title: '删除',
+        onClick: onDel
+      }]
     }, ext),
     fixed: fixed,
     footer: footer,
+    fixedRight: fixedRight,
     _visible: _visible
   };
 }
-// CONCATENATED MODULE: ./template/table/readonlyTable.js
+// CONCATENATED MODULE: ./template/table/column/addAndDelColumn.js
+
+
+function addAndDelColumn_addAndDelColumn(option) {
+  var bindPath = option.bindPath,
+      title = option.title,
+      _option$width = option.width,
+      width = _option$width === void 0 ? 50 : _option$width,
+      _option$flexGrow = option.flexGrow,
+      flexGrow = _option$flexGrow === void 0 ? 0 : _option$flexGrow,
+      _option$align = option.align,
+      align = _option$align === void 0 ? 'left' : _option$align,
+      component = option.component,
+      fixed = option.fixed,
+      _option$fixedRight = option.fixedRight,
+      fixedRight = _option$fixedRight === void 0 ? true : _option$fixedRight,
+      _visible = option._visible,
+      footer = option.footer,
+      onHeaderAddRow = option.onHeaderAddRow,
+      onAddRow = option.onAddRow,
+      onDelRow = option.onDelRow,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "title", "width", "flexGrow", "align", "component", "fixed", "fixedRight", "_visible", "footer", "onHeaderAddRow", "onAddRow", "onDelRow"]);
+
+  return {
+    component: 'FDT.Column',
+    flexGrow: flexGrow,
+    width: width,
+    header: {
+      component: 'FDT.Cell',
+      children: [{
+        component: 'antd.Icon',
+        className: 'icon-softly',
+        type: 'plus',
+        title: '增行',
+        onClick: onHeaderAddRow
+      }]
+    },
+    cell: objectSpread_default()({
+      _function: '(row)',
+      component: "FDT.Cell",
+      className: "fdt-cell fdt-cell-".concat(align),
+      children: [{
+        component: 'antd.Icon',
+        className: 'icon-softly',
+        type: 'plus',
+        title: '增行',
+        style: {
+          marginRight: 4
+        },
+        onClick: onAddRow
+      }, {
+        component: 'antd.Icon',
+        className: 'icon-showy',
+        type: 'close',
+        title: '删行',
+        onClick: onDelRow
+      }]
+    }, ext),
+    fixed: fixed,
+    footer: footer,
+    fixedRight: fixedRight,
+    _visible: _visible
+  };
+}
+// CONCATENATED MODULE: ./template/table/table.js
 
 
 
@@ -51611,7 +52077,15 @@ function customColumn(option) {
 
 
 
-function readonlyTable(_ref) {
+
+
+
+
+
+
+
+
+function table(_ref) {
   var _ref$tableName = _ref.tableName,
       tableName = _ref$tableName === void 0 ? 'table' : _ref$tableName,
       _ref$bindPath = _ref.bindPath,
@@ -51676,7 +52150,6 @@ function readonlyTable(_ref) {
     var type = c.type,
         other = objectWithoutProperties_default()(c, ["type"]),
         option = objectSpread_default()({}, other, {
-      grid: name,
       bindPath: bindPath
     }),
         x;
@@ -51698,6 +52171,38 @@ function readonlyTable(_ref) {
 
       case 'link':
         x = linkColumn(option);
+        break;
+
+      case 'input':
+        x = inputColumn(option);
+        break;
+
+      case 'number':
+        x = numberColumn(option);
+        break;
+
+      case 'checkbox':
+        x = checkboxColumn(option);
+        break;
+
+      case 'datePicker':
+        x = datePickerColumn(option);
+        break;
+
+      case 'monthPicker':
+        x = monthPickerColumn(option);
+        break;
+
+      case 'select':
+        x = selectColumn(option);
+        break;
+
+      case 'del':
+        x = addAndDelColumn(option);
+        break;
+
+      case 'addAndDel':
+        x = addAndDelColumn_addAndDelColumn(option);
         break;
 
       case 'custom':
@@ -52175,7 +52680,10 @@ var index_action = (_dec = Object(external_maka_["actionMixin"])('base', 'moment
           case 0:
             return _context.abrupt("return", [{
               id: 1,
-              name: 'fewfew'
+              name: '男'
+            }, {
+              id: 0,
+              name: '女'
             }]);
 
           case 1:
@@ -52318,6 +52826,34 @@ var index_action = (_dec = Object(external_maka_["actionMixin"])('base', 'moment
     };
   });
 
+  defineProperty_default()(this, "headerAddRow", function () {
+    _this.addRow(-1)();
+  });
+
+  defineProperty_default()(this, "addRow", function (rowIndex) {
+    return function () {
+      var lst = _this.base.gs('data.list');
+
+      lst.splice(rowIndex + 1, 0, {});
+
+      _this.base.ss({
+        'data.list': lst
+      });
+    };
+  });
+
+  defineProperty_default()(this, "delRow", function (rowIndex) {
+    return function () {
+      var lst = _this.base.gs('data.list');
+
+      lst.splice(rowIndex, 1);
+
+      _this.base.ss({
+        'data.list': lst
+      });
+    };
+  });
+
   Object.assign(this, option.mixins);
   this.btnClick = this.lodash.throttle(this.btnClick, 1000); //一秒内点击只响应第一次
 
@@ -52450,7 +52986,7 @@ var view = {
   },]
   }*/
   {
-    component: 'tpl.ReadonlyTable',
+    component: 'tpl.Table',
     className: 'common-table',
     columns: [{
       type: 'sequence'
@@ -52472,6 +53008,36 @@ var view = {
       bindField: 'description',
       width: 100,
       align: 'right'
+    }, {
+      type: 'input',
+      title: '名称编辑',
+      bindField: 'name'
+    }, {
+      type: 'checkbox',
+      title: '已婚',
+      bindField: 'married'
+    }, {
+      type: 'datePicker',
+      title: '生日',
+      bindField: 'birthday'
+    }, {
+      type: 'number',
+      title: '年龄',
+      bindField: 'age'
+    }, {
+      type: 'monthPicker',
+      title: '参加工作时间',
+      bindField: 'joinJob'
+    }, {
+      type: 'select',
+      title: '性别',
+      bindField: 'sex',
+      onLoadOption: '{{$selectLoadOption}}'
+    }, {
+      type: 'addAndDel',
+      onHeaderAddRow: '{{$headerAddRow}}',
+      onAddRow: '{{$addRow(row.rowIndex)}}',
+      onDelRow: '{{$delRow(row.rowIndex)}}'
     }]
   }]
 };

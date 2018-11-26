@@ -15,6 +15,11 @@ function initMockData() {
 fetch.mock('/v1/customer/group/findById', (option) => {
     initMockData()
     const o = mockData.customerGroups.find(o => o.id == option.id)
+
+    if(o.parentId || o.parentId == 0){
+        var parent = mockData.customerGroups.find(p => p.id == o.parentId)
+        o.parent = {id: parent.id, code: parent.code, name: parent.name}
+    }
     return {
         result: true,
         value: o
@@ -26,9 +31,9 @@ fetch.mock('/v1/customer/group/create', (option) => {
 
     const id = mockData.customerGroups.length
     const v = { ...option, id }
-    if(option.customerGroup){
-        v.parentId = option.customerGroup.id
-        delete v.customerGroup 
+    if(option.parent){
+        v.parentId = option.parent.id
+        delete v.parent 
     }
     
     console.log(v)
@@ -39,6 +44,7 @@ fetch.mock('/v1/customer/group/create', (option) => {
 
 fetch.mock('/v1/customer/group/update', (option) => {
     initMockData()
-    mockData.customerGroups[option.id] = option
+    var index = mockData.customerGroups.findIndex(o => o.id == option.id)
+    mockData.customerGroups[index] = option
     return { result: true, value: option }
 })

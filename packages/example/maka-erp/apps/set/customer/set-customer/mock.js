@@ -86,10 +86,10 @@ fetch.mock('/v1/customer/create', (option) => {
 
 fetch.mock('/v1/customer/update', (option) => {
     initMockData()
-    mockData.customers[option.id] = option
+    var index = mockData.customers.findIndex(o => o.id == option.id)
+    mockData.customers[index] = option
     return { result: true, value: option }
 })
-
 
 
 fetch.mock('/v1/customer/gourp/queryAll', (option) => {

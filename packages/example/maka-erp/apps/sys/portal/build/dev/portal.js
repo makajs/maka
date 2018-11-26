@@ -1655,9 +1655,13 @@ var state_menu = [{
     title: '人员',
     appName: 'set-person-list'
   }, {
-    key: '301',
+    key: '302',
     title: '客户',
     appName: 'set-customer-list'
+  }, {
+    key: '303',
+    title: 'BOM',
+    appName: 'set-bom-list'
   }]
 }];
 /* harmony default export */ var state = ({

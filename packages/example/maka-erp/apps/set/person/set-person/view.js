@@ -4,7 +4,7 @@ export default {
     children: {
         component: 'tpl.Form',
         children: [
-            { type: 'select', title: '所属部门', required: true, bindPath: 'data.form.department', showSearch:true, displayField: 'codeAndName', onLoadOption: '{{$loadDepartment}}' },
+            { type: 'select', title: '所属部门', required: true, bindPath: 'data.form.department', onLoadOption: '{{$loadDepartment}}', displayGetter: `{{(v)=>v && '(' + v.code + ')'+v.name}}` },
             { type: 'input', title: '姓名', required: true, bindPath: 'data.form.name' },
             { type: 'select', title: '性别', required: true, bindPath: 'data.form.sex', onLoadOption: '{{$loadSex}}' },
             { type: 'datePicker', title: '生日', required: true, bindPath: 'data.form.birthday' },

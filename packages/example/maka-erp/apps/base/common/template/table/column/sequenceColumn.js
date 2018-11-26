@@ -2,7 +2,7 @@ export default function sequenceColumn(option) {
     var {
         title, width = 40, flexGrow = 0, 
         align = 'center', component, fixed  = true,
-        paginationPath, _visible, footer, ...ext
+        paginationPath, fixedRight, _visible, footer, ...ext
     } = option
 
     return {

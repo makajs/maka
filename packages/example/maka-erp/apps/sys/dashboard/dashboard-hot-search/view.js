@@ -37,7 +37,7 @@ export default {
         component: 'div',
         className: 'dashboard-hot-search-bottom',
         children: [{
-            component: 'tpl.ReadonlyTable',
+            component: 'tpl.Table',
             enablePagination: false,
             columns: [
                 { type: 'text', title: '排名', bindField: 'ranking', width: 40, align: 'center' },

@@ -1024,7 +1024,7 @@ var package_0 = __webpack_require__(6);
       type: 'input',
       title: '上级客户组',
       disabled: true,
-      bindPath: 'data.form.customerGroup.name'
+      bindPath: 'data.form.parent.name'
     }, {
       type: 'input',
       title: '编码',
@@ -1110,34 +1110,33 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
         switch (_context.prev = _context.next) {
           case 0:
             if (!(_this.component.props.customerGroupId || _this.component.props.customerGroupId == 0)) {
-              _context.next = 8;
+              _context.next = 7;
               break;
             }
 
-            console.log(_this.component.props.customerGroupId);
-            _context.next = 4;
+            _context.next = 3;
             return external_maka_["fetch"].post('/v1/customer/group/findById', {
               id: _this.component.props.customerGroupId
             });
 
-          case 4:
+          case 3:
             resp = _context.sent;
 
             _this.base.setState({
               'data.form': resp
             });
 
-            _context.next = 9;
+            _context.next = 8;
             break;
 
-          case 8:
+          case 7:
             if (_this.component.props.parent) {
               _this.base.setState({
-                'data.form.customerGroup': _this.component.props.parent
+                'data.form.parent': _this.component.props.parent
               });
             }
 
-          case 9:
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -1298,6 +1297,18 @@ external_maka_["fetch"].mock('/v1/customer/group/findById', function (option) {
   var o = mockData.customerGroups.find(function (o) {
     return o.id == option.id;
   });
+
+  if (o.parentId || o.parentId == 0) {
+    var parent = mockData.customerGroups.find(function (p) {
+      return p.id == o.parentId;
+    });
+    o.parent = {
+      id: parent.id,
+      code: parent.code,
+      name: parent.name
+    };
+  }
+
   return {
     result: true,
     value: o
@@ -1311,9 +1322,9 @@ external_maka_["fetch"].mock('/v1/customer/group/create', function (option) {
     id: id
   });
 
-  if (option.customerGroup) {
-    v.parentId = option.customerGroup.id;
-    delete v.customerGroup;
+  if (option.parent) {
+    v.parentId = option.parent.id;
+    delete v.parent;
   }
 
   console.log(v);
@@ -1325,7 +1336,10 @@ external_maka_["fetch"].mock('/v1/customer/group/create', function (option) {
 });
 external_maka_["fetch"].mock('/v1/customer/group/update', function (option) {
   initMockData();
-  mockData.customerGroups[option.id] = option;
+  var index = mockData.customerGroups.findIndex(function (o) {
+    return o.id == option.id;
+  });
+  mockData.customerGroups[index] = option;
   return {
     result: true,
     value: option

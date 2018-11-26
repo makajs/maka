@@ -1025,9 +1025,8 @@ var package_0 = __webpack_require__(5);
       title: '客户组',
       required: true,
       bindPath: 'data.form.customerGroup',
-      showSearch: true,
       onLoadOption: '{{$loadCustomerGroup}}',
-      onChange: "{{(v)=>{console.log(v);debugger;$base.setState({'data.form.customerGroup': v })}}}"
+      onChange: "{{(v)=>$base.setState({'data.form.customerGroup': v })}}"
     }, {
       type: 'input',
       title: '编码',
@@ -1355,7 +1354,10 @@ external_maka_["fetch"].mock('/v1/customer/create', function (option) {
 });
 external_maka_["fetch"].mock('/v1/customer/update', function (option) {
   initMockData();
-  mockData.customers[option.id] = option;
+  var index = mockData.customers.findIndex(function (o) {
+    return o.id == option.id;
+  });
+  mockData.customers[index] = option;
   return {
     result: true,
     value: option

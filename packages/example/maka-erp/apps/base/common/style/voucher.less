@@ -11,23 +11,27 @@
         flex: 0 0 47px;
         padding: 0 15px;
         background-color: #fff;
-        border-style: solid;
-        border-width: 0 0 1;
-        border-color: #e7e6e6;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
+        
         &-left {
+            display: flex;
             flex-direction: row;
             align-items: center;
             overflow: hidden;
+
+            .icon-button-softly{
+                display: inline-block;
+            }
         }
         &-center {
+            flex:1;
+            display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
         &-right {
+            display: flex;
             flex-direction: row;
             justify-content: flex-end;
             align-items: center;
@@ -42,6 +46,7 @@
         flex-direction: row;
         justify-content: space-between;
         &-left {
+            display: flex;
             flex: 0 0 200px;
             flex-direction: row;
             justify-content: flex-start;
@@ -49,6 +54,7 @@
             padding-left: 10px;
         }
         &-right {
+            display: flex;
             flex: 0 0 200px;
             flex-direction: row;
             justify-content: flex-end;
@@ -56,31 +62,30 @@
             padding-right: 10px;
         }
     }
-    &-form-header {
+    &-form {
         flex: 0 0 auto;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         padding-top: 10px;
-        .mk-form-item {
-            //margin-bottom: 20px;
+
+        .ant-form-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
         }
+        
         .ant-form-item-label {
-            width: 100px;
+            font-size: 12px;
+            width: 120px;
             padding: 0px;
         }
         .ant-form-item-control-wrapper {
-            width: 180px;
-            height: 28px;
+            width: 200px;
         }
-        .mk-select {
+       
+        .ant-calendar-picker {
             width: 100%;
-        }
-        .mk-datepicker {
-            width: 100%;
-        }
-        .mk-tree-select{
-            width: 100%
         }
         .ant-form-explain {
             margin-top: 5px;
@@ -89,37 +94,7 @@
     &-form-details {
         flex: 1
     }
-    
-    &-form-footer {
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: column;
-        .ant-form-item-label {
-            width: 100px;
-        }
-        .ant-form-item-control-wrapper {
-            width: 200px;
-        }
-        .mk-select {
-            width: 100%;
-        }
-        &-settlement,
-        &-advance,
-        &-balance {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            .ant-form-item-control-wrapper {
-                width: 100px;
-            }
-        }
-    }
-    &-footer {
-        padding: 10px;
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: row;
-    }
+ 
     &-tabs {
         margin-top: 8px;
         height: 30px;

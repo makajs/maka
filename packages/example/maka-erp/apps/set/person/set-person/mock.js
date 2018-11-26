@@ -104,7 +104,8 @@ fetch.mock('/v1/person/create', (option) => {
 
 fetch.mock('/v1/person/update', (option) => {
     initMockData()
-    mockData.persons[option.id] = option
+    var index = mockData.persons.findIndex(o => o.id == option.id)
+    mockData.persons[index] = option
     return { result: true, value: option }
 })
 

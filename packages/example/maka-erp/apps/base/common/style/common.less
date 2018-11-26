@@ -163,6 +163,33 @@ body {
     }
 }
 
+.button-showy {
+    border: 0px;
+    background-color: @showy-color;
+    color: #fff !important;
+    &:hover,
+    &:active,
+    &:focus {
+        color: #fff important;
+        background-color:~`colorPalette("@{showy-color}", 5)` !important;
+    }
+}
+
+
+.button-softly {
+    border: 0px;
+    background-color: @softly-color;
+    color: #fff !important;
+    &:hover,
+    &:active,
+    &:focus {
+        color: #fff important;
+        background-color:~`colorPalette("@{softly-color}", 5)` !important;
+    }
+}
+
+
+
 .common {
     /* 图标按钮 */
     &-icon-button {
@@ -321,24 +348,40 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        &>div {
+
+        .ant-input {
             width: 100%;
-            height: 100%;
-            input {
-                height: 100%;
-            }
+            background-color: transparent;
+            border-width: 0px 0px 0px 0px !important;
+            border-radius: 0px;
         }
-        /*input{
-            height: 40px;
-        }*/
+
+        .ant-input:hover,.ant-input:focus {
+            box-shadow: 0 0 0 0;
+            border-width: 0px 0px 1px 0px !important;
+        }
+
+        .ant-select {
+            display:  flex;
+            align-items:  center;
+        }
+
         .ant-select-selection {
-            height: 100%
+            flex:1;
+            background-color: transparent;
+            border-width: 0px 0px 0px 0px !important;
+            border-radius: 0px;
         }
-        .ant-select-selection__rendered {
-            height: 100%
+        .ant-select-selection:hover {
+            border-width: 0px 0px 1px 0px !important;
         }
-        .ant-select-selection-selected-value {
-            line-height: 30px;
+        .ant-select-selection:focus,.ant-select-selection:active {
+            box-shadow: 0 0 0 0 !important;
+            border-width: 0px 0px 1px 0px !important;
+        }
+
+        .ant-select-open .ant-select-selection{
+            box-shadow: 0 0 0 0 !important;
         }
     }
     &-cell-left {

@@ -27,7 +27,7 @@ const view = {
     component: 'div',
     className: 'home-todo',
     children: [{
-        component: 'tpl.ReadonlyTable',
+        component: 'tpl.Table',
         bindPath: 'data.todos',
         enablePagination: false,
         columns:[

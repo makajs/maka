@@ -92,6 +92,7 @@ const view = {
             }, {
                 component: 'FDT.Column',
                 columnKey: 'description',
+                flexGrow: 1,
                 header: {
                     component: 'FDT.Cell',
                     children: 'Description'
@@ -99,7 +100,11 @@ const view = {
                 cell: {
                     _function: '(row)',
                     component: 'FDT.Cell',
-                    children: '{{data.list[row.rowIndex].description}}'
+                    
+                    children: {
+                        component: 'input',
+                        value: '{{data.list[row.rowIndex].description}}',
+                    }
                 },
                 width: 100
             }]

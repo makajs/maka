@@ -28,23 +28,14 @@ export default {
             ]
         }]
     }, {
-        component: 'tpl.ReadonlyTable',
+        component: 'tpl.Table',
         columns: [
             { type: 'sequence' },
             { type: 'isSelected' },
-            {
-                type: 'custom', title: '', columnKey: 'opt', width: 40, align: 'center',fixed: true,
-                cellContent: [{
-                    component: 'antd.Icon',
-                    className : 'icon-showy',
-                    type: 'close',
-                    title: '删除',
-                    onClick: '{{$del(data.list[row.rowIndex])}}'
-                }]
-            },
-            { type: 'link', title: '姓名', bindField: 'name', onClick: 'modify',fixed: true },
-            { type: 'text', title: '部门', bindField: 'department.name',  },
-            { type: 'text', title: '性别', bindField: 'sex.name',  width: 60, align: 'center' },
+            { type: 'del', onDel: '{{$del(data.list[row.rowIndex])}}' },
+            { type: 'link', title: '姓名', bindField: 'name', onClick: 'modify', fixed: true },
+            { type: 'text', title: '部门', bindField: 'department.name', },
+            { type: 'text', title: '性别', bindField: 'sex.name', width: 60, align: 'center' },
             {
                 type: 'text', title: '生日', bindField: 'birthday', width: 200, align: 'center',
                 value: `{{{
@@ -53,8 +44,8 @@ export default {
                     return $moment(v).format('YYYY-MM-DD')
                 }}}`
             },
-            { type: 'text', title: '手机', bindField: 'mobile',  width: 200, align: 'center' },
-            { type: 'text', title: '地址', bindField: 'address', flexGrow: 1  },
+            { type: 'text', title: '手机', bindField: 'mobile', width: 200, align: 'center' },
+            { type: 'text', title: '地址', bindField: 'address', flexGrow: 1 },
         ]
     }]
 }

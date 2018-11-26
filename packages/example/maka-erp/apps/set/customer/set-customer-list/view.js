@@ -49,24 +49,14 @@ export default {
             ]
         },
         children: {
-            component: 'tpl.ReadonlyTable',
+            component: 'tpl.Table',
             bindPath: 'data.list',
             columns: [
                 { type: 'sequence' },
                 { type: 'isSelected' },
-                {
-                    type: 'custom', title: '', columnKey: 'opt', width: 40, align: 'center', fixed: true,
-                    cellContent: [{
-                        component: 'antd.Icon',
-                        className: 'icon-showy',
-                        type: 'close',
-                        title: '删除',
-                        onClick: '{{$del(data.list[row.rowIndex])}}'
-                    }]
-                },
+                { type: 'del', onDel: '{{$del(data.list[row.rowIndex])}}'},
                 { type: 'link', title: '编码', bindField: 'code', onClick: 'modify', flexGrow:1 },
                 { type: 'text', title: '名称', bindField: 'name', flexGrow:1 },
-
             ]
         }
     }]

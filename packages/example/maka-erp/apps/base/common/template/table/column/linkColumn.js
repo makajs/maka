@@ -5,7 +5,7 @@ const { fixPath } = helper
 export default function linkColumn(option) {
     var {
         bindPath, bindField, title, width = 130, flexGrow = 0, onClick,
-        align = 'left', component, fixed, _visible,footer, ...ext
+        align = 'left', component, fixed, fixedRight, _visible,footer, ...ext
     } = option
 
     return {
@@ -36,6 +36,7 @@ export default function linkColumn(option) {
         },
         fixed,
         footer,
+        fixedRight,
         _visible
     }
 }

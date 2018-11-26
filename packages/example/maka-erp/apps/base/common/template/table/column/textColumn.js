@@ -5,7 +5,7 @@ const {fixPath} = helper
 export default function textColumn(option) {
     var {
         bindPath, bindField, title, width = 130, flexGrow = 0,
-        align = 'left', component, fixed,  _visible, footer, ...ext
+        align = 'left', component, required, fixed, fixedRight,  _visible, footer, ...ext
     } = option
 
     var value = `{{{
@@ -22,6 +22,7 @@ export default function textColumn(option) {
             component: 'FDT.Cell',
             children: [{
                 component: 'label',
+                className: required ? 'ant-form-item-required' : '',
                 children: title
             }]
         },
@@ -34,6 +35,7 @@ export default function textColumn(option) {
         },
         footer,
         fixed,
+        fixedRight,
         _visible
     }
 }

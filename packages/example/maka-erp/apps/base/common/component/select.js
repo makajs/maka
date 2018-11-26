@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {getComponent} from 'maka'
+import { getComponent } from 'maka'
 import classNames from 'classnames'
 import Select from 'mk-rc-select/lib'
 
@@ -19,29 +19,29 @@ export default class SelectComponent extends Component {
         this.props.onFocus && this.props.onFocus()
     }
 
-    /*
+
     blurHandler = () => {
         this.setState({ dataSource: [] })
         this.props.onBlur && this.props.onBlur()
     }
-    */
+
     changeHandler = (v) => {
         var r = (v === 0 || v) ? v : '', obj,
             idField = this.props.idField || 'id',
             displayField = this.props.displayField || 'name',
             value = this.props.value
 
-        
+
         if (this.state.dataSource) {
             if (this.props.mode === 'multiple') {
                 obj = []
                 if (r instanceof Array) {
                     r.forEach(o => {
                         let hit = this.state.dataSource.find(x => x[idField] == o || x[displayField] == o)
-                        if(!hit && value && value instanceof Array){
+                        if (!hit && value && value instanceof Array) {
                             hit = value.find(x => x[idField] == o || x[displayField] == o)
                         }
-                        if(hit && obj.findIndex(y=> y[idField] === hit[idField] ) == -1)
+                        if (hit && obj.findIndex(y => y[idField] === hit[idField]) == -1)
                             obj.push(hit)
                     })
                 }
@@ -68,6 +68,9 @@ export default class SelectComponent extends Component {
             idField = 'id',
             codeField,
             displayField = 'name',
+            displayGetter,
+            filterGetter,
+            titleGetter,
             ...other
         } = this.props
 
@@ -110,14 +113,29 @@ export default class SelectComponent extends Component {
         );
 
         var val
+
+        titleGetter = titleGetter || displayGetter
+        filterGetter = filterGetter || displayGetter
         if (mode === 'multiple' && this.props.value instanceof Array) {
-            val = this.props.value.map(o => o[displayField])
+            if (titleGetter) {
+                val = this.props.value.map(o => titleGetter(o))
+            }
+            else {
+                val = this.props.value.map(o => o[displayField])
+            }
+
         }
         else {
-            val = (this.state.dataSource 
-                && this.state.dataSource.length > 0 
-                && this.props.value 
-                && this.props.value[idField]) || (this.props.value && this.props.value[displayField])
+            if (this.state.dataSource && this.state.dataSource.length > 0 && this.props.value) {
+                val = this.props.value[idField]
+            } else {
+                if (titleGetter) {
+                    val = this.props.value && titleGetter(this.props.value)
+                }
+                else {
+                    val = this.props.value && this.props.value[displayField]
+                }
+            }
         }
 
         return (
@@ -129,12 +147,11 @@ export default class SelectComponent extends Component {
                 prefixCls='ant-select'
                 className={className}
                 optionLabelProp='title'
-                //filterOption={false}
                 optionFilterProp='filter'
                 notFoundContent={notFoundContent}
                 suffix={suffix}
                 onFocus={this.focusHandler}
-                //onBlur={this.blurHandler}
+                onBlur={this.blurHandler}
                 onChange={this.changeHandler}
                 onSearch={this.searchHandler}
                 value={val}
@@ -144,10 +161,10 @@ export default class SelectComponent extends Component {
                         <Select.Option
                             key={o[idField]}
                             value={o[idField]}
-                            title={o[displayField]}
-                            filter={o[displayField]}
+                            title={titleGetter ? titleGetter(o) :  o[displayField]}
+                            filter={filterGetter ? filterGetter(o) :  o[displayField]  }
                         >
-                            {o[displayField]}
+                            {displayGetter ? displayGetter(o): o[displayField]}
                         </Select.Option>
                     ))
                 }

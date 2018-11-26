@@ -70,5 +70,5 @@ export default {
     ...FixedDataTable,
     Table:FDT,
     Cell,
-    TextCell
+    TextCell,
 }

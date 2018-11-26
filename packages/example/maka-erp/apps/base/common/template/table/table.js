@@ -3,8 +3,17 @@ import isSelectedColumn from './column/isSelectedColumn'
 import linkColumn from './column/linkColumn'
 import sequenceColumn from './column/sequenceColumn'
 import customColumn from './column/customColumn'
+import inputColumn from './column/inputColumn'
+import numberColumn from './column/numberColumn'
+import checkboxColumn from './column/checkboxColumn'
+import datePickerColumn from './column/datePickerColumn'
+import monthPickerColumn from './column/monthPickerColumn'
+import selectColumn from './column/selectColumn'
+import delColumn from './column/delColumn'
+import addAndDelColumn from './column/addAndDelColumn'
 
-export default function readonlyTable({ 
+
+export default function table({ 
     tableName = 'table', bindPath = 'data.list', selectFieldName = 'isSelected',
     paginationPath = 'data.pagination', onPageChange = 'pageChanged',
     columns, component, enablePagination = true, pageSizeOptions = [10,20,50,100], 
@@ -53,7 +62,8 @@ export default function readonlyTable({
 
     columns.forEach(c => {
         let { type, ...other } = c,
-            option = { ...other, grid: name, bindPath }, x
+            option = { ...other,  bindPath }, x
+
         switch (type) {
             case 'sequence':
                 x = sequenceColumn({...option, paginationPath})
@@ -66,6 +76,30 @@ export default function readonlyTable({
                 break;
             case 'link':
                 x = linkColumn(option)
+                break;
+            case 'input':
+                x = inputColumn(option)
+                break;
+            case 'number':
+                x = numberColumn(option)
+                break;
+            case 'checkbox':
+                x = checkboxColumn(option)
+                break;
+            case 'datePicker':
+                x = datePickerColumn(option)
+                break;
+            case 'monthPicker':
+                x = monthPickerColumn(option)
+                break;
+            case 'select':
+                x = selectColumn(option)
+                break;
+            case 'del':
+                x = delColumn(option)
+                break;
+            case 'addAndDel':
+                x = addAndDelColumn(option)
                 break;
             case 'custom':
                 x = customColumn(option)

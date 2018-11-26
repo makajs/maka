@@ -1,7 +1,7 @@
 export default function customColumn(option) {
     var {
         bindPath, title, width = 130, flexGrow = 0, 
-        align = 'left', component, fixed, _visible,footer, cellContent, ...ext
+        align = 'left', component, required, fixed, fixedRight,  _visible,footer, cellContent, ...ext
     } = option
 
     return {
@@ -12,7 +12,9 @@ export default function customColumn(option) {
             component: 'FDT.Cell',
             children: [{
                 component: 'label',
-                children: title
+                className: required ? 'ant-form-item-required' : '',
+                children: title,
+              
             }]
         },
         cell: {
@@ -24,6 +26,7 @@ export default function customColumn(option) {
         },
         fixed,
         footer,
+        fixedRight,
         _visible
     }
 }

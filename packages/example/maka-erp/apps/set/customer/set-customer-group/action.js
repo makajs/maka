@@ -16,12 +16,11 @@ export default class action {
 
     load = async () => {
         if (this.component.props.customerGroupId || this.component.props.customerGroupId == 0) {
-            console.log(this.component.props.customerGroupId)
             var resp = await fetch.post('/v1/customer/group/findById', { id: this.component.props.customerGroupId })
             this.base.setState({ 'data.form': resp })
         }
         else if(this.component.props.parent){
-            this.base.setState({'data.form.customerGroup': this.component.props.parent})
+            this.base.setState({'data.form.parent': this.component.props.parent})
         }
     }
 

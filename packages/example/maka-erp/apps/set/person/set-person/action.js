@@ -17,7 +17,6 @@ export default class action {
     load = async () => {
         if (this.component.props.personId || this.component.props.personId == 0) {
             var resp = await fetch.post('/v1/person/findById', { id: this.component.props.personId })
-            resp.department && (resp.department.codeAndName = `(${resp.department.code})${resp.department.name}`)
             this.base.setState({ 'data.form': resp })
         }
     }
@@ -80,10 +79,7 @@ export default class action {
     }
 
     loadDepartment = async () => {
-        var resp = await fetch.post('/v1/department/queryAll', {})
-        return resp.map(o => {
-            return { ...o, codeAndName: `(${o.code})${o.name}` }
-        })
+        return await fetch.post('/v1/department/queryAll', {})
     }
 
 }

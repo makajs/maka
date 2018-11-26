@@ -7,7 +7,7 @@
 		exports["MakaApp-set-person"] = factory(require("maka"), require("react"));
 	else
 		root["MakaApp-set-person"] = factory(root["maka"], root["react"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__5__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -172,6 +172,30 @@ module.exports = _asyncToGenerator;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+/* 5 */
+/***/ (function(module) {
+
+module.exports = {"isMakaApp":true,"name":"set-person","description":"set-person","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base"]};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(2);
@@ -196,30 +220,6 @@ function _objectSpread(target) {
 }
 
 module.exports = _objectSpread;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
-
-/***/ }),
-/* 6 */
-/***/ (function(module) {
-
-module.exports = {"isMakaApp":true,"name":"set-person","description":"set-person","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base"]};
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
 
 /***/ }),
 /* 8 */
@@ -1012,7 +1012,7 @@ if (hadRuntime) {
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./package.json
-var package_0 = __webpack_require__(6);
+var package_0 = __webpack_require__(5);
 
 // CONCATENATED MODULE: ./view.js
 /* harmony default export */ var view = ({
@@ -1025,9 +1025,8 @@ var package_0 = __webpack_require__(6);
       title: '所属部门',
       required: true,
       bindPath: 'data.form.department',
-      showSearch: true,
-      displayField: 'codeAndName',
-      onLoadOption: '{{$loadDepartment}}'
+      onLoadOption: '{{$loadDepartment}}',
+      displayGetter: "{{(v)=>v && '(' + v.code + ')'+v.name}}"
     }, {
       type: 'input',
       title: '姓名',
@@ -1073,10 +1072,6 @@ var package_0 = __webpack_require__(6);
     other: {}
   }
 });
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(4);
-var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
-
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__(1);
 var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
@@ -1086,7 +1081,7 @@ var asyncToGenerator = __webpack_require__(3);
 var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerator);
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(7);
+var classCallCheck = __webpack_require__(6);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js
@@ -1097,11 +1092,10 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 var external_maka_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(5);
+var external_react_ = __webpack_require__(4);
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
 // CONCATENATED MODULE: ./action.js
-
 
 
 
@@ -1133,7 +1127,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
         switch (_context.prev = _context.next) {
           case 0:
             if (!(_this.component.props.personId || _this.component.props.personId == 0)) {
-              _context.next = 6;
+              _context.next = 5;
               break;
             }
 
@@ -1144,13 +1138,12 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
 
           case 3:
             resp = _context.sent;
-            resp.department && (resp.department.codeAndName = "(".concat(resp.department.code, ")").concat(resp.department.name));
 
             _this.base.setState({
               'data.form': resp
             });
 
-          case 6:
+          case 5:
           case "end":
             return _context.stop();
         }
@@ -1289,7 +1282,6 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
   asyncToGenerator_default()(
   /*#__PURE__*/
   regenerator_default.a.mark(function _callee5() {
-    var resp;
     return regenerator_default.a.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
@@ -1298,14 +1290,9 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
             return external_maka_["fetch"].post('/v1/department/queryAll', {});
 
           case 2:
-            resp = _context5.sent;
-            return _context5.abrupt("return", resp.map(function (o) {
-              return objectSpread_default()({}, o, {
-                codeAndName: "(".concat(o.code, ")").concat(o.name)
-              });
-            }));
+            return _context5.abrupt("return", _context5.sent);
 
-          case 4:
+          case 3:
           case "end":
             return _context5.stop();
         }
@@ -1318,6 +1305,10 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
 
 // EXTERNAL MODULE: ./style.less
 var style = __webpack_require__(11);
+
+// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread.js
+var objectSpread = __webpack_require__(7);
+var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
 // CONCATENATED MODULE: ./mock.js
 
@@ -1437,7 +1428,10 @@ external_maka_["fetch"].mock('/v1/person/create', function (option) {
 });
 external_maka_["fetch"].mock('/v1/person/update', function (option) {
   initMockData();
-  mockData.persons[option.id] = option;
+  var index = mockData.persons.findIndex(function (o) {
+    return o.id == option.id;
+  });
+  mockData.persons[index] = option;
   return {
     result: true,
     value: option
