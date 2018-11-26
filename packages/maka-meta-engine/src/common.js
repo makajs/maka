@@ -147,7 +147,7 @@ function parseMetaTemplate(meta) {
             var component = utils.string.trim(propValue.get('component'))
             var template = templateFactory.getTemplate(component)
             if (template) {
-                templates.push([path, fromJS(template(propValue.toJS()))])
+                templates.unshift([path, fromJS(template(propValue.toJS()))])
                 return
             }
 
