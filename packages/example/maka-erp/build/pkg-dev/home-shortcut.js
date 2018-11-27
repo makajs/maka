@@ -204,6 +204,10 @@ var action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_3__["actionMixin"])('b
     _this.component.props.setPortalContent && _this.component.props.setPortalContent('客户', 'set-customer-list');
   });
 
+  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "openBOM", function () {
+    _this.component.props.setPortalContent && _this.component.props.setPortalContent('BOM', 'set-bom-list');
+  });
+
   Object.assign(this, option.mixins);
 }) || _class);
 var view = {
@@ -229,6 +233,17 @@ var view = {
     }, {
       component: 'a',
       children: '客户',
+      href: '#'
+    }]
+  }, {
+    component: 'div',
+    onClick: '{{$openBOM}}',
+    children: [{
+      component: 'img',
+      src: '{{$getFunImg()}}'
+    }, {
+      component: 'a',
+      children: 'BOM',
       href: '#'
     }]
   }]

@@ -361,7 +361,7 @@ g = (function() {
 
 try {
 	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
+	g = g || new Function("return this")();
 } catch (e) {
 	// This works if the window reference is available
 	if (typeof window === "object") g = window;
@@ -11014,6 +11014,7 @@ var view = {
       }, {
         component: 'FDT.Column',
         columnKey: 'description',
+        flexGrow: 1,
         header: {
           component: 'FDT.Cell',
           children: 'Description'
@@ -11021,7 +11022,10 @@ var view = {
         cell: {
           _function: '(row)',
           component: 'FDT.Cell',
-          children: '{{data.list[row.rowIndex].description}}'
+          children: {
+            component: 'input',
+            value: '{{data.list[row.rowIndex].description}}'
+          }
         },
         width: 100
       }]

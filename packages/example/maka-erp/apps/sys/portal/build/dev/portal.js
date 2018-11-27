@@ -1180,11 +1180,11 @@ var package_0 = __webpack_require__(4);
             children: [{
               component: 'antd.Menu.Item',
               key: 'mySetting',
-              children: 'My setting'
+              children: '个人设置'
             }, {
               component: 'antd.Menu.Item',
               key: 'logout',
-              children: 'Sign out'
+              children: '注销'
             }]
           }]
         }]

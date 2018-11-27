@@ -289,6 +289,9 @@ body {
     top: -0.5px;
   }
 }
+.ant-form-item-control {
+  line-height: 1;
+}
 /* fiexed-data-table */
 .fdt-cell {
   width: 100%;

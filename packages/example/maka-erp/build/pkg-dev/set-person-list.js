@@ -1023,25 +1023,14 @@ var package_0 = __webpack_require__(4);
       }]
     }]
   }, {
-    component: 'tpl.ReadonlyTable',
+    component: 'tpl.Table',
     columns: [{
       type: 'sequence'
     }, {
       type: 'isSelected'
     }, {
-      type: 'custom',
-      title: '',
-      columnKey: 'opt',
-      width: 40,
-      align: 'center',
-      fixed: true,
-      cellContent: [{
-        component: 'antd.Icon',
-        className: 'icon-showy',
-        type: 'close',
-        title: '删除',
-        onClick: '{{$del(data.list[row.rowIndex])}}'
-      }]
+      type: 'del',
+      onDel: '{{$del(data.list[row.rowIndex])}}'
     }, {
       type: 'link',
       title: '姓名',

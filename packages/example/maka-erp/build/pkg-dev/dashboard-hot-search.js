@@ -1027,7 +1027,7 @@ var package_0 = __webpack_require__(3);
     component: 'div',
     className: 'dashboard-hot-search-bottom',
     children: [{
-      component: 'tpl.ReadonlyTable',
+      component: 'tpl.Table',
       enablePagination: false,
       columns: [{
         type: 'text',

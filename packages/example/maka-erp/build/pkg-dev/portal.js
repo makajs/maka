@@ -1180,11 +1180,11 @@ var package_0 = __webpack_require__(4);
             children: [{
               component: 'antd.Menu.Item',
               key: 'mySetting',
-              children: 'My setting'
+              children: '个人设置'
             }, {
               component: 'antd.Menu.Item',
               key: 'logout',
-              children: 'Sign out'
+              children: '注销'
             }]
           }]
         }]
@@ -1655,9 +1655,13 @@ var state_menu = [{
     title: '人员',
     appName: 'set-person-list'
   }, {
-    key: '301',
+    key: '302',
     title: '客户',
     appName: 'set-customer-list'
+  }, {
+    key: '303',
+    title: 'BOM',
+    appName: 'set-bom-list'
   }]
 }];
 /* harmony default export */ var state = ({

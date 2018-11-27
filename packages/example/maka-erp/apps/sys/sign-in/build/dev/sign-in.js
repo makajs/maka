@@ -1346,7 +1346,7 @@ var package_0 = __webpack_require__(5);
         style: {
           fontSize: 30
         },
-        children: 'Sign in'
+        children: '登录'
       }, {
         component: 'antd.Form.Item',
         validateStatus: "{{data.other.error.user?'error':'success'}}",
@@ -1384,7 +1384,7 @@ var package_0 = __webpack_require__(5);
         className: 'sign-in-content-form-forget',
         children: [{
           component: 'antd.Checkbox',
-          children: 'Remember me',
+          children: '记住我',
           checked: '{{data.form.remember}}',
           onChange: "{{(e)=>$base.setState({'data.form.remember':e.target.checked})}}"
         }, {
@@ -1393,7 +1393,7 @@ var package_0 = __webpack_require__(5);
             float: 'right'
           },
           onClick: "{{()=>$redirect('/forgot')}}",
-          children: 'Forgot password'
+          children: '忘记密码'
         }]
       }, {
         component: 'antd.Form.Item',
@@ -1401,7 +1401,7 @@ var package_0 = __webpack_require__(5);
         children: [{
           component: 'antd.Button',
           type: 'primary',
-          children: 'Sign in',
+          children: '登录',
           onClick: '{{$login}}'
         }]
       }, {
@@ -1413,7 +1413,7 @@ var package_0 = __webpack_require__(5);
             float: 'right'
           },
           onClick: "{{()=>$redirect('/sign-up')}}",
-          children: 'Register now!'
+          children: '注册!'
         }]
       }]
     }]

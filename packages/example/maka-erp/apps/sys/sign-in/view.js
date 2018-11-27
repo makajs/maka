@@ -20,7 +20,7 @@ export default {
 				component: 'antd.Form.Item',
 				className: 'sign-in-content-form-title',
 				style: { fontSize: 30 },
-				children: 'Sign in'
+				children: '登录'
 			}, {
 				component: 'antd.Form.Item',
 				validateStatus: "{{data.other.error.user?'error':'success'}}",
@@ -58,14 +58,14 @@ export default {
 				className: 'sign-in-content-form-forget',
 				children: [{
 					component: 'antd.Checkbox',
-					children: 'Remember me',
+					children: '记住我',
 					checked: '{{data.form.remember}}',
 					onChange: `{{(e)=>$base.setState({'data.form.remember':e.target.checked})}}`
 				}, {
 					component: 'a',
 					style: { float: 'right' },
 					onClick: `{{()=>$redirect('/forgot')}}`,
-					children: 'Forgot password'
+					children: '忘记密码'
 				}]
 			}, {
 				component: 'antd.Form.Item',
@@ -73,7 +73,7 @@ export default {
 				children: [{
 					component: 'antd.Button',
 					type: 'primary',
-					children: 'Sign in',
+					children: '登录',
 					onClick: '{{$login}}'
 				}]
 			}, {
@@ -83,7 +83,7 @@ export default {
 					component: 'a',
 					style: { float: 'right' },
 					onClick: `{{()=>$redirect('/sign-up')}}`,
-					children: 'Register now!'
+					children: '注册!'
 				}]
 			}]
 		}]
