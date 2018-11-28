@@ -7,7 +7,7 @@
 		exports["MakaApp-portal"] = factory(require("maka"));
 	else
 		root["MakaApp-portal"] = factory(root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -98,12 +98,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -120,6 +114,12 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 /***/ }),
 /* 2 */
@@ -1252,10 +1252,14 @@ var package_0 = __webpack_require__(4);
           _for: 'item in data.openTabs',
           component: 'AppLoader',
           appName: '{{item && item.appName }}',
-          onPortalReload: '{{{console.log(item) ; return $load}}}',
+          onPortalReload: '{{$load}}',
           setPortalContent: '{{$setContent}}',
-          '...': '{{item && item.appProps}}',
+          addTabCloseListener: '{{$addTabCloseListener}}',
+          removeTabCloseListener: '{{$removeTabCloseListener}}',
+          addTabActiveListener: '{{$addTabActiveListener}}',
+          removeTabActiveListener: '{{$removeTabActiveListener}}',
           isTabStyle: '{{data.isTabsStyle}}',
+          '...': '{{item && item.appProps}}',
           _notRender: '{{ !(data.content && data.content.appName == item.appName) }}'
         }
       }]
@@ -1279,11 +1283,11 @@ var createClass = __webpack_require__(6);
 var createClass_default = /*#__PURE__*/__webpack_require__.n(createClass);
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(1);
+var defineProperty = __webpack_require__(0);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: external "maka"
-var external_maka_ = __webpack_require__(0);
+var external_maka_ = __webpack_require__(1);
 
 // CONCATENATED MODULE: ./action.js
 
@@ -1295,6 +1299,7 @@ var external_maka_ = __webpack_require__(0);
 var _dec, _class2;
 
 
+var eventListeners = {};
 var action_action = (_dec = Object(external_maka_["actionMixin"])('base'), _dec(_class2 =
 /*#__PURE__*/
 function () {
@@ -1490,21 +1495,78 @@ function () {
       _this.setContent(curr.title, curr.appName, curr.appProps);
     });
 
-    defineProperty_default()(this, "tabEdit", function (key, action) {
-      if (action == 'remove') {
-        var openTabs = _this.base.gs('data.openTabs') || [];
-        var hitIndex = openTabs.findIndex(function (o) {
-          return o.appName == key;
-        });
-        openTabs.splice(hitIndex, 1);
-        var json = {
-          'data.openTabs': openTabs,
-          'data.content': openTabs.length > 0 ? openTabs[openTabs.length - 1] : {}
-        };
+    defineProperty_default()(this, "tabEdit",
+    /*#__PURE__*/
+    function () {
+      var _ref3 = asyncToGenerator_default()(
+      /*#__PURE__*/
+      regenerator_default.a.mark(function _callee3(key, action) {
+        var closeListener, openTabs, hitIndex, content, activeListener, json;
+        return regenerator_default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!(action == 'remove')) {
+                  _context3.next = 17;
+                  break;
+                }
 
-        _this.base.setState(json);
-      }
-    });
+                //页签关闭调用app监听方法
+                closeListener = eventListeners["".concat(key, "__close")];
+                _context3.t0 = closeListener;
+
+                if (!_context3.t0) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                _context3.next = 6;
+                return closeListener();
+
+              case 6:
+                _context3.t0 = !_context3.sent;
+
+              case 7:
+                if (!_context3.t0) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 9:
+                openTabs = _this.base.gs('data.openTabs') || [];
+                hitIndex = openTabs.findIndex(function (o) {
+                  return o.appName == key;
+                });
+                openTabs.splice(hitIndex, 1);
+                content = openTabs.length > 0 ? openTabs[openTabs.length - 1] : {}; //页签激活调用app监听方法
+
+                activeListener = eventListeners["".concat(content.appName, "__active")];
+
+                if (activeListener) {
+                  setTimeout(activeListener, 16);
+                }
+
+                json = {
+                  'data.openTabs': openTabs,
+                  'data.content': content
+                };
+
+                _this.base.setState(json);
+
+              case 17:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      return function (_x2, _x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
 
     defineProperty_default()(this, "foldMenu", function () {
       _this.base.ss({
@@ -1543,7 +1605,14 @@ function () {
         json['data.openTabs'] = openTabs;
       } else {
         if (isTabsStyle) {
-          json['data.openTabs' + hitIndex] = content;
+          //页签激活调用app监听方法
+          var activeListener = eventListeners["".concat(content.appName, "__active")];
+
+          if (activeListener) {
+            setTimeout(activeListener, 16);
+          }
+
+          json['data.openTabs.' + hitIndex] = content;
         } else {
           openTabs = [];
           openTabs.push(content);
@@ -1561,6 +1630,22 @@ function () {
         segs.push(content.appName);
         external_maka_["navigate"].redirect(segs.join('/'));
       }, 0);
+    });
+
+    defineProperty_default()(this, "addTabCloseListener", function (appFullName, handler) {
+      eventListeners[appFullName + '__close'] = handler;
+    });
+
+    defineProperty_default()(this, "removeTabCloseListener", function (appFullName) {
+      if (eventListeners[appFullName + '__close']) delete eventListeners[appFullName + '__close'];
+    });
+
+    defineProperty_default()(this, "addTabActiveListener", function (appFullName, handler) {
+      eventListeners[appFullName + '__active'] = handler;
+    });
+
+    defineProperty_default()(this, "removeTabActiveListener", function (appFullName) {
+      if (eventListeners[appFullName + '__active']) delete eventListeners[appFullName + '__active'];
     });
 
     defineProperty_default()(this, "listen", function (location, action) {

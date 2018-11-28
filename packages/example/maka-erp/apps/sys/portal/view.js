@@ -162,10 +162,14 @@ export default {
                     _for: 'item in data.openTabs',
                     component: 'AppLoader',
                     appName: '{{item && item.appName }}',
-                    onPortalReload: '{{{console.log(item) ; return $load}}}',
+                    onPortalReload: '{{$load}}',
                     setPortalContent: '{{$setContent}}',
-                    '...': '{{item && item.appProps}}',
+                    addTabCloseListener: '{{$addTabCloseListener}}',
+                    removeTabCloseListener: '{{$removeTabCloseListener}}',
+                    addTabActiveListener: '{{$addTabActiveListener}}',
+                    removeTabActiveListener: '{{$removeTabActiveListener}}',
                     isTabStyle: '{{data.isTabsStyle}}',
+                    '...': '{{item && item.appProps}}',
                     _notRender: '{{ !(data.content && data.content.appName == item.appName) }}'
                 }
             }]

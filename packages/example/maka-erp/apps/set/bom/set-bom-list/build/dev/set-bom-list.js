@@ -1127,6 +1127,9 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
   classCallCheck_default()(this, action);
 
   defineProperty_default()(this, "onInit", function () {
+    //设置监听tab激活事件
+    _this.component.props.addTabActiveListener && _this.component.props.addTabActiveListener(_this.component.props.appFullName, _this.tabActive);
+
     var pagination = _this.base.gs('data.pagination');
 
     _this.load(pagination);
@@ -1398,6 +1401,10 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
       }
     }, _callee6, this);
   })));
+
+  defineProperty_default()(this, "tabActive", function () {
+    _this.reload();
+  });
 
   Object.assign(this, option.mixins);
   this.searchReload = this.lodash.debounce(this.searchReload, 200);

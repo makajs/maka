@@ -1,6 +1,8 @@
 
 import { actionMixin, fetch, navigate } from 'maka'
 
+var eventListeners = {}
+
 @actionMixin('base')
 export default class action {
     constructor(option) {
@@ -140,14 +142,29 @@ export default class action {
         this.setContent(curr.title, curr.appName, curr.appProps)
     }
 
-    tabEdit = (key, action) => {
+    tabEdit = async (key, action) => {
         if (action == 'remove') {
+            //页签关闭调用app监听方法
+            var closeListener = eventListeners[`${key}__close`]
+            if(closeListener && !(await closeListener())){
+                return 
+            }
             var openTabs = this.base.gs('data.openTabs') || []
             var hitIndex = openTabs.findIndex(o => o.appName == key)
+            
             openTabs.splice(hitIndex, 1)
+
+            var content = openTabs.length > 0 ? openTabs[openTabs.length - 1] : {}
+
+            //页签激活调用app监听方法
+            var activeListener =  eventListeners[`${content.appName}__active`]
+            if(activeListener ){
+                setTimeout(activeListener, 16)
+            }
+
             var json = {
                 'data.openTabs': openTabs,
-                'data.content': openTabs.length > 0 ? openTabs[openTabs.length - 1] : {}
+                'data.content': content
             }
             this.base.setState(json)
         }
@@ -196,6 +213,7 @@ export default class action {
         appProps = appProps || (oriMenuItem && oriMenuItem.appProps) || {}
 
         var content = { title, appName, appProps }
+
         json['data.content'] = content
 
         var hitIndex = openTabs.findIndex(o => o.title == title || o.appName == appName)
@@ -210,7 +228,13 @@ export default class action {
         }
         else {
             if (isTabsStyle) {
-                json['data.openTabs' + hitIndex] = content
+                //页签激活调用app监听方法
+                var activeListener =  eventListeners[`${content.appName}__active`]
+                if(activeListener ){
+                    setTimeout(activeListener, 16)
+                }
+
+                json['data.openTabs.' + hitIndex] = content
             }
             else {
                 openTabs = []
@@ -230,6 +254,26 @@ export default class action {
             navigate.redirect(segs.join('/'))
         }, 0)
     }
+
+    addTabCloseListener = (appFullName, handler) => {
+        eventListeners[appFullName + '__close'] = handler
+    }
+
+    removeTabCloseListener = (appFullName) => {
+        if(eventListeners[appFullName + '__close'])
+            delete eventListeners[appFullName + '__close']
+    }
+
+    addTabActiveListener = (appFullName, handler) => {
+        eventListeners[appFullName + '__active'] = handler
+    }
+
+    removeTabActiveListener = (appFullName) => {
+        if(eventListeners[appFullName + '__active'])
+            delete eventListeners[appFullName + '__active']
+    }
+    
+    
 
     listen = (location, action) => {
         let full = `${location.pathname}${location.search}`
@@ -253,4 +297,6 @@ export default class action {
     componentWillUnmount = () => {
         navigate.unlisten(this.listen)
     }
+
+   
 }

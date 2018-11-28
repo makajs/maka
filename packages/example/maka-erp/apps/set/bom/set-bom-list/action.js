@@ -9,6 +9,11 @@ export default class action {
     }
 
     onInit = () => {
+        //设置监听tab激活事件
+        this.component.props.addTabActiveListener 
+            && this.component.props.addTabActiveListener(this.component.props.appFullName, this.tabActive)
+
+
         const pagination = this.base.gs('data.pagination')
         this.load(pagination)
     }
@@ -116,6 +121,10 @@ export default class action {
         })
 
         this.message.success('删除成功')
+        this.reload()
+    }
+
+    tabActive = () => {
         this.reload()
     }
 

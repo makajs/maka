@@ -7,7 +7,7 @@
 		exports["MakaApp-set-bom"] = factory(require("maka"), require("react"));
 	else
 		root["MakaApp-set-bom"] = factory(root["maka"], root["react"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__4__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -96,16 +96,16 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(10);
 
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 /***/ }),
 /* 2 */
@@ -1271,11 +1271,14 @@ var package_0 = __webpack_require__(5);
         amount: 1,
         lossRate: 0
       }]
+    },
+    other: {
+      isChanged: false
     }
   }
 });
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js
-var regenerator = __webpack_require__(1);
+var regenerator = __webpack_require__(0);
 var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js
@@ -1299,7 +1302,7 @@ var external_react_ = __webpack_require__(4);
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
 // EXTERNAL MODULE: external "maka"
-var external_maka_ = __webpack_require__(0);
+var external_maka_ = __webpack_require__(1);
 
 // CONCATENATED MODULE: ./action.js
 
@@ -1313,7 +1316,7 @@ var _dec, _class2;
 
 
 
-var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'moment', 'tableHelper', 'message'), _dec(_class2 =
+var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'moment', 'tableHelper', 'message', 'modal'), _dec(_class2 =
 /*#__PURE__*/
 function () {
   function action(option) {
@@ -1331,24 +1334,27 @@ function () {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              //设置监听tab关闭事件
+              _this.component.props.addTabCloseListener && _this.component.props.addTabCloseListener(_this.component.props.appFullName, _this.tabClose); //设置监听tab激活事件
+
+              _this.component.props.addTabActiveListener && _this.component.props.addTabActiveListener(_this.component.props.appFullName, _this.tabActive);
+
               if (!(_this.component.props.bomId || _this.component.props.bomId == 0)) {
-                _context.next = 5;
+                _context.next = 7;
                 break;
               }
 
-              _context.next = 3;
+              _context.next = 5;
               return external_maka_["fetch"].post('/v1/bom/findById', {
                 id: _this.component.props.bomId
               });
 
-            case 3:
+            case 5:
               resp = _context.sent;
 
-              _this.base.setState({
-                'data.form': resp
-              });
+              _this.setForm(resp);
 
-            case 5:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -1356,29 +1362,33 @@ function () {
       }, _callee, this);
     })));
 
-    defineProperty_default()(this, "prev",
+    defineProperty_default()(this, "checkChanged",
     /*#__PURE__*/
     asyncToGenerator_default()(
     /*#__PURE__*/
     regenerator_default.a.mark(function _callee2() {
-      var resp;
       return regenerator_default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return external_maka_["fetch"].post('/v1/bom/prev', {
-                id: _this.base.gs('data.form.id')
+              if (!_this.base.gs('data.other.isChanged')) {
+                _context2.next = 4;
+                break;
+              }
+
+              _context2.next = 3;
+              return _this.modal.confirm({
+                title: '确认',
+                content: '存在未保存的更改，是否继续该操作?'
               });
 
-            case 2:
-              resp = _context2.sent;
-
-              _this.base.setState({
-                'data.form': resp
-              });
+            case 3:
+              return _context2.abrupt("return", _context2.sent);
 
             case 4:
+              return _context2.abrupt("return", true);
+
+            case 5:
             case "end":
               return _context2.stop();
           }
@@ -1386,7 +1396,7 @@ function () {
       }, _callee2, this);
     })));
 
-    defineProperty_default()(this, "next",
+    defineProperty_default()(this, "prev",
     /*#__PURE__*/
     asyncToGenerator_default()(
     /*#__PURE__*/
@@ -1397,18 +1407,30 @@ function () {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return external_maka_["fetch"].post('/v1/bom/next', {
+              return _this.checkChanged();
+
+            case 2:
+              _context3.t0 = _context3.sent;
+
+              if (!(_context3.t0 == false)) {
+                _context3.next = 5;
+                break;
+              }
+
+              return _context3.abrupt("return");
+
+            case 5:
+              _context3.next = 7;
+              return external_maka_["fetch"].post('/v1/bom/prev', {
                 id: _this.base.gs('data.form.id')
               });
 
-            case 2:
+            case 7:
               resp = _context3.sent;
 
-              _this.base.setState({
-                'data.form': resp
-              });
+              _this.setForm(resp);
 
-            case 4:
+            case 9:
             case "end":
               return _context3.stop();
           }
@@ -1416,27 +1438,98 @@ function () {
       }, _callee3, this);
     })));
 
-    defineProperty_default()(this, "add", function () {
-      _this.base.ss({
-        'data': state.data
-      });
-    });
+    defineProperty_default()(this, "next",
+    /*#__PURE__*/
+    asyncToGenerator_default()(
+    /*#__PURE__*/
+    regenerator_default.a.mark(function _callee4() {
+      var resp;
+      return regenerator_default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return _this.checkChanged();
+
+            case 2:
+              _context4.t0 = _context4.sent;
+
+              if (!(_context4.t0 == false)) {
+                _context4.next = 5;
+                break;
+              }
+
+              return _context4.abrupt("return");
+
+            case 5:
+              _context4.next = 7;
+              return external_maka_["fetch"].post('/v1/bom/next', {
+                id: _this.base.gs('data.form.id')
+              });
+
+            case 7:
+              resp = _context4.sent;
+
+              _this.setForm(resp);
+
+            case 9:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, this);
+    })));
+
+    defineProperty_default()(this, "add",
+    /*#__PURE__*/
+    asyncToGenerator_default()(
+    /*#__PURE__*/
+    regenerator_default.a.mark(function _callee5() {
+      return regenerator_default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return _this.checkChanged();
+
+            case 2:
+              _context5.t0 = _context5.sent;
+
+              if (!(_context5.t0 == false)) {
+                _context5.next = 5;
+                break;
+              }
+
+              return _context5.abrupt("return");
+
+            case 5:
+              _this.base.ss({
+                'data': state.data
+              });
+
+            case 6:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, this);
+    })));
 
     defineProperty_default()(this, "save",
     /*#__PURE__*/
     asyncToGenerator_default()(
     /*#__PURE__*/
-    regenerator_default.a.mark(function _callee4() {
+    regenerator_default.a.mark(function _callee6() {
       var form, msg, isModify, resp;
-      return regenerator_default.a.wrap(function _callee4$(_context4) {
+      return regenerator_default.a.wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
               form = _this.base.gs('data.form');
               msg = _this.checkSave(form);
 
               if (!(msg.length > 0)) {
-                _context4.next = 5;
+                _context6.next = 5;
                 break;
               }
 
@@ -1448,44 +1541,42 @@ function () {
                 return external_react_default.a.createElement("li", null, o);
               })));
 
-              return _context4.abrupt("return", false);
+              return _context6.abrupt("return", false);
 
             case 5:
               isModify = form.id || form.id == 0;
 
               if (!isModify) {
-                _context4.next = 12;
+                _context6.next = 12;
                 break;
               }
 
-              _context4.next = 9;
+              _context6.next = 9;
               return external_maka_["fetch"].post('/v1/bom/update', form);
 
             case 9:
-              resp = _context4.sent;
-              _context4.next = 15;
+              resp = _context6.sent;
+              _context6.next = 15;
               break;
 
             case 12:
-              _context4.next = 14;
+              _context6.next = 14;
               return external_maka_["fetch"].post('/v1/bom/create', form);
 
             case 14:
-              resp = _context4.sent;
+              resp = _context6.sent;
 
             case 15:
-              _this.base.setState({
-                'data.form': resp
-              });
+              _this.setForm(resp);
 
               _this.message.success(isModify ? '修改BOM成功' : '新增BOM成功');
 
             case 17:
             case "end":
-              return _context4.stop();
+              return _context6.stop();
           }
         }
-      }, _callee4, this);
+      }, _callee6, this);
     })));
 
     defineProperty_default()(this, "headerAddRow", function () {
@@ -1520,58 +1611,58 @@ function () {
     /*#__PURE__*/
     asyncToGenerator_default()(
     /*#__PURE__*/
-    regenerator_default.a.mark(function _callee5() {
-      return regenerator_default.a.wrap(function _callee5$(_context5) {
+    regenerator_default.a.mark(function _callee7() {
+      return regenerator_default.a.wrap(function _callee7$(_context7) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context7.prev = _context7.next) {
             case 0:
-              _context5.next = 2;
+              _context7.next = 2;
               return external_maka_["fetch"].post('/v1/materiel/queryAll', {});
 
             case 2:
-              return _context5.abrupt("return", _context5.sent);
+              return _context7.abrupt("return", _context7.sent);
 
             case 3:
             case "end":
-              return _context5.stop();
+              return _context7.stop();
           }
         }
-      }, _callee5, this);
+      }, _callee7, this);
     })));
 
     defineProperty_default()(this, "loadTechnic",
     /*#__PURE__*/
     asyncToGenerator_default()(
     /*#__PURE__*/
-    regenerator_default.a.mark(function _callee6() {
-      return regenerator_default.a.wrap(function _callee6$(_context6) {
+    regenerator_default.a.mark(function _callee8() {
+      return regenerator_default.a.wrap(function _callee8$(_context8) {
         while (1) {
-          switch (_context6.prev = _context6.next) {
+          switch (_context8.prev = _context8.next) {
             case 0:
-              _context6.next = 2;
+              _context8.next = 2;
               return external_maka_["fetch"].post('/v1/technic/queryAll', {});
 
             case 2:
-              return _context6.abrupt("return", _context6.sent);
+              return _context8.abrupt("return", _context8.sent);
 
             case 3:
             case "end":
-              return _context6.stop();
+              return _context8.stop();
           }
         }
-      }, _callee6, this);
+      }, _callee8, this);
     })));
 
     defineProperty_default()(this, "loadStatus",
     /*#__PURE__*/
     asyncToGenerator_default()(
     /*#__PURE__*/
-    regenerator_default.a.mark(function _callee7() {
-      return regenerator_default.a.wrap(function _callee7$(_context7) {
+    regenerator_default.a.mark(function _callee9() {
+      return regenerator_default.a.wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context7.prev = _context7.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
-              return _context7.abrupt("return", [{
+              return _context9.abrupt("return", [{
                 id: 1,
                 name: '已使用'
               }, {
@@ -1581,49 +1672,129 @@ function () {
 
             case 1:
             case "end":
-              return _context7.stop();
+              return _context9.stop();
           }
         }
-      }, _callee7, this);
+      }, _callee9, this);
     })));
 
     defineProperty_default()(this, "loadTechnicDetail",
     /*#__PURE__*/
     asyncToGenerator_default()(
     /*#__PURE__*/
-    regenerator_default.a.mark(function _callee8() {
+    regenerator_default.a.mark(function _callee10() {
       var technic;
-      return regenerator_default.a.wrap(function _callee8$(_context8) {
+      return regenerator_default.a.wrap(function _callee10$(_context10) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context10.prev = _context10.next) {
             case 0:
               technic = _this.base.gs('data.form.technic');
 
               if (technic) {
-                _context8.next = 3;
+                _context10.next = 3;
                 break;
               }
 
-              return _context8.abrupt("return", []);
+              return _context10.abrupt("return", []);
 
             case 3:
-              _context8.next = 5;
+              _context10.next = 5;
               return external_maka_["fetch"].post('/v1/technic/detail/queryAll', {
                 technicId: technic.id
               });
 
             case 5:
-              return _context8.abrupt("return", _context8.sent);
+              return _context10.abrupt("return", _context10.sent);
 
             case 6:
             case "end":
-              return _context8.stop();
+              return _context10.stop();
           }
         }
-      }, _callee8, this);
+      }, _callee10, this);
+    })));
+
+    defineProperty_default()(this, "setState", function (baseSetState) {
+      return function (json) {
+        json['data.other.isChanged'] = json['data.other.isChanged'] !== false;
+        baseSetState(json);
+      };
+    });
+
+    defineProperty_default()(this, "setForm", function (form) {
+      _this.base.setState({
+        'data.form': form,
+        'data.other.isChanged': false
+      });
+    });
+
+    defineProperty_default()(this, "tabActive",
+    /*#__PURE__*/
+    asyncToGenerator_default()(
+    /*#__PURE__*/
+    regenerator_default.a.mark(function _callee11() {
+      var resp;
+      return regenerator_default.a.wrap(function _callee11$(_context11) {
+        while (1) {
+          switch (_context11.prev = _context11.next) {
+            case 0:
+              _context11.next = 2;
+              return _this.checkChanged();
+
+            case 2:
+              _context11.t0 = _context11.sent;
+
+              if (!(_context11.t0 == false)) {
+                _context11.next = 5;
+                break;
+              }
+
+              return _context11.abrupt("return");
+
+            case 5:
+              _context11.next = 7;
+              return external_maka_["fetch"].post('/v1/bom/findById', {
+                id: _this.component.props.bomId
+              });
+
+            case 7:
+              resp = _context11.sent;
+
+              _this.setForm(resp);
+
+            case 9:
+            case "end":
+              return _context11.stop();
+          }
+        }
+      }, _callee11, this);
+    })));
+
+    defineProperty_default()(this, "tabClose",
+    /*#__PURE__*/
+    asyncToGenerator_default()(
+    /*#__PURE__*/
+    regenerator_default.a.mark(function _callee12() {
+      return regenerator_default.a.wrap(function _callee12$(_context12) {
+        while (1) {
+          switch (_context12.prev = _context12.next) {
+            case 0:
+              _context12.next = 2;
+              return _this.checkChanged();
+
+            case 2:
+              return _context12.abrupt("return", _context12.sent);
+
+            case 3:
+            case "end":
+              return _context12.stop();
+          }
+        }
+      }, _callee12, this);
     })));
 
     Object.assign(this, option.mixins);
+    this.base.setState = this.setState(this.base.setState);
   }
 
   createClass_default()(action, [{

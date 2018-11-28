@@ -7,6 +7,7 @@ export default class action {
     constructor(option) {
         Object.assign(this, option.mixins)
     }
+    
 
     onInit = () => {
         if (this.component.props.setOkListener)

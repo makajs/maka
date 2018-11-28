@@ -2,31 +2,56 @@ import React from 'react'
 import { actionMixin, fetch } from 'maka'
 import initState from './state'
 
-@actionMixin('base', 'moment', 'tableHelper', 'message')
+@actionMixin('base', 'moment', 'tableHelper', 'message', 'modal')
 export default class action {
     constructor(option) {
         Object.assign(this, option.mixins)
+        this.base.setState = this.setState(this.base.setState)
     }
 
     onInit = async () => {
+        //设置监听tab关闭事件
+        this.component.props.addTabCloseListener
+            && this.component.props.addTabCloseListener(this.component.props.appFullName, this.tabClose)
+
+        //设置监听tab激活事件
+        this.component.props.addTabActiveListener
+            && this.component.props.addTabActiveListener(this.component.props.appFullName, this.tabActive)
+
         if (this.component.props.bomId || this.component.props.bomId == 0) {
             var resp = await fetch.post('/v1/bom/findById', { id: this.component.props.bomId })
-            this.base.setState({ 'data.form': resp })
+            this.setForm(resp)
         }
     }
 
+    checkChanged = async () => {
+        if (this.base.gs('data.other.isChanged')) {
+            return await this.modal.confirm({
+                title: '确认',
+                content: '存在未保存的更改，是否继续该操作?'
+            })
+        }
+        return true
+    }
+
     prev = async () => {
+        if (await this.checkChanged() == false)
+            return
         var resp = await fetch.post('/v1/bom/prev', { id: this.base.gs('data.form.id') })
-        this.base.setState({ 'data.form': resp })
+        this.setForm(resp)
     }
 
     next = async () => {
+        if (await this.checkChanged() == false)
+            return
         var resp = await fetch.post('/v1/bom/next', { id: this.base.gs('data.form.id') })
-        this.base.setState({ 'data.form': resp })
+        this.setForm(resp)
     }
 
-    add = () => {
-        this.base.ss({'data': initState.data })
+    add = async () => {
+        if (await this.checkChanged() == false)
+            return
+        this.base.ss({ 'data': initState.data })
     }
 
     save = async () => {
@@ -54,7 +79,7 @@ export default class action {
             resp = await fetch.post('/v1/bom/create', form)
         }
 
-        this.base.setState({ 'data.form': resp })
+        this.setForm(resp)
         this.message.success(isModify ? '修改BOM成功' : '新增BOM成功')
     }
 
@@ -119,5 +144,29 @@ export default class action {
         var technic = this.base.gs('data.form.technic')
         if (!technic) return []
         return await fetch.post('/v1/technic/detail/queryAll', { technicId: technic.id })
+    }
+
+    //重写base setState方法，记录数据变化后写isChanged标志
+    setState = (baseSetState) => (json) => {
+        json['data.other.isChanged'] = (json['data.other.isChanged'] !== false)
+        baseSetState(json)
+    }
+
+    setForm = (form) => {
+        this.base.setState({
+            'data.form': form,
+            'data.other.isChanged': false
+        })
+    }
+
+    tabActive = async () => {
+        if (await this.checkChanged() == false)
+            return
+        var resp = await fetch.post('/v1/bom/findById', { id: this.component.props.bomId })
+        this.setForm(resp)
+    }
+
+    tabClose = async () => {
+        return await this.checkChanged()
     }
 }

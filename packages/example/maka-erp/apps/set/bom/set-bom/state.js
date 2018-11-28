@@ -12,6 +12,9 @@ export default {
                 amount: 1,
                 lossRate: 0,
             }]
+        },
+        other: {
+            isChanged: false
         }
     }
 }
