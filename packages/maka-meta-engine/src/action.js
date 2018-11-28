@@ -160,7 +160,7 @@ export default class action {
 		}
 
 		values.push(path)
-		values.push(vars)
+		values.push((vars || '').split(','))
 
 		var extParaKeys
 		if (extParas) {

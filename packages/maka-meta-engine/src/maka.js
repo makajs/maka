@@ -111,8 +111,10 @@ function metaToComponent(meta, props, data) {
 
                 if (!items || items.length == 0) return
                 return items.map((o, index) => {
-                    let _vars = meta['_vars'] || []
-                    _vars.push({ _index: index, _item: o })
+                    let _vars = meta['_vars'] 
+                    _vars = !_vars ? index + '': ','+index
+                    //let _vars = meta['_vars'] || []
+                    //_vars.push({ _index: index, _item: o })
 
                     let _extParas = meta._extParas || {}
                     _extParas[utils.string.trim(extParaNames[0])] = o
@@ -147,7 +149,8 @@ function metaToComponent(meta, props, data) {
 
             var allProps = parseMetaProps(meta, props, data)
             if (!allProps.key) {
-                let strVars = (meta._vars && meta._vars.map(o => o._index).join(',')) || ''
+                //let strVars = (meta._vars && meta._vars.map(o => o._index).join(',')) || ''
+                let strVars = meta._vars || ''
                 allProps.key = strVars ? meta.path + ',' + strVars : meta.path
 
             }

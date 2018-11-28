@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import shallowCompare from 'react-addons-shallow-compare'
 import ReactDOM from 'react-dom'
 import maka from './maka'
 import config from './config'
@@ -31,12 +32,15 @@ export default function wrapper(option) {
 					return true
 				}
 
+				return shallowCompare(this, nextProps, nextState);
+				/*
 				for (var o in this.props) {
 					if (this.props[o] != nextProps[o]) {
 						return true
 					}
 				}
 				return false
+				*/
 			}
 
 
