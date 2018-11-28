@@ -1,6 +1,6 @@
 {
   "name": "@makajs/meta-engine",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "maka meta engine",
   "main": "./lib/index.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "immutable": "*",
     "lodash": "*",
     "react": "*",
+    "react-addons-shallow-compare": "*",
     "react-dom": "*"
   },
   "devDependencies": {
