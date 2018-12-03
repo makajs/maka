@@ -1,0 +1,31 @@
+{
+  "isMakaApp": true,
+  "name": "antd",
+  "description": "antd",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/antd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/antd/issues"
+  },
+  "homepage": "https://github.com/makajs/antd#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": "./apps",
+  "devDependencies": {
+    "antd-mobile": "^2.2.6"
+  }
+}

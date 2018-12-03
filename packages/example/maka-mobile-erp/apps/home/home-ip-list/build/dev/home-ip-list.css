@@ -1,0 +1,56 @@
+.home-ip-list {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: PingFangSC-Regular;
+}
+.home-ip-list-navbar {
+  flex: 0 0 42px;
+  background: deepskyblue;
+}
+.home-ip-list-header {
+  display: flex;
+  flex-direction: column;
+}
+.home-ip-list-content {
+  flex: 1;
+}
+.home-ip-list-content-row {
+  display: flex;
+  height: 60px;
+  padding: 0 20px 0 0;
+}
+.home-ip-list-content-row-icon {
+  flex: 0 0 50px;
+  display: flex;
+  font-size: 24px;
+  color: orange;
+  justify-content: center;
+  align-items: center;
+}
+.home-ip-list-content-row-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.home-ip-list-content-row-title {
+  flex: 1;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+.home-ip-list-content-row-date {
+  font-size: 14px;
+  color: #6B7886;
+}
+.home-ip-list-content-row-amount {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.home-ip-list .am-list {
+  height: 100%;
+}
+

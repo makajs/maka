@@ -1,0 +1,44 @@
+.sign-in {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #E8F4FF;
+  background-size: cover;
+}
+.sign-in-header {
+  flex: 0 0 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.sign-in-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 36px;
+  justify-content: center;
+}
+.sign-in-content .am-list-item .am-input-control input {
+  font-size: 14px;
+}
+.sign-in-content .fa {
+  color: #6A7886;
+}
+.sign-in-forgetOrRegister {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sign-in-forgetOrRegister a {
+  margin: 10px;
+}
+.sign-in-footer {
+  flex: 0 0 150px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: #91a0ad;
+  padding: 10px;
+}
+

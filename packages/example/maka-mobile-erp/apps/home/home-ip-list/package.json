@@ -1,0 +1,33 @@
+{
+  "isMakaApp": true,
+  "name": "home-ip-list",
+  "description": "home-ip-list",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/home-ip-list.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/home-ip-list/issues"
+  },
+  "home-ip-listpage": "https://github.com/makajs/home-ip-list#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": [
+    "./apps",
+    "../../base"
+  ],
+  "devDependencies": {
+  }
+}

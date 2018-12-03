@@ -1,0 +1,28 @@
+{
+  "isMakaApp": true,
+  "name": "maka-mobile-erp",
+  "description": "maka-mobile-erp",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/maka-mobile-erp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/maka-mobile-erp/issues"
+  },
+  "homepage": "https://github.com/makajs/maka-mobile-erp#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": "./apps"
+}

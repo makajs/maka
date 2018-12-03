@@ -1,0 +1,34 @@
+{
+  "isMakaApp": true,
+  "name": "portal",
+  "description": "portal",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/portal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/portal/issues"
+  },
+  "homepage": "https://github.com/makajs/portal#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": [
+    "./apps",
+    "../../base",
+    "../../home"
+  ],
+  "devDependencies": {
+  }
+}
