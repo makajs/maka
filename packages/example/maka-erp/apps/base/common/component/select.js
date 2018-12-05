@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { getComponent } from 'maka'
 import classNames from 'classnames'
-import Select from 'mk-rc-select/lib'
+//import Select from 'mk-rc-select/lib'
+
 
 export default class SelectComponent extends Component {
     constructor(props, context) {
@@ -63,8 +64,9 @@ export default class SelectComponent extends Component {
 
     render() {
         let {
-            className, notFoundContent, optionLabelProp,
-            mode, combobox, tags, multiple, size,
+            notFoundContent, 
+            optionLabelProp,
+            mode,
             idField = 'id',
             codeField,
             displayField = 'name',
@@ -74,44 +76,7 @@ export default class SelectComponent extends Component {
             ...other
         } = this.props
 
-        let Icon = getComponent('antd.Icon')
-
-        className = classNames({
-            'ant-select': true,
-            [`ant-select-lg`]: size === 'large',
-            [`ant-select-sm`]: size === 'small',
-            [className]: !!className
-        })
-
-        const isCombobox = mode === 'combobox' || combobox
-
         notFoundContent = notFoundContent || '无匹配结果'
-
-        if (isCombobox) {
-            notFoundContent = null;
-            // children 带 dom 结构时，无法填入输入框
-            optionLabelProp = optionLabelProp || 'value'
-        }
-
-        const modeConfig = {
-            multiple: mode === 'multiple' || multiple,
-            tags: mode === 'tags' || tags,
-            combobox: isCombobox,
-        }
-
-        let suffix = this.props.suffix
-        if (this.props.suffix) {
-            suffix = React.cloneElement(this.props.suffix, { style: { float: "right" } })
-        }
-
-        const inputIcon = (
-            <Icon type="down" className={`ant-select-arrow-icon`} />
-        );
-
-        const removeIcon = (
-            <Icon type="close" className={`ant-select-remove-icon`} />
-        );
-
         var val
 
         titleGetter = titleGetter || displayGetter
@@ -137,19 +102,15 @@ export default class SelectComponent extends Component {
                 }
             }
         }
-
+        const Select = getComponent('antd.Select')
         return (
             <Select
-                inputIcon={inputIcon}
-                removeIcon={removeIcon}
+
                 {...other}
-                {...modeConfig}
-                prefixCls='ant-select'
-                className={className}
+                mode={mode}
                 optionLabelProp='title'
                 optionFilterProp='filter'
                 notFoundContent={notFoundContent}
-                suffix={suffix}
                 onFocus={this.focusHandler}
                 onBlur={this.blurHandler}
                 onChange={this.changeHandler}
@@ -161,10 +122,10 @@ export default class SelectComponent extends Component {
                         <Select.Option
                             key={o[idField]}
                             value={o[idField]}
-                            title={titleGetter ? titleGetter(o) :  o[displayField]}
-                            filter={filterGetter ? filterGetter(o) :  o[displayField]  }
+                            title={titleGetter ? titleGetter(o) : o[displayField]}
+                            filter={filterGetter ? filterGetter(o) : o[displayField]}
                         >
-                            {displayGetter ? displayGetter(o): o[displayField]}
+                            {displayGetter ? displayGetter(o) : o[displayField]}
                         </Select.Option>
                     ))
                 }

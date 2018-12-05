@@ -19,17 +19,18 @@
     "build": "maka build",
     "pkg": "maka pkg"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "server": {
     "proxy": null,
     "port": 8000
   },
-  "subAppDir": ["./apps","../antd", "../fixed-data-table"],
+  "subAppDir": [
+    "./apps",
+    "../"
+  ],
   "devDependencies": {
-    "antd": "*",
+    "classnames": "*",
     "lodash": "*",
-    "moment": "*",
-    "mk-rc-select": "*"
+    "moment": "*"
   }
 }

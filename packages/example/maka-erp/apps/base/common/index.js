@@ -1,6 +1,6 @@
 import React from 'react'
 import pkgJson from './package.json'
-import { actionMixin, setHoc, registerComponent, registerAction, registerTemplate, getComponent, createAppElement } from 'maka'
+import { actionMixin,  registerComponent, registerAction, registerTemplate, getComponent, createAppElement } from 'maka'
 import './style.less'
 import * as components from './component'
 import * as templates from './template'
@@ -22,9 +22,19 @@ Object.keys(actions).forEach(key => {
     registerAction(key, actions[key], key == 'numberHelper')
 })
 
-//setHoc(components["LocaleProvider"])
 
 const name = pkgJson.name
+
+function getOptions () {
+    var options = []
+    for (var i = 0; i < 100; i++) {
+        options.push({
+            label: 'label' + i,
+            value: i
+        })
+    }
+    return options
+}
 
 const state = {
     data: {
@@ -45,9 +55,11 @@ const state = {
         filter: {
             orderBy: 'default'
         },
-        other: {}
+        other: {},
+        options: getOptions()
     }
 }
+
 
 @actionMixin('base', 'moment', 'lodash', 'modal', 'message', 'notification', 'tableHelper')
 class action {
@@ -59,6 +71,7 @@ class action {
 
 
     selectLoadOption = async () => {
+        debugger
         return [{
             id: 1,
             name: '男'
@@ -68,6 +81,8 @@ class action {
 
         }]
     }
+
+
 
     selectChange = (v) => {
         this.base.setState({ 'data.selectValue': v })
@@ -123,7 +138,7 @@ class action {
         console.log(row)
     }
 
-    headerAddRow = ()=> {
+    headerAddRow = () => {
         this.addRow(-1)()
     }
 
@@ -232,39 +247,71 @@ const view = {
     },{
         component: 'tpl.Button',
         children: 'fewfwe'
-    },/*{
-        component: 'tpl.Form',
-        children: [{
-            type: 'input',
-            title: '编码',
-            bindPath: 'data.input'
-        },{
-            type: 'number',
-            title: '数字',
-            required: true,
-            bindPath: 'data.count'
-        },{
-            type: 'checkbox',
-            title: '复选',
-            bindPath: 'data.cb'
-        },{
-            type: 'datePicker',
-            title: '日期',
-            bindPath: 'data.dp'
-        },{
-            type: 'monthPicker',
-            title: '月份',
-            bindPath: 'data.mp'
-        },{
-            type: 'select',
-            title: '选择',
-            onLoadOption: '{{$selectLoadOption}}',
-            bindPath: 'data.select',
-        },'rew',{
-            component: 'antd.Button',
-            children: 'few'
-        },]
-    }*/{
+    },*/{
+            component: 'tpl.Form',
+            children: [{
+                type: 'input',
+                title: '编码',
+                bindPath: 'data.input'
+            }, {
+                type: 'number',
+                title: '数字',
+                required: true,
+                bindPath: 'data.count'
+            }, {
+                type: 'checkbox',
+                title: '复选',
+                bindPath: 'data.cb'
+            }, {
+                type: 'datePicker',
+                title: '日期',
+                bindPath: 'data.dp'
+            }, {
+                type: 'monthPicker',
+                title: '月份',
+                bindPath: 'data.mp'
+            }, {
+                type: 'select',
+                title: '选择',
+                onLoadOption: '{{$selectLoadOption}}',
+                bindPath: 'data.select',
+            }, {
+                component: 'antd.Select',
+                tags: true,
+                dropdownRender: (menu) => {
+                    debugger
+                    return (<React.Fragment>
+                        <div
+                            onClick={
+                                () => {
+                                    console.log('before clicked')
+                                }
+                            }
+                        >
+                            BEFORE
+                      </div>
+
+                        {menu}
+
+                        <div
+                            onClick={
+                                () => {
+                                    console.log('after clicked')
+                                }
+                            }
+                        >
+                            AFTER
+                      </div>
+                    </React.Fragment>)
+                },
+                children: [{
+                    _for: 'item in data.options',
+                    component: 'antd.Select.Option',
+                    value: '{{item.value}}',
+                    children: '{{item.label}}',
+                }]
+            }]
+        }, {
             component: 'tpl.Table',
             className: 'common-table',
             columns: [{
