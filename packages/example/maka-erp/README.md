@@ -1,18 +1,47 @@
-ERP demo developed by maka.js
+使用maka.js + antd + echarts + fixed-data-table + font-awesome 实现的管理系统前台demo
 
-## Download and run
+## 运行
 
-1. Download
-2. Decompress
-3. Enter decompress directory
-4. Run
 ```bash
 $ npm i -g @makajs/cli
 $ yarn install
 $ yarn start
 ```
 
-## Screenshot
+## 打包
+```bash
+$ yarn pkg  //执行成功会 build/pkg 目录下生成打包结果
+```
+
+## 文件结构
+```
+|--apps    
+     |--base
+          |--antd                       //用于注册antd组件
+          |--echarts                    //用于注册echarts组件
+          |--fixed-data-table           //用于注册fixed-data-table组件
+          |--font-awesome               //用于注册react-fontawesome组件
+          |--common                     //用于注册公共的组件、模板、样式、行为
+     |--set
+          |--bom
+               |--set-bom               //bom单据录入
+               |--set-bom-list          //bom列表
+          |--customer
+               |--set-customer          //客户卡片录入
+               |--set-customer-group    //客户组卡片录入
+               |--set-customer-list     //客户列表，树表形式
+          |--person
+               |--set-person            //人员卡片录入
+               |--set-person-list       //人员列表
+     |--sys
+          |--sign-in                    //登录
+          |--portal                     //门户
+          |--home                       //首页
+          |--dashboard                  //仪表盘
+          
+```
+
+## 截图
 
 
 <img src="https://reactchina.sxlcdn.com/uploads/default/original/2X/9/97f2d6455e31e246787f6f9d8d16293764d53f32.png" width="690" height="365">
@@ -33,6 +62,3 @@ $ yarn start
 
 <img src="https://reactchina.sxlcdn.com/uploads/default/original/2X/2/2810bd7de395b35ee466cba6c5dbbf15c958938c.png" width="690" height="365">
 
-## License
-
-MIT
