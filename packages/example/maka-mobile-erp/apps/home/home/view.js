@@ -1,3 +1,4 @@
+
 export default {
     component: 'div',
     className: 'home',
@@ -10,14 +11,16 @@ export default {
             autoplay: true,
             children: [{
                 component: 'div',
-                style: {height: 150, background: '#F99C89', color: '#fff'},
-                children: ''
-            },{
+                className: 'home-baner',
+                style: { height: 150, color: '#fff', backgroundImage: "url(th.jpg)" },
+                children: 'Using the simplest Json to express UI'
+            }, {
                 component: 'div',
-                style: {height: 150, background: '#FFD37C', color: '#fff'},
-                children: ''
+                className: 'home-baner',
+                style: { height: 150, color: '#fff', backgroundImage: "url(th2.jpg)" },
+                children: 'Minimalist design mode, only view、action、state'
             }]
-        },{
+        }, {
             _for: 'item in data.incomeAndPays',
             component: 'div',
             children: [{

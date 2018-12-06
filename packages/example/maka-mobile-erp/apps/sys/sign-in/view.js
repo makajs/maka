@@ -1,6 +1,9 @@
 export default {
     component: 'div',
     className: 'sign-in',
+    style: {
+        backgroundImage: "url(welcome.jpg)"
+    },
     children: [{
         component: 'div',
         className: 'sign-in-header',
@@ -55,6 +58,7 @@ export default {
             component: 'antd.Button',
             type: 'primary',
             children: '登录',
+
             onClick: '{{$login}}'
         }, {
             component: 'antd.WhiteSpace'

@@ -4,6 +4,7 @@ import action from './action'
 import state from './state'
 import './mock'
 import './style.less'
+import './img/welcome.jpg'
 
 const name = pkgJson.name
 
