@@ -9,6 +9,13 @@ const appDirectory = fs.realpathSync(process.cwd());
 
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
+const resolveAppIndex = fileName => {
+    let filePath = path.resolve(appDirectory, fileName)
+    if(!fs.existsSync(filePath)){
+        filePath = path.resolve(appDirectory, 'src', fileName)
+    }
+    return filePath
+}
 
 const envPublicUrl = process.env.PUBLIC_URL;
 
@@ -61,7 +68,7 @@ module.exports = {
     appPackage: resolveApp('build/pkg'),
     appPackageDev: resolveApp('build/pkg-dev'),
     appPublic: resolveApp('dist'),
-    appIndexJs: resolveApp('index.js'),
+    appIndexJs: resolveAppIndex('index.js'),
     appPackageJson: resolveApp('package.json'),
     appSrc: resolveApp('.'),
     yarnLockFile: resolveApp('yarn.lock'),
