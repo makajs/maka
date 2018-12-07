@@ -81,10 +81,10 @@ module.exports = function (option) {
                             "useESModules": false,
                             "absoluteRuntime": path.resolve(__dirname)
                         }],
-                        [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-class-properties")],
                         [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-decorators"), {
                             "legacy": true
-                        }]
+                        }],
+                        [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-class-properties")]
                     ]
                 }
             }, {
