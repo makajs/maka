@@ -1084,11 +1084,11 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 
 
 
-var _dec, _class2;
+var _dec, _class;
 
 
 
-var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodash', 'moment', 'modal', 'message'), _dec(_class2 = function action(option) {
+var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodash', 'moment', 'modal', 'message'), _dec(_class = function action(option) {
   var _this = this;
 
   classCallCheck_default()(this, action);
@@ -1272,7 +1272,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodas
   })));
 
   Object.assign(this, option.mixins);
-}) || _class2);
+}) || _class);
 
 // EXTERNAL MODULE: ./style.less
 var style = __webpack_require__(11);

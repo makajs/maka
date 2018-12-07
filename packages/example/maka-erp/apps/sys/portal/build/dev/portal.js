@@ -1296,11 +1296,11 @@ var external_maka_ = __webpack_require__(1);
 
 
 
-var _dec, _class2;
+var _dec, _class;
 
 
 var eventListeners = {};
-var action_action = (_dec = Object(external_maka_["actionMixin"])('base'), _dec(_class2 =
+var action_action = (_dec = Object(external_maka_["actionMixin"])('base'), _dec(_class =
 /*#__PURE__*/
 function () {
   function action(option) {
@@ -1717,7 +1717,7 @@ function () {
   }]);
 
   return action;
-}()) || _class2);
+}()) || _class);
 
 // CONCATENATED MODULE: ./state.js
 var state_menu = [{

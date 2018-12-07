@@ -1311,12 +1311,12 @@ var external_maka_ = __webpack_require__(1);
 
 
 
-var _dec, _class2;
+var _dec, _class;
 
 
 
 
-var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'moment', 'tableHelper', 'message', 'modal'), _dec(_class2 =
+var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'moment', 'tableHelper', 'message', 'modal'), _dec(_class =
 /*#__PURE__*/
 function () {
   function action(option) {
@@ -1818,7 +1818,7 @@ function () {
   }]);
 
   return action;
-}()) || _class2);
+}()) || _class);
 
 // EXTERNAL MODULE: ./style.less
 var style = __webpack_require__(12);
