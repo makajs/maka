@@ -1,4 +1,4 @@
-import pkgJson from './package.json'
+import pkgJson from '../package.json'
 import { actionMixin } from 'maka'
 import view from './view.html'
 import './style.less'
