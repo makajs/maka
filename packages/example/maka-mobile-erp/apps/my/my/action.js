@@ -13,4 +13,7 @@ export default class action {
         fetch.clearAccessToken()
         navigate.redirect('/sign-in')
     }
+    setting = () => {
+        this.toast.info('你就告诉我啥不能做吧 !!!', 1)
+    }
 }
