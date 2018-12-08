@@ -13,7 +13,8 @@ utils.fetch.config({
 appLoader.init({
     defaultComponent: metaEngine.defaultComponent,
     defaultAction: metaEngine.defaultAction,
-    defaultReducer: metaEngine.defaultReducer
+    defaultReducer: metaEngine.defaultReducer,
+    componentWrapper: metaEngine.wrapper
 })
 
 metaEngine.componentFactory.registerComponent("AppLoader", appLoader.AppLoader)

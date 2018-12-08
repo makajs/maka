@@ -83,11 +83,10 @@ export default connect((state, props) => {
 	return {
 		payload: payload || Map()
 	}
-},
-	dispatch => ({
+},dispatch => ({
 		...bindActionCreators(actions, dispatch)
 	}), null, {
-		withRef: true,
+		//withRef: true,
 		pure: true
 	}
 )(AppLoader)

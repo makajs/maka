@@ -31,13 +31,20 @@ function loadApp(state, {
     if (!state.has(fullName)) {
         state = state.set(fullName, Map())
 
+        if(appInfo && appInfo.view && typeof appInfo.view == 'function'){
+            component = config.current.componentWrapper()(appInfo.view)
+        }
+
         const actionInstance = typeof action == 'function' ? action({ appInfo, fullName }) : config.current.defaultAction({appInfo, fullName}),
             reducerInstance = typeof reducer == 'function' ? reducer({ appInfo, fullName }) : config.current.defaultReducer({appInfo, fullName}),
             container = createReduxConnector(
                 component || config.current.defaultComponent,
                 wrapMapStateToProps(fullName),
                 wrapMapDispatchToProps(fullName, actionInstance, reducerInstance),
-                null, { withRef: true, pure: true }
+                null, { 
+                    //withRef: true, 
+                    pure: true 
+                }
             )
 
         state = state.setIn([fullName, '@@require'], Map({
