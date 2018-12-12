@@ -5,8 +5,19 @@ const {fixPath} = helper
 export default function inputColumn(option) {
     var {
         bindPath, bindField, title, width = 130, flexGrow = 0,
-        component, required, fixed, fixedRight,  _visible, footer, ...ext
+        component, required, fixed, fixedRight,  _visible, footer, 
+        editClassNamePrefix, startEditIndex, editIndex,editableColumnCount, ...ext
     } = option
+
+    if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0) && editableColumnCount) {
+        var editClassName = `'${editClassNamePrefix}-' + (row.rowIndex*${editableColumnCount} + ${startEditIndex + editIndex})` 
+        if(ext.className){
+            ext.className = `{{'${ext.className}' ${editClassName}}}`
+        }
+        else{
+            ext.className = `{{${editClassName}}}`
+        }
+    }
 
     var value = `{{{
         var _rowIndex = row.rowIndex

@@ -22,7 +22,7 @@ metaEngine.componentFactory.registerComponent("AppLoader", appLoader.AppLoader)
 var Hoc,
     isProduction = process.env.isProduction,
     createElement = React.createElement,
-    getComponent =  metaEngine.componentFactory.getComponent.bind(metaEngine.componentFactory),
+    getComponent = metaEngine.componentFactory.getComponent.bind(metaEngine.componentFactory),
     getAction = metaEngine.actionFactory.getAction.bind(metaEngine.actionFactory),
     registerComponent = metaEngine.componentFactory.registerComponent.bind(metaEngine.componentFactory),
     registerAction = metaEngine.actionFactory.registerAction.bind(metaEngine.actionFactory),
@@ -47,14 +47,20 @@ async function load(app) {
     return await appLoader.loadApp(app, isProduction)
 }
 
-function createAppElement(appName, appProps){
+const createAppElementInternal = (appName, appProps) => props => {
+    return (
+        <Provider store={window.__maka_store__}>
+            <appLoader.AppLoader name={appName} {...appProps} {...props}  ></appLoader.AppLoader>
+        </Provider>
+    )
+}
+function createAppElement(appName, appProps) {
+    var Internal = createAppElementInternal(appName, appProps)
     if (Hoc) {
-        return (<Hoc>
-            <appLoader.AppLoader name={appName} {...appProps}  store={window.__maka_store__}></appLoader.AppLoader>
-        </Hoc>)
+        return (<Hoc><Internal /></Hoc>)
     }
-    else{
-        return (<appLoader.AppLoader name={appName} {...appProps}  store={window.__maka_store__}></appLoader.AppLoader>)
+    else {
+        return Internal
     }
 }
 

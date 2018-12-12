@@ -2,7 +2,7 @@ import React from 'react'
 import { actionMixin, fetch } from 'maka'
 import initState from './state'
 
-@actionMixin('base', 'moment', 'tableHelper', 'message', 'modal')
+@actionMixin('base', 'moment', 'tableHelper', 'keyboardHelper', 'message', 'modal')
 export default class action {
     constructor(option) {
         Object.assign(this, option.mixins)

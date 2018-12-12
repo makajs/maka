@@ -5,7 +5,8 @@ import datePickerFormItem from './datePickerFormItem'
 import monthPickerFormItem from './monthPickerFormItem'
 import selectFormItem from './selectFormItem'
 
-export default function form({ className = 'simple-modal-card-form', children, component, ...other }) {
+export default function form({ className = 'simple-modal-card-form', children, component,
+    editClassNamePrefix, startEditIndex, ...other }) {
     var ret = {
         component: 'div',
         className: className,
@@ -16,6 +17,8 @@ export default function form({ className = 'simple-modal-card-form', children, c
 
     children.forEach(child => {
         let x, {type, component, ...other} = child
+        other.editClassNamePrefix = editClassNamePrefix
+        other.startEditIndex = startEditIndex
 
         if(!component && type){
             switch (type) {

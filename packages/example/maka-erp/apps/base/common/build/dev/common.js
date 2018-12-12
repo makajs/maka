@@ -4635,9 +4635,30 @@ module.exports = _objectWithoutProperties;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var defineProperty = __webpack_require__(3);
+var defineProperty = __webpack_require__(2);
 
 function _objectSpread(target) {
   for (var i = 1; i < arguments.length; i++) {
@@ -4659,27 +4680,6 @@ function _objectSpread(target) {
 }
 
 module.exports = _objectSpread;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
 
 /***/ }),
 /* 4 */
@@ -34960,6 +34960,7 @@ __webpack_require__.r(action_namespaceObject);
 __webpack_require__.d(action_namespaceObject, "tableHelper", function() { return tableHelper_action; });
 __webpack_require__.d(action_namespaceObject, "treeHelper", function() { return treeHelper_action; });
 __webpack_require__.d(action_namespaceObject, "numberHelper", function() { return numberHelper; });
+__webpack_require__.d(action_namespaceObject, "keyboardHelper", function() { return keyboardHelper_action; });
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js
 var regenerator = __webpack_require__(7);
@@ -34974,7 +34975,7 @@ var classCallCheck = __webpack_require__(8);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(3);
+var defineProperty = __webpack_require__(2);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: external "react"
@@ -35836,7 +35837,7 @@ m.confirm = confirm_confirm;
 
 
 // EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(2);
+var objectSpread = __webpack_require__(3);
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
 // CONCATENATED MODULE: ./template/helper.js
@@ -35992,10 +35993,18 @@ function inputFormItem(option) {
   var title = option.title,
       required = option.required,
       component = option.component,
+      editClassNamePrefix = option.editClassNamePrefix,
+      startEditIndex = option.startEditIndex,
+      editIndex = option.editIndex,
       _for = option._for,
       _function = option._function,
       _visible = option._visible,
-      other = objectWithoutProperties_default()(option, ["title", "required", "component", "_for", "_function", "_visible"]);
+      other = objectWithoutProperties_default()(option, ["title", "required", "component", "editClassNamePrefix", "startEditIndex", "editIndex", "_for", "_function", "_visible"]);
+
+  if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0)) {
+    var editClassName = "".concat(editClassNamePrefix, "-").concat(startEditIndex + editIndex);
+    other.className = other.className ? other.className + ' ' + editClassName : editClassName;
+  }
 
   return {
     component: 'antd.Form.Item',
@@ -36014,10 +36023,18 @@ function numberFormItem(option) {
   var title = option.title,
       required = option.required,
       component = option.component,
+      editClassNamePrefix = option.editClassNamePrefix,
+      startEditIndex = option.startEditIndex,
+      editIndex = option.editIndex,
       _for = option._for,
       _function = option._function,
       _visible = option._visible,
-      other = objectWithoutProperties_default()(option, ["title", "required", "component", "_for", "_function", "_visible"]);
+      other = objectWithoutProperties_default()(option, ["title", "required", "component", "editClassNamePrefix", "startEditIndex", "editIndex", "_for", "_function", "_visible"]);
+
+  if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0)) {
+    var editClassName = "".concat(editClassNamePrefix, "-").concat(startEditIndex + editIndex);
+    other.className = other.className ? other.className + ' ' + editClassName : editClassName;
+  }
 
   return {
     component: 'antd.Form.Item',
@@ -36036,10 +36053,18 @@ function checkboxFormItem(option) {
   var title = option.title,
       required = option.required,
       component = option.component,
+      editClassNamePrefix = option.editClassNamePrefix,
+      startEditIndex = option.startEditIndex,
+      editIndex = option.editIndex,
       _for = option._for,
       _function = option._function,
       _visible = option._visible,
-      other = objectWithoutProperties_default()(option, ["title", "required", "component", "_for", "_function", "_visible"]);
+      other = objectWithoutProperties_default()(option, ["title", "required", "component", "editClassNamePrefix", "startEditIndex", "editIndex", "_for", "_function", "_visible"]);
+
+  if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0)) {
+    var editClassName = "".concat(editClassNamePrefix, "-").concat(startEditIndex + editIndex);
+    other.className = other.className ? other.className + ' ' + editClassName : editClassName;
+  }
 
   return {
     component: 'antd.Form.Item',
@@ -36058,10 +36083,18 @@ function datePickerFormItem(option) {
   var title = option.title,
       required = option.required,
       component = option.component,
+      editClassNamePrefix = option.editClassNamePrefix,
+      startEditIndex = option.startEditIndex,
+      editIndex = option.editIndex,
       _for = option._for,
       _function = option._function,
       _visible = option._visible,
-      other = objectWithoutProperties_default()(option, ["title", "required", "component", "_for", "_function", "_visible"]);
+      other = objectWithoutProperties_default()(option, ["title", "required", "component", "editClassNamePrefix", "startEditIndex", "editIndex", "_for", "_function", "_visible"]);
+
+  if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0)) {
+    var editClassName = "".concat(editClassNamePrefix, "-").concat(startEditIndex + editIndex);
+    other.className = other.className ? other.className + ' ' + editClassName : editClassName;
+  }
 
   return {
     component: 'antd.Form.Item',
@@ -36080,10 +36113,18 @@ function monthPickerFormItem(option) {
   var title = option.title,
       required = option.required,
       component = option.component,
+      editClassNamePrefix = option.editClassNamePrefix,
+      startEditIndex = option.startEditIndex,
+      editIndex = option.editIndex,
       _for = option._for,
       _function = option._function,
       _visible = option._visible,
-      other = objectWithoutProperties_default()(option, ["title", "required", "component", "_for", "_function", "_visible"]);
+      other = objectWithoutProperties_default()(option, ["title", "required", "component", "editClassNamePrefix", "startEditIndex", "editIndex", "_for", "_function", "_visible"]);
+
+  if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0)) {
+    var editClassName = "".concat(editClassNamePrefix, "-").concat(startEditIndex + editIndex);
+    other.className = other.className ? other.className + ' ' + editClassName : editClassName;
+  }
 
   return {
     component: 'antd.Form.Item',
@@ -36102,10 +36143,18 @@ function selectFormItem(option) {
   var title = option.title,
       required = option.required,
       component = option.component,
+      editClassNamePrefix = option.editClassNamePrefix,
+      startEditIndex = option.startEditIndex,
+      editIndex = option.editIndex,
       _for = option._for,
       _function = option._function,
       _visible = option._visible,
-      other = objectWithoutProperties_default()(option, ["title", "required", "component", "_for", "_function", "_visible"]);
+      other = objectWithoutProperties_default()(option, ["title", "required", "component", "editClassNamePrefix", "startEditIndex", "editIndex", "_for", "_function", "_visible"]);
+
+  if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0)) {
+    var editClassName = "".concat(editClassNamePrefix, "-").concat(startEditIndex + editIndex);
+    other.className = other.className ? other.className + ' ' + editClassName : editClassName;
+  }
 
   return {
     component: 'antd.Form.Item',
@@ -36131,7 +36180,9 @@ function form_form(_ref) {
       className = _ref$className === void 0 ? 'simple-modal-card-form' : _ref$className,
       children = _ref.children,
       component = _ref.component,
-      other = objectWithoutProperties_default()(_ref, ["className", "children", "component"]);
+      editClassNamePrefix = _ref.editClassNamePrefix,
+      startEditIndex = _ref.startEditIndex,
+      other = objectWithoutProperties_default()(_ref, ["className", "children", "component", "editClassNamePrefix", "startEditIndex"]);
 
   var ret = objectSpread_default()({
     component: 'div',
@@ -36144,6 +36195,9 @@ function form_form(_ref) {
         type = child.type,
         component = child.component,
         other = objectWithoutProperties_default()(child, ["type", "component"]);
+
+    other.editClassNamePrefix = editClassNamePrefix;
+    other.startEditIndex = startEditIndex;
 
     if (!component && type) {
       switch (type) {
@@ -36444,7 +36498,21 @@ function inputColumn(option) {
       fixedRight = option.fixedRight,
       _visible = option._visible,
       footer = option.footer,
-      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer"]);
+      editClassNamePrefix = option.editClassNamePrefix,
+      startEditIndex = option.startEditIndex,
+      editIndex = option.editIndex,
+      editableColumnCount = option.editableColumnCount,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer", "editClassNamePrefix", "startEditIndex", "editIndex", "editableColumnCount"]);
+
+  if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0) && editableColumnCount) {
+    var editClassName = "'".concat(editClassNamePrefix, "-' + (row.rowIndex*").concat(editableColumnCount, " + ").concat(startEditIndex + editIndex, ")");
+
+    if (ext.className) {
+      ext.className = "{{'".concat(ext.className, "' ").concat(editClassName, "}}");
+    } else {
+      ext.className = "{{".concat(editClassName, "}}");
+    }
+  }
 
   var value = "{{{\n        var _rowIndex = row.rowIndex\n        return ".concat(inputColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n    }}}");
   return {
@@ -36495,7 +36563,21 @@ function numberColumn(option) {
       fixedRight = option.fixedRight,
       _visible = option._visible,
       footer = option.footer,
-      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer"]);
+      editClassNamePrefix = option.editClassNamePrefix,
+      startEditIndex = option.startEditIndex,
+      editIndex = option.editIndex,
+      editableColumnCount = option.editableColumnCount,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer", "editClassNamePrefix", "startEditIndex", "editIndex", "editableColumnCount"]);
+
+  if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0) && editableColumnCount) {
+    var editClassName = "'".concat(editClassNamePrefix, "-' + (row.rowIndex*").concat(editableColumnCount, " + ").concat(startEditIndex + editIndex, ")");
+
+    if (ext.className) {
+      ext.className = "{{'".concat(ext.className, "' ").concat(editClassName, "}}");
+    } else {
+      ext.className = "{{".concat(editClassName, "}}");
+    }
+  }
 
   var value = "{{{\n        var _rowIndex = row.rowIndex\n        return ".concat(numberColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n    }}}");
   return {
@@ -36702,7 +36784,21 @@ function selectColumn(option) {
       fixedRight = option.fixedRight,
       _visible = option._visible,
       footer = option.footer,
-      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer"]);
+      editClassNamePrefix = option.editClassNamePrefix,
+      startEditIndex = option.startEditIndex,
+      editIndex = option.editIndex,
+      editableColumnCount = option.editableColumnCount,
+      ext = objectWithoutProperties_default()(option, ["bindPath", "bindField", "title", "width", "flexGrow", "component", "required", "fixed", "fixedRight", "_visible", "footer", "editClassNamePrefix", "startEditIndex", "editIndex", "editableColumnCount"]);
+
+  if (editClassNamePrefix && (startEditIndex || startEditIndex === 0) && (editIndex || editIndex === 0) && editableColumnCount) {
+    var editClassName = "'".concat(editClassNamePrefix, "-' + (row.rowIndex*").concat(editableColumnCount, " + ").concat(startEditIndex + editIndex, ")");
+
+    if (ext.className) {
+      ext.className = "{{'".concat(ext.className, "' ").concat(editClassName, "}}");
+    } else {
+      ext.className = "{{".concat(editClassName, "}}");
+    }
+  }
 
   var value = "{{{\n        var _rowIndex = row.rowIndex\n        return ".concat(selectColumn_fixPath("".concat(bindPath, "[_rowIndex].").concat(bindField)), "\n    }}}");
   return {
@@ -36889,7 +36985,10 @@ function table(_ref) {
       pageSizeOptions = _ref$pageSizeOptions === void 0 ? [10, 20, 50, 100] : _ref$pageSizeOptions,
       _ref$showSelectedCoun = _ref.showSelectedCount,
       showSelectedCount = _ref$showSelectedCoun === void 0 ? true : _ref$showSelectedCoun,
-      ext = objectWithoutProperties_default()(_ref, ["tableName", "bindPath", "selectFieldName", "paginationPath", "onPageChange", "columns", "component", "enablePagination", "pageSizeOptions", "showSelectedCount"]);
+      editClassNamePrefix = _ref.editClassNamePrefix,
+      startEditIndex = _ref.startEditIndex,
+      editableColumnCount = _ref.editableColumnCount,
+      ext = objectWithoutProperties_default()(_ref, ["tableName", "bindPath", "selectFieldName", "paginationPath", "onPageChange", "columns", "component", "enablePagination", "pageSizeOptions", "showSelectedCount", "editClassNamePrefix", "startEditIndex", "editableColumnCount"]);
 
   var ret = [objectSpread_default()({
     component: 'FDT.Table',
@@ -36938,6 +37037,10 @@ function table(_ref) {
       bindPath: bindPath
     }),
         x;
+
+    option.editClassNamePrefix = editClassNamePrefix;
+    option.startEditIndex = startEditIndex;
+    option.editableColumnCount = editableColumnCount;
 
     switch (type) {
       case 'sequence':
@@ -37378,7 +37481,87 @@ function moneySmalltoBig(n) {
   moneySmalltoBig: moneySmalltoBig,
   round: round
 });
+// CONCATENATED MODULE: ./action/keyboardHelper.js
+
+
+
+var keyboardHelper_action = function action(option) {
+  var _this = this;
+
+  classCallCheck_default()(this, action);
+
+  defineProperty_default()(this, "keyDown", function (editClassNamePrefix) {
+    return function (e) {
+      if (e.keyCode == 13) {
+        _this.focusNext(e.nativeEvent.srcElement, editClassNamePrefix);
+      }
+    };
+  });
+
+  defineProperty_default()(this, "focusNext", function (currentDom, editClassNamePrefix) {
+    var currClassName = _this.getClassName(currentDom, editClassNamePrefix);
+
+    if (!currClassName) return;
+
+    var nextClassName = _this.getNextClassName(currClassName, editClassNamePrefix);
+
+    if (!nextClassName) return;
+    var dom = document.querySelector('.' + nextClassName);
+    if (!dom) return;
+
+    if (dom.className.indexOf('input') != -1) {
+      dom.select();
+      return;
+    }
+
+    if (dom.className.indexOf('select') != -1) {
+      dom.click();
+      return;
+    }
+
+    if (dom.className.indexOf('datepicker') != -1) {
+      var input = dom.querySelector('input');
+      input.click();
+      return;
+    }
+
+    if (dom.className.indexOf('checkbox') != -1) {
+      var _input = dom.querySelector('input');
+
+      _input.focus();
+
+      return;
+    }
+  });
+
+  defineProperty_default()(this, "getClassName", function (ele, editClassNamePrefix) {
+    if (ele.className.indexOf(editClassNamePrefix) != -1) {
+      return ele.className;
+    } else {
+      if (ele.parentElement) {
+        return _this.getClassName(ele.parentElement, editClassNamePrefix);
+      } else return;
+    }
+  });
+
+  defineProperty_default()(this, "getNextClassName", function (currentClassName, editClassNamePrefix) {
+    var regex = new RegExp("".concat(editClassNamePrefix, "-(\\d*)"), 'i');
+    var index = regex.exec(currentClassName)[1];
+
+    if (index) {
+      return editClassNamePrefix + '-' + (parseInt(index) + 1);
+    } else {
+      return;
+    }
+  });
+
+  Object.assign(this, option.mixins);
+  this.option = option;
+};
+
+
 // CONCATENATED MODULE: ./action/index.js
+
 
 
 

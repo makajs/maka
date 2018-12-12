@@ -1040,6 +1040,7 @@ var package_0 = __webpack_require__(5);
 /* harmony default export */ var view = ({
   component: 'div',
   className: 'voucher set-bom',
+  onKeyDown: "{{$keyboardHelper.keyDown('set-bom-edit')}}",
   children: [{
     component: 'div',
     className: 'voucher-header',
@@ -1083,15 +1084,19 @@ var package_0 = __webpack_require__(5);
   }, {
     component: 'tpl.Form',
     className: 'voucher-form',
+    editClassNamePrefix: 'set-bom-edit',
+    startEditIndex: 0,
     children: [{
       type: 'input',
       title: '编码',
       bindPath: 'data.form.code',
+      editIndex: 1,
       required: true
     }, {
       type: 'select',
       title: '物料编码',
       bindPath: 'data.form.materiel',
+      editIndex: 2,
       required: true,
       onLoadOption: '{{$loadMateriel}}',
       titleGetter: '{{(v)=> v && v.code}}',
@@ -1120,6 +1125,7 @@ var package_0 = __webpack_require__(5);
       type: 'select',
       title: '工艺',
       bindPath: 'data.form.technic',
+      editIndex: 3,
       required: true,
       onLoadOption: '{{$loadTechnic}}',
       displayGetter: "{{(v)=> v && '(' + v.code + ')' + v.name}}"
@@ -1127,35 +1133,43 @@ var package_0 = __webpack_require__(5);
       type: 'number',
       title: '数量',
       bindPath: 'data.form.amount',
+      editIndex: 4,
       required: true,
       min: 0
     }, {
       type: 'number',
       title: '成品率',
       bindPath: 'data.form.yield',
+      editIndex: 5,
       required: true,
       min: 0,
       max: 100
     }, {
       type: 'checkbox',
       title: '虚拟层',
-      bindPath: 'data.form.isVirtual'
+      bindPath: 'data.form.isVirtual',
+      editIndex: 6
     }, {
       type: 'select',
       title: '使用状态',
       bindPath: 'data.form.status',
+      editIndex: 7,
       onLoadOption: '{{$loadStatus}}'
     }]
   }, {
     component: 'tpl.Table',
     bindPath: 'data.form.details',
     enablePagination: false,
+    editClassNamePrefix: 'set-bom-edit',
+    startEditIndex: 7,
+    editableColumnCount: 5,
     columns: [{
       type: 'sequence'
     }, {
       type: 'select',
       title: '物料编码',
       bindField: 'materiel',
+      editIndex: 1,
       required: true,
       fixed: true,
       flexGrow: 1,
@@ -1191,6 +1205,7 @@ var package_0 = __webpack_require__(5);
       type: 'number',
       title: '用量',
       bindField: 'amount',
+      editIndex: 2,
       width: 100,
       required: true,
       min: 0
@@ -1198,6 +1213,7 @@ var package_0 = __webpack_require__(5);
       type: 'number',
       title: '损耗率',
       bindField: 'lossRate',
+      editIndex: 3,
       width: 100,
       required: true,
       min: 0,
@@ -1206,6 +1222,7 @@ var package_0 = __webpack_require__(5);
       type: 'select',
       title: '工序号',
       bindField: 'technicDetail',
+      editIndex: 4,
       required: true,
       onLoadOption: '{{$loadTechnicDetail}}',
       titleGetter: '{{(v)=> v && v.code}}',
@@ -1218,6 +1235,7 @@ var package_0 = __webpack_require__(5);
       type: 'number',
       title: '提前期偏置',
       bindField: 'leadTimeOffset',
+      editIndex: 5,
       width: 100
     }, {
       type: 'addAndDel',
@@ -1316,7 +1334,7 @@ var _dec, _class;
 
 
 
-var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'moment', 'tableHelper', 'message', 'modal'), _dec(_class =
+var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'moment', 'tableHelper', 'keyboardHelper', 'message', 'modal'), _dec(_class =
 /*#__PURE__*/
 function () {
   function action(option) {

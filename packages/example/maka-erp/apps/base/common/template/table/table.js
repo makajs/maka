@@ -17,7 +17,7 @@ export default function table({
     tableName = 'table', bindPath = 'data.list', selectFieldName = 'isSelected',
     paginationPath = 'data.pagination', onPageChange = 'pageChanged',
     columns, component, enablePagination = true, pageSizeOptions = [10,20,50,100], 
-    showSelectedCount = true, ...ext 
+    showSelectedCount = true, editClassNamePrefix, startEditIndex,editableColumnCount, ...ext 
 }) {
     var ret = [{
         component: 'FDT.Table',
@@ -63,7 +63,10 @@ export default function table({
     columns.forEach(c => {
         let { type, ...other } = c,
             option = { ...other,  bindPath }, x
-
+            option.editClassNamePrefix = editClassNamePrefix
+            option.startEditIndex = startEditIndex
+            option.editableColumnCount = editableColumnCount
+    
         switch (type) {
             case 'sequence':
                 x = sequenceColumn({...option, paginationPath})
