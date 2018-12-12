@@ -56,6 +56,7 @@ const createAppElementInternal = (appName, appProps) => props => {
 }
 function createAppElement(appName, appProps) {
     var Internal = createAppElementInternal(appName, appProps)
+    
     if (Hoc) {
         return (<Hoc><Internal /></Hoc>)
     }
