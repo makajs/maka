@@ -238,8 +238,9 @@ class action {
 
 
 ### View
+View supports three ways
 
-``` js
+#### JSON
 
 ``` js
 const view = {
@@ -257,8 +258,41 @@ const view = {
 }
 ```
 
-- The View object is JSON representation of react components.
-- Please refer Advanced Concepts for more information.
+#### Html template
+
+view.html
+``` html
+<div class="testview">
+    <div>{{data.content + data.input}}</div>
+    <input placeholder="world" value="{{data.input}}" onChange="{{$onChange}}" />
+</div> 
+```
+
+index.js
+``` js
+import view from './view.html'
+
+```
+- View.html as above can be imported and auto transformed to JavaScript object
+
+### React element
+
+```js
+const view = (props) => {
+    const { base, onChange } = props
+    const data = base.getState('data')
+    return (
+        <div className='maka-react-view'>
+            <div>
+                {data.content + data.input}
+            </div>
+            <input placeholder='world' value={data.input} onChange={onChange} />
+        </div>
+    )
+}
+```
+
+> Please refer Advanced Concepts for more information.
 
 
 ## Advanced Concepts

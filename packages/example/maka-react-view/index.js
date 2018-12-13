@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import pkgJson from './package.json'
 import { actionMixin } from 'maka'
 import './style.less'
@@ -25,9 +25,9 @@ class action {
 }
 
 const view = (props) => {
-    const {base, onChange} = props
+    const { base, onChange } = props
     const data = base.getState('data')
-    
+
     return (
         <div className='maka-react-view'>
             <div>
