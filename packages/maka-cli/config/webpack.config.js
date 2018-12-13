@@ -39,7 +39,7 @@ module.exports = function (option) {
     }
 
     return {
-        mode: 'production',
+        mode: isProd ? 'production': 'development',
         ...ext,
         optimization: {
             minimizer
