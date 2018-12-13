@@ -7,7 +7,7 @@
 		exports["MakaApp-my"] = factory(require("maka"));
 	else
 		root["MakaApp-my"] = factory(root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,290 +91,136 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!*****************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
+eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack://MakaApp-my//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js?");
 
 /***/ }),
-/* 1 */
-/***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"my","description":"my","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/my.git"},"bugs":{"url":"https://github.com/makajs/my/issues"},"mypage":"https://github.com/makajs/my#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../base","../"],"devDependencies":{}};
-
-/***/ }),
-/* 2 */
+/***/ "../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!*****************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
+eval("function _defineProperty(obj, key, value) {\n  if (key in obj) {\n    Object.defineProperty(obj, key, {\n      value: value,\n      enumerable: true,\n      configurable: true,\n      writable: true\n    });\n  } else {\n    obj[key] = value;\n  }\n\n  return obj;\n}\n\nmodule.exports = _defineProperty;\n\n//# sourceURL=webpack://MakaApp-my//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js?");
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(6);
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-/* 6 */
+/***/ "./action.js":
+/*!*******************!*\
+  !*** ./action.js ***!
+  \*******************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return action; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck */ \"../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty */ \"../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nvar _dec, _class;\n\n\nconsole.log(Object(maka__WEBPACK_IMPORTED_MODULE_2__[\"getAction\"])('numberHelper'));\nvar action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_2__[\"actionMixin\"])('base', 'toast', 'numberHelper'), _dec(_class = function action(option) {\n  var _this = this;\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, action);\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, \"signOut\", function () {\n    maka__WEBPACK_IMPORTED_MODULE_2__[\"fetch\"].clearAccessToken();\n    maka__WEBPACK_IMPORTED_MODULE_2__[\"navigate\"].redirect('/sign-in');\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, \"setting\", function () {\n    _this.toast.info('你就告诉我啥不能做吧 !!!', 1);\n  });\n\n  Object.assign(this, option.mixins);\n}) || _class);\n\n\n//# sourceURL=webpack://MakaApp-my/./action.js?");
 
-// EXTERNAL MODULE: ./package.json
-var package_0 = __webpack_require__(1);
+/***/ }),
 
-// CONCATENATED MODULE: ./view.js
-/* harmony default export */ var view = ({
-  component: 'div',
-  className: 'my',
-  children: [{
-    component: 'antd.WhiteSpace'
-  }, {
-    component: 'antd.List',
-    children: [{
-      component: 'antd.List.Item',
-      onClick: "{{$signOut}}",
-      thumb: {
-        component: 'FA',
-        name: 'reply',
-        style: {
-          color: 'green',
-          fontSize: 18
-        }
-      },
-      children: '注销'
-    }]
-  }]
-});
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(2);
-var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/*! exports provided: name, view, state, action */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(3);
-var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./package.json */ \"./package.json\", 1);\n/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view */ \"./view.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"view\", function() { return _view__WEBPACK_IMPORTED_MODULE_1__[\"default\"]; });\n\n/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./action */ \"./action.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"action\", function() { return _action__WEBPACK_IMPORTED_MODULE_2__[\"default\"]; });\n\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./state */ \"./state.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"state\", function() { return _state__WEBPACK_IMPORTED_MODULE_3__[\"default\"]; });\n\n/* harmony import */ var _mock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mock */ \"./mock.js\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.less */ \"./style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_5__);\n\n\n\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_0__.name;\n\n\n//# sourceURL=webpack://MakaApp-my/./index.js?");
 
-// EXTERNAL MODULE: external "maka"
-var external_maka_ = __webpack_require__(0);
+/***/ }),
 
-// CONCATENATED MODULE: ./action.js
+/***/ "./mock.js":
+/*!*****************!*\
+  !*** ./mock.js ***!
+  \*****************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_0__);\n\nvar moment = Object(maka__WEBPACK_IMPORTED_MODULE_0__[\"getAction\"])('moment');\nvar mockData = maka__WEBPACK_IMPORTED_MODULE_0__[\"fetch\"].mockData;\n\nfunction getRandomNum(min, max) {\n  var Range = max - min;\n  var Rand = Math.random();\n  return min + Math.round(Rand * Range);\n}\n\nfunction initMockData() {\n  if (!mockData.goodss) {\n    mockData.goodss = [];\n\n    for (var i = 0; i < 8; i++) {\n      mockData.goodss.push({\n        id: i,\n        name: '商品' + i\n      });\n    }\n  }\n\n  if (!mockData.ips) {\n    mockData.ips = [];\n\n    for (var i = 0; i < 200; i++) {\n      mockData.ips.push({\n        id: i,\n        type: {\n          code: 'income',\n          name: '收入'\n        },\n        goods: mockData.goodss[getRandomNum(0, 6)],\n        amount: getRandomNum(3, 10000),\n        date: moment().subtract(getRandomNum(0, 40), 'days').format('YYYY-MM-DD')\n      });\n    }\n\n    for (var i = 0; i < 100; i++) {\n      mockData.ips.push({\n        id: i,\n        type: {\n          code: 'pay',\n          name: '支出'\n        },\n        goods: mockData.goodss[getRandomNum(0, 6)],\n        amount: getRandomNum(3, 10000) * -1,\n        date: moment().subtract(getRandomNum(0, 40), 'days').format('YYYY-MM-DD')\n      });\n    }\n  }\n\n  if (!mockData.todos) {\n    mockData.todos = [];\n\n    for (var i = 0; i < 10; i++) {\n      mockData.todos.push({\n        id: i,\n        title: '待办事物' + i,\n        description: '代办描述' + i,\n        date: moment().subtract(getRandomNum(0, 40), 'days').format('YYYY-MM-DD')\n      });\n    }\n  }\n\n  if (!mockData.toAudits) {\n    mockData.toAudits = [];\n\n    for (var i = 0; i < 5; i++) {\n      mockData.toAudits.push({\n        id: i,\n        title: '待审事物' + i,\n        description: '待审事物' + i,\n        date: moment().subtract(getRandomNum(0, 40), 'days').format('YYYY-MM-DD')\n      });\n    }\n  }\n}\n\nmaka__WEBPACK_IMPORTED_MODULE_0__[\"fetch\"].mock('/v1/my', function (option) {\n  initMockData();\n  return {\n    result: true,\n    value: {\n      incomeAndPays: [{\n        title: '今日',\n        type: 'today',\n        date: moment().format('YYYY-MM-DD'),\n        income: mockData.ips.filter(function (o) {\n          return o.date == moment().format('YYYY-MM-DD') && o.type.code == 'income';\n        }).reduce(function (a, b) {\n          return a + b.amount;\n        }, 0),\n        pay: mockData.ips.filter(function (o) {\n          return o.date == moment().format('YYYY-MM-DD') && o.type.code == 'pay';\n        }).reduce(function (a, b) {\n          return a + b.amount;\n        }, 0) * -1\n      }, {\n        title: '昨日',\n        type: 'yesterday',\n        date: moment().subtract(1, 'days').format('YYYY-MM-DD'),\n        income: mockData.ips.filter(function (o) {\n          return o.date == moment().subtract(1, 'days').format('YYYY-MM-DD') && o.type.code == 'income';\n        }).reduce(function (a, b) {\n          return a + b.amount;\n        }, 0),\n        pay: mockData.ips.filter(function (o) {\n          return o.date == moment().subtract(1, 'days').format('YYYY-MM-DD') && o.type.code == 'pay';\n        }).reduce(function (a, b) {\n          return a + b.amount;\n        }, 0) * -1\n      }, {\n        title: '本月',\n        type: 'month',\n        date: moment().format('YYYY-MM'),\n        income: mockData.ips.filter(function (o) {\n          return moment(o.date).format('YYYY-MM') == moment().format('YYYY-MM') && o.type.code == 'income';\n        }).reduce(function (a, b) {\n          return a + b.amount;\n        }, 0),\n        pay: mockData.ips.filter(function (o) {\n          return moment(o.date).format('YYYY-MM') == moment().format('YYYY-MM') && o.type.code == 'pay';\n        }).reduce(function (a, b) {\n          return a + b.amount;\n        }, 0) * -1\n      }],\n      todoCount: mockData.todos.length,\n      toAuditCount: mockData.toAudits.length\n    }\n  };\n});\n\n//# sourceURL=webpack://MakaApp-my/./mock.js?");
 
+/***/ }),
 
-var _dec, _class2;
+/***/ "./package.json":
+/*!**********************!*\
+  !*** ./package.json ***!
+  \**********************/
+/*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, mypage, scripts, dependencies, server, subAppDir, devDependencies, default */
+/***/ (function(module) {
 
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"my\",\"description\":\"my\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/my.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/my/issues\"},\"mypage\":\"https://github.com/makajs/my#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../base\",\"../\"],\"devDependencies\":{}};\n\n//# sourceURL=webpack://MakaApp-my/./package.json?");
 
-console.log(Object(external_maka_["getAction"])('numberHelper'));
-var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'toast', 'numberHelper'), _dec(_class2 = function action(option) {
-  classCallCheck_default()(this, action);
+/***/ }),
 
-  defineProperty_default()(this, "signOut", function () {
-    external_maka_["fetch"].clearAccessToken();
-    external_maka_["navigate"].redirect('/sign-in');
-  });
+/***/ "./state.js":
+/*!******************!*\
+  !*** ./state.js ***!
+  \******************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  Object.assign(this, option.mixins);
-}) || _class2);
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  data: {\n    incomeAndPays: [],\n    selectedTab: 'my',\n    content: {},\n    openPages: [],\n    other: {}\n  }\n});\n\n//# sourceURL=webpack://MakaApp-my/./state.js?");
 
-// CONCATENATED MODULE: ./state.js
-/* harmony default export */ var state = ({
-  data: {
-    incomeAndPays: [],
-    selectedTab: 'my',
-    content: {},
-    openPages: [],
-    other: {}
-  }
-});
-// CONCATENATED MODULE: ./mock.js
+/***/ }),
 
-var moment = Object(external_maka_["getAction"])('moment');
-var mockData = external_maka_["fetch"].mockData;
+/***/ "./style.less":
+/*!********************!*\
+  !*** ./style.less ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-function getRandomNum(min, max) {
-  var Range = max - min;
-  var Rand = Math.random();
-  return min + Math.round(Rand * Range);
-}
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-my/./style.less?");
 
-function initMockData() {
-  if (!mockData.goodss) {
-    mockData.goodss = [];
+/***/ }),
 
-    for (var i = 0; i < 8; i++) {
-      mockData.goodss.push({
-        id: i,
-        name: '商品' + i
-      });
-    }
-  }
+/***/ "./view.js":
+/*!*****************!*\
+  !*** ./view.js ***!
+  \*****************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  if (!mockData.ips) {
-    mockData.ips = [];
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  component: 'div',\n  className: 'my',\n  children: [{\n    component: 'antd.WhiteSpace'\n  }, {\n    component: 'antd.List',\n    children: [{\n      component: 'antd.Result',\n      img: {\n        component: 'img',\n        src: 'https://avatars3.githubusercontent.com/u/43697360?s=200&v=4',\n        className: 'spe am-icon am-icon-md my-info'\n      },\n      title: 'Maka.js',\n      message: {\n        component: 'div',\n        children: 'React and redux based, lightweight javascript framework'\n      }\n    }]\n  }, {\n    component: 'antd.List',\n    children: [{\n      component: 'antd.List.Item',\n      onClick: \"{{$setting}}\",\n      thumb: {\n        component: 'FA',\n        name: 'whatsapp',\n        style: {\n          color: 'green',\n          fontSize: 22\n        }\n      },\n      extra: {\n        component: 'FA',\n        name: 'github',\n        style: {\n          color: 'green',\n          fontSize: 18\n        }\n      },\n      children: '联系我们'\n    }]\n  }, {\n    component: 'antd.WhiteSpace'\n  }, {\n    component: 'antd.List',\n    children: [{\n      component: 'antd.List.Item',\n      onClick: \"{{$setting}}\",\n      thumb: {\n        component: 'FA',\n        name: 'credit-card',\n        style: {\n          color: 'green',\n          fontSize: 18\n        }\n      },\n      children: '钱包'\n    }]\n  }, {\n    component: 'antd.WhiteSpace'\n  }, {\n    component: 'antd.List',\n    children: [{\n      component: 'antd.List.Item',\n      onClick: \"{{$setting}}\",\n      thumb: {\n        component: 'FA',\n        name: 'cog',\n        style: {\n          color: 'green',\n          fontSize: 18\n        }\n      },\n      children: '设置'\n    }]\n  }, {\n    component: 'antd.Button',\n    type: 'warning',\n    children: '注销',\n    onClick: \"{{$signOut}}\",\n    style: {\n      position: 'absolute',\n      bottom: '2px',\n      width: '100%'\n    }\n  }]\n});\n\n//# sourceURL=webpack://MakaApp-my/./view.js?");
 
-    for (var i = 0; i < 200; i++) {
-      mockData.ips.push({
-        id: i,
-        type: {
-          code: 'income',
-          name: '收入'
-        },
-        goods: mockData.goodss[getRandomNum(0, 6)],
-        amount: getRandomNum(3, 10000),
-        date: moment().subtract(getRandomNum(0, 40), 'days').format('YYYY-MM-DD')
-      });
-    }
+/***/ }),
 
-    for (var i = 0; i < 100; i++) {
-      mockData.ips.push({
-        id: i,
-        type: {
-          code: 'pay',
-          name: '支出'
-        },
-        goods: mockData.goodss[getRandomNum(0, 6)],
-        amount: getRandomNum(3, 10000) * -1,
-        date: moment().subtract(getRandomNum(0, 40), 'days').format('YYYY-MM-DD')
-      });
-    }
-  }
+/***/ 0:
+/*!************************!*\
+  !*** multi ./index.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-  if (!mockData.todos) {
-    mockData.todos = [];
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-mobile-erp/apps/my/my/index.js */\"./index.js\");\n\n\n//# sourceURL=webpack://MakaApp-my/multi_./index.js?");
 
-    for (var i = 0; i < 10; i++) {
-      mockData.todos.push({
-        id: i,
-        title: '待办事物' + i,
-        description: '代办描述' + i,
-        date: moment().subtract(getRandomNum(0, 40), 'days').format('YYYY-MM-DD')
-      });
-    }
-  }
+/***/ }),
 
-  if (!mockData.toAudits) {
-    mockData.toAudits = [];
+/***/ "maka":
+/*!***********************!*\
+  !*** external "maka" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-    for (var i = 0; i < 5; i++) {
-      mockData.toAudits.push({
-        id: i,
-        title: '待审事物' + i,
-        description: '待审事物' + i,
-        date: moment().subtract(getRandomNum(0, 40), 'days').format('YYYY-MM-DD')
-      });
-    }
-  }
-}
-
-external_maka_["fetch"].mock('/v1/my', function (option) {
-  initMockData();
-  return {
-    result: true,
-    value: {
-      incomeAndPays: [{
-        title: '今日',
-        type: 'today',
-        date: moment().format('YYYY-MM-DD'),
-        income: mockData.ips.filter(function (o) {
-          return o.date == moment().format('YYYY-MM-DD') && o.type.code == 'income';
-        }).reduce(function (a, b) {
-          return a + b.amount;
-        }, 0),
-        pay: mockData.ips.filter(function (o) {
-          return o.date == moment().format('YYYY-MM-DD') && o.type.code == 'pay';
-        }).reduce(function (a, b) {
-          return a + b.amount;
-        }, 0) * -1
-      }, {
-        title: '昨日',
-        type: 'yesterday',
-        date: moment().subtract(1, 'days').format('YYYY-MM-DD'),
-        income: mockData.ips.filter(function (o) {
-          return o.date == moment().subtract(1, 'days').format('YYYY-MM-DD') && o.type.code == 'income';
-        }).reduce(function (a, b) {
-          return a + b.amount;
-        }, 0),
-        pay: mockData.ips.filter(function (o) {
-          return o.date == moment().subtract(1, 'days').format('YYYY-MM-DD') && o.type.code == 'pay';
-        }).reduce(function (a, b) {
-          return a + b.amount;
-        }, 0) * -1
-      }, {
-        title: '本月',
-        type: 'month',
-        date: moment().format('YYYY-MM'),
-        income: mockData.ips.filter(function (o) {
-          return moment(o.date).format('YYYY-MM') == moment().format('YYYY-MM') && o.type.code == 'income';
-        }).reduce(function (a, b) {
-          return a + b.amount;
-        }, 0),
-        pay: mockData.ips.filter(function (o) {
-          return moment(o.date).format('YYYY-MM') == moment().format('YYYY-MM') && o.type.code == 'pay';
-        }).reduce(function (a, b) {
-          return a + b.amount;
-        }, 0) * -1
-      }],
-      todoCount: mockData.todos.length,
-      toAuditCount: mockData.toAudits.length
-    }
-  };
-});
-// EXTERNAL MODULE: ./style.less
-var style = __webpack_require__(5);
-
-// CONCATENATED MODULE: ./index.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return index_name; });
-/* concated harmony reexport view */__webpack_require__.d(__webpack_exports__, "view", function() { return view; });
-/* concated harmony reexport state */__webpack_require__.d(__webpack_exports__, "state", function() { return state; });
-/* concated harmony reexport action */__webpack_require__.d(__webpack_exports__, "action", function() { return action_action; });
-
-
-
-
-
-
-var index_name = package_0.name;
-
+eval("module.exports = __WEBPACK_EXTERNAL_MODULE_maka__;\n\n//# sourceURL=webpack://MakaApp-my/external_%22maka%22?");
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

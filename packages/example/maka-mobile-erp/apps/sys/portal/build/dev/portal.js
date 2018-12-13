@@ -7,7 +7,7 @@
 		exports["MakaApp-portal"] = factory(require("maka"));
 	else
 		root["MakaApp-portal"] = factory(root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,374 +91,147 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!*****************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
+eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack://MakaApp-portal//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js?");
 
 /***/ }),
-/* 1 */
+
+/***/ "../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!*****************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
+eval("function _defineProperty(obj, key, value) {\n  if (key in obj) {\n    Object.defineProperty(obj, key, {\n      value: value,\n      enumerable: true,\n      configurable: true,\n      writable: true\n    });\n  } else {\n    obj[key] = value;\n  }\n\n  return obj;\n}\n\nmodule.exports = _defineProperty;\n\n//# sourceURL=webpack://MakaApp-portal//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js?");
 
 /***/ }),
-/* 2 */
-/***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"portal","description":"portal","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/portal.git"},"bugs":{"url":"https://github.com/makajs/portal/issues"},"homepage":"https://github.com/makajs/portal#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../base","../../home"],"devDependencies":{}};
-
-/***/ }),
-/* 3 */
+/***/ "../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread.js":
+/*!***************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread.js ***!
+  \***************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var defineProperty = __webpack_require__(1);
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      defineProperty(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
-module.exports = _objectSpread;
+eval("var defineProperty = __webpack_require__(/*! ./defineProperty */ \"../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js\");\n\nfunction _objectSpread(target) {\n  for (var i = 1; i < arguments.length; i++) {\n    var source = arguments[i] != null ? arguments[i] : {};\n    var ownKeys = Object.keys(source);\n\n    if (typeof Object.getOwnPropertySymbols === 'function') {\n      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {\n        return Object.getOwnPropertyDescriptor(source, sym).enumerable;\n      }));\n    }\n\n    ownKeys.forEach(function (key) {\n      defineProperty(target, key, source[key]);\n    });\n  }\n\n  return target;\n}\n\nmodule.exports = _objectSpread;\n\n//# sourceURL=webpack://MakaApp-portal//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread.js?");
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(7);
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-/* 7 */
+/***/ "./action.js":
+/*!*******************!*\
+  !*** ./action.js ***!
+  \*******************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return action; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread */ \"../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck */ \"../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty */ \"../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\nvar _dec, _class;\n\n\nvar action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_3__[\"actionMixin\"])('base', 'toast'), _dec(_class = function action(option) {\n  var _this = this;\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, action);\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, \"onInit\", function () {\n    maka__WEBPACK_IMPORTED_MODULE_3__[\"navigate\"].listen(_this.listen);\n\n    _this.base.context.set('openPage', _this.setContent);\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, \"setContent\", function (title, appName) {\n    var appProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n    return new Promise(function (resolve, reject) {\n      appProps = _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, appProps, {\n        onOk: function onOk(result) {\n          resolve(result);\n        }\n      });\n\n      var data = _this.base.gs('data');\n\n      if (data.content && appName == data.content.appName) return;\n      var content = {\n        title: title,\n        appName: appName,\n        appProps: appProps\n      },\n          openPages = data.openPages || [],\n          json = {\n        'data.content': content\n      };\n      var hitIndex = data.openPages.findIndex(function (o) {\n        return o.title == title || o.appName == appName;\n      });\n      var hit = hitIndex != -1;\n\n      if (hit) {\n        _this.base.ss(json);\n\n        return;\n      } else {\n        data.openPages.push(content);\n        json['data.openPages'] = openPages;\n      }\n\n      _this.base.ss(json);\n\n      setTimeout(function () {\n        var location = maka__WEBPACK_IMPORTED_MODULE_3__[\"navigate\"].getLocation();\n        var full = \"\".concat(location.pathname).concat(location.search);\n        var segs = full.split('/');\n        segs = segs.slice(0, segs.indexOf('portal') + 1);\n        segs.push(content.appName);\n        maka__WEBPACK_IMPORTED_MODULE_3__[\"navigate\"].redirect(segs.join('/'));\n      }, 0);\n    });\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, \"closeContent\", function (appName) {\n    var openPages = _this.base.gs('data.openPages') || [];\n    var hitIndex = openPages.findIndex(function (o) {\n      return o.appName == appName;\n    });\n    openPages = openPages.splice(hitIndex, 0);\n\n    _this.base.ss({\n      'data.openPages': openPages,\n      'data.content': openPages[openPages.length - 1]\n    });\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, \"listen\", function (location, action) {\n    var full = \"\".concat(location.pathname).concat(location.search);\n    if (!full || full.indexOf('portal') == -1) return;\n\n    var currentAppName = _this.base.gs('data.content.appName');\n\n    if (action == 'POP') {\n      _this.closeContent(currentAppName);\n\n      return;\n    }\n\n    var segs = full.split('/'),\n        targetApp = segs[segs.length - 1];\n\n    if (targetApp == 'portal' || !targetApp) {\n      _this.base.ss({\n        'data.openTabs': [],\n        'data.content': {}\n      });\n    } else {\n      _this.setContent('', targetApp);\n    }\n  });\n\n  Object.assign(this, option.mixins);\n}) || _class);\n\n\n//# sourceURL=webpack://MakaApp-portal/./action.js?");
 
-// EXTERNAL MODULE: ./package.json
-var package_0 = __webpack_require__(2);
+/***/ }),
 
-// CONCATENATED MODULE: ./view.js
-/* harmony default export */ var view = ({
-  component: 'div',
-  className: 'portal',
-  children: [{
-    component: 'div',
-    className: "{{(data.content && data.content.appName) ? 'portal-hidden': 'portal-show portal-header'}}",
-    children: 'ERP DEMO'
-  }, {
-    component: 'div',
-    className: "{{(data.content && data.content.appName) ? 'portal-hidden': 'portal-content portal-show'}}",
-    children: {
-      component: 'antd.TabBar',
-      unselectedTintColor: "#949494",
-      tintColor: "#33A3F4",
-      barTintColor: "#F8FCFF",
-      prerenderingSiblingsNumber: 0,
-      children: [{
-        title: '首页',
-        key: 'home',
-        component: 'antd.TabBar.Item',
-        selected: "{{data.selectedTab == 'home'}}",
-        onPress: "{{()=>$base.ss({'data.selectedTab': 'home'})}}",
-        icon: {
-          component: 'FA',
-          name: 'home'
-        },
-        selectedIcon: {
-          component: 'FA',
-          name: 'home'
-        },
-        children: [{
-          component: 'AppLoader',
-          appName: 'home'
-        }]
-      }, {
-        title: '报表',
-        key: 'rpt',
-        component: 'TabBar.Item',
-        selected: "{{data.selectedTab == 'rpt'}}",
-        onPress: "{{()=>$base.ss({'data.selectedTab': 'rpt'})}}",
-        icon: {
-          component: 'FA',
-          name: 'bar-chart'
-        },
-        selectedIcon: {
-          component: 'FA',
-          name: 'bar-chart'
-        },
-        children: [{
-          component: 'AppLoader',
-          appName: 'rpt'
-        }]
-      }, {
-        title: '我的',
-        key: 'my',
-        component: 'TabBar.Item',
-        selected: "{{data.selectedTab == 'my'}}",
-        onPress: "{{()=>$base.ss({'data.selectedTab': 'my'})}}",
-        icon: {
-          component: 'FA',
-          name: 'user'
-        },
-        selectedIcon: {
-          component: 'FA',
-          name: 'user'
-        },
-        children: [{
-          component: 'AppLoader',
-          appName: 'my'
-        }]
-      }]
-    }
-  }, {
-    component: 'div',
-    className: "{{(data.content && data.content.appName) ? 'portal-open-page portal-open-page-show': 'portal-open-page portal-open-page-show-hidden'}}",
-    children: [{
-      _for: 'item in data.openPages',
-      component: 'AppLoader',
-      appName: '{{item.appName}}',
-      '...': '{{item.appProps}}'
-    }]
-  }]
-});
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(3);
-var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/*! exports provided: name, view, state, action */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(4);
-var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./package.json */ \"./package.json\", 1);\n/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view */ \"./view.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"view\", function() { return _view__WEBPACK_IMPORTED_MODULE_1__[\"default\"]; });\n\n/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./action */ \"./action.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"action\", function() { return _action__WEBPACK_IMPORTED_MODULE_2__[\"default\"]; });\n\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./state */ \"./state.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"state\", function() { return _state__WEBPACK_IMPORTED_MODULE_3__[\"default\"]; });\n\n/* harmony import */ var _mock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mock */ \"./mock.js\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.less */ \"./style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_5__);\n\n\n\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_0__.name;\n\n\n//# sourceURL=webpack://MakaApp-portal/./index.js?");
 
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(1);
-var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+/***/ }),
 
-// EXTERNAL MODULE: external "maka"
-var external_maka_ = __webpack_require__(0);
+/***/ "./mock.js":
+/*!*****************!*\
+  !*** ./mock.js ***!
+  \*****************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// CONCATENATED MODULE: ./action.js
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_0__);\n\nvar mockData = maka__WEBPACK_IMPORTED_MODULE_0__[\"fetch\"].mockData;\n\nfunction initMockData() {\n  if (!mockData.users) {\n    mockData.users = [{\n      id: 1,\n      mobile: 13334445556,\n      password: 'c4ca4238a0b923820dcc509a6f75849b',\n      name: 'zlj'\n    }];\n  }\n}\n\nmaka__WEBPACK_IMPORTED_MODULE_0__[\"fetch\"].mock('/v1/user/login', function (option) {\n  initMockData();\n  var user = mockData.users.find(function (o) {\n    return o.mobile == option.mobile && o.password == option.password;\n  });\n\n  if (user) {\n    return {\n      result: true,\n      //token模拟简单处理，正式不应该有密码等数据\n      token: \"\".concat(user.id, \",\").concat(user.mobile, \",\").concat(user.password, \",\").concat(user.name ? user.name : ''),\n      value: option\n    };\n  } else {\n    return {\n      result: false,\n      error: {\n        message: '用户名或者密码不正确（默认 手机:13334445556,密码:1）'\n      }\n    };\n  }\n});\n\n//# sourceURL=webpack://MakaApp-portal/./mock.js?");
 
+/***/ }),
 
+/***/ "./package.json":
+/*!**********************!*\
+  !*** ./package.json ***!
+  \**********************/
+/*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, homepage, scripts, dependencies, server, subAppDir, devDependencies, default */
+/***/ (function(module) {
 
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"portal\",\"description\":\"portal\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/portal.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/portal/issues\"},\"homepage\":\"https://github.com/makajs/portal#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../base\",\"../../home\"],\"devDependencies\":{}};\n\n//# sourceURL=webpack://MakaApp-portal/./package.json?");
 
-var _dec, _class2;
+/***/ }),
 
+/***/ "./state.js":
+/*!******************!*\
+  !*** ./state.js ***!
+  \******************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'toast'), _dec(_class2 = function action(option) {
-  var _this = this;
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  data: {\n    selectedTab: 'home',\n    content: {},\n    openPages: [],\n    other: {}\n  }\n});\n\n//# sourceURL=webpack://MakaApp-portal/./state.js?");
 
-  classCallCheck_default()(this, action);
+/***/ }),
 
-  defineProperty_default()(this, "onInit", function () {
-    external_maka_["navigate"].listen(_this.listen);
+/***/ "./style.less":
+/*!********************!*\
+  !*** ./style.less ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-    _this.base.context.set('openPage', _this.setContent);
-  });
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-portal/./style.less?");
 
-  defineProperty_default()(this, "setContent", function (title, appName) {
-    var appProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    return new Promise(function (resolve, reject) {
-      appProps = objectSpread_default()({}, appProps, {
-        onOk: function onOk(result) {
-          resolve(result);
-        }
-      });
+/***/ }),
 
-      var data = _this.base.gs('data');
+/***/ "./view.js":
+/*!*****************!*\
+  !*** ./view.js ***!
+  \*****************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-      if (data.content && appName == data.content.appName) return;
-      var content = {
-        title: title,
-        appName: appName,
-        appProps: appProps
-      },
-          openPages = data.openPages || [],
-          json = {
-        'data.content': content
-      };
-      var hitIndex = data.openPages.findIndex(function (o) {
-        return o.title == title || o.appName == appName;
-      });
-      var hit = hitIndex != -1;
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  component: 'div',\n  className: 'portal',\n  children: [{\n    component: 'div',\n    className: \"{{(data.content && data.content.appName) ? 'portal-hidden': 'portal-show portal-header'}}\",\n    children: 'ERP DEMO'\n  }, {\n    component: 'div',\n    className: \"{{(data.content && data.content.appName) ? 'portal-hidden': 'portal-content portal-show'}}\",\n    children: {\n      component: 'antd.TabBar',\n      unselectedTintColor: \"#949494\",\n      tintColor: \"#33A3F4\",\n      barTintColor: \"#F8FCFF\",\n      prerenderingSiblingsNumber: 0,\n      children: [{\n        title: '首页',\n        key: 'home',\n        component: 'antd.TabBar.Item',\n        selected: \"{{data.selectedTab == 'home'}}\",\n        onPress: \"{{()=>$base.ss({'data.selectedTab': 'home'})}}\",\n        icon: {\n          component: 'FA',\n          name: 'home'\n        },\n        selectedIcon: {\n          component: 'FA',\n          name: 'home'\n        },\n        children: [{\n          component: 'AppLoader',\n          appName: 'home'\n        }]\n      }, {\n        title: '报表',\n        key: 'rpt',\n        component: 'TabBar.Item',\n        selected: \"{{data.selectedTab == 'rpt'}}\",\n        onPress: \"{{()=>$base.ss({'data.selectedTab': 'rpt'})}}\",\n        icon: {\n          component: 'FA',\n          name: 'bar-chart'\n        },\n        selectedIcon: {\n          component: 'FA',\n          name: 'bar-chart'\n        },\n        children: [{\n          component: 'AppLoader',\n          appName: 'rpt'\n        }]\n      }, {\n        title: '我的',\n        key: 'my',\n        component: 'TabBar.Item',\n        selected: \"{{data.selectedTab == 'my'}}\",\n        onPress: \"{{()=>$base.ss({'data.selectedTab': 'my'})}}\",\n        icon: {\n          component: 'FA',\n          name: 'user'\n        },\n        selectedIcon: {\n          component: 'FA',\n          name: 'user'\n        },\n        children: [{\n          component: 'AppLoader',\n          appName: 'my'\n        }]\n      }]\n    }\n  }, {\n    component: 'div',\n    className: \"{{(data.content && data.content.appName) ? 'portal-open-page portal-open-page-show': 'portal-open-page portal-open-page-show-hidden'}}\",\n    children: [{\n      _for: 'item in data.openPages',\n      component: 'AppLoader',\n      appName: '{{item.appName}}',\n      '...': '{{item.appProps}}'\n    }]\n  }]\n});\n\n//# sourceURL=webpack://MakaApp-portal/./view.js?");
 
-      if (hit) {
-        _this.base.ss(json);
+/***/ }),
 
-        return;
-      } else {
-        data.openPages.push(content);
-        json['data.openPages'] = openPages;
-      }
+/***/ 0:
+/*!************************!*\
+  !*** multi ./index.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-      _this.base.ss(json);
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-mobile-erp/apps/sys/portal/index.js */\"./index.js\");\n\n\n//# sourceURL=webpack://MakaApp-portal/multi_./index.js?");
 
-      setTimeout(function () {
-        var location = external_maka_["navigate"].getLocation();
-        var full = "".concat(location.pathname).concat(location.search);
-        var segs = full.split('/');
-        segs = segs.slice(0, segs.indexOf('portal') + 1);
-        segs.push(content.appName);
-        external_maka_["navigate"].redirect(segs.join('/'));
-      }, 0);
-    });
-  });
+/***/ }),
 
-  defineProperty_default()(this, "closeContent", function (appName) {
-    var openPages = _this.base.gs('data.openPages') || [];
-    var hitIndex = openPages.findIndex(function (o) {
-      return o.appName == appName;
-    });
-    openPages = openPages.splice(hitIndex, 0);
+/***/ "maka":
+/*!***********************!*\
+  !*** external "maka" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-    _this.base.ss({
-      'data.openPages': openPages,
-      'data.content': openPages[openPages.length - 1]
-    });
-  });
-
-  defineProperty_default()(this, "listen", function (location, action) {
-    var full = "".concat(location.pathname).concat(location.search);
-    if (!full || full.indexOf('portal') == -1) return;
-
-    var currentAppName = _this.base.gs('data.content.appName');
-
-    if (action == 'POP') {
-      _this.closeContent(currentAppName);
-
-      return;
-    }
-
-    var segs = full.split('/'),
-        targetApp = segs[segs.length - 1];
-
-    if (targetApp == 'portal' || !targetApp) {
-      _this.base.ss({
-        'data.openTabs': [],
-        'data.content': {}
-      });
-    } else {
-      _this.setContent('', targetApp);
-    }
-  });
-
-  Object.assign(this, option.mixins);
-}) || _class2);
-
-// CONCATENATED MODULE: ./state.js
-/* harmony default export */ var state = ({
-  data: {
-    selectedTab: 'home',
-    content: {},
-    openPages: [],
-    other: {}
-  }
-});
-// CONCATENATED MODULE: ./mock.js
-
-var mockData = external_maka_["fetch"].mockData;
-
-function initMockData() {
-  if (!mockData.users) {
-    mockData.users = [{
-      id: 1,
-      mobile: 13334445556,
-      password: 'c4ca4238a0b923820dcc509a6f75849b',
-      name: 'zlj'
-    }];
-  }
-}
-
-external_maka_["fetch"].mock('/v1/user/login', function (option) {
-  initMockData();
-  var user = mockData.users.find(function (o) {
-    return o.mobile == option.mobile && o.password == option.password;
-  });
-
-  if (user) {
-    return {
-      result: true,
-      //token模拟简单处理，正式不应该有密码等数据
-      token: "".concat(user.id, ",").concat(user.mobile, ",").concat(user.password, ",").concat(user.name ? user.name : ''),
-      value: option
-    };
-  } else {
-    return {
-      result: false,
-      error: {
-        message: '用户名或者密码不正确（默认 手机:13334445556,密码:1）'
-      }
-    };
-  }
-});
-// EXTERNAL MODULE: ./style.less
-var style = __webpack_require__(6);
-
-// CONCATENATED MODULE: ./index.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return index_name; });
-/* concated harmony reexport view */__webpack_require__.d(__webpack_exports__, "view", function() { return view; });
-/* concated harmony reexport state */__webpack_require__.d(__webpack_exports__, "state", function() { return state; });
-/* concated harmony reexport action */__webpack_require__.d(__webpack_exports__, "action", function() { return action_action; });
-
-
-
-
-
-
-var index_name = package_0.name;
-
+eval("module.exports = __WEBPACK_EXTERNAL_MODULE_maka__;\n\n//# sourceURL=webpack://MakaApp-portal/external_%22maka%22?");
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

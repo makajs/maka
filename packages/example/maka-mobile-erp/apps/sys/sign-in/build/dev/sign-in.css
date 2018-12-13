@@ -1,8 +1,9 @@
 .sign-in {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  background: #E8F4FF;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 .sign-in-header {
@@ -10,7 +11,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 24px;
+  color: #ffffff;
 }
 .sign-in-content {
   flex: 1;
@@ -31,6 +33,7 @@
   align-items: center;
 }
 .sign-in-forgetOrRegister a {
+  color: #ffffff;
   margin: 10px;
 }
 .sign-in-footer {
@@ -38,7 +41,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  color: #91a0ad;
+  color: #ffffff;
   padding: 10px;
 }
 

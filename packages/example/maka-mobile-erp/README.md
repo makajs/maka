@@ -1,18 +1,15 @@
-Mobile ERP demo developed by maka.js
+使用maka.js + antd-mobile + echarts +  font-awesome 实现简单h5手机端
 
-## Download and run
+## 运行
 
-1. Download
-2. Decompress
-3. Enter decompress directory
-4. Run
 ```bash
 $ npm i -g @makajs/cli
 $ yarn install
-$ yarn start
+$ yarn start 
 ```
+打开浏览器，http://127.0.0.1:8000, 登录用户名：13334445556 密码:1
 
-
+## 截图
 <img src="https://reactchina.sxlcdn.com/uploads/default/original/2X/6/608bd91670ca4054f06a1b9e541d246125a68c93.png" width="285" height="500">
 
 <img src="https://reactchina.sxlcdn.com/uploads/default/original/2X/a/ada059d67a0e6ea48e8e495972a6ba0fc0dbeb35.png" width="284" height="500">
