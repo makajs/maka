@@ -18,8 +18,10 @@ if (isProduction)
     ]
 else
     jss = [
-        'https://unpkg.com/react/umd/react.development.js',
-        'https://unpkg.com/react-dom/umd/react-dom.development.js',
+        //'https://unpkg.com/react/umd/react.development.js',
+        //'https://unpkg.com/react-dom/umd/react-dom.development.js',
+        'https://unpkg.com/react/umd/react.production.min.js',
+        'https://unpkg.com/react-dom/umd/react-dom.production.min.js',
         'https://unpkg.com/prop-types/prop-types.js',
         'https://unpkg.com/redux/dist/redux.js',
         'https://unpkg.com/react-redux/dist/react-redux.js',
@@ -30,6 +32,8 @@ else
 jss.forEach(js => {
     request(js, function (err, res, body) {
         var o = path.parse(js)
-        fs.createWriteStream(`dist/${isProduction ? 'release/' : 'debug/'}` + o.base).write(body)
+        var base = o.base
+        base = base.replace('production.min', 'development')
+        fs.createWriteStream(`dist/${isProduction ? 'release/' : 'debug/'}` + base).write(body)
     })
 })
