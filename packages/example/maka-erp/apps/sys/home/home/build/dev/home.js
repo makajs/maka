@@ -7,7 +7,7 @@
 		exports["MakaApp-home"] = factory(require("maka"));
 	else
 		root["MakaApp-home"] = factory(root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,134 +91,77 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!*****************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
+eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack://MakaApp-home//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js?");
 
 /***/ }),
-/* 1 */
-/***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"home","description":"home","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/home.git"},"bugs":{"url":"https://github.com/makajs/home/issues"},"homepage":"https://github.com/makajs/home#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base","../"]};
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(4);
-
-
-/***/ }),
-/* 4 */
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/*! exports provided: name, state, action, view */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "action", function() { return action; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "view", function() { return view; });
-/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
-var _package_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(1, 1);
-/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
-/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5);
-/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_3__);
-
-
-var _dec, _class;
-
-
-
-
-var name = _package_json__WEBPACK_IMPORTED_MODULE_1__.name;
-var state = {
-  data: {}
-};
-var action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_2__["actionMixin"])('base'), _dec(_class = function action(option) {
-  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, action);
-
-  Object.assign(this, option.mixins);
-}) || _class);
-var view = {
-  component: 'div',
-  className: 'home',
-  children: [{
-    component: 'antd.Row',
-    gutter: 10,
-    children: [{
-      component: 'antd.Col',
-      span: 24,
-      children: {
-        component: 'antd.Card',
-        title: '快捷功能',
-        children: {
-          component: 'AppLoader',
-          appName: 'home-shortcut'
-        }
-      }
-    }]
-  }, {
-    component: 'antd.Row',
-    gutter: 10,
-    children: [{
-      component: 'antd.Col',
-      style: {
-        height: 350
-      },
-      span: 12,
-      children: [{
-        component: 'antd.Card',
-        title: '图表',
-        children: {
-          component: 'AppLoader',
-          appName: 'home-chart'
-        }
-      }]
-    }, {
-      component: 'antd.Col',
-      style: {
-        height: 350
-      },
-      span: 12,
-      children: [{
-        component: 'antd.Card',
-        title: '代办',
-        children: {
-          component: 'AppLoader',
-          appName: 'home-todo'
-        }
-      }]
-    }]
-  }]
-};
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"state\", function() { return state; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"action\", function() { return action; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"view\", function() { return view; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./package.json */ \"./package.json\", 1);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.less */ \"./style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_3__);\n\n\nvar _dec, _class;\n\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_1__.name;\nvar state = {\n  data: {}\n};\nvar action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_2__[\"actionMixin\"])('base'), _dec(_class = function action(option) {\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, action);\n\n  Object.assign(this, option.mixins);\n}) || _class);\nvar view = {\n  component: 'div',\n  className: 'home',\n  children: [{\n    component: 'antd.Row',\n    gutter: 10,\n    children: [{\n      component: 'antd.Col',\n      span: 24,\n      children: {\n        component: 'antd.Card',\n        title: '快捷功能',\n        children: {\n          component: 'AppLoader',\n          appName: 'home-shortcut'\n        }\n      }\n    }]\n  }, {\n    component: 'antd.Row',\n    gutter: 10,\n    children: [{\n      component: 'antd.Col',\n      style: {\n        height: 350\n      },\n      span: 12,\n      children: [{\n        component: 'antd.Card',\n        title: '图表',\n        children: {\n          component: 'AppLoader',\n          appName: 'home-chart'\n        }\n      }]\n    }, {\n      component: 'antd.Col',\n      style: {\n        height: 350\n      },\n      span: 12,\n      children: [{\n        component: 'antd.Card',\n        title: '代办',\n        children: {\n          component: 'AppLoader',\n          appName: 'home-todo'\n        }\n      }]\n    }]\n  }]\n};\n\n\n//# sourceURL=webpack://MakaApp-home/./index.js?");
 
 /***/ }),
-/* 5 */
+
+/***/ "./package.json":
+/*!**********************!*\
+  !*** ./package.json ***!
+  \**********************/
+/*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, homepage, scripts, dependencies, server, subAppDir, default */
+/***/ (function(module) {
+
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"home\",\"description\":\"home\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/home.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/home/issues\"},\"homepage\":\"https://github.com/makajs/home#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../../base\",\"../\"]};\n\n//# sourceURL=webpack://MakaApp-home/./package.json?");
+
+/***/ }),
+
+/***/ "./style.less":
+/*!********************!*\
+  !*** ./style.less ***!
+  \********************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-home/./style.less?");
+
+/***/ }),
+
+/***/ 0:
+/*!************************!*\
+  !*** multi ./index.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-erp/apps/sys/home/home/index.js */\"./index.js\");\n\n\n//# sourceURL=webpack://MakaApp-home/multi_./index.js?");
+
+/***/ }),
+
+/***/ "maka":
+/*!***********************!*\
+  !*** external "maka" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = __WEBPACK_EXTERNAL_MODULE_maka__;\n\n//# sourceURL=webpack://MakaApp-home/external_%22maka%22?");
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

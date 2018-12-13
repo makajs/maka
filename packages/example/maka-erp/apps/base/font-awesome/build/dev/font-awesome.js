@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("maka"), require("react"), require("prop-types"));
+		module.exports = factory(require("react"), require("maka"), require("prop-types"));
 	else if(typeof define === 'function' && define.amd)
-		define(["maka", "react", "prop-types"], factory);
+		define(["react", "maka", "prop-types"], factory);
 	else if(typeof exports === 'object')
-		exports["MakaApp-font-awesome"] = factory(require("maka"), require("react"), require("prop-types"));
+		exports["MakaApp-font-awesome"] = factory(require("react"), require("maka"), require("prop-types"));
 	else
-		root["MakaApp-font-awesome"] = factory(root["maka"], root["react"], root["prop-types"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
+		root["MakaApp-font-awesome"] = factory(root["react"], root["maka"], root["prop-types"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_maka__, __WEBPACK_EXTERNAL_MODULE_prop_types__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,299 +91,134 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!*****************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
+eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack://MakaApp-font-awesome//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js?");
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-/* 2 */
-/***/ (function(module) {
-
-module.exports = {"isMakaApp":true,"name":"font-awesome","description":"font-awesome","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":"./apps","devDependencies":{"font-awesome":"*","react-fontawesome":"*"}};
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(6);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(7);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _screenReaderStyles = __webpack_require__(8);
-
-var _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * A React component for the font-awesome icon library.
- *
- * @param {String} [ariaLabel] An extra accessibility label to put on the icon
- * @param {Boolean} [border=false] Whether or not to show a border radius
- * @param {String} [className] An extra set of CSS classes to add to the component
- * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module
- * @param {Boolean} [fixedWidth=false] Make buttons fixed width
- * @param {String} [flip=false] Flip the icon's orientation.
- * @param {Boolean} [inverse=false]Inverse the icon's color
- * @param {String} name Name of the icon to use
- * @param {Boolean} [pulse=false] Rotate icon with 8 steps, rather than smoothly
- * @param {Number} [rotate] The degress to rotate the icon by
- * @param {String} [size] The icon scaling size
- * @param {Boolean} [spin=false] Spin the icon
- * @param {String} [stack] Stack an icon on top of another
- * @param {String} [tag=span] The HTML tag to use as a string, eg 'i' or 'em'
- * @module FontAwesome
- * @type {ReactClass}
- */
-var FontAwesome = function (_React$Component) {
-  _inherits(FontAwesome, _React$Component);
-
-  function FontAwesome() {
-    _classCallCheck(this, FontAwesome);
-
-    var _this = _possibleConstructorReturn(this, (FontAwesome.__proto__ || Object.getPrototypeOf(FontAwesome)).call(this));
-
-    _this.displayName = 'FontAwesome';
-    return _this;
-  }
-
-  _createClass(FontAwesome, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          border = _props.border,
-          cssModule = _props.cssModule,
-          className = _props.className,
-          fixedWidth = _props.fixedWidth,
-          flip = _props.flip,
-          inverse = _props.inverse,
-          name = _props.name,
-          pulse = _props.pulse,
-          rotate = _props.rotate,
-          size = _props.size,
-          spin = _props.spin,
-          stack = _props.stack,
-          _props$tag = _props.tag,
-          tag = _props$tag === undefined ? 'span' : _props$tag,
-          ariaLabel = _props.ariaLabel,
-          props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack', 'tag', 'ariaLabel']);
-
-      var classNames = [];
-
-      if (cssModule) {
-        classNames.push(cssModule['fa']);
-        classNames.push(cssModule['fa-' + name]);
-        size && classNames.push(cssModule['fa-' + size]);
-        spin && classNames.push(cssModule['fa-spin']);
-        pulse && classNames.push(cssModule['fa-pulse']);
-        border && classNames.push(cssModule['fa-border']);
-        fixedWidth && classNames.push(cssModule['fa-fw']);
-        inverse && classNames.push(cssModule['fa-inverse']);
-        flip && classNames.push(cssModule['fa-flip-' + flip]);
-        rotate && classNames.push(cssModule['fa-rotate-' + rotate]);
-        stack && classNames.push(cssModule['fa-stack-' + stack]);
-      } else {
-        classNames.push('fa');
-        classNames.push('fa-' + name);
-        size && classNames.push('fa-' + size);
-        spin && classNames.push('fa-spin');
-        pulse && classNames.push('fa-pulse');
-        border && classNames.push('fa-border');
-        fixedWidth && classNames.push('fa-fw');
-        inverse && classNames.push('fa-inverse');
-        flip && classNames.push('fa-flip-' + flip);
-        rotate && classNames.push('fa-rotate-' + rotate);
-        stack && classNames.push('fa-stack-' + stack);
-      }
-
-      // Add any custom class names at the end.
-      className && classNames.push(className);
-      return _react2.default.createElement(tag, _extends({}, props, { 'aria-hidden': true, className: classNames.join(' ') }), ariaLabel ? _react2.default.createElement('span', { style: _screenReaderStyles2.default }, ariaLabel) : null);
-    }
-  }]);
-
-  return FontAwesome;
-}(_react2.default.Component);
-
-FontAwesome.propTypes = {
-  ariaLabel: _propTypes2.default.string,
-  border: _propTypes2.default.bool,
-  className: _propTypes2.default.string,
-  cssModule: _propTypes2.default.object,
-  fixedWidth: _propTypes2.default.bool,
-  flip: _propTypes2.default.oneOf(['horizontal', 'vertical']),
-  inverse: _propTypes2.default.bool,
-  name: _propTypes2.default.string.isRequired,
-  pulse: _propTypes2.default.bool,
-  rotate: _propTypes2.default.oneOf([90, 180, 270]),
-  size: _propTypes2.default.oneOf(['lg', '2x', '3x', '4x', '5x']),
-  spin: _propTypes2.default.bool,
-  stack: _propTypes2.default.oneOf(['1x', '2x']),
-  tag: _propTypes2.default.string
-};
-
-exports.default = FontAwesome;
-module.exports = exports['default'];
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(5);
-
-
-/***/ }),
-/* 5 */
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/*! exports provided: name, state, action, view */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "action", function() { return action; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "view", function() { return view; });
-/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-var _package_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(2, 1);
-/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(0);
-/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3);
-/* harmony import */ var react_fontawesome__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_fontawesome__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
-/* harmony import */ var font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(10);
-/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_5__);
-
-
-var _dec, _class;
-
-
-
-
-
-
-var name = _package_json__WEBPACK_IMPORTED_MODULE_1__.name;
-Object(maka__WEBPACK_IMPORTED_MODULE_2__["registerComponent"])('FA', react_fontawesome__WEBPACK_IMPORTED_MODULE_3___default.a);
-var state = {
-  data: {}
-};
-var action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_2__["actionMixin"])('base'), _dec(_class = function action(option) {
-  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, action);
-
-  Object.assign(this, option.mixins);
-}) || _class);
-var view = {
-  component: 'div',
-  className: 'zlj-fontawesome',
-  children: [{
-    component: 'FA',
-    style: {
-      fontSize: 30
-    },
-    name: 'rocket'
-  }, {
-    component: 'FA',
-    style: {
-      fontSize: 30
-    },
-    name: 'bath'
-  }, {
-    component: 'FA',
-    style: {
-      fontSize: 30
-    },
-    name: 'print'
-  }]
-};
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"state\", function() { return state; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"action\", function() { return action; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"view\", function() { return view; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck */ \"../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./package.json */ \"./package.json\", 1);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-fontawesome */ \"./node_modules/react-fontawesome/lib/index.js\");\n/* harmony import */ var react_fontawesome__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_fontawesome__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! font-awesome/css/font-awesome.css */ \"./node_modules/font-awesome/css/font-awesome.css\");\n/* harmony import */ var font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.less */ \"./style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_5__);\n\n\nvar _dec, _class;\n\n\n\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_1__.name;\nObject(maka__WEBPACK_IMPORTED_MODULE_2__[\"registerComponent\"])('FA', react_fontawesome__WEBPACK_IMPORTED_MODULE_3___default.a);\nvar state = {\n  data: {}\n};\nvar action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_2__[\"actionMixin\"])('base'), _dec(_class = function action(option) {\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, action);\n\n  Object.assign(this, option.mixins);\n}) || _class);\nvar view = {\n  component: 'div',\n  className: 'zlj-fontawesome',\n  children: [{\n    component: 'FA',\n    style: {\n      fontSize: 30\n    },\n    name: 'rocket'\n  }, {\n    component: 'FA',\n    style: {\n      fontSize: 30\n    },\n    name: 'bath'\n  }, {\n    component: 'FA',\n    style: {\n      fontSize: 30\n    },\n    name: 'print'\n  }]\n};\n\n\n//# sourceURL=webpack://MakaApp-font-awesome/./index.js?");
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+/***/ "./node_modules/font-awesome/css/font-awesome.css":
+/*!********************************************************!*\
+  !*** ./node_modules/font-awesome/css/font-awesome.css ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-font-awesome/./node_modules/font-awesome/css/font-awesome.css?");
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
-
-/***/ }),
-/* 8 */
+/***/ "./node_modules/react-fontawesome/lib/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-fontawesome/lib/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  position: 'absolute',
-  width: '1px',
-  height: '1px',
-  padding: '0px',
-  margin: '-1px',
-  overflow: 'hidden',
-  clip: 'rect(0px, 0px, 0px, 0px)',
-  border: '0px'
-};
-module.exports = exports['default'];
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ \"prop-types\");\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _screenReaderStyles = __webpack_require__(/*! ./screen-reader-styles */ \"./node_modules/react-fontawesome/lib/screen-reader-styles.js\");\n\nvar _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\n/**\n * A React component for the font-awesome icon library.\n *\n * @param {String} [ariaLabel] An extra accessibility label to put on the icon\n * @param {Boolean} [border=false] Whether or not to show a border radius\n * @param {String} [className] An extra set of CSS classes to add to the component\n * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module\n * @param {Boolean} [fixedWidth=false] Make buttons fixed width\n * @param {String} [flip=false] Flip the icon's orientation.\n * @param {Boolean} [inverse=false]Inverse the icon's color\n * @param {String} name Name of the icon to use\n * @param {Boolean} [pulse=false] Rotate icon with 8 steps, rather than smoothly\n * @param {Number} [rotate] The degress to rotate the icon by\n * @param {String} [size] The icon scaling size\n * @param {Boolean} [spin=false] Spin the icon\n * @param {String} [stack] Stack an icon on top of another\n * @param {String} [tag=span] The HTML tag to use as a string, eg 'i' or 'em'\n * @module FontAwesome\n * @type {ReactClass}\n */\nvar FontAwesome = function (_React$Component) {\n  _inherits(FontAwesome, _React$Component);\n\n  function FontAwesome() {\n    _classCallCheck(this, FontAwesome);\n\n    var _this = _possibleConstructorReturn(this, (FontAwesome.__proto__ || Object.getPrototypeOf(FontAwesome)).call(this));\n\n    _this.displayName = 'FontAwesome';\n    return _this;\n  }\n\n  _createClass(FontAwesome, [{\n    key: 'render',\n    value: function render() {\n      var _props = this.props,\n          border = _props.border,\n          cssModule = _props.cssModule,\n          className = _props.className,\n          fixedWidth = _props.fixedWidth,\n          flip = _props.flip,\n          inverse = _props.inverse,\n          name = _props.name,\n          pulse = _props.pulse,\n          rotate = _props.rotate,\n          size = _props.size,\n          spin = _props.spin,\n          stack = _props.stack,\n          _props$tag = _props.tag,\n          tag = _props$tag === undefined ? 'span' : _props$tag,\n          ariaLabel = _props.ariaLabel,\n          props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack', 'tag', 'ariaLabel']);\n\n      var classNames = [];\n\n      if (cssModule) {\n        classNames.push(cssModule['fa']);\n        classNames.push(cssModule['fa-' + name]);\n        size && classNames.push(cssModule['fa-' + size]);\n        spin && classNames.push(cssModule['fa-spin']);\n        pulse && classNames.push(cssModule['fa-pulse']);\n        border && classNames.push(cssModule['fa-border']);\n        fixedWidth && classNames.push(cssModule['fa-fw']);\n        inverse && classNames.push(cssModule['fa-inverse']);\n        flip && classNames.push(cssModule['fa-flip-' + flip]);\n        rotate && classNames.push(cssModule['fa-rotate-' + rotate]);\n        stack && classNames.push(cssModule['fa-stack-' + stack]);\n      } else {\n        classNames.push('fa');\n        classNames.push('fa-' + name);\n        size && classNames.push('fa-' + size);\n        spin && classNames.push('fa-spin');\n        pulse && classNames.push('fa-pulse');\n        border && classNames.push('fa-border');\n        fixedWidth && classNames.push('fa-fw');\n        inverse && classNames.push('fa-inverse');\n        flip && classNames.push('fa-flip-' + flip);\n        rotate && classNames.push('fa-rotate-' + rotate);\n        stack && classNames.push('fa-stack-' + stack);\n      }\n\n      // Add any custom class names at the end.\n      className && classNames.push(className);\n      return _react2.default.createElement(tag, _extends({}, props, { 'aria-hidden': true, className: classNames.join(' ') }), ariaLabel ? _react2.default.createElement('span', { style: _screenReaderStyles2.default }, ariaLabel) : null);\n    }\n  }]);\n\n  return FontAwesome;\n}(_react2.default.Component);\n\nFontAwesome.propTypes = {\n  ariaLabel: _propTypes2.default.string,\n  border: _propTypes2.default.bool,\n  className: _propTypes2.default.string,\n  cssModule: _propTypes2.default.object,\n  fixedWidth: _propTypes2.default.bool,\n  flip: _propTypes2.default.oneOf(['horizontal', 'vertical']),\n  inverse: _propTypes2.default.bool,\n  name: _propTypes2.default.string.isRequired,\n  pulse: _propTypes2.default.bool,\n  rotate: _propTypes2.default.oneOf([90, 180, 270]),\n  size: _propTypes2.default.oneOf(['lg', '2x', '3x', '4x', '5x']),\n  spin: _propTypes2.default.bool,\n  stack: _propTypes2.default.oneOf(['1x', '2x']),\n  tag: _propTypes2.default.string\n};\n\nexports.default = FontAwesome;\nmodule.exports = exports['default'];\n\n//# sourceURL=webpack://MakaApp-font-awesome/./node_modules/react-fontawesome/lib/index.js?");
 
 /***/ }),
-/* 9 */
+
+/***/ "./node_modules/react-fontawesome/lib/screen-reader-styles.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/react-fontawesome/lib/screen-reader-styles.js ***!
+  \********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = {\n  position: 'absolute',\n  width: '1px',\n  height: '1px',\n  padding: '0px',\n  margin: '-1px',\n  overflow: 'hidden',\n  clip: 'rect(0px, 0px, 0px, 0px)',\n  border: '0px'\n};\nmodule.exports = exports['default'];\n\n//# sourceURL=webpack://MakaApp-font-awesome/./node_modules/react-fontawesome/lib/screen-reader-styles.js?");
 
 /***/ }),
-/* 10 */
+
+/***/ "./package.json":
+/*!**********************!*\
+  !*** ./package.json ***!
+  \**********************/
+/*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, homepage, scripts, dependencies, server, subAppDir, devDependencies, default */
+/***/ (function(module) {
+
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"font-awesome\",\"description\":\"font-awesome\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/maka.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/maka/issues\"},\"homepage\":\"https://github.com/makajs/maka#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":\"./apps\",\"devDependencies\":{\"font-awesome\":\"*\",\"react-fontawesome\":\"*\"}};\n\n//# sourceURL=webpack://MakaApp-font-awesome/./package.json?");
+
+/***/ }),
+
+/***/ "./style.less":
+/*!********************!*\
+  !*** ./style.less ***!
+  \********************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-font-awesome/./style.less?");
+
+/***/ }),
+
+/***/ 0:
+/*!************************!*\
+  !*** multi ./index.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-erp/apps/base/font-awesome/index.js */\"./index.js\");\n\n\n//# sourceURL=webpack://MakaApp-font-awesome/multi_./index.js?");
+
+/***/ }),
+
+/***/ "maka":
+/*!***********************!*\
+  !*** external "maka" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = __WEBPACK_EXTERNAL_MODULE_maka__;\n\n//# sourceURL=webpack://MakaApp-font-awesome/external_%22maka%22?");
+
+/***/ }),
+
+/***/ "prop-types":
+/*!*****************************!*\
+  !*** external "prop-types" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = __WEBPACK_EXTERNAL_MODULE_prop_types__;\n\n//# sourceURL=webpack://MakaApp-font-awesome/external_%22prop-types%22?");
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = __WEBPACK_EXTERNAL_MODULE_react__;\n\n//# sourceURL=webpack://MakaApp-font-awesome/external_%22react%22?");
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

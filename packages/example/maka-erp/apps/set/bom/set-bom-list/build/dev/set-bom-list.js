@@ -7,7 +7,7 @@
 		exports["MakaApp-set-bom-list"] = factory(require("maka"));
 	else
 		root["MakaApp-set-bom-list"] = factory(root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,1478 +91,180 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js":
+/*!*******************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
+  \*******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {\n  try {\n    var info = gen[key](arg);\n    var value = info.value;\n  } catch (error) {\n    reject(error);\n    return;\n  }\n\n  if (info.done) {\n    resolve(value);\n  } else {\n    Promise.resolve(value).then(_next, _throw);\n  }\n}\n\nfunction _asyncToGenerator(fn) {\n  return function () {\n    var self = this,\n        args = arguments;\n    return new Promise(function (resolve, reject) {\n      var gen = fn.apply(self, args);\n\n      function _next(value) {\n        asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n      }\n\n      function _throw(err) {\n        asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n      }\n\n      _next(undefined);\n    });\n  };\n}\n\nmodule.exports = _asyncToGenerator;\n\n//# sourceURL=webpack://MakaApp-set-bom-list//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js?");
+
+/***/ }),
+
+/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!*****************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack://MakaApp-set-bom-list//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js?");
+
+/***/ }),
+
+/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!*****************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function _defineProperty(obj, key, value) {\n  if (key in obj) {\n    Object.defineProperty(obj, key, {\n      value: value,\n      enumerable: true,\n      configurable: true,\n      writable: true\n    });\n  } else {\n    obj[key] = value;\n  }\n\n  return obj;\n}\n\nmodule.exports = _defineProperty;\n\n//# sourceURL=webpack://MakaApp-set-bom-list//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js?");
+
+/***/ }),
+
+/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js":
+/*!************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js ***!
+  \************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(7);
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
+eval("module.exports = __webpack_require__(/*! regenerator-runtime */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-bom-list//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js?");
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
-}
-
-module.exports = _asyncToGenerator;
-
-/***/ }),
-/* 4 */
-/***/ (function(module) {
-
-module.exports = {"isMakaApp":true,"name":"set-bom-list","description":"set-bom-list","version":"1.0.0","license":"MIT","author":"","repository":{"type":"git","url":"https://github.com/makajs/maka.git"},"bugs":{"url":"https://github.com/makajs/maka/issues"},"homepage":"https://github.com/makajs/maka#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{},"server":{"proxy":null,"port":8000},"subAppDir":["./apps","../../../base","../set-bom"]};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-/* 6 */
+/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js":
+/*!**************************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js ***!
+  \**************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(10);
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-// This method of obtaining a reference to the global object needs to be
-// kept identical to the way it is obtained in runtime.js
-var g = (function() {
-  return this || (typeof self === "object" && self);
-})() || Function("return this")();
-
-// Use `getOwnPropertyNames` because not all browsers support calling
-// `hasOwnProperty` on the global `self` object in a worker. See #183.
-var hadRuntime = g.regeneratorRuntime &&
-  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
-
-// Save the old regeneratorRuntime in case it needs to be restored later.
-var oldRuntime = hadRuntime && g.regeneratorRuntime;
-
-// Force reevalutation of runtime.js.
-g.regeneratorRuntime = undefined;
-
-module.exports = __webpack_require__(8);
-
-if (hadRuntime) {
-  // Restore the original runtime.
-  g.regeneratorRuntime = oldRuntime;
-} else {
-  // Remove the global property added by runtime.js.
-  try {
-    delete g.regeneratorRuntime;
-  } catch(e) {
-    g.regeneratorRuntime = undefined;
-  }
-}
-
+eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n// This method of obtaining a reference to the global object needs to be\n// kept identical to the way it is obtained in runtime.js\nvar g = (function() {\n  return this || (typeof self === \"object\" && self);\n})() || Function(\"return this\")();\n\n// Use `getOwnPropertyNames` because not all browsers support calling\n// `hasOwnProperty` on the global `self` object in a worker. See #183.\nvar hadRuntime = g.regeneratorRuntime &&\n  Object.getOwnPropertyNames(g).indexOf(\"regeneratorRuntime\") >= 0;\n\n// Save the old regeneratorRuntime in case it needs to be restored later.\nvar oldRuntime = hadRuntime && g.regeneratorRuntime;\n\n// Force reevalutation of runtime.js.\ng.regeneratorRuntime = undefined;\n\nmodule.exports = __webpack_require__(/*! ./runtime */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime.js\");\n\nif (hadRuntime) {\n  // Restore the original runtime.\n  g.regeneratorRuntime = oldRuntime;\n} else {\n  // Remove the global property added by runtime.js.\n  try {\n    delete g.regeneratorRuntime;\n  } catch(e) {\n    g.regeneratorRuntime = undefined;\n  }\n}\n\n\n//# sourceURL=webpack://MakaApp-set-bom-list//usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js?");
 
 /***/ }),
-/* 8 */
+
+/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime.js":
+/*!*******************************************************************************************!*\
+  !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-!(function(global) {
-  "use strict";
-
-  var Op = Object.prototype;
-  var hasOwn = Op.hasOwnProperty;
-  var undefined; // More compressible than void 0.
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-
-  var inModule = typeof module === "object";
-  var runtime = global.regeneratorRuntime;
-  if (runtime) {
-    if (inModule) {
-      // If regeneratorRuntime is defined globally and we're in a module,
-      // make the exports object identical to regeneratorRuntime.
-      module.exports = runtime;
-    }
-    // Don't bother evaluating the rest of this file if the runtime was
-    // already defined globally.
-    return;
-  }
-
-  // Define the runtime globally (as expected by generated code) as either
-  // module.exports (if we're in a module) or a new, empty object.
-  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
-
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []);
-
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
-    generator._invoke = makeInvokeMethod(innerFn, self, context);
-
-    return generator;
-  }
-  runtime.wrap = wrap;
-
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
-  function tryCatch(fn, obj, arg) {
-    try {
-      return { type: "normal", arg: fn.call(obj, arg) };
-    } catch (err) {
-      return { type: "throw", arg: err };
-    }
-  }
-
-  var GenStateSuspendedStart = "suspendedStart";
-  var GenStateSuspendedYield = "suspendedYield";
-  var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed";
-
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
-  var ContinueSentinel = {};
-
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
-  var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
-    return this;
-  };
-
-  var getProto = Object.getPrototypeOf;
-  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-  }
-
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
-
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
-        return this._invoke(method, arg);
-      };
-    });
-  }
-
-  runtime.isGeneratorFunction = function(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
-  };
-
-  runtime.mark = function(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  };
-
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
-  runtime.awrap = function(arg) {
-    return { __await: arg };
-  };
-
-  function AsyncIterator(generator) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if (record.type === "throw") {
-        reject(record.arg);
-      } else {
-        var result = record.arg;
-        var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function(value) {
-            invoke("next", value, resolve, reject);
-          }, function(err) {
-            invoke("throw", err, resolve, reject);
-          });
-        }
-
-        return Promise.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration.
-          result.value = unwrapped;
-          resolve(result);
-        }, function(error) {
-          // If a rejected Promise was yielded, throw the rejection back
-          // into the async generator function so it can be handled there.
-          return invoke("throw", error, resolve, reject);
-        });
-      }
-    }
-
-    var previousPromise;
-
-    function enqueue(method, arg) {
-      function callInvokeWithMethodAndArg() {
-        return new Promise(function(resolve, reject) {
-          invoke(method, arg, resolve, reject);
-        });
-      }
-
-      return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
-    }
-
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
-    this._invoke = enqueue;
-  }
-
-  defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
-    return this;
-  };
-  runtime.AsyncIterator = AsyncIterator;
-
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
-  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList)
-    );
-
-    return runtime.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
-  };
-
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = GenStateSuspendedStart;
-
-    return function invoke(method, arg) {
-      if (state === GenStateExecuting) {
-        throw new Error("Generator is already running");
-      }
-
-      if (state === GenStateCompleted) {
-        if (method === "throw") {
-          throw arg;
-        }
-
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-        return doneResult();
-      }
-
-      context.method = method;
-      context.arg = arg;
-
-      while (true) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-
-        if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
-          context.sent = context._sent = context.arg;
-
-        } else if (context.method === "throw") {
-          if (state === GenStateSuspendedStart) {
-            state = GenStateCompleted;
-            throw context.arg;
-          }
-
-          context.dispatchException(context.arg);
-
-        } else if (context.method === "return") {
-          context.abrupt("return", context.arg);
-        }
-
-        state = GenStateExecuting;
-
-        var record = tryCatch(innerFn, self, context);
-        if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
-
-          if (record.arg === ContinueSentinel) {
-            continue;
-          }
-
-          return {
-            value: record.arg,
-            done: context.done
-          };
-
-        } else if (record.type === "throw") {
-          state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
-          context.method = "throw";
-          context.arg = record.arg;
-        }
-      }
-    };
-  }
-
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
-  function maybeInvokeDelegate(delegate, context) {
-    var method = delegate.iterator[context.method];
-    if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
-      context.delegate = null;
-
-      if (context.method === "throw") {
-        if (delegate.iterator.return) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
-          context.method = "return";
-          context.arg = undefined;
-          maybeInvokeDelegate(delegate, context);
-
-          if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
-            return ContinueSentinel;
-          }
-        }
-
-        context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
-      }
-
-      return ContinueSentinel;
-    }
-
-    var record = tryCatch(method, delegate.iterator, context.arg);
-
-    if (record.type === "throw") {
-      context.method = "throw";
-      context.arg = record.arg;
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    var info = record.arg;
-
-    if (! info) {
-      context.method = "throw";
-      context.arg = new TypeError("iterator result is not an object");
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value;
-
-      // Resume execution at the desired location (see delegateYield).
-      context.next = delegate.nextLoc;
-
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
-      if (context.method !== "return") {
-        context.method = "next";
-        context.arg = undefined;
-      }
-
-    } else {
-      // Re-yield the result returned by the delegate method.
-      return info;
-    }
-
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
-    context.delegate = null;
-    return ContinueSentinel;
-  }
-
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
-  defineIteratorMethods(Gp);
-
-  Gp[toStringTagSymbol] = "Generator";
-
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
-    return this;
-  };
-
-  Gp.toString = function() {
-    return "[object Generator]";
-  };
-
-  function pushTryEntry(locs) {
-    var entry = { tryLoc: locs[0] };
-
-    if (1 in locs) {
-      entry.catchLoc = locs[1];
-    }
-
-    if (2 in locs) {
-      entry.finallyLoc = locs[2];
-      entry.afterLoc = locs[3];
-    }
-
-    this.tryEntries.push(entry);
-  }
-
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal";
-    delete record.arg;
-    entry.completion = record;
-  }
-
-  function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
-    this.tryEntries = [{ tryLoc: "root" }];
-    tryLocsList.forEach(pushTryEntry, this);
-    this.reset(true);
-  }
-
-  runtime.keys = function(object) {
-    var keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    keys.reverse();
-
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
-    return function next() {
-      while (keys.length) {
-        var key = keys.pop();
-        if (key in object) {
-          next.value = key;
-          next.done = false;
-          return next;
-        }
-      }
-
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
-      next.done = true;
-      return next;
-    };
-  };
-
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) {
-        return iteratorMethod.call(iterable);
-      }
-
-      if (typeof iterable.next === "function") {
-        return iterable;
-      }
-
-      if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
-          while (++i < iterable.length) {
-            if (hasOwn.call(iterable, i)) {
-              next.value = iterable[i];
-              next.done = false;
-              return next;
-            }
-          }
-
-          next.value = undefined;
-          next.done = true;
-
-          return next;
-        };
-
-        return next.next = next;
-      }
-    }
-
-    // Return an iterator with no values.
-    return { next: doneResult };
-  }
-  runtime.values = values;
-
-  function doneResult() {
-    return { value: undefined, done: true };
-  }
-
-  Context.prototype = {
-    constructor: Context,
-
-    reset: function(skipTempReset) {
-      this.prev = 0;
-      this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
-      this.sent = this._sent = undefined;
-      this.done = false;
-      this.delegate = null;
-
-      this.method = "next";
-      this.arg = undefined;
-
-      this.tryEntries.forEach(resetTryEntry);
-
-      if (!skipTempReset) {
-        for (var name in this) {
-          // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
-            this[name] = undefined;
-          }
-        }
-      }
-    },
-
-    stop: function() {
-      this.done = true;
-
-      var rootEntry = this.tryEntries[0];
-      var rootRecord = rootEntry.completion;
-      if (rootRecord.type === "throw") {
-        throw rootRecord.arg;
-      }
-
-      return this.rval;
-    },
-
-    dispatchException: function(exception) {
-      if (this.done) {
-        throw exception;
-      }
-
-      var context = this;
-      function handle(loc, caught) {
-        record.type = "throw";
-        record.arg = exception;
-        context.next = loc;
-
-        if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
-          context.method = "next";
-          context.arg = undefined;
-        }
-
-        return !! caught;
-      }
-
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        var record = entry.completion;
-
-        if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
-          return handle("end");
-        }
-
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc");
-          var hasFinally = hasOwn.call(entry, "finallyLoc");
-
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            } else if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            }
-
-          } else if (hasFinally) {
-            if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else {
-            throw new Error("try statement without catch or finally");
-          }
-        }
-      }
-    },
-
-    abrupt: function(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
-          break;
-        }
-      }
-
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
-        finallyEntry = null;
-      }
-
-      var record = finallyEntry ? finallyEntry.completion : {};
-      record.type = type;
-      record.arg = arg;
-
-      if (finallyEntry) {
-        this.method = "next";
-        this.next = finallyEntry.finallyLoc;
-        return ContinueSentinel;
-      }
-
-      return this.complete(record);
-    },
-
-    complete: function(record, afterLoc) {
-      if (record.type === "throw") {
-        throw record.arg;
-      }
-
-      if (record.type === "break" ||
-          record.type === "continue") {
-        this.next = record.arg;
-      } else if (record.type === "return") {
-        this.rval = this.arg = record.arg;
-        this.method = "return";
-        this.next = "end";
-      } else if (record.type === "normal" && afterLoc) {
-        this.next = afterLoc;
-      }
-
-      return ContinueSentinel;
-    },
-
-    finish: function(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) {
-          this.complete(entry.completion, entry.afterLoc);
-          resetTryEntry(entry);
-          return ContinueSentinel;
-        }
-      }
-    },
-
-    "catch": function(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if (record.type === "throw") {
-            var thrown = record.arg;
-            resetTryEntry(entry);
-          }
-          return thrown;
-        }
-      }
-
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
-      throw new Error("illegal catch attempt");
-    },
-
-    delegateYield: function(iterable, resultName, nextLoc) {
-      this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      };
-
-      if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
-        this.arg = undefined;
-      }
-
-      return ContinueSentinel;
-    }
-  };
-})(
-  // In sloppy mode, unbound `this` refers to the global object, fallback to
-  // Function constructor if we're in global strict mode. That is sadly a form
-  // of indirect eval which violates Content Security Policy.
-  (function() {
-    return this || (typeof self === "object" && self);
-  })() || Function("return this")()
-);
-
+eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n!(function(global) {\n  \"use strict\";\n\n  var Op = Object.prototype;\n  var hasOwn = Op.hasOwnProperty;\n  var undefined; // More compressible than void 0.\n  var $Symbol = typeof Symbol === \"function\" ? Symbol : {};\n  var iteratorSymbol = $Symbol.iterator || \"@@iterator\";\n  var asyncIteratorSymbol = $Symbol.asyncIterator || \"@@asyncIterator\";\n  var toStringTagSymbol = $Symbol.toStringTag || \"@@toStringTag\";\n\n  var inModule = typeof module === \"object\";\n  var runtime = global.regeneratorRuntime;\n  if (runtime) {\n    if (inModule) {\n      // If regeneratorRuntime is defined globally and we're in a module,\n      // make the exports object identical to regeneratorRuntime.\n      module.exports = runtime;\n    }\n    // Don't bother evaluating the rest of this file if the runtime was\n    // already defined globally.\n    return;\n  }\n\n  // Define the runtime globally (as expected by generated code) as either\n  // module.exports (if we're in a module) or a new, empty object.\n  runtime = global.regeneratorRuntime = inModule ? module.exports : {};\n\n  function wrap(innerFn, outerFn, self, tryLocsList) {\n    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.\n    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;\n    var generator = Object.create(protoGenerator.prototype);\n    var context = new Context(tryLocsList || []);\n\n    // The ._invoke method unifies the implementations of the .next,\n    // .throw, and .return methods.\n    generator._invoke = makeInvokeMethod(innerFn, self, context);\n\n    return generator;\n  }\n  runtime.wrap = wrap;\n\n  // Try/catch helper to minimize deoptimizations. Returns a completion\n  // record like context.tryEntries[i].completion. This interface could\n  // have been (and was previously) designed to take a closure to be\n  // invoked without arguments, but in all the cases we care about we\n  // already have an existing method we want to call, so there's no need\n  // to create a new function object. We can even get away with assuming\n  // the method takes exactly one argument, since that happens to be true\n  // in every case, so we don't have to touch the arguments object. The\n  // only additional allocation required is the completion record, which\n  // has a stable shape and so hopefully should be cheap to allocate.\n  function tryCatch(fn, obj, arg) {\n    try {\n      return { type: \"normal\", arg: fn.call(obj, arg) };\n    } catch (err) {\n      return { type: \"throw\", arg: err };\n    }\n  }\n\n  var GenStateSuspendedStart = \"suspendedStart\";\n  var GenStateSuspendedYield = \"suspendedYield\";\n  var GenStateExecuting = \"executing\";\n  var GenStateCompleted = \"completed\";\n\n  // Returning this object from the innerFn has the same effect as\n  // breaking out of the dispatch switch statement.\n  var ContinueSentinel = {};\n\n  // Dummy constructor functions that we use as the .constructor and\n  // .constructor.prototype properties for functions that return Generator\n  // objects. For full spec compliance, you may wish to configure your\n  // minifier not to mangle the names of these two functions.\n  function Generator() {}\n  function GeneratorFunction() {}\n  function GeneratorFunctionPrototype() {}\n\n  // This is a polyfill for %IteratorPrototype% for environments that\n  // don't natively support it.\n  var IteratorPrototype = {};\n  IteratorPrototype[iteratorSymbol] = function () {\n    return this;\n  };\n\n  var getProto = Object.getPrototypeOf;\n  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));\n  if (NativeIteratorPrototype &&\n      NativeIteratorPrototype !== Op &&\n      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {\n    // This environment has a native %IteratorPrototype%; use it instead\n    // of the polyfill.\n    IteratorPrototype = NativeIteratorPrototype;\n  }\n\n  var Gp = GeneratorFunctionPrototype.prototype =\n    Generator.prototype = Object.create(IteratorPrototype);\n  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;\n  GeneratorFunctionPrototype.constructor = GeneratorFunction;\n  GeneratorFunctionPrototype[toStringTagSymbol] =\n    GeneratorFunction.displayName = \"GeneratorFunction\";\n\n  // Helper for defining the .next, .throw, and .return methods of the\n  // Iterator interface in terms of a single ._invoke method.\n  function defineIteratorMethods(prototype) {\n    [\"next\", \"throw\", \"return\"].forEach(function(method) {\n      prototype[method] = function(arg) {\n        return this._invoke(method, arg);\n      };\n    });\n  }\n\n  runtime.isGeneratorFunction = function(genFun) {\n    var ctor = typeof genFun === \"function\" && genFun.constructor;\n    return ctor\n      ? ctor === GeneratorFunction ||\n        // For the native GeneratorFunction constructor, the best we can\n        // do is to check its .name property.\n        (ctor.displayName || ctor.name) === \"GeneratorFunction\"\n      : false;\n  };\n\n  runtime.mark = function(genFun) {\n    if (Object.setPrototypeOf) {\n      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);\n    } else {\n      genFun.__proto__ = GeneratorFunctionPrototype;\n      if (!(toStringTagSymbol in genFun)) {\n        genFun[toStringTagSymbol] = \"GeneratorFunction\";\n      }\n    }\n    genFun.prototype = Object.create(Gp);\n    return genFun;\n  };\n\n  // Within the body of any async function, `await x` is transformed to\n  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test\n  // `hasOwn.call(value, \"__await\")` to determine if the yielded value is\n  // meant to be awaited.\n  runtime.awrap = function(arg) {\n    return { __await: arg };\n  };\n\n  function AsyncIterator(generator) {\n    function invoke(method, arg, resolve, reject) {\n      var record = tryCatch(generator[method], generator, arg);\n      if (record.type === \"throw\") {\n        reject(record.arg);\n      } else {\n        var result = record.arg;\n        var value = result.value;\n        if (value &&\n            typeof value === \"object\" &&\n            hasOwn.call(value, \"__await\")) {\n          return Promise.resolve(value.__await).then(function(value) {\n            invoke(\"next\", value, resolve, reject);\n          }, function(err) {\n            invoke(\"throw\", err, resolve, reject);\n          });\n        }\n\n        return Promise.resolve(value).then(function(unwrapped) {\n          // When a yielded Promise is resolved, its final value becomes\n          // the .value of the Promise<{value,done}> result for the\n          // current iteration.\n          result.value = unwrapped;\n          resolve(result);\n        }, function(error) {\n          // If a rejected Promise was yielded, throw the rejection back\n          // into the async generator function so it can be handled there.\n          return invoke(\"throw\", error, resolve, reject);\n        });\n      }\n    }\n\n    var previousPromise;\n\n    function enqueue(method, arg) {\n      function callInvokeWithMethodAndArg() {\n        return new Promise(function(resolve, reject) {\n          invoke(method, arg, resolve, reject);\n        });\n      }\n\n      return previousPromise =\n        // If enqueue has been called before, then we want to wait until\n        // all previous Promises have been resolved before calling invoke,\n        // so that results are always delivered in the correct order. If\n        // enqueue has not been called before, then it is important to\n        // call invoke immediately, without waiting on a callback to fire,\n        // so that the async generator function has the opportunity to do\n        // any necessary setup in a predictable way. This predictability\n        // is why the Promise constructor synchronously invokes its\n        // executor callback, and why async functions synchronously\n        // execute code before the first await. Since we implement simple\n        // async functions in terms of async generators, it is especially\n        // important to get this right, even though it requires care.\n        previousPromise ? previousPromise.then(\n          callInvokeWithMethodAndArg,\n          // Avoid propagating failures to Promises returned by later\n          // invocations of the iterator.\n          callInvokeWithMethodAndArg\n        ) : callInvokeWithMethodAndArg();\n    }\n\n    // Define the unified helper method that is used to implement .next,\n    // .throw, and .return (see defineIteratorMethods).\n    this._invoke = enqueue;\n  }\n\n  defineIteratorMethods(AsyncIterator.prototype);\n  AsyncIterator.prototype[asyncIteratorSymbol] = function () {\n    return this;\n  };\n  runtime.AsyncIterator = AsyncIterator;\n\n  // Note that simple async functions are implemented on top of\n  // AsyncIterator objects; they just return a Promise for the value of\n  // the final result produced by the iterator.\n  runtime.async = function(innerFn, outerFn, self, tryLocsList) {\n    var iter = new AsyncIterator(\n      wrap(innerFn, outerFn, self, tryLocsList)\n    );\n\n    return runtime.isGeneratorFunction(outerFn)\n      ? iter // If outerFn is a generator, return the full iterator.\n      : iter.next().then(function(result) {\n          return result.done ? result.value : iter.next();\n        });\n  };\n\n  function makeInvokeMethod(innerFn, self, context) {\n    var state = GenStateSuspendedStart;\n\n    return function invoke(method, arg) {\n      if (state === GenStateExecuting) {\n        throw new Error(\"Generator is already running\");\n      }\n\n      if (state === GenStateCompleted) {\n        if (method === \"throw\") {\n          throw arg;\n        }\n\n        // Be forgiving, per 25.3.3.3.3 of the spec:\n        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume\n        return doneResult();\n      }\n\n      context.method = method;\n      context.arg = arg;\n\n      while (true) {\n        var delegate = context.delegate;\n        if (delegate) {\n          var delegateResult = maybeInvokeDelegate(delegate, context);\n          if (delegateResult) {\n            if (delegateResult === ContinueSentinel) continue;\n            return delegateResult;\n          }\n        }\n\n        if (context.method === \"next\") {\n          // Setting context._sent for legacy support of Babel's\n          // function.sent implementation.\n          context.sent = context._sent = context.arg;\n\n        } else if (context.method === \"throw\") {\n          if (state === GenStateSuspendedStart) {\n            state = GenStateCompleted;\n            throw context.arg;\n          }\n\n          context.dispatchException(context.arg);\n\n        } else if (context.method === \"return\") {\n          context.abrupt(\"return\", context.arg);\n        }\n\n        state = GenStateExecuting;\n\n        var record = tryCatch(innerFn, self, context);\n        if (record.type === \"normal\") {\n          // If an exception is thrown from innerFn, we leave state ===\n          // GenStateExecuting and loop back for another invocation.\n          state = context.done\n            ? GenStateCompleted\n            : GenStateSuspendedYield;\n\n          if (record.arg === ContinueSentinel) {\n            continue;\n          }\n\n          return {\n            value: record.arg,\n            done: context.done\n          };\n\n        } else if (record.type === \"throw\") {\n          state = GenStateCompleted;\n          // Dispatch the exception by looping back around to the\n          // context.dispatchException(context.arg) call above.\n          context.method = \"throw\";\n          context.arg = record.arg;\n        }\n      }\n    };\n  }\n\n  // Call delegate.iterator[context.method](context.arg) and handle the\n  // result, either by returning a { value, done } result from the\n  // delegate iterator, or by modifying context.method and context.arg,\n  // setting context.delegate to null, and returning the ContinueSentinel.\n  function maybeInvokeDelegate(delegate, context) {\n    var method = delegate.iterator[context.method];\n    if (method === undefined) {\n      // A .throw or .return when the delegate iterator has no .throw\n      // method always terminates the yield* loop.\n      context.delegate = null;\n\n      if (context.method === \"throw\") {\n        if (delegate.iterator.return) {\n          // If the delegate iterator has a return method, give it a\n          // chance to clean up.\n          context.method = \"return\";\n          context.arg = undefined;\n          maybeInvokeDelegate(delegate, context);\n\n          if (context.method === \"throw\") {\n            // If maybeInvokeDelegate(context) changed context.method from\n            // \"return\" to \"throw\", let that override the TypeError below.\n            return ContinueSentinel;\n          }\n        }\n\n        context.method = \"throw\";\n        context.arg = new TypeError(\n          \"The iterator does not provide a 'throw' method\");\n      }\n\n      return ContinueSentinel;\n    }\n\n    var record = tryCatch(method, delegate.iterator, context.arg);\n\n    if (record.type === \"throw\") {\n      context.method = \"throw\";\n      context.arg = record.arg;\n      context.delegate = null;\n      return ContinueSentinel;\n    }\n\n    var info = record.arg;\n\n    if (! info) {\n      context.method = \"throw\";\n      context.arg = new TypeError(\"iterator result is not an object\");\n      context.delegate = null;\n      return ContinueSentinel;\n    }\n\n    if (info.done) {\n      // Assign the result of the finished delegate to the temporary\n      // variable specified by delegate.resultName (see delegateYield).\n      context[delegate.resultName] = info.value;\n\n      // Resume execution at the desired location (see delegateYield).\n      context.next = delegate.nextLoc;\n\n      // If context.method was \"throw\" but the delegate handled the\n      // exception, let the outer generator proceed normally. If\n      // context.method was \"next\", forget context.arg since it has been\n      // \"consumed\" by the delegate iterator. If context.method was\n      // \"return\", allow the original .return call to continue in the\n      // outer generator.\n      if (context.method !== \"return\") {\n        context.method = \"next\";\n        context.arg = undefined;\n      }\n\n    } else {\n      // Re-yield the result returned by the delegate method.\n      return info;\n    }\n\n    // The delegate iterator is finished, so forget it and continue with\n    // the outer generator.\n    context.delegate = null;\n    return ContinueSentinel;\n  }\n\n  // Define Generator.prototype.{next,throw,return} in terms of the\n  // unified ._invoke helper method.\n  defineIteratorMethods(Gp);\n\n  Gp[toStringTagSymbol] = \"Generator\";\n\n  // A Generator should always return itself as the iterator object when the\n  // @@iterator function is called on it. Some browsers' implementations of the\n  // iterator prototype chain incorrectly implement this, causing the Generator\n  // object to not be returned from this call. This ensures that doesn't happen.\n  // See https://github.com/facebook/regenerator/issues/274 for more details.\n  Gp[iteratorSymbol] = function() {\n    return this;\n  };\n\n  Gp.toString = function() {\n    return \"[object Generator]\";\n  };\n\n  function pushTryEntry(locs) {\n    var entry = { tryLoc: locs[0] };\n\n    if (1 in locs) {\n      entry.catchLoc = locs[1];\n    }\n\n    if (2 in locs) {\n      entry.finallyLoc = locs[2];\n      entry.afterLoc = locs[3];\n    }\n\n    this.tryEntries.push(entry);\n  }\n\n  function resetTryEntry(entry) {\n    var record = entry.completion || {};\n    record.type = \"normal\";\n    delete record.arg;\n    entry.completion = record;\n  }\n\n  function Context(tryLocsList) {\n    // The root entry object (effectively a try statement without a catch\n    // or a finally block) gives us a place to store values thrown from\n    // locations where there is no enclosing try statement.\n    this.tryEntries = [{ tryLoc: \"root\" }];\n    tryLocsList.forEach(pushTryEntry, this);\n    this.reset(true);\n  }\n\n  runtime.keys = function(object) {\n    var keys = [];\n    for (var key in object) {\n      keys.push(key);\n    }\n    keys.reverse();\n\n    // Rather than returning an object with a next method, we keep\n    // things simple and return the next function itself.\n    return function next() {\n      while (keys.length) {\n        var key = keys.pop();\n        if (key in object) {\n          next.value = key;\n          next.done = false;\n          return next;\n        }\n      }\n\n      // To avoid creating an additional object, we just hang the .value\n      // and .done properties off the next function object itself. This\n      // also ensures that the minifier will not anonymize the function.\n      next.done = true;\n      return next;\n    };\n  };\n\n  function values(iterable) {\n    if (iterable) {\n      var iteratorMethod = iterable[iteratorSymbol];\n      if (iteratorMethod) {\n        return iteratorMethod.call(iterable);\n      }\n\n      if (typeof iterable.next === \"function\") {\n        return iterable;\n      }\n\n      if (!isNaN(iterable.length)) {\n        var i = -1, next = function next() {\n          while (++i < iterable.length) {\n            if (hasOwn.call(iterable, i)) {\n              next.value = iterable[i];\n              next.done = false;\n              return next;\n            }\n          }\n\n          next.value = undefined;\n          next.done = true;\n\n          return next;\n        };\n\n        return next.next = next;\n      }\n    }\n\n    // Return an iterator with no values.\n    return { next: doneResult };\n  }\n  runtime.values = values;\n\n  function doneResult() {\n    return { value: undefined, done: true };\n  }\n\n  Context.prototype = {\n    constructor: Context,\n\n    reset: function(skipTempReset) {\n      this.prev = 0;\n      this.next = 0;\n      // Resetting context._sent for legacy support of Babel's\n      // function.sent implementation.\n      this.sent = this._sent = undefined;\n      this.done = false;\n      this.delegate = null;\n\n      this.method = \"next\";\n      this.arg = undefined;\n\n      this.tryEntries.forEach(resetTryEntry);\n\n      if (!skipTempReset) {\n        for (var name in this) {\n          // Not sure about the optimal order of these conditions:\n          if (name.charAt(0) === \"t\" &&\n              hasOwn.call(this, name) &&\n              !isNaN(+name.slice(1))) {\n            this[name] = undefined;\n          }\n        }\n      }\n    },\n\n    stop: function() {\n      this.done = true;\n\n      var rootEntry = this.tryEntries[0];\n      var rootRecord = rootEntry.completion;\n      if (rootRecord.type === \"throw\") {\n        throw rootRecord.arg;\n      }\n\n      return this.rval;\n    },\n\n    dispatchException: function(exception) {\n      if (this.done) {\n        throw exception;\n      }\n\n      var context = this;\n      function handle(loc, caught) {\n        record.type = \"throw\";\n        record.arg = exception;\n        context.next = loc;\n\n        if (caught) {\n          // If the dispatched exception was caught by a catch block,\n          // then let that catch block handle the exception normally.\n          context.method = \"next\";\n          context.arg = undefined;\n        }\n\n        return !! caught;\n      }\n\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        var record = entry.completion;\n\n        if (entry.tryLoc === \"root\") {\n          // Exception thrown outside of any try block that could handle\n          // it, so set the completion value of the entire function to\n          // throw the exception.\n          return handle(\"end\");\n        }\n\n        if (entry.tryLoc <= this.prev) {\n          var hasCatch = hasOwn.call(entry, \"catchLoc\");\n          var hasFinally = hasOwn.call(entry, \"finallyLoc\");\n\n          if (hasCatch && hasFinally) {\n            if (this.prev < entry.catchLoc) {\n              return handle(entry.catchLoc, true);\n            } else if (this.prev < entry.finallyLoc) {\n              return handle(entry.finallyLoc);\n            }\n\n          } else if (hasCatch) {\n            if (this.prev < entry.catchLoc) {\n              return handle(entry.catchLoc, true);\n            }\n\n          } else if (hasFinally) {\n            if (this.prev < entry.finallyLoc) {\n              return handle(entry.finallyLoc);\n            }\n\n          } else {\n            throw new Error(\"try statement without catch or finally\");\n          }\n        }\n      }\n    },\n\n    abrupt: function(type, arg) {\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        if (entry.tryLoc <= this.prev &&\n            hasOwn.call(entry, \"finallyLoc\") &&\n            this.prev < entry.finallyLoc) {\n          var finallyEntry = entry;\n          break;\n        }\n      }\n\n      if (finallyEntry &&\n          (type === \"break\" ||\n           type === \"continue\") &&\n          finallyEntry.tryLoc <= arg &&\n          arg <= finallyEntry.finallyLoc) {\n        // Ignore the finally entry if control is not jumping to a\n        // location outside the try/catch block.\n        finallyEntry = null;\n      }\n\n      var record = finallyEntry ? finallyEntry.completion : {};\n      record.type = type;\n      record.arg = arg;\n\n      if (finallyEntry) {\n        this.method = \"next\";\n        this.next = finallyEntry.finallyLoc;\n        return ContinueSentinel;\n      }\n\n      return this.complete(record);\n    },\n\n    complete: function(record, afterLoc) {\n      if (record.type === \"throw\") {\n        throw record.arg;\n      }\n\n      if (record.type === \"break\" ||\n          record.type === \"continue\") {\n        this.next = record.arg;\n      } else if (record.type === \"return\") {\n        this.rval = this.arg = record.arg;\n        this.method = \"return\";\n        this.next = \"end\";\n      } else if (record.type === \"normal\" && afterLoc) {\n        this.next = afterLoc;\n      }\n\n      return ContinueSentinel;\n    },\n\n    finish: function(finallyLoc) {\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        if (entry.finallyLoc === finallyLoc) {\n          this.complete(entry.completion, entry.afterLoc);\n          resetTryEntry(entry);\n          return ContinueSentinel;\n        }\n      }\n    },\n\n    \"catch\": function(tryLoc) {\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        if (entry.tryLoc === tryLoc) {\n          var record = entry.completion;\n          if (record.type === \"throw\") {\n            var thrown = record.arg;\n            resetTryEntry(entry);\n          }\n          return thrown;\n        }\n      }\n\n      // The context.catch method must only be called with a location\n      // argument that corresponds to a known catch block.\n      throw new Error(\"illegal catch attempt\");\n    },\n\n    delegateYield: function(iterable, resultName, nextLoc) {\n      this.delegate = {\n        iterator: values(iterable),\n        resultName: resultName,\n        nextLoc: nextLoc\n      };\n\n      if (this.method === \"next\") {\n        // Deliberately forget the last sent value so that we don't\n        // accidentally pass it on to the delegate.\n        this.arg = undefined;\n      }\n\n      return ContinueSentinel;\n    }\n  };\n})(\n  // In sloppy mode, unbound `this` refers to the global object, fallback to\n  // Function constructor if we're in global strict mode. That is sadly a form\n  // of indirect eval which violates Content Security Policy.\n  (function() {\n    return this || (typeof self === \"object\" && self);\n  })() || Function(\"return this\")()\n);\n\n\n//# sourceURL=webpack://MakaApp-set-bom-list//usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime.js?");
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-/* 10 */
+/***/ "./action.js":
+/*!*******************!*\
+  !*** ./action.js ***!
+  \*******************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return action; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\nvar _dec, _class;\n\n\nvar action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_4__[\"actionMixin\"])('base', 'lodash', 'moment', 'tableHelper', 'modal', 'message'), _dec(_class = function action(option) {\n  var _this = this;\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, action);\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"onInit\", function () {\n    //设置监听tab激活事件\n    _this.component.props.addTabActiveListener && _this.component.props.addTabActiveListener(_this.component.props.appFullName, _this.tabActive);\n\n    var pagination = _this.base.gs('data.pagination');\n\n    _this.load(pagination);\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"load\",\n  /*#__PURE__*/\n  function () {\n    var _ref = _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n    /*#__PURE__*/\n    _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(pagination) {\n      var filter,\n          resp,\n          _args = arguments;\n      return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n        while (1) {\n          switch (_context.prev = _context.next) {\n            case 0:\n              filter = _args.length > 1 && _args[1] !== undefined ? _args[1] : {\n                search: ''\n              };\n              _context.next = 3;\n              return maka__WEBPACK_IMPORTED_MODULE_4__[\"fetch\"].post('/v1/bom/query', {\n                pagination: pagination,\n                filter: filter\n              });\n\n            case 3:\n              resp = _context.sent;\n              if (!resp.pagination) resp.pagination = pagination;\n              resp.filter = filter;\n              resp.filter.search = _this.base.gs('data.filter.search');\n\n              _this.base.ss({\n                'data.list': resp.list,\n                'data.pagination': resp.pagination,\n                'data.filter': resp.filter\n              });\n\n            case 8:\n            case \"end\":\n              return _context.stop();\n          }\n        }\n      }, _callee, this);\n    }));\n\n    return function (_x) {\n      return _ref.apply(this, arguments);\n    };\n  }());\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"reload\",\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {\n    var pagination, filter;\n    return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {\n      while (1) {\n        switch (_context2.prev = _context2.next) {\n          case 0:\n            pagination = _this.base.gs('data.pagination'), filter = _this.base.gs('data.filter');\n\n            _this.load(pagination, filter);\n\n          case 2:\n          case \"end\":\n            return _context2.stop();\n        }\n      }\n    }, _callee2, this);\n  })));\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"pageChanged\", function (current, pageSize) {\n    var filter = _this.base.gs('data.filter');\n\n    _this.load({\n      current: current,\n      pageSize: pageSize\n    }, filter);\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"searchChange\", function (e) {\n    var v = e.target.value;\n\n    _this.base.setState({\n      'data.filter.search': v\n    });\n\n    _this.searchReload(v);\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"searchReload\", function (v) {\n    var pagination = _this.base.gs('data.pagination'),\n        filter = _this.base.gs('data.filter');\n\n    filter.search = v;\n\n    _this.load(pagination, filter);\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"add\",\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {\n    return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {\n      while (1) {\n        switch (_context3.prev = _context3.next) {\n          case 0:\n            _this.component.props.setPortalContent && _this.component.props.setPortalContent('新增BOM', 'set-bom');\n\n          case 1:\n          case \"end\":\n            return _context3.stop();\n        }\n      }\n    }, _callee3, this);\n  })));\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"modify\", function (row) {\n    return (\n      /*#__PURE__*/\n      _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n      /*#__PURE__*/\n      _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {\n        return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {\n          while (1) {\n            switch (_context4.prev = _context4.next) {\n              case 0:\n                _this.component.props.setPortalContent && _this.component.props.setPortalContent('BOM维护', 'set-bom', {\n                  bomId: row.id\n                });\n\n              case 1:\n              case \"end\":\n                return _context4.stop();\n            }\n          }\n        }, _callee4, this);\n      }))\n    );\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"del\", function (row) {\n    return (\n      /*#__PURE__*/\n      _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n      /*#__PURE__*/\n      _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {\n        var ret, id;\n        return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {\n          while (1) {\n            switch (_context5.prev = _context5.next) {\n              case 0:\n                _context5.next = 2;\n                return _this.modal.confirm({\n                  title: '删除',\n                  content: '确认删除?'\n                });\n\n              case 2:\n                ret = _context5.sent;\n\n                if (ret) {\n                  _context5.next = 5;\n                  break;\n                }\n\n                return _context5.abrupt(\"return\");\n\n              case 5:\n                id = row.id;\n                _context5.next = 8;\n                return maka__WEBPACK_IMPORTED_MODULE_4__[\"fetch\"].post('/v1/bom/del', {\n                  boms: [{\n                    id: id\n                  }]\n                });\n\n              case 8:\n                _this.message.success('删除BOM成功');\n\n                _this.reload();\n\n              case 10:\n              case \"end\":\n                return _context5.stop();\n            }\n          }\n        }, _callee5, this);\n      }))\n    );\n  });\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"batchDel\",\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {\n    var lst, selectRows, ret, boms;\n    return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {\n      while (1) {\n        switch (_context6.prev = _context6.next) {\n          case 0:\n            lst = _this.base.gs('data.list');\n\n            if (!(!lst || lst.length == 0)) {\n              _context6.next = 4;\n              break;\n            }\n\n            _this.message.error('请选中要删除的BOM');\n\n            return _context6.abrupt(\"return\");\n\n          case 4:\n            selectRows = lst.filter(function (o) {\n              return o.isSelected;\n            });\n\n            if (!(!selectRows || selectRows.length == 0)) {\n              _context6.next = 8;\n              break;\n            }\n\n            _this.message.error('请选中要删除的BOM');\n\n            return _context6.abrupt(\"return\");\n\n          case 8:\n            _context6.next = 10;\n            return _this.modal.confirm({\n              title: '删除',\n              content: '确认删除?'\n            });\n\n          case 10:\n            ret = _context6.sent;\n\n            if (ret) {\n              _context6.next = 13;\n              break;\n            }\n\n            return _context6.abrupt(\"return\");\n\n          case 13:\n            boms = selectRows.map(function (o) {\n              return {\n                id: o.id\n              };\n            });\n            _context6.next = 16;\n            return maka__WEBPACK_IMPORTED_MODULE_4__[\"fetch\"].post('/v1/bom/del', {\n              boms: boms\n            });\n\n          case 16:\n            _this.message.success('删除成功');\n\n            _this.reload();\n\n          case 18:\n          case \"end\":\n            return _context6.stop();\n        }\n      }\n    }, _callee6, this);\n  })));\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"tabActive\", function () {\n    _this.reload();\n  });\n\n  Object.assign(this, option.mixins);\n  this.searchReload = this.lodash.debounce(this.searchReload, 200);\n}) || _class);\n\n\n//# sourceURL=webpack://MakaApp-set-bom-list/./action.js?");
 
-// EXTERNAL MODULE: ./package.json
-var package_0 = __webpack_require__(4);
+/***/ }),
 
-// CONCATENATED MODULE: ./view.js
-/* harmony default export */ var view = ({
-  component: 'div',
-  className: 'simple-list set-bom-list',
-  children: [{
-    component: 'div',
-    className: 'simple-list-header',
-    children: [{
-      component: 'div',
-      className: 'simple-list-header-left',
-      children: [{
-        component: 'antd.Input.Search',
-        className: 'simple-list-header-left-search',
-        placeholder: '请录入编码搜索',
-        value: '{{data.filter.search}}',
-        onChange: "{{$searchChange}}"
-      }, {
-        component: 'antd.Button',
-        className: 'icon-button-softly',
-        icon: 'reload',
-        title: '刷新',
-        onClick: '{{$reload}}'
-      }]
-    }, {
-      component: 'div',
-      className: 'simple-list-header-center'
-    }, {
-      component: 'div',
-      className: 'simple-list-header-right',
-      children: [{
-        component: 'antd.Button',
-        className: 'button-bluesky',
-        onClick: '{{$add}}',
-        children: '新增'
-      }, {
-        component: 'antd.Button',
-        className: 'button-bluesky',
-        onClick: '{{$batchDel}}',
-        children: '批量删除'
-      }]
-    }]
-  }, {
-    component: 'tpl.Table',
-    columns: [{
-      type: 'sequence'
-    }, {
-      type: 'isSelected'
-    }, {
-      type: 'del',
-      onDel: '{{$del(data.list[row.rowIndex])}}'
-    }, {
-      type: 'link',
-      title: '编码',
-      bindField: 'code',
-      onClick: 'modify',
-      fixed: true
-    }, {
-      type: 'text',
-      title: '物料编码',
-      bindField: 'materiel.code',
-      flexGrow: 1
-    }, {
-      type: 'text',
-      title: '物料名称',
-      bindField: 'materiel.name',
-      flexGrow: 1
-    }, {
-      type: 'text',
-      title: '工艺编码',
-      bindField: 'technic.code',
-      flexGrow: 1
-    }, {
-      type: 'text',
-      title: '工艺名称',
-      bindField: 'technic.name',
-      flexGrow: 1
-    }, {
-      type: 'text',
-      title: '数量',
-      bindField: 'amount',
-      flexGrow: 1,
-      align: 'right'
-    }, {
-      type: 'text',
-      title: '成品率',
-      bindField: 'yield',
-      flexGrow: 1,
-      align: 'right'
-    }, {
-      type: 'text',
-      title: '使用状态',
-      bindField: 'status.name',
-      flexGrow: 1,
-      align: 'center'
-    }]
-  }]
-});
-// CONCATENATED MODULE: ./state.js
-/* harmony default export */ var state = ({
-  data: {
-    list: [],
-    pagination: {
-      current: 1,
-      total: 0,
-      pageSize: 20
-    },
-    filter: {
-      search: ''
-    },
-    other: {}
-  }
-});
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js
-var regenerator = __webpack_require__(0);
-var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/*! exports provided: name, state, action, view */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js
-var asyncToGenerator = __webpack_require__(3);
-var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerator);
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./package.json */ \"./package.json\", 1);\n/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view */ \"./view.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"view\", function() { return _view__WEBPACK_IMPORTED_MODULE_1__[\"default\"]; });\n\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./state */ \"./state.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"state\", function() { return _state__WEBPACK_IMPORTED_MODULE_2__[\"default\"]; });\n\n/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./action */ \"./action.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"action\", function() { return _action__WEBPACK_IMPORTED_MODULE_3__[\"default\"]; });\n\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.less */ \"./style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _mock_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mock.js */ \"./mock.js\");\n\n\n\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_0__.name;\n\n\n//# sourceURL=webpack://MakaApp-set-bom-list/./index.js?");
 
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(5);
-var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
+/***/ }),
 
-// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(1);
-var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+/***/ "./mock.js":
+/*!*****************!*\
+  !*** ./mock.js ***!
+  \*****************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// EXTERNAL MODULE: external "maka"
-var external_maka_ = __webpack_require__(2);
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_0__);\n\nvar mockData = maka__WEBPACK_IMPORTED_MODULE_0__[\"fetch\"].mockData;\n\nfunction initMockData() {\n  if (!mockData.materiels) {\n    mockData.materiels = [{\n      id: 1,\n      code: 'M001',\n      name: '物料1',\n      spec: '规格1',\n      prop: '属性1',\n      uom: {\n        name: '个'\n      }\n    }, {\n      id: 2,\n      code: 'M002',\n      name: '物料2',\n      spec: '规格2',\n      prop: '属性2',\n      uom: {\n        name: '件'\n      }\n    }];\n  }\n\n  if (!mockData.technics) {\n    mockData.technics = [{\n      id: 1,\n      code: 'T001',\n      name: '工艺1'\n    }, {\n      id: 2,\n      code: 'T002',\n      name: '工艺2'\n    }];\n  }\n\n  if (!mockData.technicDetails) {\n    mockData.technicDetails = [{\n      id: 1,\n      technicId: 1,\n      code: 'TD001',\n      name: '工艺1工序1'\n    }, {\n      id: 2,\n      technicId: 1,\n      code: 'T002',\n      name: '工艺1工序2'\n    }, {\n      id: 1,\n      technicId: 2,\n      code: 'TD003',\n      name: '工艺2工序1'\n    }, {\n      id: 2,\n      technicId: 2,\n      code: 'T004',\n      name: '工艺2工序2'\n    }];\n  }\n\n  if (!mockData.boms) {\n    mockData.boms = [{\n      id: 0,\n      code: '001',\n      materiel: mockData.materiels[0],\n      technic: mockData.technics[0],\n      amount: 1,\n      yield: 100,\n      status: {\n        id: 2,\n        name: '未使用'\n      },\n      details: [{\n        id: 1,\n        materiel: mockData.materiels[0],\n        amount: 1,\n        lossRate: 0,\n        technicDetail: mockData.technicDetails[0]\n      }]\n    }];\n  }\n}\n\nmaka__WEBPACK_IMPORTED_MODULE_0__[\"fetch\"].mock('/v1/bom/query', function (option) {\n  initMockData();\n  var pagination = option.pagination,\n      filter = option.filter;\n  var data = mockData.boms;\n\n  if (filter) {\n    if (filter.search) data = data.filter(function (o) {\n      return o.code.indexOf(filter.search) != -1;\n    });\n  }\n\n  var current = pagination.current;\n  var pageSize = pagination.pageSize;\n  var start = (current - 1) * pageSize;\n  var end = current * pageSize;\n  start = start > data.length - 1 ? 0 : start;\n  end = start > data.length - 1 ? pageSize : end;\n  current = start > data.length - 1 ? 1 : current;\n  var ret = {\n    result: true,\n    value: {\n      pagination: {\n        current: current,\n        pageSize: pageSize,\n        total: data.length\n      },\n      list: []\n    }\n  };\n\n  for (var j = start; j < end; j++) {\n    if (data[j]) ret.value.list.push(data[j]);\n  }\n\n  return ret;\n});\nmaka__WEBPACK_IMPORTED_MODULE_0__[\"fetch\"].mock('/v1/bom/del', function (option) {\n  initMockData();\n  option.boms.forEach(function (bom) {\n    var index = mockData.boms.findIndex(function (o) {\n      return o.id == bom.id;\n    });\n    if (index || index === 0) mockData.boms.splice(index, 1);\n  });\n  return {\n    result: true,\n    value: true\n  };\n});\n\n//# sourceURL=webpack://MakaApp-set-bom-list/./mock.js?");
 
-// CONCATENATED MODULE: ./action.js
+/***/ }),
 
+/***/ "./package.json":
+/*!**********************!*\
+  !*** ./package.json ***!
+  \**********************/
+/*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, homepage, scripts, dependencies, server, subAppDir, default */
+/***/ (function(module) {
 
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"set-bom-list\",\"description\":\"set-bom-list\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/maka.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/maka/issues\"},\"homepage\":\"https://github.com/makajs/maka#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../../base\",\"../set-bom\"]};\n\n//# sourceURL=webpack://MakaApp-set-bom-list/./package.json?");
 
+/***/ }),
 
+/***/ "./state.js":
+/*!******************!*\
+  !*** ./state.js ***!
+  \******************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var _dec, _class;
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  data: {\n    list: [],\n    pagination: {\n      current: 1,\n      total: 0,\n      pageSize: 20\n    },\n    filter: {\n      search: ''\n    },\n    other: {}\n  }\n});\n\n//# sourceURL=webpack://MakaApp-set-bom-list/./state.js?");
 
+/***/ }),
 
-var action_action = (_dec = Object(external_maka_["actionMixin"])('base', 'lodash', 'moment', 'tableHelper', 'modal', 'message'), _dec(_class = function action(option) {
-  var _this = this;
+/***/ "./style.less":
+/*!********************!*\
+  !*** ./style.less ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-  classCallCheck_default()(this, action);
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-set-bom-list/./style.less?");
 
-  defineProperty_default()(this, "onInit", function () {
-    //设置监听tab激活事件
-    _this.component.props.addTabActiveListener && _this.component.props.addTabActiveListener(_this.component.props.appFullName, _this.tabActive);
+/***/ }),
 
-    var pagination = _this.base.gs('data.pagination');
+/***/ "./view.js":
+/*!*****************!*\
+  !*** ./view.js ***!
+  \*****************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-    _this.load(pagination);
-  });
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  component: 'div',\n  className: 'simple-list set-bom-list',\n  children: [{\n    component: 'div',\n    className: 'simple-list-header',\n    children: [{\n      component: 'div',\n      className: 'simple-list-header-left',\n      children: [{\n        component: 'antd.Input.Search',\n        className: 'simple-list-header-left-search',\n        placeholder: '请录入编码搜索',\n        value: '{{data.filter.search}}',\n        onChange: \"{{$searchChange}}\"\n      }, {\n        component: 'antd.Button',\n        className: 'icon-button-softly',\n        icon: 'reload',\n        title: '刷新',\n        onClick: '{{$reload}}'\n      }]\n    }, {\n      component: 'div',\n      className: 'simple-list-header-center'\n    }, {\n      component: 'div',\n      className: 'simple-list-header-right',\n      children: [{\n        component: 'antd.Button',\n        className: 'button-bluesky',\n        onClick: '{{$add}}',\n        children: '新增'\n      }, {\n        component: 'antd.Button',\n        className: 'button-bluesky',\n        onClick: '{{$batchDel}}',\n        children: '批量删除'\n      }]\n    }]\n  }, {\n    component: 'tpl.Table',\n    columns: [{\n      type: 'sequence'\n    }, {\n      type: 'isSelected'\n    }, {\n      type: 'del',\n      onDel: '{{$del(data.list[row.rowIndex])}}'\n    }, {\n      type: 'link',\n      title: '编码',\n      bindField: 'code',\n      onClick: 'modify',\n      fixed: true\n    }, {\n      type: 'text',\n      title: '物料编码',\n      bindField: 'materiel.code',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '物料名称',\n      bindField: 'materiel.name',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '工艺编码',\n      bindField: 'technic.code',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '工艺名称',\n      bindField: 'technic.name',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '数量',\n      bindField: 'amount',\n      flexGrow: 1,\n      align: 'right'\n    }, {\n      type: 'text',\n      title: '成品率',\n      bindField: 'yield',\n      flexGrow: 1,\n      align: 'right'\n    }, {\n      type: 'text',\n      title: '使用状态',\n      bindField: 'status.name',\n      flexGrow: 1,\n      align: 'center'\n    }]\n  }]\n});\n\n//# sourceURL=webpack://MakaApp-set-bom-list/./view.js?");
 
-  defineProperty_default()(this, "load",
-  /*#__PURE__*/
-  function () {
-    var _ref = asyncToGenerator_default()(
-    /*#__PURE__*/
-    regenerator_default.a.mark(function _callee(pagination) {
-      var filter,
-          resp,
-          _args = arguments;
-      return regenerator_default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              filter = _args.length > 1 && _args[1] !== undefined ? _args[1] : {
-                search: ''
-              };
-              _context.next = 3;
-              return external_maka_["fetch"].post('/v1/bom/query', {
-                pagination: pagination,
-                filter: filter
-              });
+/***/ }),
 
-            case 3:
-              resp = _context.sent;
-              if (!resp.pagination) resp.pagination = pagination;
-              resp.filter = filter;
-              resp.filter.search = _this.base.gs('data.filter.search');
+/***/ 0:
+/*!************************!*\
+  !*** multi ./index.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-              _this.base.ss({
-                'data.list': resp.list,
-                'data.pagination': resp.pagination,
-                'data.filter': resp.filter
-              });
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-erp/apps/set/bom/set-bom-list/index.js */\"./index.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-bom-list/multi_./index.js?");
 
-            case 8:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, this);
-    }));
+/***/ }),
 
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }());
+/***/ "maka":
+/*!***********************!*\
+  !*** external "maka" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-  defineProperty_default()(this, "reload",
-  /*#__PURE__*/
-  asyncToGenerator_default()(
-  /*#__PURE__*/
-  regenerator_default.a.mark(function _callee2() {
-    var pagination, filter;
-    return regenerator_default.a.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            pagination = _this.base.gs('data.pagination'), filter = _this.base.gs('data.filter');
-
-            _this.load(pagination, filter);
-
-          case 2:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, this);
-  })));
-
-  defineProperty_default()(this, "pageChanged", function (current, pageSize) {
-    var filter = _this.base.gs('data.filter');
-
-    _this.load({
-      current: current,
-      pageSize: pageSize
-    }, filter);
-  });
-
-  defineProperty_default()(this, "searchChange", function (e) {
-    var v = e.target.value;
-
-    _this.base.setState({
-      'data.filter.search': v
-    });
-
-    _this.searchReload(v);
-  });
-
-  defineProperty_default()(this, "searchReload", function (v) {
-    var pagination = _this.base.gs('data.pagination'),
-        filter = _this.base.gs('data.filter');
-
-    filter.search = v;
-
-    _this.load(pagination, filter);
-  });
-
-  defineProperty_default()(this, "add",
-  /*#__PURE__*/
-  asyncToGenerator_default()(
-  /*#__PURE__*/
-  regenerator_default.a.mark(function _callee3() {
-    return regenerator_default.a.wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            _this.component.props.setPortalContent && _this.component.props.setPortalContent('新增BOM', 'set-bom');
-
-          case 1:
-          case "end":
-            return _context3.stop();
-        }
-      }
-    }, _callee3, this);
-  })));
-
-  defineProperty_default()(this, "modify", function (row) {
-    return (
-      /*#__PURE__*/
-      asyncToGenerator_default()(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee4() {
-        return regenerator_default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _this.component.props.setPortalContent && _this.component.props.setPortalContent('BOM维护', 'set-bom', {
-                  bomId: row.id
-                });
-
-              case 1:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
-      }))
-    );
-  });
-
-  defineProperty_default()(this, "del", function (row) {
-    return (
-      /*#__PURE__*/
-      asyncToGenerator_default()(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee5() {
-        var ret, id;
-        return regenerator_default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return _this.modal.confirm({
-                  title: '删除',
-                  content: '确认删除?'
-                });
-
-              case 2:
-                ret = _context5.sent;
-
-                if (ret) {
-                  _context5.next = 5;
-                  break;
-                }
-
-                return _context5.abrupt("return");
-
-              case 5:
-                id = row.id;
-                _context5.next = 8;
-                return external_maka_["fetch"].post('/v1/bom/del', {
-                  boms: [{
-                    id: id
-                  }]
-                });
-
-              case 8:
-                _this.message.success('删除BOM成功');
-
-                _this.reload();
-
-              case 10:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this);
-      }))
-    );
-  });
-
-  defineProperty_default()(this, "batchDel",
-  /*#__PURE__*/
-  asyncToGenerator_default()(
-  /*#__PURE__*/
-  regenerator_default.a.mark(function _callee6() {
-    var lst, selectRows, ret, boms;
-    return regenerator_default.a.wrap(function _callee6$(_context6) {
-      while (1) {
-        switch (_context6.prev = _context6.next) {
-          case 0:
-            lst = _this.base.gs('data.list');
-
-            if (!(!lst || lst.length == 0)) {
-              _context6.next = 4;
-              break;
-            }
-
-            _this.message.error('请选中要删除的BOM');
-
-            return _context6.abrupt("return");
-
-          case 4:
-            selectRows = lst.filter(function (o) {
-              return o.isSelected;
-            });
-
-            if (!(!selectRows || selectRows.length == 0)) {
-              _context6.next = 8;
-              break;
-            }
-
-            _this.message.error('请选中要删除的BOM');
-
-            return _context6.abrupt("return");
-
-          case 8:
-            _context6.next = 10;
-            return _this.modal.confirm({
-              title: '删除',
-              content: '确认删除?'
-            });
-
-          case 10:
-            ret = _context6.sent;
-
-            if (ret) {
-              _context6.next = 13;
-              break;
-            }
-
-            return _context6.abrupt("return");
-
-          case 13:
-            boms = selectRows.map(function (o) {
-              return {
-                id: o.id
-              };
-            });
-            _context6.next = 16;
-            return external_maka_["fetch"].post('/v1/bom/del', {
-              boms: boms
-            });
-
-          case 16:
-            _this.message.success('删除成功');
-
-            _this.reload();
-
-          case 18:
-          case "end":
-            return _context6.stop();
-        }
-      }
-    }, _callee6, this);
-  })));
-
-  defineProperty_default()(this, "tabActive", function () {
-    _this.reload();
-  });
-
-  Object.assign(this, option.mixins);
-  this.searchReload = this.lodash.debounce(this.searchReload, 200);
-}) || _class);
-
-// EXTERNAL MODULE: ./style.less
-var style = __webpack_require__(9);
-
-// CONCATENATED MODULE: ./mock.js
-
-var mockData = external_maka_["fetch"].mockData;
-
-function initMockData() {
-  if (!mockData.materiels) {
-    mockData.materiels = [{
-      id: 1,
-      code: 'M001',
-      name: '物料1',
-      spec: '规格1',
-      prop: '属性1',
-      uom: {
-        name: '个'
-      }
-    }, {
-      id: 2,
-      code: 'M002',
-      name: '物料2',
-      spec: '规格2',
-      prop: '属性2',
-      uom: {
-        name: '件'
-      }
-    }];
-  }
-
-  if (!mockData.technics) {
-    mockData.technics = [{
-      id: 1,
-      code: 'T001',
-      name: '工艺1'
-    }, {
-      id: 2,
-      code: 'T002',
-      name: '工艺2'
-    }];
-  }
-
-  if (!mockData.technicDetails) {
-    mockData.technicDetails = [{
-      id: 1,
-      technicId: 1,
-      code: 'TD001',
-      name: '工艺1工序1'
-    }, {
-      id: 2,
-      technicId: 1,
-      code: 'T002',
-      name: '工艺1工序2'
-    }, {
-      id: 1,
-      technicId: 2,
-      code: 'TD003',
-      name: '工艺2工序1'
-    }, {
-      id: 2,
-      technicId: 2,
-      code: 'T004',
-      name: '工艺2工序2'
-    }];
-  }
-
-  if (!mockData.boms) {
-    mockData.boms = [{
-      id: 0,
-      code: '001',
-      materiel: mockData.materiels[0],
-      technic: mockData.technics[0],
-      amount: 1,
-      yield: 100,
-      status: {
-        id: 2,
-        name: '未使用'
-      },
-      details: [{
-        id: 1,
-        materiel: mockData.materiels[0],
-        amount: 1,
-        lossRate: 0,
-        technicDetail: mockData.technicDetails[0]
-      }]
-    }];
-  }
-}
-
-external_maka_["fetch"].mock('/v1/bom/query', function (option) {
-  initMockData();
-  var pagination = option.pagination,
-      filter = option.filter;
-  var data = mockData.boms;
-
-  if (filter) {
-    if (filter.search) data = data.filter(function (o) {
-      return o.code.indexOf(filter.search) != -1;
-    });
-  }
-
-  var current = pagination.current;
-  var pageSize = pagination.pageSize;
-  var start = (current - 1) * pageSize;
-  var end = current * pageSize;
-  start = start > data.length - 1 ? 0 : start;
-  end = start > data.length - 1 ? pageSize : end;
-  current = start > data.length - 1 ? 1 : current;
-  var ret = {
-    result: true,
-    value: {
-      pagination: {
-        current: current,
-        pageSize: pageSize,
-        total: data.length
-      },
-      list: []
-    }
-  };
-
-  for (var j = start; j < end; j++) {
-    if (data[j]) ret.value.list.push(data[j]);
-  }
-
-  return ret;
-});
-external_maka_["fetch"].mock('/v1/bom/del', function (option) {
-  initMockData();
-  option.boms.forEach(function (bom) {
-    var index = mockData.boms.findIndex(function (o) {
-      return o.id == bom.id;
-    });
-    if (index || index === 0) mockData.boms.splice(index, 1);
-  });
-  return {
-    result: true,
-    value: true
-  };
-});
-// CONCATENATED MODULE: ./index.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return index_name; });
-/* concated harmony reexport state */__webpack_require__.d(__webpack_exports__, "state", function() { return state; });
-/* concated harmony reexport action */__webpack_require__.d(__webpack_exports__, "action", function() { return action_action; });
-/* concated harmony reexport view */__webpack_require__.d(__webpack_exports__, "view", function() { return view; });
-
-
-
-
-
-
-var index_name = package_0.name;
-
+eval("module.exports = __WEBPACK_EXTERNAL_MODULE_maka__;\n\n//# sourceURL=webpack://MakaApp-set-bom-list/external_%22maka%22?");
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

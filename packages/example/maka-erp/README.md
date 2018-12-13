@@ -5,8 +5,10 @@
 ```bash
 $ npm i -g @makajs/cli
 $ yarn install
-$ yarn start //登录用户名：13334445556 密码:1
+$ yarn start 
 ```
+
+打开浏览器，http://127.0.0.1:8000, 登录用户名：13334445556 密码:1
 
 ## 打包
 ```bash
