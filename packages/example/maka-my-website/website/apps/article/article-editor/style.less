@@ -1,0 +1,112 @@
+.article-editor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    &-header {
+        display: flex;
+        flex: 0 0 45px;
+        flex-direction: row;
+        background-color: #fff;
+        border-style: solid;
+        border-width: 0 0 1px;
+        border-color: #e7e6e6;
+        &-left {
+            flex: 0 0 150px;
+        }
+        &-center {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            .ant-input{
+                width: 500px;
+                font-size: 30px;
+                height:40px;
+                text-align: center;
+            }
+        }
+        &-right {
+            flex: 0 0 150px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            i {
+                font-size: 30px;
+                padding-right: 10px;
+            }
+        }
+    }
+    &-main {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        &>div:nth-child(1) {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 10px;
+        }
+        &>div:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 10px 10px 10px 0px;
+        }
+        &-left {
+            &-lbl {
+                margin-bottom: 8px;
+            }
+            .ant-input {
+                height: 40px;
+                font-size: 24px;
+            }
+            .react-codemirror2 {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                .CodeMirror {
+                    flex: 1;
+                }
+            }
+        }
+        &-right {
+            display: flex;
+            &-title {
+                font-size: 24px;
+                text-align: center;
+                flex: 0 0 40px;
+                background: whitesmoke;
+            }
+            .markdown-body {
+                flex: 1;
+                background: whitesmoke;
+                overflow: auto;
+                pre {
+                    border: 1px solid #ccc;
+                }
+                blockquote {
+                    // color: #666;
+                    margin: 0;
+                    padding-left: 3em;
+                    border-left: 0.5em #eee solid;
+                }
+                tr {
+                    border-top: 1px solid #c6cbd1;
+                    background: #fff;
+                }
+                th,
+                td {
+                    padding: 6px 13px;
+                    border: 1px solid #dfe2e5;
+                }
+                table tr:nth-child(2n) {
+                    background: #f6f8fa;
+                }
+            }
+        }
+    }
+}
