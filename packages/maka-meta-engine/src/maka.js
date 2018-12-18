@@ -189,9 +189,9 @@ function metaToComponent(meta, props, data) {
                 if (!allProps.appName)
                     return null
 
-                if (allProps._notRender === true && !existsApp(allProps.appName)) {
+                /*if (allProps._notRender === true && !existsApp(allProps.appName)) {
                     return null
-                }
+                }*/
 
                 allProps.key = allProps.appName
                 allProps.name = allProps.appName
