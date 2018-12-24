@@ -13,13 +13,13 @@ export function uid() {
     return 'i' + (i++)
 }
 
-export function setMeta(appInfo) {
+export function setMeta(appInfo, plugins) {
 
     if (!appInfo || !appInfo.view) return
 
     const appName = appInfo.name
 
-    if (cache.meta.has(appName))
+    if (cache.meta.has(appName) && (!plugins || plugins.length == 0))
         return
 
     setMetaForce(appName, appInfo.view)

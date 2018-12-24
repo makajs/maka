@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from './action'
 import PropTypes from 'prop-types'
+import pluginFactory from './pluginFactory'
+import parseName from './parseName'
 
 class AppLoader extends React.Component {
 	constructor(props, context) {
@@ -27,11 +29,20 @@ class AppLoader extends React.Component {
 			payload
 		} = nextProps
 
-		if (!payload.get('@@require')) {
+		var req = payload.get('@@require')
+		if (!req) {
 			this.props.loadApp(fullName, this.props.name)
 		}
 		else if (this.props.name != nextProps.name) {
 			this.props.clearAppState(this.props.name)
+		}
+		else{
+			let cachePlugins = req.get('plugins').toJS()
+			let parsedName = parseName(fullName)
+			let plugins = pluginFactory.getPluginsByAppName(parsedName.name) || []
+			if( JSON.stringify(cachePlugins.sort()) !== JSON.stringify(plugins.sort()) ){
+				this.props.loadPlugin(fullName, this.props.name)
+			}
 		}
 	}
 

@@ -6,10 +6,12 @@ import reducer from './reducer'
 import config from './config'
 import start from './start'
 import appFactory from './appFactory'
+import pluginFactory from './pluginFactory'
 import init from './init'
 import loadApp from './loadApp'
 
 const {registerApp, registerApps, getApp, getApps, existsApp} = appFactory
+const {registerPlugin, getPluginsByAppName, existsPlugin} = pluginFactory
 
 export default {
 	AppLoader,
@@ -23,7 +25,11 @@ export default {
 	getApp,
 	getApps,
 	existsApp,
-	loadApp
+	loadApp,
+	registerPlugin,
+	getPluginsByAppName,
+	existsPlugin,
+	pluginFactory
 }
 
 export {
@@ -38,5 +44,9 @@ export {
 	getApp,
 	getApps,
 	existsApp,
-	loadApp
+	loadApp,
+	registerPlugin,
+	getPluginsByAppName,
+	existsPlugin,
+	pluginFactory
 }

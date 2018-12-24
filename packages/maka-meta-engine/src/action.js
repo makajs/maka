@@ -11,9 +11,10 @@ export default class action {
 	constructor(option) {
 		this.appInfo = option.appInfo
 		this.meta = fromJS(option.appInfo.view)
+		var plugins = option.plugins
 		this.cache = {}
 
-		common.setMeta(option.appInfo)
+		common.setMeta(option.appInfo, plugins)
 	}
 
 	config = ({ metaHandlers }) => {

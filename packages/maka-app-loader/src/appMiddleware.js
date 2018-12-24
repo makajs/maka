@@ -1,6 +1,7 @@
 import parseName from './parseName'
 import appFactory from './appFactory'
 import loadApp from './loadApp'
+import pluginFactory from './pluginFactory'
 
 export default (actionInjections, reducerInjections) => (store) => {
 	return next => async action => {
@@ -76,13 +77,67 @@ export default (actionInjections, reducerInjections) => (store) => {
 					return next(action)
 				}
 
+				/*plugin*/
+				let plugins = pluginFactory.getPluginsByAppName(parsedName.name)
+				let pluginApps = []
+				if (plugins && plugins.length > 0) {
+					for (var i = 0; i < plugins.length; i++) {
+						var plugin = plugins[i]
+						if (!appFactory.getApp(plugin)) {
+							await loadApp(plugin)
+						}
+						pluginApps.push(appFactory.getApp(plugin))
+					}
+				}
+
 				return next({
 					type: '@@loadAppReal',
 					payload: {
 						fullName,
 						appInfo,
 						prevFullName,
-						action: appInfo.action
+						action: appInfo.action,
+						pluginApps,
+						plugins
+					}
+				})
+			}
+			catch (e) {
+				console.error(e)
+				return next(action)
+			}
+
+		} else if (action.type && action.type == '@@loadPlugin') {
+			try {
+				const fullName = action.payload.fullName,
+					prevFullName = action.payload.prevFullName,
+					parsedName = parseName(fullName)
+
+				let appInfo = appFactory.getApp(parsedName.name)
+
+				/*plugin*/
+				let plugins = pluginFactory.getPluginsByAppName(parsedName.name)
+				let pluginApps = []
+				if (plugins && plugins.length > 0) {
+					for (var i = 0; i < plugins.length; i++) {
+						var plugin = plugins[i]
+						if (!appFactory.getApp(plugin)) {
+							await loadApp(plugin)
+						}
+						pluginApps.push(appFactory.getApp(plugin))
+					}
+				}
+
+				return next({
+					type: '@@loadAppReal',
+					payload: {
+						fullName,
+						appInfo,
+						prevFullName,
+						action: appInfo.action,
+						pluginApps,
+						plugins,
+						forceLoad: true,
 					}
 				})
 			}

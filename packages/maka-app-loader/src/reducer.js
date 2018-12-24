@@ -1,4 +1,4 @@
-import { Map } from 'immutable'
+import { Map,fromJS } from 'immutable'
 import wrapMapStateToProps from './wrapMapStateToProps'
 import wrapMapDispatchToProps from './wrapMapDispatchToProps'
 import createReduxConnector from './createReduxConnector'
@@ -26,24 +26,49 @@ function loadApp(state, {
     appInfo,
     component,
     action,
-    reducer
+    reducer,
+    pluginApps,
+    plugins,
+    forceLoad = false
 }) {
-    if (!state.has(fullName)) {
+    if (!state.has(fullName) || forceLoad) {
         state = state.set(fullName, Map())
+        appInfo = { ...appInfo }
 
-        if(appInfo && appInfo.view && typeof appInfo.view == 'function'){
+        if (appInfo && appInfo.view && typeof appInfo.view == 'function') {
             component = config.current.componentWrapper()(appInfo.view)
         }
+        
+        if (pluginApps && pluginApps.length > 0) {
+            pluginApps.forEach(plugin => {
+                if (plugin.getState)
+                    appInfo.state = plugin.getState(appInfo.state)
+                if (plugin.getView)
+                    appInfo.view = plugin.getView(appInfo.view)
+            })
+        }
 
-        const actionInstance = typeof action == 'function' ? action({ appInfo, fullName }) : config.current.defaultAction({appInfo, fullName}),
-            reducerInstance = typeof reducer == 'function' ? reducer({ appInfo, fullName }) : config.current.defaultReducer({appInfo, fullName}),
+        var actionInstance = typeof action == 'function' ? action({ appInfo, fullName, plugins }) : config.current.defaultAction({ appInfo, fullName, plugins })
+        var actionInternal = actionInstance.getDirectFuns()
+        if (pluginApps && pluginApps.length > 0) {
+            pluginApps.forEach(plugin => {
+                if (plugin.getAction)
+                    actionInternal = plugin.getAction(actionInternal)
+            })
+            actionInstance = {
+                ...actionInstance,
+                getDirectFuns: ()=> actionInternal
+            }
+        }
+
+        var reducerInstance = typeof reducer == 'function' ? reducer({ appInfo, fullName }) : config.current.defaultReducer({ appInfo, fullName }),
             container = createReduxConnector(
                 component || config.current.defaultComponent,
                 wrapMapStateToProps(fullName),
                 wrapMapDispatchToProps(fullName, actionInstance, reducerInstance),
-                null, { 
+                null, {
                     //withRef: true, 
-                    pure: true 
+                    pure: true
                 }
             )
 
@@ -53,7 +78,8 @@ function loadApp(state, {
             component,
             action: actionInstance,
             reducer: reducerInstance,
-            container
+            container,
+            plugins: fromJS(plugins || [])
         }))
     }
 

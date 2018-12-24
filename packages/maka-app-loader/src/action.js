@@ -16,3 +16,13 @@ export function clearAppState(fullName) {
 		}
 	}
 }
+
+export function loadPlugin(fullName, prevFullName){
+	return {
+		type: '@@loadPlugin',
+		payload: {
+			fullName,
+			prevFullName
+		}
+	}
+}
