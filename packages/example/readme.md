@@ -5,5 +5,7 @@
 - maka-erp: 简单的PC端ERP DEMO
 - maka-mobile-erp:简单的移动端ERP DEMO
 - maka-my-website:简单的全栈实现个人文章管理，采用mysql+nodejs+koa2+knex+maka.js
+- maka-app-store:动态安装应用以及应用插件DEMO
+- maka-plugin:简单的app插件DEMO
 
 
