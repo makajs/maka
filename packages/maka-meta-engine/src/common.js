@@ -3,7 +3,7 @@ import utils, { path } from '@makajs/utils'
 import templateFactory from './templateFactory'
 
 const { parsePath } = path
-const cache = { meta: Map() }
+const cache = { meta: Map(), plugin: Map() }
 
 window['__getCache'] = () => cache
 
@@ -13,15 +13,17 @@ export function uid() {
     return 'i' + (i++)
 }
 
-export function setMeta(appInfo, plugins) {
+export function setMeta(appInfo, plugins = []) {
 
     if (!appInfo || !appInfo.view) return
 
     const appName = appInfo.name
 
-    if (cache.meta.has(appName) && (!plugins || plugins.length == 0))
+    if (cache.meta.has(appName) &&
+        JSON.stringify(plugins.sort()) === JSON.stringify(cache.plugin.get(appName).toJS().sort()))
         return
 
+    cache.plugin = cache.plugin.set(appName, fromJS(plugins))
     setMetaForce(appName, appInfo.view)
 }
 
