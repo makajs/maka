@@ -19,6 +19,14 @@ class pluginFactory {
         this.appPlugins[forApp].push(name)
     }
 
+    removePlugin = (name, forApp) => {
+        delete this.plugins[name]
+        let index = this.appPlugins[forApp].indexOf(name)
+        if (index > -1) { 
+            this.appPlugins[forApp].splice(index, 1)
+        }            
+    }
+
     existsPlugin = (forApp) => {
         return !!this.appPlugins[forApp]
     }

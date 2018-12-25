@@ -28,10 +28,17 @@ function loadApp(state, {
     action,
     reducer,
     pluginApps,
-    plugins,
+    plugins = [],
     forceLoad = false
 }) {
     if (!state.has(fullName) || forceLoad) {
+
+        if(forceLoad
+            && JSON.stringify(state.getIn([fullName, '@@require','plugins']).toJS().sort()) === JSON.stringify(plugins.sort())
+        ){
+            return state
+        }
+       
         state = state.set(fullName, Map())
         appInfo = { ...appInfo }
 
@@ -42,9 +49,9 @@ function loadApp(state, {
         if (pluginApps && pluginApps.length > 0) {
             pluginApps.forEach(plugin => {
                 if (plugin.getState)
-                    appInfo.state = plugin.getState(appInfo.state)
+                    appInfo.state = plugin.getState(fromJS(appInfo.state).toJS())
                 if (plugin.getView)
-                    appInfo.view = plugin.getView(appInfo.view)
+                    appInfo.view = plugin.getView(fromJS(appInfo.view).toJS())
             })
         }
 

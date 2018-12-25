@@ -11,7 +11,7 @@ import init from './init'
 import loadApp from './loadApp'
 
 const {registerApp, registerApps, getApp, getApps, existsApp} = appFactory
-const {registerPlugin, getPluginsByAppName, existsPlugin} = pluginFactory
+const {registerPlugin, getPluginsByAppName, existsPlugin, removePlugin} = pluginFactory
 
 export default {
 	AppLoader,
@@ -29,6 +29,7 @@ export default {
 	registerPlugin,
 	getPluginsByAppName,
 	existsPlugin,
+	removePlugin,
 	pluginFactory
 }
 
@@ -48,5 +49,6 @@ export {
 	registerPlugin,
 	getPluginsByAppName,
 	existsPlugin,
+	removePlugin,
 	pluginFactory
 }
