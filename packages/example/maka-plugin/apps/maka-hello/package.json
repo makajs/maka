@@ -1,0 +1,28 @@
+{
+  "isMakaApp": true,
+  "name": "maka-hello",
+  "description": "maka-hello",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/maka-hello.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/maka-hello/issues"
+  },
+  "homepage": "https://github.com/makajs/maka-hello#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": "./apps"
+}
