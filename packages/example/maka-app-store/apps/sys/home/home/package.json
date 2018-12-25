@@ -1,0 +1,28 @@
+{
+  "isMakaApp": true,
+  "name": "home",
+  "description": "home",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/home.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/home/issues"
+  },
+  "homepage": "https://github.com/makajs/home#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir":["./apps","../../../base", "../"]
+}

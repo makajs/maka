@@ -1,0 +1,28 @@
+{
+  "isMakaApp": true,
+  "name": "set-person-list-plugin",
+  "description": "set-person-list-plugin",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/set-person-list-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/set-person-list-plugin/issues"
+  },
+  "homepage": "https://github.com/makajs/set-person-list-plugin#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": "./apps"
+}
