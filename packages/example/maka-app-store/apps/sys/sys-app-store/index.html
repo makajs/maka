@@ -37,11 +37,7 @@
                     }
                 },
             })
-            maka.load(['antd', 'fixed-data-table', 'echarts', 'webapi']).then(() => {
-                maka.load(['common']).then(() => {
-                    maka.render('sys-app-store', 'app')
-                })
-            })
+            maka.render('sys-app-store', 'app')
         }
     </script>
     <script src="require.min.js" data-main='main.min.js'></script>

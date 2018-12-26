@@ -20,6 +20,17 @@ export default {
         }, {
             component: 'div',
             className: "portal-header-center",
+            children:[{
+                component: 'div',
+                className: 'portal-header-center-foldMenu',
+                onClick: '{{$foldMenu}}',
+                children: [{
+                    component: 'antd.Icon',
+                    type: `{{data.isFoldMenu ? 'menu-unfold-o' :'menu-fold-o'}}`,
+                    title: `{{data.isFoldMenu ? 'Open' :'Close'}}`,
+                    style: { fontSize: 19 },
+                }]
+            }]
 
         }, {
             component: 'div',
@@ -114,7 +125,7 @@ export default {
             children: [{
                 component: 'antd.Menu',
                 mode: 'vertical',
-                theme: 'dark',
+                theme: `{{ data.setting.activeStyle || 'dark'}}`,
                 className: 'portal-content-left-menu',
                 inlineCollapsed: '{{data.isFoldMenu}}',
                 selectedKeys: "{{$getMenuSelectKeys()}}",
@@ -122,16 +133,6 @@ export default {
                 onClick: '{{$menuClick}}',
                 getPopupContainer: () => { return document.querySelector('.portal-content-left-menu') },
                 children: '{{$getMenuChildren()}}'
-            }, {
-                component: 'div',
-                className: 'portal-content-left-foldMenu',
-                children: [{
-                    component: 'antd.Icon',
-                    type: `{{data.isFoldMenu ? 'double-right' :'double-left'}}`,
-                    title: `{{data.isFoldMenu ? 'Open' :'Close'}}`,
-                    style: { fontSize: 19 },
-                    onClick: '{{$foldMenu}}'
-                }]
             }]
         }, {
             component: 'div',
@@ -175,5 +176,25 @@ export default {
             }]
 
         }]
+    },{
+        component: 'div',
+        className: 'portal-option',
+        onClick: '{{$openOption}}',
+        children: {
+            component: 'antd.Icon',
+            type: 'setting',
+        }
+    },{
+        component: 'antd.Drawer',
+        title: "设置",
+        closable: true,
+        onClose:  '{{$openOption}}',
+        visible: '{{data.optionVisible}}',
+        children: {
+            component: 'AppLoader',
+            appName: 'sys-option',
+            onPortalReload: '{{$load}}',
+
+        }
     }]
 }

@@ -1,5 +1,5 @@
 import pkgJson from './package.json'
-import { actionMixin } from 'maka'
+import { actionMixin, load } from 'maka'
 import './style.less'
 import funImg from './img/photo.png'
 
@@ -69,6 +69,7 @@ const view = {
         }]
     }]
 }
+
 export {
     name,
     state,

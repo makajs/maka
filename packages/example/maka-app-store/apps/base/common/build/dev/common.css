@@ -130,6 +130,17 @@ body {
 .ant-btn-group .ant-btn {
   margin-right: 0px;
 }
+.ant-btn-primary {
+  border: 0px;
+  background-color: #3eabe8;
+  color: #fff !important;
+}
+.ant-btn-primary:hover,
+.ant-btn-primary:active,
+.ant-btn-primary:focus {
+  color: #fff important;
+  background-color: #69c6f5 !important;
+}
 .button-bluesky {
   border: 0px;
   background-color: #3eabe8;

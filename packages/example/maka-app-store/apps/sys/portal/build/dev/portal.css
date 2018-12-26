@@ -12,7 +12,7 @@
   align-items: center;
   flex: 0 0 48px;
   height: 48px;
-  background-color: #000c17;
+  background-color: #fff;
   color: #fff;
   z-index: 2;
 }
@@ -47,6 +47,19 @@
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  flex: 0 0 50px;
+  border-bottom: 1px solid #e7e6e6;
+  color: rgba(0, 0, 0, 0.65);
+}
+.portal-header-center:hover {
+  cursor: pointer;
+  background: whitesmoke;
+}
+.portal-header-center-foldMenu {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .portal-header-right {
   height: 100%;
@@ -110,22 +123,47 @@
   display: flex;
   flex-direction: column;
   overflow: visible;
-  background: #374f62;
+  /*
+            .ant-menu>li:first-child {
+                margin-top: 0px;
+            }
+            .ant-menu .anticon:before {
+                font-family: inherit !important;
+            }
+            .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected,
+            .ant-menu.ant-menu-dark .ant-menu-item-selected {
+                background: rgb(55, 79, 98);
+            } 
+
+            .ant-menu-submenu-popup > .ant-menu-sub{
+                background: rgb(55, 79, 98);
+                padding: 10 0 10 0;
+            }
+            
+            .ant-menu-item-group {
+                padding: 0 0 4 0;
+                background: rgb(55, 79, 98);
+            }
+            .ant-menu-item-group-list {
+                display: flex;
+                width: 620px;
+                flex-wrap: wrap;
+            }
+            .ant-menu-item-group-title {
+                padding-left: 14px;
+                color: lightskyblue;
+                padding: 4px 16px 0px;
+            }
+            .ant-menu-sub .ant-menu-item {
+                width: 150px;
+                margin: 0 0 0 0;
+                height: 28px;
+                line-height: 28px;
+                padding: 0 0px 0 36px;
+            }*/
 }
 .portal-content-left-menu {
   flex: 1;
-  background: #374f62;
-}
-.portal-content-left-foldMenu {
-  display: flex;
-  flex: 0 0 40px;
-  align-items: center;
-  justify-content: center;
-  color: whitesmoke;
-}
-.portal-content-left-foldMenu i:hover {
-  cursor: pointer;
-  color: #ccc;
 }
 .portal-content-left-fold {
   width: 80px;
@@ -134,41 +172,6 @@
 .portal-content-left-unfold {
   width: 200px;
   flex: 0 0 200px;
-}
-.portal-content-left .ant-menu > li:first-child {
-  margin-top: 0px;
-}
-.portal-content-left .ant-menu .anticon:before {
-  font-family: inherit !important;
-}
-.portal-content-left .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected,
-.portal-content-left .ant-menu.ant-menu-dark .ant-menu-item-selected {
-  background: #374f62;
-}
-.portal-content-left .ant-menu-submenu-popup > .ant-menu-sub {
-  background: #374f62;
-  padding: 10 0 10 0;
-}
-.portal-content-left .ant-menu-item-group {
-  padding: 0 0 4 0;
-  background: #374f62;
-}
-.portal-content-left .ant-menu-item-group-list {
-  display: flex;
-  width: 620px;
-  flex-wrap: wrap;
-}
-.portal-content-left .ant-menu-item-group-title {
-  padding-left: 14px;
-  color: lightskyblue;
-  padding: 4px 16px 0px;
-}
-.portal-content-left .ant-menu-sub .ant-menu-item {
-  width: 150px;
-  margin: 0 0 0 0;
-  height: 28px;
-  line-height: 28px;
-  padding: 0 0px 0 36px;
 }
 .portal-content-main {
   display: flex;
@@ -206,5 +209,23 @@
 }
 .portal-content-main-app-border {
   border: 1px solid #ebedf0;
+}
+.portal-option {
+  position: absolute;
+  top: 240px;
+  background: #1890ff;
+  width: 48px;
+  height: 48px;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 0;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 4px 0 0 4px;
+  z-index: 99;
 }
 

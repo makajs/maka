@@ -1,6 +1,6 @@
 import React from 'react'
 import pkgJson from './package.json'
-import { actionMixin,  registerComponent, registerAction, registerTemplate, getComponent, createAppElement } from 'maka'
+import { actionMixin, registerComponent, registerAction, registerTemplate, getComponent, createAppElement, load } from 'maka'
 import './style.less'
 import * as components from './component'
 import * as templates from './template'
@@ -8,24 +8,9 @@ import * as actions from './action'
 import moment from 'moment'
 import lodash from 'lodash'
 
-registerComponent('ctrl', components)
-
-registerTemplate('tpl', templates)
-
-registerAction('moment', moment, true)
-registerAction('lodash', lodash, true)
-registerAction('modal', components.Modal, true)
-registerAction('message', getComponent('antd.message'), true)
-registerAction('notification', getComponent('antd.notification'), true)
-
-Object.keys(actions).forEach(key => {
-    registerAction(key, actions[key], key == 'numberHelper')
-})
-
-
 const name = pkgJson.name
 
-function getOptions () {
+function getOptions() {
     var options = []
     for (var i = 0; i < 100; i++) {
         options.push({
@@ -342,10 +327,26 @@ const view = {
         }]
 }
 
+async function beforeRegister() {
+    await load(['antd', 'fixed-data-table'])
+    registerComponent('ctrl', components)
+    registerTemplate('tpl', templates)
+    registerAction('moment', moment, true)
+    registerAction('lodash', lodash, true)
+    registerAction('modal', components.Modal, true)
+    registerAction('message', getComponent('antd.message'), true)
+    registerAction('notification', getComponent('antd.notification'), true)
+
+    Object.keys(actions).forEach(key => {
+        registerAction(key, actions[key], key == 'numberHelper')
+    })
+
+}
 
 export {
     name,
     state,
     action,
-    view
+    view,
+    beforeRegister,
 }

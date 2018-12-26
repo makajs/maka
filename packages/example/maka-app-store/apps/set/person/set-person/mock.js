@@ -1,6 +1,4 @@
-import { fetch, getAction } from 'maka'
-
-const moment = getAction('moment')
+import { fetch } from 'maka'
 
 const mockData = fetch.mockData
 

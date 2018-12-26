@@ -1,5 +1,5 @@
 import pkgJson from './package.json'
-import { actionMixin, fetch } from 'maka'
+import { actionMixin, fetch, load } from 'maka'
 import './style.less'
 import './mock'
 
@@ -8,7 +8,7 @@ const name = pkgJson.name
 const state = {
     data: {
         xAxisData: [],
-        seriesData: [[],[]]
+        seriesData: [[], []]
     }
 }
 
@@ -28,7 +28,7 @@ class action {
 
 const view = {
     component: 'div',
-    className:'home-chart',
+    className: 'home-chart',
     children: [{
         component: 'Echarts',
         option: {
@@ -102,9 +102,15 @@ const view = {
     }]
 }
 
+async function beforeRegister() {
+    await load(['echarts'])
+}
+
+
 export {
     name,
     state,
     action,
-    view
+    view,
+    beforeRegister
 }

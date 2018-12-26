@@ -1,5 +1,5 @@
 import pkgJson from './package.json'
-import { actionMixin, registerAction, fetch } from 'maka'
+import { actionMixin, registerAction, fetch, load } from 'maka'
 import './style.less'
 import './mock'
 
@@ -19,6 +19,10 @@ registerAction('webapi', {
     },
     portal: {
         getMenu: (option) => fetch.post('/api/portal/getMenu', option)
+    },
+    option: {
+        query: (option) => fetch.post('/api/option/query', option),
+        update: (option) => fetch.post('/api/option/update', option)
     }
 }, true)
 
@@ -38,6 +42,8 @@ class action {
 const view = {
     component: 'div',
 }
+
+
 
 export {
     name,

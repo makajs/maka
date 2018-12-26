@@ -28,8 +28,12 @@ export default class action {
 
     load = async () => {
         var menus = await this.webapi.portal.getMenu()
+        var setting = await this.webapi.option.query()
         menus = initState.data.menu.concat(menus)
-        this.base.setState({'data.menu': menus})
+        this.base.setState({
+            'data.menu': menus,
+            'data.setting': setting
+        })
         console.log(menus)
     }
 
@@ -253,6 +257,11 @@ export default class action {
         }, 0)
     }
 
+    openOption = () => {
+        this.base.setState({'data.optionVisible': !this.base.getState('data.optionVisible')})
+    }
+
+
     addTabCloseListener = (appFullName, handler) => {
         eventListeners[appFullName + '__close'] = handler
     }
@@ -270,6 +279,7 @@ export default class action {
         if(eventListeners[appFullName + '__active'])
             delete eventListeners[appFullName + '__active']
     }
+    
     
     
 

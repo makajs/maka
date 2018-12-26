@@ -16,19 +16,19 @@ function initMockData() {
             icon: 'dashboard',
             appName: 'dashboard',
             isInstalled: false
-        },{
+        }, {
             id: 3,
             title: '人员',
             icon: 'user',
             appName: 'set-person-list',
             isInstalled: false
-        },{
+        }, {
             id: 4,
             title: '客户',
             icon: 'team',
             appName: 'set-customer-list',
             isInstalled: false
-        },{
+        }, {
             id: 5,
             title: 'BOM',
             icon: 'profile',
@@ -37,7 +37,7 @@ function initMockData() {
         }]
     }
 
-    if(!mockData.plugins){
+    if (!mockData.plugins) {
         mockData.plugins = [{
             id: 1,
             title: '人员列表插件',
@@ -46,14 +46,43 @@ function initMockData() {
             isInstalled: false
         }]
     }
+
+    if (!mockData.option) {
+        mockData.option = {
+            styles: [{
+                key: 'dark',
+                img: 'theme-style-dark.svg',
+                appName: 'theme-style-dark'
+            }, {
+                key: 'light',
+                img: 'theme-style-light.svg',
+                appName: 'theme-style-light'
+            }],
+            primaryColors: [{
+                key: 'blue',
+                color: 'rgb(24, 144, 255)',
+                appName: 'theme-primary-color-blue'
+            }, {
+                key: 'green',
+                color: 'rgb(19, 194, 194)',
+                appName: 'theme-primary-color-green'
+            }, {
+                key: 'red',
+                color: 'rgb(245, 34, 45)',
+                appName: 'theme-primary-color-red'
+            }],
+            activePrimaryColor: 'blue',
+            activeStyle: 'dark'
+        }
+    }
 }
 
 
 
-fetch.mock('/api/logout', ()=>{
+fetch.mock('/api/logout', () => {
     initMockData()
     fetch.clearAccessToken()
-    return {result: true, value: true}
+    return { result: true, value: true }
 })
 
 fetch.mock('/api/appstore/query', (option) => {
@@ -77,19 +106,19 @@ fetch.mock('/api/appstore/uninstall', (option) => {
     return { result: true, value: true }
 })
 
-fetch.mock('/api/plugin/query', (option)=> {
+fetch.mock('/api/plugin/query', (option) => {
     initMockData()
     return { result: true, value: mockData.plugins }
 })
 
-fetch.mock('/api/plugin/install', (option)=> {
+fetch.mock('/api/plugin/install', (option) => {
     initMockData()
     var { id } = option
     mockData.plugins.find(o => o.id === id).isInstalled = true
     return { result: true, value: true }
 })
 
-fetch.mock('/api/plugin/uninstall', (option)=> {
+fetch.mock('/api/plugin/uninstall', (option) => {
     initMockData()
     var { id } = option
     mockData.plugins.find(o => o.id === id).isInstalled = false
@@ -103,3 +132,18 @@ fetch.mock('/api/portal/getMenu', (option) => {
     return { result: true, value: menus }
 })
 
+fetch.mock('/api/option/query', (option) => {
+    initMockData()
+    return { result: true, value: mockData.option }
+
+})
+
+fetch.mock('/api/option/update', (option) => {
+    initMockData()
+    mockData.option = {
+        ...mockData.option,
+        ...option
+    }
+
+    return { result: true, value: mockData.option }
+})

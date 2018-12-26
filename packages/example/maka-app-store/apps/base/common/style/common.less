@@ -150,6 +150,17 @@ body {
         margin-right: 0px;
     }
 }
+.ant-btn-primary {
+    border: 0px;
+    background-color: @bluesky-color;
+    color: #fff !important;
+    &:hover,
+    &:active,
+    &:focus {
+        color: #fff important;
+        background-color:~`colorPalette("@{bluesky-color}", 5)` !important;
+    }
+}
 
 .button-bluesky {
     border: 0px;

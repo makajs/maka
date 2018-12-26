@@ -25,5 +25,5 @@
     "proxy": null,
     "port": 8000
   },
-  "subAppDir": ["./apps", "../sign-in", "../../base", "../../plugin","../../set", "../"]
+  "subAppDir": ["./apps", "../sign-in", "../../base", "../../plugin","../../theme","../../set", "../"]
 }

@@ -1,0 +1,35 @@
+.sys-option {
+    display: flex;
+    flex-direction: column;
+    &-theme-style {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+        & > div {
+            position: relative;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+
+        i {
+            position: absolute;
+            top: 20px;
+            right: 11px;
+            color: #1890ff;
+        }
+    }
+    &-theme-color {
+        & > div {
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+            float: left;
+            cursor: pointer;
+            margin-right: 8px;
+            text-align: center;
+            color: #fff;
+            font-weight: 700;
+        }
+     
+    }
+}

@@ -15,6 +15,7 @@ export default {
         isTabsStyle: true,
         isFoldMenu: true,
         other: {},
-        aa:1
+        optionVisible:false,
+        setting:{}
     }
 }

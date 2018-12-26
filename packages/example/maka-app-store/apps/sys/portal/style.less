@@ -11,7 +11,7 @@
         align-items: center;
         flex: 0 0 48px;
         height: 48px;
-        background-color: #000c17;
+        background-color: #fff;
         color: #fff; //overflow: visible;
         z-index: 2;
         &-left {
@@ -45,8 +45,22 @@
             height: 100%;
             display: flex;
             flex-direction: row;
-          
             overflow: hidden;
+            flex: 0 0 50px;
+            border-bottom: 1px solid #e7e6e6; 
+            color: rgba(0,0,0,.65);
+
+            &:hover{
+                //color: rgba(0,0,0,.025);
+                cursor: pointer;
+                background: whitesmoke
+            }
+            &-foldMenu {
+                flex:1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
         &-right {
             height: 100%;
@@ -115,22 +129,12 @@
             display: flex;
             flex-direction: column;
             overflow: visible;
-            background: rgb(55, 79, 98);
+            //background: rgb(55, 79, 98);
             &-menu {
                 flex: 1;
-                background: rgb(55, 79, 98)
+                //background: rgb(55, 79, 98)
             }
-            &-foldMenu {
-                display: flex;
-                flex: 0 0 40px;
-                align-items: center;
-                justify-content: center;
-                color: whitesmoke;
-                & i:hover{
-                    cursor: pointer;
-                    color: #ccc;
-                }
-            }
+           
             &-fold {
                 width: 80px;
                 flex: 0 0 80px;
@@ -139,6 +143,7 @@
                 width: 200px;
                 flex: 0 0 200px;
             }
+            /*
             .ant-menu>li:first-child {
                 margin-top: 0px;
             }
@@ -175,7 +180,7 @@
                 height: 28px;
                 line-height: 28px;
                 padding: 0 0px 0 36px;
-            }
+            }*/
         }
 
         &-main {
@@ -229,4 +234,22 @@
         }
     }
    
+    &-option {
+        position: absolute;
+        top: 240px;
+        background: #1890ff;
+        width: 48px;
+        height: 48px;
+        right: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        pointer-events: auto;
+        z-index: 0;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 4px 0 0 4px;
+        z-index: 99
+    }
 }

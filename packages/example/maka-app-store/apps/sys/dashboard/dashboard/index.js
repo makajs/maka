@@ -1,5 +1,5 @@
 import pkgJson from './package.json'
-import { actionMixin } from 'maka'
+import { actionMixin, load } from 'maka'
 import './style.less'
 
 const name = pkgJson.name
@@ -111,9 +111,15 @@ const view = {
     }]
 }
 
+
+async function beforeRegister(){
+    await load(['common'])
+}
+
 export {
     name,
     state,
     action,
-    view
+    view,
+    beforeRegister
 }

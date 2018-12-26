@@ -1,6 +1,5 @@
 import { fetch, getAction } from 'maka'
 
-const moment = getAction('moment')
 
 const mockData = fetch.mockData
 
