@@ -9,6 +9,7 @@ import appFactory from './appFactory'
 import pluginFactory from './pluginFactory'
 import init from './init'
 import loadApp from './loadApp'
+import removeApp from './removeApp'
 
 const {registerApp, registerApps, getApp, getApps, existsApp} = appFactory
 const {registerPlugin, getPluginsByAppName, existsPlugin, removePlugin} = pluginFactory
@@ -26,6 +27,8 @@ export default {
 	getApps,
 	existsApp,
 	loadApp,
+	removeApp,
+	appFactory,
 	registerPlugin,
 	getPluginsByAppName,
 	existsPlugin,
@@ -46,6 +49,8 @@ export {
 	getApps,
 	existsApp,
 	loadApp,
+	removeApp,
+	appFactory,
 	registerPlugin,
 	getPluginsByAppName,
 	existsPlugin,

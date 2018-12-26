@@ -51,20 +51,40 @@ export default function loadApp(app) {
 
 
     return new Promise((resolve, reject) => {
+        /*
         urls.forEach(url => {
             var appName = url.substr(url.lastIndexOf('/') + 1).replace(/(\.js)|(\.min\.js)/, ''),
                 pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : ''
             window[`__pub_${appName}__`] = pub
         })
+        */
+
+       urls = urls.filter(url => {
+            var appName = url.substr(url.lastIndexOf('/') + 1).replace(/(\.js)|(\.min\.js)/, ''),
+                pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : ''
+            window[`__pub_${appName}__`] = pub
+            return !appFactory.existsApp(appName)
+        })
 
         urls = urls.map(u => isProduction ? (u + '.min') : u)
-        const appCount = urls.length
-        urls = urls.concat(urls.map(u => `css!${u}`))
+        //const appCount = urls.length
+        //urls = urls.concat(urls.map(u => `css!${u}`))
 
-        window.require(urls, (...args) => {
-            const apps = args.slice(0, appCount).reduce((prev, curr) => {
+        if(!urls || urls.length == 0 ){
+            resolve(null)
+            return
+        }
+            
+        window.require(urls, async (...args) => {
+            const apps = args.reduce((prev, curr) => {
                 return curr ? { ...prev, [curr.name]: curr } : curr
             }, {})
+
+            var appNames = Object.keys(apps)
+            for(var i = 0; i < appNames.length ; i ++){
+                apps[appNames[i]].beforeRegister && (await apps[appNames[i]].beforeRegister())
+            }
+
             appFactory.registerApps(apps)
 
             appConfig(appFactory.getApps(), {
@@ -72,7 +92,13 @@ export default function loadApp(app) {
                 ...options
             })
 
-            resolve(null)
+            var cssUrls = urls.map(u => `css!${u}`)
+            window.require(cssUrls, async (...args) => {
+                for(var i = 0; i < appNames.length ; i ++){
+                    apps[appNames[i]].afterRegister && (await apps[appNames[i]].afterRegister())
+                }
+                resolve(null)
+            })
         })
     })
 

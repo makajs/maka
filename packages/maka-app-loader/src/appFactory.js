@@ -33,6 +33,11 @@ class appFactory {
         return this.apps
     }
 
+    removeApp = (name) => {
+        delete this.apps[name]
+    }
+
+
 }
 
 const appFactoryInstance = new appFactory()

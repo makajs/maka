@@ -64,7 +64,6 @@ export default (actionInjections, reducerInjections) => (store) => {
 					prevFullName = action.payload.prevFullName,
 					parsedName = parseName(fullName)
 
-
 				let appInfo = appFactory.getApp(parsedName.name)
 				if (!appInfo) {
 					await loadApp(parsedName.name)
