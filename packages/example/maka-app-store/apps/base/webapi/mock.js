@@ -34,6 +34,14 @@ function initMockData() {
             icon: 'profile',
             appName: 'set-bom-list',
             isInstalled: false
+        },{
+            id: 6,
+            title: '百度',
+            icon: 'smile',
+            appName: 'base-iframe',
+            appProps: {iframeSrc: 'https://www.baidu.com'},
+            alwaysRender: true,
+            isInstalled: false
         }]
     }
 

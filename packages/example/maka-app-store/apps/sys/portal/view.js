@@ -171,7 +171,8 @@ export default {
                     removeTabActiveListener: '{{$removeTabActiveListener}}',
                     isTabStyle: '{{data.isTabsStyle}}',
                     '...': '{{item && item.appProps}}',
-                    _notRender: '{{ !(data.content && data.content.appName == item.appName) }}'
+                    isHide: `{{ item.alwaysRender && (!data.content || data.content.appName != item.appName)}}`,
+                    _notRender: `{{!(data.content && data.content.appName == item.appName) && !item.alwaysRender}}`
                 }
             }]
 

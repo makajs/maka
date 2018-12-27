@@ -34,7 +34,6 @@ export default class action {
             'data.menu': menus,
             'data.setting': setting
         })
-        console.log(menus)
     }
 
     getCurrentUser = () => this.base.context.get('currentUser') || {}
@@ -127,7 +126,7 @@ export default class action {
     menuClick = (e) => {
         const hit = this.findMenu(this.base.gs('data.menu'), e.key)
         if (hit) {
-            this.setContent(hit.name, hit.appName, hit.appProps)
+            this.setContent(hit.name, hit.appName, hit.appProps, hit.alwaysRender)
         }
     }
 
@@ -141,7 +140,7 @@ export default class action {
     tabChange = (key) => {
         const openTabs = this.base.gs('data.openTabs')
         const curr = openTabs.find(o => o.appName == key)
-        this.setContent(curr.title, curr.appName, curr.appProps)
+        this.setContent(curr.title, curr.appName, curr.appProps, curr.alwaysRender)
     }
 
     tabEdit = async (key, action) => {
@@ -196,7 +195,7 @@ export default class action {
         this.base.ss({ 'data.isFoldMenu': !this.base.gs('data.isFoldMenu') })
     }
 
-    setContent = (title, appName, appProps) => {
+    setContent = (title, appName, appProps, alwaysRender) => {
         if (!appName)
             return
 
@@ -214,7 +213,7 @@ export default class action {
         title = title || (oriMenuItem && oriMenuItem.title)
         appProps = appProps || (oriMenuItem && oriMenuItem.appProps) || {}
 
-        var content = { title, appName, appProps }
+        var content = { title, appName, appProps, alwaysRender }
 
         json['data.content'] = content
 
