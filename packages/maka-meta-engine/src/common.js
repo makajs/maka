@@ -7,10 +7,18 @@ const cache = { meta: Map(), plugin: Map() }
 
 window['__getCache'] = () => cache
 
-var i = 0
+var uids = {
 
-export function uid() {
-    return 'i' + (i++)
+}
+
+export function uid(appName) {
+    if(!uids[appName]){
+        uids[appName] = 0
+        return appName + (uids[appName]++)
+    }
+    else{
+        return uids[appName]++
+    }
 }
 
 export function setMeta(appInfo, plugins = []) {
@@ -35,7 +43,7 @@ export function setMetaForce(appName, meta) {
 
     meta = parseMetaTemplate(meta)
 
-    var parsed = parseMeta(meta)
+    var parsed = parseMeta(meta, appName)
     meta = parsed.meta
     var map = parsed.map
 
@@ -196,7 +204,7 @@ function parseMetaTemplate(meta) {
     return meta
 }
 
-function parseMeta(meta) {
+function parseMeta(meta, appName) {
     let map = Map()
     const parseProp = (propValue, parentPath, parentRealPath) => {
         if (!(propValue instanceof Immutable.Map)) {
@@ -209,7 +217,7 @@ function parseMeta(meta) {
         }
         else*/
         if (propValue.get('component')) {
-            const name = uid() + ''
+            const name = uid(appName) + ''
             meta = meta.setIn(parentRealPath ? parentRealPath.split('.').concat('_name') : ['_name'], name)
             parentPath = parentPath ? `${parentPath}.${name}` : name
             map = map.set(parentPath, parentRealPath)
