@@ -1,5 +1,8 @@
 使用maka.js + antd + echarts + fixed-data-table + font-awesome 实现的应用商店demo，可动态安装应用插件
 
+## 预览
+[https://makajs.github.io/maka/maka-app-store/](https://makajs.github.io/maka/maka-app-store/)
+
 ## 运行
 
 ```bash
