@@ -19,11 +19,19 @@
     "build": "maka build",
     "pkg": "maka pkg"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "server": {
     "proxy": null,
     "port": 8000
   },
-  "subAppDir": ["./apps", "../sign-in", "../../base", "../../plugin","../../theme","../../set", "../"]
+  "subAppDir": [
+    "./apps",
+    "../sign-in",
+    "../../base",
+    "../../plugin",
+    "../../theme",
+    "../../set",
+    "../../devtools",
+    "../"
+  ]
 }

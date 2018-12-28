@@ -42,6 +42,17 @@ function initMockData() {
             appProps: {iframeSrc: 'https://www.baidu.com'},
             alwaysRender: true,
             isInstalled: false
+        },{
+            id: 7,
+            title: '开发工具',
+            icon: 'tool',
+            appName: 'devtools-app',
+            isModal: true,
+            bodyStyle: {
+                height: 400
+            },
+            width: 1100,
+            isInstalled: false
         }]
     }
 

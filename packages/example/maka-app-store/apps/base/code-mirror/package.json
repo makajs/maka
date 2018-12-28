@@ -1,0 +1,32 @@
+{
+  "isMakaApp": true,
+  "name": "code-mirror",
+  "description": "code-mirror",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/code-mirror.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/code-mirror/issues"
+  },
+  "homepage": "https://github.com/makajs/code-mirror#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": "./apps",
+  "devDependencies": {
+    "codemirror": "^5.42.0",
+    "react-codemirror2": "^5.1.0"
+  }
+}

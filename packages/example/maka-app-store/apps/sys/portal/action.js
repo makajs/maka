@@ -1,10 +1,10 @@
 
-import { actionMixin, fetch, navigate } from 'maka'
+import { actionMixin, fetch, navigate,createAppElement } from 'maka'
 import initState from './state'
 var eventListeners = {}
 
 
-@actionMixin('base', 'webapi')
+@actionMixin('base', 'webapi', 'modal')
 export default class action {
     constructor(option) {
         Object.assign(this, option.mixins)
@@ -12,15 +12,15 @@ export default class action {
 
     onInit = () => {
         this.load()
-        
+
         navigate.listen(this.listen)
-        
+
         var local = navigate.getLocation()
         var target
-        if(navigate.getLocation().pathname == '/portal'){
+        if (navigate.getLocation().pathname == '/portal') {
             target = '/portal/sys-app-store'
         }
-        else{
+        else {
             target = local.pathname + local.search
         }
         navigate.redirect(target)
@@ -125,8 +125,19 @@ export default class action {
 
     menuClick = (e) => {
         const hit = this.findMenu(this.base.gs('data.menu'), e.key)
+
         if (hit) {
-            this.setContent(hit.name, hit.appName, hit.appProps, hit.alwaysRender)
+            if (hit.isModal) {
+                this.modal.show({
+                    title: '开发工具',
+                    children: createAppElement(hit.appName, {
+                    }),
+                    ...hit
+                })
+            }
+            else {
+                this.setContent(hit.name, hit.appName, hit.appProps, hit.alwaysRender)
+            }
         }
     }
 
@@ -147,19 +158,19 @@ export default class action {
         if (action == 'remove') {
             //页签关闭调用app监听方法
             var closeListener = eventListeners[`${key}__close`]
-            if(closeListener && !(await closeListener())){
-                return 
+            if (closeListener && !(await closeListener())) {
+                return
             }
             var openTabs = this.base.gs('data.openTabs') || []
             var hitIndex = openTabs.findIndex(o => o.appName == key)
-            
+
             openTabs.splice(hitIndex, 1)
 
             var content = openTabs.length > 0 ? openTabs[openTabs.length - 1] : {}
 
             //页签激活调用app监听方法
-            var activeListener =  eventListeners[`${content.appName}__active`]
-            if(activeListener ){
+            var activeListener = eventListeners[`${content.appName}__active`]
+            if (activeListener) {
                 setTimeout(activeListener, 16)
             }
 
@@ -230,8 +241,8 @@ export default class action {
         else {
             if (isTabsStyle) {
                 //页签激活调用app监听方法
-                var activeListener =  eventListeners[`${content.appName}__active`]
-                if(activeListener ){
+                var activeListener = eventListeners[`${content.appName}__active`]
+                if (activeListener) {
                     setTimeout(activeListener, 16)
                 }
 
@@ -257,7 +268,7 @@ export default class action {
     }
 
     openOption = () => {
-        this.base.setState({'data.optionVisible': !this.base.getState('data.optionVisible')})
+        this.base.setState({ 'data.optionVisible': !this.base.getState('data.optionVisible') })
     }
 
 
@@ -266,7 +277,7 @@ export default class action {
     }
 
     removeTabCloseListener = (appFullName) => {
-        if(eventListeners[appFullName + '__close'])
+        if (eventListeners[appFullName + '__close'])
             delete eventListeners[appFullName + '__close']
     }
 
@@ -275,12 +286,12 @@ export default class action {
     }
 
     removeTabActiveListener = (appFullName) => {
-        if(eventListeners[appFullName + '__active'])
+        if (eventListeners[appFullName + '__active'])
             delete eventListeners[appFullName + '__active']
     }
-    
-    
-    
+
+
+
 
     listen = (location, action) => {
         let full = `${location.pathname}${location.search}`
@@ -305,5 +316,5 @@ export default class action {
         navigate.unlisten(this.listen)
     }
 
-   
+
 }
