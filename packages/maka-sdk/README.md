@@ -1,2 +1,0 @@
-# maka-sdk
-sdk

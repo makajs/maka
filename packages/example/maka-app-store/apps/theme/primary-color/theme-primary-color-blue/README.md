@@ -1,1 +1,0 @@
-# theme-primary-color-blue
