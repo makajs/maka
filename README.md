@@ -10,6 +10,11 @@
 
 ![image](https://makajs.org/img/framework.png)
 
+[maka-appstore-demo](https://makajs.github.io/maka/maka-app-store)
+```
+usename:13334445556
+password:1
+```
 ### Why Maka.js
 Use maka.js to resolve these problems:
 #### 1、 React -- ugly syntax
