@@ -1,3 +1,5 @@
+import { resolve } from "path";
+
 class actionFactory {
     constructor() {
         this.actions = {}
@@ -34,6 +36,24 @@ class actionFactory {
         return action
     }
 
+    asyncGetAction(name) {
+        if (!name)
+            throw `Action name cannot be empty`
+        
+        return new Promise((resolve,reject)=>{
+            var getAction = () => {
+                setTimeout(()=>{
+                    if (this.actions[name]){
+                        resolve(this.actions[name])
+                    }
+                    else{
+                        getAction()
+                    }
+                }, 0)
+            }
+            getAction()
+        })
+    }
 }
 
 const instance = new actionFactory()
