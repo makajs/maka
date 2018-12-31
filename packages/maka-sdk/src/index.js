@@ -33,7 +33,8 @@ var Hoc,
     removePlugin = appLoader.removePlugin.bind(appLoader.pluginFactory),
     actionMixin = metaEngine.actionMixin,
     fetch = utils.fetch,
-    navigate = utils.navigate
+    navigate = utils.navigate,
+    appInstances = metaEngine.appInstances
 
 
 //Initialize maka environment
@@ -113,6 +114,7 @@ export default {
     registerPlugin,
     removePlugin,
     actionMixin,
+    appInstances,
     setHoc,
     fetch,
     navigate,
@@ -138,6 +140,7 @@ export {
     registerPlugin,
     removePlugin,
     actionMixin,
+    appInstances,
     setHoc,
     fetch,
     navigate,
