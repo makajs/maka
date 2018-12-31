@@ -137,7 +137,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/hualala/maka-app-store/apps/plugin/set-person-list-plugin/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/multi_./src/index.js?");
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-app-store/apps/plugin/set-person-list-plugin/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/multi_./src/index.js?");
 
 /***/ }),
 

@@ -1,0 +1,28 @@
+{
+  "isMakaApp": true,
+  "name": "option",
+  "description": "option",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/option.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/option/issues"
+  },
+  "homepage": "https://github.com/makajs/option#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": ["./apps",  "../../assets", "../../base", "../../theme"]
+}

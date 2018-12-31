@@ -2,13 +2,11 @@ import React from 'react'
 import { actionMixin, registerComponent } from 'maka'
 import pkgJson from '../package.json'
 import * as antd from 'antd/lib'
-import * as antdpro from 'ant-design-pro/lib'
 import './style.less'
 
 const name = pkgJson.name
 
 registerComponent('antd', antd)
-registerComponent('antdpro', antdpro)
 
 const view = {
     component: 'div',

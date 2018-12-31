@@ -18,7 +18,7 @@ export default class action {
         var local = navigate.getLocation()
         var target
         if (navigate.getLocation().pathname == '/portal') {
-            target = '/portal/sys-app-store'
+            target = '/portal/app-store'
         }
         else {
             target = local.pathname + local.search

@@ -193,7 +193,7 @@ export default {
         visible: '{{data.optionVisible}}',
         children: {
             component: 'AppLoader',
-            appName: 'sys-option',
+            appName: 'option',
             onPortalReload: '{{$load}}',
 
         }

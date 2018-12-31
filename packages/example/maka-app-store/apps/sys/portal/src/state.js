@@ -1,7 +1,7 @@
 const menu = [{
     key: '1',
     title: '应用商店',
-    appName: 'sys-app-store',
+    appName: 'app-store',
     appProps: {},
     icon:'appstore'
 }]

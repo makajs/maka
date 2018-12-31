@@ -21,9 +21,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "ant-design-pro": "^2.1.1",
-    "antd": "*",
-    "mk-rc-select": "*"
+    "antd": "*"
   },
   "server": {
     "proxy": null,
