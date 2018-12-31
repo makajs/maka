@@ -5,7 +5,7 @@ import { fromJS } from 'immutable'
 import contextManager from './context'
 import config from './config'
 
-const appInstances = {}
+export const appInstances = {}
 
 export default class action {
 	constructor(option) {
@@ -397,3 +397,4 @@ export default class action {
 
 	context = contextManager
 }
+

@@ -1,5 +1,5 @@
 import config from './config'
-import action from './action'
+import action, {appInstances} from './action'
 import reducer from './reducer'
 import wrapper from './wrapper'
 import actionMixin from './actionMixin'
@@ -23,7 +23,8 @@ export default {
 	defaultComponent,
 	defaultAction,
 	defaultReducer,
-	rootElement
+	rootElement,
+	appInstances
 }
 
 
@@ -39,5 +40,6 @@ export {
 	defaultComponent,
 	defaultAction,
 	defaultReducer,
-	rootElement
+	rootElement,
+	appInstances
 }
