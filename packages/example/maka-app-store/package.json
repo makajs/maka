@@ -1,7 +1,7 @@
 {
   "isMakaApp": true,
-  "name": "maka-erp",
-  "description": "maka-erp",
+  "name": "maka-app-store",
+  "description": "maka-app-store",
   "version": "1.0.0",
   "license": "MIT",
   "author": "ziaochina",
@@ -24,5 +24,7 @@
     "proxy": null,
     "port": 8000
   },
-  "subAppDir": "./apps"
+  "subAppDir": "./apps",
+  "devDependencies": {
+  }
 }

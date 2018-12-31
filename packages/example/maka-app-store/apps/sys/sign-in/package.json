@@ -28,5 +28,5 @@
     "proxy": null,
     "port": 8000
   },
-  "subAppDir": ["./apps","../portal", "../../base"]
+  "subAppDir": ["./apps","../portal", "../../base", "../../assets", "../../webapi"]
 }

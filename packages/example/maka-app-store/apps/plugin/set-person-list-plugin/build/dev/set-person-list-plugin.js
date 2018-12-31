@@ -96,18 +96,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
-/*! exports provided: name, getView, getAction */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getView\", function() { return getView; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getAction\", function() { return getAction; });\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./package.json */ \"./package.json\", 1);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.less */ \"./style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_0__.name;\n\nfunction getView(view) {\n  view.children[0].children[2].children.push({\n    component: 'button',\n    onClick: '{{$btnClick}}',\n    children: 'plugin'\n  });\n  return view;\n}\n\nfunction getAction(action) {\n  action.btnClick = function (e) {\n    alert();\n  };\n\n  return action;\n}\n\n\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/./index.js?");
-
-/***/ }),
-
 /***/ "./package.json":
 /*!**********************!*\
   !*** ./package.json ***!
@@ -115,29 +103,41 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, homepage, scripts, dependencies, server, subAppDir, default */
 /***/ (function(module) {
 
-eval("module.exports = {\"isMakaApp\":true,\"name\":\"set-person-list-plugin\",\"description\":\"set-person-list-plugin\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/set-person-list-plugin.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/set-person-list-plugin/issues\"},\"homepage\":\"https://github.com/makajs/set-person-list-plugin#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":\"./apps\"};\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/./package.json?");
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"set-person-list-plugin\",\"description\":\"set-person-list-plugin\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/set-person-list-plugin.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/set-person-list-plugin/issues\"},\"homepage\":\"https://github.com/makajs/set-person-list-plugin#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../assets\",\"../../base\",\"../../set/person\"]};\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/./package.json?");
 
 /***/ }),
 
-/***/ "./style.less":
-/*!********************!*\
-  !*** ./style.less ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! exports provided: name, getView, getAction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/./style.less?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getView\", function() { return getView; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getAction\", function() { return getAction; });\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../package.json */ \"./package.json\", 1);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.less */ \"./src/style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_0__.name;\n\nfunction getView(view) {\n  view.children[0].children[2].children.push({\n    component: 'button',\n    onClick: '{{$btnClick}}',\n    children: 'plugin'\n  });\n  return view;\n}\n\nfunction getAction(action) {\n  action.btnClick = function (e) {\n    alert();\n  };\n\n  return action;\n}\n\n\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/./src/index.js?");
 
 /***/ }),
 
-/***/ 0:
+/***/ "./src/style.less":
 /*!************************!*\
-  !*** multi ./index.js ***!
+  !*** ./src/style.less ***!
   \************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-app-store/apps/plugin/set-person-list-plugin/index.js */\"./index.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/multi_./index.js?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/./src/style.less?");
+
+/***/ }),
+
+/***/ 0:
+/*!****************************!*\
+  !*** multi ./src/index.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/hualala/maka-app-store/apps/plugin/set-person-list-plugin/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-person-list-plugin/multi_./src/index.js?");
 
 /***/ }),
 

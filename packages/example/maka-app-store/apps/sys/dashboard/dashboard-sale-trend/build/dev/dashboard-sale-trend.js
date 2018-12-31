@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js":
+/***/ "../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js":
 /*!*******************************************************************************************************!*\
   !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
   \*******************************************************************************************************/
@@ -107,7 +107,7 @@ eval("function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg)
 
 /***/ }),
 
-/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js":
+/***/ "../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js":
 /*!*****************************************************************************************************!*\
   !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js ***!
   \*****************************************************************************************************/
@@ -118,7 +118,7 @@ eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instan
 
 /***/ }),
 
-/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js":
+/***/ "../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js":
 /*!*****************************************************************************************************!*\
   !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js ***!
   \*****************************************************************************************************/
@@ -129,29 +129,29 @@ eval("function _defineProperty(obj, key, value) {\n  if (key in obj) {\n    Obje
 
 /***/ }),
 
-/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js":
+/***/ "../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js":
 /*!************************************************************************************************!*\
   !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js ***!
   \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! regenerator-runtime */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js\");\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js?");
+eval("module.exports = __webpack_require__(/*! regenerator-runtime */ \"../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js\");\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js?");
 
 /***/ }),
 
-/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js":
+/***/ "../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js":
 /*!**************************************************************************************************!*\
   !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js ***!
   \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n// This method of obtaining a reference to the global object needs to be\n// kept identical to the way it is obtained in runtime.js\nvar g = (function() {\n  return this || (typeof self === \"object\" && self);\n})() || Function(\"return this\")();\n\n// Use `getOwnPropertyNames` because not all browsers support calling\n// `hasOwnProperty` on the global `self` object in a worker. See #183.\nvar hadRuntime = g.regeneratorRuntime &&\n  Object.getOwnPropertyNames(g).indexOf(\"regeneratorRuntime\") >= 0;\n\n// Save the old regeneratorRuntime in case it needs to be restored later.\nvar oldRuntime = hadRuntime && g.regeneratorRuntime;\n\n// Force reevalutation of runtime.js.\ng.regeneratorRuntime = undefined;\n\nmodule.exports = __webpack_require__(/*! ./runtime */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime.js\");\n\nif (hadRuntime) {\n  // Restore the original runtime.\n  g.regeneratorRuntime = oldRuntime;\n} else {\n  // Remove the global property added by runtime.js.\n  try {\n    delete g.regeneratorRuntime;\n  } catch(e) {\n    g.regeneratorRuntime = undefined;\n  }\n}\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend//usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js?");
+eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n// This method of obtaining a reference to the global object needs to be\n// kept identical to the way it is obtained in runtime.js\nvar g = (function() {\n  return this || (typeof self === \"object\" && self);\n})() || Function(\"return this\")();\n\n// Use `getOwnPropertyNames` because not all browsers support calling\n// `hasOwnProperty` on the global `self` object in a worker. See #183.\nvar hadRuntime = g.regeneratorRuntime &&\n  Object.getOwnPropertyNames(g).indexOf(\"regeneratorRuntime\") >= 0;\n\n// Save the old regeneratorRuntime in case it needs to be restored later.\nvar oldRuntime = hadRuntime && g.regeneratorRuntime;\n\n// Force reevalutation of runtime.js.\ng.regeneratorRuntime = undefined;\n\nmodule.exports = __webpack_require__(/*! ./runtime */ \"../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime.js\");\n\nif (hadRuntime) {\n  // Restore the original runtime.\n  g.regeneratorRuntime = oldRuntime;\n} else {\n  // Remove the global property added by runtime.js.\n  try {\n    delete g.regeneratorRuntime;\n  } catch(e) {\n    g.regeneratorRuntime = undefined;\n  }\n}\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend//usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime-module.js?");
 
 /***/ }),
 
-/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime.js":
+/***/ "../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime.js":
 /*!*******************************************************************************************!*\
   !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/regenerator-runtime/runtime.js ***!
   \*******************************************************************************************/
@@ -162,42 +162,6 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 
 /***/ }),
 
-/***/ "./action.js":
-/*!*******************!*\
-  !*** ./action.js ***!
-  \*******************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return action; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\nvar _dec, _class, _temp;\n\n\nvar action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_4__[\"actionMixin\"])('base', 'numberHelper'), _dec(_class = (_temp = function action(option) {\n  var _this = this;\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, action);\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"onInit\",\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {\n    var resp;\n    return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            _context.next = 2;\n            return maka__WEBPACK_IMPORTED_MODULE_4__[\"fetch\"].post('/v1/dashboard/sale/trend', {});\n\n          case 2:\n            resp = _context.sent;\n\n            _this.base.ss({\n              'data': resp\n            });\n\n          case 4:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee, this);\n  })));\n\n  Object.assign(this, option.mixins);\n}, _temp)) || _class);\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./action.js?");
-
-/***/ }),
-
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
-/*! exports provided: name, state, action, view, beforeRegister */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"beforeRegister\", function() { return beforeRegister; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./package.json */ \"./package.json\", 1);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.less */ \"./style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./view */ \"./view.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"view\", function() { return _view__WEBPACK_IMPORTED_MODULE_5__[\"default\"]; });\n\n/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./action */ \"./action.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"action\", function() { return _action__WEBPACK_IMPORTED_MODULE_6__[\"default\"]; });\n\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./state */ \"./state.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"state\", function() { return _state__WEBPACK_IMPORTED_MODULE_7__[\"default\"]; });\n\n/* harmony import */ var _mock__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./mock */ \"./mock.js\");\n\n\n\n\n\n\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_2__.name;\n\nfunction beforeRegister() {\n  return _beforeRegister.apply(this, arguments);\n}\n\nfunction _beforeRegister() {\n  _beforeRegister = _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {\n    return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            _context.next = 2;\n            return Object(maka__WEBPACK_IMPORTED_MODULE_3__[\"load\"])(['common', 'echarts']);\n\n          case 2:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee, this);\n  }));\n  return _beforeRegister.apply(this, arguments);\n}\n\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./index.js?");
-
-/***/ }),
-
-/***/ "./mock.js":
-/*!*****************!*\
-  !*** ./mock.js ***!
-  \*****************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_0__);\n\nvar mockData = maka__WEBPACK_IMPORTED_MODULE_0__[\"fetch\"].mockData;\n\nfunction initMockData() {\n  var moment = Object(maka__WEBPACK_IMPORTED_MODULE_0__[\"getAction\"])('moment');\n\n  if (!mockData.dashboard) {\n    mockData.dashboard = {};\n  }\n\n  if (!mockData.dashboard.saleTrend) {\n    var x = [];\n    var y = [];\n\n    for (var i = 12; i >= 0; i--) {\n      x.push(moment().subtract(i, 'months').format('YYYY-MM'));\n      var v = Math.floor(Math.random() * 10000) + 100;\n      y.push(v);\n    }\n\n    mockData.dashboard.saleTrend = {\n      x: x,\n      y: y\n    };\n  }\n\n  if (!mockData.dashboard.topForStore) {\n    mockData.dashboard.topForStore = [];\n\n    for (var _i = 1; _i < 8; _i++) {\n      mockData.dashboard.topForStore.push({\n        index: _i,\n        storeName: '北京市海淀区上地门店' + _i,\n        total: (100 - _i) * 100\n      });\n    }\n  }\n}\n\nmaka__WEBPACK_IMPORTED_MODULE_0__[\"fetch\"].mock('/v1/dashboard/sale/trend', function (option) {\n  initMockData();\n  return {\n    result: true,\n    value: {\n      saleTrend: mockData.dashboard.saleTrend,\n      topForStore: mockData.dashboard.topForStore\n    }\n  };\n});\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./mock.js?");
-
-/***/ }),
-
 /***/ "./package.json":
 /*!**********************!*\
   !*** ./package.json ***!
@@ -205,53 +169,77 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var maka
 /*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, homepage, scripts, dependencies, server, subAppDir, default */
 /***/ (function(module) {
 
-eval("module.exports = {\"isMakaApp\":true,\"name\":\"dashboard-sale-trend\",\"description\":\"dashboard-sale-trend\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/dashboard-sale-trend.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/dashboard-sale-trend/issues\"},\"homepage\":\"https://github.com/makajs/dashboard-sale-trend#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../../base\"]};\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./package.json?");
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"dashboard-sale-trend\",\"description\":\"dashboard-sale-trend\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/dashboard-sale-trend.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/dashboard-sale-trend/issues\"},\"homepage\":\"https://github.com/makajs/dashboard-sale-trend#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../../assets\",\"../../../base\",\"../../../webapi\"]};\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./package.json?");
 
 /***/ }),
 
-/***/ "./state.js":
-/*!******************!*\
-  !*** ./state.js ***!
-  \******************/
+/***/ "./src/action.js":
+/*!***********************!*\
+  !*** ./src/action.js ***!
+  \***********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  data: {\n    saleTrend: {\n      x: [],\n      y: []\n    },\n    topForStore: []\n  }\n});\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./state.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return action; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator */ \"../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator */ \"../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck */ \"../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty */ \"../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\nvar _dec, _class, _temp;\n\n\nvar action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_4__[\"actionMixin\"])('base', 'numberHelper', 'webapi'), _dec(_class = (_temp = function action(option) {\n  var _this = this;\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, action);\n\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(this, \"onInit\",\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {\n    var resp;\n    return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            _context.next = 2;\n            return _this.webapi.dashboard.saleTrend({});\n\n          case 2:\n            resp = _context.sent;\n\n            _this.base.ss({\n              'data': resp\n            });\n\n          case 4:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee, this);\n  })));\n\n  Object.assign(this, option.mixins);\n}, _temp)) || _class);\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./src/action.js?");
 
 /***/ }),
 
-/***/ "./style.less":
-/*!********************!*\
-  !*** ./style.less ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! exports provided: name, state, action, view, beforeRegister */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./style.less?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"beforeRegister\", function() { return beforeRegister; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator */ \"../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator */ \"../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../package.json */ \"./package.json\", 1);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.less */ \"./src/style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./view */ \"./src/view.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"view\", function() { return _view__WEBPACK_IMPORTED_MODULE_5__[\"default\"]; });\n\n/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./action */ \"./src/action.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"action\", function() { return _action__WEBPACK_IMPORTED_MODULE_6__[\"default\"]; });\n\n/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./state */ \"./src/state.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"state\", function() { return _state__WEBPACK_IMPORTED_MODULE_7__[\"default\"]; });\n\n\n\n\n\n\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_2__.name;\n\nfunction beforeRegister() {\n  return _beforeRegister.apply(this, arguments);\n}\n\nfunction _beforeRegister() {\n  _beforeRegister = _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(\n  /*#__PURE__*/\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {\n    return _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            _context.next = 2;\n            return Object(maka__WEBPACK_IMPORTED_MODULE_3__[\"load\"])(['echarts', 'template', 'webapi']);\n\n          case 2:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee, this);\n  }));\n  return _beforeRegister.apply(this, arguments);\n}\n\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./src/index.js?");
 
 /***/ }),
 
-/***/ "./view.js":
-/*!*****************!*\
-  !*** ./view.js ***!
-  \*****************/
+/***/ "./src/state.js":
+/*!**********************!*\
+  !*** ./src/state.js ***!
+  \**********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  component: 'div',\n  className: 'dashboard-sale-trend',\n  children: [{\n    component: 'div',\n    className: 'dashboard-sale-trend-left',\n    children: [{\n      component: 'span',\n      children: '总销售额趋势'\n    }, {\n      component: 'Echarts',\n      option: {\n        tooltip: {\n          trigger: 'axis'\n        },\n        xAxis: [{\n          type: 'category',\n          data: '{{data.saleTrend.x}}'\n        }],\n        yAxis: [{\n          type: 'value'\n        }],\n        grid: {\n          left: 60,\n          right: 100,\n          bottom: 20,\n          top: 20\n        },\n        series: [{\n          type: 'bar',\n          smooth: true,\n          sampling: 'average',\n          animation: false,\n          itemStyle: {\n            normal: {\n              color: 'rgb(70, 130, 180)',\n              shadowColor: 'rgba(0, 0, 0, 0.5)',\n              shadowBlur: 10\n            }\n          },\n          areaStyle: {\n            normal: {\n              color: 'rgb(70, 130, 180)'\n            }\n          },\n          data: '{{data.saleTrend.y}}'\n        }]\n      }\n    }]\n  }, {\n    component: 'div',\n    className: 'dashboard-sale-trend-right',\n    children: [{\n      component: 'span',\n      className: 'dashboard-sale-trend-right-title',\n      children: '门店销售额排行'\n    }, {\n      component: 'div',\n      className: 'dashboard-sale-trend-right-list',\n      children: {\n        _for: 'item in data.topForStore',\n        component: 'div',\n        className: 'dashboard-sale-trend-right-list-detail',\n        children: [{\n          component: 'antd.Badge',\n          count: '{{item.index}}'\n        }, {\n          component: 'div',\n          className: 'dashboard-sale-trend-right-list-detail-name',\n          children: '{{item.storeName}}'\n        }, {\n          component: 'div',\n          children: '{{item.total}}'\n        }]\n      }\n    }]\n  }]\n});\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./view.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  data: {\n    saleTrend: {\n      x: [],\n      y: []\n    },\n    topForStore: []\n  }\n});\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./src/state.js?");
 
 /***/ }),
 
-/***/ 0:
+/***/ "./src/style.less":
 /*!************************!*\
-  !*** multi ./index.js ***!
+  !*** ./src/style.less ***!
   \************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-app-store/apps/sys/dashboard/dashboard-sale-trend/index.js */\"./index.js\");\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/multi_./index.js?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./src/style.less?");
+
+/***/ }),
+
+/***/ "./src/view.js":
+/*!*********************!*\
+  !*** ./src/view.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  component: 'div',\n  className: 'dashboard-sale-trend',\n  children: [{\n    component: 'div',\n    className: 'dashboard-sale-trend-left',\n    children: [{\n      component: 'span',\n      children: '总销售额趋势'\n    }, {\n      component: 'Echarts',\n      option: {\n        tooltip: {\n          trigger: 'axis'\n        },\n        xAxis: [{\n          type: 'category',\n          data: '{{data.saleTrend.x}}'\n        }],\n        yAxis: [{\n          type: 'value'\n        }],\n        grid: {\n          left: 60,\n          right: 100,\n          bottom: 20,\n          top: 20\n        },\n        series: [{\n          type: 'bar',\n          smooth: true,\n          sampling: 'average',\n          animation: false,\n          itemStyle: {\n            normal: {\n              color: 'rgb(70, 130, 180)',\n              shadowColor: 'rgba(0, 0, 0, 0.5)',\n              shadowBlur: 10\n            }\n          },\n          areaStyle: {\n            normal: {\n              color: 'rgb(70, 130, 180)'\n            }\n          },\n          data: '{{data.saleTrend.y}}'\n        }]\n      }\n    }]\n  }, {\n    component: 'div',\n    className: 'dashboard-sale-trend-right',\n    children: [{\n      component: 'span',\n      className: 'dashboard-sale-trend-right-title',\n      children: '门店销售额排行'\n    }, {\n      component: 'div',\n      className: 'dashboard-sale-trend-right-list',\n      children: {\n        _for: 'item in data.topForStore',\n        component: 'div',\n        className: 'dashboard-sale-trend-right-list-detail',\n        children: [{\n          component: 'antd.Badge',\n          count: '{{item.index}}'\n        }, {\n          component: 'div',\n          className: 'dashboard-sale-trend-right-list-detail-name',\n          children: '{{item.storeName}}'\n        }, {\n          component: 'div',\n          children: '{{item.total}}'\n        }]\n      }\n    }]\n  }]\n});\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./src/view.js?");
+
+/***/ }),
+
+/***/ 0:
+/*!****************************!*\
+  !*** multi ./src/index.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/hualala/maka-app-store/apps/sys/dashboard/dashboard-sale-trend/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/multi_./src/index.js?");
 
 /***/ }),
 

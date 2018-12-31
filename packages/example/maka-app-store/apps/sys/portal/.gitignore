@@ -1,3 +1,5 @@
-/node_modules
+node_modules
 *.log
 *.lock
+dist
+pkg-dev

@@ -17,3 +17,22 @@ $ yarn start
 ```bash
 $ yarn pkg  //执行成功会 build/pkg 目录下生成打包结果
 ```
+```
+|---base
+     |---component  //组件
+            |---antd
+            |---echarts
+     |---assets     //图片
+     |---i18n       //国际化
+     |---style      //公共样式
+     |---webapi     //api
+     |---devtools   //开发工具
+|---sys
+    |---login
+    |---portal
+|---set
+    |---person
+    |---bom
+|---plugin
+```
+

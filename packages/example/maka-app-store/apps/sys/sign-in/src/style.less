@@ -1,0 +1,115 @@
+.sign-in {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .ant-btn {
+        font-size: 14px;
+    }
+    .ant-row {
+        height: auto;
+    }
+    .ant-form-item-control-wrapper {
+        height: auto;
+    }
+    .ant-input {
+        font-size: 18px;
+    }
+    a {
+        font-size: 14px;
+    }
+    &-header {
+        height: 58px;
+        flex: 0 0 58px;
+        background: #fff;
+        border-bottom: 1px solid #d9d9d9;
+        font-size: 20px;
+        font-weight: bold;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        &-logo {
+            width: 58px;
+            height: 58px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    }
+    &-content {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        min-height: 450px;
+        &-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .ant-form-item {
+                margin-bottom: 30px
+            }
+            .ant-form-item-control-wrapper,
+            .ant-input-group-wrapper {
+                width: 400px;
+            }
+            .ant-form-item-control,
+            .ant-input-wrapper {
+                height: 50px;
+            }
+            .ant-input-prefix {
+                line-height: 50px;
+            }
+            .ant-input {
+                height: 50px;
+            }
+            .ant-input-affix-wrapper .ant-input:not(:first-child) {
+                padding-left: 34px;
+            }
+            .ant-form-explain {
+                margin-top: 5px;
+            }
+            &-title {
+                text-align: center;
+                font-size: xx-large
+            }
+            &-mobile .ant-input {
+                padding-left: 32px !important;
+                font-size: large
+            }
+            &-password {
+                .ant-input {
+                    padding-left: 32px !important;
+                    font-size: large
+                }
+                margin-bottom: 30px !important;
+            }
+            &-forget {
+                .ant-form-item-control {
+                    height: auto;
+                }
+                margin-bottom: 10px !important;
+                height: auto;
+            }
+            &-login {
+                .ant-btn {
+                    width: 100%;
+                    height: 100%;
+                }
+                margin-bottom: 10px !important;
+            }
+            .ant-input-prefix {
+                font-size: large;
+                color: #ccc
+            }
+        }
+    }
+    &-footer {
+        display: flex;
+        height: 50px;
+        flex: 0 0 58px;
+        justify-content: center;
+        align-items: center;
+        background: #fafafa;
+    }
+}

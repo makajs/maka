@@ -13,7 +13,27 @@
     <div id='app'></div>
     <script>
         window.main = function (maka) {
-            maka.render('set-person-list-plugin', 'app');
+            maka.utils.fetch.config({
+                mock: true,
+                after: function (response, url) {
+                    if (response.result) {
+                        if (response.token) {
+                            maka.utils.fetch.config({ token: response.token });
+                        }
+                        return response.value;
+                    }
+                    else {
+                        let msg = maka.getComponent('antd.message')
+                        msg.error(response.error.message);
+                        throw { url: url, response: response };
+                    }
+                },
+            })
+            maka.load('set-person-list-plugin').then(()=>{
+                maka.registerPlugin('set-person-list-plugin', 'set-person-list')
+                maka.render('set-person-list', 'app');
+            })
+          
         }
     </script>
      <script src="require.min.js" data-main='main.min.js'></script>

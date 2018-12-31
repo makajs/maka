@@ -2,3 +2,4 @@ node_modules
 *.log
 *.lock
 dist
+pkg-dev
