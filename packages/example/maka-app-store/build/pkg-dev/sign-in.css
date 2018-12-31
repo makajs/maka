@@ -40,6 +40,7 @@
   display: flex;
   flex: 1;
   flex-direction: row;
+  min-height: 450px;
 }
 .sign-in-content-form {
   flex: 1;
@@ -80,21 +81,21 @@
   font-size: large;
 }
 .sign-in-content-form-password {
-  margin-bottom: 20px !important;
+  margin-bottom: 30px !important;
 }
 .sign-in-content-form-password .ant-input {
   padding-left: 32px !important;
   font-size: large;
 }
 .sign-in-content-form-forget {
-  margin-bottom: 5px !important;
+  margin-bottom: 10px !important;
   height: auto;
 }
 .sign-in-content-form-forget .ant-form-item-control {
   height: auto;
 }
 .sign-in-content-form-login {
-  margin-bottom: 5px !important;
+  margin-bottom: 10px !important;
 }
 .sign-in-content-form-login .ant-btn {
   width: 100%;

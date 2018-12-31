@@ -2,9 +2,9 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('redux')) :
   typeof define === 'function' && define.amd ? define(['exports', 'react', 'redux'], factory) :
   (factory((global.ReactRedux = {}),global.React,global.Redux));
-}(this, (function (exports,react,redux) { 'use strict';
+}(this, (function (exports,React,redux) { 'use strict';
 
-  var react__default = 'default' in react ? react['default'] : react;
+  var React__default = 'default' in React ? React['default'] : React;
 
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
@@ -13,150 +13,12 @@
   }
 
   function unwrapExports (x) {
-  	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+  	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
   }
 
   function createCommonjsModule(fn, module) {
   	return module = { exports: {} }, fn(module, module.exports), module.exports;
   }
-
-  /**
-   * Copyright (c) 2013-present, Facebook, Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
-   *
-   * 
-   */
-
-  function makeEmptyFunction(arg) {
-    return function () {
-      return arg;
-    };
-  }
-
-  /**
-   * This function accepts and discards inputs; it has no side effects. This is
-   * primarily useful idiomatically for overridable function endpoints which
-   * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
-   */
-  var emptyFunction = function emptyFunction() {};
-
-  emptyFunction.thatReturns = makeEmptyFunction;
-  emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-  emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-  emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-  emptyFunction.thatReturnsThis = function () {
-    return this;
-  };
-  emptyFunction.thatReturnsArgument = function (arg) {
-    return arg;
-  };
-
-  var emptyFunction_1 = emptyFunction;
-
-  /**
-   * Copyright (c) 2013-present, Facebook, Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
-   *
-   */
-
-  /**
-   * Use invariant() to assert state which your program assumes to be true.
-   *
-   * Provide sprintf-style format (only %s is supported) and arguments
-   * to provide information about what broke and what you were
-   * expecting.
-   *
-   * The invariant message will be stripped in production, but the invariant
-   * will remain to ensure logic does not differ in production.
-   */
-
-  var validateFormat = function validateFormat(format) {};
-
-  {
-    validateFormat = function validateFormat(format) {
-      if (format === undefined) {
-        throw new Error('invariant requires an error message argument');
-      }
-    };
-  }
-
-  function invariant(condition, format, a, b, c, d, e, f) {
-    validateFormat(format);
-
-    if (!condition) {
-      var error;
-      if (format === undefined) {
-        error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-      } else {
-        var args = [a, b, c, d, e, f];
-        var argIndex = 0;
-        error = new Error(format.replace(/%s/g, function () {
-          return args[argIndex++];
-        }));
-        error.name = 'Invariant Violation';
-      }
-
-      error.framesToPop = 1; // we don't care about invariant's own frame
-      throw error;
-    }
-  }
-
-  var invariant_1 = invariant;
-
-  /**
-   * Similar to invariant but only logs a warning if the condition is not met.
-   * This can be used to log issues in development environments in critical
-   * paths. Removing the logging code for production environments will keep the
-   * same logic and follow the same code paths.
-   */
-
-  var warning = emptyFunction_1;
-
-  {
-    var printWarning = function printWarning(format) {
-      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
-      }
-
-      var argIndex = 0;
-      var message = 'Warning: ' + format.replace(/%s/g, function () {
-        return args[argIndex++];
-      });
-      if (typeof console !== 'undefined') {
-        console.error(message);
-      }
-      try {
-        // --- Welcome to debugging React ---
-        // This error was thrown as a convenience so that you can use this stack
-        // to find the callsite that caused this warning to fire.
-        throw new Error(message);
-      } catch (x) {}
-    };
-
-    warning = function warning(condition, format) {
-      if (format === undefined) {
-        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-      }
-
-      if (format.indexOf('Failed Composite propType: ') === 0) {
-        return; // Ignore CompositeComponent proptype check.
-      }
-
-      if (!condition) {
-        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-          args[_key2 - 2] = arguments[_key2];
-        }
-
-        printWarning.apply(undefined, [format].concat(args));
-      }
-    };
-  }
-
-  var warning_1 = warning;
 
   /*
   object-assign
@@ -258,11 +120,24 @@
 
   var ReactPropTypesSecret_1 = ReactPropTypesSecret;
 
+  var printWarning = function() {};
+
   {
-    var invariant$1 = invariant_1;
-    var warning$1 = warning_1;
     var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
     var loggedTypeFailures = {};
+
+    printWarning = function(text) {
+      var message = 'Warning: ' + text;
+      if (typeof console !== 'undefined') {
+        console.error(message);
+      }
+      try {
+        // --- Welcome to debugging React ---
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+      } catch (x) {}
+    };
   }
 
   /**
@@ -287,12 +162,29 @@
           try {
             // This is intentionally an invariant that gets caught. It's the same
             // behavior as without this statement except with a better message.
-            invariant$1(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+            if (typeof typeSpecs[typeSpecName] !== 'function') {
+              var err = Error(
+                (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
+                'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
+              );
+              err.name = 'Invariant Violation';
+              throw err;
+            }
             error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
           } catch (ex) {
             error = ex;
           }
-          warning$1(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+          if (error && !(error instanceof Error)) {
+            printWarning(
+              (componentName || 'React class') + ': type specification of ' +
+              location + ' `' + typeSpecName + '` is invalid; the type checker ' +
+              'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
+              'You may have forgotten to pass an argument to the type checker ' +
+              'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
+              'shape all require an argument).'
+            );
+
+          }
           if (error instanceof Error && !(error.message in loggedTypeFailures)) {
             // Only monitor this failure once because there tends to be a lot of the
             // same error.
@@ -300,7 +192,9 @@
 
             var stack = getStack ? getStack() : '';
 
-            warning$1(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+            printWarning(
+              'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
+            );
           }
         }
       }
@@ -308,6 +202,27 @@
   }
 
   var checkPropTypes_1 = checkPropTypes;
+
+  var printWarning$1 = function() {};
+
+  {
+    printWarning$1 = function(text) {
+      var message = 'Warning: ' + text;
+      if (typeof console !== 'undefined') {
+        console.error(message);
+      }
+      try {
+        // --- Welcome to debugging React ---
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+      } catch (x) {}
+    };
+  }
+
+  function emptyFunctionThatReturnsNull() {
+    return null;
+  }
 
   var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
     /* global Symbol */
@@ -451,12 +366,13 @@
         if (secret !== ReactPropTypesSecret_1) {
           if (throwOnDirectAccess) {
             // New behavior only for users of `prop-types` package
-            invariant_1(
-              false,
+            var err = new Error(
               'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
               'Use `PropTypes.checkPropTypes()` to call them. ' +
               'Read more at http://fb.me/use-check-prop-types'
             );
+            err.name = 'Invariant Violation';
+            throw err;
           } else if (typeof console !== 'undefined') {
             // Old behavior for people using React.PropTypes
             var cacheKey = componentName + ':' + propName;
@@ -465,15 +381,12 @@
               // Avoid spamming the console because they are often not actionable except for lib authors
               manualPropTypeWarningCount < 3
             ) {
-              warning_1(
-                false,
+              printWarning$1(
                 'You are manually calling a React.PropTypes validation ' +
-                'function for the `%s` prop on `%s`. This is deprecated ' +
+                'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
                 'and will throw in the standalone `prop-types` package. ' +
                 'You may be seeing this warning due to a third-party PropTypes ' +
-                'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
-                propFullName,
-                componentName
+                'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
               );
               manualPropTypeCallCache[cacheKey] = true;
               manualPropTypeWarningCount++;
@@ -517,7 +430,7 @@
     }
 
     function createAnyTypeChecker() {
-      return createChainableTypeChecker(emptyFunction_1.thatReturnsNull);
+      return createChainableTypeChecker(emptyFunctionThatReturnsNull);
     }
 
     function createArrayOfTypeChecker(typeChecker) {
@@ -567,8 +480,8 @@
 
     function createEnumTypeChecker(expectedValues) {
       if (!Array.isArray(expectedValues)) {
-        warning_1(false, 'Invalid argument supplied to oneOf, expected an instance of array.');
-        return emptyFunction_1.thatReturnsNull;
+        printWarning$1('Invalid argument supplied to oneOf, expected an instance of array.');
+        return emptyFunctionThatReturnsNull;
       }
 
       function validate(props, propName, componentName, location, propFullName) {
@@ -610,21 +523,18 @@
 
     function createUnionTypeChecker(arrayOfTypeCheckers) {
       if (!Array.isArray(arrayOfTypeCheckers)) {
-        warning_1(false, 'Invalid argument supplied to oneOfType, expected an instance of array.');
-        return emptyFunction_1.thatReturnsNull;
+        printWarning$1('Invalid argument supplied to oneOfType, expected an instance of array.');
+        return emptyFunctionThatReturnsNull;
       }
 
       for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
         var checker = arrayOfTypeCheckers[i];
         if (typeof checker !== 'function') {
-          warning_1(
-            false,
+          printWarning$1(
             'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
-            'received %s at index %s.',
-            getPostfixForTypeWarning(checker),
-            i
+            'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
           );
-          return emptyFunction_1.thatReturnsNull;
+          return emptyFunctionThatReturnsNull;
         }
       }
 
@@ -862,107 +772,95 @@
   }
   });
 
-  var subscriptionShape = propTypes.shape({
-    trySubscribe: propTypes.func.isRequired,
-    tryUnsubscribe: propTypes.func.isRequired,
-    notifyNestedSubs: propTypes.func.isRequired,
-    isSubscribed: propTypes.func.isRequired
-  });
-  var storeShape = propTypes.shape({
-    subscribe: propTypes.func.isRequired,
-    dispatch: propTypes.func.isRequired,
-    getState: propTypes.func.isRequired
-  });
+  var ReactReduxContext = React__default.createContext(null);
 
-  /**
-   * Prints a warning in the console if it exists.
-   *
-   * @param {String} message The warning message.
-   * @returns {void}
-   */
-  function warning$2(message) {
-    /* eslint-disable no-console */
-    if (typeof console !== 'undefined' && typeof console.error === 'function') {
-      console.error(message);
-    }
-    /* eslint-enable no-console */
+  var Provider =
+  /*#__PURE__*/
+  function (_Component) {
+    _inheritsLoose(Provider, _Component);
 
+    function Provider(props) {
+      var _this;
 
-    try {
-      // This error was thrown as a convenience so that if you enable
-      // "break on all exceptions" in your console,
-      // it would pause the execution at this line.
-      throw new Error(message);
-      /* eslint-disable no-empty */
-    } catch (e) {}
-    /* eslint-enable no-empty */
-
-  }
-
-  var didWarnAboutReceivingStore = false;
-
-  function warnAboutReceivingStore() {
-    if (didWarnAboutReceivingStore) {
-      return;
-    }
-
-    didWarnAboutReceivingStore = true;
-    warning$2('<Provider> does not support changing `store` on the fly. ' + 'It is most likely that you see this error because you updated to ' + 'Redux 2.x and React Redux 2.x which no longer hot reload reducers ' + 'automatically. See https://github.com/reduxjs/react-redux/releases/' + 'tag/v2.0.0 for the migration instructions.');
-  }
-
-  function createProvider(storeKey) {
-    var _Provider$childContex;
-
-    if (storeKey === void 0) {
-      storeKey = 'store';
-    }
-
-    var subscriptionKey = storeKey + "Subscription";
-
-    var Provider =
-    /*#__PURE__*/
-    function (_Component) {
-      _inheritsLoose(Provider, _Component);
-
-      var _proto = Provider.prototype;
-
-      _proto.getChildContext = function getChildContext() {
-        var _ref;
-
-        return _ref = {}, _ref[storeKey] = this[storeKey], _ref[subscriptionKey] = null, _ref;
+      _this = _Component.call(this, props) || this;
+      var store = props.store;
+      _this.state = {
+        storeState: store.getState(),
+        store: store
       };
-
-      function Provider(props, context) {
-        var _this;
-
-        _this = _Component.call(this, props, context) || this;
-        _this[storeKey] = props.store;
-        return _this;
-      }
-
-      _proto.render = function render() {
-        return react.Children.only(this.props.children);
-      };
-
-      return Provider;
-    }(react.Component);
-
-    {
-      Provider.prototype.componentWillReceiveProps = function (nextProps) {
-        if (this[storeKey] !== nextProps.store) {
-          warnAboutReceivingStore();
-        }
-      };
+      return _this;
     }
 
-    Provider.propTypes = {
-      store: storeShape.isRequired,
-      children: propTypes.element.isRequired
+    var _proto = Provider.prototype;
+
+    _proto.componentDidMount = function componentDidMount() {
+      this._isMounted = true;
+      this.subscribe();
     };
-    Provider.childContextTypes = (_Provider$childContex = {}, _Provider$childContex[storeKey] = storeShape.isRequired, _Provider$childContex[subscriptionKey] = subscriptionShape, _Provider$childContex);
+
+    _proto.componentWillUnmount = function componentWillUnmount() {
+      if (this.unsubscribe) this.unsubscribe();
+      this._isMounted = false;
+    };
+
+    _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+      if (this.props.store !== prevProps.store) {
+        if (this.unsubscribe) this.unsubscribe();
+        this.subscribe();
+      }
+    };
+
+    _proto.subscribe = function subscribe() {
+      var _this2 = this;
+
+      var store = this.props.store;
+      this.unsubscribe = store.subscribe(function () {
+        var newStoreState = store.getState();
+
+        if (!_this2._isMounted) {
+          return;
+        }
+
+        _this2.setState(function (providerState) {
+          // If the value is the same, skip the unnecessary state update.
+          if (providerState.storeState === newStoreState) {
+            return null;
+          }
+
+          return {
+            storeState: newStoreState
+          };
+        });
+      }); // Actions might have been dispatched between render and mount - handle those
+
+      var postMountStoreState = store.getState();
+
+      if (postMountStoreState !== this.state.storeState) {
+        this.setState({
+          storeState: postMountStoreState
+        });
+      }
+    };
+
+    _proto.render = function render() {
+      var Context = this.props.context || ReactReduxContext;
+      return React__default.createElement(Context.Provider, {
+        value: this.state
+      }, this.props.children);
+    };
+
     return Provider;
-  }
-  var Provider = createProvider();
+  }(React.Component);
+
+  Provider.propTypes = {
+    store: propTypes.shape({
+      subscribe: propTypes.func.isRequired,
+      dispatch: propTypes.func.isRequired,
+      getState: propTypes.func.isRequired
+    }),
+    context: propTypes.object,
+    children: propTypes.any
+  };
 
   function _assertThisInitialized(self) {
     if (self === void 0) {
@@ -1025,6 +923,7 @@
   var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
   var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
   var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace;
+  var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
   var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
   var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
   var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
@@ -1099,6 +998,7 @@
           var type = object.type;
 
           switch (type) {
+            case REACT_ASYNC_MODE_TYPE:
             case REACT_CONCURRENT_MODE_TYPE:
             case REACT_FRAGMENT_TYPE:
             case REACT_PROFILER_TYPE:
@@ -1124,8 +1024,8 @@
     return undefined;
   }
 
-  // AsyncMode alias is deprecated along with isAsyncMode
-  var AsyncMode = REACT_CONCURRENT_MODE_TYPE;
+  // AsyncMode is deprecated along with isAsyncMode
+  var AsyncMode = REACT_ASYNC_MODE_TYPE;
   var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
   var ContextConsumer = REACT_CONTEXT_TYPE;
   var ContextProvider = REACT_PROVIDER_TYPE;
@@ -1146,7 +1046,7 @@
         lowPriorityWarning$1(false, 'The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
       }
     }
-    return isConcurrentMode(object);
+    return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
   }
   function isConcurrentMode(object) {
     return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
@@ -1239,7 +1139,6 @@
    * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
    */
 
-
   var REACT_STATICS = {
       childContextTypes: true,
       contextType: true,
@@ -1247,6 +1146,7 @@
       defaultProps: true,
       displayName: true,
       getDefaultProps: true,
+      getDerivedStateFromError: true,
       getDerivedStateFromProps: true,
       mixins: true,
       propTypes: true,
@@ -1265,7 +1165,10 @@
 
   var FORWARD_REF_STATICS = {
       '$$typeof': true,
-      render: true
+      render: true,
+      defaultProps: true,
+      displayName: true,
+      propTypes: true
   };
 
   var TYPE_STATICS = {};
@@ -1324,7 +1227,7 @@
    * LICENSE file in the root directory of this source tree.
    */
 
-  var invariant$2 = function(condition, format, a, b, c, d, e, f) {
+  var invariant = function(condition, format, a, b, c, d, e, f) {
     {
       if (format === undefined) {
         throw new Error('invariant requires an error message argument');
@@ -1352,120 +1255,7 @@
     }
   };
 
-  var invariant_1$1 = invariant$2;
-
-  // encapsulates the subscription logic for connecting a component to the redux store, as
-  // well as nesting subscriptions of descendant components, so that we can ensure the
-  // ancestor components re-render before descendants
-  var CLEARED = null;
-  var nullListeners = {
-    notify: function notify() {}
-  };
-
-  function createListenerCollection() {
-    // the current/next pattern is copied from redux's createStore code.
-    // TODO: refactor+expose that code to be reusable here?
-    var current = [];
-    var next = [];
-    return {
-      clear: function clear() {
-        next = CLEARED;
-        current = CLEARED;
-      },
-      notify: function notify() {
-        var listeners = current = next;
-
-        for (var i = 0; i < listeners.length; i++) {
-          listeners[i]();
-        }
-      },
-      get: function get() {
-        return next;
-      },
-      subscribe: function subscribe(listener) {
-        var isSubscribed = true;
-        if (next === current) next = current.slice();
-        next.push(listener);
-        return function unsubscribe() {
-          if (!isSubscribed || current === CLEARED) return;
-          isSubscribed = false;
-          if (next === current) next = current.slice();
-          next.splice(next.indexOf(listener), 1);
-        };
-      }
-    };
-  }
-
-  var Subscription =
-  /*#__PURE__*/
-  function () {
-    function Subscription(store, parentSub, onStateChange) {
-      this.store = store;
-      this.parentSub = parentSub;
-      this.onStateChange = onStateChange;
-      this.unsubscribe = null;
-      this.listeners = nullListeners;
-    }
-
-    var _proto = Subscription.prototype;
-
-    _proto.addNestedSub = function addNestedSub(listener) {
-      this.trySubscribe();
-      return this.listeners.subscribe(listener);
-    };
-
-    _proto.notifyNestedSubs = function notifyNestedSubs() {
-      this.listeners.notify();
-    };
-
-    _proto.isSubscribed = function isSubscribed() {
-      return Boolean(this.unsubscribe);
-    };
-
-    _proto.trySubscribe = function trySubscribe() {
-      if (!this.unsubscribe) {
-        this.unsubscribe = this.parentSub ? this.parentSub.addNestedSub(this.onStateChange) : this.store.subscribe(this.onStateChange);
-        this.listeners = createListenerCollection();
-      }
-    };
-
-    _proto.tryUnsubscribe = function tryUnsubscribe() {
-      if (this.unsubscribe) {
-        this.unsubscribe();
-        this.unsubscribe = null;
-        this.listeners.clear();
-        this.listeners = nullListeners;
-      }
-    };
-
-    return Subscription;
-  }();
-
-  var hotReloadingVersion = 0;
-  var dummyState = {};
-
-  function noop() {}
-
-  function makeSelectorStateful(sourceSelector, store) {
-    // wrap the selector in an object that tracks its results between runs.
-    var selector = {
-      run: function runComponentSelector(props) {
-        try {
-          var nextProps = sourceSelector(store.getState(), props);
-
-          if (nextProps !== selector.props || selector.error) {
-            selector.shouldComponentUpdate = true;
-            selector.props = nextProps;
-            selector.error = null;
-          }
-        } catch (error) {
-          selector.shouldComponentUpdate = true;
-          selector.error = error;
-        }
-      }
-    };
-    return selector;
-  }
+  var invariant_1 = invariant;
 
   function connectAdvanced(
   /*
@@ -1484,8 +1274,6 @@
   */
   selectorFactory, // options object:
   _ref) {
-    var _contextTypes, _childContextTypes;
-
     if (_ref === void 0) {
       _ref = {};
     }
@@ -1505,14 +1293,22 @@
         storeKey = _ref2$storeKey === void 0 ? 'store' : _ref2$storeKey,
         _ref2$withRef = _ref2.withRef,
         withRef = _ref2$withRef === void 0 ? false : _ref2$withRef,
-        connectOptions = _objectWithoutPropertiesLoose(_ref2, ["getDisplayName", "methodName", "renderCountProp", "shouldHandleStateChanges", "storeKey", "withRef"]);
+        _ref2$forwardRef = _ref2.forwardRef,
+        forwardRef = _ref2$forwardRef === void 0 ? false : _ref2$forwardRef,
+        _ref2$context = _ref2.context,
+        context = _ref2$context === void 0 ? ReactReduxContext : _ref2$context,
+        connectOptions = _objectWithoutPropertiesLoose(_ref2, ["getDisplayName", "methodName", "renderCountProp", "shouldHandleStateChanges", "storeKey", "withRef", "forwardRef", "context"]);
 
-    var subscriptionKey = storeKey + 'Subscription';
-    var version = hotReloadingVersion++;
-    var contextTypes = (_contextTypes = {}, _contextTypes[storeKey] = storeShape, _contextTypes[subscriptionKey] = subscriptionShape, _contextTypes);
-    var childContextTypes = (_childContextTypes = {}, _childContextTypes[subscriptionKey] = subscriptionShape, _childContextTypes);
+    invariant_1(renderCountProp === undefined, "renderCountProp is removed. render counting is built into the latest React dev tools profiling extension");
+    invariant_1(!withRef, 'withRef is removed. To access the wrapped instance, use a ref on the connected component');
+    var customStoreWarningMessage = 'To use a custom Redux store for specific components,  create a custom React context with ' + "React.createContext(), and pass the context object to React-Redux's Provider and specific components" + ' like:  <Provider context={MyContext}><ConnectedComponent context={MyContext} /></Provider>. ' + 'You may also pass a {context : MyContext} option to connect';
+    invariant_1(storeKey === 'store', 'storeKey has been removed and does not do anything. ' + customStoreWarningMessage);
+    var Context = context;
     return function wrapWithConnect(WrappedComponent) {
-      invariant_1$1(reactIs_1(WrappedComponent), "You must pass a component to the function returned by " + (methodName + ". Instead received " + JSON.stringify(WrappedComponent)));
+      {
+        invariant_1(reactIs_1(WrappedComponent), "You must pass a component to the function returned by " + (methodName + ". Instead received " + JSON.stringify(WrappedComponent)));
+      }
+
       var wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
       var displayName = getDisplayName(wrappedComponentName);
 
@@ -1522,203 +1318,118 @@
         renderCountProp: renderCountProp,
         shouldHandleStateChanges: shouldHandleStateChanges,
         storeKey: storeKey,
-        withRef: withRef,
         displayName: displayName,
         wrappedComponentName: wrappedComponentName,
-        WrappedComponent: WrappedComponent // TODO Actually fix our use of componentWillReceiveProps
-
-        /* eslint-disable react/no-deprecated */
-
+        WrappedComponent: WrappedComponent
       });
+
+      var pure = connectOptions.pure;
+      var OuterBaseComponent = React.Component;
+      var FinalWrappedComponent = WrappedComponent;
+
+      if (pure) {
+        OuterBaseComponent = React.PureComponent;
+      }
+
+      function makeDerivedPropsSelector() {
+        var lastProps;
+        var lastState;
+        var lastDerivedProps;
+        var lastStore;
+        var sourceSelector;
+        return function selectDerivedProps(state, props, store) {
+          if (pure && lastProps === props && lastState === state) {
+            return lastDerivedProps;
+          }
+
+          if (store !== lastStore) {
+            lastStore = store;
+            sourceSelector = selectorFactory(store.dispatch, selectorFactoryOptions);
+          }
+
+          lastProps = props;
+          lastState = state;
+          var nextProps = sourceSelector(state, props);
+
+          if (lastDerivedProps === nextProps) {
+            return lastDerivedProps;
+          }
+
+          lastDerivedProps = nextProps;
+          return lastDerivedProps;
+        };
+      }
+
+      function makeChildElementSelector() {
+        var lastChildProps, lastForwardRef, lastChildElement;
+        return function selectChildElement(childProps, forwardRef) {
+          if (childProps !== lastChildProps || forwardRef !== lastForwardRef) {
+            lastChildProps = childProps;
+            lastForwardRef = forwardRef;
+            lastChildElement = React__default.createElement(FinalWrappedComponent, _extends({}, childProps, {
+              ref: forwardRef
+            }));
+          }
+
+          return lastChildElement;
+        };
+      }
 
       var Connect =
       /*#__PURE__*/
-      function (_Component) {
-        _inheritsLoose(Connect, _Component);
+      function (_OuterBaseComponent) {
+        _inheritsLoose(Connect, _OuterBaseComponent);
 
-        function Connect(props, context) {
+        function Connect(props) {
           var _this;
 
-          _this = _Component.call(this, props, context) || this;
-          _this.version = version;
-          _this.state = {};
-          _this.renderCount = 0;
-          _this.store = props[storeKey] || context[storeKey];
-          _this.propsMode = Boolean(props[storeKey]);
-          _this.setWrappedInstance = _this.setWrappedInstance.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-          invariant_1$1(_this.store, "Could not find \"" + storeKey + "\" in either the context or props of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + ("or explicitly pass \"" + storeKey + "\" as a prop to \"" + displayName + "\"."));
-
-          _this.initSelector();
-
-          _this.initSubscription();
-
+          _this = _OuterBaseComponent.call(this, props) || this;
+          invariant_1(forwardRef ? !props.wrapperProps[storeKey] : !props[storeKey], 'Passing redux store in props has been removed and does not do anything. ' + customStoreWarningMessage);
+          _this.selectDerivedProps = makeDerivedPropsSelector();
+          _this.selectChildElement = makeChildElementSelector();
+          _this.renderWrappedComponent = _this.renderWrappedComponent.bind(_assertThisInitialized(_assertThisInitialized(_this)));
           return _this;
         }
 
         var _proto = Connect.prototype;
 
-        _proto.getChildContext = function getChildContext() {
-          var _ref3;
+        _proto.renderWrappedComponent = function renderWrappedComponent(value) {
+          invariant_1(value, "Could not find \"store\" in the context of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + "or pass a custom React context provider to <Provider> and the corresponding " + ("React context consumer to " + displayName + " in connect options."));
+          var storeState = value.storeState,
+              store = value.store;
+          var wrapperProps = this.props;
+          var forwardedRef;
 
-          // If this component received store from props, its subscription should be transparent
-          // to any descendants receiving store+subscription from context; it passes along
-          // subscription passed to it. Otherwise, it shadows the parent subscription, which allows
-          // Connect to control ordering of notifications to flow top-down.
-          var subscription = this.propsMode ? null : this.subscription;
-          return _ref3 = {}, _ref3[subscriptionKey] = subscription || this.context[subscriptionKey], _ref3;
-        };
-
-        _proto.componentDidMount = function componentDidMount() {
-          if (!shouldHandleStateChanges) return; // componentWillMount fires during server side rendering, but componentDidMount and
-          // componentWillUnmount do not. Because of this, trySubscribe happens during ...didMount.
-          // Otherwise, unsubscription would never take place during SSR, causing a memory leak.
-          // To handle the case where a child component may have triggered a state change by
-          // dispatching an action in its componentWillMount, we have to re-run the select and maybe
-          // re-render.
-
-          this.subscription.trySubscribe();
-          this.selector.run(this.props);
-          if (this.selector.shouldComponentUpdate) this.forceUpdate();
-        };
-
-        _proto.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-          this.selector.run(nextProps);
-        };
-
-        _proto.shouldComponentUpdate = function shouldComponentUpdate() {
-          return this.selector.shouldComponentUpdate;
-        };
-
-        _proto.componentWillUnmount = function componentWillUnmount() {
-          if (this.subscription) this.subscription.tryUnsubscribe();
-          this.subscription = null;
-          this.notifyNestedSubs = noop;
-          this.store = null;
-          this.selector.run = noop;
-          this.selector.shouldComponentUpdate = false;
-        };
-
-        _proto.getWrappedInstance = function getWrappedInstance() {
-          invariant_1$1(withRef, "To access the wrapped instance, you need to specify " + ("{ withRef: true } in the options argument of the " + methodName + "() call."));
-          return this.wrappedInstance;
-        };
-
-        _proto.setWrappedInstance = function setWrappedInstance(ref) {
-          this.wrappedInstance = ref;
-        };
-
-        _proto.initSelector = function initSelector() {
-          var sourceSelector = selectorFactory(this.store.dispatch, selectorFactoryOptions);
-          this.selector = makeSelectorStateful(sourceSelector, this.store);
-          this.selector.run(this.props);
-        };
-
-        _proto.initSubscription = function initSubscription() {
-          if (!shouldHandleStateChanges) return; // parentSub's source should match where store came from: props vs. context. A component
-          // connected to the store via props shouldn't use subscription from context, or vice versa.
-
-          var parentSub = (this.propsMode ? this.props : this.context)[subscriptionKey];
-          this.subscription = new Subscription(this.store, parentSub, this.onStateChange.bind(this)); // `notifyNestedSubs` is duplicated to handle the case where the component is unmounted in
-          // the middle of the notification loop, where `this.subscription` will then be null. An
-          // extra null check every change can be avoided by copying the method onto `this` and then
-          // replacing it with a no-op on unmount. This can probably be avoided if Subscription's
-          // listeners logic is changed to not call listeners that have been unsubscribed in the
-          // middle of the notification loop.
-
-          this.notifyNestedSubs = this.subscription.notifyNestedSubs.bind(this.subscription);
-        };
-
-        _proto.onStateChange = function onStateChange() {
-          this.selector.run(this.props);
-
-          if (!this.selector.shouldComponentUpdate) {
-            this.notifyNestedSubs();
-          } else {
-            this.componentDidUpdate = this.notifyNestedSubsOnComponentDidUpdate;
-            this.setState(dummyState);
+          if (forwardRef) {
+            wrapperProps = this.props.wrapperProps;
+            forwardedRef = this.props.forwardedRef;
           }
-        };
 
-        _proto.notifyNestedSubsOnComponentDidUpdate = function notifyNestedSubsOnComponentDidUpdate() {
-          // `componentDidUpdate` is conditionally implemented when `onStateChange` determines it
-          // needs to notify nested subs. Once called, it unimplements itself until further state
-          // changes occur. Doing it this way vs having a permanent `componentDidUpdate` that does
-          // a boolean check every time avoids an extra method call most of the time, resulting
-          // in some perf boost.
-          this.componentDidUpdate = undefined;
-          this.notifyNestedSubs();
-        };
-
-        _proto.isSubscribed = function isSubscribed() {
-          return Boolean(this.subscription) && this.subscription.isSubscribed();
-        };
-
-        _proto.addExtraProps = function addExtraProps(props) {
-          if (!withRef && !renderCountProp && !(this.propsMode && this.subscription)) return props; // make a shallow copy so that fields added don't leak to the original selector.
-          // this is especially important for 'ref' since that's a reference back to the component
-          // instance. a singleton memoized selector would then be holding a reference to the
-          // instance, preventing the instance from being garbage collected, and that would be bad
-
-          var withExtras = _extends({}, props);
-
-          if (withRef) withExtras.ref = this.setWrappedInstance;
-          if (renderCountProp) withExtras[renderCountProp] = this.renderCount++;
-          if (this.propsMode && this.subscription) withExtras[subscriptionKey] = this.subscription;
-          return withExtras;
+          var derivedProps = this.selectDerivedProps(storeState, wrapperProps, store);
+          return this.selectChildElement(derivedProps, forwardedRef);
         };
 
         _proto.render = function render() {
-          var selector = this.selector;
-          selector.shouldComponentUpdate = false;
-
-          if (selector.error) {
-            throw selector.error;
-          } else {
-            return react.createElement(WrappedComponent, this.addExtraProps(selector.props));
-          }
+          var ContextToUse = this.props.context || Context;
+          return React__default.createElement(ContextToUse.Consumer, null, this.renderWrappedComponent);
         };
 
         return Connect;
-      }(react.Component);
-      /* eslint-enable react/no-deprecated */
-
+      }(OuterBaseComponent);
 
       Connect.WrappedComponent = WrappedComponent;
       Connect.displayName = displayName;
-      Connect.childContextTypes = childContextTypes;
-      Connect.contextTypes = contextTypes;
-      Connect.propTypes = contextTypes;
 
-      {
-        Connect.prototype.componentWillUpdate = function componentWillUpdate() {
-          var _this2 = this;
-
-          // We are hot reloading!
-          if (this.version !== version) {
-            this.version = version;
-            this.initSelector(); // If any connected descendants don't hot reload (and resubscribe in the process), their
-            // listeners will be lost when we unsubscribe. Unfortunately, by copying over all
-            // listeners, this does mean that the old versions of connected descendants will still be
-            // notified of state changes; however, their onStateChange function is a no-op so this
-            // isn't a huge deal.
-
-            var oldListeners = [];
-
-            if (this.subscription) {
-              oldListeners = this.subscription.listeners.get();
-              this.subscription.tryUnsubscribe();
-            }
-
-            this.initSubscription();
-
-            if (shouldHandleStateChanges) {
-              this.subscription.trySubscribe();
-              oldListeners.forEach(function (listener) {
-                return _this2.subscription.listeners.subscribe(listener);
-              });
-            }
-          }
-        };
+      if (forwardRef) {
+        var forwarded = React__default.forwardRef(function forwardConnectRef(props, ref) {
+          return React__default.createElement(Connect, {
+            wrapperProps: props,
+            forwardedRef: ref
+          });
+        });
+        forwarded.displayName = displayName;
+        forwarded.WrappedComponent = WrappedComponent;
+        return hoistNonReactStatics_cjs(forwarded, WrappedComponent);
       }
 
       return hoistNonReactStatics_cjs(Connect, WrappedComponent);
@@ -1772,9 +1483,34 @@
     return proto === baseProto;
   }
 
+  /**
+   * Prints a warning in the console if it exists.
+   *
+   * @param {String} message The warning message.
+   * @returns {void}
+   */
+  function warning(message) {
+    /* eslint-disable no-console */
+    if (typeof console !== 'undefined' && typeof console.error === 'function') {
+      console.error(message);
+    }
+    /* eslint-enable no-console */
+
+
+    try {
+      // This error was thrown as a convenience so that if you enable
+      // "break on all exceptions" in your console,
+      // it would pause the execution at this line.
+      throw new Error(message);
+      /* eslint-disable no-empty */
+    } catch (e) {}
+    /* eslint-enable no-empty */
+
+  }
+
   function verifyPlainObject(value, displayName, methodName) {
     if (!isPlainObject(value)) {
-      warning$2(methodName + "() in " + displayName + " must return a plain object. Instead received " + value + ".");
+      warning(methodName + "() in " + displayName + " must return a plain object. Instead received " + value + ".");
     }
   }
 
@@ -1792,7 +1528,7 @@
   } // dependsOnOwnProps is used by createMapToPropsProxy to determine whether to pass props as args
   // to the mapToProps function being wrapped. It is also used by makePurePropsSelector to determine
   // whether mapToProps needs to be invoked when props have changed.
-  // 
+  //
   // A length of one signals that mapToProps does not depend on props from the parent component.
   // A length of zero is assumed to mean mapToProps is getting args via arguments or ...args and
   // therefore not reporting its length accurately..
@@ -1801,16 +1537,16 @@
     return mapToProps.dependsOnOwnProps !== null && mapToProps.dependsOnOwnProps !== undefined ? Boolean(mapToProps.dependsOnOwnProps) : mapToProps.length !== 1;
   } // Used by whenMapStateToPropsIsFunction and whenMapDispatchToPropsIsFunction,
   // this function wraps mapToProps in a proxy function which does several things:
-  // 
+  //
   //  * Detects whether the mapToProps function being called depends on props, which
   //    is used by selectorFactory to decide if it should reinvoke on props changes.
-  //    
+  //
   //  * On first call, handles mapToProps if returns another function, and treats that
   //    new function as the true mapToProps for subsequent calls.
-  //    
+  //
   //  * On first call, verifies the first result is a plain object, in order to warn
   //    the developer that their mapToProps function is not returning a valid result.
-  //    
+  //
 
   function wrapMapToPropsFunc(mapToProps, methodName) {
     return function initProxySelector(dispatch, _ref) {
@@ -1909,7 +1645,7 @@
       throw new Error("Unexpected value for " + methodName + " in " + displayName + ".");
     } else if (methodName === 'mapStateToProps' || methodName === 'mapDispatchToProps') {
       if (!selector.hasOwnProperty('dependsOnOwnProps')) {
-        warning$2("The selector for " + methodName + " of " + displayName + " did not specify a value for dependsOnOwnProps.");
+        warning("The selector for " + methodName + " of " + displayName + " did not specify a value for dependsOnOwnProps.");
       }
     }
   }
@@ -2098,8 +1834,8 @@
   var connect = createConnect();
 
   exports.Provider = Provider;
-  exports.createProvider = createProvider;
   exports.connectAdvanced = connectAdvanced;
+  exports.ReactReduxContext = ReactReduxContext;
   exports.connect = connect;
 
   Object.defineProperty(exports, '__esModule', { value: true });
