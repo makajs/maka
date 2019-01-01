@@ -5,12 +5,16 @@ class actionFactory {
         this.actions = {}
     }
 
+    getActions() {
+        return this.actions
+    }
+
     registerAction(name, action, isFunction) {
         if (this.actions[name]) {
             console.log(`Action already exists. name: ${name}, please ignore!`)
         }
 
-        if(isFunction){
+        if (isFunction) {
             action._isFunction = true
         }
         this.actions[name] = action
@@ -39,14 +43,14 @@ class actionFactory {
     asyncGetAction(name) {
         if (!name)
             throw `Action name cannot be empty`
-        
-        return new Promise((resolve,reject)=>{
+
+        return new Promise((resolve, reject) => {
             var getAction = () => {
-                setTimeout(()=>{
-                    if (this.actions[name]){
+                setTimeout(() => {
+                    if (this.actions[name]) {
                         resolve(this.actions[name])
                     }
-                    else{
+                    else {
                         getAction()
                     }
                 }, 0)

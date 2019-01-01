@@ -4,6 +4,10 @@ class componentFactory {
         this.appComponents = {}
     }
 
+    getComponents(){
+        return this.components
+    }
+
     registerComponent(name, component) {
         if (this.components[name]) {
             console.log(`Component already exists. name: ${name},please ignore!`)

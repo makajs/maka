@@ -3,6 +3,10 @@ class templateFactory {
         this.templates = {}
     }
 
+    getTemplates(){
+        return this.templates
+    }
+    
     registerTemplate(name, templateHandler) {
         if (this.templates[name]) {
             console.log(`Template already exists. name: ${name},please ignore!`)
