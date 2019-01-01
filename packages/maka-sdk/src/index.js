@@ -34,7 +34,13 @@ var Hoc,
     actionMixin = metaEngine.actionMixin,
     fetch = utils.fetch,
     navigate = utils.navigate,
-    appInstances = metaEngine.appInstances
+    appInstances = metaEngine.appInstances,
+    actionFactory = metaEngine.actionFactory,
+    componentFactory = metaEngine.componentFactory,
+    templateFactory = metaEngine.templateFactory,
+    pluginFactory = appLoader.pluginFactory,
+    appFactory = appLoader.appFactory
+
 
 
 //Initialize maka environment
@@ -120,7 +126,12 @@ export default {
     navigate,
     createElement,
     createAppElement,
-    render
+    render,
+    appFactory,
+    pluginFactory,
+    actionFactory,
+    componentFactory,
+    templateFactory
 }
 
 export {
@@ -146,5 +157,10 @@ export {
     navigate,
     createElement,
     createAppElement,
-    render
+    render,
+    appFactory,
+    pluginFactory,
+    actionFactory,
+    componentFactory,
+    templateFactory
 }
