@@ -1,5 +1,5 @@
 import pkgJson from '../package.json'
-import { actionMixin, load } from 'maka'
+import { actionMixin, load, appFactory } from 'maka'
 import './style.less'
 
 import view from './view'

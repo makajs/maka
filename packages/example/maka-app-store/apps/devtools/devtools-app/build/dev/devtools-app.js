@@ -180,7 +180,7 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 /*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, homepage, scripts, dependencies, server, subAppDir, default */
 /***/ (function(module) {
 
-eval("module.exports = {\"isMakaApp\":true,\"name\":\"devtools-app\",\"description\":\"devtools-app\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/devtools-app.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/devtools-app/issues\"},\"homepage\":\"https://github.com/makajs/devtools-app#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../base\"]};\n\n//# sourceURL=webpack://MakaApp-devtools-app/./package.json?");
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"devtools-app\",\"description\":\"devtools-app\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/devtools-app.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/devtools-app/issues\"},\"homepage\":\"https://github.com/makajs/devtools-app#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../base\",\"../../assets\"]};\n\n//# sourceURL=webpack://MakaApp-devtools-app/./package.json?");
 
 /***/ }),
 

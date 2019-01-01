@@ -17,9 +17,17 @@ class action {
     }
 
     onInit = () => {
-        if(this.component.props.iframeSrc){
+        if (this.component.props.iframeSrc) {
             this.base.setState({
                 'data.iframeSrc': this.component.props.iframeSrc
+            })
+        }
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.iframeSrc !== this.component.props.iframeSrc) {
+            this.base.setState({
+                'data.iframeSrc': nextProps.iframeSrc
             })
         }
     }

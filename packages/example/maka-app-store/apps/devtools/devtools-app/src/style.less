@@ -6,14 +6,19 @@
     flex-direction: row;
     padding: 10px;
     &-left {
-        flex: 0 0 300px;
+        flex: 0 0 200px;
         margin-right: 10px;
-        overflow: auto;
-        .mk-menu {
-            flex: 1
-        }
+        display: flex;
+        flex-direction: column;
+        
         .ant-input-search{
-            margin-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        & > ul {
+            flex: 1;
+            overflow: auto;
+            border: 4px  solid #ccc
         }
     }
     &-content {

@@ -50,8 +50,8 @@ function initMockData(){
             id: 7,
             title: '开发工具',
             icon: 'tool',
-            appName: 'devtools-app',
-            isModal: true,
+            appName: 'devtools',
+            //isModal: true,
             bodyStyle: {
                 height: 400
             },
