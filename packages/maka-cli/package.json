@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -42,12 +42,15 @@
     "fs-extra": "*",
     "fsevents": "*",
     "got": "*",
+    "html-loader": "*",
     "html2json-loader": "*",
     "hyperquest": "*",
     "less": "*",
     "less-loader": "*",
+    "markdown-loader": "*",
     "mini-css-extract-plugin": "*",
     "optimize-css-assets-webpack-plugin": "*",
+    "raw-loader": "*",
     "react": "*",
     "react-dev-utils": "*",
     "react-dom": "*",
