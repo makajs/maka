@@ -28,8 +28,8 @@ module.exports = function (option) {
             "maka": "maka"
         }
 
-    if(appPackageJson.webpack && appPackageJson.webpack.externals){
-        externals = {...externals, ...appPackageJson.webpack.externals}
+    if (appPackageJson.webpack && appPackageJson.webpack.externals) {
+        externals = { ...externals, ...appPackageJson.webpack.externals }
     }
 
     var ext = {}
@@ -38,8 +38,72 @@ module.exports = function (option) {
         ext = { devtool: 'source-map' }
     }
 
+    const rules = [{
+        test: /\.(js|jsx|mjs)$/,
+        include: paths.appSrc,
+        exclude: paths.appNodeModules,
+        loader: path.resolve(__dirname, '..', 'node_modules', 'babel-loader'),
+        options: {
+            babelrc: false,
+            "presets": [
+                [path.resolve(__dirname, '..', 'node_modules', "@babel/preset-env"), {
+                    "targets": {
+                        "browsers": ["ie >= 11", "chrome >= 60"]
+                    }
+                }],
+                [path.resolve(__dirname, '..', 'node_modules', "@babel/preset-react")]
+            ],
+            "plugins": [
+                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-transform-runtime"), {
+                    "corejs": false,
+                    "helpers": true,
+                    "regenerator": true,
+                    "useESModules": false,
+                    "absoluteRuntime": path.resolve(__dirname)
+                }],
+                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-decorators"), {
+                    "legacy": true
+                }],
+                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-class-properties")]
+            ]
+        }
+    }, {
+        test: /\.html$/,
+        use: path.resolve(__dirname, '..', 'node_modules', 'html2json-loader')
+    }, {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, path.resolve(__dirname, '..', 'node_modules', 'css-loader')]
+    }, {
+        test: /\.less$/,
+        use: [MiniCssExtractPlugin.loader, path.resolve(__dirname, '..', 'node_modules', 'css-loader'), {
+            loader: path.resolve(__dirname, '..', 'node_modules', 'less-loader'),
+            options: {
+                javascriptEnabled: true
+            }
+        }]
+    }, {
+        test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp4|webm)(\?\S*)?$/,
+        use: {
+            loader: path.resolve(__dirname, '..', 'node_modules', 'file-loader'),
+            options: {
+                name: '[name].[ext]',
+                limit: 8192
+            }
+        }
+    }, {
+        test: /\.(txt|md)$/,
+        use: path.resolve(__dirname, '..', 'node_modules', 'raw-loader')
+    } /*{
+        test: /\.md$/,
+        use: [{
+            loader: path.resolve(__dirname, '..', 'node_modules', 'html-loader')
+        }, {
+            loader: path.resolve(__dirname, '..', 'node_modules', 'markdown-loader')
+        }]
+    }*/]
+
     return {
-        mode: isProd ? 'production': 'development',
+        mode: isProd ? 'production' : 'development',
         ...ext,
         optimization: {
             minimizer
@@ -58,59 +122,7 @@ module.exports = function (option) {
         },
         externals,
         module: {
-            rules: [{
-                test: /\.(js|jsx|mjs)$/,
-                include: paths.appSrc,
-                exclude: paths.appNodeModules,
-                loader: path.resolve(__dirname, '..', 'node_modules', 'babel-loader'),
-                options: {
-                    babelrc: false,
-                    "presets": [
-                        [path.resolve(__dirname, '..', 'node_modules', "@babel/preset-env"), {
-                            "targets": {
-                                "browsers": ["ie >= 11", "chrome >= 60"]
-                            }
-                        }],
-                        [path.resolve(__dirname, '..', 'node_modules', "@babel/preset-react")]
-                    ],
-                    "plugins": [
-                        [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-transform-runtime"), {
-                            "corejs": false,
-                            "helpers": true,
-                            "regenerator": true,
-                            "useESModules": false,
-                            "absoluteRuntime": path.resolve(__dirname)
-                        }],
-                        [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-decorators"), {
-                            "legacy": true
-                        }],
-                        [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-class-properties")]
-                    ]
-                }
-            }, {
-                test: /\.html$/,
-                use: path.resolve(__dirname, '..', 'node_modules', 'html2json-loader')
-            }, {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, path.resolve(__dirname, '..', 'node_modules', 'css-loader')]
-            }, {
-                test: /\.less$/,
-                use: [MiniCssExtractPlugin.loader, path.resolve(__dirname, '..', 'node_modules', 'css-loader'), {
-                    loader: path.resolve(__dirname, '..', 'node_modules', 'less-loader'),
-                    options: {
-                        javascriptEnabled: true
-                    }
-                }]
-            }, {
-                test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp4|webm)(\?\S*)?$/,
-                use: {
-                    loader: path.resolve(__dirname, '..', 'node_modules', 'file-loader'),
-                    options: {
-                        name: '[name].[ext]',
-                        limit: 8192
-                    }
-                }
-            }],
+            rules
         },
         plugins: [
             new webpack.DefinePlugin(env.stringified),
