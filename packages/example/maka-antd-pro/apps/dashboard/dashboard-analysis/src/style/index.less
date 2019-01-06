@@ -1,0 +1,180 @@
+@import '~antd/lib/style/themes/default.less';
+@import './utils.less';
+@_ :.dashboard-analysis;
+@{_}-main {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    transition: 0.3s;
+    @{_}-wide {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+@{_}-iconGroup {
+    i {
+        transition: color 0.32s;
+        color: @text-color-secondary;
+        cursor: pointer;
+        margin-left: 16px;
+        &:hover {
+            color: @text-color;
+        }
+    }
+}
+
+@{_}-rankingList {
+    margin: 25px 0 0;
+    padding: 0;
+    list-style: none;
+    li {
+        .clearfix();
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+        span {
+            color: @text-color;
+            font-size: 14px;
+            line-height: 22px;
+        }
+        @{_}-rankingItemNumber {
+            background-color: @background-color-base;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 16px;
+            height: 20px;
+            line-height: 20px;
+            width: 20px;
+            text-align: center;
+            margin-top: 1.5px;
+            &@{_}-active {
+                background-color: #314659;
+                color: #fff;
+            }
+        }
+        @{_}-rankingItemTitle {
+            flex: 1;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-right: 8px;
+        }
+    }
+}
+
+@{_}-salesExtra {
+    display: inline-block;
+    margin-right: 24px;
+    a {
+        color: @text-color;
+        margin-left: 24px;
+        &:hover {
+            color: @primary-color;
+        }
+        &@{_}-currentDate {
+            color: @primary-color;
+        }
+    }
+}
+
+@{_}-salesCard {
+    @{_}-salesBar {
+        padding: 0 0 32px 32px;
+    }
+    @{_}-salesRank {
+        padding: 0 32px 32px 72px;
+    }
+    .ant-tabs-bar {
+        padding-left: 16px;
+        .ant-tabs-nav .ant-tabs-tab {
+            padding-top: 16px;
+            padding-bottom: 14px;
+            line-height: 24px;
+        }
+    }
+    .ant-tabs-extra-content {
+        padding-right: 24px;
+        line-height: 55px;
+    }
+    .ant-card-head {
+        position: relative;
+    }
+    .ant-card-head-title {
+        align-items: normal;
+    }
+}
+
+@{_}-salesCardExtra {
+    height: inherit;
+}
+
+@{_}-salesTypeRadio {
+    position: absolute;
+    right: 54px;
+    bottom: 12px;
+}
+
+@{_}-offlineCard {
+    .ant-tabs-ink-bar {
+        bottom: auto;
+    }
+    .ant-tabs-bar {
+        border-bottom: none;
+    }
+    .ant-tabs-nav-container-scrolling {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .ant-tabs-tab-prev-icon:before {
+        position: relative;
+        left: 6px;
+    }
+    .ant-tabs-tab-next-icon:before {
+        position: relative;
+        right: 6px;
+    }
+    .ant-tabs-tab-active h4 {
+        color: @primary-color;
+    }
+}
+
+@{_}-trendText {
+    margin-left: 8px;
+    color: @heading-color;
+}
+
+@media screen and (max-width: @screen-lg) {
+    @{_}-salesExtra {
+        display: none;
+    }
+    @{_}-rankingList {
+        li {
+            span:first-child {
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @screen-md) {
+    @{_}-rankingTitle {
+        margin-top: 16px;
+    }
+    @{_}-salesCard @{_}-salesBar {
+        padding: 16px;
+    }
+}
+
+@media screen and (max-width: @screen-sm) {
+    @{_}-salesExtraWrap {
+        display: none;
+    }
+    @{_}-salesCard {
+        .ant-tabs-content {
+            padding-top: 30px;
+        }
+    }
+}

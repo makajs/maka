@@ -1,0 +1,27 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.ant-list-item-meta .taobao {
+  color: #ff4000;
+  display: block;
+  font-size: 48px;
+  line-height: 48px;
+  border-radius: 4px;
+}
+.ant-list-item-meta .dingding {
+  background-color: #2eabff;
+  color: #fff;
+  font-size: 32px;
+  line-height: 32px;
+  padding: 6px;
+  margin: 2px;
+  border-radius: 4px;
+}
+.ant-list-item-meta .alipay {
+  color: #2eabff;
+  font-size: 48px;
+  line-height: 48px;
+  border-radius: 4px;
+}
+

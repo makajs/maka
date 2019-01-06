@@ -1,0 +1,31 @@
+{
+  "isMakaApp": true,
+  "name": "account-center-application",
+  "description": "account-center-application",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/account-center-application.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/account-center-application/issues"
+  },
+  "homepage": "https://github.com/makajs/account-center-application#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": ["./apps","../../../../"],
+  "devDependencies": {
+    "antd": "^3.11.6"
+  }
+}

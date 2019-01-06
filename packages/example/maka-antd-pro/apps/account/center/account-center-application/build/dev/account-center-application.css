@@ -1,0 +1,53 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.account-center-application-filterCardList {
+  margin-bottom: -24px;
+}
+.account-center-application-filterCardList .account-center-application-ant-card-meta-content {
+  margin-top: 0;
+}
+.account-center-application-filterCardList .account-center-application-ant-card-meta-avatar {
+  font-size: 0;
+}
+.account-center-application-filterCardList .account-center-application-ant-card-actions {
+  background: #f7f9fa;
+}
+.account-center-application-filterCardList .account-center-application-ant-list .account-center-application-ant-list-item-content-single {
+  max-width: 100%;
+}
+.account-center-application-filterCardList .account-center-application-cardInfo {
+  zoom: 1;
+  margin-top: 16px;
+  margin-left: 40px;
+}
+.account-center-application-filterCardList .account-center-application-cardInfo:before,
+.account-center-application-filterCardList .account-center-application-cardInfo:after {
+  content: ' ';
+  display: table;
+}
+.account-center-application-filterCardList .account-center-application-cardInfo:after {
+  clear: both;
+  visibility: hidden;
+  font-size: 0;
+  height: 0;
+}
+.account-center-application-filterCardList .account-center-application-cardInfo > div {
+  position: relative;
+  text-align: left;
+  float: left;
+  width: 50%;
+}
+.account-center-application-filterCardList .account-center-application-cardInfo > div p {
+  line-height: 32px;
+  font-size: 24px;
+  margin: 0;
+}
+.account-center-application-filterCardList .account-center-application-cardInfo > div p:first-child {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  line-height: 20px;
+  margin-bottom: 4px;
+}
+

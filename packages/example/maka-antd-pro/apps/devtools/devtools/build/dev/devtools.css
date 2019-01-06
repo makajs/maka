@@ -1,0 +1,18 @@
+.devtools {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.devtools .ant-tabs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.devtools .ant-tabs-content {
+  flex: 1;
+}
+.devtools .ant-tabs-bar {
+  margin: 0 0 0px;
+}
+

@@ -1,0 +1,35 @@
+{
+  "isMakaApp": true,
+  "name": "doc",
+  "description": "doc",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/doc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/doc/issues"
+  },
+  "homepage": "https://github.com/makajs/doc#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": [
+    "./apps",
+    "../assets",
+    "../base"
+  ],
+  "devDependencies": {
+    "github-markdown-css": "^2.10.0"
+  }
+}

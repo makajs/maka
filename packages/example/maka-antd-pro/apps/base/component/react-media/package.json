@@ -1,0 +1,31 @@
+{
+  "isMakaApp": true,
+  "name": "react-media",
+  "description": "react-media",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/react-media.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/react-media/issues"
+  },
+  "homepage": "https://github.com/makajs/react-media#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": "./apps",
+  "devDependencies": {
+    "react-media": "^1.9.2"
+  }
+}

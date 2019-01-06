@@ -1,0 +1,76 @@
+/* 简单列表 */
+.simple-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    &-header {
+        display: flex;
+        align-items: center;
+        height: 45px;
+        flex: 0 0 45px;
+        padding: 0 15px;
+        flex-direction: row;
+        background: #fff;
+        &-left {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            overflow: hidden;
+            .ant-btn {
+                margin-right: 8px;
+            }
+
+            &-search {
+                min-height: auto;
+                height: 26px;
+                width: auto;
+                margin-right: 8px;
+                .ant-input{
+                    height: 26px;
+                }
+            }
+
+            &-sort-selected {
+                color: #3eabe8;
+                i {
+                    margin-left: 4px;
+                }
+            }
+        }
+        &-center {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        &-right {
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            overflow: hidden;
+            .ant-btn {
+                margin-left: 8px;
+            }
+        }
+    }
+    &-content {
+        flex: 1;
+        overflow: hidden;
+    }
+    &-footer {
+        height: 45px;
+        flex: 0 0 45px;
+        justify-content: center;
+        align-items: flex-end;
+        background: #fff;
+        padding: 0 15px;
+        .ant-select {
+            margin-right: 0px;
+        }
+    }
+}

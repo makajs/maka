@@ -1,0 +1,33 @@
+{
+  "isMakaApp": true,
+  "name": "devtools-webapi",
+  "description": "devtools-webapi",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makajs/devtools-webapi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makajs/devtools-webapi/issues"
+  },
+  "homepage": "https://github.com/makajs/devtools-webapi#readme",
+  "scripts": {
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
+  },
+  "dependencies": {},
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": [
+    "./apps",
+    "../../base",
+    "../../assets",
+    "../../webapi"
+  ]
+}

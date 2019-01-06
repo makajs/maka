@@ -1,0 +1,79 @@
+.portal {
+    .antd-pro-components-global-header-index-right .antd-pro-components-global-header-index-action:hover {
+        background: rgba(0, 0, 0, 0.025);
+    }
+    .antd-pro-components-global-header-index-right .antd-pro-components-global-header-index-search:hover {
+        background: transparent;
+    }
+    
+    &-content {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 auto;
+        &-main {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            background-color: #fff;
+            overflow: auto;
+            &-tabs {
+                flex: 0 0 36px;
+                .ant-tabs {
+                    height: 36px;
+                }
+                .ant-tabs-bar {
+                    margin: 0
+                }
+                .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-nav-container {
+                    height: 36px;
+                }
+                .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab {
+                    line-height: 28px;
+                    height: auto;
+                }
+                .ant-tabs-nav {
+                    //padding: 6 0 0 10
+                }
+                .ant-tabs-nav-wrap {
+                    margin-top: 6px;
+                    margin-left: 10px;
+                }
+            }
+            &-app {
+                flex: 1;
+                padding: 10px;
+                background: #fff;
+                position: relative;
+                overflow: auto; //border: 1px solid #ebedf0;
+                &>div {
+                    //position: absolute;
+                }
+            }
+            &-app-border {
+                border: 1px solid #ebedf0;
+            }
+        }
+    }
+
+    &-option {
+        position: absolute;
+        top: 240px;
+        background: #1890ff;
+        width: 48px;
+        height: 48px;
+        right: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        pointer-events: auto;
+        z-index: 0;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 4px 0 0 4px;
+        z-index: 99;
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+    }
+}
