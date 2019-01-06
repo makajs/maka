@@ -70,7 +70,7 @@ function loadApp(state, {
 
         var reducerInstance = typeof reducer == 'function' ? reducer({ appInfo, fullName }) : config.current.defaultReducer({ appInfo, fullName }),
             container = createReduxConnector(
-                component || config.current.defaultComponent,
+                component || (appInfo.viewDecorator && appInfo.viewDecorator()(config.current.defaultComponent)) || config.current.defaultComponent,
                 wrapMapStateToProps(fullName),
                 wrapMapDispatchToProps(fullName, actionInstance, reducerInstance),
                 null, {
