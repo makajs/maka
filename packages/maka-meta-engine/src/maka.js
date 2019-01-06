@@ -142,6 +142,7 @@ function metaToComponent(meta, props, data) {
                 }
             }
 
+            let _decorator = meta._decorator
 
             const componentName = meta.component,
                 component = componentFactory.getComponent(componentName)
@@ -158,6 +159,7 @@ function metaToComponent(meta, props, data) {
             delete allProps.component
             delete allProps._name
             delete allProps.path
+            delete allProps._decorator
 
 
             //allProps = omit(allProps, ['clearAppState', 'component', 'name', 'getDirectFuns', 'initView', 'payload'])
@@ -198,7 +200,10 @@ function metaToComponent(meta, props, data) {
                 return React.createElement(component, allProps)
             }
 
-            return React.createElement(component, allProps)
+            if(_decorator)
+                return _decorator(React.createElement(component, allProps))
+            else
+                return React.createElement(component, allProps)
         }
         else {
             return parseMetaProps(meta, props, data)
