@@ -50,7 +50,9 @@ export default class action {
 
         this.base.setState({ 'data.form': resp })
         this.toast.success(isModify ? '修改人员成功' : '新增人员成功')
-
+        
+        // console.log(form)
+        
         return resp
     }
 
@@ -58,29 +60,46 @@ export default class action {
     checkSave = (form) => {
         var msg = []
         !form.name && msg.push('请录入姓名!');
-        !form.department && msg.push('请录入部门!');
-        !form.sex && msg.push('请录入性别!');
-        !form.birthday && msg.push('请录入生日!');
+        // !form.department && msg.push('请录入部门!');
+        // !form.sex && msg.push('请录入性别!');
+        // !form.birthday && msg.push('请录入生日!');
         !form.mobile && msg.push('请录入手机!');
         return msg
     }
 
-
-    loadSex = async () => {
-        return [{
-            id: 0,
-            name: '女'
-        }, {
-            id: 1,
-            name: '男'
-        }]
-    }
+ 
 
     loadDepartment = async () => {
-        return await fetch.post('/v1/department/queryAll', {})
+        let deps = await fetch.post('/v1/department/queryAll', {})
+        return deps.map(i=>({
+            value: i.id,
+            label: i.name
+        }));
     }
 
     goBack = () => { 
         navigate.goBack()
+    }
+
+    deleteItem = (index) => () =>{ 
+        const form = this.base.gs('data.form')
+        form.list = form.list.filter((item,i) => i != index)
+        if(form.list.length == 0){
+            form.list.push({})
+        }
+        this.base.ss('data.form', form)
+    }
+
+    addItem = (index) => () =>{ 
+        const form = this.base.gs('data.form')
+        form.list.push({})
+        this.base.ss('data.form', form)
+    }
+
+    setItem = (index, key) => (value) =>{
+        const form = this.base.gs('data.form')
+        let item = form.list.filter((item,i) => i == index)[0]
+        item[key] = value
+        this.base.ss('data.form', form) 
     }
 }

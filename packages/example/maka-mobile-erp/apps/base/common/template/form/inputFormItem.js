@@ -10,6 +10,7 @@ export default function inputFormItem(option) {
         children: children || title,
         _for,
         _function,
-        _visible
+        _visible,
+        ...other
     }
 }

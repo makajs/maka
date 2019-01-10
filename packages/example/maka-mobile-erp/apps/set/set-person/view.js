@@ -12,15 +12,75 @@ export default {
         }, 
         children: '个人信息'
     },{
-        component: 'tpl.Form',
-        children: [
-            { type: 'select', title: '所属部门', required: true, bindPath: 'data.form.department', onLoadOption: '{{$loadDepartment}}', displayGetter: `{{(v)=>v && '(' + v.code + ')'+v.name}}` },
-            { type: 'input', title: '姓名', required: true, bindPath: 'data.form.name' },
-            { type: 'select', title: '性别', required: true, bindPath: 'data.form.sex', onLoadOption: '{{$loadSex}}' },
-            { type: 'datePicker', title: '生日', required: true, bindPath: 'data.form.birthday' },
-            { type: 'number', title: '手机', required: true, bindPath: 'data.form.mobile' },
-            { type: 'input', title: '地址', bindPath: 'data.form.address' },
-            { component: 'antd.Button', type: 'primary', children: '保存', onClick: '{{$save}}'}
+    //     component: 'tpl.Form',
+    //     children: [
+    //         { type: 'select', title: '所属部门',   bindPath: 'data.form.department', data: '{{$loadDepartment()}}', displayGetter: `{{(v)=>v && '(' + v.code + ')'+v.name}}` },
+    //         { type: 'input', title: '姓名', required: true, bindPath: 'data.form.name' },
+    //         { type: 'select', title: '性别',   bindPath: 'data.form.sex' },
+    //         { type: 'datePicker', title: '生日', required: true, bindPath: 'data.form.birthday' },
+    //         { type: 'number', title: '手机', required: true, bindPath: 'data.form.mobile' },
+    //         { type: 'input', title: '地址', bindPath: 'data.form.address' },
+    //     ]
+    // },{
+        component: 'antd.WhiteSpace'
+    },{
+        component: 'antd.List',
+        children: [{ 
+            component: 'antd.Picker', children: {
+                component:'antd.List.Item',
+                arrow:'horizontal',
+                children: '所属部门' 
+            },   
+            value:'{{data.form.department}}',
+            onChange:'{{(v)=>$base.ss("data.form.department",v)}}' 
+        },{    
+            component: 'antd.InputItem',
+            children: '姓名', 
+            value:'{{data.form.name}}', 
+            onChange:'{{(v)=>$base.ss("data.form.name",v)}}'  
+        },{    
+            component: 'antd.Picker', children: {
+                component:'antd.List.Item',
+                arrow:'horizontal',
+                children: '性别'
+            },  
+            value:'{{data.form.sex}}',
+            onChange:'{{(v)=>$base.ss("data.form.sex",v)}}',
+            cols:1 ,
+            data:[{label:'男',value:'0'},{label:'女',value:'1'}] 
+        },{ 
+            component: 'antd.DatePicker', 
+            mode:'date', 
+            value:'{{data.form.birthday}}',  
+            children: {
+                component:'antd.List.Item',
+                arrow:'horizontal',
+                children: '生日' 
+            },  onChange:'{{(v)=>$base.ss("data.form.birthday",v)}}'  
+        },{ 
+            component: 'antd.InputItem', 
+            children: '手机', 
+            value:'{{data.form.mobile}}',  
+            onChange:'{{(v)=>$base.ss("data.form.mobile",v)}}'  
+        },{ 
+            component: 'antd.InputItem', 
+            children: '地址', 
+            value:'{{data.form.address}}', 
+            onChange:'{{(v)=>$base.ss("data.form.address",v)}}' 
+        }]
+    },{
+        component: 'antd.WhiteSpace'
+    },{
+        component:'antd.List',
+        _for:'(item,i) in data.form.list',
+        children:[
+            { component: 'antd.Item', children:'紧急联系人'},
+            { component: 'antd.InputItem', children:'姓名', value:'{{item.name}}', onChange:'{{$setItem(i,"name")}}'},
+            { component: 'antd.InputItem', children:'手机', value:'{{item.mobile}}', onChange:'{{$setItem(i,"mobile")}}', type: 'number'},
+            { component: 'antd.InputItem', children:'地址', value:'{{item.address}}', onChange:'{{$setItem(i,"address")}}'},
+            { component: 'antd.Button', type: 'ghost', size:'small',inline: true, children: '删除', onClick: '{{$deleteItem(i) }}'},
+            { component: 'antd.Button', type: 'primary', size:'small', inline: true, children: '新增', onClick: '{{$addItem(i) }}'},
         ]
-    }]
+    },
+    { component: 'antd.Button', type: 'primary', children: '保存', onClick: '{{$save}}'}]
 }

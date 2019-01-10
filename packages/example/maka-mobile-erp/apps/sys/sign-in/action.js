@@ -38,7 +38,7 @@ export default class action {
 
         this.base.context.set('currentUser', response)
 
-        localStorage['login.user'] = form.account
+        localStorage['login.mobile'] = form.mobile
         localStorage['login.password'] = pwd
         localStorage['login.passwordLength'] = form.password.length
 

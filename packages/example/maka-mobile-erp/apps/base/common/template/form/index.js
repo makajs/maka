@@ -2,6 +2,7 @@
 import checkboxFormItem from './checkboxFormItem'
 import datePickerFormItem from './datePickerFormItem'
 import inputFormItem from './inputFormItem'
+import listFormItem from './listFormItem'
 import moneyFormItem from './moneyFormItem'
 import numberFormItem from './numberFormItem'
 import selectFormItem from './selectFormItem'
@@ -14,8 +15,12 @@ export default function form({ className = 'simple-modal-card-form', children, c
         ...other
     }
 
-    var newChildren = []
+    ret.children = tranlateChild(children, editClassNamePrefix, startEditIndex)
+    return ret
+}
 
+function tranlateChild ( children, editClassNamePrefix, startEditIndex){
+    let newChildren = []
     children.forEach(child => {
         let x, {type, component, ...other} = child
         other.editClassNamePrefix = editClassNamePrefix
@@ -41,6 +46,9 @@ export default function form({ className = 'simple-modal-card-form', children, c
                 case 'select':
                     x = selectFormItem(other)
                     break;
+                case 'list':
+                    x = listFormItem(other)
+                    break;
                 default:
                     x = child
                     break;
@@ -51,9 +59,6 @@ export default function form({ className = 'simple-modal-card-form', children, c
             newChildren.push(child)
         }
     })
-
-    ret.children = newChildren
-    return ret
+    return newChildren
 }
-
 

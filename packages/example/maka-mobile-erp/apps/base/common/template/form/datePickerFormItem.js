@@ -14,6 +14,6 @@ export default function datePickerFormItem(option) {
         },
         _for,
         _function,
-        _visible
+        _visible 
     }
 }
