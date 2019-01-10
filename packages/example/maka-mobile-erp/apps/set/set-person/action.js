@@ -13,7 +13,12 @@ export default class action {
     }
 
     load = async () => {
-        if (this.component.props.personId || this.component.props.personId == 0) {
+        let formStr = localStorage['set-person:form']
+        if(formStr){ 
+            let form = JSON.parse(formStr)
+            form.birthday = new Date(form.birthday)
+            this.base.setState({ 'data.form': form })
+        } else if (this.component.props.personId || this.component.props.personId == 0) {
             var resp = await fetch.post('/v1/person/findById', { id: this.component.props.personId })
             this.base.setState({ 'data.form': resp })
         }
@@ -51,7 +56,10 @@ export default class action {
         this.base.setState({ 'data.form': resp })
         this.toast.success(isModify ? '修改人员成功' : '新增人员成功')
         
-        // console.log(form)
+        localStorage['set-person:form'] = '' 
+
+        console.log(form)
+        this.goBack()
         
         return resp
     }
@@ -101,5 +109,23 @@ export default class action {
         let item = form.list.filter((item,i) => i == index)[0]
         item[key] = value
         this.base.ss('data.form', form) 
+    }
+
+    filesOnChange = (files, type, index) => { 
+        console.log(files, type, index)
+        this.base.ss('data.form.files', files)  
+    }
+
+    saveLocal = () => { 
+        const form = this.base.gs('data.form')
+        let formStr = JSON.stringify(form)
+        try { 
+            localStorage['set-person:form'] = formStr   
+        } catch (error) {
+            form.files = []
+            localStorage['set-person:form'] = JSON.stringify(form)   
+        } 
+        this.toast.success('暂存成功')
+        this.goBack()
     }
 }

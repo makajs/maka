@@ -68,19 +68,36 @@ export default {
             value:'{{data.form.address}}', 
             onChange:'{{(v)=>$base.ss("data.form.address",v)}}' 
         }]
-    },{
-        component: 'antd.WhiteSpace'
-    },{
+    },{ 
         component:'antd.List',
         _for:'(item,i) in data.form.list',
+        renderHeader:{
+            _function:'()',
+            component:'span',
+            children:'紧急联系人'
+        },
         children:[
-            { component: 'antd.Item', children:'紧急联系人'},
             { component: 'antd.InputItem', children:'姓名', value:'{{item.name}}', onChange:'{{$setItem(i,"name")}}'},
-            { component: 'antd.InputItem', children:'手机', value:'{{item.mobile}}', onChange:'{{$setItem(i,"mobile")}}', type: 'number'},
+            { component: 'antd.InputItem', children:'手机', type:'number', value:'{{item.mobile}}', onChange:'{{$setItem(i,"mobile")}}', type: 'number'},
             { component: 'antd.InputItem', children:'地址', value:'{{item.address}}', onChange:'{{$setItem(i,"address")}}'},
             { component: 'antd.Button', type: 'ghost', size:'small',inline: true, children: '删除', onClick: '{{$deleteItem(i) }}'},
             { component: 'antd.Button', type: 'primary', size:'small', inline: true, children: '新增', onClick: '{{$addItem(i) }}'},
-        ]
+        ] 
     },
-    { component: 'antd.Button', type: 'primary', children: '保存', onClick: '{{$save}}'}]
+    {
+        component:'antd.WingBlank',
+        children:{
+            component: 'antd.ImagePicker', 
+            files: '{{data.form.files}}',
+            onChange: '{{$filesOnChange}}',
+            onImageClick: '{{(index, fs) => console.log(index, fs)}}',
+            selectable: '{{data.form.files.length < 7}}',
+            multiple: true,
+        }
+
+    },
+    { component: 'antd.WhiteSpace' },
+    { component: 'antd.Button', type: 'primary', children: '保存', onClick: '{{$save}}'},
+    { component: 'antd.Button', type: 'ghost', children: '暂存', onClick: '{{$saveLocal}}'}
+    ]
 }

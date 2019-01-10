@@ -6,7 +6,7 @@ export default  {
                 mobile:'',
                 address:''
             }],
-            sex: {id: 0, name: '女'}
+            files: []
         },
         other: {
             sexs:[{
