@@ -1,3 +1,5 @@
+import React from 'react'
+
 class componentFactory {
     constructor() {
         this.components = {}
@@ -34,6 +36,13 @@ class componentFactory {
     getComponent(name) {
         if (!name)
             throw 'component name can not null'
+
+        if(name === 'Fragment'){
+            return React.Fragment
+        }
+
+        if(name === "Suspense")
+            return React.Suspense
 
         /*
         if (name.substring(0, 2) == '::') {

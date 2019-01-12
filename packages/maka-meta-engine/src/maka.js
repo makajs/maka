@@ -2,7 +2,7 @@ import React from 'react'
 import componentFactory from './componentFactory'
 import memoize from 'lodash/memoize'
 import utils from '@makajs/utils'
-import {  existsApp } from '@makajs/app-loader'
+import { existsApp } from '@makajs/app-loader'
 
 function parseMetaProps(meta, props, data) {
     const ret = {}
@@ -84,8 +84,8 @@ function metaToComponent(meta, props, data) {
             //_for: 'data.list' or 'data.list[_index].sub'
             if (meta._for) {
                 let _for = meta._for,
-                    paraNames = ['data'],
-                    paraValues = [data]
+                    paraNames = ['data', '$props$'],
+                    paraValues = [data, props]
 
                 if (meta['_vars']) {
                     paraNames.push('_vars')
@@ -106,13 +106,13 @@ function metaToComponent(meta, props, data) {
                     dsPath = utils.string.trim(tmp[1]),
                     extParaNames = tmp[0].replace('(', '').replace(')', '').split(',')
 
-                let items = (new Function(...paraNames, `return ${dsPath}`))
+                let items = (new Function(...paraNames, `return ${dsPath.replace(/\$/g, '$props$.')}`))
                     .apply(null, paraValues)
 
                 if (!items || items.length == 0) return
                 return items.map((o, index) => {
-                    let _vars = meta['_vars'] 
-                    _vars = !_vars ? index + '': ','+index
+                    let _vars = meta['_vars']
+                    _vars = !_vars ? index + '' : ',' + index
                     //let _vars = meta['_vars'] || []
                     //_vars.push({ _index: index, _item: o })
 
@@ -138,7 +138,13 @@ function metaToComponent(meta, props, data) {
 
                     var childMeta = props.base.gm(meta.path, undefined, data, meta['_vars'], _extParas)
                     childMeta._function = undefined
-                    return metaToComponent(childMeta, props, data)
+
+                    if (childMeta._firstReturn) {
+                        return childMeta._firstReturn
+                    }
+                    else {
+                        return metaToComponent(childMeta, props, data)
+                    }
                 }
             }
 
@@ -200,7 +206,7 @@ function metaToComponent(meta, props, data) {
                 return React.createElement(component, allProps)
             }
 
-            if(_decorator)
+            if (_decorator)
                 return _decorator(React.createElement(component, allProps))
             else
                 return React.createElement(component, allProps)

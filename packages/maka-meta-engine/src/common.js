@@ -229,7 +229,12 @@ function parseMeta(meta, appName) {
             if (v instanceof Immutable.List) {
                 v.forEach((c, index) => {
                     let currentRealPath = parentRealPath ? `${parentRealPath}.${p}.${index}` : `${p}.${index}`
-                    parseProp(c, `${currentPath}`, currentRealPath)
+                    if(c && c.get && c.get('component')){
+                        parseProp(c, `${currentPath}`, currentRealPath)
+                    }
+                    else{
+                        parseProp(c, `${currentPath}.${index}`, currentRealPath)
+                    }
                 })
             } else {
                 let currentRealPath = parentRealPath ? `${parentRealPath}.${p}` : p
