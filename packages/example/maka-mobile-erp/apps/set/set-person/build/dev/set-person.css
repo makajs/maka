@@ -1,0 +1,11 @@
+.set-person {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.set-person-navbar {
+  flex: 0 0 42px;
+  background: deepskyblue;
+}
+

@@ -24,6 +24,20 @@ export default {
         component: 'antd.List',
         children: [{
             component: 'antd.List.Item',
+            onClick: `{{$setperson}}`,
+            thumb: {
+                component: 'FA',
+                name: 'info-circle',
+                style: { color: 'green', fontSize: 22 }
+            }, 
+            children: '个人信息',
+        }]
+    }, {
+        component: 'antd.WhiteSpace'
+    }, {
+        component: 'antd.List',
+        children: [{
+            component: 'antd.List.Item',
             onClick: `{{$setting}}`,
             thumb: {
                 component: 'FA',

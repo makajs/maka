@@ -2,9 +2,10 @@ import React from 'react'
 import pkgJson from './package.json'
 import lodash from 'lodash'
 import moment from 'moment'
-import { actionMixin, registerAction, registerComponent, getComponent, getAction } from 'maka'
+import { actionMixin, registerAction, registerComponent, registerTemplate, getComponent, getAction } from 'maka'
 import * as sticky from 'react-sticky/lib';
 import * as components from './component'
+import * as templates from './template'
 import * as actions from './action'
 
 import './style.less'
@@ -13,6 +14,8 @@ const name = pkgJson.name
 
 registerComponent('sticky', sticky)
 registerComponent('ctrl', components)
+
+registerTemplate('tpl', templates)
 
 registerAction('moment', moment, true)
 registerAction('lodash', lodash, true)
