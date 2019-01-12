@@ -1,15 +1,10 @@
-const styles = {
-    main: 'account-setting-main',
-    leftmenu: 'account-setting-leftmenu',
-    right: 'account-setting-right',
-    title: 'account-setting-title',
-}
+
 export default {
     component: 'div',
-    className: styles.main,
+    className: `{{$styles('main')}}`,
     children: [{
         component: 'div',
-        className: styles.leftmenu,
+        className: `{{$styles('leftmenu')}}`,
         children: [{
             component: 'antd.Menu',
             mode: '{{data.mode}}',
@@ -24,10 +19,10 @@ export default {
         }]
     },{
         component: 'div',
-        className: styles.right,
+        className: `{{$styles('right')}}`,
         children: [{
             component: 'div',
-            className: styles.title,
+            className: `{{$styles('styles.title')}}`,
             children: '{{data.menuMap[data.selectKey]}}',
             children: [{
                 component: 'AppLoader',

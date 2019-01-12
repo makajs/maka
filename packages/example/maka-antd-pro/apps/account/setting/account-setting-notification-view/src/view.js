@@ -1,7 +1,3 @@
-const styles = {
-}
-
-
 const action = {
     component: 'antd.Switch',
     checkedChildren: `{{$i18n('app.settings.open')}}`,

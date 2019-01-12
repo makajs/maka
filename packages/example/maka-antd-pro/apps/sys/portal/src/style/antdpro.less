@@ -1,8 +1,24 @@
+@import '~antd/lib/style/themes/default.less';
+@_ :.portal;
+@{_}-content {
+    //margin: 24px;
+    //padding-top: @layout-header-height;
+}
+
+@{_}-header-fixedHeader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9;
+    transition: width 0.2s;
+}
+
 .antd-pro-components-global-header-index-header {
     height: 64px;
     padding: 0;
     background: #fff;
-    box-shadow: 0 1px 4px rgba(0,21,41,.08);
+    box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
     position: relative
 }
 
@@ -33,12 +49,12 @@
     font-size: 20px;
     height: 64px;
     cursor: pointer;
-    transition: all .3s,padding 0s;
+    transition: all .3s, padding 0s;
     padding: 22px 24px
 }
 
 .antd-pro-components-global-header-index-trigger:hover {
-    background: rgba(0,0,0,.025)
+    background: rgba(0, 0, 0, .025)
 }
 
 .antd-pro-components-global-header-index-right {
@@ -57,15 +73,15 @@
 
 .antd-pro-components-global-header-index-right .antd-pro-components-global-header-index-action>i {
     vertical-align: middle;
-    color: rgba(0,0,0,.65)
+    color: rgba(0, 0, 0, .65)
 }
 
 .antd-pro-components-global-header-index-right .antd-pro-components-global-header-index-action:hover {
-    background: rgba(0,0,0,.025)
+    background: rgba(0, 0, 0, .025)
 }
 
 .antd-pro-components-global-header-index-right .antd-pro-components-global-header-index-action.opened {
-    background: rgba(0,0,0,.025)
+    background: rgba(0, 0, 0, .025)
 }
 
 .antd-pro-components-global-header-index-right .antd-pro-components-global-header-index-search {
@@ -79,7 +95,7 @@
 .antd-pro-components-global-header-index-right .antd-pro-components-global-header-index-account .antd-pro-components-global-header-index-avatar {
     margin: 20px 8px 20px 0;
     color: #1890ff;
-    background: hsla(0,0%,100%,.85);
+    background: hsla(0, 0%, 100%, .85);
     vertical-align: top
 }
 
@@ -88,47 +104,43 @@
 }
 
 .antd-pro-components-global-header-index-dark .antd-pro-components-global-header-index-action {
-    color: hsla(0,0%,100%,.85)
+    color: hsla(0, 0%, 100%, .85)
 }
 
 .antd-pro-components-global-header-index-dark .antd-pro-components-global-header-index-action>i {
-    color: hsla(0,0%,100%,.85)
+    color: hsla(0, 0%, 100%, .85)
 }
 
-.antd-pro-components-global-header-index-dark .antd-pro-components-global-header-index-action.opened,.antd-pro-components-global-header-index-dark .antd-pro-components-global-header-index-action:hover {
+.antd-pro-components-global-header-index-dark .antd-pro-components-global-header-index-action.opened,
+.antd-pro-components-global-header-index-dark .antd-pro-components-global-header-index-action:hover {
     background: #1890ff
 }
 
 .antd-pro-components-global-header-index-dark .antd-pro-components-global-header-index-action .ant-badge {
-    color: hsla(0,0%,100%,.85)
+    color: hsla(0, 0%, 100%, .85)
 }
 
 @media only screen and (max-width: 768px) {
     .antd-pro-components-global-header-index-header .ant-divider-vertical {
-        vertical-align:unset
+        vertical-align: unset
     }
-
     .antd-pro-components-global-header-index-header .antd-pro-components-global-header-index-name {
         display: none
     }
-
     .antd-pro-components-global-header-index-header i.antd-pro-components-global-header-index-trigger {
         padding: 22px 12px
     }
-
     .antd-pro-components-global-header-index-header .antd-pro-components-global-header-index-logo {
         padding-left: 12px;
         padding-right: 12px;
         position: relative
     }
-
     .antd-pro-components-global-header-index-header .antd-pro-components-global-header-index-right {
         position: absolute;
         right: 12px;
         top: 0;
         background: #fff
     }
-
     .antd-pro-components-global-header-index-header .antd-pro-components-global-header-index-right .antd-pro-components-global-header-index-account .antd-pro-components-global-header-index-avatar {
         margin-right: 0
     }
@@ -190,7 +202,7 @@
 
 .antd-pro-components-notice-icon-notice-list-list .antd-pro-components-notice-icon-notice-list-item .antd-pro-components-notice-icon-notice-list-extra {
     float: right;
-    color: rgba(0,0,0,.45);
+    color: rgba(0, 0, 0, .45);
     font-weight: 400;
     margin-right: 0;
     margin-top: -1.5px
@@ -199,7 +211,7 @@
 .antd-pro-components-notice-icon-notice-list-notFound {
     text-align: center;
     padding: 73px 0 88px;
-    color: rgba(0,0,0,.45)
+    color: rgba(0, 0, 0, .45)
 }
 
 .antd-pro-components-notice-icon-notice-list-notFound img {
@@ -212,7 +224,7 @@
     height: 46px;
     line-height: 46px;
     text-align: center;
-    color: rgba(0,0,0,.65);
+    color: rgba(0, 0, 0, .65);
     border-radius: 0 0 4px 4px;
     border-top: 1px solid #e8e8e8;
     transition: all .3s;
@@ -220,7 +232,7 @@
 }
 
 .antd-pro-components-notice-icon-notice-list-clear:hover {
-    color: rgba(0,0,0,.85)
+    color: rgba(0, 0, 0, .85)
 }
 
 .antd-pro-components-notice-icon-index-popover {
@@ -251,7 +263,7 @@
 }
 
 .antd-pro-components-header-search-index-headerSearch .antd-pro-components-header-search-index-input {
-    transition: width .3s,margin-left .3s;
+    transition: width .3s, margin-left .3s;
     width: 0;
     background: transparent;
     border-radius: 0
@@ -265,10 +277,12 @@
     border: 0;
     padding-left: 0;
     padding-right: 0;
-    box-shadow: none!important
+    box-shadow: none !important
 }
 
-.antd-pro-components-header-search-index-headerSearch .antd-pro-components-header-search-index-input,.antd-pro-components-header-search-index-headerSearch .antd-pro-components-header-search-index-input:focus,.antd-pro-components-header-search-index-headerSearch .antd-pro-components-header-search-index-input:hover {
+.antd-pro-components-header-search-index-headerSearch .antd-pro-components-header-search-index-input,
+.antd-pro-components-header-search-index-headerSearch .antd-pro-components-header-search-index-input:focus,
+.antd-pro-components-header-search-index-headerSearch .antd-pro-components-header-search-index-input:hover {
     border-bottom: 1px solid #d9d9d9
 }
 
@@ -299,13 +313,13 @@
     vertical-align: middle;
     font-size: 20px;
     margin: 0 0 0 12px;
-    font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
+    font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
     font-weight: 600
 }
 
 .antd-pro-components-sider-menu-index-sider {
     min-height: 100vh;
-    box-shadow: 2px 0 6px rgba(0,21,41,.35);
+    box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
     position: relative;
     z-index: 10
 }
@@ -322,7 +336,7 @@
 }
 
 .antd-pro-components-sider-menu-index-sider.antd-pro-components-sider-menu-index-light {
-    box-shadow: 2px 0 8px 0 rgba(29,35,41,.05);
+    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
     background-color: #fff
 }
 
@@ -353,14 +367,17 @@
     background: #001529
 }
 
-.ant-menu-inline-collapsed>.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-item .sider-menu-item-img+span,.ant-menu-inline-collapsed>.ant-menu-item .sider-menu-item-img+span,.ant-menu-inline-collapsed>.ant-menu-submenu>.ant-menu-submenu-title .sider-menu-item-img+span {
+.ant-menu-inline-collapsed>.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-item .sider-menu-item-img+span,
+.ant-menu-inline-collapsed>.ant-menu-item .sider-menu-item-img+span,
+.ant-menu-inline-collapsed>.ant-menu-submenu>.ant-menu-submenu-title .sider-menu-item-img+span {
     max-width: 0;
     display: inline-block;
     opacity: 0
 }
 
-.ant-menu-item .sider-menu-item-img+span,.ant-menu-submenu-title .sider-menu-item-img+span {
-    transition: opacity .3s cubic-bezier(.645,.045,.355,1),width .3s cubic-bezier(.645,.045,.355,1);
+.ant-menu-item .sider-menu-item-img+span,
+.ant-menu-submenu-title .sider-menu-item-img+span {
+    transition: opacity .3s cubic-bezier(.645, .045, .355, 1), width .3s cubic-bezier(.645, .045, .355, 1);
     opacity: 1
 }
 
@@ -370,9 +387,9 @@
 
 .antd-pro-components-top-nav-header-index-head {
     width: 100%;
-    transition: background .3s,width .2s;
+    transition: background .3s, width .2s;
     height: 64px;
-    box-shadow: 0 1px 4px rgba(0,21,41,.08);
+    box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
     position: relative
 }
 

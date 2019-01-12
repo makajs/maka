@@ -1,7 +1,3 @@
-const styles = {
-    optional: 'form-basic-optional'
-}
-
 const formItemLayout = {
     labelCol: {
         xs: { span: 24 },
@@ -99,7 +95,7 @@ export default {
                 component: 'span',
                 children: [`{{$i18n('form.client.label')}}`, {
                     component: 'em',
-                    className: styles.optional,
+                    className: `{{$styles('optional')}}`,
                     children: [`{{$i18n('form.optional')}}`, {
                         component: 'antd.Tooltip',
                         title: `{{$i18n('form.client.label.tooltip')}}`,
@@ -123,7 +119,7 @@ export default {
                 component: 'span',
                 children: [`{{$i18n('form.invites.label')}}`, {
                     component: 'em',
-                    className: styles.optional,
+                    className: `{{$styles('optional')}}`,
                     children: [`{{$i18n('form.optional')}}`]
                 }]
             },
@@ -139,7 +135,7 @@ export default {
                 component: 'span',
                 children: [`{{$i18n('form.weight.label')}}`, {
                     component: 'em',
-                    className: styles.optional,
+                    className: `{{$styles('optional')}}`,
                     children: [`{{$i18n('form.optional')}}`]
                 }]
             },
@@ -184,7 +180,7 @@ export default {
                     placeholder: `{{$i18n('form.publicUsers.placeholder') }}`,
                     style: {
                         margin: '8px 0',
-                        display: `{{{debugger;return $getFieldValue('public') === '2' ? 'block' : 'none'}}}`,
+                        display: `{{{return $getFieldValue('public') === '2' ? 'block' : 'none'}}}`,
                     },
                     children: [{
                         component: 'antd.Select.Option',

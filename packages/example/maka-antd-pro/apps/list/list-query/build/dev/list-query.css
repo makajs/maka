@@ -1,0 +1,52 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.list-query-tableList .list-query-tableListOperator {
+  margin-bottom: 16px;
+}
+.list-query-tableList .list-query-tableListOperator button {
+  margin-right: 8px;
+}
+.list-query-tableListForm .ant-form-item {
+  margin-bottom: 24px;
+  margin-right: 0;
+  display: flex;
+}
+.list-query-tableListForm .ant-form-item > .ant-form-item-label {
+  width: auto;
+  line-height: 32px;
+  padding-right: 8px;
+}
+.list-query-tableListForm .ant-form-item .ant-form-item-control {
+  line-height: 32px;
+}
+.list-query-tableListForm .ant-form-item-control-wrapper {
+  flex: 1;
+}
+.list-query-tableListForm .list-query-submitButtons {
+  display: block;
+  white-space: nowrap;
+  margin-bottom: 24px;
+}
+@media screen and (max-width: 992px) {
+  .list-query-tableListForm.ant-form-item {
+    margin-right: 24px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .list-query-tableListForm.ant-form-item {
+    margin-right: 8px;
+  }
+}
+.list-query-standardTable .ant-table-pagination {
+  margin-top: 24px;
+}
+.list-query-standardTable .list-query-tableAlert {
+  margin-bottom: 16px;
+}
+.list-query-settingModal .ant-modal-body > div {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+

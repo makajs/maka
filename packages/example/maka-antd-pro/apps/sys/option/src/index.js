@@ -1,57 +1,22 @@
 import pkgJson from '../package.json'
-import { actionMixin, load, removeApp } from 'maka'
+import { load } from 'maka'
+
+import view from './view'
+import state from './state'
+import action from './action'
+
 import './style.less'
 import './img/theme-style-dark.svg'
 import './img/theme-style-light.svg'
 
+import './img/nav-sidermenu.svg'
+import './img/nav-topmenu.svg'
+
 const name = pkgJson.name
 
-const state = {
-    data: {
-    }
-}
 
 
-@actionMixin('base', 'webapi', 'message', 'i18n')
-class action {
-    constructor(option) {
-        Object.assign(this, option.mixins)
-    }
-
-    onInit = () => {
-        this.load()
-    }
-
-    load = async () => {
-        var resp = await this.webapi.option.query({})
-        this.base.setState('data', resp)
-    }
-
-    styleChange = (item) => async () => {
-        var resp = await this.webapi.option.update({
-            theme: item.key
-        })
-        this.base.setState('data', resp)
-
-        this.component.props.onPortalReload && this.component.props.onPortalReload()
-        //this.message.success('修改风格成功')
-    }
-
-
-
-    primaryColorChange = (item) => async () => {
-        var data = this.base.getState()
-        var old = data.primaryColors.find(o => o.key == data.activePrimaryColor)
-        removeApp(old.appName)
-        var resp = await this.webapi.option.update({
-            activePrimaryColor: item.key
-        })
-        await load(item.appName)
-        this.base.setState('data', resp)
-        //this.message.success('修改主题色成功')
-    }
-}
-
+/*
 const view = {
     component: 'div',
     className: 'option',
@@ -98,6 +63,7 @@ const view = {
         }
     }]
 }
+*/
 
 async function beforeRegister() {
     await load(['i18n', 'custom-component', 'template', 'webapi'])

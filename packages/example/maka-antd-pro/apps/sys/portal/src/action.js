@@ -58,6 +58,8 @@ export default class action {
         Object.assign(this, option.mixins)
     }
 
+    styles = (suffix) => `portal-${suffix}`
+
     onInit = () => {
         this.load()
 
@@ -95,9 +97,31 @@ export default class action {
         var menus = await this.webapi.portal.getMenu()
         var setting = await this.webapi.option.query()
         menus = initState.data.menu.concat(menus)
+        var oriLayout = this.base.gs('data.setting.layout')
         this.base.setState({
             'data.menu': menus,
             'data.setting.theme': setting.theme,
+            'data.setting.fixedHeader': setting.fixedHeader,
+            'data.setting.fixedSiderbar': setting.fixedSiderbar,
+            'data.setting.horizontalMenu': setting.horizontalMenu,
+            'data.setting.tabStyle': setting.tabStyle,
+            'data.setting.layout': setting.layout,
+            'data.setting.contentWidth' : setting.contentWidth
+        })
+        if (oriLayout !== setting.layout)
+            this.fireResize()
+
+    }
+
+    fireResize = () => {
+        setTimeout(() => {
+            if (document.createEvent) {
+                var event = document.createEvent("HTMLEvents");
+                event.initEvent("resize", true, true);
+                window.dispatchEvent(event);
+            } else if (document.createEventObject) {
+                window.fireEvent("onresize");
+            }
         })
     }
 
@@ -234,10 +258,20 @@ export default class action {
     }
 
     menuOpenChange = (openKeys) => {
+        var menuOpenKeys = []
+        if(openKeys && openKeys.length > 0){
+            let key = openKeys[openKeys.length - 1]
+            if(key.indexOf('-') != -1){
+                menuOpenKeys.push(key.split('-')[0])
+               
+            } 
+            menuOpenKeys.push(key)
+        }
         this.base.ss({
-            'data.menuOpenKeys': openKeys && openKeys.length > 0 ? [openKeys[openKeys.length - 1]] : []
+            'data.menuOpenKeys':menuOpenKeys
         })
     }
+
     getMenuSelectKeys = () => {
         const content = this.base.gs('data.content')
         if (!content) return
@@ -310,7 +344,7 @@ export default class action {
         var data = this.base.getState('data'),
             menu = data.menu,
             openTabs = data.openTabs || [],
-            isTabsStyle = data.isTabsStyle,
+            isTabsStyle = data.setting.tabStyle,
             oriMenuItem = this.findMenu(menu, appName),
             json = {}
 
@@ -387,9 +421,6 @@ export default class action {
             delete eventListeners[appFullName + '__active']
     }
 
-
-
-
     listen = (location, action) => {
         let full = `${location.pathname}${location.search}`
         if (!full || full.indexOf('portal') == -1)
@@ -416,18 +447,35 @@ export default class action {
 
     getLayoutStyle = (isMobile) => {
         const setting = this.base.gs('data.setting')
-        const { fixSiderbar, collapsed, layout } = setting
-        if (fixSiderbar && layout !== 'topmenu' && !isMobile) {
+        const { fixedSiderbar, collapsed, layout } = setting
+        if (fixedSiderbar && layout !== 'topmenu' && !isMobile) {
             return {
-                //paddingLeft: (collapsed || isMobile) ? '80px' : '256px',
+                paddingLeft: (collapsed || isMobile) ? '80px' : '256px',
                 minHeight: '100vh',
             };
         }
         return { minHeight: '100vh' };
     }
 
+    getHeadWidth = (isMobile) => {
+        const { collapsed, fixedHeader, layout } = this.base.gs('data.setting')
+        if (isMobile || !fixedHeader || layout === 'topmenu') {
+            return '100%';
+        }
+        return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';
+    }
+
     onCollapse = (collapsed) => {
-        this.base.ss({ 'data.setting.collapsed': collapsed })
+        if (collapsed === true) {
+            this.base.ss({
+                'data.menuOpenKeys': [],
+                'data.setting.collapsed': collapsed
+            })
+        }
+        else {
+            this.base.ss({ 'data.setting.collapsed': collapsed })
+        }
+
     }
 
     drawerVisible = (visible) => {

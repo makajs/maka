@@ -7,10 +7,10 @@ export default function GridComponent(props) {
 	let {
 		key,
 		rowsCount,
-		headerHeight,
+		headerHeight = 0,
 		rowHeight,
 		groupHeaderHeight,
-		footerHeight,
+		footerHeight = 0,
 		width,
 		height,
 		heightFromRowsCount,
@@ -28,7 +28,7 @@ export default function GridComponent(props) {
 
 	//高度根据行数计算
 	if (heightFromRowsCount) {
-		height = headerHeight + 2 + rowHeight * rowsCount + footerHeight
+		height = headerHeight + 2 + rowHeight * rowsCount + footerHeight + 15
 	}
 
 	columns = [...columns]

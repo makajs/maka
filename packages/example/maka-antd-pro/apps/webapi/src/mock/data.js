@@ -28,40 +28,49 @@ function initMockData() {
             children: [{
                 locale: 'menu.form.basicform',
                 appName: 'form-basic'
-            }/*, {
+            }, {
                 locale: 'menu.form.stepform',
-                appName: 'home'
+                appName: 'form-step'
             }, {
                 locale: 'menu.form.advancedform',
-                appName: 'home'
-            }*/]
+                appName: 'form-advanced'
+            }]
 
         }, {
             icon: 'table',
             locale: 'menu.list',
-            children: [/*{
+            children: [{
                 locale: 'menu.list.searchtable',
-                appName: 'home'
-            },*/ {
+                appName: 'list-query'
+            }, {
                 locale: 'menu.list.basiclist',
                 appName: 'list-basic'
-            }/*, {
+            }, {
                 locale: 'menu.list.cardlist',
-                appName: 'home'
+                appName: 'list-card'
             }, {
                 locale: 'menu.list.searchlist',
-                appName: 'home'
-            }*/]
+                children:[{
+                    locale:'menu.list.searchlist.articles',
+                    appName: 'list-search-article'
+                },{
+                    locale:'menu.list.searchlist.projects',
+                    appName: 'list-search-project'
+                },{
+                    locale:'menu.list.searchlist.applications',
+                    appName: 'list-search-application'
+                }]
+            }]
         }, {
             icon: 'profile',
             locale: 'menu.profile',
             children: [{
                 locale: 'menu.profile.basic',
                 appName: 'profile-basic'
-            }/*, {
+            }, {
                 locale: 'menu.profile.advanced',
-                appName: 'home'
-            }*/]
+                appName: 'profile-advanced'
+            }]
         }, {
             icon: 'check-circle-o',
             locale: 'menu.result',
@@ -145,7 +154,7 @@ function initMockData() {
             appProps: { iframeSrc: 'https://www.baidu.com' },
             alwaysRender: true,
             isInstalled: false
-        }, {
+        }/*, {
             id: 7,
             title: '开发工具',
             icon: 'tool',
@@ -156,7 +165,7 @@ function initMockData() {
             },
             width: 1100,
             isInstalled: false
-        }]
+        }*/]
     }
 
     /*插件*/
@@ -173,39 +182,19 @@ function initMockData() {
     /*配置信息 */
     if (!mockData.option) {
         mockData.option = {
-            styles: [{
-                key: 'dark',
-                img: 'theme-style-dark.svg',
-                appName: 'theme-style-dark'
-            }, {
-                key: 'light',
-                img: 'theme-style-light.svg',
-                appName: 'theme-style-light'
-            }],
-            primaryColors: [{
-                key: 'blue',
-                color: 'rgb(24, 144, 255)',
-                appName: 'theme-primary-color-blue'
-            }, {
-                key: 'green',
-                color: 'rgb(19, 194, 194)',
-                appName: 'theme-primary-color-green'
-            }, {
-                key: 'red',
-                color: 'rgb(245, 34, 45)',
-                appName: 'theme-primary-color-red'
-            }],
-            activePrimaryColor: 'blue',
+            activePrimaryColor: 'geekblue',
             mode: 'inline', //vertical || horizontal || inline
             theme: 'dark', //dark || light
             collapsed: false,
             layout: 'sidermenu', //sidermenu || topmenu
             contentWidth: 'Fluid',
-            fixHeader: false,
-            fixSiderbar: false,
+            fixedHeader: false,
+            fixedSiderbar: false,
             autoHideHeader: false,
             colorWeak: false,
             collapse: true,
+            tabStyle: true,
+            horizontalMenu: false,
 
         }
     }

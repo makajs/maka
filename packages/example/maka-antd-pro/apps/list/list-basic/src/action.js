@@ -6,11 +6,17 @@ export default class action {
         Object.assign(this, option.mixins)
     }
 
+    styles = (suffix) => `list-basic-${suffix}`
+
     showEditModal = (item) => ()=> {
 
     }
 
     editAndDelete = (key,item) => ()=>{
 
+    }
+
+    showModal = () => {
+        
     }
 }

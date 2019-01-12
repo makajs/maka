@@ -1,18 +1,7 @@
-
-const styles = {
-    standardList: 'list-basic-standardList',
-    headerInfo: 'list-basic-headerInfo',
-    listCard: 'list-basic-listCard',
-    extraContent: 'list-basic-extraContent',
-    extraContentSearch: 'list-basic-extraContentSearch',
-    listContent: 'list-basic-listContent',
-    listContentItem: 'list-basic-listContentItem',
-}
-
 const Info = ({ title, value, bordered }) => {
     return {
         component: 'div',
-        className: styles.headerInfo,
+        className: `{{$styles('headerInfo')}}`,
         children: [{
             component: 'span',
             children: title,
@@ -28,7 +17,7 @@ const Info = ({ title, value, bordered }) => {
 
 const extraContent = {
     component: 'div',
-    className: styles.extraContent,
+    className: `{{$styles('extraContent')}}`,
     children: [{
         component: 'antd.Radio.Group',
         defaultValue: 'all',
@@ -47,7 +36,7 @@ const extraContent = {
         }]
     }, {
         component: 'antd.Input.Search',
-        className: styles.extraContentSearch,
+        className: `{{$styles('extraContentSearch')}}`,
         placeholder: '请输入',
 
     }]
@@ -79,10 +68,10 @@ const MoreBtn = {
 
 const ListContent = {
     component: 'div',
-    className: styles.listContent,
+    className: `{{$styles('listContent')}}`,
     children: [{
         component: 'div',
-        className: styles.listContentItem,
+        className: `{{$styles('listContentItem')}}`,
         children: [{
             component: 'span',
             children: 'Owner'
@@ -92,7 +81,7 @@ const ListContent = {
         }]
     }, {
         component: 'div',
-        className: styles.listContentItem,
+        className: `{{$styles('listContentItem')}}`,
         children: [{
             component: 'span',
             children: '开始时间',
@@ -102,7 +91,7 @@ const ListContent = {
         }]
     }, {
         component: 'div',
-        className: styles.listContentItem,
+        className: `{{$styles('listContentItem')}}`,
         children: {
             component: 'antd.Progress',
             percent: '{{item.percent}}',
@@ -115,7 +104,7 @@ const ListContent = {
 
 export default {
     component: 'div',
-    className: styles.standardList,
+    className: `{{$styles('standardList')}}`,
     children: [{
         component: 'antd.Card',
         bordered: false,
@@ -140,7 +129,7 @@ export default {
         }]
     }, {
         component: 'antd.Card',
-        className: styles.listCard,
+        className: `{{$styles('listCard')}}`,
         bordered: false,
         title: '标准列表',
         style: { marginTop: 24 },

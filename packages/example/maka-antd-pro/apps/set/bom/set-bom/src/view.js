@@ -56,6 +56,7 @@ export default {
     }, {
         component: 'tpl.Table',
         bindPath: 'data.form.details',
+        autoHeight: false,
         enablePagination: false,
         editClassNamePrefix: 'set-bom-edit',
         startEditIndex: 7,

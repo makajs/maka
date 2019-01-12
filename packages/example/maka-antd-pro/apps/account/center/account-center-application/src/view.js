@@ -1,9 +1,3 @@
-const styles = {
-    root: 'account-center-application',
-    filterCardList: 'account-center-application-filterCardList',
-    cardInfo: 'account-center-application-cardInfo',
-}
-
 const itemMenu = {
     component: 'antd.Menu',
     children: [{
@@ -37,7 +31,7 @@ const itemMenu = {
 }
 export default {
     component: 'antd.List',
-    className: styles.filterCardList,
+    className: `{{$styles('filterCardList')}}`,
     rowKey: "id",
     grid: { gutter: 24, xxl: 3, xl: 2, lg: 2, md: 2, sm: 2, xs: 1 },
     dataSource: '{{data.list}}',
@@ -84,14 +78,14 @@ export default {
                     component: 'antd.Avatar',
                     size: 'small',
                     src: '{{item.avatar}}',
-                    
-                },title: '{{item.title}}'
+
+                }, title: '{{item.title}}'
             }, {
                 component: 'div',
-                //className: styles.cardItemContent,
+                //className: `{{$styles('cardItemContent,
                 children: {
                     component: 'div',
-                    className: styles.cardInfo,
+                    className: `{{$styles('cardInfo')}}`,
                     children: [{
                         component: 'div',
                         children: [{

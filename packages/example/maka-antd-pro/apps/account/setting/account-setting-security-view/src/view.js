@@ -1,7 +1,3 @@
-const styles = {
-}
-
-
 const passwordStrength = {
     strong: {
         component: 'font',

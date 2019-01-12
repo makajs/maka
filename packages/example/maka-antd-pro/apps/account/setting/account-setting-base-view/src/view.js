@@ -1,18 +1,9 @@
-const styles = {
-    baseView: 'account-setting-base-view-baseview',
-    left: 'account-setting-base-view-left',
-    right: 'account-setting-base-view-right',
-    avatar_title: 'account-setting-base-view-avatar_title',
-    avatar:'account-setting-base-view-avatar',
-    button_view: 'account-setting-base-view-button_view',
-}
-
 export default {
     component: 'div',
-    className: styles.baseView,
+    className: `{{$styles('baseview')}}`,
     children: [{
         component: 'div',
-        className: styles.left,
+        className: `{{$styles('left')}}`,
         children: [{
             component: 'antd.Form',
             layout: 'vertical',
@@ -122,14 +113,14 @@ export default {
         }]
     }, {
         component: 'div',
-        className: styles.right,
+        className: `{{$styles('right')}}`,
         children: [{
             component: 'div',
-            className: styles.avatar_title,
+            className: `{{$styles('avatar_title')}}`,
             children: `{{$i18n('app.settings.basic.avatar', {defaultMessage:'Avatar'})}}`
         },{
             component: 'div',
-            className: styles.avatar,
+            className: `{{$styles('avatar')}}`,
             children: {
                 component: 'img',
                 src: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
@@ -140,7 +131,7 @@ export default {
             fileList: [],
             children: [{
                 component: 'div',
-                className: styles.button_view,
+                className: `{{$styles('button_view')}}`,
                 children: [{
                     component: 'antd.Button',
                     icon: 'update',

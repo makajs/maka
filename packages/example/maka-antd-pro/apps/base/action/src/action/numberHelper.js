@@ -110,12 +110,23 @@ function moneySmalltoBig(n) {
     return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');
 }
 
+function formatWan(val) {
+    const v = val * 1;
+    if (!v || Number.isNaN(v)) return '';
+
+    let result = val;
+    if (val > 10000) {
+        result = Math.floor(val / 10000);
+    }
+    return result;
+}
 
 export default {
     toFixedFix,
     format,
     moneySmalltoBig,
-    round
+    round,
+    formatWan
 
 
 }

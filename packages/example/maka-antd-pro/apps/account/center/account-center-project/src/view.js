@@ -1,14 +1,6 @@
-const styles = {
-    root: 'account-center-project',
-    coverCardList: 'account-center-project-coverCardList',
-    cardItemContent: 'account-center-project-cardItemContent',
-    avatarList: 'account-center-project-avatarList',
-}
-
-
 export default {
     component: 'antd.List',
-    className: styles.coverCardList,
+    className: `{{$styles('coverCardList')}}`,
     rowKey: "id",
     grid: { gutter: 24, xxl: 3, xl: 2, lg: 2, md: 2, sm: 2, xs: 1},
     dataSource: '{{data.list}}',
@@ -33,13 +25,13 @@ export default {
                 description: '{{item.subDescription}}'
             },{
                 component: 'div',
-                className: styles.cardItemContent,
+                className: `{{$styles('cardItemContent')}}`,
                 children:[{
                     component: 'span',
                     children: '{{$moment(item.updateAt).fromNow()}}'
                 },{
                     component: 'div',
-                    className: styles.avatarList,
+                    className: `{{$styles('avatarList')}}`,
                     children: [{
                         component: 'antdpro.AvatarList',
                         size: 'mini',

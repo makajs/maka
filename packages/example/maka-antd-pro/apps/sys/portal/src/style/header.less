@@ -1,0 +1,150 @@
+@header :.portal-header;
+@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
+@{header}-fixedHeader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9;
+    transition: width 0.2s;
+}
+
+@{header}-header {
+    height: @layout-header-height;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    position: relative;
+}
+
+@{header}-logo {
+    height: @layout-header-height;
+    line-height: @layout-header-height;
+    vertical-align: top;
+    display: inline-block;
+    padding: 0 0 0 24px;
+    cursor: pointer;
+    font-size: 20px;
+    img {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+@{header}-menu {
+    margin-right: 8px;
+    .ant-dropdown-menu-item {
+        min-width: 160px;
+    }
+}
+
+@{header}-trigger {
+    font-size: 20px;
+    height: @layout-header-height;
+    cursor: pointer;
+    transition: all 0.3s, padding 0s;
+    padding:~'calc((@{layout-header-height} - 20px) / 2)' 24px;
+    &:hover {
+        background: @pro-header-hover-bg;
+    }
+}
+
+@{header}-right {
+    float: right;
+    height: 100%;
+    overflow: hidden;
+    @{header}-action {
+        cursor: pointer;
+        padding: 0 12px;
+        display: inline-block;
+        transition: all 0.3s;
+        height: 100%;
+        >i {
+            vertical-align: middle;
+            color: @text-color;
+        }
+        &:hover {
+            background: @pro-header-hover-bg;
+        }
+        &.opened {
+            background: @pro-header-hover-bg;
+        }
+    }
+    @{header}-search {
+        padding: 0 12px;
+        &:hover {
+            background: transparent;
+        }
+    }
+    @{header}-account {
+        @{header}-avatar {
+            margin:~'calc((@{layout-header-height} - 24px) / 2)' 0;
+            margin-right: 8px;
+            color: @primary-color;
+            background: rgba(255, 255, 255, 0.85);
+            vertical-align: top;
+        }
+    }
+}
+
+@{header}-dark {
+    height: @layout-header-height;
+    @{header}-action {
+        color: rgba(255, 255, 255, 0.85);
+        >i {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        &:hover,
+        &.opened {
+            background: @primary-color;
+        }
+        .ant-badge {
+            color: rgba(255, 255, 255, 0.85);
+        }
+    }
+}
+
+@media only screen and (max-width: @screen-md) {
+    @{header}-header {
+        .ant-divider-vertical {
+            vertical-align: unset;
+        }
+        @{header}-name {
+            display: none;
+        }
+        i.trigger {
+            padding: 22px 12px;
+        }
+        @{header}-logo {
+            padding-left: 12px;
+            padding-right: 12px;
+            position: relative;
+        }
+        @{header}-right {
+            position: absolute;
+            right: 12px;
+            top: 0;
+            background: #fff;
+            @{header}-account {
+                @{header}-avatar {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+@{header}-dropdown-container>* {
+    background-color: #fff;
+    box-shadow: @shadow-1-down;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: @screen-xs) {
+    @{header}-dropdown-container {
+        width: 100% !important;
+    }
+    @{header}-dropdown-container>* {
+        border-radius: 0 !important;
+    }
+}

@@ -1,0 +1,35 @@
+//@primary-color : #ee752f;
+//@hover-color: #fa9a5a;
+@import "~antd/lib/style/core/index.less";
+@import "./theme.less";
+@import "./antd-menu.less";
+@hover-color: #a5d96f;
+
+.button-bluesky {
+    background-color: @primary-color  !important;
+    &:hover {
+        background-color: @hover-color  !important;
+    }
+}
+
+.public_fixedDataTable_header .public_fixedDataTableCell_main {
+    background-image: linear-gradient(@primary-color, @primary-color) !important;
+}
+
+.fixedDataTableLayout_rowsContainer .fixedDataTableRowLayout_rowWrapper .public_fixedDataTable_header {
+    background: @primary-color  !important;
+}
+
+.public_fixedDataTable_scrollbarSpacer {
+    background-image: linear-gradient(@primary-color, @primary-color) !important;
+}
+
+/*门户*/
+
+.option-handle {
+    background-color: @primary-color  !important;
+}
+
+.portal-header-left {
+    background-color: @primary-color  !important;
+}

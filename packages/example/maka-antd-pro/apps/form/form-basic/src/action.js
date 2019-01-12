@@ -6,6 +6,7 @@ export default class action {
         Object.assign(this, option.mixins)
     }
 
+    styles = (suffix) => `form-basic-${suffix}`
 
     getFieldValue = (...args) => {
         return this.component.props.form.getFieldValue(...args)

@@ -1,13 +1,5 @@
-
-const styles = {
-    main: 'dashboard-monitor-main',
-    mapChart: 'dashboard-monitor-mapChart',
-    pieCard: 'dashboard-monitor-pieCard',
-}
-
 export default {
-    component: 'div',
-    className: styles.main,
+    component: 'Fragment',
     children: [{
         component: 'antd.Row',
         gutter: 24,
@@ -62,7 +54,7 @@ export default {
                     }]
                 }, {
                     component: 'div',
-                    className: styles.mapChart,
+                    className: `{{$styles('mapChart')}}`,
                     children: [{
                         component: 'antd.Tooltip',
                         title: `{{$i18n('app.monitor.waiting-for-implementation', {defaultMessage:'Waiting for implementation'})}}`,
@@ -110,7 +102,7 @@ export default {
                 component: 'antd.Card',
                 title: `{{$i18n('app.monitor.proportion-per-category',{defaultMessage:'Proportion Per Category'})}}`,
                 bordered: false,
-                className: styles.pieCard,
+                className: `{{$styles('pieCard')}}`,
                 children: [{
                     component: 'antd.Row',
                     style: { padding: '16px 0' },

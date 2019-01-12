@@ -28,7 +28,7 @@ class action {
 const view = {
     component: 'antdpro.Exception',
     className: 'common-exception',
-    type: '{{{debugger; return $getProps().type}}}',
+    type: '{{{return $getProps().type}}}',
     desc: '{{$i18n($getProps().desc)}}',
 }
 

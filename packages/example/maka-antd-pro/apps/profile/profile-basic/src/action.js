@@ -10,6 +10,7 @@ export default class action {
         Object.assign(this, option.mixins)
     }
 
+    styles = suffix => `profile-basic-${suffix}`
 
     renderContent = (value, row, index) => {
         var basicGoods = this.base.gs('data.basicGoods')

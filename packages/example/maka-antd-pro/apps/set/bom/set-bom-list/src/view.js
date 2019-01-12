@@ -29,6 +29,7 @@ export default {
         }]
     }, {
         component: 'tpl.Table',
+        autoHeight: false,
         columns: [
             { type: 'sequence' },
             { type: 'isSelected' },

@@ -1,8 +1,6 @@
 import React from 'react'
 import { getComponent } from 'maka'
-const styles = {
-    title: 'profile-basic-title'
-}
+
 
 export default {
     component: 'antd.Card',
@@ -64,7 +62,7 @@ export default {
         style: { marginBottom: 32 },
     }, {
         component: 'div',
-        className: styles.title,
+        className: `{{$styles('title')}}`,
         children: '退货商品'
     }, {
         component: 'antd.Table',
@@ -75,7 +73,7 @@ export default {
         rowKey: 'id'
     }, {
         component: 'div',
-        className: styles.title,
+        className: `{{$styles('title')}}`,
         children: '退货进度'
     }, {
         component: 'antd.Table',

@@ -1,26 +1,6 @@
 import React from 'react'
 import { getComponent } from 'maka'
 
-const styles = {
-    main: 'dashboard-analysis-main',
-    trendText: 'dashboard-analysis-trendText',
-    salesCard: 'dashboard-analysis-salesCard',
-    salesExtraWrap: 'dashboard-analysis-salesExtraWrap',
-    salesExtra: 'dashboard-analysis-salesExtra',
-    salesBar: 'dashboard-analysis-salesBar',
-    salesRank: 'dashboard-analysis-salesRank',
-    rankingTitle: 'dashboard-analysis-rankingTitle',
-    rankingList: 'dashboard-analysis-rankingList',
-    rankingItemNumber: 'dashboard-analysis-rankingItemNumber',
-    active: 'dashboard-analysis-active',
-    rankingItemTitle: 'dashboard-analysis-rankingItemTitle',
-    iconGroup: 'dashboard-analysis-iconGroup',
-    alignRight: 'dashboard-analysis-alignRight',
-    salesCardExtra: 'dashboard-analysis-salesCardExtra',
-    salesTypeRadio: 'dashboard-analysis-salesTypeRadio',
-    offlineCard: 'dashboard-analysis-offlineCard'
-}
-
 const topColResponsiveProps = {
     xs: 24,
     sm: 12,
@@ -65,7 +45,7 @@ const IntroduceRow = {
                 style: { marginRight: 16 },
                 children: [`{{$i18n('app.analysis.week', {defaultMessage:'Weekly Changes'})}}`, {
                     component: 'span',
-                    className: styles.trendText,
+                    className: `{{$styles('trendText')}}`,
                     children: '12%'
                 }]
             }, {
@@ -73,7 +53,7 @@ const IntroduceRow = {
                 flag: 'down',
                 children: [`{{$i18n('app.analysis.day', {defaultMessage:'Daily Changes'})}}`, {
                     component: 'span',
-                    className: styles.trendText,
+                    className: `{{$styles('trendText')}}`,
                     children: '12%'
                 }]
             }]
@@ -101,9 +81,13 @@ const IntroduceRow = {
             },
             contentHeight: 46,
             children: {
-                component: 'antdpro.Charts.MiniArea',
-                color: '#975FE4',
-                data: '{{data.visitData}}'
+                component: 'Suspense',
+                fallback: null,
+                children: {
+                    component: 'antdpro.Charts.MiniArea',
+                    color: '#975FE4',
+                    data: '{{data.visitData}}'
+                }
             }
         }]
     }, {
@@ -129,8 +113,12 @@ const IntroduceRow = {
             },
             contentHeight: 46,
             children: {
-                component: 'antdpro.Charts.MiniBar',
-                data: '{{data.visitData}}'
+                component: 'Suspense',
+                fallback: null,
+                children: {
+                    component: 'antdpro.Charts.MiniBar',
+                    data: '{{data.visitData}}'
+                }
             }
         }]
     }, {
@@ -158,7 +146,7 @@ const IntroduceRow = {
                     style: { marginRight: 16 },
                     children: [`{{$i18n('app.analysis.week', {defaultMessage:'Weekly Changes'})}}`, {
                         component: 'span',
-                        className: styles.trendText,
+                        className: `{{$styles('trendText')}}`,
                         children: '12%'
                     }]
                 }, {
@@ -166,18 +154,22 @@ const IntroduceRow = {
                     flag: 'down',
                     children: [`{{$i18n('app.analysis.day', {defaultMessage:'Daily Changes'})}}`, {
                         component: 'span',
-                        className: styles.trendText,
+                        className: `{{$styles('trendText')}}`,
                         children: '12%'
                     }]
                 }]
             }],
             contentHeight: 46,
             children: {
-                component: 'antdpro.Charts.MiniProgress',
-                percent: 78,
-                strokeWidth: 8,
-                target: 80,
-                color: "#13C2C2"
+                component: 'Suspense',
+                fallback: null,
+                children: {
+                    component: 'antdpro.Charts.MiniProgress',
+                    percent: 78,
+                    strokeWidth: 8,
+                    target: 80,
+                    color: "#13C2C2"
+                }
             }
         }]
     }]
@@ -187,17 +179,17 @@ const SalesCard = {
     component: 'antd.Card',
     bordered: false,
     bodyStyle: { padding: 0 },
-    className: styles.salesCard,
+    className: `{{$styles('salesCard')}}`,
     children: [{
         component: 'antd.Tabs',
         size: 'large',
         tabBarStyle: { marginBottom: 24 },
         tabBarExtraContent: {
             component: 'div',
-            className: styles.salesExtraWrap,
+            className: `{{$styles('salesExtraWrap')}}`,
             children: [{
                 component: 'div',
-                className: styles.salesExtra,
+                className: `{{$styles('salesExtra')}}`,
                 children: [{
                     component: 'a',
                     className: `{{$isActive('today')}}`,
@@ -237,12 +229,16 @@ const SalesCard = {
                     xl: 16, lg: 12, md: 12, sm: 24, xs: 24,
                     children: [{
                         component: 'div',
-                        className: styles.salesBar,
+                        className: `{{$styles('salesBar')}}`,
                         children: [{
-                            component: 'antdpro.Charts.Bar',
-                            height: 295,
-                            title: `{{$i18n('app.analysis.sales-trend',{defaultMessage:'Sales Trend'})}}`,
-                            data: '{{data.salesData}}'
+                            component: 'Suspense',
+                            fallback: null,
+                            children: {
+                                component: 'antdpro.Charts.Bar',
+                                height: 295,
+                                title: `{{$i18n('app.analysis.sales-trend',{defaultMessage:'Sales Trend'})}}`,
+                                data: '{{data.salesData}}'
+                            }
                         }]
                     }]
                 }, {
@@ -250,23 +246,23 @@ const SalesCard = {
                     xl: 8, lg: 12, md: 12, sm: 24, xs: 24,
                     children: [{
                         component: 'div',
-                        className: styles.salesRank,
+                        className: `{{$styles('salesRank')}}`,
                         children: [{
                             component: 'h4',
-                            className: styles.rankingTitle,
+                            className: `{{$styles('rankingTitle')}}`,
                             children: [`{{$i18n('app.analysis.sales-ranking',{defaultMessage:'Sales Ranking'})}}`, {
                                 component: 'ul',
-                                className: styles.rankingList,
+                                className: `{{$styles('rankingList')}}`,
                                 children: {
                                     _for: '(item,i) in data.rankingListData',
                                     component: 'li',
                                     children: [{
                                         component: 'span',
-                                        className: `{{'${styles.rankingItemNumber}' + ' ' + (i < 3 ? '${styles.active}':'')}}`,
+                                        className: `{{$styles('rankingItemNumber') + ' ' + (i < 3 ? $styles('active'):'')}}`,
                                         children: '{{i+1}}'
                                     }, {
                                         component: 'span',
-                                        className: styles.rankingItemTitle,
+                                        className: `{{$styles('rankingItemTitle')}}`,
                                         title: '{{item.title}}',
                                         children: '{{item.title}}'
                                     }, {
@@ -290,12 +286,16 @@ const SalesCard = {
                     xl: 16, lg: 12, md: 12, sm: 24, xs: 24,
                     children: [{
                         component: 'div',
-                        className: styles.salesBar,
+                        className: `{{$styles('salesBar')}}`,
                         children: [{
-                            component: 'antdpro.Charts.Bar',
-                            height: 295,
-                            title: `{{$i18n('app.analysis.visits-trend',{defaultMessage:'Visits Trend'})}}`,
-                            data: '{{data.salesData}}'
+                            component: 'Suspense',
+                            fallback: null,
+                            children: {
+                                component: 'antdpro.Charts.Bar',
+                                height: 295,
+                                title: `{{$i18n('app.analysis.visits-trend',{defaultMessage:'Visits Trend'})}}`,
+                                data: '{{data.salesData}}'
+                            }
                         }]
                     }]
                 }, {
@@ -303,23 +303,23 @@ const SalesCard = {
                     xl: 8, lg: 12, md: 12, sm: 24, xs: 24,
                     children: [{
                         component: 'div',
-                        className: styles.salesRank,
+                        className: `{{$styles('salesRank')}}`,
                         children: [{
                             component: 'h4',
-                            className: styles.rankingTitle,
+                            className: `{{$styles('rankingTitle')}}`,
                             children: [`{{$i18n('app.analysis.visits-ranking',{defaultMessage:'Visits Ranking'})}}`, {
                                 component: 'ul',
-                                className: styles.rankingList,
+                                className: `{{$styles('rankingList')}}`,
                                 children: {
                                     _for: '(item,i) in data.rankingListData',
                                     component: 'li',
                                     children: [{
                                         component: 'span',
-                                        className: `{{'${styles.rankingItemNumber}' + ' ' + (i < 3 ? '${styles.active}':'')}}`,
+                                        className: `{{$styles('rankingItemNumber') + ' ' + (i < 3 ? $styles('active'):'')}}`,
                                         children: '{{i+1}}'
                                     }, {
                                         component: 'span',
-                                        className: styles.rankingItemTitle,
+                                        className: `{{$styles('rankingItemTitle')}}`,
                                         title: '{{item.title}}',
                                         children: '{{item.title}}'
                                     }, {
@@ -351,7 +351,7 @@ const menu = {
 
 const dropdownGroup = {
     component: 'span',
-    className: styles.iconGroup,
+    className: `{{$styles('iconGroup')}}`,
     children: {
         component: 'antd.Dropdown',
         overlay: menu,
@@ -377,7 +377,7 @@ const columns = [{
     dataIndex: 'count',
     key: 'count',
     sorter: (a, b) => a.count - b.count,
-    className: styles.alignRight,
+    className: `{{$styles('alignRight')}}`,
 }, {
     title: `{{$i18n('app.analysis.table.weekly-range',{defaultMessage:'Weekly Range'})}}`,
     dataIndex: 'range',
@@ -476,17 +476,17 @@ const TopSearch = {
 
 const ProportionSales = {
     component: 'antd.Card',
-    className: styles.salesCard,
+    className: `{{$styles('salesCard')}}`,
     bordered: false,
     title: `{{$i18n('app.analysis.the-proportion-of-sales',{defaultMessage:'The Proportion of Sales'})}}`,
     bodyStyle: { padding: 24 },
     extra: {
         component: 'div',
-        className: styles.salesCardExtra,
+        className: `{{$styles('salesCardExtra')}}`,
         children: [
             dropdownGroup, {
                 component: 'div',
-                className: styles.salesTypeRadio,
+                className: `{{$styles('salesTypeRadio')}}`,
                 children: [{
                     component: 'antd.Radio.Group',
                     value: '{{data.salesType}}',
@@ -552,21 +552,26 @@ const CustomTab = {
         span: 12,
         style: { paddingTop: 36 },
         children: {
-            component: 'antdpro.Charts.Pie',
-            animate: false,
-            color: `{{data.currentTabKey !== shop.name && '#BDE4FF'}}`,
-            inner: 0.55,
-            tooltip: false,
-            margin: [0, 0, 0, 0],
-            percent: '{{shop.cvr * 100}}',
-            height: 64
+            component: 'Suspense',
+            fallback: null,
+            children: {
+                component: 'antdpro.Charts.Pie',
+                animate: false,
+                color: `{{data.currentTabKey !== shop.name && '#BDE4FF'}}`,
+                inner: 0.55,
+                tooltip: false,
+                margin: [0, 0, 0, 0],
+                percent: '{{shop.cvr * 100}}',
+                height: 64
+            }
+
         }
     }]
 }
 
 const OfflineData = {
     component: 'antd.Card',
-    className: styles.offlineCard,
+    className: `{{$styles('offlineCard')}}`,
     bordered: false,
     style: { marginTop: 32 },
     children: [{
@@ -582,12 +587,16 @@ const OfflineData = {
                 component: 'div',
                 style: { padding: '0 24px' },
                 children: [{
-                    component: 'antdpro.Charts.TimelineChart',
-                    height: 400,
-                    data: '{{data.offlineChartData}}',
-                    titleMap: {
-                        y1: `{{$i18n('app.analysis.traffic')}}`,
-                        y2: `{{$i18n('app.analysis.payments')}}`,
+                    component: 'Suspense',
+                    fallback: null,
+                    children: {
+                        component: 'antdpro.Charts.TimelineChart',
+                        height: 400,
+                        data: '{{data.offlineChartData}}',
+                        titleMap: {
+                            y1: `{{$i18n('app.analysis.traffic')}}`,
+                            y2: `{{$i18n('app.analysis.payments')}}`,
+                        }
                     }
                 }]
             }
@@ -596,8 +605,8 @@ const OfflineData = {
 
 }
 export default {
-    component: 'div',
-    className: styles.main,
+    component: 'Fragment',
+    //className: `{{$styles('main,
     children: [
         IntroduceRow,
         SalesCard, {

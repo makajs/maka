@@ -24,5 +24,8 @@
     "proxy": null,
     "port": 8000
   },
-  "subAppDir": "./apps"
+  "subAppDir": "./apps",
+  "devDependencies": {
+    "antd": "^3.12.1"
+  }
 }

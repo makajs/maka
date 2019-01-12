@@ -1,6 +1,6 @@
 import pkgJson from '../package.json'
 import {load} from 'maka'
-import view from './view'
+import view from './view/index'
 import action from './action'
 import state from './state'
 import './mock'

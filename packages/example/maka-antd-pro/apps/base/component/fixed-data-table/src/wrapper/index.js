@@ -55,20 +55,30 @@ function FDT(props) {
 
     const width = props.isFix ? props.width : 0
     const height = props.isFix ? props.height : 0
-
-    return (
-        <div className={className} onKeyDown={props.onKeyDown} onKeyUp={props.onKeyUp}>
-            <AutoSizer >
-                {({ width, height }) => getInternalGrid(props, width, height)}
-            </AutoSizer>
-        </div>
-
-    )
+    const { autoHeight = true } = props
+    if (autoHeight) {
+        return (
+            <div className={className} onKeyDown={props.onKeyDown} onKeyUp={props.onKeyUp}>
+                <AutoSizer>
+                    {({ width, height }) => getInternalGrid(props, width, height)}
+                </AutoSizer>
+            </div>
+        )
+    }
+    else {
+        return (
+            <div className={className} onKeyDown={props.onKeyDown} onKeyUp={props.onKeyUp}>
+                <AutoSizer disableHeight>
+                    {({ width, height }) => getInternalGrid({ ...props, heightFromRowsCount: true }, width, height)}
+                </AutoSizer>
+            </div>
+        )
+    }
 }
 
 export default {
     ...FixedDataTable,
-    Table:FDT,
+    Table: FDT,
     Cell,
     TextCell,
 }

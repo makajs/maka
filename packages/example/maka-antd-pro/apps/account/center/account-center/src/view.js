@@ -1,57 +1,38 @@
-const styles = {
-    accountCenter: 'account-center',
-    avatarHolder: 'account-center-avatarHolder',
-    name: 'account-center-name',
-    detail: 'account-center-detail',
-    title: 'account-center-title',
-    group: 'account-center-group',
-    address: 'account-center-address',
-    tags: 'account-center-tags',
-    tagsTitle: 'account-center-tagsTitle',
-    teamTitle: 'account-center-teamTitle',
-    team: 'account-center-team',
-    tabsCard: 'account-center-tabsCard'
-}
-
-const operationTabList = [
-    {
-        key: 'articles',
-        tab: {
+const operationTabList = [{
+    key: 'articles',
+    tab: {
+        component: 'span',
+        children: ['文章', {
             component: 'span',
-            children: ['文章', {
-                component: 'span',
-                style: { fontSize: 14 },
-                children:'(8)'
-            }]
-        }
-    },
-    {
-        key: 'applications',
-        tab: {
+            style: { fontSize: 14 },
+            children: '(8)'
+        }]
+    }
+}, {
+    key: 'applications',
+    tab: {
+        component: 'span',
+        children: ['应用', {
             component: 'span',
-            children: ['应用', {
-                component: 'span',
-                style: { fontSize: 14 },
-                children: '(8)'
-            }]
-        }
-    },
-    {
-        key: 'projects',
-        tab: {
+            style: { fontSize: 14 },
+            children: '(8)'
+        }]
+    }
+}, {
+    key: 'projects',
+    tab: {
+        component: 'span',
+        children: ['项目', {
             component: 'span',
-            children: ['项目', {
-                component: 'span',
-                style: { fontSize: 14 },
-                children: '(8)'
-            }]
-        },
+            style: { fontSize: 14 },
+            children: '(8)'
+        }]
     },
-];
+}]
 
 export default {
     component: 'div',
-    className: styles.accountCenter,
+    className: `{{$styles('accountCenter')}}`,
     children: [{
         component: 'antd.Row',
         gutter: 24,
@@ -67,14 +48,14 @@ export default {
                     component: 'div',
                     children: [{
                         component: 'div',
-                        className: styles.avatarHolder,
+                        className: `{{$styles('avatarHolder')}}`,
                         children: [{
                             component: 'img',
                             alt: '',
                             src: '{{data.currentUser.avatar}}',
                         }, {
                             component: 'div',
-                            className: styles.name,
+                            className: `{{$styles('name')}}`,
                             children: '{{data.currentUser.name}}',
                         }, {
                             component: 'div',
@@ -82,24 +63,24 @@ export default {
                         }]
                     }, {
                         component: 'div',
-                        className: styles.detail,
+                        className: `{{$styles('detail')}}`,
                         children: [{
                             component: 'p',
                             children: [{
                                 component: 'i',
-                                className: styles.title,
+                                className: `{{$styles('title')}}`,
                             }, '{{data.currentUser.title}}']
                         }, {
                             component: 'p',
                             children: [{
                                 component: 'i',
-                                className: styles.group,
+                                className: `{{$styles('group')}}`,
                             }, '{{data.currentUser.group}}']
                         }, {
                             component: 'p',
                             children: [{
                                 component: 'i',
-                                className: styles.address,
+                                className: `{{$styles('address')}}`,
 
                             }, '{{data.currentUser.geographic.province.label}}', '{{data.currentUser.geographic.city.label}}']
                         }]
@@ -108,10 +89,10 @@ export default {
                         dashed: true,
                     }, {
                         component: 'div',
-                        className: styles.tags,
+                        className: `{{$styles('tags')}}`,
                         children: [{
                             component: 'div',
-                            className: styles.tagsTitle,
+                            className: `{{$styles('tagsTitle')}}`,
                             children: '标签',
                         }, {
                             _for: 'item in data.currentUser.tags',
@@ -145,10 +126,10 @@ export default {
 
                     }, {
                         component: 'div',
-                        className: styles.team,
+                        className: `{{$styles('team')}}`,
                         children: [{
                             component: 'div',
-                            className: styles.teamTitle,
+                            className: `{{$styles('teamTitle')}}`,
                             children: '团队'
                         }, {
                             component: 'antd.Row',
@@ -173,25 +154,25 @@ export default {
                     }]
                 }]
             }]
-        },{
+        }, {
             component: 'antd.Col',
             lg: 17,
             md: 24,
-            children:[{
+            children: [{
                 component: 'antd.Card',
                 border: false,
                 tabList: operationTabList,
                 activeTabKey: '{{data.activeTabKey}}',
                 onTabChange: `{{(key)=>$base.ss({'data.activeTabKey':key})}}`,
-                children:[{
+                children: [{
                     component: 'AppLoader',
                     appName: 'account-center-article',
                     _visible: `{{data.activeTabKey === 'articles'}}`
-                },{
+                }, {
                     component: 'AppLoader',
                     appName: 'account-center-application',
                     _visible: `{{data.activeTabKey === 'applications'}}`
-                },{
+                }, {
                     component: 'AppLoader',
                     appName: 'account-center-project',
                     _visible: `{{data.activeTabKey === 'projects'}}`

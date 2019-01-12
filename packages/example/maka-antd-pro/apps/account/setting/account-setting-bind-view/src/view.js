@@ -1,6 +1,3 @@
-const styles = {
-}
-
 export default {
     component: 'div',
     children: {

@@ -22,7 +22,7 @@
   "dependencies": {},
   "devDependencies": {
     "ant-design-pro": "^2.1.1",
-    "antd": "*"
+    "antd": "^3.12.1"
   },
   "server": {
     "proxy": null,

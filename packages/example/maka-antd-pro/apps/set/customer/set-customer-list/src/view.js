@@ -50,6 +50,7 @@ export default {
         },
         children: {
             component: 'tpl.Table',
+            autoHeight: false,
             bindPath: 'data.list',
             columns: [
                 { type: 'sequence' },

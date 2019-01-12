@@ -17,7 +17,7 @@ const styles = {
 }
 const EditableLinkGroup = {
     component: 'div',
-    className: styles.linkGroup,
+    className: `{{$styles('linkGroup')}}`,
     children: [{
         _for: 'l in data.links',
         component: 'a',
@@ -34,8 +34,7 @@ const EditableLinkGroup = {
 
 }
 export default {
-    component: 'div',
-    className: styles.main,
+    component: 'Fragment',
     children: [{
         component: 'antd.Row',
         gutter: 24,
@@ -44,7 +43,7 @@ export default {
             xl: 16, lg: 24, md: 24, sm: 24, xs: 24,
             children: [{
                 component: 'antd.Card',
-                className: styles.projectList,
+                className: `{{$styles('projectList')}}`,
                 style: { marginBottom: 24 },
                 title: '进行中的项目',
                 bordered: false,
@@ -56,7 +55,7 @@ export default {
                 children: {
                     _for: 'item in data.notice',
                     component: 'antd.Card.Grid',
-                    className: styles.projectGrid,
+                    className: `{{ $styles('projectGrid') }}`,
                     key: '{{item.id}}',
                     children: [{
                         component: 'antd.Card',
@@ -66,7 +65,7 @@ export default {
                             component: 'antd.Card.Meta',
                             title: {
                                 component: 'div',
-                                className: styles.cardTitle,
+                                className: `{{ $styles('cardTitle') }}`,
                                 children: [{
                                     component: 'antd.Avatar',
                                     size: 'small',
@@ -81,14 +80,14 @@ export default {
                             description: '{{item.description}}'
                         }, {
                             component: 'div',
-                            className: styles.projectItemContent,
+                            className: `{{ $styles('projectItemContent') }}`,
                             children: [{
                                 component: 'a',
                                 href: '{{item.memberLink}}',
-                                children: `{{item.member || ''}}`
+                                children: `{{ item.member || '' }} `
                             }, {
                                 component: 'span',
-                                className: styles.datetime,
+                                className: `{{ $styles('datetime') }} `,
                                 title: '{{item.updatedAt}}',
                                 children: '{{$moment(item.updatedAt).fromNow()}}',
                                 _visible: '{{!!item.updatedAt}}'
@@ -101,14 +100,14 @@ export default {
                 component: 'antd.Card',
                 bodyStyle: { padding: 0 },
                 bordered: false,
-                className: styles.activeCard,
+                className: `{{$styles('activeCard')}}`,
                 title: "动态",
                 children: [{
                     component: 'antd.List',
                     size: 'large',
                     children: [{
                         component: 'div',
-                        className: styles.activitiesList,
+                        className: `{{$styles('activitiesList')}}`,
                         children: {
                             _for: 'item in data.list',
                             component: 'antd.List.Item',
@@ -123,15 +122,15 @@ export default {
                                     component: 'span',
                                     children: [{
                                         component: 'a',
-                                        className: styles.username,
+                                        className: `{{$styles('username')}}`,
                                         style: { marginRight: 4 },
                                         children: '{{item.user.name}}'
                                     }, {
                                         component: 'span',
-                                        className: styles.event,
+                                        className: `{{$styles('event')}}`,
                                         children: [{
                                             _for: 'kk in item.template.split(/@\{([^{}]*)\}/gi)',
-                                            component: `{{item[kk] ? 'a':'span'}}`,
+                                            component: `{{ item[kk] ? 'a' : 'span' }}`,
                                             href: '{{item[kk] && item[kk].link}}',
                                             key: '{{item[kk] && item[kk].name}}',
                                             children: '{{item[kk] ? item[kk].name : kk}}',
@@ -140,7 +139,7 @@ export default {
                                 },
                                 description: {
                                     component: 'span',
-                                    className: styles.datetime,
+                                    className: `{{$styles('datetime')}}`,
                                     title: '{{item.updateAt}}',
                                     children: '{{$moment(item.updateAt).fromNow()}}'
                                 }
@@ -163,9 +162,9 @@ export default {
                 style: { marginBottom: 24 },
                 bordered: false,
                 title: 'XX 指数',
-                children:[{
+                children: [{
                     component: 'div',
-                    className: styles.chart,
+                    className: `{{$styles('chart')}}`,
                     children: {
                         component: 'antdpro.Charts.Radar',
                         hasLegend: true,
@@ -173,33 +172,33 @@ export default {
                         data: '{{data.radarData}}'
                     }
                 }]
-            },{
+            }, {
                 component: 'antd.Card',
-                bodyStyle:{ paddingTop: 12, paddingBottom: 12 },
-                bordered:false,
-                title:"团队",
-                children:[{
-                    component:'div',
-                    className: styles.members,
-                    children:[{
-                        component:'antd.Row',
+                bodyStyle: { paddingTop: 12, paddingBottom: 12 },
+                bordered: false,
+                title: "团队",
+                children: [{
+                    component: 'div',
+                    className: `{{$styles('members')}}`,
+                    children: [{
+                        component: 'antd.Row',
                         gutter: 48,
-                        children:{
+                        children: {
                             _for: 'item in data.notice',
                             component: 'antd.Col',
-                            span:12,
-                            key: `{{'members-item-'+item.id}}`,
-                            children:[{
+                            span: 12,
+                            key: `{{ 'members-item-'+item.id }}`,
+                            children: [{
                                 component: 'a',
                                 href: '{{item.href}}',
-                                children:[{
+                                children: [{
                                     component: 'antd.Avatar',
                                     src: '{{item.logo}}',
                                     size: 'small'
-                                },{
+                                }, {
                                     component: 'span',
-                                    className: styles.member,
-                                    children:'{{item.member}}'
+                                    className: `{{$styles('member')}}`,
+                                    children: '{{item.member}}'
                                 }]
                             }]
                         }

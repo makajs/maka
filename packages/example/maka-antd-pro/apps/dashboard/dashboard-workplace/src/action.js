@@ -21,6 +21,9 @@ export default class action {
             'data.rankingListData': rankingListData
         })
     }
+
+    styles = (suffix) => `dashboard-workplace-${suffix}`
+
     isActive = type => {
         const rangePickerValue = this.base.gs('data.rangePickerValue') || getTimeDistance('year')
         const value = getTimeDistance(type);

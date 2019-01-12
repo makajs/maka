@@ -28,6 +28,8 @@
   "devDependencies": {
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
-    "moment": "^2.23.0"
+    "moment": "^2.23.0",
+    "numeral": "^2.0.6",
+    "nzh": "^1.0.4"
   }
 }

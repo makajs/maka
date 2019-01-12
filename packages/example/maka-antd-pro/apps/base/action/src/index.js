@@ -3,7 +3,9 @@ import { actionMixin, registerAction } from 'maka'
 import * as actions from './action'
 import moment from 'moment'
 import lodash from 'lodash'
+import nzh from 'nzh/cn'
 import classnames from 'classnames'
+import numeral from 'numeral'
 import './style.less'
 
 const name = pkgJson.name
@@ -11,6 +13,8 @@ const name = pkgJson.name
 registerAction('classnames', classnames, true)
 registerAction('lodash', lodash, true)
 registerAction('moment', moment, true)
+registerAction('nzh', nzh, true)
+registerAction('numeral', numeral, true)
 Object.keys(actions).forEach(key => {
     registerAction(key, actions[key], key == 'numberHelper')
 })

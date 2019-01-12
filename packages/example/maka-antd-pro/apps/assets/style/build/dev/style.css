@@ -7,6 +7,10 @@ body {
   font-variant: tabular-nums;
   overflow-x: hidden;
 }
+.colorWeak {
+  -webkit-filter: invert(80%);
+  filter: invert(80%);
+}
 /* 图标 */
 .icon-primary {
   font-size: 16px;
@@ -290,21 +294,29 @@ body {
   line-height: 20px;
 }
 /* form */
-@media (max-width: 575px) {
-  .ant-form-item-label {
-    text-align: right;
-  }
-  .ant-form-item-label:after {
-    content: ":";
-    margin: 0 8px 0 2px;
-    position: relative;
-    top: -0.5px;
-  }
+/*
+.ant-form-item-label {
+    @media (max-width: 575px) {
+        text-align: right;
+        &:after {
+            content: ":";
+            margin: 0 8px 0 2px;
+            position: relative;
+            top: -0.5px;
+        }
+    }
+
+    
+}*/
+/*
+.ant-form-item-control{
+    line-height: 1
 }
-.ant-form-item-control {
-  line-height: 1;
-}
+*/
 /* fiexed-data-table */
+.fdt {
+  background: #fff;
+}
 .fdt-cell {
   width: 100%;
   height: 100%;
@@ -370,6 +382,7 @@ body {
   flex-direction: row !important;
   align-items: center;
   padding: 0 20px;
+  background: #fff;
 }
 .fdt-pagination-left {
   flex: 0 0 auto;
@@ -412,19 +425,22 @@ body {
   outline-width: 0px;
 }
 /*modal*/
+/*
 .ant-modal-header {
-  padding: 14px 16px;
+    padding: 14px 16px;
 }
+
 .ant-modal-body {
-  padding: 16px;
-  font-size: 12px;
+    padding: 16px;
+    font-size: 12px;
 }
+
 .ant-modal-footer {
-  padding: 16px;
-}
-.ant-modal-footer .ant-btn {
-  font-size: 14px;
-}
+    padding: 16px;
+    .ant-btn {
+        font-size: 14px;
+    }
+}*/
 /* card */
 /*
 .ant-card {
@@ -569,17 +585,20 @@ body {
 }*/
 /* 简单列表 */
 .simple-list {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: #fff;*/
   width: 100%;
   height: 100%;
-  background: #fff;
+  min-height: 100%;
+  transition: 0.3s;
 }
 .simple-list-header {
   display: flex;
   align-items: center;
   height: 45px;
-  flex: 0 0 45px;
   padding: 0 15px;
   flex-direction: row;
   background: #fff;
@@ -627,12 +646,10 @@ body {
   margin-left: 8px;
 }
 .simple-list-content {
-  flex: 1;
   overflow: hidden;
 }
 .simple-list-footer {
   height: 45px;
-  flex: 0 0 45px;
   justify-content: center;
   align-items: flex-end;
   background: #fff;
@@ -732,6 +749,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: #fff;
 }
 .voucher-header {
   display: flex;

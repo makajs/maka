@@ -1,0 +1,142 @@
+@import '~antd/lib/style/themes/default.less';
+@import './utils.less';
+@_ :.list-search-application;
+@{_}-filterCardList {
+    margin-bottom: -24px;
+    .ant-card-meta-content {
+        margin-top: 0;
+    } // disabled white space
+    .ant-card-meta-avatar {
+        font-size: 0;
+    }
+    .ant-card-actions {
+        background: #f7f9fa;
+    }
+    .ant-list .ant-list-item-content-single {
+        max-width: 100%;
+    }
+    @{_}-cardInfo {
+        .clearfix();
+        margin-top: 16px;
+        margin-left: 40px;
+        &>div {
+            position: relative;
+            text-align: left;
+            float: left;
+            width: 50%;
+            p {
+                line-height: 32px;
+                font-size: 24px;
+                margin: 0;
+            }
+            p:first-child {
+                color: @text-color-secondary;
+                font-size: 12px;
+                line-height: 20px;
+                margin-bottom: 4px;
+            }
+        }
+    }
+}
+
+//--standardFormRow
+@{_}-standardFormRow {
+    border-bottom: 1px dashed @border-color-split;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    .ant-form-item {
+        margin-right: 24px;
+    }
+    .ant-form-item-label label {
+        color: @text-color;
+        margin-right: 0;
+    }
+    .ant-form-item-label,
+    .ant-form-item-control {
+        padding: 0;
+        line-height: 32px;
+    }
+    @{_}-label {
+        color: @heading-color;
+        font-size: @font-size-base;
+        margin-right: 24px;
+        flex: 0 0 auto;
+        text-align: right;
+        &>span {
+            display: inline-block;
+            height: 32px;
+            line-height: 32px;
+            &:after {
+                content: '：';
+            }
+        }
+    }
+    @{_}-content {
+        flex: 1 1 0;
+        .ant-form-item:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+@{_}-standardFormRowLast {
+    border: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+@{_}-standardFormRowBlock {
+    .ant-form-item,
+    div.ant-form-item-control-wrapper {
+        display: block;
+    }
+}
+
+@{_}-standardFormRowGrid {
+    .ant-form-item,
+    div.ant-form-item-control-wrapper {
+        display: block;
+    }
+    .ant-form-item-label {
+        float: left;
+    }
+}
+
+//-- listContent
+@{_}-listContent {
+    @{_}-description {
+        line-height: 22px;
+        max-width: 720px;
+    }
+    @{_}-extra {
+        color: @text-color-secondary;
+        margin-top: 16px;
+        line-height: 22px;
+        &>.ant-avatar {
+            vertical-align: top;
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: 1px;
+        }
+        &>em {
+            color: @disabled-color;
+            font-style: normal;
+            margin-left: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: @screen-xs) {
+    @{_}-listContent {
+        @{_}-extra {
+            &>em {
+                display: block;
+                margin-left: 0;
+                margin-top: 8px;
+            }
+        }
+    }
+}
