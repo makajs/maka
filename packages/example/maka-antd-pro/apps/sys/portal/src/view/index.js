@@ -15,6 +15,9 @@ const layout = {
             padding: 0,
             height: '100vh',
         },
+        bodyStyle: {
+            padding: 0,
+        },
         className: `{{$styles('menu-drawer')}}`,
         title: null,
         children: {

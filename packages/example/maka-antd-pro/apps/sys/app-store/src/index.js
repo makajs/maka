@@ -49,7 +49,7 @@ class action {
     }
 
     uninstallPlugin = (item) => async () => {
-        removePlugin(item.appName, item.forApp)
+        removePlugin(item.appName)
         await this.webapi.plugin.uninstall({id:item.id})
         this.load()
         this.component.props.onPortalReload && this.component.props.onPortalReload()

@@ -106,7 +106,7 @@ export default class action {
             'data.setting.horizontalMenu': setting.horizontalMenu,
             'data.setting.tabStyle': setting.tabStyle,
             'data.setting.layout': setting.layout,
-            'data.setting.contentWidth' : setting.contentWidth
+            'data.setting.contentWidth': setting.contentWidth
         })
         if (oriLayout !== setting.layout)
             this.fireResize()
@@ -259,16 +259,24 @@ export default class action {
 
     menuOpenChange = (openKeys) => {
         var menuOpenKeys = []
-        if(openKeys && openKeys.length > 0){
+        if (openKeys && openKeys.length > 0) {
             let key = openKeys[openKeys.length - 1]
-            if(key.indexOf('-') != -1){
-                menuOpenKeys.push(key.split('-')[0])
-               
-            } 
-            menuOpenKeys.push(key)
+            if (key.indexOf('-') != -1){
+                if (openKeys.length > 1) {
+                    menuOpenKeys.push(key.split('-')[0])
+                    menuOpenKeys.push(key)
+                }
+                else {
+                    menuOpenKeys = []
+                }
+            }
+            else{
+                menuOpenKeys.push(key)
+            }
+
         }
         this.base.ss({
-            'data.menuOpenKeys':menuOpenKeys
+            'data.menuOpenKeys': menuOpenKeys
         })
     }
 
