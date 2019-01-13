@@ -223,6 +223,8 @@ function metaToComponent(meta, props, data) {
 const MonkeyKing = (props) => {
     const { base } = props
     const data = base.gs()
+    if(!data)
+        return null
     return metaToComponent(base.gm(undefined, undefined, data), props, data)
 }
 

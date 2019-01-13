@@ -38,7 +38,11 @@ function loadApp(state, {
             return state
         }
 
-        state = state.set(fullName, Map())
+        if(!forceLoad)
+            state = state.set(fullName, Map())
+        else
+            state = state.set(fullName, Map({prevData: state.getIn([fullName, 'data'])}))
+
         appInfo = { ...appInfo }
 
         if (appInfo && appInfo.view && typeof appInfo.view == 'function') {
@@ -46,20 +50,21 @@ function loadApp(state, {
         }
 
         if (pluginApps && pluginApps.length > 0) {
-            pluginApps.forEach(plugin => {
+            for (let i = 0; i < pluginApps.length; i++) {
+                let plugin = pluginApps[i]
                 if (plugin.pluginApi && plugin.pluginApi.afterState)
                     appInfo.state = plugin.pluginApi.afterState(fromJS(appInfo.state).toJS())
 
                 if (plugin.pluginApi && plugin.pluginApi.afterView)
                     appInfo.view = plugin.pluginApi.afterView(fromJS(appInfo.view).toJS())
-            })
+            }
         }
 
         var actionInstance = typeof action == 'function' ? action({ appInfo, fullName, plugins }) : config.current.defaultAction({ appInfo, fullName, plugins })
         var actionInternal = actionInstance.getDirectFuns()
         if (pluginApps && pluginApps.length > 0) {
             pluginApps.forEach(plugin => {
-                if(plugin.pluginApi && plugin.pluginApi.afterAction)
+                if (plugin.pluginApi && plugin.pluginApi.afterAction)
                     actionInternal = plugin.pluginApi.afterAction(actionInternal)
             })
             actionInstance = {

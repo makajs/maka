@@ -27,7 +27,7 @@ class pluginFactory {
 
         var index = this.plugins.findIndex(o => o.name == name)
         if (index != -1)
-            delete this.plugins[index]
+            this.plugins.splice(index,1)
     }
 
     existsPlugin = (forApp) => {
