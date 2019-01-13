@@ -1,38 +1,48 @@
 class pluginFactory {
     constructor() {
-        this.plugins = {}
-        this.appPlugins = {}
+        this.plugins = []
         window.__maka_plugins__ = this.plugins
-        window.__maka_appPlugins__ = this.appPlugins
     }
 
     registerPlugin = (name, forApp) => {
-        if (this.plugins[name]) {
+        if (!name || !forApp) return
+
+        if (this.plugins.findIndex(o => o.name == name) != -1) {
             console.log(`Already registered this plugin，name: ${name},please ignore`)
             return
         }
-        this.plugins[name] = forApp
 
-        if(!this.appPlugins[forApp]){
-            this.appPlugins[forApp] = []
+        var regExp
+        if (/^\/[^\/]+\//.test(forApp)) {
+            regExp = new RegExp(forApp)
         }
-        this.appPlugins[forApp].push(name)
+
+        this.plugins.push({
+            name, forApp: forApp, regExp
+        })
     }
 
-    removePlugin = (name, forApp) => {
-        delete this.plugins[name]
-        let index = this.appPlugins[forApp].indexOf(name)
-        if (index > -1) { 
-            this.appPlugins[forApp].splice(index, 1)
-        }            
+    removePlugin = (name) => {
+        if (!name) return
+
+        var index = this.plugins.findIndex(o => o.name == name)
+        if (index != -1)
+            delete this.plugins[index]
     }
 
     existsPlugin = (forApp) => {
-        return !!this.appPlugins[forApp]
+        if (!forApp) return
+        return this.plugins.findIndex(o => o.forApp === forApp || (o.regExp && o.regExp.test(forApp))) != -1
     }
 
-    getPluginsByAppName = (appName) => {
-        return this.appPlugins[appName]
+    filter = (appName) => {
+        if (!appName) return []
+
+        return this.plugins.filter(o => o.forApp === appName || (o.regExp && o.regExp.test(forApp)))
+    }
+
+    getPluginNames = (appName) => {
+        return this.filter(appName).map(o => o.name)
     }
 }
 

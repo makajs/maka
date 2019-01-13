@@ -1,4 +1,4 @@
-import { Map,fromJS } from 'immutable'
+import { Map, fromJS } from 'immutable'
 import wrapMapStateToProps from './wrapMapStateToProps'
 import wrapMapDispatchToProps from './wrapMapDispatchToProps'
 import createReduxConnector from './createReduxConnector'
@@ -32,26 +32,26 @@ function loadApp(state, {
     forceLoad = false
 }) {
     if (!state.has(fullName) || forceLoad) {
-
-        if(forceLoad
-            && JSON.stringify(state.getIn([fullName, '@@require','plugins']).toJS().sort()) === JSON.stringify(plugins.sort())
-        ){
+        if (forceLoad
+            && JSON.stringify(state.getIn([fullName, '@@require', 'plugins']).toJS().sort()) === JSON.stringify(plugins.sort())
+        ) {
             return state
         }
-       
+
         state = state.set(fullName, Map())
         appInfo = { ...appInfo }
 
         if (appInfo && appInfo.view && typeof appInfo.view == 'function') {
             component = config.current.componentWrapper()(appInfo.view)
         }
-        
+
         if (pluginApps && pluginApps.length > 0) {
             pluginApps.forEach(plugin => {
-                if (plugin.getState)
-                    appInfo.state = plugin.getState(fromJS(appInfo.state).toJS())
-                if (plugin.getView)
-                    appInfo.view = plugin.getView(fromJS(appInfo.view).toJS())
+                if (plugin.pluginApi && plugin.pluginApi.afterState)
+                    appInfo.state = plugin.pluginApi.afterState(fromJS(appInfo.state).toJS())
+
+                if (plugin.pluginApi && plugin.pluginApi.afterView)
+                    appInfo.view = plugin.pluginApi.afterView(fromJS(appInfo.view).toJS())
             })
         }
 
@@ -59,12 +59,12 @@ function loadApp(state, {
         var actionInternal = actionInstance.getDirectFuns()
         if (pluginApps && pluginApps.length > 0) {
             pluginApps.forEach(plugin => {
-                if (plugin.getAction)
-                    actionInternal = plugin.getAction(actionInternal)
+                if(plugin.pluginApi && plugin.pluginApi.afterAction)
+                    actionInternal = plugin.pluginApi.afterAction(actionInternal)
             })
             actionInstance = {
                 ...actionInstance,
-                getDirectFuns: ()=> actionInternal
+                getDirectFuns: () => actionInternal
             }
         }
 

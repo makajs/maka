@@ -77,7 +77,7 @@ export default (actionInjections, reducerInjections) => (store) => {
 				}
 
 				/*plugin*/
-				let plugins = pluginFactory.getPluginsByAppName(parsedName.name)
+				let plugins = pluginFactory.getPluginNames(parsedName.name)
 				let pluginApps = []
 				if (plugins && plugins.length > 0) {
 					for (var i = 0; i < plugins.length; i++) {
@@ -115,7 +115,7 @@ export default (actionInjections, reducerInjections) => (store) => {
 				let appInfo = appFactory.getApp(parsedName.name)
 
 				/*plugin*/
-				let plugins = pluginFactory.getPluginsByAppName(parsedName.name)
+				let plugins = pluginFactory.getPluginNames(parsedName.name)
 				let pluginApps = []
 				if (plugins && plugins.length > 0) {
 					for (var i = 0; i < plugins.length; i++) {

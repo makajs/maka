@@ -39,7 +39,9 @@ class AppLoader extends React.Component {
 		else{
 			let cachePlugins = req.get('plugins').toJS()
 			let parsedName = parseName(fullName)
-			let plugins = pluginFactory.getPluginsByAppName(parsedName.name) || []
+
+			let plugins = pluginFactory.getPluginNames(parsedName.name) || []
+
 			if( JSON.stringify(cachePlugins.sort()) !== JSON.stringify(plugins.sort()) ){
 				this.props.loadPlugin(fullName, this.props.name)
 			}
