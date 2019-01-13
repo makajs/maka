@@ -26,7 +26,7 @@ module.exports = {
     output: {
         filename: env === 'production' ? 'maka-sdk.min.js' : 'maka-sdk.js',
         path: path.join(__dirname, `/dist${env === 'production' ? '/release' : '/debug'}`),
-        library: 'MK',
+        library: 'Maka',
         libraryTarget: 'umd'
     },
     resolve: {
