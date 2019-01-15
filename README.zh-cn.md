@@ -4,6 +4,24 @@
 - 一眼即可看懂的前端框架，简约而不简单
 
 
+[maka-appstore-demo](https://makajs.github.io/maka/maka-antd-pro)
+```
+usename:13334445556
+password:1
+```
+
+[maka-antd-pro](https://makajs.github.io/maka/maka-app-store)
+```
+usename:13334445556
+password:1
+```
+
+[maka-mobile-erp](https://makajs.github.io/maka/maka-mobile-erp)
+```
+usename:13334445556
+password:1
+```
+
 ## 1、安装
 
 ``` bash
