@@ -306,6 +306,7 @@
 }
 .portal-tabs .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-nav-container {
   height: 36px;
+  background-color:#fff;
 }
 .portal-tabs .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
   line-height: 28px;
