@@ -167,7 +167,7 @@ function post(url, data, headers, option) {
 			token: getAccessToken(),
 			"Authorization": getAccessToken()? "Bearer " + getAccessToken() : ''
 		},
-		body: JSON.stringify(data)
+		body: headers.body || JSON.stringify(data)
 	}
 
 	return new Promise((resolve, reject) => {
