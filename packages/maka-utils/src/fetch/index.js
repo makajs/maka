@@ -167,7 +167,11 @@ function post(url, data, headers, option) {
 			token: getAccessToken(),
 			"Authorization": getAccessToken()? "Bearer " + getAccessToken() : ''
 		},
-		body: headers && headers.body || JSON.stringify(data)
+		body: JSON.stringify(data)
+	}
+	if(option && option.type == 'file'){
+		headers.body = option.body
+		delete headers.headers['Content-Type']
 	}
 
 	return new Promise((resolve, reject) => {
