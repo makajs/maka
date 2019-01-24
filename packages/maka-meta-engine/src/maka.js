@@ -2,7 +2,7 @@ import React from 'react'
 import componentFactory from './componentFactory'
 import memoize from 'lodash/memoize'
 import utils from '@makajs/utils'
-import { existsApp } from '@makajs/app-loader'
+import config from './config'
 
 function parseMetaProps(meta, props, data) {
     const ret = {}
@@ -104,7 +104,12 @@ function metaToComponent(meta, props, data) {
 
                 let tmp = _for.replace('in', '#').split('#'),
                     dsPath = utils.string.trim(tmp[1]),
-                    extParaNames = tmp[0].replace('(', '').replace(')', '').split(',')
+                    extParaNames = tmp[0].replace('(', '').replace(')', '').split(','),
+                    express = `${dsPath.replace(/\$/g, '$props$.')}`
+                
+                if(config.current.transformer){
+                    express = config.current.transformer(express)
+                }
 
                 let items = (new Function(...paraNames, `return ${dsPath.replace(/\$/g, '$props$.')}`))
                     .apply(null, paraValues)

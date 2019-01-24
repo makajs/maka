@@ -1,6 +1,9 @@
+var _options = {}
 
-function config(option) {
-	//to do
+function config(options) {
+	Object.assign(_options, options)
 }
+
+config.current = _options
 
 export default config

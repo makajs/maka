@@ -115,7 +115,6 @@ export default function loadApp(app) {
             resolve(null)
             return
         }
-
         window.require(urls, async (...args) => {
             const apps = args.reduce((prev, curr) => {
                 return curr ? { ...prev, [curr.name]: curr } : curr

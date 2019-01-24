@@ -143,7 +143,21 @@ export default class action {
 			params = params.concat(extParas)
 		}
 
+		
+
 		var body = utils.expression.getExpressionBody(v)
+
+		if(config.current.transformer){
+			if( body.substr(0, 6) === 'return' ){
+				body = body.substr(6)
+				body = config.current.transformer(body)
+				body = 'return ' + body
+			}
+			else{
+				body = config.transformer(body)
+			}
+		}
+
 		this.cache.expression[v] = new Function(...params, body)
 		return this.cache.expression[v]
 	}
