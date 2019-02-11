@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -39,6 +39,7 @@
     "dotenv-expand": "*",
     "envinfo": "*",
     "file-loader": "*",
+    "fork-ts-checker-webpack-plugin": "*",
     "fs-extra": "*",
     "fsevents": "*",
     "got": "*",
@@ -58,6 +59,7 @@
     "resolve": "*",
     "semver": "*",
     "tar-pack": "*",
+    "typescript": "*",
     "uglifyjs-webpack-plugin": "*",
     "url-loader": "*",
     "validate-npm-package-name": "*",
