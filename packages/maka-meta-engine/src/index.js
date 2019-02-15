@@ -8,6 +8,7 @@ import templateFactory from './templateFactory'
 import actionFactory from './actionFactory'
 import defaultComponent from './defaultComponent'
 import rootElement from './rootElement'
+import contextManager from './context'
 const defaultAction = action
 const defaultReducer = reducer
 
@@ -24,6 +25,7 @@ export default {
 	defaultAction,
 	defaultReducer,
 	rootElement,
+	contextManager,
 	appInstances
 }
 
@@ -41,5 +43,6 @@ export {
 	defaultAction,
 	defaultReducer,
 	rootElement,
+	contextManager,
 	appInstances
 }

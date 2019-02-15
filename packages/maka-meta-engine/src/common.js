@@ -2,10 +2,13 @@ import Immutable, { Map, List, fromJS } from 'immutable'
 import utils, { path } from '@makajs/utils'
 import templateFactory from './templateFactory'
 
+import { getGlobal } from '@makajs/utils'
+var globalObj = getGlobal()
+
 const { parsePath } = path
 const cache = { meta: Map(), plugin: Map() }
 
-window['__getCache'] = () => cache
+globalObj['__getCache'] = () => cache
 
 var uids = {
 

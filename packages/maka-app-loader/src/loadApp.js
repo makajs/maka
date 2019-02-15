@@ -1,20 +1,9 @@
 import appFactory from './appFactory'
 import config from './config'
-
+import { getGlobal } from '@makajs/utils'
+var globalObj = getGlobal()
 const isProduction = process.env.isProduction
 
-const appConfig = (apps, options) => {
-    Object.keys(options).forEach(key => {
-        const reg = new RegExp(`^${key == '*' ? '.*' : key}$`)
-        Object.keys(apps).forEach(appName => {
-            if (appName != 'config') {
-                if (reg.test(appName)) {
-                    apps[appName].config && apps[appName].config(options[key])
-                }
-            }
-        })
-    })
-}
 
 function fixName(name) {
     if (name.indexOf('@') == -1) return name
@@ -25,8 +14,8 @@ function fixName(name) {
 function getUrl(app) {
     if (typeof app == 'string') {
         app = fixName(app)
-        if (config.appUrls)
-            return config.appUrls[app] || app
+        if (config.current.appUrls)
+            return config.current.appUrls[app] || app
         else
             return app
     }
@@ -38,14 +27,14 @@ function getUrl(app) {
     }
 }
 
-function findNameByUrl(url){
-    if(config.appUrls){
-        var hit = config.appUrls.find(o=>o.url==url) 
-        return hit ? hit.name : hit
+function findNameByUrl(url) {
+    var ret = ''
+    if (config.current.appUrls) {
+        var hit = Object.keys(config.current.appUrls).find(k => config.current.appUrls[k].url == url)
+        ret = hit
     }
-    else{
-        return url.substr(url.lastIndexOf('/') + 1).replace(/(\.js)|(\.min\.js)/, '')
-    }
+    if (ret) return ret
+    return url.substr(url.lastIndexOf('/') + 1).replace(/(\.js)|(\.min\.js)/, '')
 }
 
 
@@ -81,10 +70,10 @@ export default function loadApp(app) {
         app.forEach(o => urls.push(getUrl(o)))
     }
     else {
-        urls.push(app)
+        urls.push(getUrl(app))
     }
 
-    if (!window.require || urls.length == 0)
+    if (!globalObj.require || urls.length == 0)
         return Promise.resolve(null)
 
     return new Promise((resolve, reject) => {
@@ -92,7 +81,7 @@ export default function loadApp(app) {
         urls.forEach(url => {
             var appName = url.substr(url.lastIndexOf('/') + 1).replace(/(\.js)|(\.min\.js)/, ''),
                 pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : ''
-            window[`__pub_${appName}__`] = pub
+            globalObj[`__pub_${appName}__`] = pub
         })
         */
 
@@ -103,11 +92,15 @@ export default function loadApp(app) {
             */
             var appName = findNameByUrl(url) 
             var pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : ''
-            window[`__pub_${appName}__`] = pub
+            globalObj[`__pub_${appName}__`] = pub
             return !appFactory.existsApp(appName)
         })
 
-        urls = urls.map(u => isProduction ? (u + '.min') : u)
+        urls = urls.map(u => {
+            if(u.indexOf('http') != -1)
+                return u
+            return isProduction ? (u + '.min') : u
+        })
         //const appCount = urls.length
         //urls = urls.concat(urls.map(u => `css!${u}`))
 
@@ -115,7 +108,7 @@ export default function loadApp(app) {
             resolve(null)
             return
         }
-        window.require(urls, async (...args) => {
+        globalObj.require(urls, async (...args) => {
             const apps = args.reduce((prev, curr) => {
                 return curr ? { ...prev, [curr.name]: curr } : curr
             }, {})
@@ -134,8 +127,12 @@ export default function loadApp(app) {
             })
             */
 
-            var cssUrls = urls.map(u => `css!${u}`)
-            window.require(cssUrls, async (...args) => {
+            var cssUrls = urls.map(u => {
+                if(u.indexOf('http') != -1)
+                    return `css!${u.replace('.js', '.css')}`    
+                return `css!${u}`
+            })
+            globalObj.require(cssUrls, async (...args) => {
                 for (var i = 0; i < appNames.length; i++) {
                     apps[appNames[i]].afterRegister && (await apps[appNames[i]].afterRegister())
                 }
@@ -145,3 +142,18 @@ export default function loadApp(app) {
     })
 
 }
+
+/*
+const appConfig = (apps, options) => {
+    Object.keys(options).forEach(key => {
+        const reg = new RegExp(`^${key == '*' ? '.*' : key}$`)
+        Object.keys(apps).forEach(appName => {
+            if (appName != 'config') {
+                if (reg.test(appName)) {
+                    apps[appName].config && apps[appName].config(options[key])
+                }
+            }
+        })
+    })
+}
+*/

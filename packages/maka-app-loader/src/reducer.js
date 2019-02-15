@@ -3,6 +3,8 @@ import wrapMapStateToProps from './wrapMapStateToProps'
 import wrapMapDispatchToProps from './wrapMapDispatchToProps'
 import createReduxConnector from './createReduxConnector'
 import config from './config'
+import { getGlobal } from '@makajs/utils'
+var globalObj = getGlobal()
 
 export default function (state = Map(), {
     type,
@@ -73,16 +75,18 @@ function loadApp(state, {
             }
         }
 
-        var reducerInstance = typeof reducer == 'function' ? reducer({ appInfo, fullName }) : config.current.defaultReducer({ appInfo, fullName }),
-            container = createReduxConnector(
-                component || (appInfo.viewDecorator && appInfo.viewDecorator()(config.current.defaultComponent)) || config.current.defaultComponent,
-                wrapMapStateToProps(fullName),
-                wrapMapDispatchToProps(fullName, actionInstance, reducerInstance),
-                null, {
-                    //withRef: true, 
-                    pure: true
-                }
-            )
+        var reducerInstance = typeof reducer == 'function' ? reducer({ appInfo, fullName }) : config.current.defaultReducer({ appInfo, fullName })
+        var mapStateToProps = wrapMapStateToProps(fullName)
+        var mapDispatchToProps = wrapMapDispatchToProps(fullName, actionInstance, reducerInstance)
+        var container = createReduxConnector(
+            component || (appInfo.viewDecorator && appInfo.viewDecorator()(config.current.defaultComponent)) || config.current.defaultComponent,
+            mapStateToProps,
+            mapDispatchToProps,
+            null, {
+                //withRef: true, 
+                pure: true
+            }
+        )
 
         state = state.setIn([fullName, '@@require'], Map({
             fullName,
@@ -91,6 +95,8 @@ function loadApp(state, {
             action: actionInstance,
             reducer: reducerInstance,
             container,
+            mapStateToProps,
+            mapDispatchToProps,
             plugins: fromJS(plugins || [])
         }))
     }
@@ -141,10 +147,10 @@ function reduce(state, {
         newState = newState(injectFunsForReducer)
     }
 
-    if (window.__maka_record_action__ === true) {
-        window.__maka_actions__ = window.__maka_actions__ || []
+    if (globalObj.__maka_record_action__ === true) {
+        globalObj.__maka_actions__ = globalObj.__maka_actions__ || []
         var endDate = new Date()
-        window.__maka_actions__.unshift({
+        globalObj.__maka_actions__.unshift({
             appFullName: fullName,
             reduceMethod: type,
             payload,
@@ -155,8 +161,8 @@ function reduce(state, {
             elapsedTime: Math.abs((startDate.getTime() - endDate.getTime()))//(1000*60*60*24)
         })
     } else {
-        if (window.__maka_actions__)
-            window.__maka_actions__ = undefined
+        if (globalObj.__maka_actions__)
+        globalObj.__maka_actions__ = undefined
     }
 
     return state.set(fullName, newState)

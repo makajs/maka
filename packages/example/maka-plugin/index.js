@@ -4,12 +4,25 @@ import './style.less'
 
 const name = pkgJson.name
 
-function getState(state) {
+const state = { data: {} }
+
+@actionMixin('base')
+class action {
+    constructor(option) {
+        Object.assign(this, option.mixins)
+    }
+}
+
+const view = {
+    component: 'div'
+}
+
+function afterState(state) {
     state.data.input = 'world'
     return state
 }
 
-function getView (view){
+function afterView (view){
     view.children.push({
         component: 'button',
         onClick: '{{$btnClick}}',
@@ -18,16 +31,19 @@ function getView (view){
   return view
 }
 
-function getAction(action){
+function afterAction(action){
     action.btnClick = (e) =>{
         action.base.setState({'data.input': 'world'})
     }
     return action
 }
 
+const pluginApi = { afterAction, afterView, afterState }
+
 export {
     name,
-    getState,
-    getView,
-    getAction
+    state,
+    action,
+    view,
+    pluginApi
 }

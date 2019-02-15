@@ -53,12 +53,6 @@ function getServedPath(appPackageJson) {
     return ensureSlash(servedUrl, true);
 }
 
-function fixName(name) {
-    if (name.indexOf('@') == -1) return name
-    return name.replace('@', '').replace('makajs', 'makajs').replace('/', '-')
-}
-
-
 module.exports = {
     dotenv: resolveApp('.env'),
     appPath: resolveApp('.'),

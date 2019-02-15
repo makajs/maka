@@ -4,6 +4,7 @@ import expression from './expression'
 import string from './string'
 import exception from './exception'
 import navigate from './navigate'
+import {getGlobal} from './env'
 
 export default {
 	fetch,
@@ -11,7 +12,8 @@ export default {
 	path,
 	expression,
 	exception,
-	navigate
+	navigate,
+	getGlobal
 }
 
 export {
@@ -20,5 +22,6 @@ export {
 	path,
 	expression,
 	exception,
-	navigate
+	navigate,
+	getGlobal
 }

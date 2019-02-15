@@ -7,7 +7,10 @@
 		exports["MakaApp-react-media"] = factory(require("maka"), require("react"), require("prop-types"));
 	else
 		root["MakaApp-react-media"] = factory(root["maka"], root["react"], root["prop-types"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__, __WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_prop_types__) {
+})((function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}()), function(__WEBPACK_EXTERNAL_MODULE_maka__, __WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_prop_types__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -87,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = window['__pub_react-media__'];
 /******/
 /******/
 /******/ 	// Load entry module and return exports

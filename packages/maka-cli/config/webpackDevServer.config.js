@@ -35,5 +35,8 @@ module.exports = function(proxy, allowedHost) {
       app.use(errorOverlayMiddleware());
       app.use(noopServiceWorkerMiddleware());
     },
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
   };
 };

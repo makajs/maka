@@ -1,8 +1,11 @@
-import 'whatwg-fetch'
 
+import {getGlobal} from '../env'
 const mockApi = {}
 const mockData = {}
 const _options = {}
+getGlobal().self = getGlobal()
+
+require('whatwg-fetch')
 
 function config(options) {
 	Object.assign(_options, options)

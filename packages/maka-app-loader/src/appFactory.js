@@ -1,9 +1,12 @@
 import config from './config'
 
+import { getGlobal } from '@makajs/utils'
+var globalObj = getGlobal()
+
 class appFactory {
     constructor() {
         this.apps = {}
-        window.__maka_apps__ = this.apps
+        globalObj.__maka_apps__ = this.apps
     }
 
     registerApp = (name, app) => {

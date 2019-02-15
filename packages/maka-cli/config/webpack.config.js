@@ -5,6 +5,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const DynamicPublicPathPlugin = require("webpack-dynamic-public-path-2")
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const env = getClientEnvironment();
@@ -12,6 +13,11 @@ const appPackageJson = require(paths.appPackageJson);
 const utils = require('../scripts/utils')
 const appName = utils.fixName(appPackageJson.name)
 const fs = require('fs');
+
+const windowObj = `(function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}())`
 
 module.exports = function (option) {
     var { isProd, outputPath, isStart } = option,
@@ -34,8 +40,8 @@ module.exports = function (option) {
 
     var ext = {}
 
-    if (isStart) {
-        ext = { devtool: 'source-map' }
+    if (isStart && !isProd) {
+        ext = { devtool: 'cheap-module-source-map' }
     }
 
     const rules = [{
@@ -115,7 +121,9 @@ module.exports = function (option) {
             filename: outputJsFileName,
             path: outputPath,
             library: "MakaApp-" + appName,
-            libraryTarget: "umd"
+            libraryTarget: "umd",
+            globalObject: windowObj,
+            publicPath: "publicPathPlaceholder"
         },
         resolve: {
             extensions: [".js"]
@@ -126,6 +134,9 @@ module.exports = function (option) {
         },
         plugins: [
             new webpack.DefinePlugin(env.stringified),
+            new DynamicPublicPathPlugin({
+                externalPublicPath: `window['__pub_${appName}__']`,
+            }),
             new CaseSensitivePathsPlugin(),
             new MiniCssExtractPlugin({ filename: outputCssFieldName })
         ],

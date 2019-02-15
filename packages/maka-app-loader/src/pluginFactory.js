@@ -1,7 +1,9 @@
+import { getGlobal } from '@makajs/utils'
+var globalObj = getGlobal()
 class pluginFactory {
     constructor() {
         this.plugins = []
-        window.__maka_plugins__ = this.plugins
+        globalObj.__maka_plugins__ = this.plugins
     }
 
     registerPlugin = (name, forApp) => {

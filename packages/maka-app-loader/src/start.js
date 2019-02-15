@@ -8,6 +8,8 @@ import appMiddleware from './appMiddleware'
 import reducer from './reducer'
 import config from './config'
 import appFactory from './appFactory'
+import { getGlobal } from '@makajs/utils'
+var globalObj = getGlobal()
 
 export default function start() {
 	const currentConfig = config.current
@@ -21,8 +23,8 @@ export default function start() {
 
 	const store = createStore(reducer, Map(), applyMiddleware(...mw))
 
-	window.reduxStore = store
-	window.__maka_store__ = store
+	globalObj.reduxStore = store
+	globalObj.__maka_store__ = store
 
 	if (!currentConfig.rootWrapper) {
 		currentConfig.rootWrapper = (child) => {

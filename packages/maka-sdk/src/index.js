@@ -5,12 +5,13 @@ import appLoader from '@makajs/app-loader'
 import utils from '@makajs/utils'
 import metaEngine from '@makajs/meta-engine'
 
+var globalObj = utils.getGlobal()
 
 utils.fetch.config({
     mock: true
 })
 
-appLoader.init({
+var store = appLoader.init({
     defaultComponent: metaEngine.defaultComponent,
     defaultAction: metaEngine.defaultAction,
     defaultReducer: metaEngine.defaultReducer,
@@ -39,7 +40,8 @@ var Hoc,
     componentFactory = metaEngine.componentFactory,
     templateFactory = metaEngine.templateFactory,
     pluginFactory = appLoader.pluginFactory,
-    appFactory = appLoader.appFactory
+    appFactory = appLoader.appFactory,
+    context = metaEngine.contextManager
 
 
 
@@ -60,7 +62,7 @@ async function load(app) {
 
 const createAppElementInternal = (appName, appProps) => props => {
     return (
-        <Provider store={window.__maka_store__}>
+        <Provider store={store}>
             <appLoader.AppLoader name={appName} {...appProps} {...props}  ></appLoader.AppLoader>
         </Provider>
     )
@@ -81,23 +83,44 @@ function setHoc(hoc) {
     Hoc = hoc
 }
 
-async function render(appName, targetDomId) {
-    if (!appLoader.existsApp(appName))
-        await appLoader.loadApp(appName, isProduction)
+async function render(appName, targetDomId, disableRoute, props={}) {
+    var appNameNoQuery = appName.split('?')[0]
+    if (!appLoader.existsApp(appNameNoQuery))
+        await appLoader.loadApp(appNameNoQuery, isProduction)
+
+    if (disableRoute) {
+        if (Hoc) {
+            domRender((
+                <Hoc>
+                    <Provider store={store}>
+                        <appLoader.AppLoader name={appName} {...props} ></appLoader.AppLoader>
+                    </Provider>
+                </Hoc>
+            ), document.getElementById(targetDomId))
+        }
+        else {
+            domRender((
+                <Provider store={store}>
+                    <appLoader.AppLoader name={appName}  {...props}></appLoader.AppLoader>
+                </Provider>
+            ), document.getElementById(targetDomId))
+        }
+        return
+    }
 
     if (Hoc) {
         domRender((
             <Hoc>
-                <Provider store={window.__maka_store__}>
-                    <metaEngine.rootElement appName={appName} />
+                <Provider store={store}>
+                    <metaEngine.rootElement appName={appName} {...props}/>
                 </Provider>
             </Hoc>
         ), document.getElementById(targetDomId))
     }
     else {
         domRender((
-            <Provider store={window.__maka_store__}>
-                <metaEngine.rootElement appName={appName} />
+            <Provider store={store}>
+                <metaEngine.rootElement appName={appName} {...props}/>
             </Provider>
         ), document.getElementById(targetDomId))
     }
@@ -131,7 +154,9 @@ export default {
     pluginFactory,
     actionFactory,
     componentFactory,
-    templateFactory
+    templateFactory,
+    store,
+    context,
 }
 
 export {
@@ -162,5 +187,7 @@ export {
     pluginFactory,
     actionFactory,
     componentFactory,
-    templateFactory
+    templateFactory,
+    store,
+    context,
 }

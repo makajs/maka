@@ -22,16 +22,18 @@ export default class action {
 	}
 
 	initView = (component, injections) => {
-		this.component = component
+		this.component = component || { props: {} }
 		this.injections = injections
 		this.metaHandlers.component = this.component
 		this.metaHandlers.injections = this.injections
 
-		appInstances[component.props.appFullName] = {
-			appName: component.props.appName,
-			appQuery: component.props.appQuery,
-			//app: config.getApps()[component.props.appName],
-			instance: component
+		if (component.props.appFullName) {
+			appInstances[component.props.appFullName] = {
+				appName: component.props.appName,
+				appQuery: component.props.appQuery,
+				//app: config.getApps()[component.props.appName],
+				instance: component
+			}
 		}
 		var initState = (this.appInfo.state && this.appInfo.state.data) || {}
 		this.ss('data', fromJS(initState))
