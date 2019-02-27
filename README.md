@@ -12,7 +12,7 @@
 
 [maka-antd-pro](https://makajs.github.io/maka/maka-antd-pro)
 
-[maka-appstore-demo](https://makajs.github.io/maka/maka-appstore-demo)
+[maka-appstore-demo](https://makajs.github.io/maka/maka-app-store/)
 
 [maka-mobile-erp](https://makajs.github.io/maka/maka-mobile-erp)
 ```
