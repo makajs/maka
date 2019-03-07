@@ -147,7 +147,8 @@ function startServer(option) {
   const appName = utils.fixName(require(paths.appPackageJson).name);
   const urls = prepareUrls(protocol, host, port);
 
-  const compiler = createCompiler(webpack, config, appName, urls, true);
+  //const compiler = createCompiler(webpack, config, appName, urls, true);
+  const compiler = createCompiler({webpack, config, appName, urls, useYarn:true});
   // Load agent configuration
   const proxyConfig = serverOption.proxy || undefined;
   //const proxyConfig = prepareProxy(proxySetting, paths.appPublic);
