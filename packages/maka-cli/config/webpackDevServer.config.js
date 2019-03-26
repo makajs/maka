@@ -27,7 +27,7 @@ module.exports = function(proxy, allowedHost) {
     host: host,
     overlay: false,
     historyApiFallback: {
-      disableDotRule: true,
+      disableDotRule: false,
     },
     public: allowedHost,
     proxy,
