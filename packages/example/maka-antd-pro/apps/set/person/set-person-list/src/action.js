@@ -1,7 +1,7 @@
 
 import { actionMixin, createAppElement } from 'maka'
 
-@actionMixin('base', 'lodash', 'moment', 'tableHelper', 'modal', 'message', 'webapi')
+@actionMixin('base', 'lodash', 'moment', 'tableHelper', 'modal', 'drawer', 'message', 'webapi')
 export default class action {
     constructor(option) {
         Object.assign(this, option.mixins)
@@ -75,7 +75,7 @@ export default class action {
     }
 
     modify = row => async () => {
-        var ret = await this.modal.show( {
+        var ret = await this.drawer.show( {
             title: '修改人员',
             children: createAppElement('set-person', {personId: row.id}),
             width: 500,
