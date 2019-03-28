@@ -2,9 +2,14 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 body {
-  font-family: Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.5;
+  font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  font-variant: tabular-nums;
+  overflow-x: hidden;
+}
+.colorWeak {
+  -webkit-filter: invert(80%);
+  filter: invert(80%);
 }
 /* 图标 */
 .icon-primary {
@@ -289,21 +294,29 @@ body {
   line-height: 20px;
 }
 /* form */
-@media (max-width: 575px) {
-  .ant-form-item-label {
-    text-align: right;
-  }
-  .ant-form-item-label:after {
-    content: ":";
-    margin: 0 8px 0 2px;
-    position: relative;
-    top: -0.5px;
-  }
+/*
+.ant-form-item-label {
+    @media (max-width: 575px) {
+        text-align: right;
+        &:after {
+            content: ":";
+            margin: 0 8px 0 2px;
+            position: relative;
+            top: -0.5px;
+        }
+    }
+
+    
+}*/
+/*
+.ant-form-item-control{
+    line-height: 1
 }
-.ant-form-item-control {
-  line-height: 1;
-}
+*/
 /* fiexed-data-table */
+.fdt {
+  background: #fff;
+}
 .fdt-cell {
   width: 100%;
   height: 100%;
@@ -369,9 +382,10 @@ body {
   flex-direction: row !important;
   align-items: center;
   padding: 0 20px;
+  background: #fff;
 }
 .fdt-pagination-left {
-  flex: 0 0 200px;
+  flex: 0 0 auto;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -410,93 +424,44 @@ body {
   outline-style: none !important;
   outline-width: 0px;
 }
-/* menu */
-.ant-menu,
-.ant-menu-inline .ant-menu-item,
-.ant-menu-inline .ant-menu-submenu-title,
-.ant-menu-vertical-left .ant-menu-item,
-.ant-menu-vertical-left .ant-menu-submenu-title,
-.ant-menu-vertical-right .ant-menu-item,
-.ant-menu-vertical-right .ant-menu-submenu-title,
-.ant-menu-vertical .ant-menu-item,
-.ant-menu-vertical .ant-menu-submenu-title {
-  font-size: 14px;
-}
-.ant-menu-dark {
-  background: #1f2c3c;
-}
-.ant-menu-dark .ant-menu-sub {
-  background: #1f2c3c;
-  border-radius: 0px;
-}
-.ant-menu-inline .ant-menu-item,
-.ant-menu-inline .ant-menu-submenu-title,
-.ant-menu-vertical-left .ant-menu-item,
-.ant-menu-vertical-left .ant-menu-submenu-title,
-.ant-menu-vertical-right .ant-menu-item,
-.ant-menu-vertical-right .ant-menu-submenu-title,
-.ant-menu-vertical .ant-menu-item,
-.ant-menu-vertical .ant-menu-submenu-title {
-  margin-top: 2px;
-}
-.ant-menu-inline .ant-menu-item:not(:last-child),
-.ant-menu-vertical-left .ant-menu-item:not(:last-child),
-.ant-menu-vertical-right .ant-menu-item:not(:last-child),
-.ant-menu-vertical .ant-menu-item:not(:last-child) {
-  margin-bottom: 2px;
-}
-.ant-menu-inline .ant-menu-item,
-.ant-menu-inline .ant-menu-submenu-title,
-.ant-menu-vertical-left .ant-menu-item,
-.ant-menu-vertical-left .ant-menu-submenu-title,
-.ant-menu-vertical-right .ant-menu-item,
-.ant-menu-vertical-right .ant-menu-submenu-title,
-.ant-menu-vertical .ant-menu-item,
-.ant-menu-vertical .ant-menu-submenu-title .ant-menu-inline > .ant-menu-item,
-.ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
-.ant-menu-vertical-left > .ant-menu-item,
-.ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title,
-.ant-menu-vertical-right > .ant-menu-item,
-.ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title,
-.ant-menu-vertical > .ant-menu-item,
-.ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title {
-  line-height: 35px;
-  height: 35px;
-}
 /*modal*/
+/*
 .ant-modal-header {
-  padding: 14px 16px;
+    padding: 14px 16px;
 }
+
 .ant-modal-body {
-  padding: 16px;
-  font-size: 12px;
+    padding: 16px;
+    font-size: 12px;
 }
+
 .ant-modal-footer {
-  padding: 16px;
-}
-.ant-modal-footer .ant-btn {
-  font-size: 14px;
-}
+    padding: 16px;
+    .ant-btn {
+        font-size: 14px;
+    }
+}*/
 /* card */
+/*
 .ant-card {
-  display: flex;
-  flex-direction: column;
-}
-.ant-card .ant-card-head {
-  flex: 0 0 45px;
-  padding: 0 10px;
-}
-.ant-card .ant-card-head-wrapper {
-  height: 45px;
-}
-.ant-card .ant-card-head-title {
-  font-size: 14px;
-}
-.ant-card .ant-card-body {
-  flex: 1;
-  padding: 8px;
-  font-size: 12px;
-}
+    display: flex;
+    flex-direction: column;
+    .ant-card-head {
+        flex: 0 0 45px;
+        padding: 0 10px;
+    }
+    .ant-card-head-wrapper {
+        height: 45px;
+    }
+    .ant-card-head-title {
+        font-size: 14px;
+    }
+    .ant-card-body {
+        flex: 1;
+        padding: 8px;
+        font-size: 12px;
+    }
+}*/
 /* tree */
 .ant-tree {
   font-size: 12px;
@@ -620,17 +585,20 @@ body {
 }*/
 /* 简单列表 */
 .simple-list {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: #fff;*/
   width: 100%;
   height: 100%;
-  background: #fff;
+  min-height: 100%;
+  transition: 0.3s;
 }
 .simple-list-header {
   display: flex;
   align-items: center;
   height: 45px;
-  flex: 0 0 45px;
   padding: 0 15px;
   flex-direction: row;
   background: #fff;
@@ -647,7 +615,7 @@ body {
 .simple-list-header-left-search {
   min-height: auto;
   height: 26px;
-  width: 250px;
+  width: auto;
   margin-right: 8px;
 }
 .simple-list-header-left-search .ant-input {
@@ -678,12 +646,10 @@ body {
   margin-left: 8px;
 }
 .simple-list-content {
-  flex: 1;
   overflow: hidden;
 }
 .simple-list-footer {
   height: 45px;
-  flex: 0 0 45px;
   justify-content: center;
   align-items: flex-end;
   background: #fff;
@@ -783,6 +749,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: #fff;
 }
 .voucher-header {
   display: flex;

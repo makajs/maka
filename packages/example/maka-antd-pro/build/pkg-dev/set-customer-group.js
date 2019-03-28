@@ -7,7 +7,10 @@
 		exports["MakaApp-set-customer-group"] = factory(require("maka"), require("react"));
 	else
 		root["MakaApp-set-customer-group"] = factory(root["maka"], root["react"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__, __WEBPACK_EXTERNAL_MODULE_react__) {
+})((function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}()), function(__WEBPACK_EXTERNAL_MODULE_maka__, __WEBPACK_EXTERNAL_MODULE_react__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -87,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = window['__pub_set-customer-group__'];
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -239,7 +242,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-app-store/apps/set/customer/set-customer-group/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-customer-group/multi_./src/index.js?");
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-antd-pro/apps/set/customer/set-customer-group/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-customer-group/multi_./src/index.js?");
 
 /***/ }),
 

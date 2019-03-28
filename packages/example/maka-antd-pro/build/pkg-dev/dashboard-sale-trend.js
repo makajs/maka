@@ -7,7 +7,10 @@
 		exports["MakaApp-dashboard-sale-trend"] = factory(require("maka"));
 	else
 		root["MakaApp-dashboard-sale-trend"] = factory(root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__) {
+})((function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}()), function(__WEBPACK_EXTERNAL_MODULE_maka__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -87,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = window['__pub_dashboard-sale-trend__'];
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -228,7 +231,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  component: 'div',\n  className: 'dashboard-sale-trend',\n  children: [{\n    component: 'div',\n    className: 'dashboard-sale-trend-left',\n    children: [{\n      component: 'span',\n      children: '总销售额趋势'\n    }, {\n      component: 'Echarts',\n      option: {\n        tooltip: {\n          trigger: 'axis'\n        },\n        xAxis: [{\n          type: 'category',\n          data: '{{data.saleTrend.x}}'\n        }],\n        yAxis: [{\n          type: 'value'\n        }],\n        grid: {\n          left: 60,\n          right: 100,\n          bottom: 20,\n          top: 20\n        },\n        series: [{\n          type: 'bar',\n          smooth: true,\n          sampling: 'average',\n          animation: false,\n          itemStyle: {\n            normal: {\n              color: 'rgb(70, 130, 180)',\n              shadowColor: 'rgba(0, 0, 0, 0.5)',\n              shadowBlur: 10\n            }\n          },\n          areaStyle: {\n            normal: {\n              color: 'rgb(70, 130, 180)'\n            }\n          },\n          data: '{{data.saleTrend.y}}'\n        }]\n      }\n    }]\n  }, {\n    component: 'div',\n    className: 'dashboard-sale-trend-right',\n    children: [{\n      component: 'span',\n      className: 'dashboard-sale-trend-right-title',\n      children: '门店销售额排行'\n    }, {\n      component: 'div',\n      className: 'dashboard-sale-trend-right-list',\n      children: {\n        _for: 'item in data.topForStore',\n        component: 'div',\n        className: 'dashboard-sale-trend-right-list-detail',\n        children: [{\n          component: 'antd.Badge',\n          count: '{{item.index}}'\n        }, {\n          component: 'div',\n          className: 'dashboard-sale-trend-right-list-detail-name',\n          children: '{{item.storeName}}'\n        }, {\n          component: 'div',\n          children: '{{item.total}}'\n        }]\n      }\n    }]\n  }]\n});\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./src/view.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  component: 'antd.Row',\n  gutter: 0,\n  className: 'dashboard-sale-trend',\n  children: [{\n    component: 'antd.Col',\n    lg: 12,\n    md: 12,\n    sm: 24,\n    xl: 16,\n    xs: 24,\n    className: 'dashboard-sale-trend-left',\n    children: [{\n      component: 'span',\n      children: '总销售额趋势'\n    }, {\n      component: 'Echarts',\n      option: {\n        tooltip: {\n          trigger: 'axis'\n        },\n        xAxis: [{\n          type: 'category',\n          data: '{{data.saleTrend.x}}'\n        }],\n        yAxis: [{\n          type: 'value'\n        }],\n        grid: {\n          left: 60,\n          right: 20,\n          bottom: 20,\n          top: 20\n        },\n        series: [{\n          type: 'bar',\n          smooth: true,\n          sampling: 'average',\n          animation: false,\n          itemStyle: {\n            normal: {\n              color: 'rgb(70, 130, 180)',\n              shadowColor: 'rgba(0, 0, 0, 0.5)',\n              shadowBlur: 10\n            }\n          },\n          areaStyle: {\n            normal: {\n              color: 'rgb(70, 130, 180)'\n            }\n          },\n          data: '{{data.saleTrend.y}}'\n        }]\n      }\n    }]\n  }, {\n    component: 'antd.Col',\n    lg: 12,\n    md: 12,\n    sm: 24,\n    xl: 8,\n    xs: 24,\n    className: 'dashboard-sale-trend-right',\n    children: [{\n      component: 'span',\n      className: 'dashboard-sale-trend-right-title',\n      children: '门店销售额排行'\n    }, {\n      component: 'div',\n      className: 'dashboard-sale-trend-right-list',\n      children: {\n        _for: 'item in data.topForStore',\n        component: 'div',\n        className: 'dashboard-sale-trend-right-list-detail',\n        children: [{\n          component: 'antd.Badge',\n          count: '{{item.index}}'\n        }, {\n          component: 'div',\n          className: 'dashboard-sale-trend-right-list-detail-name',\n          children: '{{item.storeName}}'\n        }, {\n          component: 'div',\n          children: '{{item.total}}'\n        }]\n      }\n    }]\n  }]\n});\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/./src/view.js?");
 
 /***/ }),
 
@@ -239,7 +242,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-app-store/apps/sys/dashboard/dashboard-sale-trend/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/multi_./src/index.js?");
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-antd-pro/apps/sys/dashboard/dashboard-sale-trend/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-dashboard-sale-trend/multi_./src/index.js?");
 
 /***/ }),
 

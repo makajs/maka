@@ -77,6 +77,8 @@ export default class action {
     modify = row => async () => {
         var ret = await this.drawer.show( {
             title: '修改人员',
+            okText: '保存',
+            maskClosable: true,
             children: createAppElement('set-person', {personId: row.id}),
             width: 500,
             bodyStyle:{

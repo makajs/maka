@@ -7,7 +7,10 @@
 		exports["MakaApp-react-container-query"] = factory(require("maka"), require("react"), require("react-dom"));
 	else
 		root["MakaApp-react-container-query"] = factory(root["maka"], root["react"], root["react-dom"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__, __WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_react_dom__) {
+})((function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}()), function(__WEBPACK_EXTERNAL_MODULE_maka__, __WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_react_dom__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -87,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = window['__pub_react-container-query__'];
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -375,7 +378,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-app-store/apps/base/component/react-container-query/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-react-container-query/multi_./src/index.js?");
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-antd-pro/apps/base/component/react-container-query/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-react-container-query/multi_./src/index.js?");
 
 /***/ }),
 

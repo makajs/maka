@@ -7,7 +7,10 @@
 		exports["MakaApp-set-bom-list"] = factory(require("maka"));
 	else
 		root["MakaApp-set-bom-list"] = factory(root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__) {
+})((function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}()), function(__WEBPACK_EXTERNAL_MODULE_maka__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -87,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = window['__pub_set-bom-list__'];
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -228,7 +231,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  component: 'div',\n  className: 'simple-list set-bom-list',\n  children: [{\n    component: 'div',\n    className: 'simple-list-header',\n    children: [{\n      component: 'div',\n      className: 'simple-list-header-left',\n      children: [{\n        component: 'antd.Input.Search',\n        className: 'simple-list-header-left-search',\n        placeholder: '请录入编码搜索',\n        value: '{{data.filter.search}}',\n        onChange: \"{{$searchChange}}\"\n      }, {\n        component: 'antd.Button',\n        className: 'icon-button-softly',\n        icon: 'reload',\n        title: '刷新',\n        onClick: '{{$reload}}'\n      }]\n    }, {\n      component: 'div',\n      className: 'simple-list-header-center'\n    }, {\n      component: 'div',\n      className: 'simple-list-header-right',\n      children: [{\n        component: 'antd.Button',\n        className: 'button-bluesky',\n        onClick: '{{$add}}',\n        children: '新增'\n      }, {\n        component: 'antd.Button',\n        className: 'button-bluesky',\n        onClick: '{{$batchDel}}',\n        children: '批量删除'\n      }]\n    }]\n  }, {\n    component: 'tpl.Table',\n    columns: [{\n      type: 'sequence'\n    }, {\n      type: 'isSelected'\n    }, {\n      type: 'del',\n      onDel: '{{$del(data.list[row.rowIndex])}}'\n    }, {\n      type: 'link',\n      title: '编码',\n      bindField: 'code',\n      onClick: 'modify',\n      fixed: true\n    }, {\n      type: 'text',\n      title: '物料编码',\n      bindField: 'materiel.code',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '物料名称',\n      bindField: 'materiel.name',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '工艺编码',\n      bindField: 'technic.code',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '工艺名称',\n      bindField: 'technic.name',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '数量',\n      bindField: 'amount',\n      flexGrow: 1,\n      align: 'right'\n    }, {\n      type: 'text',\n      title: '成品率',\n      bindField: 'yield',\n      flexGrow: 1,\n      align: 'right'\n    }, {\n      type: 'text',\n      title: '使用状态',\n      bindField: 'status.name',\n      flexGrow: 1,\n      align: 'center'\n    }]\n  }]\n});\n\n//# sourceURL=webpack://MakaApp-set-bom-list/./src/view.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  component: 'div',\n  className: 'simple-list set-bom-list',\n  children: [{\n    component: 'div',\n    className: 'simple-list-header',\n    children: [{\n      component: 'div',\n      className: 'simple-list-header-left',\n      children: [{\n        component: 'antd.Input.Search',\n        className: 'simple-list-header-left-search',\n        placeholder: '请录入编码搜索',\n        value: '{{data.filter.search}}',\n        onChange: \"{{$searchChange}}\"\n      }, {\n        component: 'antd.Button',\n        className: 'icon-button-softly',\n        icon: 'reload',\n        title: '刷新',\n        onClick: '{{$reload}}'\n      }]\n    }, {\n      component: 'div',\n      className: 'simple-list-header-center'\n    }, {\n      component: 'div',\n      className: 'simple-list-header-right',\n      children: [{\n        component: 'antd.Button',\n        className: 'button-bluesky',\n        onClick: '{{$add}}',\n        children: '新增'\n      }, {\n        component: 'antd.Button',\n        className: 'button-bluesky',\n        onClick: '{{$batchDel}}',\n        children: '批量删除'\n      }]\n    }]\n  }, {\n    component: 'tpl.Table',\n    autoHeight: false,\n    columns: [{\n      type: 'sequence'\n    }, {\n      type: 'isSelected'\n    }, {\n      type: 'del',\n      onDel: '{{$del(data.list[row.rowIndex])}}'\n    }, {\n      type: 'link',\n      title: '编码',\n      bindField: 'code',\n      onClick: 'modify',\n      fixed: true\n    }, {\n      type: 'text',\n      title: '物料编码',\n      bindField: 'materiel.code',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '物料名称',\n      bindField: 'materiel.name',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '工艺编码',\n      bindField: 'technic.code',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '工艺名称',\n      bindField: 'technic.name',\n      flexGrow: 1\n    }, {\n      type: 'text',\n      title: '数量',\n      bindField: 'amount',\n      flexGrow: 1,\n      align: 'right'\n    }, {\n      type: 'text',\n      title: '成品率',\n      bindField: 'yield',\n      flexGrow: 1,\n      align: 'right'\n    }, {\n      type: 'text',\n      title: '使用状态',\n      bindField: 'status.name',\n      flexGrow: 1,\n      align: 'center'\n    }]\n  }]\n});\n\n//# sourceURL=webpack://MakaApp-set-bom-list/./src/view.js?");
 
 /***/ }),
 
@@ -239,7 +242,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-app-store/apps/set/bom/set-bom-list/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-bom-list/multi_./src/index.js?");
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-antd-pro/apps/set/bom/set-bom-list/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-set-bom-list/multi_./src/index.js?");
 
 /***/ }),
 

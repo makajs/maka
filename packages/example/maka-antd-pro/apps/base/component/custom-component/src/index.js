@@ -31,6 +31,7 @@ async function beforeRegister(){
     await load('antd')
     registerComponent('ctrl', components)
     registerAction('modal', components.Modal, true)
+    registerAction('drawer', components.Drawer, true)
     registerAction('message', getComponent('antd.message'), true)
     registerAction('notification', getComponent('antd.notification'), true)
 }

@@ -7,15 +7,18 @@
   padding: 10px;
 }
 .devtools-app-left {
-  flex: 0 0 300px;
+  flex: 0 0 200px;
   margin-right: 10px;
-  overflow: auto;
-}
-.devtools-app-left .mk-menu {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .devtools-app-left .ant-input-search {
-  margin-bottom: 4px;
+  margin-bottom: 10px;
+}
+.devtools-app-left > ul {
+  flex: 1;
+  overflow: auto;
+  border: 4px solid #ccc;
 }
 .devtools-app-content {
   display: flex;

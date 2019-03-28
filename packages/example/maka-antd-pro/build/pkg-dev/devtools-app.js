@@ -7,7 +7,10 @@
 		exports["MakaApp-devtools-app"] = factory(require("maka"));
 	else
 		root["MakaApp-devtools-app"] = factory(root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__) {
+})((function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}()), function(__WEBPACK_EXTERNAL_MODULE_maka__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -87,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = window['__pub_devtools-app__'];
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -180,7 +183,7 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 /*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, homepage, scripts, dependencies, server, subAppDir, default */
 /***/ (function(module) {
 
-eval("module.exports = {\"isMakaApp\":true,\"name\":\"devtools-app\",\"description\":\"devtools-app\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/devtools-app.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/devtools-app/issues\"},\"homepage\":\"https://github.com/makajs/devtools-app#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../base\"]};\n\n//# sourceURL=webpack://MakaApp-devtools-app/./package.json?");
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"devtools-app\",\"description\":\"devtools-app\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/devtools-app.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/devtools-app/issues\"},\"homepage\":\"https://github.com/makajs/devtools-app#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":[\"./apps\",\"../../base\",\"../../assets\"]};\n\n//# sourceURL=webpack://MakaApp-devtools-app/./package.json?");
 
 /***/ }),
 
@@ -226,7 +229,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _usr
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-app-store/apps/devtools/devtools-app/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-devtools-app/multi_./src/index.js?");
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-antd-pro/apps/devtools/devtools-app/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-devtools-app/multi_./src/index.js?");
 
 /***/ }),
 

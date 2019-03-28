@@ -11,10 +11,16 @@
   flex: 0 0 120px;
 }
 .dashboard-hot-search-top-left {
-  flex: 0 0 200px;
+  flex: 1;
+  padding: 0 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .dashboard-hot-search-top-right {
-  flex: 0 0 200px;
+  flex: 1;
+  padding: 0 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .dashboard-hot-search-bottom {
   flex: 1;

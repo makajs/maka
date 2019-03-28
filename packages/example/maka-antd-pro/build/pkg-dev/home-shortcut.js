@@ -7,7 +7,10 @@
 		exports["MakaApp-home-shortcut"] = factory(require("maka"));
 	else
 		root["MakaApp-home-shortcut"] = factory(root["maka"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_maka__) {
+})((function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}()), function(__WEBPACK_EXTERNAL_MODULE_maka__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -87,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = window['__pub_home-shortcut__'];
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -170,7 +173,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-app-store/apps/sys/home/home-shortcut/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-home-shortcut/multi_./src/index.js?");
+eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-antd-pro/apps/sys/home/home-shortcut/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-home-shortcut/multi_./src/index.js?");
 
 /***/ }),
 
