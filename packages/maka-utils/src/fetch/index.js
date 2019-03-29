@@ -42,11 +42,20 @@ function mock(url, handler) {
 	}
 }
 
+
 function isMockUrl(url) {
 	if (!_options.excludeMockUrls)
 		return _options.mock
 
-	if (_options.excludeMockUrls.find(o => o == url)) {
+	if (_options.excludeMockUrls.find(o => {
+		if(o === url)
+			return true
+		if(o.test && o.test(url))
+			return true 
+
+		return false
+		
+	})) {
 		return !_options.mock
 	}
 	else {
