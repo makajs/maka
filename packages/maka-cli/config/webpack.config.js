@@ -97,6 +97,14 @@ module.exports = function (option) {
             }
         }
     }, {
+        test: /\.(ico|icon|)(\?\S*)?$/,
+        use: {
+            loader: path.resolve(__dirname, '..', 'node_modules', 'file-loader'),
+            options: {
+                name: '[name].[ext]' 
+            }
+        }
+    },{
         test: /\.(txt|md)$/,
         use: path.resolve(__dirname, '..', 'node_modules', 'raw-loader')
     } /*{
