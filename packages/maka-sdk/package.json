@@ -1,6 +1,6 @@
 {
   "name": "@makajs/sdk",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "maka sdk",
   "main": "lib/index.js",
   "scripts": {
@@ -36,6 +36,7 @@
     "cross-env": "*",
     "react": "*",
     "react-dom": "*",
+    "request": "*",
     "uglifyjs-webpack-plugin": "*",
     "webpack": "*",
     "webpack-cli": "*"
