@@ -15,16 +15,16 @@ var uids = {
 }
 
 export function uid(appName) {
-    if(!uids[appName]){
+    if (!uids[appName]) {
         uids[appName] = 0
         return appName + (uids[appName]++)
     }
-    else{
+    else {
         return uids[appName]++
     }
 }
 
-export function setMeta(appInfo, plugins = []) {
+export function setMeta(appInfo, plugins = [], appQuery) {
 
     if (!appInfo || !appInfo.view) return
 
@@ -35,10 +35,10 @@ export function setMeta(appInfo, plugins = []) {
         return
 
     cache.plugin = cache.plugin.set(appName, fromJS(plugins))
-    setMetaForce(appName, appInfo.view)
+    setMetaForce(appName, appInfo.view, appQuery)
 }
 
-export function setMetaForce(appName, meta) {
+export function setMetaForce(appName, meta, appQuery) {
     if (!appName || !meta)
         return
 
@@ -50,19 +50,34 @@ export function setMetaForce(appName, meta) {
     meta = parsed.meta
     var map = parsed.map
 
-    cache.meta = cache.meta
-        .setIn([appName, 'meta'], meta)
-        .setIn([appName, 'metaMap'], map)
+    if (appQuery) {
+        cache.meta = cache.meta
+            .setIn([appName, appQuery, 'meta'], meta)
+            .setIn([appName, appQuery, 'metaMap'], map)
+    }
+    else {
+        cache.meta = cache.meta
+            .setIn([appName, 'meta'], meta)
+            .setIn([appName, 'metaMap'], map)
+    }
+
 }
 
-export function getMeta(appInfo, fullpath, propertys) {
-    if (!fullpath)
-        return cache.meta.getIn([appInfo.name, 'meta']).toJS()
+export function getMeta(appInfo, fullpath, propertys, appQuery) {
+    var meta = appQuery ?
+        (cache.meta.getIn([appInfo.name, appQuery, 'meta']) || cache.meta.getIn([appInfo.name, 'meta'])) :
+        cache.meta.getIn([appInfo.name, 'meta'])
+    
+    var metaMap = appQuery ?
+        (cache.meta.getIn([appInfo.name, appQuery, 'metaMap']) || cache.meta.getIn([appInfo.name, 'metaMap'])) :
+        cache.meta.getIn([appInfo.name, 'metaMap'])
 
-    const parsedPath = parsePath(fullpath),
-        vars = parsedPath.vars,
-        metaMap = cache.meta.getIn([appInfo.name, 'metaMap']),
-        meta = cache.meta.getIn([appInfo.name, 'meta'])
+    if (!fullpath) {
+        return meta.toJS()
+    }
+
+    var parsedPath = parsePath(fullpath),
+        vars = parsedPath.vars
 
     const path = metaMap.get(parsedPath.path)
 
@@ -99,8 +114,8 @@ export function getMeta(appInfo, fullpath, propertys) {
     }
 }
 
-export function getMetaMap(appInfo) {
-    return cache.meta.getIn([appInfo.name, 'metaMap'])
+export function getMetaMap(appInfo, appQuery) {
+    return cache.meta.getIn([appInfo.name, appQuery, 'metaMap']) || cache.meta.getIn([appInfo.name, 'metaMap'])
 }
 
 export function getField(state, fieldPath) {
@@ -160,6 +175,68 @@ function parseMetaTemplate(meta) {
             var component = utils.string.trim(propValue.get('component'))
             var template = templateFactory.getTemplate(component)
             if (template) {
+                templates.unshift([path, template])
+            }
+        }
+
+        propValue.keySeq().toArray().forEach(p => {
+            let v = propValue.get(p)
+            if (v instanceof Immutable.List) {
+                v.forEach((c, index) => {
+                    let currentPath = path ? `${path}.${p}.${index}` : `${p}.${index}`
+                    parseProp(c, currentPath)
+                })
+            } else {
+                let currentPath = path ? `${path}.${p}` : p
+                parseProp(v, currentPath)
+            }
+        })
+    }
+
+    parseProp(meta, '')
+
+    templates.forEach(t => {
+        let seg = t[0].split('.')
+        let curr  = seg == '' ?  fromJS(t[1](meta.toJS())) : fromJS(t[1](meta.getIn(seg).toJS()))
+
+        if (
+            (curr instanceof Immutable.List) &&
+            (meta.getIn(seg.slice(0, seg.length - 1)) instanceof Immutable.List)
+        ) {
+            let index = seg.pop()
+            meta = meta.updateIn(seg, ll => {
+                ll = ll.remove(index)
+
+                curr.forEach(o => {
+                    ll = ll.insert(index, o)
+                    index++
+                })
+                return ll
+            })
+        }
+        else if (seg == '') {
+            meta = curr
+        }
+        else {
+            meta = meta.setIn(seg, curr)
+        }
+    })
+    return meta
+}
+
+
+function parseMetaTemplate1(meta) {
+    var templates = []
+
+    const parseProp = (propValue, path) => {
+        if (!(propValue instanceof Immutable.Map)) {
+            return
+        }
+        if (propValue.get('component')) {
+            var component = utils.string.trim(propValue.get('component'))
+            var template = templateFactory.getTemplate(component)
+            if (template) {
+
                 templates.unshift([path, fromJS(template(propValue.toJS()))])
                 return
             }
@@ -197,7 +274,7 @@ function parseMetaTemplate(meta) {
                 return ll
             })
         }
-        else if(seg == ''){
+        else if (seg == '') {
             meta = t[1]
         }
         else {
@@ -219,7 +296,7 @@ function parseMeta(meta, appName) {
             ret = ret.set(parentPath, parentRealPath)
         }
         else*/
-        if (propValue.get('component')) {
+        if (propValue.get('component') || propValue.get('_for') || propValue.get('_function')) {
             const name = uid(appName) + ''
             meta = meta.setIn(parentRealPath ? parentRealPath.split('.').concat('_name') : ['_name'], name)
             parentPath = parentPath ? `${parentPath}.${name}` : name
@@ -232,10 +309,10 @@ function parseMeta(meta, appName) {
             if (v instanceof Immutable.List) {
                 v.forEach((c, index) => {
                     let currentRealPath = parentRealPath ? `${parentRealPath}.${p}.${index}` : `${p}.${index}`
-                    if(c && c.get && c.get('component')){
+                    if (c && c.get && (c.get('component') || c.get('_for') || c.get('_function'))) {
                         parseProp(c, `${currentPath}`, currentRealPath)
                     }
-                    else{
+                    else {
                         parseProp(c, `${currentPath}.${index}`, currentRealPath)
                     }
                 })

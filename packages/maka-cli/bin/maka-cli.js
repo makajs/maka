@@ -76,6 +76,16 @@ program
     })
 
 program
+    .command('deploy')
+    .description('deploy app')
+    .option('-d, --dev', 'development')
+    .action(function (...args) {
+        let s = run('deploy', args);
+        process.exit(s);
+    })
+
+
+program
     .command('start')
     .description('start app')
     .option('-d, --dev', 'development')

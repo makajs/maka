@@ -4,24 +4,59 @@ import { getGlobal } from '@makajs/utils'
 var globalObj = getGlobal()
 const isProduction = process.env.isProduction
 
-
 function fixName(name) {
-    if (name.indexOf('@') == -1) return name
-    return name.replace('@', '').replace('makajs', 'maka').replace('/', '-')
+    return name
 }
 
+function fixUrl(url) {
+    var baseUrl = config.current.baseUrl
+    if (!baseUrl) {
+        var scripts = document.querySelectorAll("script");
+        for (var i = 0; i < scripts.length; i++) {
+            if (scripts[i].src && (
+                scripts[i].src.indexOf('maka-main.js') != -1 ||
+                scripts[i].src.indexOf('maka-main.min.js') != -1
+            )) {
+                if (scripts[i].src.indexOf('http') != -1){
+                    baseUrl = scripts[i].src.substr(0, scripts[i].src.lastIndexOf('/') + 1)
+                    if(baseUrl.indexOf('/core/v') != -1){
+                        baseUrl = baseUrl.substr(0, baseUrl.indexOf('/core/v') + 1)
+                    }
+                }
+            }
+        }
+    }
+
+    if (baseUrl && url.indexOf('http') == -1) {
+        url = baseUrl + url
+    }
+
+    if (url.indexOf('http') != -1 && url.indexOf('.js') == -1) {
+        url = url + (isProduction ? '.min.js' : '.js')
+    }
+
+    return url
+}
 
 function getUrl(app) {
     if (typeof app == 'string') {
         app = fixName(app)
-        if (config.current.appUrls)
-            return config.current.appUrls[app] || app
+
+        if (config.current.appUrls) {
+            let ret = config.current.appUrls[app]
+            if (ret) {
+                return fixUrl(ret)
+            }
+            else {
+                return fixUrl(app)
+            }
+        }
         else
-            return app
+            return fixUrl(app)
     }
     else if (typeof app == 'object') {
         if (app.url)
-            return app.url
+            return fixUrl(app.url)
         else
             return getUrl(app.name)
     }
@@ -40,31 +75,6 @@ function findNameByUrl(url) {
 
 export default function loadApp(app) {
     var urls = []
-    //options = {}
-
-    /*
-    if (typeof app == 'string') {
-        urls.push(getUrl(app))
-        urls.push(fixName(app))
-    }
-    else if (app instanceof Array) {
-        app.forEach(o => {
-            if (typeof o == 'string') {
-                urls.push(fixName(o))
-            }
-            else if (typeof o == 'object' && o.url) {
-                urls.push(o.url)
-                if (o.name && o.option)
-                    options[fixName(o.name)] = o.option
-            }
-        })
-    }
-    else if (typeof app == 'object' && app.url) {
-        urls.push(o.url)
-        if (app.name && app.option)
-            options[fixName(app.name)] = app.option
-    }
-    */
 
     if (app instanceof Array) {
         app.forEach(o => urls.push(getUrl(o)))
@@ -77,33 +87,22 @@ export default function loadApp(app) {
         return Promise.resolve(null)
 
     return new Promise((resolve, reject) => {
-        /*
-        urls.forEach(url => {
-            var appName = url.substr(url.lastIndexOf('/') + 1).replace(/(\.js)|(\.min\.js)/, ''),
-                pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : ''
-            globalObj[`__pub_${appName}__`] = pub
-        })
-        */
-
         urls = urls.filter(url => {
-            /*
-            var appName = url.substr(url.lastIndexOf('/') + 1).replace(/(\.js)|(\.min\.js)/, ''),
-                pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : ''
-            */
-            var appName = findNameByUrl(url) 
+            var appName = findNameByUrl(url)
             var pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : ''
             globalObj[`__pub_${appName}__`] = pub
             return !appFactory.existsApp(appName)
         })
 
         urls = urls.map(u => {
-            if(u.indexOf('http') != -1)
+            if (u.indexOf('http') != -1)
                 return u
+
+            if (u.indexOf('.js') != -1)
+                return u.replace('.js', '')
+
             return isProduction ? (u + '.min') : u
         })
-        //const appCount = urls.length
-        //urls = urls.concat(urls.map(u => `css!${u}`))
-
         if (!urls || urls.length == 0) {
             resolve(null)
             return
@@ -113,34 +112,49 @@ export default function loadApp(app) {
                 return curr ? { ...prev, [curr.name]: curr } : curr
             }, {})
 
-            var appNames = Object.keys(apps)
-            for (var i = 0; i < appNames.length; i++) {
-                apps[appNames[i]].beforeRegister && (await apps[appNames[i]].beforeRegister())
+            if (!apps) {
+                console.error('Not application found at ' + urls.join(';'))
             }
+            else {
 
-            appFactory.registerApps(apps)
+                var appNames = Object.keys(apps)
 
-            /*
-            appConfig(appFactory.getApps(), {
-                "*": { apps: { ...appFactory.getApps() } },
-                ...options
-            })
-            */
-
-            var cssUrls = urls.map(u => {
-                if(u.indexOf('http') != -1)
-                    return `css!${u.replace('.js', '.css')}`    
-                return `css!${u}`
-            })
-            globalObj.require(cssUrls, async (...args) => {
                 for (var i = 0; i < appNames.length; i++) {
-                    apps[appNames[i]].afterRegister && (await apps[appNames[i]].afterRegister())
+                    apps[appNames[i]].beforeRegister && (await apps[appNames[i]].beforeRegister())
                 }
-                resolve(null)
-            })
+
+                appFactory.registerApps(apps)
+
+                /*
+                appConfig(appFactory.getApps(), {
+                    "*": { apps: { ...appFactory.getApps() } },
+                    ...options
+                })
+                */
+
+                var cssUrls = urls.map(u => {
+                    if (u.indexOf('http') != -1)
+                        return `css!${u.replace('.js', '.css')}`
+                    return `css!${u}`
+                })
+                /*
+                globalObj.require(cssUrls, async (...args) => {
+                    for (var i = 0; i < appNames.length; i++) {
+                        apps[appNames[i]].afterRegister && (await apps[appNames[i]].afterRegister())
+                    }
+                    resolve(null)
+                })*/
+
+
+                globalObj.require(cssUrls, (...args) => {
+                    resolve(null)
+                    for (var i = 0; i < appNames.length; i++) {
+                        apps[appNames[i]].afterRegister && (apps[appNames[i]].afterRegister())
+                    }
+                })
+            }
         })
     })
-
 }
 
 /*

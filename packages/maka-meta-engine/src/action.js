@@ -19,6 +19,40 @@ export default class action {
 
 	config = ({ metaHandlers }) => {
 		this.metaHandlers = metaHandlers
+		this.cache.handlerKeys = Object.keys(metaHandlers)
+		this.allActionKeys = this.cache.handlerKeys
+		this.allAction = this.metaHandlers
+	}
+
+	getAllAction = () => {
+		return this.allAction
+	}
+
+	setMetaForce = (appName, meta) => {
+		common.setMetaForce(appName, meta, this.component && this.component.props.appQuery)
+	}
+
+	setActionForce = (actions) => {
+		if (actions) {
+			this.cache.expression = {}
+			this.cache.expressionParams = undefined
+			var actionKeys = Object.keys(actions)
+			/*
+			this.dynamicHandleKeys = actionKeys.map(k => "$" + k)
+			this.dynamicHandlers = {}
+			actionKeys.forEach((key) => {
+				this.dynamicHandlers["$" + key] = actions[key]
+			})*/
+
+			this.allActionKeys = actionKeys
+			this.allAction = actions
+			this.cache.handlerKeys.forEach(key => {
+				if (this.allActionKeys.indexOf(key) == -1) {
+					this.allActionKeys.push(key)
+					this.allAction[key] = this.metaHandlers[key]
+				}
+			})
+		}
 	}
 
 	initView = (component, injections) => {
@@ -35,8 +69,9 @@ export default class action {
 				instance: component
 			}
 		}
+
 		var initState = (this.appInfo.state && this.appInfo.state.data) || {}
-		this.ss('data', fromJS(initState))
+		this.ss({ 'data': initState })
 
 		if (this.metaHandlers && this.metaHandlers.onInit) {
 			this.metaHandlers.onInit({ component, injections })
@@ -134,9 +169,15 @@ export default class action {
 
 		if (!this.cache.expressionParams) {
 			this.cache.expressionParams = ['data']
-				.concat(Object.keys(this.metaHandlers)
-					.map(k => "$" + k))
+				//.concat(Object.keys(this.metaHandlers)
+				//.concat(this.cache.handlerKeys.map(k => "$" + k))
+				.concat(this.allActionKeys.map(k => "$" + k))
 				.concat(['_path', '_vars'])
+
+			/*
+			if (this.dynamicHandleKeys) {
+				this.cache.expressionParams = this.cache.expressionParams.concat(this.dynamicHandleKeys)
+			}*/
 		}
 
 		var params = this.cache.expressionParams
@@ -145,17 +186,17 @@ export default class action {
 			params = params.concat(extParas)
 		}
 
-		
+
 
 		var body = utils.expression.getExpressionBody(v)
 
-		if(config.current.transformer){
-			if( body.substr(0, 6) === 'return' ){
+		if (config.current.transformer) {
+			if (body.substr(0, 6) === 'return') {
 				body = body.substr(6)
 				body = config.current.transformer(body)
 				body = 'return ' + body
 			}
-			else{
+			else {
 				body = config.transformer(body)
 			}
 		}
@@ -167,17 +208,54 @@ export default class action {
 	execExpression = (expressContent, data, path, vars, extParas) => {
 		var values = [data]
 
-		var metaHandlerKeys = Object.keys(this.metaHandlers),
+		//var metaHandlerKeys = Object.keys(this.metaHandlers),
+		/*
+		var metaHandlerKeys = this.cache.handlerKeys,
 			i, key
 
-		var fun = (n) => this.metaHandlers[n]
+		var fun = (n) => {
+			let handler = this.metaHandlers[n]
+			if (handler && typeof handler == 'function')
+				handler.__method_name__ = n
+
+			return handler
+		}
 
 		for (i = 0; key = metaHandlerKeys[i++];) {
+			values.push(fun(key))
+		}*/
+
+		var actionKeys = this.allActionKeys, i, key
+
+		var fun = (n) => {
+			let handler = this.allAction[n]
+			if (handler && typeof handler == 'function')
+				handler.__method_name__ = n
+
+			return handler
+		}
+
+		for (i = 0; key = actionKeys[i++];) {
 			values.push(fun(key))
 		}
 
 		values.push(path)
 		values.push((vars || '').split(','))
+
+		/*
+		var fun1 = (n) => {
+			let handler = this.dynamicHandlers[n]
+			if (handler && typeof handler == 'function')
+				handler.__method_name__ = n
+
+			return handler
+		}
+
+		if (this.dynamicHandleKeys) {
+			for (i = 0; key = this.dynamicHandleKeys[i++];) {
+				values.push(fun1(key))
+			}
+		}*/
 
 		var extParaKeys
 		if (extParas) {
@@ -380,10 +458,10 @@ export default class action {
 	}
 
 	getMeta = (path, propertys, data, vars, extParas) => {
-		const meta = common.getMeta(this.appInfo, path, propertys)
+		const meta = common.getMeta(this.appInfo, path, propertys, this.component.props.appQuery)
 
 		if (!path) {
-			var metaMap = common.getMetaMap(this.appInfo)
+			var metaMap = common.getMetaMap(this.appInfo, this.component.props.appQuery)
 			path = metaMap.keySeq().toList().find(o => o.indexOf('.') == -1)
 		}
 
@@ -401,9 +479,6 @@ export default class action {
 		return meta
 	}
 
-	setMetaForce = (appName, meta) => {
-		common.setMetaForce(appName, meta)
-	}
 
 	gm = this.getMeta
 

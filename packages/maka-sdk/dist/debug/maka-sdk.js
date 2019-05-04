@@ -7,7 +7,10 @@
 		exports["Maka"] = factory(require("react"), require("react-dom"), require("react-redux"), require("immutable"), require("redux"), require("prop-types"));
 	else
 		root["Maka"] = factory(root["React"], root["ReactDOM"], root["ReactRedux"], root["Immutable"], root["Redux"], root["PropTypes"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_react_dom__, __WEBPACK_EXTERNAL_MODULE_react_redux__, __WEBPACK_EXTERNAL_MODULE_immutable__, __WEBPACK_EXTERNAL_MODULE_redux__, __WEBPACK_EXTERNAL_MODULE_prop_types__) {
+})((function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}()), function(__WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_react_dom__, __WEBPACK_EXTERNAL_MODULE_react_redux__, __WEBPACK_EXTERNAL_MODULE_immutable__, __WEBPACK_EXTERNAL_MODULE_redux__, __WEBPACK_EXTERNAL_MODULE_prop_types__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -103,7 +106,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _arrayWithoutHoles(arr) {\n  if (Array.isArray(arr)) {\n    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {\n      arr2[i] = arr[i];\n    }\n\n    return arr2;\n  }\n}\n\nmodule.exports = _arrayWithoutHoles;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js?");
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
 
 /***/ }),
 
@@ -114,7 +127,15 @@ eval("function _arrayWithoutHoles(arr) {\n  if (Array.isArray(arr)) {\n    for (
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _assertThisInitialized(self) {\n  if (self === void 0) {\n    throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\");\n  }\n\n  return self;\n}\n\nmodule.exports = _assertThisInitialized;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/assertThisInitialized.js?");
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
 
 /***/ }),
 
@@ -125,7 +146,43 @@ eval("function _assertThisInitialized(self) {\n  if (self === void 0) {\n    thr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {\n  try {\n    var info = gen[key](arg);\n    var value = info.value;\n  } catch (error) {\n    reject(error);\n    return;\n  }\n\n  if (info.done) {\n    resolve(value);\n  } else {\n    Promise.resolve(value).then(_next, _throw);\n  }\n}\n\nfunction _asyncToGenerator(fn) {\n  return function () {\n    var self = this,\n        args = arguments;\n    return new Promise(function (resolve, reject) {\n      var gen = fn.apply(self, args);\n\n      function _next(value) {\n        asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n      }\n\n      function _throw(err) {\n        asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n      }\n\n      _next(undefined);\n    });\n  };\n}\n\nmodule.exports = _asyncToGenerator;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/asyncToGenerator.js?");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+module.exports = _asyncToGenerator;
 
 /***/ }),
 
@@ -136,7 +193,13 @@ eval("function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg)
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/classCallCheck.js?");
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
 
 /***/ }),
 
@@ -147,7 +210,39 @@ eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instan
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ \"./node_modules/@babel/runtime/helpers/setPrototypeOf.js\");\n\nfunction isNativeReflectConstruct() {\n  if (typeof Reflect === \"undefined\" || !Reflect.construct) return false;\n  if (Reflect.construct.sham) return false;\n  if (typeof Proxy === \"function\") return true;\n\n  try {\n    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));\n    return true;\n  } catch (e) {\n    return false;\n  }\n}\n\nfunction _construct(Parent, args, Class) {\n  if (isNativeReflectConstruct()) {\n    module.exports = _construct = Reflect.construct;\n  } else {\n    module.exports = _construct = function _construct(Parent, args, Class) {\n      var a = [null];\n      a.push.apply(a, args);\n      var Constructor = Function.bind.apply(Parent, a);\n      var instance = new Constructor();\n      if (Class) setPrototypeOf(instance, Class.prototype);\n      return instance;\n    };\n  }\n\n  return _construct.apply(null, arguments);\n}\n\nmodule.exports = _construct;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/construct.js?");
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _construct(Parent, args, Class) {
+  if (isNativeReflectConstruct()) {
+    module.exports = _construct = Reflect.construct;
+  } else {
+    module.exports = _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) setPrototypeOf(instance, Class.prototype);
+      return instance;
+    };
+  }
+
+  return _construct.apply(null, arguments);
+}
+
+module.exports = _construct;
 
 /***/ }),
 
@@ -158,7 +253,23 @@ eval("var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ \"./node_
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _defineProperties(target, props) {\n  for (var i = 0; i < props.length; i++) {\n    var descriptor = props[i];\n    descriptor.enumerable = descriptor.enumerable || false;\n    descriptor.configurable = true;\n    if (\"value\" in descriptor) descriptor.writable = true;\n    Object.defineProperty(target, descriptor.key, descriptor);\n  }\n}\n\nfunction _createClass(Constructor, protoProps, staticProps) {\n  if (protoProps) _defineProperties(Constructor.prototype, protoProps);\n  if (staticProps) _defineProperties(Constructor, staticProps);\n  return Constructor;\n}\n\nmodule.exports = _createClass;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/createClass.js?");
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
 
 /***/ }),
 
@@ -169,7 +280,52 @@ eval("function _defineProperties(target, props) {\n  for (var i = 0; i < props.l
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _defineProperty(obj, key, value) {\n  if (key in obj) {\n    Object.defineProperty(obj, key, {\n      value: value,\n      enumerable: true,\n      configurable: true,\n      writable: true\n    });\n  } else {\n    obj[key] = value;\n  }\n\n  return obj;\n}\n\nmodule.exports = _defineProperty;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/defineProperty.js?");
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/extends.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _extends; });
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
 
 /***/ }),
 
@@ -180,7 +336,25 @@ eval("function _defineProperty(obj, key, value) {\n  if (key in obj) {\n    Obje
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _extends() {\n  module.exports = _extends = Object.assign || function (target) {\n    for (var i = 1; i < arguments.length; i++) {\n      var source = arguments[i];\n\n      for (var key in source) {\n        if (Object.prototype.hasOwnProperty.call(source, key)) {\n          target[key] = source[key];\n        }\n      }\n    }\n\n    return target;\n  };\n\n  return _extends.apply(this, arguments);\n}\n\nmodule.exports = _extends;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/extends.js?");
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
 
 /***/ }),
 
@@ -191,7 +365,14 @@ eval("function _extends() {\n  module.exports = _extends = Object.assign || func
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _getPrototypeOf(o) {\n  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {\n    return o.__proto__ || Object.getPrototypeOf(o);\n  };\n  return _getPrototypeOf(o);\n}\n\nmodule.exports = _getPrototypeOf;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/getPrototypeOf.js?");
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
 
 /***/ }),
 
@@ -202,7 +383,24 @@ eval("function _getPrototypeOf(o) {\n  module.exports = _getPrototypeOf = Object
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ \"./node_modules/@babel/runtime/helpers/setPrototypeOf.js\");\n\nfunction _inherits(subClass, superClass) {\n  if (typeof superClass !== \"function\" && superClass !== null) {\n    throw new TypeError(\"Super expression must either be null or a function\");\n  }\n\n  subClass.prototype = Object.create(superClass && superClass.prototype, {\n    constructor: {\n      value: subClass,\n      writable: true,\n      configurable: true\n    }\n  });\n  if (superClass) setPrototypeOf(subClass, superClass);\n}\n\nmodule.exports = _inherits;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/inherits.js?");
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+module.exports = _inherits;
 
 /***/ }),
 
@@ -213,7 +411,13 @@ eval("var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ \"./node_
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _interopRequireDefault(obj) {\n  return obj && obj.__esModule ? obj : {\n    \"default\": obj\n  };\n}\n\nmodule.exports = _interopRequireDefault;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/interopRequireDefault.js?");
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+
+module.exports = _interopRequireDefault;
 
 /***/ }),
 
@@ -224,7 +428,32 @@ eval("function _interopRequireDefault(obj) {\n  return obj && obj.__esModule ? o
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _interopRequireWildcard(obj) {\n  if (obj && obj.__esModule) {\n    return obj;\n  } else {\n    var newObj = {};\n\n    if (obj != null) {\n      for (var key in obj) {\n        if (Object.prototype.hasOwnProperty.call(obj, key)) {\n          var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};\n\n          if (desc.get || desc.set) {\n            Object.defineProperty(newObj, key, desc);\n          } else {\n            newObj[key] = obj[key];\n          }\n        }\n      }\n    }\n\n    newObj[\"default\"] = obj;\n    return newObj;\n  }\n}\n\nmodule.exports = _interopRequireWildcard;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/interopRequireWildcard.js?");
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};
+
+    if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
+
+          if (desc.get || desc.set) {
+            Object.defineProperty(newObj, key, desc);
+          } else {
+            newObj[key] = obj[key];
+          }
+        }
+      }
+    }
+
+    newObj["default"] = obj;
+    return newObj;
+  }
+}
+
+module.exports = _interopRequireWildcard;
 
 /***/ }),
 
@@ -235,7 +464,11 @@ eval("function _interopRequireWildcard(obj) {\n  if (obj && obj.__esModule) {\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _iterableToArray(iter) {\n  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === \"[object Arguments]\") return Array.from(iter);\n}\n\nmodule.exports = _iterableToArray;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/iterableToArray.js?");
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
 
 /***/ }),
 
@@ -246,7 +479,11 @@ eval("function _iterableToArray(iter) {\n  if (Symbol.iterator in Object(iter) |
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _nonIterableSpread() {\n  throw new TypeError(\"Invalid attempt to spread non-iterable instance\");\n}\n\nmodule.exports = _nonIterableSpread;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/nonIterableSpread.js?");
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
 
 /***/ }),
 
@@ -257,7 +494,28 @@ eval("function _nonIterableSpread() {\n  throw new TypeError(\"Invalid attempt t
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var defineProperty = __webpack_require__(/*! ./defineProperty */ \"./node_modules/@babel/runtime/helpers/defineProperty.js\");\n\nfunction _objectSpread(target) {\n  for (var i = 1; i < arguments.length; i++) {\n    var source = arguments[i] != null ? arguments[i] : {};\n    var ownKeys = Object.keys(source);\n\n    if (typeof Object.getOwnPropertySymbols === 'function') {\n      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {\n        return Object.getOwnPropertyDescriptor(source, sym).enumerable;\n      }));\n    }\n\n    ownKeys.forEach(function (key) {\n      defineProperty(target, key, source[key]);\n    });\n  }\n\n  return target;\n}\n\nmodule.exports = _objectSpread;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/objectSpread.js?");
+var defineProperty = __webpack_require__(/*! ./defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
 
 /***/ }),
 
@@ -268,7 +526,28 @@ eval("var defineProperty = __webpack_require__(/*! ./defineProperty */ \"./node_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var objectWithoutPropertiesLoose = __webpack_require__(/*! ./objectWithoutPropertiesLoose */ \"./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js\");\n\nfunction _objectWithoutProperties(source, excluded) {\n  if (source == null) return {};\n  var target = objectWithoutPropertiesLoose(source, excluded);\n  var key, i;\n\n  if (Object.getOwnPropertySymbols) {\n    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);\n\n    for (i = 0; i < sourceSymbolKeys.length; i++) {\n      key = sourceSymbolKeys[i];\n      if (excluded.indexOf(key) >= 0) continue;\n      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;\n      target[key] = source[key];\n    }\n  }\n\n  return target;\n}\n\nmodule.exports = _objectWithoutProperties;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/objectWithoutProperties.js?");
+var objectWithoutPropertiesLoose = __webpack_require__(/*! ./objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js");
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties;
 
 /***/ }),
 
@@ -279,7 +558,22 @@ eval("var objectWithoutPropertiesLoose = __webpack_require__(/*! ./objectWithout
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _objectWithoutPropertiesLoose(source, excluded) {\n  if (source == null) return {};\n  var target = {};\n  var sourceKeys = Object.keys(source);\n  var key, i;\n\n  for (i = 0; i < sourceKeys.length; i++) {\n    key = sourceKeys[i];\n    if (excluded.indexOf(key) >= 0) continue;\n    target[key] = source[key];\n  }\n\n  return target;\n}\n\nmodule.exports = _objectWithoutPropertiesLoose;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js?");
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose;
 
 /***/ }),
 
@@ -290,7 +584,19 @@ eval("function _objectWithoutPropertiesLoose(source, excluded) {\n  if (source =
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var _typeof = __webpack_require__(/*! ../helpers/typeof */ \"./node_modules/@babel/runtime/helpers/typeof.js\");\n\nvar assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized */ \"./node_modules/@babel/runtime/helpers/assertThisInitialized.js\");\n\nfunction _possibleConstructorReturn(self, call) {\n  if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) {\n    return call;\n  }\n\n  return assertThisInitialized(self);\n}\n\nmodule.exports = _possibleConstructorReturn;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js?");
+var _typeof = __webpack_require__(/*! ../helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
 
 /***/ }),
 
@@ -301,7 +607,16 @@ eval("var _typeof = __webpack_require__(/*! ../helpers/typeof */ \"./node_module
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _setPrototypeOf(o, p) {\n  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {\n    o.__proto__ = p;\n    return o;\n  };\n\n  return _setPrototypeOf(o, p);\n}\n\nmodule.exports = _setPrototypeOf;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/setPrototypeOf.js?");
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
 
 /***/ }),
 
@@ -312,7 +627,17 @@ eval("function _setPrototypeOf(o, p) {\n  module.exports = _setPrototypeOf = Obj
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ \"./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js\");\n\nvar iterableToArray = __webpack_require__(/*! ./iterableToArray */ \"./node_modules/@babel/runtime/helpers/iterableToArray.js\");\n\nvar nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ \"./node_modules/@babel/runtime/helpers/nonIterableSpread.js\");\n\nfunction _toConsumableArray(arr) {\n  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();\n}\n\nmodule.exports = _toConsumableArray;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/toConsumableArray.js?");
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
 
 /***/ }),
 
@@ -323,7 +648,23 @@ eval("var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ \".
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _typeof2(obj) { if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof2(obj); }\n\nfunction _typeof(obj) {\n  if (typeof Symbol === \"function\" && _typeof2(Symbol.iterator) === \"symbol\") {\n    module.exports = _typeof = function _typeof(obj) {\n      return _typeof2(obj);\n    };\n  } else {\n    module.exports = _typeof = function _typeof(obj) {\n      return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : _typeof2(obj);\n    };\n  }\n\n  return _typeof(obj);\n}\n\nmodule.exports = _typeof;\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/helpers/typeof.js?");
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
 
 /***/ }),
 
@@ -334,7 +675,8 @@ eval("function _typeof2(obj) { if (typeof Symbol === \"function\" && typeof Symb
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! regenerator-runtime */ \"./node_modules/regenerator-runtime/runtime.js\");\n\n\n//# sourceURL=webpack://Maka/./node_modules/@babel/runtime/regenerator/index.js?");
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
 
 /***/ }),
 
@@ -346,7 +688,43 @@ eval("module.exports = __webpack_require__(/*! regenerator-runtime */ \"./node_m
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.loadApp = loadApp;\nexports.clearAppState = clearAppState;\nexports.loadPlugin = loadPlugin;\n\nfunction loadApp(fullName, prevFullName) {\n  return {\n    type: '@@loadApp',\n    payload: {\n      fullName: fullName,\n      prevFullName: prevFullName\n    }\n  };\n}\n\nfunction clearAppState(fullName) {\n  return {\n    type: '@@clearAppState',\n    payload: {\n      fullName: fullName\n    }\n  };\n}\n\nfunction loadPlugin(fullName, prevFullName) {\n  return {\n    type: '@@loadPlugin',\n    payload: {\n      fullName: fullName,\n      prevFullName: prevFullName\n    }\n  };\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/action.js?");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.loadApp = loadApp;
+exports.clearAppState = clearAppState;
+exports.loadPlugin = loadPlugin;
+
+function loadApp(fullName, prevFullName) {
+  return {
+    type: '@@loadApp',
+    payload: {
+      fullName: fullName,
+      prevFullName: prevFullName
+    }
+  };
+}
+
+function clearAppState(fullName) {
+  return {
+    type: '@@clearAppState',
+    payload: {
+      fullName: fullName
+    }
+  };
+}
+
+function loadPlugin(fullName, prevFullName) {
+  return {
+    type: '@@loadPlugin',
+    payload: {
+      fullName: fullName,
+      prevFullName: prevFullName
+    }
+  };
+}
 
 /***/ }),
 
@@ -358,7 +736,61 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ \"./node_modules/@babel/runtime/helpers/defineProperty.js\"));\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/app-loader/lib/config.js\"));\n\nvar _utils = __webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\");\n\nvar globalObj = (0, _utils.getGlobal)();\n\nvar appFactory = function appFactory() {\n  var _this = this;\n\n  (0, _classCallCheck2.default)(this, appFactory);\n  (0, _defineProperty2.default)(this, \"registerApp\", function (name, app) {\n    if (_this.apps[name]) {\n      console.log(\"Already registered this app\\uFF0Cname: \".concat(name, \",please ignore\"));\n      return;\n    }\n\n    _this.apps[name] = app;\n  });\n  (0, _defineProperty2.default)(this, \"registerApps\", function (apps) {\n    Object.assign(_this.apps, apps);\n  });\n  (0, _defineProperty2.default)(this, \"existsApp\", function (name) {\n    name = name.replace(/(\\.js)|(\\.min\\.js)/, '');\n    return !!_this.apps[name];\n  });\n  (0, _defineProperty2.default)(this, \"getApp\", function (name) {\n    name = name.replace(/(\\.js)|(\\.min\\.js)/, '');\n    return _this.apps[name];\n  });\n  (0, _defineProperty2.default)(this, \"getApps\", function () {\n    return _this.apps;\n  });\n  (0, _defineProperty2.default)(this, \"removeApp\", function (name) {\n    delete _this.apps[name];\n  });\n  this.apps = {};\n  globalObj.__maka_apps__ = this.apps;\n};\n\nvar appFactoryInstance = new appFactory();\nvar _default = appFactoryInstance;\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/appFactory.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
+
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+
+var globalObj = (0, _utils.getGlobal)();
+
+var appFactory = function appFactory() {
+  var _this = this;
+
+  (0, _classCallCheck2.default)(this, appFactory);
+  (0, _defineProperty2.default)(this, "registerApp", function (name, app) {
+    if (_this.apps[name]) {
+      console.log("Already registered this app\uFF0Cname: ".concat(name, ",please ignore"));
+      return;
+    }
+
+    _this.apps[name] = app;
+  });
+  (0, _defineProperty2.default)(this, "registerApps", function (apps) {
+    Object.assign(_this.apps, apps);
+  });
+  (0, _defineProperty2.default)(this, "existsApp", function (name) {
+    name = name.replace(/(\.js)|(\.min\.js)/, '');
+    return !!_this.apps[name];
+  });
+  (0, _defineProperty2.default)(this, "getApp", function (name) {
+    name = name.replace(/(\.js)|(\.min\.js)/, '');
+    return _this.apps[name];
+  });
+  (0, _defineProperty2.default)(this, "getApps", function () {
+    return _this.apps;
+  });
+  (0, _defineProperty2.default)(this, "removeApp", function (name) {
+    delete _this.apps[name];
+  });
+  this.apps = {};
+  globalObj.__maka_apps__ = this.apps;
+};
+
+var appFactoryInstance = new appFactory();
+var _default = appFactoryInstance;
+exports.default = _default;
 
 /***/ }),
 
@@ -370,7 +802,145 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ \"./node_modules/@babel/runtime/helpers/interopRequireWildcard.js\");\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ \"./node_modules/@babel/runtime/helpers/objectSpread.js\"));\n\nvar _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ \"./node_modules/@babel/runtime/helpers/extends.js\"));\n\nvar _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ \"./node_modules/@babel/runtime/helpers/objectWithoutProperties.js\"));\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\"));\n\nvar _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ \"./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js\"));\n\nvar _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ \"./node_modules/@babel/runtime/helpers/getPrototypeOf.js\"));\n\nvar _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ \"./node_modules/@babel/runtime/helpers/inherits.js\"));\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"react\"));\n\nvar _immutable = __webpack_require__(/*! immutable */ \"immutable\");\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nvar _redux = __webpack_require__(/*! redux */ \"redux\");\n\nvar actions = _interopRequireWildcard(__webpack_require__(/*! ./action */ \"./node_modules/@makajs/app-loader/lib/action.js\"));\n\nvar _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ \"prop-types\"));\n\nvar _pluginFactory = _interopRequireDefault(__webpack_require__(/*! ./pluginFactory */ \"./node_modules/@makajs/app-loader/lib/pluginFactory.js\"));\n\nvar _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ \"./node_modules/@makajs/app-loader/lib/parseName.js\"));\n\nvar AppLoader =\n/*#__PURE__*/\nfunction (_React$Component) {\n  (0, _inherits2.default)(AppLoader, _React$Component);\n\n  function AppLoader(props, context) {\n    (0, _classCallCheck2.default)(this, AppLoader);\n    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(AppLoader).call(this, props, context));\n  }\n\n  (0, _createClass2.default)(AppLoader, [{\n    key: \"componentDidMount\",\n    value: function componentDidMount() {\n      var _this$props = this.props,\n          fullName = _this$props.name,\n          payload = _this$props.payload;\n\n      if (!payload.get('@@require')) {\n        this.props.loadApp(fullName);\n      }\n    }\n  }, {\n    key: \"componentWillReceiveProps\",\n    value: function componentWillReceiveProps(nextProps) {\n      var fullName = nextProps.name,\n          payload = nextProps.payload;\n      var req = payload.get('@@require');\n\n      if (!req) {\n        this.props.loadApp(fullName, this.props.name);\n      } else if (this.props.name != nextProps.name) {\n        this.props.clearAppState(this.props.name);\n      } else {\n        var cachePlugins = req.get('plugins').toJS();\n        var parsedName = (0, _parseName.default)(fullName);\n        var plugins = _pluginFactory.default.getPluginNames(parsedName.name) || [];\n\n        if (JSON.stringify(cachePlugins.sort()) !== JSON.stringify(plugins.sort())) {\n          this.props.loadPlugin(fullName, this.props.name);\n        }\n      }\n    }\n  }, {\n    key: \"shouldComponentUpdate\",\n    value: function shouldComponentUpdate(nextProps, nextState) {\n      return true;\n    }\n  }, {\n    key: \"componentWillUnmount\",\n    value: function componentWillUnmount() {\n      var _this$props2 = this.props,\n          fullName = _this$props2.name,\n          payload = _this$props2.payload;\n      this.props.clearAppState(fullName);\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      var _this$props3 = this.props,\n          fullName = _this$props3.name,\n          payload = _this$props3.payload,\n          other = (0, _objectWithoutProperties2.default)(_this$props3, [\"name\", \"payload\"]),\n          ReduxConnector = payload.getIn(['@@require', 'container']);\n\n      if (ReduxConnector) {\n        return _react.default.createElement(ReduxConnector, (0, _extends2.default)({\n          store: this.context.store\n        }, other, {\n          payload: payload,\n          key: fullName\n        }));\n      } else {\n        return null;\n      }\n    }\n  }]);\n  return AppLoader;\n}(_react.default.Component);\n\nAppLoader.contextTypes = {\n  store: _propTypes.default.object\n};\n\nvar _default = (0, _reactRedux.connect)(function (state, props) {\n  var payload = state.get(props.name);\n  return {\n    payload: payload || (0, _immutable.Map)()\n  };\n}, function (dispatch) {\n  return (0, _objectSpread2.default)({}, (0, _redux.bindActionCreators)(actions, dispatch));\n}, null, {\n  //withRef: true,\n  pure: true\n})(AppLoader);\n\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/appLoader.js?");
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _immutable = __webpack_require__(/*! immutable */ "immutable");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "react-redux");
+
+var _redux = __webpack_require__(/*! redux */ "redux");
+
+var actions = _interopRequireWildcard(__webpack_require__(/*! ./action */ "./node_modules/@makajs/app-loader/lib/action.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "prop-types"));
+
+var _pluginFactory = _interopRequireDefault(__webpack_require__(/*! ./pluginFactory */ "./node_modules/@makajs/app-loader/lib/pluginFactory.js"));
+
+var _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ "./node_modules/@makajs/app-loader/lib/parseName.js"));
+
+var AppLoader =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2.default)(AppLoader, _React$Component);
+
+  function AppLoader(props, context) {
+    (0, _classCallCheck2.default)(this, AppLoader);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(AppLoader).call(this, props, context));
+  }
+
+  (0, _createClass2.default)(AppLoader, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this$props = this.props,
+          fullName = _this$props.name,
+          payload = _this$props.payload;
+
+      if (!payload.get('@@require')) {
+        this.props.loadApp(fullName);
+      }
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var fullName = nextProps.name,
+          payload = nextProps.payload;
+      var req = payload.get('@@require');
+
+      if (!req) {
+        this.props.loadApp(fullName, this.props.name);
+      } else if (this.props.name != nextProps.name) {
+        this.props.clearAppState(this.props.name);
+      } else {
+        var cachePlugins = req.get('plugins').toJS();
+        var parsedName = (0, _parseName.default)(fullName);
+        var plugins = _pluginFactory.default.getPluginNames(parsedName.name) || [];
+
+        if (JSON.stringify(cachePlugins.sort()) !== JSON.stringify(plugins.sort())) {
+          this.props.loadPlugin(fullName, this.props.name);
+        }
+      }
+    }
+  }, {
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return true;
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      var _this$props2 = this.props,
+          fullName = _this$props2.name,
+          payload = _this$props2.payload;
+      this.props.clearAppState(fullName);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props3 = this.props,
+          fullName = _this$props3.name,
+          payload = _this$props3.payload,
+          other = (0, _objectWithoutProperties2.default)(_this$props3, ["name", "payload"]),
+          ReduxConnector = payload.getIn(['@@require', 'container']);
+
+      if (ReduxConnector) {
+        return _react.default.createElement(ReduxConnector, (0, _extends2.default)({
+          store: this.context.store
+        }, other, {
+          payload: payload,
+          key: fullName
+        }));
+      } else {
+        return null;
+      }
+    }
+  }]);
+  return AppLoader;
+}(_react.default.Component);
+
+AppLoader.contextTypes = {
+  store: _propTypes.default.object
+};
+
+var _default = (0, _reactRedux.connect)(function (state, props) {
+  var payload = state.get(props.name);
+  return {
+    payload: payload || (0, _immutable.Map)()
+  };
+}, function (dispatch) {
+  return (0, _objectSpread2.default)({}, (0, _redux.bindActionCreators)(actions, dispatch));
+}, null, {
+  //withRef: true,
+  pure: true
+})(AppLoader);
+
+exports.default = _default;
 
 /***/ }),
 
@@ -382,7 +952,276 @@ eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/h
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ \"./node_modules/@babel/runtime/regenerator/index.js\"));\n\nvar _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ \"./node_modules/@babel/runtime/helpers/toConsumableArray.js\"));\n\nvar _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ \"./node_modules/@babel/runtime/helpers/objectSpread.js\"));\n\nvar _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"./node_modules/@babel/runtime/helpers/asyncToGenerator.js\"));\n\nvar _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ \"./node_modules/@makajs/app-loader/lib/parseName.js\"));\n\nvar _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ \"./node_modules/@makajs/app-loader/lib/appFactory.js\"));\n\nvar _loadApp = _interopRequireDefault(__webpack_require__(/*! ./loadApp */ \"./node_modules/@makajs/app-loader/lib/loadApp.js\"));\n\nvar _pluginFactory = _interopRequireDefault(__webpack_require__(/*! ./pluginFactory */ \"./node_modules/@makajs/app-loader/lib/pluginFactory.js\"));\n\nvar _default = function _default(actionInjections, reducerInjections) {\n  return function (store) {\n    return function (next) {\n      return (\n        /*#__PURE__*/\n        function () {\n          var _ref = (0, _asyncToGenerator2.default)(\n          /*#__PURE__*/\n          _regenerator.default.mark(function _callee(action) {\n            var getState, dispatch, _action, fullName, name, query, params, actionCreator, args, reducer, reduce, getStateByApp, injections, realAction, _fullName, prevFullName, parsedName, appInfo, plugins, pluginApps, i, plugin, _fullName2, _prevFullName, _parsedName, _appInfo, _plugins, _pluginApps;\n\n            return _regenerator.default.wrap(function _callee$(_context) {\n              while (1) {\n                switch (_context.prev = _context.next) {\n                  case 0:\n                    getState = store.getState, dispatch = store.dispatch;\n\n                    if (!(typeof action === 'function')) {\n                      _context.next = 10;\n                      break;\n                    }\n\n                    _action = action(), fullName = _action.fullName, name = _action.name, query = _action.query, params = _action.params, actionCreator = _action.actionCreator, args = _action.args, reducer = _action.reducer;\n\n                    reduce = function reduce(type) {\n                      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {\n                        args[_key - 1] = arguments[_key];\n                      }\n\n                      dispatch({\n                        type: '@@reduce',\n                        payload: {\n                          fullName: fullName,\n                          name: name,\n                          query: query,\n                          type: type,\n                          reducer: reducer,\n                          payload: args,\n                          reducerInjections: reducerInjections\n                        }\n                      });\n                    };\n\n                    getStateByApp = function getStateByApp() {\n                      return getState().get(fullName);\n                    };\n\n                    injections = (0, _objectSpread2.default)({\n                      currentApp: {\n                        fullName: fullName,\n                        name: name,\n                        query: query,\n                        params: params\n                      },\n                      store: store,\n                      reduce: reduce,\n                      getState: getStateByApp\n                    }, actionInjections);\n                    realAction = actionCreator.apply(void 0, (0, _toConsumableArray2.default)(args).concat([injections]));\n\n                    if (typeof realAction === 'function') {\n                      realAction(injections);\n                    }\n\n                    _context.next = 70;\n                    break;\n\n                  case 10:\n                    if (!(action.type && action.type == '@@loadApp')) {\n                      _context.next = 43;\n                      break;\n                    }\n\n                    _context.prev = 11;\n                    _fullName = action.payload.fullName, prevFullName = action.payload.prevFullName, parsedName = (0, _parseName.default)(_fullName);\n                    appInfo = _appFactory.default.getApp(parsedName.name);\n\n                    if (appInfo) {\n                      _context.next = 17;\n                      break;\n                    }\n\n                    _context.next = 17;\n                    return (0, _loadApp.default)(parsedName.name);\n\n                  case 17:\n                    appInfo = _appFactory.default.getApp(parsedName.name);\n\n                    if (appInfo) {\n                      _context.next = 21;\n                      break;\n                    }\n\n                    console.error(\"Loading app \".concat(parsedName.name, \" failed\"));\n                    return _context.abrupt(\"return\", next(action));\n\n                  case 21:\n                    /*plugin*/\n                    plugins = _pluginFactory.default.getPluginNames(parsedName.name);\n                    pluginApps = [];\n\n                    if (!(plugins && plugins.length > 0)) {\n                      _context.next = 34;\n                      break;\n                    }\n\n                    i = 0;\n\n                  case 25:\n                    if (!(i < plugins.length)) {\n                      _context.next = 34;\n                      break;\n                    }\n\n                    plugin = plugins[i];\n\n                    if (_appFactory.default.getApp(plugin)) {\n                      _context.next = 30;\n                      break;\n                    }\n\n                    _context.next = 30;\n                    return (0, _loadApp.default)(plugin);\n\n                  case 30:\n                    pluginApps.push(_appFactory.default.getApp(plugin));\n\n                  case 31:\n                    i++;\n                    _context.next = 25;\n                    break;\n\n                  case 34:\n                    return _context.abrupt(\"return\", next({\n                      type: '@@loadAppReal',\n                      payload: {\n                        fullName: _fullName,\n                        appInfo: appInfo,\n                        prevFullName: prevFullName,\n                        action: appInfo.action,\n                        pluginApps: pluginApps,\n                        plugins: plugins\n                      }\n                    }));\n\n                  case 37:\n                    _context.prev = 37;\n                    _context.t0 = _context[\"catch\"](11);\n                    console.error(_context.t0);\n                    return _context.abrupt(\"return\", next(action));\n\n                  case 41:\n                    _context.next = 70;\n                    break;\n\n                  case 43:\n                    if (!(action.type && action.type == '@@loadPlugin')) {\n                      _context.next = 69;\n                      break;\n                    }\n\n                    _context.prev = 44;\n                    _fullName2 = action.payload.fullName, _prevFullName = action.payload.prevFullName, _parsedName = (0, _parseName.default)(_fullName2);\n                    _appInfo = _appFactory.default.getApp(_parsedName.name);\n                    /*plugin*/\n\n                    _plugins = _pluginFactory.default.getPluginNames(_parsedName.name);\n                    _pluginApps = [];\n\n                    if (!(_plugins && _plugins.length > 0)) {\n                      _context.next = 60;\n                      break;\n                    }\n\n                    i = 0;\n\n                  case 51:\n                    if (!(i < _plugins.length)) {\n                      _context.next = 60;\n                      break;\n                    }\n\n                    plugin = _plugins[i];\n\n                    if (_appFactory.default.getApp(plugin)) {\n                      _context.next = 56;\n                      break;\n                    }\n\n                    _context.next = 56;\n                    return (0, _loadApp.default)(plugin);\n\n                  case 56:\n                    _pluginApps.push(_appFactory.default.getApp(plugin));\n\n                  case 57:\n                    i++;\n                    _context.next = 51;\n                    break;\n\n                  case 60:\n                    return _context.abrupt(\"return\", next({\n                      type: '@@loadAppReal',\n                      payload: {\n                        fullName: _fullName2,\n                        appInfo: _appInfo,\n                        prevFullName: _prevFullName,\n                        action: _appInfo.action,\n                        pluginApps: _pluginApps,\n                        plugins: _plugins,\n                        forceLoad: true\n                      }\n                    }));\n\n                  case 63:\n                    _context.prev = 63;\n                    _context.t1 = _context[\"catch\"](44);\n                    console.error(_context.t1);\n                    return _context.abrupt(\"return\", next(action));\n\n                  case 67:\n                    _context.next = 70;\n                    break;\n\n                  case 69:\n                    return _context.abrupt(\"return\", next(action));\n\n                  case 70:\n                  case \"end\":\n                    return _context.stop();\n                }\n              }\n            }, _callee, this, [[11, 37], [44, 63]]);\n          }));\n\n          return function (_x) {\n            return _ref.apply(this, arguments);\n          };\n        }()\n      );\n    };\n  };\n};\n\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/appMiddleware.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js"));
+
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+
+var _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ "./node_modules/@makajs/app-loader/lib/parseName.js"));
+
+var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ "./node_modules/@makajs/app-loader/lib/appFactory.js"));
+
+var _loadApp = _interopRequireDefault(__webpack_require__(/*! ./loadApp */ "./node_modules/@makajs/app-loader/lib/loadApp.js"));
+
+var _pluginFactory = _interopRequireDefault(__webpack_require__(/*! ./pluginFactory */ "./node_modules/@makajs/app-loader/lib/pluginFactory.js"));
+
+var _default = function _default(actionInjections, reducerInjections) {
+  return function (store) {
+    return function (next) {
+      return (
+        /*#__PURE__*/
+        function () {
+          var _ref = (0, _asyncToGenerator2.default)(
+          /*#__PURE__*/
+          _regenerator.default.mark(function _callee(action) {
+            var getState, dispatch, _action, fullName, name, query, params, actionCreator, args, reducer, reduce, getStateByApp, injections, realAction, _fullName, prevFullName, parsedName, appInfo, plugins, pluginApps, i, plugin, _fullName2, _prevFullName, _parsedName, _appInfo, _plugins, _pluginApps;
+
+            return _regenerator.default.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    getState = store.getState, dispatch = store.dispatch;
+
+                    if (!(typeof action === 'function')) {
+                      _context.next = 10;
+                      break;
+                    }
+
+                    _action = action(), fullName = _action.fullName, name = _action.name, query = _action.query, params = _action.params, actionCreator = _action.actionCreator, args = _action.args, reducer = _action.reducer;
+
+                    reduce = function reduce(type) {
+                      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                        args[_key - 1] = arguments[_key];
+                      }
+
+                      dispatch({
+                        type: '@@reduce',
+                        payload: {
+                          fullName: fullName,
+                          name: name,
+                          query: query,
+                          type: type,
+                          reducer: reducer,
+                          payload: args,
+                          reducerInjections: reducerInjections
+                        }
+                      });
+                    };
+
+                    getStateByApp = function getStateByApp() {
+                      return getState().get(fullName);
+                    };
+
+                    injections = (0, _objectSpread2.default)({
+                      currentApp: {
+                        fullName: fullName,
+                        name: name,
+                        query: query,
+                        params: params
+                      },
+                      store: store,
+                      reduce: reduce,
+                      getState: getStateByApp
+                    }, actionInjections);
+                    realAction = actionCreator.apply(void 0, (0, _toConsumableArray2.default)(args).concat([injections]));
+
+                    if (typeof realAction === 'function') {
+                      realAction(injections);
+                    }
+
+                    _context.next = 70;
+                    break;
+
+                  case 10:
+                    if (!(action.type && action.type == '@@loadApp')) {
+                      _context.next = 43;
+                      break;
+                    }
+
+                    _context.prev = 11;
+                    _fullName = action.payload.fullName, prevFullName = action.payload.prevFullName, parsedName = (0, _parseName.default)(_fullName);
+                    appInfo = _appFactory.default.getApp(parsedName.name);
+
+                    if (appInfo) {
+                      _context.next = 17;
+                      break;
+                    }
+
+                    _context.next = 17;
+                    return (0, _loadApp.default)(parsedName.name);
+
+                  case 17:
+                    appInfo = _appFactory.default.getApp(parsedName.name);
+
+                    if (appInfo) {
+                      _context.next = 21;
+                      break;
+                    }
+
+                    console.error("Loading app ".concat(parsedName.name, " failed"));
+                    return _context.abrupt("return", next(action));
+
+                  case 21:
+                    /*plugin*/
+                    plugins = _pluginFactory.default.getPluginNames(parsedName.name);
+                    pluginApps = [];
+
+                    if (!(plugins && plugins.length > 0)) {
+                      _context.next = 34;
+                      break;
+                    }
+
+                    i = 0;
+
+                  case 25:
+                    if (!(i < plugins.length)) {
+                      _context.next = 34;
+                      break;
+                    }
+
+                    plugin = plugins[i];
+
+                    if (_appFactory.default.getApp(plugin)) {
+                      _context.next = 30;
+                      break;
+                    }
+
+                    _context.next = 30;
+                    return (0, _loadApp.default)(plugin);
+
+                  case 30:
+                    pluginApps.push(_appFactory.default.getApp(plugin));
+
+                  case 31:
+                    i++;
+                    _context.next = 25;
+                    break;
+
+                  case 34:
+                    return _context.abrupt("return", next({
+                      type: '@@loadAppReal',
+                      payload: {
+                        fullName: _fullName,
+                        appInfo: appInfo,
+                        prevFullName: prevFullName,
+                        action: appInfo.action,
+                        pluginApps: pluginApps,
+                        plugins: plugins
+                      }
+                    }));
+
+                  case 37:
+                    _context.prev = 37;
+                    _context.t0 = _context["catch"](11);
+                    console.error(_context.t0);
+                    return _context.abrupt("return", next(action));
+
+                  case 41:
+                    _context.next = 70;
+                    break;
+
+                  case 43:
+                    if (!(action.type && action.type == '@@loadPlugin')) {
+                      _context.next = 69;
+                      break;
+                    }
+
+                    _context.prev = 44;
+                    _fullName2 = action.payload.fullName, _prevFullName = action.payload.prevFullName, _parsedName = (0, _parseName.default)(_fullName2);
+                    _appInfo = _appFactory.default.getApp(_parsedName.name);
+                    /*plugin*/
+
+                    _plugins = _pluginFactory.default.getPluginNames(_parsedName.name);
+                    _pluginApps = [];
+
+                    if (!(_plugins && _plugins.length > 0)) {
+                      _context.next = 60;
+                      break;
+                    }
+
+                    i = 0;
+
+                  case 51:
+                    if (!(i < _plugins.length)) {
+                      _context.next = 60;
+                      break;
+                    }
+
+                    plugin = _plugins[i];
+
+                    if (_appFactory.default.getApp(plugin)) {
+                      _context.next = 56;
+                      break;
+                    }
+
+                    _context.next = 56;
+                    return (0, _loadApp.default)(plugin);
+
+                  case 56:
+                    _pluginApps.push(_appFactory.default.getApp(plugin));
+
+                  case 57:
+                    i++;
+                    _context.next = 51;
+                    break;
+
+                  case 60:
+                    return _context.abrupt("return", next({
+                      type: '@@loadAppReal',
+                      payload: {
+                        fullName: _fullName2,
+                        appInfo: _appInfo,
+                        prevFullName: _prevFullName,
+                        action: _appInfo.action,
+                        pluginApps: _pluginApps,
+                        plugins: _plugins,
+                        forceLoad: true
+                      }
+                    }));
+
+                  case 63:
+                    _context.prev = 63;
+                    _context.t1 = _context["catch"](44);
+                    console.error(_context.t1);
+                    return _context.abrupt("return", next(action));
+
+                  case 67:
+                    _context.next = 70;
+                    break;
+
+                  case 69:
+                    return _context.abrupt("return", next(action));
+
+                  case 70:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, null, [[11, 37], [44, 63]]);
+          }));
+
+          return function (_x) {
+            return _ref.apply(this, arguments);
+          };
+        }()
+      );
+    };
+  };
+};
+
+exports.default = _default;
 
 /***/ }),
 
@@ -394,7 +1233,30 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar _options = {};\n\nfunction config(options) {\n  Object.assign(_options, options);\n}\n\nconfig.current = _options;\nvar _default = config;\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/config.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _options = {};
+
+function config(options) {
+  if (options.appUrls && _options.appUrls) {
+    options.appUrls = (0, _objectSpread2.default)({}, _options.appUrls, options.appUrls);
+  }
+
+  Object.assign(_options, options);
+}
+
+config.current = _options;
+var _default = config;
+exports.default = _default;
 
 /***/ }),
 
@@ -406,7 +1268,22 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = createReduxConnector;\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"react\"));\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nfunction createReduxConnector(WrappedComponent, mapStateToProps, mapDispatchToProps, mergeProps, options) {\n  return (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps, mergeProps, options)(WrappedComponent);\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/createReduxConnector.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createReduxConnector;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "react-redux");
+
+function createReduxConnector(WrappedComponent, mapStateToProps, mapDispatchToProps, mergeProps, options) {
+  return (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps, mergeProps, options)(WrappedComponent);
+}
 
 /***/ }),
 
@@ -418,7 +1295,139 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nObject.defineProperty(exports, \"AppLoader\", {\n  enumerable: true,\n  get: function get() {\n    return _appLoader.default;\n  }\n});\nObject.defineProperty(exports, \"appMiddleware\", {\n  enumerable: true,\n  get: function get() {\n    return _appMiddleware.default;\n  }\n});\nObject.defineProperty(exports, \"reducer\", {\n  enumerable: true,\n  get: function get() {\n    return _reducer.default;\n  }\n});\nObject.defineProperty(exports, \"config\", {\n  enumerable: true,\n  get: function get() {\n    return _config.default;\n  }\n});\nObject.defineProperty(exports, \"start\", {\n  enumerable: true,\n  get: function get() {\n    return _start.default;\n  }\n});\nObject.defineProperty(exports, \"appFactory\", {\n  enumerable: true,\n  get: function get() {\n    return _appFactory.default;\n  }\n});\nObject.defineProperty(exports, \"pluginFactory\", {\n  enumerable: true,\n  get: function get() {\n    return _pluginFactory.default;\n  }\n});\nObject.defineProperty(exports, \"init\", {\n  enumerable: true,\n  get: function get() {\n    return _init.default;\n  }\n});\nObject.defineProperty(exports, \"loadApp\", {\n  enumerable: true,\n  get: function get() {\n    return _loadApp.default;\n  }\n});\nObject.defineProperty(exports, \"removeApp\", {\n  enumerable: true,\n  get: function get() {\n    return _removeApp.default;\n  }\n});\nexports.removePlugin = exports.existsPlugin = exports.getPluginsByAppName = exports.registerPlugin = exports.existsApp = exports.getApps = exports.getApp = exports.registerApps = exports.registerApp = exports.default = void 0;\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"react\"));\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"react-dom\");\n\nvar _appLoader = _interopRequireDefault(__webpack_require__(/*! ./appLoader */ \"./node_modules/@makajs/app-loader/lib/appLoader.js\"));\n\nvar _appMiddleware = _interopRequireDefault(__webpack_require__(/*! ./appMiddleware */ \"./node_modules/@makajs/app-loader/lib/appMiddleware.js\"));\n\nvar _reducer = _interopRequireDefault(__webpack_require__(/*! ./reducer */ \"./node_modules/@makajs/app-loader/lib/reducer.js\"));\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/app-loader/lib/config.js\"));\n\nvar _start = _interopRequireDefault(__webpack_require__(/*! ./start */ \"./node_modules/@makajs/app-loader/lib/start.js\"));\n\nvar _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ \"./node_modules/@makajs/app-loader/lib/appFactory.js\"));\n\nvar _pluginFactory = _interopRequireDefault(__webpack_require__(/*! ./pluginFactory */ \"./node_modules/@makajs/app-loader/lib/pluginFactory.js\"));\n\nvar _init = _interopRequireDefault(__webpack_require__(/*! ./init */ \"./node_modules/@makajs/app-loader/lib/init.js\"));\n\nvar _loadApp = _interopRequireDefault(__webpack_require__(/*! ./loadApp */ \"./node_modules/@makajs/app-loader/lib/loadApp.js\"));\n\nvar _removeApp = _interopRequireDefault(__webpack_require__(/*! ./removeApp */ \"./node_modules/@makajs/app-loader/lib/removeApp.js\"));\n\nvar registerApp = _appFactory.default.registerApp,\n    registerApps = _appFactory.default.registerApps,\n    getApp = _appFactory.default.getApp,\n    getApps = _appFactory.default.getApps,\n    existsApp = _appFactory.default.existsApp;\nexports.existsApp = existsApp;\nexports.getApps = getApps;\nexports.getApp = getApp;\nexports.registerApps = registerApps;\nexports.registerApp = registerApp;\nvar registerPlugin = _pluginFactory.default.registerPlugin,\n    getPluginsByAppName = _pluginFactory.default.getPluginsByAppName,\n    existsPlugin = _pluginFactory.default.existsPlugin,\n    removePlugin = _pluginFactory.default.removePlugin;\nexports.removePlugin = removePlugin;\nexports.existsPlugin = existsPlugin;\nexports.getPluginsByAppName = getPluginsByAppName;\nexports.registerPlugin = registerPlugin;\nvar _default = {\n  AppLoader: _appLoader.default,\n  appMiddleware: _appMiddleware.default,\n  reducer: _reducer.default,\n  config: _config.default,\n  init: _init.default,\n  start: _start.default,\n  registerApp: registerApp,\n  registerApps: registerApps,\n  getApp: getApp,\n  getApps: getApps,\n  existsApp: existsApp,\n  loadApp: _loadApp.default,\n  removeApp: _removeApp.default,\n  appFactory: _appFactory.default,\n  registerPlugin: registerPlugin,\n  getPluginsByAppName: getPluginsByAppName,\n  existsPlugin: existsPlugin,\n  removePlugin: removePlugin,\n  pluginFactory: _pluginFactory.default\n};\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/index.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "AppLoader", {
+  enumerable: true,
+  get: function get() {
+    return _appLoader.default;
+  }
+});
+Object.defineProperty(exports, "appMiddleware", {
+  enumerable: true,
+  get: function get() {
+    return _appMiddleware.default;
+  }
+});
+Object.defineProperty(exports, "reducer", {
+  enumerable: true,
+  get: function get() {
+    return _reducer.default;
+  }
+});
+Object.defineProperty(exports, "config", {
+  enumerable: true,
+  get: function get() {
+    return _config.default;
+  }
+});
+Object.defineProperty(exports, "start", {
+  enumerable: true,
+  get: function get() {
+    return _start.default;
+  }
+});
+Object.defineProperty(exports, "appFactory", {
+  enumerable: true,
+  get: function get() {
+    return _appFactory.default;
+  }
+});
+Object.defineProperty(exports, "pluginFactory", {
+  enumerable: true,
+  get: function get() {
+    return _pluginFactory.default;
+  }
+});
+Object.defineProperty(exports, "init", {
+  enumerable: true,
+  get: function get() {
+    return _init.default;
+  }
+});
+Object.defineProperty(exports, "loadApp", {
+  enumerable: true,
+  get: function get() {
+    return _loadApp.default;
+  }
+});
+Object.defineProperty(exports, "removeApp", {
+  enumerable: true,
+  get: function get() {
+    return _removeApp.default;
+  }
+});
+exports.removePlugin = exports.existsPlugin = exports.getPluginsByAppName = exports.registerPlugin = exports.existsApp = exports.getApps = exports.getApp = exports.registerApps = exports.registerApp = exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _reactDom = __webpack_require__(/*! react-dom */ "react-dom");
+
+var _appLoader = _interopRequireDefault(__webpack_require__(/*! ./appLoader */ "./node_modules/@makajs/app-loader/lib/appLoader.js"));
+
+var _appMiddleware = _interopRequireDefault(__webpack_require__(/*! ./appMiddleware */ "./node_modules/@makajs/app-loader/lib/appMiddleware.js"));
+
+var _reducer = _interopRequireDefault(__webpack_require__(/*! ./reducer */ "./node_modules/@makajs/app-loader/lib/reducer.js"));
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
+
+var _start = _interopRequireDefault(__webpack_require__(/*! ./start */ "./node_modules/@makajs/app-loader/lib/start.js"));
+
+var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ "./node_modules/@makajs/app-loader/lib/appFactory.js"));
+
+var _pluginFactory = _interopRequireDefault(__webpack_require__(/*! ./pluginFactory */ "./node_modules/@makajs/app-loader/lib/pluginFactory.js"));
+
+var _init = _interopRequireDefault(__webpack_require__(/*! ./init */ "./node_modules/@makajs/app-loader/lib/init.js"));
+
+var _loadApp = _interopRequireDefault(__webpack_require__(/*! ./loadApp */ "./node_modules/@makajs/app-loader/lib/loadApp.js"));
+
+var _removeApp = _interopRequireDefault(__webpack_require__(/*! ./removeApp */ "./node_modules/@makajs/app-loader/lib/removeApp.js"));
+
+var registerApp = _appFactory.default.registerApp,
+    registerApps = _appFactory.default.registerApps,
+    getApp = _appFactory.default.getApp,
+    getApps = _appFactory.default.getApps,
+    existsApp = _appFactory.default.existsApp;
+exports.existsApp = existsApp;
+exports.getApps = getApps;
+exports.getApp = getApp;
+exports.registerApps = registerApps;
+exports.registerApp = registerApp;
+var registerPlugin = _pluginFactory.default.registerPlugin,
+    getPluginsByAppName = _pluginFactory.default.getPluginsByAppName,
+    existsPlugin = _pluginFactory.default.existsPlugin,
+    removePlugin = _pluginFactory.default.removePlugin;
+exports.removePlugin = removePlugin;
+exports.existsPlugin = existsPlugin;
+exports.getPluginsByAppName = getPluginsByAppName;
+exports.registerPlugin = registerPlugin;
+var _default = {
+  AppLoader: _appLoader.default,
+  appMiddleware: _appMiddleware.default,
+  reducer: _reducer.default,
+  config: _config.default,
+  init: _init.default,
+  start: _start.default,
+  registerApp: registerApp,
+  registerApps: registerApps,
+  getApp: getApp,
+  getApps: getApps,
+  existsApp: existsApp,
+  loadApp: _loadApp.default,
+  removeApp: _removeApp.default,
+  appFactory: _appFactory.default,
+  registerPlugin: registerPlugin,
+  getPluginsByAppName: getPluginsByAppName,
+  existsPlugin: existsPlugin,
+  removePlugin: removePlugin,
+  pluginFactory: _pluginFactory.default
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -430,7 +1439,52 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = init;\n\nvar _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ \"./node_modules/@babel/runtime/helpers/toConsumableArray.js\"));\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"react\"));\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"react-dom\");\n\nvar _redux = __webpack_require__(/*! redux */ \"redux\");\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nvar _immutable = __webpack_require__(/*! immutable */ \"immutable\");\n\nvar _appLoader = _interopRequireDefault(__webpack_require__(/*! ./appLoader */ \"./node_modules/@makajs/app-loader/lib/appLoader.js\"));\n\nvar _appMiddleware = _interopRequireDefault(__webpack_require__(/*! ./appMiddleware */ \"./node_modules/@makajs/app-loader/lib/appMiddleware.js\"));\n\nvar _reducer = _interopRequireDefault(__webpack_require__(/*! ./reducer */ \"./node_modules/@makajs/app-loader/lib/reducer.js\"));\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/app-loader/lib/config.js\"));\n\nvar _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ \"./node_modules/@makajs/app-loader/lib/appFactory.js\"));\n\nvar _utils = __webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\");\n\nvar globalObj = (0, _utils.getGlobal)();\n\nfunction init(option) {\n  (0, _config.default)(option);\n  var currentConfig = _config.default.current;\n  if (currentConfig.apps) _appFactory.default.registerApps(currentConfig.apps);\n  var mw = [(0, _appMiddleware.default)(currentConfig.actionInjections || {}, currentConfig.reducerInjections || {})];\n  if (currentConfig.middlewares) mw = mw.concat(currentConfig.middlewares);\n  var store = (0, _redux.createStore)(_reducer.default, (0, _immutable.Map)(), _redux.applyMiddleware.apply(void 0, (0, _toConsumableArray2.default)(mw)));\n  globalObj.reduxStore = store;\n  globalObj.__maka_store__ = store;\n  return store;\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/init.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = init;
+
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _reactDom = __webpack_require__(/*! react-dom */ "react-dom");
+
+var _redux = __webpack_require__(/*! redux */ "redux");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "react-redux");
+
+var _immutable = __webpack_require__(/*! immutable */ "immutable");
+
+var _appLoader = _interopRequireDefault(__webpack_require__(/*! ./appLoader */ "./node_modules/@makajs/app-loader/lib/appLoader.js"));
+
+var _appMiddleware = _interopRequireDefault(__webpack_require__(/*! ./appMiddleware */ "./node_modules/@makajs/app-loader/lib/appMiddleware.js"));
+
+var _reducer = _interopRequireDefault(__webpack_require__(/*! ./reducer */ "./node_modules/@makajs/app-loader/lib/reducer.js"));
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
+
+var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ "./node_modules/@makajs/app-loader/lib/appFactory.js"));
+
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+
+var globalObj = (0, _utils.getGlobal)();
+
+function init(option) {
+  (0, _config.default)(option);
+  var currentConfig = _config.default.current;
+  if (currentConfig.apps) _appFactory.default.registerApps(currentConfig.apps);
+  var mw = [(0, _appMiddleware.default)(currentConfig.actionInjections || {}, currentConfig.reducerInjections || {})];
+  if (currentConfig.middlewares) mw = mw.concat(currentConfig.middlewares);
+  var store = (0, _redux.createStore)(_reducer.default, (0, _immutable.Map)(), _redux.applyMiddleware.apply(void 0, (0, _toConsumableArray2.default)(mw)));
+  globalObj.reduxStore = store;
+  globalObj.__maka_store__ = store;
+  return store;
+}
 
 /***/ }),
 
@@ -442,7 +1496,243 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = loadApp;\n\nvar _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ \"./node_modules/@babel/runtime/regenerator/index.js\"));\n\nvar _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ \"./node_modules/@babel/runtime/helpers/defineProperty.js\"));\n\nvar _objectSpread3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ \"./node_modules/@babel/runtime/helpers/objectSpread.js\"));\n\nvar _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"./node_modules/@babel/runtime/helpers/asyncToGenerator.js\"));\n\nvar _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/typeof.js\"));\n\nvar _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ \"./node_modules/@makajs/app-loader/lib/appFactory.js\"));\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/app-loader/lib/config.js\"));\n\nvar _utils = __webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\");\n\nvar globalObj = (0, _utils.getGlobal)();\nvar isProduction = false;\n\nfunction fixName(name) {\n  if (name.indexOf('@') == -1) return name;\n  return name.replace('@', '').replace('makajs', 'maka').replace('/', '-');\n}\n\nfunction getUrl(app) {\n  if (typeof app == 'string') {\n    app = fixName(app);\n    if (_config.default.current.appUrls) return _config.default.current.appUrls[app] || app;else return app;\n  } else if ((0, _typeof2.default)(app) == 'object') {\n    if (app.url) return app.url;else return getUrl(app.name);\n  }\n}\n\nfunction findNameByUrl(url) {\n  var ret = '';\n\n  if (_config.default.current.appUrls) {\n    var hit = Object.keys(_config.default.current.appUrls).find(function (k) {\n      return _config.default.current.appUrls[k].url == url;\n    });\n    ret = hit;\n  }\n\n  if (ret) return ret;\n  return url.substr(url.lastIndexOf('/') + 1).replace(/(\\.js)|(\\.min\\.js)/, '');\n}\n\nfunction loadApp(app) {\n  var urls = []; //options = {}\n\n  /*\n  if (typeof app == 'string') {\n      urls.push(getUrl(app))\n      urls.push(fixName(app))\n  }\n  else if (app instanceof Array) {\n      app.forEach(o => {\n          if (typeof o == 'string') {\n              urls.push(fixName(o))\n          }\n          else if (typeof o == 'object' && o.url) {\n              urls.push(o.url)\n              if (o.name && o.option)\n                  options[fixName(o.name)] = o.option\n          }\n      })\n  }\n  else if (typeof app == 'object' && app.url) {\n      urls.push(o.url)\n      if (app.name && app.option)\n          options[fixName(app.name)] = app.option\n  }\n  */\n\n  if (app instanceof Array) {\n    app.forEach(function (o) {\n      return urls.push(getUrl(o));\n    });\n  } else {\n    urls.push(getUrl(app));\n  }\n\n  if (!globalObj.require || urls.length == 0) return Promise.resolve(null);\n  return new Promise(function (resolve, reject) {\n    /*\n    urls.forEach(url => {\n        var appName = url.substr(url.lastIndexOf('/') + 1).replace(/(\\.js)|(\\.min\\.js)/, ''),\n            pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : ''\n        globalObj[`__pub_${appName}__`] = pub\n    })\n    */\n    urls = urls.filter(function (url) {\n      /*\n      var appName = url.substr(url.lastIndexOf('/') + 1).replace(/(\\.js)|(\\.min\\.js)/, ''),\n          pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : ''\n      */\n      var appName = findNameByUrl(url);\n      var pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : '';\n      globalObj[\"__pub_\".concat(appName, \"__\")] = pub;\n      return !_appFactory.default.existsApp(appName);\n    });\n    urls = urls.map(function (u) {\n      if (u.indexOf('http') != -1) return u;\n      return isProduction ? u + '.min' : u;\n    }); //const appCount = urls.length\n    //urls = urls.concat(urls.map(u => `css!${u}`))\n\n    if (!urls || urls.length == 0) {\n      resolve(null);\n      return;\n    }\n\n    globalObj.require(urls,\n    /*#__PURE__*/\n    (0, _asyncToGenerator2.default)(\n    /*#__PURE__*/\n    _regenerator.default.mark(function _callee2() {\n      var _len,\n          args,\n          _key,\n          apps,\n          appNames,\n          i,\n          cssUrls,\n          _args2 = arguments;\n\n      return _regenerator.default.wrap(function _callee2$(_context2) {\n        while (1) {\n          switch (_context2.prev = _context2.next) {\n            case 0:\n              for (_len = _args2.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n                args[_key] = _args2[_key];\n              }\n\n              apps = args.reduce(function (prev, curr) {\n                return curr ? (0, _objectSpread3.default)({}, prev, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;\n              }, {});\n              appNames = Object.keys(apps);\n              i = 0;\n\n            case 4:\n              if (!(i < appNames.length)) {\n                _context2.next = 12;\n                break;\n              }\n\n              _context2.t0 = apps[appNames[i]].beforeRegister;\n\n              if (!_context2.t0) {\n                _context2.next = 9;\n                break;\n              }\n\n              _context2.next = 9;\n              return apps[appNames[i]].beforeRegister();\n\n            case 9:\n              i++;\n              _context2.next = 4;\n              break;\n\n            case 12:\n              _appFactory.default.registerApps(apps);\n              /*\n              appConfig(appFactory.getApps(), {\n                  \"*\": { apps: { ...appFactory.getApps() } },\n                  ...options\n              })\n              */\n\n\n              cssUrls = urls.map(function (u) {\n                if (u.indexOf('http') != -1) return \"css!\".concat(u.replace('.js', '.css'));\n                return \"css!\".concat(u);\n              });\n\n              globalObj.require(cssUrls,\n              /*#__PURE__*/\n              (0, _asyncToGenerator2.default)(\n              /*#__PURE__*/\n              _regenerator.default.mark(function _callee() {\n                var i;\n                return _regenerator.default.wrap(function _callee$(_context) {\n                  while (1) {\n                    switch (_context.prev = _context.next) {\n                      case 0:\n                        i = 0;\n\n                      case 1:\n                        if (!(i < appNames.length)) {\n                          _context.next = 9;\n                          break;\n                        }\n\n                        _context.t0 = apps[appNames[i]].afterRegister;\n\n                        if (!_context.t0) {\n                          _context.next = 6;\n                          break;\n                        }\n\n                        _context.next = 6;\n                        return apps[appNames[i]].afterRegister();\n\n                      case 6:\n                        i++;\n                        _context.next = 1;\n                        break;\n\n                      case 9:\n                        resolve(null);\n\n                      case 10:\n                      case \"end\":\n                        return _context.stop();\n                    }\n                  }\n                }, _callee, this);\n              })));\n\n            case 15:\n            case \"end\":\n              return _context2.stop();\n          }\n        }\n      }, _callee2, this);\n    })));\n  });\n}\n/*\nconst appConfig = (apps, options) => {\n    Object.keys(options).forEach(key => {\n        const reg = new RegExp(`^${key == '*' ? '.*' : key}$`)\n        Object.keys(apps).forEach(appName => {\n            if (appName != 'config') {\n                if (reg.test(appName)) {\n                    apps[appName].config && apps[appName].config(options[key])\n                }\n            }\n        })\n    })\n}\n*/\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/loadApp.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = loadApp;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _objectSpread3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
+var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ "./node_modules/@makajs/app-loader/lib/appFactory.js"));
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
+
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+
+var globalObj = (0, _utils.getGlobal)();
+var isProduction = false;
+
+function fixName(name) {
+  return name;
+}
+
+function fixUrl(url) {
+  var baseUrl = _config.default.current.baseUrl;
+
+  if (!baseUrl) {
+    var scripts = document.querySelectorAll("script");
+
+    for (var i = 0; i < scripts.length; i++) {
+      if (scripts[i].src && (scripts[i].src.indexOf('maka-main.js') != -1 || scripts[i].src.indexOf('maka-main.min.js') != -1)) {
+        if (scripts[i].src.indexOf('http') != -1) {
+          baseUrl = scripts[i].src.substr(0, scripts[i].src.lastIndexOf('/') + 1);
+
+          if (baseUrl.indexOf('/core/v') != -1) {
+            baseUrl = baseUrl.substr(0, baseUrl.indexOf('/core/v') + 1);
+          }
+        }
+      }
+    }
+  }
+
+  if (baseUrl && url.indexOf('http') == -1) {
+    url = baseUrl + url;
+  }
+
+  if (url.indexOf('http') != -1 && url.indexOf('.js') == -1) {
+    url = url + (isProduction ? '.min.js' : '.js');
+  }
+
+  return url;
+}
+
+function getUrl(app) {
+  if (typeof app == 'string') {
+    app = fixName(app);
+
+    if (_config.default.current.appUrls) {
+      var ret = _config.default.current.appUrls[app];
+
+      if (ret) {
+        return fixUrl(ret);
+      } else {
+        return fixUrl(app);
+      }
+    } else return fixUrl(app);
+  } else if ((0, _typeof2.default)(app) == 'object') {
+    if (app.url) return fixUrl(app.url);else return getUrl(app.name);
+  }
+}
+
+function findNameByUrl(url) {
+  var ret = '';
+
+  if (_config.default.current.appUrls) {
+    var hit = Object.keys(_config.default.current.appUrls).find(function (k) {
+      return _config.default.current.appUrls[k].url == url;
+    });
+    ret = hit;
+  }
+
+  if (ret) return ret;
+  return url.substr(url.lastIndexOf('/') + 1).replace(/(\.js)|(\.min\.js)/, '');
+}
+
+function loadApp(app) {
+  var urls = [];
+
+  if (app instanceof Array) {
+    app.forEach(function (o) {
+      return urls.push(getUrl(o));
+    });
+  } else {
+    urls.push(getUrl(app));
+  }
+
+  if (!globalObj.require || urls.length == 0) return Promise.resolve(null);
+  return new Promise(function (resolve, reject) {
+    urls = urls.filter(function (url) {
+      var appName = findNameByUrl(url);
+      var pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : '';
+      globalObj["__pub_".concat(appName, "__")] = pub;
+      return !_appFactory.default.existsApp(appName);
+    });
+    urls = urls.map(function (u) {
+      if (u.indexOf('http') != -1) return u;
+      if (u.indexOf('.js') != -1) return u.replace('.js', '');
+      return isProduction ? u + '.min' : u;
+    });
+
+    if (!urls || urls.length == 0) {
+      resolve(null);
+      return;
+    }
+
+    globalObj.require(urls,
+    /*#__PURE__*/
+    (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee() {
+      var _len,
+          args,
+          _key,
+          apps,
+          appNames,
+          i,
+          cssUrls,
+          _args = arguments;
+
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              for (_len = _args.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = _args[_key];
+              }
+
+              apps = args.reduce(function (prev, curr) {
+                return curr ? (0, _objectSpread3.default)({}, prev, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;
+              }, {});
+
+              if (apps) {
+                _context.next = 6;
+                break;
+              }
+
+              console.error('Not application found at ' + urls.join(';'));
+              _context.next = 19;
+              break;
+
+            case 6:
+              appNames = Object.keys(apps);
+              i = 0;
+
+            case 8:
+              if (!(i < appNames.length)) {
+                _context.next = 16;
+                break;
+              }
+
+              _context.t0 = apps[appNames[i]].beforeRegister;
+
+              if (!_context.t0) {
+                _context.next = 13;
+                break;
+              }
+
+              _context.next = 13;
+              return apps[appNames[i]].beforeRegister();
+
+            case 13:
+              i++;
+              _context.next = 8;
+              break;
+
+            case 16:
+              _appFactory.default.registerApps(apps);
+              /*
+              appConfig(appFactory.getApps(), {
+                  "*": { apps: { ...appFactory.getApps() } },
+                  ...options
+              })
+              */
+
+
+              cssUrls = urls.map(function (u) {
+                if (u.indexOf('http') != -1) return "css!".concat(u.replace('.js', '.css'));
+                return "css!".concat(u);
+              });
+              /*
+              globalObj.require(cssUrls, async (...args) => {
+                  for (var i = 0; i < appNames.length; i++) {
+                      apps[appNames[i]].afterRegister && (await apps[appNames[i]].afterRegister())
+                  }
+                  resolve(null)
+              })*/
+
+              globalObj.require(cssUrls, function () {
+                resolve(null);
+
+                for (var i = 0; i < appNames.length; i++) {
+                  apps[appNames[i]].afterRegister && apps[appNames[i]].afterRegister();
+                }
+              });
+
+            case 19:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })));
+  });
+}
+/*
+const appConfig = (apps, options) => {
+    Object.keys(options).forEach(key => {
+        const reg = new RegExp(`^${key == '*' ? '.*' : key}$`)
+        Object.keys(apps).forEach(appName => {
+            if (appName != 'config') {
+                if (reg.test(appName)) {
+                    apps[appName].config && apps[appName].config(options[key])
+                }
+            }
+        })
+    })
+}
+*/
 
 /***/ }),
 
@@ -454,7 +1744,44 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = parseName;\n\nfunction parseName(fullName) {\n  var segments = fullName.split('?'),\n      name = segments[0],\n      query = segments[1] || '',\n      params = parseQuery(query);\n  return {\n    fullName: fullName,\n    name: name,\n    query: query,\n    params: params\n  };\n}\n\nfunction parseQuery(query) {\n  var ret = {},\n      seg = query.replace(/^\\?/, '').split('&'),\n      len = seg.length,\n      i = 0,\n      s;\n\n  for (; i < len; i++) {\n    if (!seg[i]) {\n      continue;\n    }\n\n    s = seg[i].split('=');\n    ret[s[0]] = decodeURIComponent(s[1]);\n  }\n\n  return ret;\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/parseName.js?");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = parseName;
+
+function parseName(fullName) {
+  var segments = fullName.split('?'),
+      name = segments[0],
+      query = segments[1] || '',
+      params = parseQuery(query);
+  return {
+    fullName: fullName,
+    name: name,
+    query: query,
+    params: params
+  };
+}
+
+function parseQuery(query) {
+  var ret = {},
+      seg = query.replace(/^\?/, '').split('&'),
+      len = seg.length,
+      i = 0,
+      s;
+
+  for (; i < len; i++) {
+    if (!seg[i]) {
+      continue;
+    }
+
+    s = seg[i].split('=');
+    ret[s[0]] = decodeURIComponent(s[1]);
+  }
+
+  return ret;
+}
 
 /***/ }),
 
@@ -466,7 +1793,82 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ \"./node_modules/@babel/runtime/helpers/defineProperty.js\"));\n\nvar _utils = __webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\");\n\nvar globalObj = (0, _utils.getGlobal)();\n\nvar pluginFactory = function pluginFactory() {\n  var _this = this;\n\n  (0, _classCallCheck2.default)(this, pluginFactory);\n  (0, _defineProperty2.default)(this, \"registerPlugin\", function (name, forApp) {\n    if (!name || !forApp) return;\n\n    if (_this.plugins.findIndex(function (o) {\n      return o.name == name;\n    }) != -1) {\n      console.log(\"Already registered this plugin\\uFF0Cname: \".concat(name, \",please ignore\"));\n      return;\n    }\n\n    var regExp;\n\n    if (/^\\/[^\\/]+\\//.test(forApp)) {\n      regExp = new RegExp(forApp);\n    }\n\n    _this.plugins.push({\n      name: name,\n      forApp: forApp,\n      regExp: regExp\n    });\n  });\n  (0, _defineProperty2.default)(this, \"removePlugin\", function (name) {\n    if (!name) return;\n\n    var index = _this.plugins.findIndex(function (o) {\n      return o.name == name;\n    });\n\n    if (index != -1) _this.plugins.splice(index, 1);\n  });\n  (0, _defineProperty2.default)(this, \"existsPlugin\", function (forApp) {\n    if (!forApp) return;\n    return _this.plugins.findIndex(function (o) {\n      return o.forApp === forApp || o.regExp && o.regExp.test(forApp);\n    }) != -1;\n  });\n  (0, _defineProperty2.default)(this, \"filter\", function (appName) {\n    if (!appName) return [];\n    return _this.plugins.filter(function (o) {\n      return o.forApp === appName || o.regExp && o.regExp.test(forApp);\n    });\n  });\n  (0, _defineProperty2.default)(this, \"getPluginNames\", function (appName) {\n    return _this.filter(appName).map(function (o) {\n      return o.name;\n    });\n  });\n  this.plugins = [];\n  globalObj.__maka_plugins__ = this.plugins;\n};\n\nvar pluginFactoryInstance = new pluginFactory();\nvar _default = pluginFactoryInstance;\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/pluginFactory.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+
+var globalObj = (0, _utils.getGlobal)();
+
+var pluginFactory = function pluginFactory() {
+  var _this = this;
+
+  (0, _classCallCheck2.default)(this, pluginFactory);
+  (0, _defineProperty2.default)(this, "registerPlugin", function (name, forApp) {
+    if (!name || !forApp) return;
+
+    if (_this.plugins.findIndex(function (o) {
+      return o.name == name;
+    }) != -1) {
+      console.log("Already registered this plugin\uFF0Cname: ".concat(name, ",please ignore"));
+      return;
+    }
+
+    var regExp;
+
+    if (/^\/[^\/]+\//.test(forApp)) {
+      regExp = new RegExp(forApp);
+    }
+
+    _this.plugins.push({
+      name: name,
+      forApp: forApp,
+      regExp: regExp
+    });
+  });
+  (0, _defineProperty2.default)(this, "removePlugin", function (name) {
+    if (!name) return;
+
+    var index = _this.plugins.findIndex(function (o) {
+      return o.name == name;
+    });
+
+    if (index != -1) _this.plugins.splice(index, 1);
+  });
+  (0, _defineProperty2.default)(this, "existsPlugin", function (forApp) {
+    if (!forApp) return;
+    return _this.plugins.findIndex(function (o) {
+      return o.forApp === forApp || o.regExp && o.regExp.test(forApp);
+    }) != -1;
+  });
+  (0, _defineProperty2.default)(this, "filter", function (appName) {
+    if (!appName) return [];
+    return _this.plugins.filter(function (o) {
+      return o.forApp === appName || o.regExp && o.regExp.test(forApp);
+    });
+  });
+  (0, _defineProperty2.default)(this, "getPluginNames", function (appName) {
+    return _this.filter(appName).map(function (o) {
+      return o.name;
+    });
+  });
+  this.plugins = [];
+  globalObj.__maka_plugins__ = this.plugins;
+};
+
+var pluginFactoryInstance = new pluginFactory();
+var _default = pluginFactoryInstance;
+exports.default = _default;
 
 /***/ }),
 
@@ -478,7 +1880,196 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = _default;\n\nvar _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ \"./node_modules/@babel/runtime/helpers/objectSpread.js\"));\n\nvar _immutable = __webpack_require__(/*! immutable */ \"immutable\");\n\nvar _wrapMapStateToProps = _interopRequireDefault(__webpack_require__(/*! ./wrapMapStateToProps */ \"./node_modules/@makajs/app-loader/lib/wrapMapStateToProps.js\"));\n\nvar _wrapMapDispatchToProps = _interopRequireDefault(__webpack_require__(/*! ./wrapMapDispatchToProps */ \"./node_modules/@makajs/app-loader/lib/wrapMapDispatchToProps.js\"));\n\nvar _createReduxConnector = _interopRequireDefault(__webpack_require__(/*! ./createReduxConnector */ \"./node_modules/@makajs/app-loader/lib/createReduxConnector.js\"));\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/app-loader/lib/config.js\"));\n\nvar _utils = __webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\");\n\nvar globalObj = (0, _utils.getGlobal)();\n\nfunction _default() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _immutable.Map)();\n\n  var _ref = arguments.length > 1 ? arguments[1] : undefined,\n      type = _ref.type,\n      payload = _ref.payload;\n\n  switch (type) {\n    case \"@@loadAppReal\":\n      return loadApp(state, payload);\n\n    case \"@@reduce\":\n      return reduce(state, payload);\n\n    case \"@@clearAppState\":\n      return clearAppState(state, payload);\n\n    default:\n      return state;\n  }\n}\n\nfunction loadApp(state, _ref2) {\n  var fullName = _ref2.fullName,\n      prevFullName = _ref2.prevFullName,\n      appInfo = _ref2.appInfo,\n      component = _ref2.component,\n      action = _ref2.action,\n      reducer = _ref2.reducer,\n      pluginApps = _ref2.pluginApps,\n      _ref2$plugins = _ref2.plugins,\n      plugins = _ref2$plugins === void 0 ? [] : _ref2$plugins,\n      _ref2$forceLoad = _ref2.forceLoad,\n      forceLoad = _ref2$forceLoad === void 0 ? false : _ref2$forceLoad;\n\n  if (!state.has(fullName) || forceLoad) {\n    if (forceLoad && JSON.stringify(state.getIn([fullName, '@@require', 'plugins']).toJS().sort()) === JSON.stringify(plugins.sort())) {\n      return state;\n    }\n\n    if (!forceLoad) state = state.set(fullName, (0, _immutable.Map)());else state = state.set(fullName, (0, _immutable.Map)({\n      prevData: state.getIn([fullName, 'data'])\n    }));\n    appInfo = (0, _objectSpread2.default)({}, appInfo);\n\n    if (appInfo && appInfo.view && typeof appInfo.view == 'function') {\n      component = _config.default.current.componentWrapper()(appInfo.view);\n    }\n\n    if (pluginApps && pluginApps.length > 0) {\n      for (var i = 0; i < pluginApps.length; i++) {\n        var plugin = pluginApps[i];\n        if (plugin.pluginApi && plugin.pluginApi.afterState) appInfo.state = plugin.pluginApi.afterState((0, _immutable.fromJS)(appInfo.state).toJS());\n        if (plugin.pluginApi && plugin.pluginApi.afterView) appInfo.view = plugin.pluginApi.afterView((0, _immutable.fromJS)(appInfo.view).toJS());\n      }\n    }\n\n    var actionInstance = typeof action == 'function' ? action({\n      appInfo: appInfo,\n      fullName: fullName,\n      plugins: plugins\n    }) : _config.default.current.defaultAction({\n      appInfo: appInfo,\n      fullName: fullName,\n      plugins: plugins\n    });\n    var actionInternal = actionInstance.getDirectFuns();\n\n    if (pluginApps && pluginApps.length > 0) {\n      pluginApps.forEach(function (plugin) {\n        if (plugin.pluginApi && plugin.pluginApi.afterAction) actionInternal = plugin.pluginApi.afterAction(actionInternal);\n      });\n      actionInstance = (0, _objectSpread2.default)({}, actionInstance, {\n        getDirectFuns: function getDirectFuns() {\n          return actionInternal;\n        }\n      });\n    }\n\n    var reducerInstance = typeof reducer == 'function' ? reducer({\n      appInfo: appInfo,\n      fullName: fullName\n    }) : _config.default.current.defaultReducer({\n      appInfo: appInfo,\n      fullName: fullName\n    });\n    var mapStateToProps = (0, _wrapMapStateToProps.default)(fullName);\n    var mapDispatchToProps = (0, _wrapMapDispatchToProps.default)(fullName, actionInstance, reducerInstance);\n    var container = (0, _createReduxConnector.default)(component || appInfo.viewDecorator && appInfo.viewDecorator()(_config.default.current.defaultComponent) || _config.default.current.defaultComponent, mapStateToProps, mapDispatchToProps, null, {\n      //withRef: true, \n      pure: true\n    });\n    state = state.setIn([fullName, '@@require'], (0, _immutable.Map)({\n      fullName: fullName,\n      appInfo: appInfo,\n      component: component,\n      action: actionInstance,\n      reducer: reducerInstance,\n      container: container,\n      mapStateToProps: mapStateToProps,\n      mapDispatchToProps: mapDispatchToProps,\n      plugins: (0, _immutable.fromJS)(plugins || [])\n    }));\n  }\n\n  if (prevFullName && prevFullName != fullName) {\n    state = clearAppState(state, {\n      fullName: prevFullName\n    });\n  }\n\n  return state;\n}\n\nfunction clearAppState(state, _ref3) {\n  var fullName = _ref3.fullName;\n  if (!state.has(fullName)) return state;\n  var ks = [];\n  state.get(fullName).mapKeys(function (k) {\n    if (k != '@@require') ks.push(k);\n    return k;\n  });\n  ks.forEach(function (k) {\n    if (k) state = state.update(fullName, function (x) {\n      return x.remove(k);\n    });\n  });\n  return state;\n}\n\nfunction reduce(state, _ref4) {\n  var reducer = _ref4.reducer,\n      type = _ref4.type,\n      payload = _ref4.payload,\n      fullName = _ref4.fullName,\n      injectFunsForReducer = _ref4.injectFunsForReducer;\n  var startDate = new Date();\n  var oldState = state.get(fullName);\n  var newState = reducer[type].apply(this, [oldState].concat(payload));\n\n  if (typeof newState === \"function\") {\n    newState = newState(injectFunsForReducer);\n  }\n\n  if (globalObj.__maka_record_action__ === true) {\n    globalObj.__maka_actions__ = globalObj.__maka_actions__ || [];\n    var endDate = new Date();\n\n    globalObj.__maka_actions__.unshift({\n      appFullName: fullName,\n      reduceMethod: type,\n      payload: payload,\n      oldState: oldState,\n      newState: newState,\n      startTime: startDate.getHours() + ':' + startDate.getMinutes() + ':' + startDate.getSeconds() + '.' + startDate.getMilliseconds(),\n      endTime: endDate.getHours() + ':' + endDate.getMinutes() + ':' + endDate.getSeconds() + '.' + endDate.getMilliseconds(),\n      elapsedTime: Math.abs(startDate.getTime() - endDate.getTime()) //(1000*60*60*24)\n\n    });\n  } else {\n    if (globalObj.__maka_actions__) globalObj.__maka_actions__ = undefined;\n  }\n\n  return state.set(fullName, newState);\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/reducer.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _immutable = __webpack_require__(/*! immutable */ "immutable");
+
+var _wrapMapStateToProps = _interopRequireDefault(__webpack_require__(/*! ./wrapMapStateToProps */ "./node_modules/@makajs/app-loader/lib/wrapMapStateToProps.js"));
+
+var _wrapMapDispatchToProps = _interopRequireDefault(__webpack_require__(/*! ./wrapMapDispatchToProps */ "./node_modules/@makajs/app-loader/lib/wrapMapDispatchToProps.js"));
+
+var _createReduxConnector = _interopRequireDefault(__webpack_require__(/*! ./createReduxConnector */ "./node_modules/@makajs/app-loader/lib/createReduxConnector.js"));
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
+
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+
+var globalObj = (0, _utils.getGlobal)();
+
+function _default() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _immutable.Map)();
+
+  var _ref = arguments.length > 1 ? arguments[1] : undefined,
+      type = _ref.type,
+      payload = _ref.payload;
+
+  switch (type) {
+    case "@@loadAppReal":
+      return loadApp(state, payload);
+
+    case "@@reduce":
+      return reduce(state, payload);
+
+    case "@@clearAppState":
+      return clearAppState(state, payload);
+
+    default:
+      return state;
+  }
+}
+
+function loadApp(state, _ref2) {
+  var fullName = _ref2.fullName,
+      prevFullName = _ref2.prevFullName,
+      appInfo = _ref2.appInfo,
+      component = _ref2.component,
+      action = _ref2.action,
+      reducer = _ref2.reducer,
+      pluginApps = _ref2.pluginApps,
+      _ref2$plugins = _ref2.plugins,
+      plugins = _ref2$plugins === void 0 ? [] : _ref2$plugins,
+      _ref2$forceLoad = _ref2.forceLoad,
+      forceLoad = _ref2$forceLoad === void 0 ? false : _ref2$forceLoad;
+
+  if (!state.has(fullName) || forceLoad) {
+    if (forceLoad && JSON.stringify(state.getIn([fullName, '@@require', 'plugins']).toJS().sort()) === JSON.stringify(plugins.sort())) {
+      return state;
+    }
+
+    if (!forceLoad) state = state.set(fullName, (0, _immutable.Map)());else state = state.set(fullName, (0, _immutable.Map)({
+      prevData: state.getIn([fullName, 'data'])
+    }));
+    appInfo = (0, _objectSpread2.default)({}, appInfo);
+
+    if (appInfo && appInfo.view && typeof appInfo.view == 'function') {
+      component = _config.default.current.componentWrapper()(appInfo.view);
+    }
+
+    if (pluginApps && pluginApps.length > 0) {
+      for (var i = 0; i < pluginApps.length; i++) {
+        var plugin = pluginApps[i];
+        if (plugin.pluginApi && plugin.pluginApi.afterState) appInfo.state = plugin.pluginApi.afterState((0, _immutable.fromJS)(appInfo.state).toJS());
+        if (plugin.pluginApi && plugin.pluginApi.afterView) appInfo.view = plugin.pluginApi.afterView((0, _immutable.fromJS)(appInfo.view).toJS());
+      }
+    }
+
+    var actionInstance = typeof action == 'function' ? action({
+      appInfo: appInfo,
+      fullName: fullName,
+      plugins: plugins
+    }) : _config.default.current.defaultAction({
+      appInfo: appInfo,
+      fullName: fullName,
+      plugins: plugins
+    });
+    var actionInternal = actionInstance.getDirectFuns();
+
+    if (pluginApps && pluginApps.length > 0) {
+      pluginApps.forEach(function (plugin) {
+        if (plugin.pluginApi && plugin.pluginApi.afterAction) actionInternal = plugin.pluginApi.afterAction(actionInternal);
+      });
+      actionInstance = (0, _objectSpread2.default)({}, actionInstance, {
+        getDirectFuns: function getDirectFuns() {
+          return actionInternal;
+        }
+      });
+    }
+
+    var reducerInstance = typeof reducer == 'function' ? reducer({
+      appInfo: appInfo,
+      fullName: fullName
+    }) : _config.default.current.defaultReducer({
+      appInfo: appInfo,
+      fullName: fullName
+    });
+    var mapStateToProps = (0, _wrapMapStateToProps.default)(fullName);
+    var mapDispatchToProps = (0, _wrapMapDispatchToProps.default)(fullName, actionInstance, reducerInstance);
+    var container = (0, _createReduxConnector.default)(component || appInfo.viewDecorator && appInfo.viewDecorator()(_config.default.current.defaultComponent) || _config.default.current.defaultComponent, mapStateToProps, mapDispatchToProps, null, {
+      //withRef: true, 
+      pure: true
+    });
+    state = state.setIn([fullName, '@@require'], (0, _immutable.Map)({
+      fullName: fullName,
+      appInfo: appInfo,
+      component: component,
+      action: actionInstance,
+      reducer: reducerInstance,
+      container: container,
+      mapStateToProps: mapStateToProps,
+      mapDispatchToProps: mapDispatchToProps,
+      plugins: (0, _immutable.fromJS)(plugins || [])
+    }));
+  }
+
+  if (prevFullName && prevFullName != fullName) {
+    state = clearAppState(state, {
+      fullName: prevFullName
+    });
+  }
+
+  return state;
+}
+
+function clearAppState(state, _ref3) {
+  var fullName = _ref3.fullName;
+  if (!state.has(fullName)) return state;
+  var ks = [];
+  state.get(fullName).mapKeys(function (k) {
+    if (k != '@@require') ks.push(k);
+    return k;
+  });
+  ks.forEach(function (k) {
+    if (k) state = state.update(fullName, function (x) {
+      return x.remove(k);
+    });
+  });
+  return state;
+}
+
+function reduce(state, _ref4) {
+  var reducer = _ref4.reducer,
+      type = _ref4.type,
+      payload = _ref4.payload,
+      fullName = _ref4.fullName,
+      injectFunsForReducer = _ref4.injectFunsForReducer;
+  var startDate = new Date();
+  var oldState = state.get(fullName);
+  var newState = reducer[type].apply(this, [oldState].concat(payload));
+
+  if (typeof newState === "function") {
+    newState = newState(injectFunsForReducer);
+  }
+
+  if (globalObj.__maka_record_action__ === true) {
+    globalObj.__maka_actions__ = globalObj.__maka_actions__ || [];
+    var endDate = new Date();
+
+    globalObj.__maka_actions__.unshift({
+      appFullName: fullName,
+      reduceMethod: type,
+      payload: payload,
+      oldState: oldState,
+      newState: newState,
+      startTime: startDate.getHours() + ':' + startDate.getMinutes() + ':' + startDate.getSeconds() + '.' + startDate.getMilliseconds(),
+      endTime: endDate.getHours() + ':' + endDate.getMinutes() + ':' + endDate.getSeconds() + '.' + endDate.getMilliseconds(),
+      elapsedTime: Math.abs(startDate.getTime() - endDate.getTime()) //(1000*60*60*24)
+
+    });
+  } else {
+    if (globalObj.__maka_actions__) globalObj.__maka_actions__ = undefined;
+  }
+
+  return state.set(fullName, newState);
+}
 
 /***/ }),
 
@@ -490,7 +2081,97 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = removeApp;\n\nvar _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ \"./node_modules/@makajs/app-loader/lib/appFactory.js\"));\n\nvar _utils = __webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\");\n\nvar globalObj = (0, _utils.getGlobal)();\nvar isProduction = false;\n\nfunction removeCss(href) {\n  var links = document.querySelectorAll(\"link\");\n\n  for (var i = 0; i < links.length; i++) {\n    var _href = links[i].href;\n\n    if (links[i] && links[i].href && (links[i].href.indexOf(\"/\" + href + '.css') != -1 || links[i].href.indexOf(\"/\" + href + '.min.css') != -1)) {\n      links[i].parentNode.removeChild(links[i]);\n    }\n  }\n}\n\nfunction removeInternal(app) {\n  removeCss(app);\n\n  _appFactory.default.removeApp(app);\n\n  if (isProduction) {\n    globalObj.require.undef(app + '.min');\n\n    globalObj.require.undef('css.min.js!' + app + '.min');\n  } else {\n    globalObj.require.undef(app);\n\n    globalObj.require.undef('css.js!' + app);\n  }\n}\n\nfunction removeApp(app) {\n  var obj = _appFactory.default.getApp(app);\n\n  if (obj.beforeRemove) {\n    obj.beforeRemove().then(function () {\n      removeInternal(app);\n    });\n  } else {\n    removeInternal(app);\n  }\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/removeApp.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = removeApp;
+
+var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ "./node_modules/@makajs/app-loader/lib/appFactory.js"));
+
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+
+var globalObj = (0, _utils.getGlobal)();
+var isProduction = false;
+
+function getCssRequireModule() {
+  var scripts = document.querySelectorAll("script");
+  var ret = '';
+
+  for (var i = 0; i < scripts.length; i++) {
+    if (scripts[i] && scripts[i]['src'] && (scripts[i]['src'].indexOf('css.min.js') != -1 || scripts[i]['src'].indexOf('css.js') != -1)) {
+      ret = scripts[i]['src'];
+    }
+  }
+
+  return ret;
+}
+
+function removeCss(href) {
+  var links = document.querySelectorAll("link");
+
+  for (var i = 0; i < links.length; i++) {
+    var _href = links[i].href;
+
+    if (links[i] && links[i].href && (links[i].href.indexOf("/" + href + '.css') != -1 || links[i].href.indexOf("/" + href + '.min.css') != -1)) {
+      links[i].parentNode.removeChild(links[i]);
+
+      if (isProduction) {
+        globalObj.require.undef(getCssRequireModule() + '!' + links[i].href.replace('.css', ''));
+      } else {
+        globalObj.require.undef(getCssRequireModule() + '!' + links[i].href.replace('.css', ''));
+      }
+    }
+  }
+}
+
+function removeJs(src) {
+  var scripts = document.querySelectorAll("script");
+
+  for (var i = 0; i < scripts.length; i++) {
+    if (scripts[i] && scripts[i]['src'] && (scripts[i]['src'].indexOf("/" + src + '.js') != -1 || scripts[i]['src'].indexOf("/" + src + '.min.js') != -1)) {
+      scripts[i].parentNode.removeChild(scripts[i]);
+
+      if (isProduction) {
+        globalObj.require.undef(scripts[i].src);
+      } else {
+        globalObj.require.undef(scripts[i].src);
+      }
+    }
+  }
+}
+
+function removeInternal(app) {
+  removeCss(app);
+
+  _appFactory.default.removeApp(app);
+
+  removeJs(app);
+  /*
+  if (isProduction) {
+      globalObj.require.undef(app + '.min')
+      globalObj.require.undef('css.min.js!' + app + '.min')
+  }
+  else {
+      globalObj.require.undef(app)
+      globalObj.require.undef('css.js!' + app)
+  }*/
+}
+
+function removeApp(app) {
+  var obj = _appFactory.default.getApp(app);
+
+  if (obj && obj.beforeRemove) {
+    obj.beforeRemove().then(function () {
+      removeInternal(app);
+    });
+  } else {
+    removeInternal(app);
+  }
+}
 
 /***/ }),
 
@@ -502,7 +2183,64 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = start;\n\nvar _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ \"./node_modules/@babel/runtime/helpers/toConsumableArray.js\"));\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"react\"));\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"react-dom\");\n\nvar _redux = __webpack_require__(/*! redux */ \"redux\");\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nvar _immutable = __webpack_require__(/*! immutable */ \"immutable\");\n\nvar _appLoader = _interopRequireDefault(__webpack_require__(/*! ./appLoader */ \"./node_modules/@makajs/app-loader/lib/appLoader.js\"));\n\nvar _appMiddleware = _interopRequireDefault(__webpack_require__(/*! ./appMiddleware */ \"./node_modules/@makajs/app-loader/lib/appMiddleware.js\"));\n\nvar _reducer = _interopRequireDefault(__webpack_require__(/*! ./reducer */ \"./node_modules/@makajs/app-loader/lib/reducer.js\"));\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/app-loader/lib/config.js\"));\n\nvar _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ \"./node_modules/@makajs/app-loader/lib/appFactory.js\"));\n\nvar _utils = __webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\");\n\nvar globalObj = (0, _utils.getGlobal)();\n\nfunction start() {\n  var currentConfig = _config.default.current;\n\n  _appFactory.default.registerApps(currentConfig.apps);\n\n  var mw = [(0, _appMiddleware.default)(currentConfig.actionInjections || {}, currentConfig.reducerInjections || {})];\n  if (currentConfig.middlewares) mw = mw.concat(currentConfig.middlewares);\n  var store = (0, _redux.createStore)(_reducer.default, (0, _immutable.Map)(), _redux.applyMiddleware.apply(void 0, (0, _toConsumableArray2.default)(mw)));\n  globalObj.reduxStore = store;\n  globalObj.__maka_store__ = store;\n\n  if (!currentConfig.rootWrapper) {\n    currentConfig.rootWrapper = function (child) {\n      return child;\n    };\n  }\n\n  (0, _reactDom.render)(currentConfig.rootWrapper(_react.default.createElement(_reactRedux.Provider, {\n    store: store\n  }, _react.default.createElement(_appLoader.default, {\n    name: currentConfig.startAppName\n  }))), document.getElementById(currentConfig.targetDomId));\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/start.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = start;
+
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _reactDom = __webpack_require__(/*! react-dom */ "react-dom");
+
+var _redux = __webpack_require__(/*! redux */ "redux");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "react-redux");
+
+var _immutable = __webpack_require__(/*! immutable */ "immutable");
+
+var _appLoader = _interopRequireDefault(__webpack_require__(/*! ./appLoader */ "./node_modules/@makajs/app-loader/lib/appLoader.js"));
+
+var _appMiddleware = _interopRequireDefault(__webpack_require__(/*! ./appMiddleware */ "./node_modules/@makajs/app-loader/lib/appMiddleware.js"));
+
+var _reducer = _interopRequireDefault(__webpack_require__(/*! ./reducer */ "./node_modules/@makajs/app-loader/lib/reducer.js"));
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
+
+var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ "./node_modules/@makajs/app-loader/lib/appFactory.js"));
+
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+
+var globalObj = (0, _utils.getGlobal)();
+
+function start() {
+  var currentConfig = _config.default.current;
+
+  _appFactory.default.registerApps(currentConfig.apps);
+
+  var mw = [(0, _appMiddleware.default)(currentConfig.actionInjections || {}, currentConfig.reducerInjections || {})];
+  if (currentConfig.middlewares) mw = mw.concat(currentConfig.middlewares);
+  var store = (0, _redux.createStore)(_reducer.default, (0, _immutable.Map)(), _redux.applyMiddleware.apply(void 0, (0, _toConsumableArray2.default)(mw)));
+  globalObj.reduxStore = store;
+  globalObj.__maka_store__ = store;
+
+  if (!currentConfig.rootWrapper) {
+    currentConfig.rootWrapper = function (child) {
+      return child;
+    };
+  }
+
+  (0, _reactDom.render)(currentConfig.rootWrapper(_react.default.createElement(_reactRedux.Provider, {
+    store: store
+  }, _react.default.createElement(_appLoader.default, {
+    name: currentConfig.startAppName
+  }))), document.getElementById(currentConfig.targetDomId));
+}
 
 /***/ }),
 
@@ -514,7 +2252,57 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = wrapMapDispatchToProps;\n\nvar _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ \"./node_modules/@babel/runtime/helpers/objectSpread.js\"));\n\nvar _redux = __webpack_require__(/*! redux */ \"redux\");\n\nvar _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ \"./node_modules/@makajs/app-loader/lib/parseName.js\"));\n\nfunction wrapMapDispatchToProps(fullName, actionCreators, reducer) {\n  var parsedName = (0, _parseName.default)(fullName),\n      wrapActionCreators = {},\n      keys = Object.keys(actionCreators);\n\n  for (var i = 0; i < keys.length; i++) {\n    var key = keys[i];\n    if (key === 'directFuns') continue;\n    var wrapActionCreator = wrapAction(actionCreators[key], reducer, parsedName.fullName, parsedName.name, parsedName.query, parsedName.params);\n    wrapActionCreators[key] = wrapActionCreator;\n  }\n\n  return function (dispatch) {\n    return (0, _objectSpread2.default)({}, (0, _redux.bindActionCreators)(wrapActionCreators, dispatch), actionCreators.getDirectFuns && actionCreators.getDirectFuns(parsedName) || {});\n  };\n}\n\nfunction wrapAction(actionCreator, reducer, fullName, name, query, params) {\n  return function () {\n    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n      args[_key] = arguments[_key];\n    }\n\n    return function () {\n      return {\n        fullName: fullName,\n        name: name,\n        query: query,\n        params: params,\n        actionCreator: actionCreator,\n        reducer: reducer,\n        args: args\n      };\n    };\n  };\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/wrapMapDispatchToProps.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = wrapMapDispatchToProps;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _redux = __webpack_require__(/*! redux */ "redux");
+
+var _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ "./node_modules/@makajs/app-loader/lib/parseName.js"));
+
+function wrapMapDispatchToProps(fullName, actionCreators, reducer) {
+  var parsedName = (0, _parseName.default)(fullName),
+      wrapActionCreators = {},
+      keys = Object.keys(actionCreators);
+
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    if (key === 'directFuns') continue;
+    var wrapActionCreator = wrapAction(actionCreators[key], reducer, parsedName.fullName, parsedName.name, parsedName.query, parsedName.params);
+    wrapActionCreators[key] = wrapActionCreator;
+  }
+
+  return function (dispatch) {
+    return (0, _objectSpread2.default)({}, (0, _redux.bindActionCreators)(wrapActionCreators, dispatch), actionCreators.getDirectFuns && actionCreators.getDirectFuns(parsedName) || {});
+  };
+}
+
+function wrapAction(actionCreator, reducer, fullName, name, query, params) {
+  return function () {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return function () {
+      return {
+        fullName: fullName,
+        name: name,
+        query: query,
+        params: params,
+        actionCreator: actionCreator,
+        reducer: reducer,
+        args: args
+      };
+    };
+  };
+}
 
 /***/ }),
 
@@ -526,7 +2314,31 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = wrapMapStateToProps;\n\nvar _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ \"./node_modules/@makajs/app-loader/lib/parseName.js\"));\n\nvar _immutable = __webpack_require__(/*! immutable */ \"immutable\");\n\nfunction wrapMapStateToProps(fullName) {\n  var parsedName = (0, _parseName.default)(fullName);\n  return function (state) {\n    return {\n      appName: parsedName.name,\n      appFullName: parsedName.fullName,\n      appQuery: parsedName.query,\n      appParams: parsedName.params,\n      payload: state.get(parsedName.fullName)\n    };\n  };\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/app-loader/lib/wrapMapStateToProps.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = wrapMapStateToProps;
+
+var _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ "./node_modules/@makajs/app-loader/lib/parseName.js"));
+
+var _immutable = __webpack_require__(/*! immutable */ "immutable");
+
+function wrapMapStateToProps(fullName) {
+  var parsedName = (0, _parseName.default)(fullName);
+  return function (state) {
+    return {
+      appName: parsedName.name,
+      appFullName: parsedName.fullName,
+      appQuery: parsedName.query,
+      appParams: parsedName.params,
+      payload: state.get(parsedName.fullName)
+    };
+  };
+}
 
 /***/ }),
 
@@ -538,7 +2350,472 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ \"./node_modules/@babel/runtime/helpers/interopRequireWildcard.js\");\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = exports.appInstances = void 0;\n\nvar _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/typeof.js\"));\n\nvar _construct2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/construct */ \"./node_modules/@babel/runtime/helpers/construct.js\"));\n\nvar _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ \"./node_modules/@babel/runtime/helpers/toConsumableArray.js\"));\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ \"./node_modules/@babel/runtime/helpers/defineProperty.js\"));\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"react\"));\n\nvar common = _interopRequireWildcard(__webpack_require__(/*! ./common */ \"./node_modules/@makajs/meta-engine/lib/common.js\"));\n\nvar _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\"));\n\nvar _immutable = __webpack_require__(/*! immutable */ \"immutable\");\n\nvar _context = _interopRequireDefault(__webpack_require__(/*! ./context */ \"./node_modules/@makajs/meta-engine/lib/context.js\"));\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/meta-engine/lib/config.js\"));\n\nvar appInstances = {};\nexports.appInstances = appInstances;\n\nvar action = function action(option) {\n  var _this = this;\n\n  (0, _classCallCheck2.default)(this, action);\n  (0, _defineProperty2.default)(this, \"config\", function (_ref) {\n    var metaHandlers = _ref.metaHandlers;\n    _this.metaHandlers = metaHandlers;\n  });\n  (0, _defineProperty2.default)(this, \"initView\", function (component, injections) {\n    _this.component = component || {\n      props: {}\n    };\n    _this.injections = injections;\n    _this.metaHandlers.component = _this.component;\n    _this.metaHandlers.injections = _this.injections;\n\n    if (component.props.appFullName) {\n      appInstances[component.props.appFullName] = {\n        appName: component.props.appName,\n        appQuery: component.props.appQuery,\n        //app: config.getApps()[component.props.appName],\n        instance: component\n      };\n    }\n\n    var initState = _this.appInfo.state && _this.appInfo.state.data || {};\n\n    _this.ss('data', (0, _immutable.fromJS)(initState));\n\n    if (_this.metaHandlers && _this.metaHandlers.onInit) {\n      _this.metaHandlers.onInit({\n        component: component,\n        injections: injections\n      });\n    }\n  });\n  (0, _defineProperty2.default)(this, \"unmount\", function () {\n    delete appInstances[_this.component.appFullName];\n  });\n  (0, _defineProperty2.default)(this, \"componentWillMount\", function () {\n    _this.metaHandlers && _this.metaHandlers['componentWillMount'] && _this.metaHandlers['componentWillMount'] != _this.componentWillMount && _this.metaHandlers['componentWillMount']();\n  });\n  (0, _defineProperty2.default)(this, \"componentDidMount\", function () {\n    _this.metaHandlers && _this.metaHandlers['componentDidMount'] && _this.metaHandlers['componentDidMount'] != _this.componentDidMount && _this.metaHandlers['componentDidMount']();\n  });\n  (0, _defineProperty2.default)(this, \"shouldComponentUpdate\", function (nextProps, nextState) {\n    _this.metaHandlers && _this.metaHandlers['shouldComponentUpdate'] && _this.metaHandlers['shouldComponentUpdate'] != _this.shouldComponentUpdate && _this.metaHandlers['shouldComponentUpdate'](nextProps, nextState);\n  });\n  (0, _defineProperty2.default)(this, \"componentWillReceiveProps\", function (nextProps) {\n    _this.metaHandlers && _this.metaHandlers['componentWillReceiveProps'] && _this.metaHandlers['componentWillReceiveProps'] != _this.componentWillReceiveProps && _this.metaHandlers['componentWillReceiveProps'](nextProps);\n  });\n  (0, _defineProperty2.default)(this, \"componentWillUpdate\", function (nextProps, nextState) {\n    _this.metaHandlers && _this.metaHandlers['componentWillUpdate'] && _this.metaHandlers['componentWillUpdate'] != _this.componentWillUpdate && _this.metaHandlers['componentWillUpdate'](nextProps, nextState);\n  });\n  (0, _defineProperty2.default)(this, \"componentDidCatch\", function (error, info) {\n    _this.metaHandlers && _this.metaHandlers['componentDidCatch'] && _this.metaHandlers['componentDidCatch'] != _this.componentDidCatch && _this.metaHandlers['componentDidCatch'](error, info);\n  });\n  (0, _defineProperty2.default)(this, \"componentWillUnmount\", function () {\n    _this.metaHandlers && _this.metaHandlers['componentWillUnmount'] && _this.metaHandlers['componentWillUnmount'] != _this.componentWillUnmount && _this.metaHandlers['componentWillUnmount']();\n  });\n  (0, _defineProperty2.default)(this, \"componentDidUpdate\", function () {\n    _this.metaHandlers && _this.metaHandlers['componentDidUpdate'] && _this.metaHandlers['componentDidUpdate'] != _this.componentDidUpdate && _this.metaHandlers['componentDidUpdate']();\n  });\n  (0, _defineProperty2.default)(this, \"getAppInstances\", function () {\n    return appInstances;\n  });\n  (0, _defineProperty2.default)(this, \"getState\", function (fieldPath) {\n    return common.getField(_this.injections.getState(), fieldPath);\n  });\n  (0, _defineProperty2.default)(this, \"setState\", function (fieldPath, value) {\n    if (value) {\n      return _this.injections.reduce('setField', fieldPath, value);\n    } else {\n      return _this.injections.reduce('setFields', fieldPath);\n    }\n  });\n  (0, _defineProperty2.default)(this, \"parseExpreesion\", function (v, extParas) {\n    if (!_this.cache.expression) _this.cache.expression = {};\n    var key = v;\n\n    if (extParas && extParas.length > 0) {\n      key = key + extParas.toString();\n    }\n\n    if (_this.cache.expression[key]) {\n      return _this.cache.expression[key];\n    }\n\n    if (!_this.cache.expressionParams) {\n      _this.cache.expressionParams = ['data'].concat(Object.keys(_this.metaHandlers).map(function (k) {\n        return \"$\" + k;\n      })).concat(['_path', '_vars']);\n    }\n\n    var params = _this.cache.expressionParams;\n\n    if (extParas && extParas.length > 0) {\n      params = params.concat(extParas);\n    }\n\n    var body = _utils.default.expression.getExpressionBody(v);\n\n    if (_config.default.current.transformer) {\n      if (body.substr(0, 6) === 'return') {\n        body = body.substr(6);\n        body = _config.default.current.transformer(body);\n        body = 'return ' + body;\n      } else {\n        body = _config.default.transformer(body);\n      }\n    }\n\n    _this.cache.expression[v] = (0, _construct2.default)(Function, (0, _toConsumableArray2.default)(params).concat([body]));\n    return _this.cache.expression[v];\n  });\n  (0, _defineProperty2.default)(this, \"execExpression\", function (expressContent, data, path, vars, extParas) {\n    var values = [data];\n    var metaHandlerKeys = Object.keys(_this.metaHandlers),\n        i,\n        key;\n\n    var fun = function fun(n) {\n      return _this.metaHandlers[n];\n    };\n\n    for (i = 0; key = metaHandlerKeys[i++];) {\n      values.push(fun(key));\n    }\n\n    values.push(path);\n    values.push((vars || '').split(','));\n    var extParaKeys;\n\n    if (extParas) {\n      extParaKeys = Object.keys(extParas);\n\n      if (extParaKeys && extParaKeys.length > 0) {\n        extParaKeys.forEach(function (k) {\n          values.push(extParas[k]);\n        });\n      }\n    }\n\n    try {\n      return _this.parseExpreesion(expressContent, extParaKeys).apply(_this, values);\n    } catch (e) {\n      _this.metaHandlers && _this.metaHandlers.componentDidCatch && _this.metaHandlers.componentDidCatch != _this.componentDidCatch && _this.metaHandlers.componentDidCatch(e);\n      setTimeout(function () {\n        console.error(\"expression parsing error\\uFF1A\".concat(expressContent));\n\n        _utils.default.exception.error(e);\n      }, 500);\n    }\n  });\n  (0, _defineProperty2.default)(this, \"needUpdate\", function (meta) {\n    if (!meta) return false;\n    var t = (0, _typeof2.default)(meta);\n    if (t == 'string' && _utils.default.expression.isExpression(meta)) return true;\n    if (t != 'object') return false;\n\n    if (meta._notParse === true) {\n      return false;\n    }\n\n    return !(t != 'object' || !!meta['$$typeof'] || !!meta._isAMomentObject || !!meta._power || meta._visible === false);\n  });\n  (0, _defineProperty2.default)(this, \"updateMeta\", function (meta, data, path, vars, extParas) {\n    //path && (meta.path = path)\n    if (meta instanceof Array) {\n      for (var _i = 0; _i < meta.length; _i++) {\n        var sub = meta[_i];\n        var currentPath = path;\n        if (!sub) continue;\n\n        if (sub._for) {\n          sub._vars = vars;\n          sub._extParas = extParas;\n          sub.path = \"\".concat(path, \".\").concat(sub._name);\n          continue;\n        }\n\n        if (sub._function) {\n          sub._vars = vars;\n          sub._extParas = extParas;\n          sub.path = \"\".concat(path, \".\").concat(sub._name);\n          continue;\n        }\n\n        var subType = (0, _typeof2.default)(sub),\n            isExpression = false,\n            isMeta = false;\n\n        if (subType == 'string' && _utils.default.expression.isExpression(sub)) {\n          sub = _this.execExpression(sub, data, path, vars, extParas);\n          isExpression = true;\n          if (sub && sub._isMeta === true) isMeta = true;\n\n          if (sub && sub._isMeta === true) {\n            isMeta = true;\n            meta[_i] = sub.value;\n          } else {\n            meta[_i] = sub;\n          }\n        }\n\n        if (!_this.needUpdate(sub)) continue;\n\n        if (isExpression && !isMeta) {\n          continue;\n        }\n\n        subType = (0, _typeof2.default)(sub);\n\n        if (sub instanceof Array) {\n          currentPath = \"\".concat(path, \".\").concat(_i);\n\n          _this.updateMeta(sub, data, currentPath, vars, extParas);\n\n          continue;\n        }\n\n        if (sub._name && sub.component) {\n          currentPath = \"\".concat(path, \".\").concat(sub._name);\n          sub.path = currentPath;\n\n          _this.updateMeta(sub, data, currentPath, vars, extParas);\n\n          continue;\n        }\n\n        currentPath = \"\".concat(path, \".\").concat(_i);\n\n        _this.updateMeta(sub, data, currentPath, vars, extParas);\n      }\n\n      return;\n    }\n\n    var excludeProps = meta._excludeProps;\n\n    if (excludeProps && _utils.default.expression.isExpression(excludeProps)) {\n      excludeProps = _this.execExpression(excludeProps, data, path, vars, extParas);\n    }\n\n    if (excludeProps && excludeProps instanceof Array) {\n      for (var i = 0; i < excludeProps.length; i++) {\n        if (meta[excludeProps[i]]) delete meta[excludeProps[i]];\n      }\n\n      delete meta['_excludeProps'];\n    }\n\n    var keys = Object.keys(meta),\n        j,\n        key;\n\n    var _loop = function _loop() {\n      var v = meta[key],\n          t = (0, _typeof2.default)(v),\n          currentPath = \"\".concat(path, \".\").concat(key);\n      if (!v) return \"continue\";\n      if (key == '_vars' || key == '_extParas') return \"continue\";\n      var isExpression = false,\n          isMeta = false;\n\n      if (t == 'string' && _utils.default.expression.isExpression(v)) {\n        isExpression = true;\n        v = _this.execExpression(v, data, currentPath, vars, extParas);\n\n        if (key == '...' && v && (0, _typeof2.default)(v) == 'object') {\n          Object.keys(v).forEach(function (kk) {\n            meta[kk] = v[kk];\n          });\n          delete meta['...'];\n        } else {\n          if (v && v._isMeta === true) {\n            isMeta = true;\n            meta[key] = v.value;\n          } else {\n            meta[key] = v;\n          }\n        }\n      }\n\n      if (!_this.needUpdate(v)) return \"continue\";\n\n      if (v._for) {\n        v._vars = vars;\n        v._extParas = extParas;\n        v.path = \"\".concat(path, \".\").concat(key, \".\").concat(v._name);\n        return \"continue\";\n      }\n\n      if (v._function) {\n        v._vars = vars;\n        v._extParas = extParas;\n        v.path = \"\".concat(path, \".\").concat(key, \".\").concat(v._name);\n        return \"continue\";\n      }\n\n      if (isExpression && !isMeta) {\n        return \"continue\";\n      }\n\n      if (v._name && v.component) {\n        v.path = \"\".concat(path, \".\").concat(key, \".\").concat(v._name);\n\n        _this.updateMeta(v, data, \"\".concat(path, \".\").concat(key, \".\").concat(v._name), vars, extParas);\n\n        return \"continue\";\n      }\n\n      if (v instanceof Array) {\n        _this.updateMeta(v, data, currentPath, vars, extParas);\n\n        return \"continue\";\n      }\n\n      _this.updateMeta(v, data, currentPath, vars, extParas);\n    };\n\n    for (j = 0; key = keys[j++];) {\n      var _ret = _loop();\n\n      if (_ret === \"continue\") continue;\n    }\n  });\n  (0, _defineProperty2.default)(this, \"getMeta\", function (path, propertys, data, vars, extParas) {\n    var meta = common.getMeta(_this.appInfo, path, propertys);\n\n    if (!path) {\n      var metaMap = common.getMetaMap(_this.appInfo);\n      path = metaMap.keySeq().toList().find(function (o) {\n        return o.indexOf('.') == -1;\n      });\n    }\n\n    if (!data) data = common.getField(_this.injections.getState());\n    meta._power = undefined;\n    meta._for = undefined;\n    meta._function = undefined;\n    meta.path = path;\n    if (vars) meta._vars = vars;\n\n    _this.updateMeta(meta, data, path, vars, extParas);\n\n    return meta;\n  });\n  (0, _defineProperty2.default)(this, \"setMetaForce\", function (appName, meta) {\n    common.setMetaForce(appName, meta);\n  });\n  (0, _defineProperty2.default)(this, \"gm\", this.getMeta);\n  (0, _defineProperty2.default)(this, \"gs\", this.getState);\n  (0, _defineProperty2.default)(this, \"ss\", this.setState);\n  (0, _defineProperty2.default)(this, \"context\", _context.default);\n  this.appInfo = option.appInfo;\n  this.meta = (0, _immutable.fromJS)(option.appInfo.view);\n  var plugins = option.plugins;\n  this.cache = {};\n  common.setMeta(option.appInfo, plugins);\n};\n\nexports.default = action;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/action.js?");
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.appInstances = void 0;
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
+var _construct2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/construct */ "./node_modules/@babel/runtime/helpers/construct.js"));
+
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var common = _interopRequireWildcard(__webpack_require__(/*! ./common */ "./node_modules/@makajs/meta-engine/lib/common.js"));
+
+var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
+
+var _immutable = __webpack_require__(/*! immutable */ "immutable");
+
+var _context = _interopRequireDefault(__webpack_require__(/*! ./context */ "./node_modules/@makajs/meta-engine/lib/context.js"));
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/meta-engine/lib/config.js"));
+
+var appInstances = {};
+exports.appInstances = appInstances;
+
+var action = function action(option) {
+  var _this = this;
+
+  (0, _classCallCheck2.default)(this, action);
+  (0, _defineProperty2.default)(this, "config", function (_ref) {
+    var metaHandlers = _ref.metaHandlers;
+    _this.metaHandlers = metaHandlers;
+    _this.cache.handlerKeys = Object.keys(metaHandlers);
+    _this.allActionKeys = _this.cache.handlerKeys;
+    _this.allAction = _this.metaHandlers;
+  });
+  (0, _defineProperty2.default)(this, "getAllAction", function () {
+    return _this.allAction;
+  });
+  (0, _defineProperty2.default)(this, "setMetaForce", function (appName, meta) {
+    common.setMetaForce(appName, meta, _this.component && _this.component.props.appQuery);
+  });
+  (0, _defineProperty2.default)(this, "setActionForce", function (actions) {
+    if (actions) {
+      _this.cache.expression = {};
+      _this.cache.expressionParams = undefined;
+      var actionKeys = Object.keys(actions);
+      /*
+      this.dynamicHandleKeys = actionKeys.map(k => "$" + k)
+      this.dynamicHandlers = {}
+      actionKeys.forEach((key) => {
+      	this.dynamicHandlers["$" + key] = actions[key]
+      })*/
+
+      _this.allActionKeys = actionKeys;
+      _this.allAction = actions;
+
+      _this.cache.handlerKeys.forEach(function (key) {
+        if (_this.allActionKeys.indexOf(key) == -1) {
+          _this.allActionKeys.push(key);
+
+          _this.allAction[key] = _this.metaHandlers[key];
+        }
+      });
+    }
+  });
+  (0, _defineProperty2.default)(this, "initView", function (component, injections) {
+    _this.component = component || {
+      props: {}
+    };
+    _this.injections = injections;
+    _this.metaHandlers.component = _this.component;
+    _this.metaHandlers.injections = _this.injections;
+
+    if (component.props.appFullName) {
+      appInstances[component.props.appFullName] = {
+        appName: component.props.appName,
+        appQuery: component.props.appQuery,
+        //app: config.getApps()[component.props.appName],
+        instance: component
+      };
+    }
+
+    var initState = _this.appInfo.state && _this.appInfo.state.data || {};
+
+    _this.ss({
+      'data': initState
+    });
+
+    if (_this.metaHandlers && _this.metaHandlers.onInit) {
+      _this.metaHandlers.onInit({
+        component: component,
+        injections: injections
+      });
+    }
+  });
+  (0, _defineProperty2.default)(this, "unmount", function () {
+    delete appInstances[_this.component.appFullName];
+  });
+  (0, _defineProperty2.default)(this, "componentWillMount", function () {
+    _this.metaHandlers && _this.metaHandlers['componentWillMount'] && _this.metaHandlers['componentWillMount'] != _this.componentWillMount && _this.metaHandlers['componentWillMount']();
+  });
+  (0, _defineProperty2.default)(this, "componentDidMount", function () {
+    _this.metaHandlers && _this.metaHandlers['componentDidMount'] && _this.metaHandlers['componentDidMount'] != _this.componentDidMount && _this.metaHandlers['componentDidMount']();
+  });
+  (0, _defineProperty2.default)(this, "shouldComponentUpdate", function (nextProps, nextState) {
+    _this.metaHandlers && _this.metaHandlers['shouldComponentUpdate'] && _this.metaHandlers['shouldComponentUpdate'] != _this.shouldComponentUpdate && _this.metaHandlers['shouldComponentUpdate'](nextProps, nextState);
+  });
+  (0, _defineProperty2.default)(this, "componentWillReceiveProps", function (nextProps) {
+    _this.metaHandlers && _this.metaHandlers['componentWillReceiveProps'] && _this.metaHandlers['componentWillReceiveProps'] != _this.componentWillReceiveProps && _this.metaHandlers['componentWillReceiveProps'](nextProps);
+  });
+  (0, _defineProperty2.default)(this, "componentWillUpdate", function (nextProps, nextState) {
+    _this.metaHandlers && _this.metaHandlers['componentWillUpdate'] && _this.metaHandlers['componentWillUpdate'] != _this.componentWillUpdate && _this.metaHandlers['componentWillUpdate'](nextProps, nextState);
+  });
+  (0, _defineProperty2.default)(this, "componentDidCatch", function (error, info) {
+    _this.metaHandlers && _this.metaHandlers['componentDidCatch'] && _this.metaHandlers['componentDidCatch'] != _this.componentDidCatch && _this.metaHandlers['componentDidCatch'](error, info);
+  });
+  (0, _defineProperty2.default)(this, "componentWillUnmount", function () {
+    _this.metaHandlers && _this.metaHandlers['componentWillUnmount'] && _this.metaHandlers['componentWillUnmount'] != _this.componentWillUnmount && _this.metaHandlers['componentWillUnmount']();
+  });
+  (0, _defineProperty2.default)(this, "componentDidUpdate", function () {
+    _this.metaHandlers && _this.metaHandlers['componentDidUpdate'] && _this.metaHandlers['componentDidUpdate'] != _this.componentDidUpdate && _this.metaHandlers['componentDidUpdate']();
+  });
+  (0, _defineProperty2.default)(this, "getAppInstances", function () {
+    return appInstances;
+  });
+  (0, _defineProperty2.default)(this, "getState", function (fieldPath) {
+    return common.getField(_this.injections.getState(), fieldPath);
+  });
+  (0, _defineProperty2.default)(this, "setState", function (fieldPath, value) {
+    if (value) {
+      return _this.injections.reduce('setField', fieldPath, value);
+    } else {
+      return _this.injections.reduce('setFields', fieldPath);
+    }
+  });
+  (0, _defineProperty2.default)(this, "parseExpreesion", function (v, extParas) {
+    if (!_this.cache.expression) _this.cache.expression = {};
+    var key = v;
+
+    if (extParas && extParas.length > 0) {
+      key = key + extParas.toString();
+    }
+
+    if (_this.cache.expression[key]) {
+      return _this.cache.expression[key];
+    }
+
+    if (!_this.cache.expressionParams) {
+      _this.cache.expressionParams = ['data'] //.concat(Object.keys(this.metaHandlers)
+      //.concat(this.cache.handlerKeys.map(k => "$" + k))
+      .concat(_this.allActionKeys.map(function (k) {
+        return "$" + k;
+      })).concat(['_path', '_vars']);
+      /*
+      if (this.dynamicHandleKeys) {
+      	this.cache.expressionParams = this.cache.expressionParams.concat(this.dynamicHandleKeys)
+      }*/
+    }
+
+    var params = _this.cache.expressionParams;
+
+    if (extParas && extParas.length > 0) {
+      params = params.concat(extParas);
+    }
+
+    var body = _utils.default.expression.getExpressionBody(v);
+
+    if (_config.default.current.transformer) {
+      if (body.substr(0, 6) === 'return') {
+        body = body.substr(6);
+        body = _config.default.current.transformer(body);
+        body = 'return ' + body;
+      } else {
+        body = _config.default.transformer(body);
+      }
+    }
+
+    _this.cache.expression[v] = (0, _construct2.default)(Function, (0, _toConsumableArray2.default)(params).concat([body]));
+    return _this.cache.expression[v];
+  });
+  (0, _defineProperty2.default)(this, "execExpression", function (expressContent, data, path, vars, extParas) {
+    var values = [data]; //var metaHandlerKeys = Object.keys(this.metaHandlers),
+
+    /*
+    var metaHandlerKeys = this.cache.handlerKeys,
+    	i, key
+    		var fun = (n) => {
+    	let handler = this.metaHandlers[n]
+    	if (handler && typeof handler == 'function')
+    		handler.__method_name__ = n
+    			return handler
+    }
+    		for (i = 0; key = metaHandlerKeys[i++];) {
+    	values.push(fun(key))
+    }*/
+
+    var actionKeys = _this.allActionKeys,
+        i,
+        key;
+
+    var fun = function fun(n) {
+      var handler = _this.allAction[n];
+      if (handler && typeof handler == 'function') handler.__method_name__ = n;
+      return handler;
+    };
+
+    for (i = 0; key = actionKeys[i++];) {
+      values.push(fun(key));
+    }
+
+    values.push(path);
+    values.push((vars || '').split(','));
+    /*
+    var fun1 = (n) => {
+    	let handler = this.dynamicHandlers[n]
+    	if (handler && typeof handler == 'function')
+    		handler.__method_name__ = n
+    			return handler
+    }
+    		if (this.dynamicHandleKeys) {
+    	for (i = 0; key = this.dynamicHandleKeys[i++];) {
+    		values.push(fun1(key))
+    	}
+    }*/
+
+    var extParaKeys;
+
+    if (extParas) {
+      extParaKeys = Object.keys(extParas);
+
+      if (extParaKeys && extParaKeys.length > 0) {
+        extParaKeys.forEach(function (k) {
+          values.push(extParas[k]);
+        });
+      }
+    }
+
+    try {
+      return _this.parseExpreesion(expressContent, extParaKeys).apply(_this, values);
+    } catch (e) {
+      _this.metaHandlers && _this.metaHandlers.componentDidCatch && _this.metaHandlers.componentDidCatch != _this.componentDidCatch && _this.metaHandlers.componentDidCatch(e);
+      setTimeout(function () {
+        console.error("expression parsing error\uFF1A".concat(expressContent));
+
+        _utils.default.exception.error(e);
+      }, 500);
+    }
+  });
+  (0, _defineProperty2.default)(this, "needUpdate", function (meta) {
+    if (!meta) return false;
+    var t = (0, _typeof2.default)(meta);
+    if (t == 'string' && _utils.default.expression.isExpression(meta)) return true;
+    if (t != 'object') return false;
+
+    if (meta._notParse === true) {
+      return false;
+    }
+
+    return !(t != 'object' || !!meta['$$typeof'] || !!meta._isAMomentObject || !!meta._power || meta._visible === false);
+  });
+  (0, _defineProperty2.default)(this, "updateMeta", function (meta, data, path, vars, extParas) {
+    //path && (meta.path = path)
+    if (meta instanceof Array) {
+      for (var _i = 0; _i < meta.length; _i++) {
+        var sub = meta[_i];
+        var currentPath = path;
+        if (!sub) continue;
+
+        if (sub._for) {
+          sub._vars = vars;
+          sub._extParas = extParas;
+          sub.path = "".concat(path, ".").concat(sub._name);
+          continue;
+        }
+
+        if (sub._function) {
+          sub._vars = vars;
+          sub._extParas = extParas;
+          sub.path = "".concat(path, ".").concat(sub._name);
+          continue;
+        }
+
+        var subType = (0, _typeof2.default)(sub),
+            isExpression = false,
+            isMeta = false;
+
+        if (subType == 'string' && _utils.default.expression.isExpression(sub)) {
+          sub = _this.execExpression(sub, data, path, vars, extParas);
+          isExpression = true;
+          if (sub && sub._isMeta === true) isMeta = true;
+
+          if (sub && sub._isMeta === true) {
+            isMeta = true;
+            meta[_i] = sub.value;
+          } else {
+            meta[_i] = sub;
+          }
+        }
+
+        if (!_this.needUpdate(sub)) continue;
+
+        if (isExpression && !isMeta) {
+          continue;
+        }
+
+        subType = (0, _typeof2.default)(sub);
+
+        if (sub instanceof Array) {
+          currentPath = "".concat(path, ".").concat(_i);
+
+          _this.updateMeta(sub, data, currentPath, vars, extParas);
+
+          continue;
+        }
+
+        if (sub._name && sub.component) {
+          currentPath = "".concat(path, ".").concat(sub._name);
+          sub.path = currentPath;
+
+          _this.updateMeta(sub, data, currentPath, vars, extParas);
+
+          continue;
+        }
+
+        currentPath = "".concat(path, ".").concat(_i);
+
+        _this.updateMeta(sub, data, currentPath, vars, extParas);
+      }
+
+      return;
+    }
+
+    var excludeProps = meta._excludeProps;
+
+    if (excludeProps && _utils.default.expression.isExpression(excludeProps)) {
+      excludeProps = _this.execExpression(excludeProps, data, path, vars, extParas);
+    }
+
+    if (excludeProps && excludeProps instanceof Array) {
+      for (var i = 0; i < excludeProps.length; i++) {
+        if (meta[excludeProps[i]]) delete meta[excludeProps[i]];
+      }
+
+      delete meta['_excludeProps'];
+    }
+
+    var keys = Object.keys(meta),
+        j,
+        key;
+
+    var _loop = function _loop() {
+      var v = meta[key],
+          t = (0, _typeof2.default)(v),
+          currentPath = "".concat(path, ".").concat(key);
+      if (!v) return "continue";
+      if (key == '_vars' || key == '_extParas') return "continue";
+      var isExpression = false,
+          isMeta = false;
+
+      if (t == 'string' && _utils.default.expression.isExpression(v)) {
+        isExpression = true;
+        v = _this.execExpression(v, data, currentPath, vars, extParas);
+
+        if (key == '...' && v && (0, _typeof2.default)(v) == 'object') {
+          Object.keys(v).forEach(function (kk) {
+            meta[kk] = v[kk];
+          });
+          delete meta['...'];
+        } else {
+          if (v && v._isMeta === true) {
+            isMeta = true;
+            meta[key] = v.value;
+          } else {
+            meta[key] = v;
+          }
+        }
+      }
+
+      if (!_this.needUpdate(v)) return "continue";
+
+      if (v._for) {
+        v._vars = vars;
+        v._extParas = extParas;
+        v.path = "".concat(path, ".").concat(key, ".").concat(v._name);
+        return "continue";
+      }
+
+      if (v._function) {
+        v._vars = vars;
+        v._extParas = extParas;
+        v.path = "".concat(path, ".").concat(key, ".").concat(v._name);
+        return "continue";
+      }
+
+      if (isExpression && !isMeta) {
+        return "continue";
+      }
+
+      if (v._name && v.component) {
+        v.path = "".concat(path, ".").concat(key, ".").concat(v._name);
+
+        _this.updateMeta(v, data, "".concat(path, ".").concat(key, ".").concat(v._name), vars, extParas);
+
+        return "continue";
+      }
+
+      if (v instanceof Array) {
+        _this.updateMeta(v, data, currentPath, vars, extParas);
+
+        return "continue";
+      }
+
+      _this.updateMeta(v, data, currentPath, vars, extParas);
+    };
+
+    for (j = 0; key = keys[j++];) {
+      var _ret = _loop();
+
+      if (_ret === "continue") continue;
+    }
+  });
+  (0, _defineProperty2.default)(this, "getMeta", function (path, propertys, data, vars, extParas) {
+    var meta = common.getMeta(_this.appInfo, path, propertys, _this.component.props.appQuery);
+
+    if (!path) {
+      var metaMap = common.getMetaMap(_this.appInfo, _this.component.props.appQuery);
+      path = metaMap.keySeq().toList().find(function (o) {
+        return o.indexOf('.') == -1;
+      });
+    }
+
+    if (!data) data = common.getField(_this.injections.getState());
+    meta._power = undefined;
+    meta._for = undefined;
+    meta._function = undefined;
+    meta.path = path;
+    if (vars) meta._vars = vars;
+
+    _this.updateMeta(meta, data, path, vars, extParas);
+
+    return meta;
+  });
+  (0, _defineProperty2.default)(this, "gm", this.getMeta);
+  (0, _defineProperty2.default)(this, "gs", this.getState);
+  (0, _defineProperty2.default)(this, "ss", this.setState);
+  (0, _defineProperty2.default)(this, "context", _context.default);
+  this.appInfo = option.appInfo;
+  this.meta = (0, _immutable.fromJS)(option.appInfo.view);
+  var plugins = option.plugins;
+  this.cache = {};
+  common.setMeta(option.appInfo, plugins);
+};
+
+exports.default = action;
 
 /***/ }),
 
@@ -550,7 +2827,96 @@ eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/h
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\"));\n\nvar _path = __webpack_require__(/*! path */ \"./node_modules/path-browserify/index.js\");\n\nvar actionFactory =\n/*#__PURE__*/\nfunction () {\n  function actionFactory() {\n    (0, _classCallCheck2.default)(this, actionFactory);\n    this.actions = {};\n  }\n\n  (0, _createClass2.default)(actionFactory, [{\n    key: \"getActions\",\n    value: function getActions() {\n      return this.actions;\n    }\n  }, {\n    key: \"registerAction\",\n    value: function registerAction(name, action, isFunction) {\n      if (this.actions[name]) {\n        console.log(\"Action already exists. name: \".concat(name, \", please ignore!\"));\n      }\n\n      if (isFunction) {\n        action._isFunction = true;\n      }\n\n      this.actions[name] = action;\n    }\n  }, {\n    key: \"registerActions\",\n    value: function registerActions(actions) {\n      var _this = this;\n\n      if (!actions || actions.length == 0) return;\n      actions.forEach(function (c) {\n        return _this.registerAction(c.name, c.action, c.isFunction);\n      });\n    }\n  }, {\n    key: \"getAction\",\n    value: function getAction(name) {\n      if (!name) throw \"Action name cannot be empty\";\n      var action = this.actions[name];\n\n      if (!action) {\n        throw \"Can't find action,name:\".concat(name);\n      }\n\n      return action;\n    }\n  }, {\n    key: \"asyncGetAction\",\n    value: function asyncGetAction(name) {\n      var _this2 = this;\n\n      if (!name) throw \"Action name cannot be empty\";\n      return new Promise(function (resolve, reject) {\n        var getAction = function getAction() {\n          setTimeout(function () {\n            if (_this2.actions[name]) {\n              resolve(_this2.actions[name]);\n            } else {\n              getAction();\n            }\n          }, 0);\n        };\n\n        getAction();\n      });\n    }\n  }]);\n  return actionFactory;\n}();\n\nvar instance = new actionFactory();\nvar _default = instance;\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/actionFactory.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _path = __webpack_require__(/*! path */ "./node_modules/path-browserify/index.js");
+
+var actionFactory =
+/*#__PURE__*/
+function () {
+  function actionFactory() {
+    (0, _classCallCheck2.default)(this, actionFactory);
+    this.actions = {};
+  }
+
+  (0, _createClass2.default)(actionFactory, [{
+    key: "getActions",
+    value: function getActions() {
+      return this.actions;
+    }
+  }, {
+    key: "registerAction",
+    value: function registerAction(name, action, isFunction) {
+      if (this.actions[name]) {
+        console.log("Action already exists. name: ".concat(name, ", please ignore!"));
+      }
+
+      if (isFunction) {
+        action._isFunction = true;
+      }
+
+      this.actions[name] = action;
+    }
+  }, {
+    key: "registerActions",
+    value: function registerActions(actions) {
+      var _this = this;
+
+      if (!actions || actions.length == 0) return;
+      actions.forEach(function (c) {
+        return _this.registerAction(c.name, c.action, c.isFunction);
+      });
+    }
+  }, {
+    key: "getAction",
+    value: function getAction(name) {
+      if (!name) throw "Action name cannot be empty";
+      var action = this.actions[name];
+
+      if (!action) {
+        throw "Can't find action,name:".concat(name);
+      }
+
+      return action;
+    }
+  }, {
+    key: "asyncGetAction",
+    value: function asyncGetAction(name) {
+      var _this2 = this;
+
+      if (!name) throw "Action name cannot be empty";
+      return new Promise(function (resolve, reject) {
+        var getAction = function getAction() {
+          setTimeout(function () {
+            if (_this2.actions[name]) {
+              resolve(_this2.actions[name]);
+            } else {
+              getAction();
+            }
+          }, 0);
+        };
+
+        getAction();
+      });
+    }
+  }]);
+  return actionFactory;
+}();
+
+var instance = new actionFactory();
+var _default = instance;
+exports.default = _default;
 
 /***/ }),
 
@@ -562,7 +2928,162 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = actionMixin;\n\nvar _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ \"./node_modules/@babel/runtime/helpers/objectSpread.js\"));\n\nvar _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/typeof.js\"));\n\nvar _action = _interopRequireDefault(__webpack_require__(/*! ./action */ \"./node_modules/@makajs/meta-engine/lib/action.js\"));\n\nvar _actionFactory = _interopRequireDefault(__webpack_require__(/*! ./actionFactory */ \"./node_modules/@makajs/meta-engine/lib/actionFactory.js\"));\n\nfunction actionMixin() {\n  for (var _len = arguments.length, mixins = new Array(_len), _key = 0; _key < _len; _key++) {\n    mixins[_key] = arguments[_key];\n  }\n\n  return function (target) {\n    return function (option) {\n      var mixinInstances = {};\n      var base = new _action.default(option);\n      mixinInstances.base = base;\n\n      if (mixins && mixins.length > 0) {\n        mixins.forEach(function (m) {\n          if (m != 'base') {\n            var actCls, act;\n\n            if (typeof m == 'string') {\n              actCls = _actionFactory.default.getAction(m);\n\n              if ((0, _typeof2.default)(actCls) == 'object') {\n                mixinInstances[m] = actCls;\n              } else if (typeof actCls == 'function') {\n                if (actCls._isFunction) {\n                  mixinInstances[m] = actCls;\n                } else {\n                  act = new actCls((0, _objectSpread2.default)({}, option, {\n                    mixins: mixinInstances\n                  }));\n\n                  if (act) {\n                    mixinInstances[m] = act;\n                  }\n                }\n              }\n            } else if ((0, _typeof2.default)(m) == 'object' && m.name) {\n              actCls = _actionFactory.default.getAction(m.name);\n\n              if ((0, _typeof2.default)(actCls) == 'object') {\n                mixinInstances[m] = actCls;\n              } else if (typeof actCls == 'function') {\n                if (actCls._isFunction) {\n                  mixinInstances[m] = actCls;\n                } else {\n                  act = new actCls((0, _objectSpread2.default)({}, option, m.option, {\n                    mixins: mixinInstances\n                  }));\n\n                  if (act) {\n                    mixinInstances[m.name] = act;\n                  }\n                }\n              }\n            }\n          }\n        });\n      }\n\n      var curr = new target((0, _objectSpread2.default)({}, option, {\n        mixins: mixinInstances\n      }));\n      var ret = curr;\n      Object.keys(mixinInstances).forEach(function (k) {\n        return ret[k] = mixinInstances[k];\n      });\n      var retWrapper = {\n        getDirectFuns: function getDirectFuns() {\n          return ret;\n        }\n      };\n      retWrapper.initView = ret.base.initView;\n      base.config({\n        metaHandlers: ret\n      });\n      return retWrapper;\n    };\n  };\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/actionMixin.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = actionMixin;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
+var _action = _interopRequireDefault(__webpack_require__(/*! ./action */ "./node_modules/@makajs/meta-engine/lib/action.js"));
+
+var _actionFactory = _interopRequireDefault(__webpack_require__(/*! ./actionFactory */ "./node_modules/@makajs/meta-engine/lib/actionFactory.js"));
+
+var isPromise = function isPromise(obj) {
+  return !!obj && ((0, _typeof2.default)(obj) === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
+};
+
+var functionWrapper = function functionWrapper(fn, base) {
+  var wrapper = function wrapper() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var that = base.getAllAction() || this;
+
+    var beforeRet = fn._before && fn._before.apply(that, args);
+
+    if (beforeRet === false || isPromise(beforeRet)) {} else if (typeof beforeRet == 'function') {
+      return beforeRet;
+    } else {
+      var ret = fn.apply(that, args);
+
+      if (isPromise(ret)) {
+        return new Promise(function (resolve, reject) {
+          ret.then(function (realRet) {
+            if (fn._after) {
+              realRet = fn._after.apply(that, (args || []).concat(ret));
+            }
+
+            resolve(realRet);
+          }).catch(function (e) {
+            return reject(e);
+          });
+        });
+      } else {
+        if (fn._after) {
+          return fn._after.apply(that, (args || []).concat(ret));
+        } else return ret;
+      }
+    }
+  };
+
+  wrapper.before = function (beforeFn) {
+    fn._before = beforeFn;
+  };
+
+  wrapper.after = function (afterFn) {
+    fn._after = afterFn;
+  };
+
+  wrapper.real = fn;
+  return wrapper;
+};
+
+function actionMixin() {
+  for (var _len2 = arguments.length, mixins = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    mixins[_key2] = arguments[_key2];
+  }
+
+  return function (target) {
+    return function (option) {
+      var ret = {};
+      var mixinInstances = {};
+      var base = new _action.default(option);
+      Object.keys(base).forEach(function (key) {
+        if (typeof base[key] == 'function' && key != 'getAllAction') {
+          base[key] = functionWrapper(base[key], base);
+        }
+      });
+      mixinInstances.base = base;
+
+      if (mixins && mixins.length > 0) {
+        mixins.forEach(function (m) {
+          if (m != 'base') {
+            var actCls, act;
+
+            if (typeof m == 'string') {
+              actCls = _actionFactory.default.getAction(m);
+
+              if ((0, _typeof2.default)(actCls) == 'object') {
+                mixinInstances[m] = actCls;
+              } else if (typeof actCls == 'function') {
+                if (actCls._isFunction) {
+                  mixinInstances[m] = actCls;
+                } else {
+                  act = new actCls((0, _objectSpread2.default)({}, option, {
+                    mixins: mixinInstances
+                  }));
+
+                  if (act) {
+                    mixinInstances[m] = act;
+                  }
+                }
+              }
+            } else if ((0, _typeof2.default)(m) == 'object' && m.name) {
+              actCls = _actionFactory.default.getAction(m.name);
+
+              if ((0, _typeof2.default)(actCls) == 'object') {
+                mixinInstances[m] = actCls;
+              } else if (typeof actCls == 'function') {
+                if (actCls._isFunction) {
+                  mixinInstances[m] = actCls;
+                } else {
+                  act = new actCls((0, _objectSpread2.default)({}, option, m.option, {
+                    mixins: mixinInstances
+                  }));
+
+                  if (act) {
+                    mixinInstances[m.name] = act;
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      var curr = new target((0, _objectSpread2.default)({}, option, {
+        mixins: mixinInstances
+      }));
+      Object.keys(curr).forEach(function (key) {
+        if (typeof curr[key] == 'function') {
+          curr[key] = functionWrapper(curr[key], base);
+        }
+      });
+      var ret = curr;
+      Object.keys(mixinInstances).forEach(function (k) {
+        return ret[k] = mixinInstances[k];
+      });
+      var retWrapper = {
+        getDirectFuns: function getDirectFuns() {
+          return ret;
+        }
+      };
+      retWrapper.initView = ret.base.initView;
+      base.config({
+        metaHandlers: ret
+      });
+      return retWrapper;
+    };
+  };
+}
 
 /***/ }),
 
@@ -574,7 +3095,335 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ \"./node_modules/@babel/runtime/helpers/interopRequireWildcard.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.uid = uid;\nexports.setMeta = setMeta;\nexports.setMetaForce = setMetaForce;\nexports.getMeta = getMeta;\nexports.getMetaMap = getMetaMap;\nexports.getField = getField;\nexports.getFields = getFields;\nexports.setField = setField;\nexports.setFields = setFields;\nexports.updateField = updateField;\n\nvar _immutable = _interopRequireWildcard(__webpack_require__(/*! immutable */ \"immutable\"));\n\nvar _utils = _interopRequireWildcard(__webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\"));\n\nvar _templateFactory = _interopRequireDefault(__webpack_require__(/*! ./templateFactory */ \"./node_modules/@makajs/meta-engine/lib/templateFactory.js\"));\n\nvar globalObj = (0, _utils.getGlobal)();\nvar parsePath = _utils.path.parsePath;\nvar cache = {\n  meta: (0, _immutable.Map)(),\n  plugin: (0, _immutable.Map)()\n};\n\nglobalObj['__getCache'] = function () {\n  return cache;\n};\n\nvar uids = {};\n\nfunction uid(appName) {\n  if (!uids[appName]) {\n    uids[appName] = 0;\n    return appName + uids[appName]++;\n  } else {\n    return uids[appName]++;\n  }\n}\n\nfunction setMeta(appInfo) {\n  var plugins = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];\n  if (!appInfo || !appInfo.view) return;\n  var appName = appInfo.name;\n  if (cache.meta.has(appName) && JSON.stringify(plugins.sort()) === JSON.stringify(cache.plugin.get(appName).toJS().sort())) return;\n  cache.plugin = cache.plugin.set(appName, (0, _immutable.fromJS)(plugins));\n  setMetaForce(appName, appInfo.view);\n}\n\nfunction setMetaForce(appName, meta) {\n  if (!appName || !meta) return;\n  meta = (0, _immutable.fromJS)(meta);\n  meta = parseMetaTemplate(meta);\n  var parsed = parseMeta(meta, appName);\n  meta = parsed.meta;\n  var map = parsed.map;\n  cache.meta = cache.meta.setIn([appName, 'meta'], meta).setIn([appName, 'metaMap'], map);\n}\n\nfunction getMeta(appInfo, fullpath, propertys) {\n  if (!fullpath) return cache.meta.getIn([appInfo.name, 'meta']).toJS();\n  var parsedPath = parsePath(fullpath),\n      vars = parsedPath.vars,\n      metaMap = cache.meta.getIn([appInfo.name, 'metaMap']),\n      meta = cache.meta.getIn([appInfo.name, 'meta']);\n  var path = metaMap.get(parsedPath.path);\n  var currentMeta = path ? meta.getIn(path.split('.')) : meta; //Empty attribute, get all attributes under the path\n\n  if (!propertys) return currentMeta.toJS();\n  var ret = {}; //Attribute is an array\n\n  if (propertys instanceof Array) {\n    var i, p;\n\n    for (i = 0; p = propertys[i++];) {\n      var val = currentMeta.getIn(p.split('.'));\n      ret[p] = val && val.toJS ? val.toJS() : val;\n    }\n    /*\n    propertys.forEach(p => {\n        let val = currentMeta.getIn(p.split('.'))\n        ret[p] = (val && val.toJS) ? val.toJS() : val\n    })*/\n\n\n    return ret;\n  } //Attribute is a string\n\n\n  if (typeof propertys == 'string') {\n    var _val = currentMeta.getIn(propertys.split('.'));\n\n    return _val && _val.toJS ? _val.toJS() : _val;\n  }\n}\n\nfunction getMetaMap(appInfo) {\n  return cache.meta.getIn([appInfo.name, 'metaMap']);\n}\n\nfunction getField(state, fieldPath) {\n  var r;\n\n  if (!fieldPath) {\n    r = state.get('data');\n    return r && r.toJS ? r.toJS() : r;\n  }\n\n  r = fieldPath instanceof Array ? state.getIn(fieldPath) : state.getIn(fieldPath.split('.'));\n  return r && r.toJS ? r.toJS() : r;\n}\n\nfunction getFields(state, fieldPaths) {\n  var ret = {};\n  fieldPaths.forEach(function (o) {\n    return ret[o] = getField(state, o);\n  });\n  return ret;\n}\n\nfunction setField(state, fieldPath, value) {\n  if (fieldPath instanceof Array) {\n    return state.setIn(fieldPath, value && (0, _immutable.fromJS)(value));\n  } else {\n    return state.setIn(fieldPath.split('.'), value && (0, _immutable.fromJS)(value));\n  }\n}\n\nfunction setFields(state, values) {\n  var keys = Object.keys(values),\n      i,\n      key;\n\n  for (i = 0; key = keys[i++];) {\n    state = setField(state, key, values[key]);\n  }\n\n  return state;\n}\n\nfunction updateField(state, fieldPath, fn) {\n  if (fieldPath instanceof Array) {\n    return state.updateIn(fieldPath, fn);\n  } else {\n    return state.updateIn(fieldPath.split('.'), fn);\n  }\n}\n\nfunction parseMetaTemplate(meta) {\n  var templates = [];\n\n  var parseProp = function parseProp(propValue, path) {\n    if (!(propValue instanceof _immutable.default.Map)) {\n      return;\n    }\n\n    if (propValue.get('component')) {\n      var component = _utils.default.string.trim(propValue.get('component'));\n\n      var template = _templateFactory.default.getTemplate(component);\n\n      if (template) {\n        templates.unshift([path, (0, _immutable.fromJS)(template(propValue.toJS()))]);\n        return;\n      }\n    }\n\n    propValue.keySeq().toArray().forEach(function (p) {\n      var v = propValue.get(p);\n\n      if (v instanceof _immutable.default.List) {\n        v.forEach(function (c, index) {\n          var currentPath = path ? \"\".concat(path, \".\").concat(p, \".\").concat(index) : \"\".concat(p, \".\").concat(index);\n          parseProp(c, currentPath);\n        });\n      } else {\n        var currentPath = path ? \"\".concat(path, \".\").concat(p) : p;\n        parseProp(v, currentPath);\n      }\n    });\n  };\n\n  parseProp(meta, '');\n  templates.forEach(function (t) {\n    var seg = t[0].split('.');\n\n    if (t[1] instanceof _immutable.default.List && meta.getIn(seg.slice(0, seg.length - 1)) instanceof _immutable.default.List) {\n      var index = seg.pop();\n      meta = meta.updateIn(seg, function (ll) {\n        ll = ll.remove(index);\n        t[1].forEach(function (o) {\n          ll = ll.insert(index, o);\n          index++;\n        });\n        return ll;\n      });\n    } else if (seg == '') {\n      meta = t[1];\n    } else {\n      meta = meta.setIn(seg, t[1]);\n    }\n  });\n  return meta;\n}\n\nfunction parseMeta(meta, appName) {\n  var map = (0, _immutable.Map)();\n\n  var parseProp = function parseProp(propValue, parentPath, parentRealPath) {\n    if (!(propValue instanceof _immutable.default.Map)) {\n      return;\n    }\n    /*if (propValue.get('name') && propValue.get('component')) {\n        const name = utils.string.trim(propValue.get('name'))\n        parentPath = parentPath ? `${parentPath}.${name}` : name\n        ret = ret.set(parentPath, parentRealPath)\n    }\n    else*/\n\n\n    if (propValue.get('component')) {\n      var name = uid(appName) + '';\n      meta = meta.setIn(parentRealPath ? parentRealPath.split('.').concat('_name') : ['_name'], name);\n      parentPath = parentPath ? \"\".concat(parentPath, \".\").concat(name) : name;\n      map = map.set(parentPath, parentRealPath);\n    }\n\n    propValue.keySeq().toArray().forEach(function (p) {\n      var v = propValue.get(p),\n          currentPath = parentPath ? \"\".concat(parentPath, \".\").concat(p) : p;\n\n      if (v instanceof _immutable.default.List) {\n        v.forEach(function (c, index) {\n          var currentRealPath = parentRealPath ? \"\".concat(parentRealPath, \".\").concat(p, \".\").concat(index) : \"\".concat(p, \".\").concat(index);\n\n          if (c && c.get && c.get('component')) {\n            parseProp(c, \"\".concat(currentPath), currentRealPath);\n          } else {\n            parseProp(c, \"\".concat(currentPath, \".\").concat(index), currentRealPath);\n          }\n        });\n      } else {\n        var currentRealPath = parentRealPath ? \"\".concat(parentRealPath, \".\").concat(p) : p;\n        parseProp(v, \"\".concat(currentPath), currentRealPath);\n      }\n    });\n  };\n\n  parseProp(meta, '', '');\n  return {\n    meta: meta,\n    map: map\n  };\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/common.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.uid = uid;
+exports.setMeta = setMeta;
+exports.setMetaForce = setMetaForce;
+exports.getMeta = getMeta;
+exports.getMetaMap = getMetaMap;
+exports.getField = getField;
+exports.getFields = getFields;
+exports.setField = setField;
+exports.setFields = setFields;
+exports.updateField = updateField;
+
+var _immutable = _interopRequireWildcard(__webpack_require__(/*! immutable */ "immutable"));
+
+var _utils = _interopRequireWildcard(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
+
+var _templateFactory = _interopRequireDefault(__webpack_require__(/*! ./templateFactory */ "./node_modules/@makajs/meta-engine/lib/templateFactory.js"));
+
+var globalObj = (0, _utils.getGlobal)();
+var parsePath = _utils.path.parsePath;
+var cache = {
+  meta: (0, _immutable.Map)(),
+  plugin: (0, _immutable.Map)()
+};
+
+globalObj['__getCache'] = function () {
+  return cache;
+};
+
+var uids = {};
+
+function uid(appName) {
+  if (!uids[appName]) {
+    uids[appName] = 0;
+    return appName + uids[appName]++;
+  } else {
+    return uids[appName]++;
+  }
+}
+
+function setMeta(appInfo) {
+  var plugins = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  var appQuery = arguments.length > 2 ? arguments[2] : undefined;
+  if (!appInfo || !appInfo.view) return;
+  var appName = appInfo.name;
+  if (cache.meta.has(appName) && JSON.stringify(plugins.sort()) === JSON.stringify(cache.plugin.get(appName).toJS().sort())) return;
+  cache.plugin = cache.plugin.set(appName, (0, _immutable.fromJS)(plugins));
+  setMetaForce(appName, appInfo.view, appQuery);
+}
+
+function setMetaForce(appName, meta, appQuery) {
+  if (!appName || !meta) return;
+  meta = (0, _immutable.fromJS)(meta);
+  meta = parseMetaTemplate(meta);
+  var parsed = parseMeta(meta, appName);
+  meta = parsed.meta;
+  var map = parsed.map;
+
+  if (appQuery) {
+    cache.meta = cache.meta.setIn([appName, appQuery, 'meta'], meta).setIn([appName, appQuery, 'metaMap'], map);
+  } else {
+    cache.meta = cache.meta.setIn([appName, 'meta'], meta).setIn([appName, 'metaMap'], map);
+  }
+}
+
+function getMeta(appInfo, fullpath, propertys, appQuery) {
+  var meta = appQuery ? cache.meta.getIn([appInfo.name, appQuery, 'meta']) || cache.meta.getIn([appInfo.name, 'meta']) : cache.meta.getIn([appInfo.name, 'meta']);
+  var metaMap = appQuery ? cache.meta.getIn([appInfo.name, appQuery, 'metaMap']) || cache.meta.getIn([appInfo.name, 'metaMap']) : cache.meta.getIn([appInfo.name, 'metaMap']);
+
+  if (!fullpath) {
+    return meta.toJS();
+  }
+
+  var parsedPath = parsePath(fullpath),
+      vars = parsedPath.vars;
+  var path = metaMap.get(parsedPath.path);
+  var currentMeta = path ? meta.getIn(path.split('.')) : meta; //Empty attribute, get all attributes under the path
+
+  if (!propertys) return currentMeta.toJS();
+  var ret = {}; //Attribute is an array
+
+  if (propertys instanceof Array) {
+    var i, p;
+
+    for (i = 0; p = propertys[i++];) {
+      var val = currentMeta.getIn(p.split('.'));
+      ret[p] = val && val.toJS ? val.toJS() : val;
+    }
+    /*
+    propertys.forEach(p => {
+        let val = currentMeta.getIn(p.split('.'))
+        ret[p] = (val && val.toJS) ? val.toJS() : val
+    })*/
+
+
+    return ret;
+  } //Attribute is a string
+
+
+  if (typeof propertys == 'string') {
+    var _val = currentMeta.getIn(propertys.split('.'));
+
+    return _val && _val.toJS ? _val.toJS() : _val;
+  }
+}
+
+function getMetaMap(appInfo, appQuery) {
+  return cache.meta.getIn([appInfo.name, appQuery, 'metaMap']) || cache.meta.getIn([appInfo.name, 'metaMap']);
+}
+
+function getField(state, fieldPath) {
+  var r;
+
+  if (!fieldPath) {
+    r = state.get('data');
+    return r && r.toJS ? r.toJS() : r;
+  }
+
+  r = fieldPath instanceof Array ? state.getIn(fieldPath) : state.getIn(fieldPath.split('.'));
+  return r && r.toJS ? r.toJS() : r;
+}
+
+function getFields(state, fieldPaths) {
+  var ret = {};
+  fieldPaths.forEach(function (o) {
+    return ret[o] = getField(state, o);
+  });
+  return ret;
+}
+
+function setField(state, fieldPath, value) {
+  if (fieldPath instanceof Array) {
+    return state.setIn(fieldPath, value && (0, _immutable.fromJS)(value));
+  } else {
+    return state.setIn(fieldPath.split('.'), value && (0, _immutable.fromJS)(value));
+  }
+}
+
+function setFields(state, values) {
+  var keys = Object.keys(values),
+      i,
+      key;
+
+  for (i = 0; key = keys[i++];) {
+    state = setField(state, key, values[key]);
+  }
+
+  return state;
+}
+
+function updateField(state, fieldPath, fn) {
+  if (fieldPath instanceof Array) {
+    return state.updateIn(fieldPath, fn);
+  } else {
+    return state.updateIn(fieldPath.split('.'), fn);
+  }
+}
+
+function parseMetaTemplate(meta) {
+  var templates = [];
+
+  var parseProp = function parseProp(propValue, path) {
+    if (!(propValue instanceof _immutable.default.Map)) {
+      return;
+    }
+
+    if (propValue.get('component')) {
+      var component = _utils.default.string.trim(propValue.get('component'));
+
+      var template = _templateFactory.default.getTemplate(component);
+
+      if (template) {
+        templates.unshift([path, template]);
+      }
+    }
+
+    propValue.keySeq().toArray().forEach(function (p) {
+      var v = propValue.get(p);
+
+      if (v instanceof _immutable.default.List) {
+        v.forEach(function (c, index) {
+          var currentPath = path ? "".concat(path, ".").concat(p, ".").concat(index) : "".concat(p, ".").concat(index);
+          parseProp(c, currentPath);
+        });
+      } else {
+        var currentPath = path ? "".concat(path, ".").concat(p) : p;
+        parseProp(v, currentPath);
+      }
+    });
+  };
+
+  parseProp(meta, '');
+  templates.forEach(function (t) {
+    var seg = t[0].split('.');
+    var curr = seg == '' ? (0, _immutable.fromJS)(t[1](meta.toJS())) : (0, _immutable.fromJS)(t[1](meta.getIn(seg).toJS()));
+
+    if (curr instanceof _immutable.default.List && meta.getIn(seg.slice(0, seg.length - 1)) instanceof _immutable.default.List) {
+      var index = seg.pop();
+      meta = meta.updateIn(seg, function (ll) {
+        ll = ll.remove(index);
+        curr.forEach(function (o) {
+          ll = ll.insert(index, o);
+          index++;
+        });
+        return ll;
+      });
+    } else if (seg == '') {
+      meta = curr;
+    } else {
+      meta = meta.setIn(seg, curr);
+    }
+  });
+  return meta;
+}
+
+function parseMetaTemplate1(meta) {
+  var templates = [];
+
+  var parseProp = function parseProp(propValue, path) {
+    if (!(propValue instanceof _immutable.default.Map)) {
+      return;
+    }
+
+    if (propValue.get('component')) {
+      var component = _utils.default.string.trim(propValue.get('component'));
+
+      var template = _templateFactory.default.getTemplate(component);
+
+      if (template) {
+        templates.unshift([path, (0, _immutable.fromJS)(template(propValue.toJS()))]);
+        return;
+      }
+    }
+
+    propValue.keySeq().toArray().forEach(function (p) {
+      var v = propValue.get(p);
+
+      if (v instanceof _immutable.default.List) {
+        v.forEach(function (c, index) {
+          var currentPath = path ? "".concat(path, ".").concat(p, ".").concat(index) : "".concat(p, ".").concat(index);
+          parseProp(c, currentPath);
+        });
+      } else {
+        var currentPath = path ? "".concat(path, ".").concat(p) : p;
+        parseProp(v, currentPath);
+      }
+    });
+  };
+
+  parseProp(meta, '');
+  templates.forEach(function (t) {
+    var seg = t[0].split('.');
+
+    if (t[1] instanceof _immutable.default.List && meta.getIn(seg.slice(0, seg.length - 1)) instanceof _immutable.default.List) {
+      var index = seg.pop();
+      meta = meta.updateIn(seg, function (ll) {
+        ll = ll.remove(index);
+        t[1].forEach(function (o) {
+          ll = ll.insert(index, o);
+          index++;
+        });
+        return ll;
+      });
+    } else if (seg == '') {
+      meta = t[1];
+    } else {
+      meta = meta.setIn(seg, t[1]);
+    }
+  });
+  return meta;
+}
+
+function parseMeta(meta, appName) {
+  var map = (0, _immutable.Map)();
+
+  var parseProp = function parseProp(propValue, parentPath, parentRealPath) {
+    if (!(propValue instanceof _immutable.default.Map)) {
+      return;
+    }
+    /*if (propValue.get('name') && propValue.get('component')) {
+        const name = utils.string.trim(propValue.get('name'))
+        parentPath = parentPath ? `${parentPath}.${name}` : name
+        ret = ret.set(parentPath, parentRealPath)
+    }
+    else*/
+
+
+    if (propValue.get('component') || propValue.get('_for') || propValue.get('_function')) {
+      var name = uid(appName) + '';
+      meta = meta.setIn(parentRealPath ? parentRealPath.split('.').concat('_name') : ['_name'], name);
+      parentPath = parentPath ? "".concat(parentPath, ".").concat(name) : name;
+      map = map.set(parentPath, parentRealPath);
+    }
+
+    propValue.keySeq().toArray().forEach(function (p) {
+      var v = propValue.get(p),
+          currentPath = parentPath ? "".concat(parentPath, ".").concat(p) : p;
+
+      if (v instanceof _immutable.default.List) {
+        v.forEach(function (c, index) {
+          var currentRealPath = parentRealPath ? "".concat(parentRealPath, ".").concat(p, ".").concat(index) : "".concat(p, ".").concat(index);
+
+          if (c && c.get && (c.get('component') || c.get('_for') || c.get('_function'))) {
+            parseProp(c, "".concat(currentPath), currentRealPath);
+          } else {
+            parseProp(c, "".concat(currentPath, ".").concat(index), currentRealPath);
+          }
+        });
+      } else {
+        var currentRealPath = parentRealPath ? "".concat(parentRealPath, ".").concat(p) : p;
+        parseProp(v, "".concat(currentPath), currentRealPath);
+      }
+    });
+  };
+
+  parseProp(meta, '', '');
+  return {
+    meta: meta,
+    map: map
+  };
+}
 
 /***/ }),
 
@@ -586,7 +3435,147 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\"));\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"react\"));\n\nvar componentFactory =\n/*#__PURE__*/\nfunction () {\n  function componentFactory() {\n    (0, _classCallCheck2.default)(this, componentFactory);\n    this.components = {};\n    this.appComponents = {};\n  }\n\n  (0, _createClass2.default)(componentFactory, [{\n    key: \"getComponents\",\n    value: function getComponents() {\n      return this.components;\n    }\n  }, {\n    key: \"registerComponent\",\n    value: function registerComponent(name, component) {\n      if (this.components[name]) {\n        console.log(\"Component already exists. name: \".concat(name, \",please ignore!\"));\n        return;\n      }\n\n      this.components[name] = component;\n    }\n    /*\n    registerAppComponent(appName, componentName, component) {\n        this.appComponents[appName] = this.appComponents[appName] || {}\n        this.appComponents[appName].components = this.appComponents[appName].components || {}\n        if (this.appComponents[appName].components[componentName])\n            throw `existed. app:${appName}, name: ${componentName}`\n        this.appComponents[appName].components[componentName] = component\n    }*/\n\n  }, {\n    key: \"registerComponents\",\n    value: function registerComponents(components) {\n      var _this = this;\n\n      if (!components || components.length == 0) return;\n      components.forEach(function (c) {\n        return _this.registerComponent(c.name, c.component);\n      });\n    }\n  }, {\n    key: \"getComponent\",\n    value: function getComponent(name) {\n      if (!name) throw 'component name can not null';\n\n      if (name === 'Fragment') {\n        return _react.default.Fragment;\n      }\n\n      if (name === \"Suspense\") return _react.default.Suspense;\n      /*\n      if (name.substring(0, 2) == '::') {\n          if(name.substr(2))\n              return  name.substr(2) \n          else\n              throw `No components. name: ::`\n      }*/\n\n      var nameSegs = name.split('.'),\n          firstSeg = nameSegs[0];\n      /*\n      if (this.appComponents && this.appComponents[appName] && this.appComponents[appName].components && this.appComponents[appName].components[firstSeg]) {\n          var com = this.appComponents[appName].components[name]\n           if (com && nameSegs.length > 1) {\n              com = this.findChild(com, nameSegs)\n          }\n           if (com) return com\n       }*/\n\n      var component = this.components[firstSeg];\n\n      if (component && nameSegs.length > 1) {\n        component = this.findChild(component, nameSegs);\n      }\n\n      if (!component) {\n        return name; //throw `No components. name: ${name}`\n      }\n\n      return component;\n    }\n  }, {\n    key: \"findChild\",\n    value: function findChild(component, nameSegs) {\n      var _iteratorNormalCompletion = true;\n      var _didIteratorError = false;\n      var _iteratorError = undefined;\n\n      try {\n        for (var _iterator = nameSegs.slice(1)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {\n          var s = _step.value;\n\n          if (!component[s]) {\n            component = undefined;\n            return;\n          }\n\n          component = component[s];\n        }\n      } catch (err) {\n        _didIteratorError = true;\n        _iteratorError = err;\n      } finally {\n        try {\n          if (!_iteratorNormalCompletion && _iterator.return != null) {\n            _iterator.return();\n          }\n        } finally {\n          if (_didIteratorError) {\n            throw _iteratorError;\n          }\n        }\n      }\n\n      return component;\n    }\n  }]);\n  return componentFactory;\n}();\n\nvar instance = new componentFactory();\nvar _default = instance;\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/componentFactory.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var componentFactory =
+/*#__PURE__*/
+function () {
+  function componentFactory() {
+    (0, _classCallCheck2.default)(this, componentFactory);
+    this.components = {};
+    this.appComponents = {};
+  }
+
+  (0, _createClass2.default)(componentFactory, [{
+    key: "getComponents",
+    value: function getComponents() {
+      return this.components;
+    }
+  }, {
+    key: "registerComponent",
+    value: function registerComponent(name, component) {
+      if (this.components[name]) {
+        console.log("Component already exists. name: ".concat(name, ",please ignore!"));
+        return;
+      }
+
+      this.components[name] = component;
+    }
+    /*
+    registerAppComponent(appName, componentName, component) {
+        this.appComponents[appName] = this.appComponents[appName] || {}
+        this.appComponents[appName].components = this.appComponents[appName].components || {}
+        if (this.appComponents[appName].components[componentName])
+            throw `existed. app:${appName}, name: ${componentName}`
+        this.appComponents[appName].components[componentName] = component
+    }*/
+
+  }, {
+    key: "registerComponents",
+    value: function registerComponents(components) {
+      var _this = this;
+
+      if (!components || components.length == 0) return;
+      components.forEach(function (c) {
+        return _this.registerComponent(c.name, c.component);
+      });
+    }
+  }, {
+    key: "getComponent",
+    value: function getComponent(name) {
+      if (!name) throw 'component name can not null';
+
+      if (name === 'Fragment') {
+        return _react.default.Fragment;
+      }
+
+      if (name === "Suspense") return _react.default.Suspense;
+      /*
+      if (name.substring(0, 2) == '::') {
+          if(name.substr(2))
+              return  name.substr(2) 
+          else
+              throw `No components. name: ::`
+      }*/
+
+      var nameSegs = name.split('.'),
+          firstSeg = nameSegs[0];
+      /*
+      if (this.appComponents && this.appComponents[appName] && this.appComponents[appName].components && this.appComponents[appName].components[firstSeg]) {
+          var com = this.appComponents[appName].components[name]
+            if (com && nameSegs.length > 1) {
+              com = this.findChild(com, nameSegs)
+          }
+            if (com) return com
+        }*/
+
+      var component = this.components[firstSeg];
+
+      if (component && nameSegs.length > 1) {
+        component = this.findChild(component, nameSegs);
+      }
+
+      if (!component) {
+        return name; //throw `No components. name: ${name}`
+      }
+
+      return component;
+    }
+  }, {
+    key: "findChild",
+    value: function findChild(component, nameSegs) {
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = nameSegs.slice(1)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var s = _step.value;
+
+          if (!component[s]) {
+            component = undefined;
+            return;
+          }
+
+          component = component[s];
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return component;
+    }
+  }]);
+  return componentFactory;
+}();
+
+var instance = new componentFactory();
+var _default = instance;
+exports.default = _default;
 
 /***/ }),
 
@@ -598,7 +3587,21 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar _options = {};\n\nfunction config(options) {\n  Object.assign(_options, options);\n}\n\nconfig.current = _options;\nvar _default = config;\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/config.js?");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _options = {};
+
+function config(options) {
+  Object.assign(_options, options);
+}
+
+config.current = _options;
+var _default = config;
+exports.default = _default;
 
 /***/ }),
 
@@ -610,7 +3613,45 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\"));\n\nvar context =\n/*#__PURE__*/\nfunction () {\n  function context() {\n    (0, _classCallCheck2.default)(this, context);\n    this._context = {};\n  }\n\n  (0, _createClass2.default)(context, [{\n    key: \"set\",\n    value: function set(key, value) {\n      this._context[key] = value;\n    }\n  }, {\n    key: \"get\",\n    value: function get(key) {\n      return this._context[key];\n    }\n  }]);\n  return context;\n}();\n\nvar instance = new context();\nvar _default = instance;\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/context.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var context =
+/*#__PURE__*/
+function () {
+  function context() {
+    (0, _classCallCheck2.default)(this, context);
+    this._context = {};
+  }
+
+  (0, _createClass2.default)(context, [{
+    key: "set",
+    value: function set(key, value) {
+      if (value) window.localStorage[key] = JSON.stringify(value);else window.localStorage.removeItem(key);
+      this._context[key] = value;
+    }
+  }, {
+    key: "get",
+    value: function get(key) {
+      return this._context[key] || window.localStorage[key] && JSON.parse(window.localStorage[key]);
+    }
+  }]);
+  return context;
+}();
+
+var instance = new context();
+var _default = instance;
+exports.default = _default;
 
 /***/ }),
 
@@ -622,7 +3663,56 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ \"./node_modules/@babel/runtime/helpers/interopRequireWildcard.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ \"./node_modules/@babel/runtime/helpers/objectSpread.js\"));\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\"));\n\nvar _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ \"./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js\"));\n\nvar _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ \"./node_modules/@babel/runtime/helpers/getPrototypeOf.js\"));\n\nvar _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ \"./node_modules/@babel/runtime/helpers/inherits.js\"));\n\nvar _react = _interopRequireWildcard(__webpack_require__(/*! react */ \"react\"));\n\nvar _wrapper = _interopRequireDefault(__webpack_require__(/*! ./wrapper */ \"./node_modules/@makajs/meta-engine/lib/wrapper.js\"));\n\nvar _dec, _class;\n\nvar C = (_dec = (0, _wrapper.default)(), _dec(_class =\n/*#__PURE__*/\nfunction (_Component) {\n  (0, _inherits2.default)(C, _Component);\n\n  function C() {\n    (0, _classCallCheck2.default)(this, C);\n    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(C).apply(this, arguments));\n  }\n\n  (0, _createClass2.default)(C, [{\n    key: \"render\",\n    value: function render() {\n      return this.props.maka((0, _objectSpread2.default)({}, this.props, {\n        path: 'root'\n      }));\n    }\n  }]);\n  return C;\n}(_react.Component)) || _class);\nexports.default = C;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/defaultComponent.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+
+var _wrapper = _interopRequireDefault(__webpack_require__(/*! ./wrapper */ "./node_modules/@makajs/meta-engine/lib/wrapper.js"));
+
+var _dec, _class;
+
+var C = (_dec = (0, _wrapper.default)(), _dec(_class =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2.default)(C, _Component);
+
+  function C() {
+    (0, _classCallCheck2.default)(this, C);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(C).apply(this, arguments));
+  }
+
+  (0, _createClass2.default)(C, [{
+    key: "render",
+    value: function render() {
+      return this.props.maka((0, _objectSpread2.default)({}, this.props, {
+        path: 'root'
+      }));
+    }
+  }]);
+  return C;
+}(_react.Component)) || _class);
+exports.default = C;
 
 /***/ }),
 
@@ -634,7 +3724,132 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ \"./node_modules/@babel/runtime/helpers/interopRequireWildcard.js\");\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nObject.defineProperty(exports, \"config\", {\n  enumerable: true,\n  get: function get() {\n    return _config.default;\n  }\n});\nObject.defineProperty(exports, \"action\", {\n  enumerable: true,\n  get: function get() {\n    return _action.default;\n  }\n});\nObject.defineProperty(exports, \"appInstances\", {\n  enumerable: true,\n  get: function get() {\n    return _action.appInstances;\n  }\n});\nObject.defineProperty(exports, \"reducer\", {\n  enumerable: true,\n  get: function get() {\n    return _reducer.default;\n  }\n});\nObject.defineProperty(exports, \"wrapper\", {\n  enumerable: true,\n  get: function get() {\n    return _wrapper.default;\n  }\n});\nObject.defineProperty(exports, \"actionMixin\", {\n  enumerable: true,\n  get: function get() {\n    return _actionMixin.default;\n  }\n});\nObject.defineProperty(exports, \"componentFactory\", {\n  enumerable: true,\n  get: function get() {\n    return _componentFactory.default;\n  }\n});\nObject.defineProperty(exports, \"templateFactory\", {\n  enumerable: true,\n  get: function get() {\n    return _templateFactory.default;\n  }\n});\nObject.defineProperty(exports, \"actionFactory\", {\n  enumerable: true,\n  get: function get() {\n    return _actionFactory.default;\n  }\n});\nObject.defineProperty(exports, \"defaultComponent\", {\n  enumerable: true,\n  get: function get() {\n    return _defaultComponent.default;\n  }\n});\nObject.defineProperty(exports, \"rootElement\", {\n  enumerable: true,\n  get: function get() {\n    return _rootElement.default;\n  }\n});\nObject.defineProperty(exports, \"contextManager\", {\n  enumerable: true,\n  get: function get() {\n    return _context.default;\n  }\n});\nexports.defaultReducer = exports.defaultAction = exports.default = void 0;\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/meta-engine/lib/config.js\"));\n\nvar _action = _interopRequireWildcard(__webpack_require__(/*! ./action */ \"./node_modules/@makajs/meta-engine/lib/action.js\"));\n\nvar _reducer = _interopRequireDefault(__webpack_require__(/*! ./reducer */ \"./node_modules/@makajs/meta-engine/lib/reducer.js\"));\n\nvar _wrapper = _interopRequireDefault(__webpack_require__(/*! ./wrapper */ \"./node_modules/@makajs/meta-engine/lib/wrapper.js\"));\n\nvar _actionMixin = _interopRequireDefault(__webpack_require__(/*! ./actionMixin */ \"./node_modules/@makajs/meta-engine/lib/actionMixin.js\"));\n\nvar _componentFactory = _interopRequireDefault(__webpack_require__(/*! ./componentFactory */ \"./node_modules/@makajs/meta-engine/lib/componentFactory.js\"));\n\nvar _templateFactory = _interopRequireDefault(__webpack_require__(/*! ./templateFactory */ \"./node_modules/@makajs/meta-engine/lib/templateFactory.js\"));\n\nvar _actionFactory = _interopRequireDefault(__webpack_require__(/*! ./actionFactory */ \"./node_modules/@makajs/meta-engine/lib/actionFactory.js\"));\n\nvar _defaultComponent = _interopRequireDefault(__webpack_require__(/*! ./defaultComponent */ \"./node_modules/@makajs/meta-engine/lib/defaultComponent.js\"));\n\nvar _rootElement = _interopRequireDefault(__webpack_require__(/*! ./rootElement */ \"./node_modules/@makajs/meta-engine/lib/rootElement.js\"));\n\nvar _context = _interopRequireDefault(__webpack_require__(/*! ./context */ \"./node_modules/@makajs/meta-engine/lib/context.js\"));\n\nvar defaultAction = _action.default;\nexports.defaultAction = defaultAction;\nvar defaultReducer = _reducer.default;\nexports.defaultReducer = defaultReducer;\nvar _default = {\n  config: _config.default,\n  action: _action.default,\n  reducer: _reducer.default,\n  wrapper: _wrapper.default,\n  actionMixin: _actionMixin.default,\n  componentFactory: _componentFactory.default,\n  templateFactory: _templateFactory.default,\n  actionFactory: _actionFactory.default,\n  defaultComponent: _defaultComponent.default,\n  defaultAction: defaultAction,\n  defaultReducer: defaultReducer,\n  rootElement: _rootElement.default,\n  contextManager: _context.default,\n  appInstances: _action.appInstances\n};\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/index.js?");
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "config", {
+  enumerable: true,
+  get: function get() {
+    return _config.default;
+  }
+});
+Object.defineProperty(exports, "action", {
+  enumerable: true,
+  get: function get() {
+    return _action.default;
+  }
+});
+Object.defineProperty(exports, "appInstances", {
+  enumerable: true,
+  get: function get() {
+    return _action.appInstances;
+  }
+});
+Object.defineProperty(exports, "reducer", {
+  enumerable: true,
+  get: function get() {
+    return _reducer.default;
+  }
+});
+Object.defineProperty(exports, "wrapper", {
+  enumerable: true,
+  get: function get() {
+    return _wrapper.default;
+  }
+});
+Object.defineProperty(exports, "actionMixin", {
+  enumerable: true,
+  get: function get() {
+    return _actionMixin.default;
+  }
+});
+Object.defineProperty(exports, "componentFactory", {
+  enumerable: true,
+  get: function get() {
+    return _componentFactory.default;
+  }
+});
+Object.defineProperty(exports, "templateFactory", {
+  enumerable: true,
+  get: function get() {
+    return _templateFactory.default;
+  }
+});
+Object.defineProperty(exports, "actionFactory", {
+  enumerable: true,
+  get: function get() {
+    return _actionFactory.default;
+  }
+});
+Object.defineProperty(exports, "defaultComponent", {
+  enumerable: true,
+  get: function get() {
+    return _defaultComponent.default;
+  }
+});
+Object.defineProperty(exports, "rootElement", {
+  enumerable: true,
+  get: function get() {
+    return _rootElement.default;
+  }
+});
+Object.defineProperty(exports, "contextManager", {
+  enumerable: true,
+  get: function get() {
+    return _context.default;
+  }
+});
+exports.defaultReducer = exports.defaultAction = exports.default = void 0;
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/meta-engine/lib/config.js"));
+
+var _action = _interopRequireWildcard(__webpack_require__(/*! ./action */ "./node_modules/@makajs/meta-engine/lib/action.js"));
+
+var _reducer = _interopRequireDefault(__webpack_require__(/*! ./reducer */ "./node_modules/@makajs/meta-engine/lib/reducer.js"));
+
+var _wrapper = _interopRequireDefault(__webpack_require__(/*! ./wrapper */ "./node_modules/@makajs/meta-engine/lib/wrapper.js"));
+
+var _actionMixin = _interopRequireDefault(__webpack_require__(/*! ./actionMixin */ "./node_modules/@makajs/meta-engine/lib/actionMixin.js"));
+
+var _componentFactory = _interopRequireDefault(__webpack_require__(/*! ./componentFactory */ "./node_modules/@makajs/meta-engine/lib/componentFactory.js"));
+
+var _templateFactory = _interopRequireDefault(__webpack_require__(/*! ./templateFactory */ "./node_modules/@makajs/meta-engine/lib/templateFactory.js"));
+
+var _actionFactory = _interopRequireDefault(__webpack_require__(/*! ./actionFactory */ "./node_modules/@makajs/meta-engine/lib/actionFactory.js"));
+
+var _defaultComponent = _interopRequireDefault(__webpack_require__(/*! ./defaultComponent */ "./node_modules/@makajs/meta-engine/lib/defaultComponent.js"));
+
+var _rootElement = _interopRequireDefault(__webpack_require__(/*! ./rootElement */ "./node_modules/@makajs/meta-engine/lib/rootElement.js"));
+
+var _context = _interopRequireDefault(__webpack_require__(/*! ./context */ "./node_modules/@makajs/meta-engine/lib/context.js"));
+
+var defaultAction = _action.default;
+exports.defaultAction = defaultAction;
+var defaultReducer = _reducer.default;
+exports.defaultReducer = defaultReducer;
+var _default = {
+  config: _config.default,
+  action: _action.default,
+  reducer: _reducer.default,
+  wrapper: _wrapper.default,
+  actionMixin: _actionMixin.default,
+  componentFactory: _componentFactory.default,
+  templateFactory: _templateFactory.default,
+  actionFactory: _actionFactory.default,
+  defaultComponent: _defaultComponent.default,
+  defaultAction: defaultAction,
+  defaultReducer: defaultReducer,
+  rootElement: _rootElement.default,
+  contextManager: _context.default,
+  appInstances: _action.appInstances
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -646,7 +3861,231 @@ eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/h
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _construct2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/construct */ \"./node_modules/@babel/runtime/helpers/construct.js\"));\n\nvar _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/typeof.js\"));\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"react\"));\n\nvar _componentFactory = _interopRequireDefault(__webpack_require__(/*! ./componentFactory */ \"./node_modules/@makajs/meta-engine/lib/componentFactory.js\"));\n\nvar _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ \"./node_modules/lodash/memoize.js\"));\n\nvar _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\"));\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/meta-engine/lib/config.js\"));\n\nfunction parseMetaProps(meta, props, data) {\n  var ret = {};\n  Object.keys(meta).forEach(function (key) {\n    var v = meta[key],\n        t = (0, _typeof2.default)(v);\n\n    if (v instanceof Array) {\n      ret[key] = [];\n      var i, c;\n\n      for (i = 0; c = v[i++];) {\n        if (c instanceof Array) {\n          ret[key] = c;\n        } else {\n          var mc = metaToComponent(c, props, data);\n          if (mc instanceof Array) ret[key] = ret[key].concat(mc);else ret[key].push(mc);\n        }\n      }\n    } else if (t == 'object') {\n      if (v && v._notParse) {\n        delete v._notParse;\n        ret[key] = v;\n      } else {\n        ret[key] = metaToComponent(v, props, data);\n      }\n    } else {\n      ret[key] = v;\n    }\n  });\n  return ret;\n}\n\nvar toFunction = (0, _memoize.default)(function (v) {\n  return new Function(v);\n});\n\nfunction metaToComponent(meta, props, data) {\n  if (!meta) return meta;\n  var metaType = (0, _typeof2.default)(meta);\n\n  if (metaType == 'object' && meta['$$typeof']) {\n    return meta;\n  } else if (metaType == 'object' && meta['_isAMomentObject']) {\n    return meta;\n  } else if (metaType == 'object' && meta instanceof Date) {\n    return meta;\n  } else if (metaType == 'object' && meta instanceof Promise) {\n    return meta;\n  } else if (metaType == 'object') {\n    if (meta.component) {\n      if (meta._visible === false) return null;\n      if (typeof meta._visible === 'function' && meta._visible() === false) return null;\n\n      if (typeof meta.component == 'function') {\n        meta.component = meta.component();\n      } //_for: 'data.list' or 'data.list[_index].sub'\n\n\n      if (meta._for) {\n        var _for = meta._for,\n            paraNames = ['data', '$props$'],\n            paraValues = [data, props];\n\n        if (meta['_vars']) {\n          paraNames.push('_vars');\n          paraValues.push(meta['_vars']);\n        }\n\n        if (meta._extParas) {\n          var extParaKeys = Object.keys(meta._extParas);\n\n          if (extParaKeys && extParaKeys.length > 0) {\n            extParaKeys.forEach(function (k) {\n              paraNames.push(k);\n              paraValues.push(meta._extParas[k]);\n            });\n          }\n        }\n\n        var tmp = _for.replace('in', '#').split('#'),\n            dsPath = _utils.default.string.trim(tmp[1]),\n            extParaNames = tmp[0].replace('(', '').replace(')', '').split(','),\n            express = \"\".concat(dsPath.replace(/\\$/g, '$props$.'));\n\n        if (_config.default.current.transformer) {\n          express = _config.default.current.transformer(express);\n        }\n\n        var items = (0, _construct2.default)(Function, paraNames.concat([\"return \".concat(dsPath.replace(/\\$/g, '$props$.'))])).apply(null, paraValues);\n        if (!items || items.length == 0) return;\n        return items.map(function (o, index) {\n          var _vars = meta['_vars'];\n          _vars = !_vars ? index + '' : ',' + index; //let _vars = meta['_vars'] || []\n          //_vars.push({ _index: index, _item: o })\n\n          var _extParas = meta._extParas || {};\n\n          _extParas[_utils.default.string.trim(extParaNames[0])] = o;\n          extParaNames.length > 1 && (_extParas[_utils.default.string.trim(extParaNames[1])] = index);\n          var childMeta = props.base.gm(meta.path, undefined, data, _vars, _extParas);\n          delete childMeta._for;\n          return metaToComponent(childMeta, props, data);\n        });\n      } //_function: '(arg1,arg2)\n\n\n      if (meta._function !== undefined) {\n        var _function = meta._function.replace('(', '').replace(')', '');\n\n        return function () {\n          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n            args[_key] = arguments[_key];\n          }\n\n          var _extParas = meta._extParas || {};\n\n          _function.split(',').forEach(function (paraName, index) {\n            _extParas[_utils.default.string.trim(paraName)] = args[index];\n          });\n\n          var childMeta = props.base.gm(meta.path, undefined, data, meta['_vars'], _extParas);\n          childMeta._function = undefined;\n\n          if (childMeta._firstReturn) {\n            return childMeta._firstReturn;\n          } else {\n            return metaToComponent(childMeta, props, data);\n          }\n        };\n      }\n\n      var _decorator = meta._decorator;\n\n      var componentName = meta.component,\n          component = _componentFactory.default.getComponent(componentName);\n\n      var allProps = parseMetaProps(meta, props, data);\n\n      if (!allProps.key) {\n        //let strVars = (meta._vars && meta._vars.map(o => o._index).join(',')) || ''\n        var strVars = meta._vars || '';\n        allProps.key = strVars ? meta.path + ',' + strVars : meta.path;\n      }\n\n      delete allProps.component;\n      delete allProps._name;\n      delete allProps.path;\n      delete allProps._decorator; //allProps = omit(allProps, ['clearAppState', 'component', 'name', 'getDirectFuns', 'initView', 'payload'])\n\n      if (componentName == 'AppLoader') {\n        var propKeys = Object.keys(props),\n            i,\n            key;\n\n        for (i = 0; key = propKeys[i++];) {\n          if (allProps[key] == undefined) {\n            allProps[key] = props[key];\n          }\n        } //Remove attributes that are not required by some components\n\n\n        delete allProps.clearAppState;\n        delete allProps.getDirectFuns;\n        delete allProps.initView;\n        delete allProps.payload;\n        delete allProps.componentWillMount;\n        delete allProps.componentDidMount;\n        delete allProps.shouldComponentUpdate;\n        delete allProps.componentWillReceiveProps;\n        delete allProps.componentWillUpdate;\n        delete allProps.componentDidCatch;\n        delete allProps.componentWillUnmount;\n        delete allProps.componentDidUpdate;\n        delete allProps.unmount;\n        if (!allProps.appName) return null;\n        /*if (allProps._notRender === true && !existsApp(allProps.appName)) {\n            return null\n        }*/\n\n        allProps.key = allProps.appName;\n        allProps.name = allProps.appName;\n        return _react.default.createElement(component, allProps);\n      }\n\n      if (_decorator) return _decorator(_react.default.createElement(component, allProps));else return _react.default.createElement(component, allProps);\n    } else {\n      return parseMetaProps(meta, props, data);\n    }\n  } else {\n    return meta;\n  }\n}\n\nvar MonkeyKing = function MonkeyKing(props) {\n  var base = props.base;\n  var data = base.gs();\n  if (!data) return null;\n  return metaToComponent(base.gm(undefined, undefined, data), props, data);\n};\n\nvar _default = MonkeyKing;\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/maka.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _construct2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/construct */ "./node_modules/@babel/runtime/helpers/construct.js"));
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _componentFactory = _interopRequireDefault(__webpack_require__(/*! ./componentFactory */ "./node_modules/@makajs/meta-engine/lib/componentFactory.js"));
+
+var _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ "./node_modules/lodash/memoize.js"));
+
+var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/meta-engine/lib/config.js"));
+
+function parseMetaProps(meta, props, data) {
+  var ret = {};
+  Object.keys(meta).forEach(function (key) {
+    var v = meta[key],
+        t = (0, _typeof2.default)(v);
+
+    if (v instanceof Array) {
+      ret[key] = [];
+      var i, c;
+
+      for (i = 0; c = v[i++];) {
+        if (c instanceof Array) {
+          ret[key] = c;
+        } else {
+          var mc = metaToComponent(c, props, data);
+          if (mc instanceof Array) ret[key] = ret[key].concat(mc);else ret[key].push(mc);
+        }
+      }
+    } else if (t == 'object') {
+      if (v && v._notParse) {
+        delete v._notParse;
+        ret[key] = v;
+      } else {
+        ret[key] = metaToComponent(v, props, data);
+      }
+    } else {
+      ret[key] = v;
+    }
+  });
+  return ret;
+}
+
+var toFunction = (0, _memoize.default)(function (v) {
+  return new Function(v);
+});
+
+function metaToComponent(meta, props, data) {
+  if (!meta) return meta;
+  var metaType = (0, _typeof2.default)(meta);
+
+  if (metaType == 'object' && meta['$$typeof']) {
+    return meta;
+  } else if (metaType == 'object' && meta['_isAMomentObject']) {
+    return meta;
+  } else if (metaType == 'object' && meta instanceof Date) {
+    return meta;
+  } else if (metaType == 'object' && meta instanceof Promise) {
+    return meta;
+  } else if (metaType == 'object') {
+    if (meta.component || meta._for || meta._function) {
+      if (meta._visible === false) return null;
+      if (typeof meta._visible === 'function' && meta._visible() === false) return null;
+
+      if (typeof meta.component == 'function') {
+        meta.component = meta.component();
+      } //_for: 'data.list' or 'data.list[_index].sub'
+
+
+      if (meta._for) {
+        var _for = meta._for,
+            paraNames = ['data', '$props$'],
+            paraValues = [data, props];
+
+        if (meta['_vars']) {
+          paraNames.push('_vars');
+          paraValues.push(meta['_vars']);
+        }
+
+        if (meta._extParas) {
+          var extParaKeys = Object.keys(meta._extParas);
+
+          if (extParaKeys && extParaKeys.length > 0) {
+            extParaKeys.forEach(function (k) {
+              paraNames.push(k);
+              paraValues.push(meta._extParas[k]);
+            });
+          }
+        }
+
+        var tmp = _for.replace('in', '#').split('#'),
+            dsPath = _utils.default.string.trim(tmp[1]),
+            extParaNames = tmp[0].replace('(', '').replace(')', '').split(','),
+            express = "".concat(dsPath.replace(/\$/g, '$props$.'));
+
+        if (_config.default.current.transformer) {
+          express = _config.default.current.transformer(express);
+        }
+
+        var items = (0, _construct2.default)(Function, paraNames.concat(["return ".concat(dsPath.replace(/\$/g, '$props$.'))])).apply(null, paraValues);
+        if (!items || items.length == 0) return;
+        return items.map(function (o, index) {
+          var _vars = meta['_vars'];
+          _vars = !_vars ? index + '' : ',' + index; //let _vars = meta['_vars'] || []
+          //_vars.push({ _index: index, _item: o })
+
+          var _extParas = meta._extParas || {};
+
+          _extParas[_utils.default.string.trim(extParaNames[0])] = o;
+          extParaNames.length > 1 && (_extParas[_utils.default.string.trim(extParaNames[1])] = index);
+          var childMeta = props.base.gm(meta.path, undefined, data, _vars, _extParas);
+          delete childMeta._for;
+          return metaToComponent(childMeta, props, data);
+        });
+      } //_function: '(arg1,arg2)
+
+
+      if (meta._function !== undefined) {
+        var _function = meta._function.replace('(', '').replace(')', '');
+
+        return function () {
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          var _extParas = meta._extParas || {};
+
+          _function.split(',').forEach(function (paraName, index) {
+            _extParas[_utils.default.string.trim(paraName)] = args[index];
+          });
+
+          var childMeta = props.base.gm(meta.path, undefined, data, meta['_vars'], _extParas);
+          childMeta._function = undefined;
+
+          if (childMeta._firstReturn) {
+            return childMeta._firstReturn;
+          } else {
+            return metaToComponent(childMeta, props, data);
+          }
+        };
+      }
+
+      var _decorator = meta._decorator;
+
+      var componentName = meta.component,
+          component = _componentFactory.default.getComponent(componentName);
+
+      var allProps = parseMetaProps(meta, props, data);
+
+      if (!allProps.key) {
+        //let strVars = (meta._vars && meta._vars.map(o => o._index).join(',')) || ''
+        var strVars = meta._vars || '';
+        allProps.key = strVars ? meta.path + ',' + strVars : meta.path;
+      }
+
+      delete allProps.component;
+      delete allProps._name;
+      delete allProps.path;
+      delete allProps._decorator; //allProps = omit(allProps, ['clearAppState', 'component', 'name', 'getDirectFuns', 'initView', 'payload'])
+
+      if (componentName == 'AppLoader') {
+        var propKeys = Object.keys(props),
+            i,
+            key;
+
+        for (i = 0; key = propKeys[i++];) {
+          if (allProps[key] == undefined) {
+            allProps[key] = props[key];
+          }
+        } //Remove attributes that are not required by some components
+
+
+        delete allProps.clearAppState;
+        delete allProps.getDirectFuns;
+        delete allProps.initView;
+        delete allProps.payload;
+        delete allProps.componentWillMount;
+        delete allProps.componentDidMount;
+        delete allProps.shouldComponentUpdate;
+        delete allProps.componentWillReceiveProps;
+        delete allProps.componentWillUpdate;
+        delete allProps.componentDidCatch;
+        delete allProps.componentWillUnmount;
+        delete allProps.componentDidUpdate;
+        delete allProps.unmount;
+        if (!allProps.appName) return null;
+        /*if (allProps._notRender === true && !existsApp(allProps.appName)) {
+            return null
+        }*/
+
+        allProps.key = allProps.appName;
+        allProps.name = allProps.appName;
+        return _react.default.createElement(component, allProps);
+      }
+
+      if (_decorator) return _decorator(_react.default.createElement(component, allProps));else return _react.default.createElement(component, allProps);
+    } else {
+      return parseMetaProps(meta, props, data);
+    }
+  } else {
+    return meta;
+  }
+}
+
+var MonkeyKing = function MonkeyKing(props) {
+  var base = props.base;
+  var data = base.gs();
+  if (!data) return null;
+  return metaToComponent(base.gm(undefined, undefined, data), props, data);
+};
+
+var _default = MonkeyKing;
+exports.default = _default;
 
 /***/ }),
 
@@ -658,7 +4097,68 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ \"./node_modules/@babel/runtime/helpers/interopRequireWildcard.js\");\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = creator;\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ \"./node_modules/@babel/runtime/helpers/defineProperty.js\"));\n\nvar _immutable = _interopRequireWildcard(__webpack_require__(/*! immutable */ \"immutable\"));\n\nvar _context = _interopRequireDefault(__webpack_require__(/*! ./context */ \"./node_modules/@makajs/meta-engine/lib/context.js\"));\n\nvar common = _interopRequireWildcard(__webpack_require__(/*! ./common */ \"./node_modules/@makajs/meta-engine/lib/common.js\"));\n\nvar reducer = function reducer(_option) {\n  var _this = this;\n\n  (0, _classCallCheck2.default)(this, reducer);\n  (0, _defineProperty2.default)(this, \"init\", function (state, option) {\n    var _option$data = option.data,\n        data = _option$data === void 0 ? {} : _option$data;\n    return _this.initByImmutable(state, {\n      data: _immutable.default.fromJS(data)\n    });\n  });\n  (0, _defineProperty2.default)(this, \"initByImmutable\", function (state, option) {\n    var data = option.data; //Clear the attribute in the state that is not @@, which is added by maka-app-loader\n\n    var keys = [];\n    state.mapKeys(function (key) {\n      if (key.indexOf('@@') === -1) keys.push(key);\n    });\n    keys.forEach(function (key) {\n      state = state.remove(key);\n    }); //Setting status\n\n    return state.set('data', data);\n  });\n  (0, _defineProperty2.default)(this, \"getMeta\", common.getMeta);\n  (0, _defineProperty2.default)(this, \"getField\", common.getField);\n  (0, _defineProperty2.default)(this, \"getFields\", common.getFields);\n  (0, _defineProperty2.default)(this, \"setField\", common.setField);\n  (0, _defineProperty2.default)(this, \"setFields\", common.setFields);\n  (0, _defineProperty2.default)(this, \"gm\", common.getMeta);\n  (0, _defineProperty2.default)(this, \"gf\", common.getField);\n  (0, _defineProperty2.default)(this, \"gfs\", common.getFields);\n  (0, _defineProperty2.default)(this, \"sf\", common.setField);\n  (0, _defineProperty2.default)(this, \"sfs\", common.setFields);\n  (0, _defineProperty2.default)(this, \"context\", _context.default);\n  this.appInfo = _option.appInfo;\n};\n\nfunction creator(option) {\n  return new reducer(option);\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/reducer.js?");
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = creator;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _immutable = _interopRequireWildcard(__webpack_require__(/*! immutable */ "immutable"));
+
+var _context = _interopRequireDefault(__webpack_require__(/*! ./context */ "./node_modules/@makajs/meta-engine/lib/context.js"));
+
+var common = _interopRequireWildcard(__webpack_require__(/*! ./common */ "./node_modules/@makajs/meta-engine/lib/common.js"));
+
+var reducer = function reducer(_option) {
+  var _this = this;
+
+  (0, _classCallCheck2.default)(this, reducer);
+  (0, _defineProperty2.default)(this, "init", function (state, option) {
+    var _option$data = option.data,
+        data = _option$data === void 0 ? {} : _option$data;
+    return _this.initByImmutable(state, {
+      data: _immutable.default.fromJS(data)
+    });
+  });
+  (0, _defineProperty2.default)(this, "initByImmutable", function (state, option) {
+    var data = option.data; //Clear the attribute in the state that is not @@, which is added by maka-app-loader
+
+    var keys = [];
+    state.mapKeys(function (key) {
+      if (key.indexOf('@@') === -1) keys.push(key);
+    });
+    keys.forEach(function (key) {
+      state = state.remove(key);
+    }); //Setting status
+
+    return state.set('data', data);
+  });
+  (0, _defineProperty2.default)(this, "getMeta", common.getMeta);
+  (0, _defineProperty2.default)(this, "getField", common.getField);
+  (0, _defineProperty2.default)(this, "getFields", common.getFields);
+  (0, _defineProperty2.default)(this, "setField", common.setField);
+  (0, _defineProperty2.default)(this, "setFields", common.setFields);
+  (0, _defineProperty2.default)(this, "gm", common.getMeta);
+  (0, _defineProperty2.default)(this, "gf", common.getField);
+  (0, _defineProperty2.default)(this, "gfs", common.getFields);
+  (0, _defineProperty2.default)(this, "sf", common.setField);
+  (0, _defineProperty2.default)(this, "sfs", common.setFields);
+  (0, _defineProperty2.default)(this, "context", _context.default);
+  this.appInfo = _option.appInfo;
+};
+
+function creator(option) {
+  return new reducer(option);
+}
 
 /***/ }),
 
@@ -670,7 +4170,100 @@ eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/h
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\"));\n\nvar _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ \"./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js\"));\n\nvar _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ \"./node_modules/@babel/runtime/helpers/getPrototypeOf.js\"));\n\nvar _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ \"./node_modules/@babel/runtime/helpers/inherits.js\"));\n\nvar _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ \"./node_modules/@babel/runtime/helpers/assertThisInitialized.js\"));\n\nvar _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ \"./node_modules/@babel/runtime/helpers/defineProperty.js\"));\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"react\"));\n\nvar _appLoader = _interopRequireDefault(__webpack_require__(/*! @makajs/app-loader */ \"./node_modules/@makajs/app-loader/lib/index.js\"));\n\nvar _utils = __webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\");\n\nvar Root =\n/*#__PURE__*/\nfunction (_React$PureComponent) {\n  (0, _inherits2.default)(Root, _React$PureComponent);\n\n  function Root(props) {\n    var _this;\n\n    (0, _classCallCheck2.default)(this, Root);\n    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Root).call(this, props));\n    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), \"listen\", function (location, action) {\n      var full = location.pathname + location.search;\n\n      if ((!full || full == '/') && _this.props.appName == _this.state.currentApp) {\n        _utils.navigate.redirect(_this.state.currentApp);\n\n        return;\n      }\n\n      full = full.substr(0, 1) == '/' ? full.substr(1) : full;\n      var target = full.split('/')[0];\n      if (target == _this.state.currentApp) return;\n\n      _this.setState({\n        currentApp: target\n      });\n    });\n\n    _utils.navigate.listen(_this.listen);\n\n    var currentApp,\n        _location = _utils.navigate.getLocation(),\n        _full = _location.pathname + _location.search;\n\n    if (!_full || _full == '/') {\n      currentApp = props.appName;\n    } else {\n      _full = _full.substr(0, 1) == '/' ? _full.substr(1) : _full;\n      currentApp = _full.split('/')[0];\n    }\n\n    _this.state = {\n      currentApp: currentApp\n    };\n    if (!_full || _full == '/') _utils.navigate.redirect('/' + currentApp);else _utils.navigate.redirect('/' + _full);\n    return _this;\n  }\n\n  (0, _createClass2.default)(Root, [{\n    key: \"componentWillUnmount\",\n    value: function componentWillUnmount() {\n      _utils.navigate.unlisten(this.listen);\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      return _react.default.createElement(_appLoader.default.AppLoader, {\n        name: this.state.currentApp\n      });\n    }\n  }]);\n  return Root;\n}(_react.default.PureComponent);\n\nexports.default = Root;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/rootElement.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _appLoader = _interopRequireDefault(__webpack_require__(/*! @makajs/app-loader */ "./node_modules/@makajs/app-loader/lib/index.js"));
+
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+
+var Root =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  (0, _inherits2.default)(Root, _React$PureComponent);
+
+  function Root(props) {
+    var _this;
+
+    (0, _classCallCheck2.default)(this, Root);
+    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Root).call(this, props));
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "listen", function (location, action) {
+      var full = location.pathname + location.search;
+
+      if ((!full || full == '/') && _this.props.appName == _this.state.currentApp) {
+        _utils.navigate.redirect(_this.state.currentApp);
+
+        return;
+      }
+
+      full = full.substr(0, 1) == '/' ? full.substr(1) : full;
+      var target = full.split('/')[0];
+      if (target == _this.state.currentApp) return;
+
+      _this.setState({
+        currentApp: target
+      });
+    });
+
+    _utils.navigate.listen(_this.listen);
+
+    var currentApp,
+        _location = _utils.navigate.getLocation(),
+        _full = _location.pathname + _location.search;
+
+    if (!_full || _full == '/') {
+      currentApp = props.appName;
+    } else {
+      _full = _full.substr(0, 1) == '/' ? _full.substr(1) : _full;
+      currentApp = _full.split('/')[0];
+    }
+
+    _this.state = {
+      currentApp: currentApp
+    };
+    if (!_full || _full == '/') _utils.navigate.redirect('/' + currentApp);else _utils.navigate.redirect('/' + _full);
+    return _this;
+  }
+
+  (0, _createClass2.default)(Root, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      _utils.navigate.unlisten(this.listen);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_appLoader.default.AppLoader, {
+        name: this.state.currentApp
+      });
+    }
+  }]);
+  return Root;
+}(_react.default.PureComponent);
+
+exports.default = Root;
 
 /***/ }),
 
@@ -682,7 +4275,108 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\"));\n\nvar templateFactory =\n/*#__PURE__*/\nfunction () {\n  function templateFactory() {\n    (0, _classCallCheck2.default)(this, templateFactory);\n    this.templates = {};\n  }\n\n  (0, _createClass2.default)(templateFactory, [{\n    key: \"getTemplates\",\n    value: function getTemplates() {\n      return this.templates;\n    }\n  }, {\n    key: \"registerTemplate\",\n    value: function registerTemplate(name, templateHandler) {\n      if (this.templates[name]) {\n        console.log(\"Template already exists. name: \".concat(name, \",please ignore!\"));\n        return;\n      }\n\n      this.templates[name] = templateHandler;\n    }\n  }, {\n    key: \"registerTemplates\",\n    value: function registerTemplates(templates) {\n      var _this = this;\n\n      if (!templates || templates.length == 0) return;\n      templates.forEach(function (t) {\n        return _this.registerTemplate(t.name, t.templateHandler);\n      });\n    }\n  }, {\n    key: \"getTemplate\",\n    value: function getTemplate(name) {\n      if (!name) throw 'template name can not null';\n      var nameSegs = name.split('.'),\n          firstSeg = nameSegs[0];\n      var template = this.templates[firstSeg];\n\n      if (template && nameSegs.length > 1) {\n        template = this.findChild(template, nameSegs);\n      }\n\n      return template;\n    }\n  }, {\n    key: \"findChild\",\n    value: function findChild(template, nameSegs) {\n      var _iteratorNormalCompletion = true;\n      var _didIteratorError = false;\n      var _iteratorError = undefined;\n\n      try {\n        for (var _iterator = nameSegs.slice(1)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {\n          var s = _step.value;\n\n          if (!template[s]) {\n            template = undefined;\n            return;\n          }\n\n          template = template[s];\n        }\n      } catch (err) {\n        _didIteratorError = true;\n        _iteratorError = err;\n      } finally {\n        try {\n          if (!_iteratorNormalCompletion && _iterator.return != null) {\n            _iterator.return();\n          }\n        } finally {\n          if (_didIteratorError) {\n            throw _iteratorError;\n          }\n        }\n      }\n\n      return template;\n    }\n  }]);\n  return templateFactory;\n}();\n\nvar instance = new templateFactory();\nvar _default = instance;\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/templateFactory.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var templateFactory =
+/*#__PURE__*/
+function () {
+  function templateFactory() {
+    (0, _classCallCheck2.default)(this, templateFactory);
+    this.templates = {};
+  }
+
+  (0, _createClass2.default)(templateFactory, [{
+    key: "getTemplates",
+    value: function getTemplates() {
+      return this.templates;
+    }
+  }, {
+    key: "registerTemplate",
+    value: function registerTemplate(name, templateHandler) {
+      if (this.templates[name]) {
+        console.log("Template already exists. name: ".concat(name, ",please ignore!"));
+        return;
+      }
+
+      this.templates[name] = templateHandler;
+    }
+  }, {
+    key: "registerTemplates",
+    value: function registerTemplates(templates) {
+      var _this = this;
+
+      if (!templates || templates.length == 0) return;
+      templates.forEach(function (t) {
+        return _this.registerTemplate(t.name, t.templateHandler);
+      });
+    }
+  }, {
+    key: "getTemplate",
+    value: function getTemplate(name) {
+      if (!name) throw 'template name can not null';
+      var nameSegs = name.split('.'),
+          firstSeg = nameSegs[0];
+      var template = this.templates[firstSeg];
+
+      if (template && nameSegs.length > 1) {
+        template = this.findChild(template, nameSegs);
+      }
+
+      return template;
+    }
+  }, {
+    key: "findChild",
+    value: function findChild(template, nameSegs) {
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = nameSegs.slice(1)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var s = _step.value;
+
+          if (!template[s]) {
+            template = undefined;
+            return;
+          }
+
+          template = template[s];
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return template;
+    }
+  }]);
+  return templateFactory;
+}();
+
+var instance = new templateFactory();
+var _default = instance;
+exports.default = _default;
 
 /***/ }),
 
@@ -694,7 +4388,153 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ \"./node_modules/@babel/runtime/helpers/interopRequireWildcard.js\");\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = wrapper;\n\nvar _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ \"./node_modules/@babel/runtime/helpers/extends.js\"));\n\nvar _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\"));\n\nvar _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\"));\n\nvar _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ \"./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js\"));\n\nvar _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ \"./node_modules/@babel/runtime/helpers/getPrototypeOf.js\"));\n\nvar _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ \"./node_modules/@babel/runtime/helpers/inherits.js\"));\n\nvar _react = _interopRequireWildcard(__webpack_require__(/*! react */ \"react\"));\n\nvar _reactAddonsShallowCompare = _interopRequireDefault(__webpack_require__(/*! react-addons-shallow-compare */ \"./node_modules/react-addons-shallow-compare/index.js\"));\n\nvar _reactDom = _interopRequireDefault(__webpack_require__(/*! react-dom */ \"react-dom\"));\n\nvar _maka = _interopRequireDefault(__webpack_require__(/*! ./maka */ \"./node_modules/@makajs/meta-engine/lib/maka.js\"));\n\nvar _config = _interopRequireDefault(__webpack_require__(/*! ./config */ \"./node_modules/@makajs/meta-engine/lib/config.js\"));\n\nvar _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\"));\n\nfunction wrapper(option) {\n  return function (WrappedComponent) {\n    return (\n      /*#__PURE__*/\n      function (_Component) {\n        (0, _inherits2.default)(internal, _Component);\n\n        function internal(props) {\n          var _this;\n\n          (0, _classCallCheck2.default)(this, internal);\n          _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(internal).call(this, props));\n          _this.state = {\n            hasError: false\n          };\n          return _this;\n        }\n\n        (0, _createClass2.default)(internal, [{\n          key: \"componentWillMount\",\n          value: function componentWillMount() {\n            this.props.componentWillMount && this.props.componentWillMount();\n          }\n        }, {\n          key: \"componentDidMount\",\n          value: function componentDidMount() {\n            this.props.initView && this.props.initView(this);\n            this.props.componentDidMount && this.props.componentDidMount();\n          }\n        }, {\n          key: \"shouldComponentUpdate\",\n          value: function shouldComponentUpdate(nextProps, nextState) {\n            if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) return true;\n\n            if (nextState.hasError != this.state.hasError) {\n              return true;\n            }\n\n            return (0, _reactAddonsShallowCompare.default)(this, nextProps, nextState);\n            /*\n            for (var o in this.props) {\n            \tif (this.props[o] != nextProps[o]) {\n            \t\treturn true\n            \t}\n            }\n            return false\n            */\n          }\n        }, {\n          key: \"componentWillReceiveProps\",\n          value: function componentWillReceiveProps(nextProps) {\n            if (this.state.hasError) {\n              this.setState({\n                hasError: false,\n                error: undefined\n              });\n            }\n\n            this.props.componentWillReceiveProps && this.props.componentWillReceiveProps(nextProps);\n          }\n        }, {\n          key: \"componentWillUpdate\",\n          value: function componentWillUpdate(nextProps, nextState) {\n            this.props.componentWillUpdate && this.props.componentWillUpdate(nextProps, nextState);\n          }\n        }, {\n          key: \"componentDidCatch\",\n          value: function componentDidCatch(error, info) {\n            _utils.default.exception.error(error);\n\n            this.setState({\n              hasError: true,\n              error: error\n            });\n            this.props.componentDidCatch && this.props.componentDidCatch(error, info);\n          }\n        }, {\n          key: \"componentWillUnmount\",\n          value: function componentWillUnmount() {\n            this.props.unmount && this.props.unmount();\n            this.props.componentWillUnmount && this.props.componentWillUnmount();\n          }\n        }, {\n          key: \"componentDidUpdate\",\n          value: function componentDidUpdate() {\n            this.props.componentDidUpdate && this.props.componentDidUpdate();\n          }\n        }, {\n          key: \"render\",\n          value: function render() {\n            if (this.state.hasError) {\n              return _react.default.createElement(\"div\", {\n                style: {\n                  color: 'red'\n                }\n              }, this.state.error && this.state.error.message);\n            }\n\n            if (this.props.notRender === true || this.props._notRender === true) return null;\n            if (!WrappedComponent) return null;\n            if (!this.props.payload || !this.props.payload.get('data')) return null;\n            if (this.props.payload.getIn(['data', '_notRender']) === true) return null;\n            return _react.default.createElement(WrappedComponent, (0, _extends2.default)({}, this.props, {\n              maka: _maka.default\n            }));\n          }\n        }]);\n        return internal;\n      }(_react.Component)\n    );\n  };\n}\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/meta-engine/lib/wrapper.js?");
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = wrapper;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+
+var _reactAddonsShallowCompare = _interopRequireDefault(__webpack_require__(/*! react-addons-shallow-compare */ "./node_modules/react-addons-shallow-compare/index.js"));
+
+var _reactDom = _interopRequireDefault(__webpack_require__(/*! react-dom */ "react-dom"));
+
+var _maka = _interopRequireDefault(__webpack_require__(/*! ./maka */ "./node_modules/@makajs/meta-engine/lib/maka.js"));
+
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/meta-engine/lib/config.js"));
+
+var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
+
+function wrapper(option) {
+  return function (WrappedComponent) {
+    return (
+      /*#__PURE__*/
+      function (_Component) {
+        (0, _inherits2.default)(internal, _Component);
+
+        function internal(props) {
+          var _this;
+
+          (0, _classCallCheck2.default)(this, internal);
+          _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(internal).call(this, props));
+          _this.state = {
+            hasError: false
+          };
+          return _this;
+        }
+
+        (0, _createClass2.default)(internal, [{
+          key: "componentWillMount",
+          value: function componentWillMount() {
+            this.props.componentWillMount && this.props.componentWillMount();
+          }
+        }, {
+          key: "componentDidMount",
+          value: function componentDidMount() {
+            this.props.initView && this.props.initView(this);
+            this.props.componentDidMount && this.props.componentDidMount();
+          }
+        }, {
+          key: "shouldComponentUpdate",
+          value: function shouldComponentUpdate(nextProps, nextState) {
+            if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) return true;
+
+            if (nextState.hasError != this.state.hasError) {
+              return true;
+            }
+
+            return (0, _reactAddonsShallowCompare.default)(this, nextProps, nextState);
+            /*
+            for (var o in this.props) {
+            	if (this.props[o] != nextProps[o]) {
+            		return true
+            	}
+            }
+            return false
+            */
+          }
+        }, {
+          key: "componentWillReceiveProps",
+          value: function componentWillReceiveProps(nextProps) {
+            if (this.state.hasError) {
+              this.setState({
+                hasError: false,
+                error: undefined
+              });
+            }
+
+            this.props.componentWillReceiveProps && this.props.componentWillReceiveProps(nextProps);
+          }
+        }, {
+          key: "componentWillUpdate",
+          value: function componentWillUpdate(nextProps, nextState) {
+            this.props.componentWillUpdate && this.props.componentWillUpdate(nextProps, nextState);
+          }
+        }, {
+          key: "componentDidCatch",
+          value: function componentDidCatch(error, info) {
+            _utils.default.exception.error(error);
+
+            this.setState({
+              hasError: true,
+              error: error
+            });
+            this.props.componentDidCatch && this.props.componentDidCatch(error, info);
+          }
+        }, {
+          key: "componentWillUnmount",
+          value: function componentWillUnmount() {
+            this.props.unmount && this.props.unmount();
+            this.props.componentWillUnmount && this.props.componentWillUnmount();
+          }
+        }, {
+          key: "componentDidUpdate",
+          value: function componentDidUpdate() {
+            this.props.componentDidUpdate && this.props.componentDidUpdate();
+          }
+        }, {
+          key: "render",
+          value: function render() {
+            if (this.state.hasError) {
+              return _react.default.createElement("div", {
+                style: {
+                  color: 'red'
+                }
+              }, this.state.error && this.state.error.message);
+            }
+
+            if (this.props.notRender === true || this.props._notRender === true) return null;
+            if (!WrappedComponent) return null;
+            if (!this.props.payload || !this.props.payload.get('data')) return null;
+            if (this.props.payload.getIn(['data', '_notRender']) === true) return null;
+            return _react.default.createElement(WrappedComponent, (0, _extends2.default)({}, this.props, {
+              maka: _maka.default
+            }));
+          }
+        }]);
+        return internal;
+      }(_react.Component)
+    );
+  };
+}
 
 /***/ }),
 
@@ -706,7 +4546,38 @@ eval("\n\nvar _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/h
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/* WEBPACK VAR INJECTION */(function(global) {\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = exports.getGlobal = void 0;\n\nvar getGlobal = function getGlobal() {\n  // the only reliable means to get the global object is\n  // `Function('return this')()`\n  // However, this causes CSP violations in Chrome apps.\n  if (typeof self !== 'undefined') {\n    return self;\n  }\n\n  if (typeof window !== 'undefined') {\n    return window;\n  }\n\n  if (typeof global !== 'undefined') {\n    return global;\n  }\n\n  throw new Error('unable to locate global object');\n};\n\nexports.getGlobal = getGlobal;\nvar _default = {\n  getGlobal: getGlobal\n};\nexports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/utils/lib/env/index.js?");
+/* WEBPACK VAR INJECTION */(function(global) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.getGlobal = void 0;
+
+var getGlobal = function getGlobal() {
+  // the only reliable means to get the global object is
+  // `Function('return this')()`
+  // However, this causes CSP violations in Chrome apps.
+  if (typeof self !== 'undefined') {
+    return self;
+  }
+
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+
+  if (typeof global !== 'undefined') {
+    return global;
+  }
+
+  throw new Error('unable to locate global object');
+};
+
+exports.getGlobal = getGlobal;
+var _default = {
+  getGlobal: getGlobal
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -718,7 +4589,36 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {\n\nObject.defineProperty(ex
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.error = error;\nexports.clear = clear;\nexports.getExceptions = getExceptions;\nexports.default = void 0;\nvar exceptions = [];\n\nfunction error(err) {\n  console.error(err);\n  exceptions.unshift(err);\n}\n\nfunction clear() {\n  exceptions.splice(0, exceptions.length);\n}\n\nfunction getExceptions() {\n  return exceptions;\n}\n\nvar _default = {\n  error: error,\n  clear: clear,\n  getExceptions: getExceptions\n};\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/utils/lib/exception/index.js?");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.error = error;
+exports.clear = clear;
+exports.getExceptions = getExceptions;
+exports.default = void 0;
+var exceptions = [];
+
+function error(err) {
+  console.error(err);
+  exceptions.unshift(err);
+}
+
+function clear() {
+  exceptions.splice(0, exceptions.length);
+}
+
+function getExceptions() {
+  return exceptions;
+}
+
+var _default = {
+  error: error,
+  clear: clear,
+  getExceptions: getExceptions
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -730,7 +4630,46 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = exports.getExpressionBody = exports.isExpression = void 0;\n\nvar _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ \"./node_modules/lodash/memoize.js\"));\n\n// {{***}} \nvar reg = /^\\s*\\{{2}([\\s\\S]+)\\}{2}\\s*$/m; // {{{***}}}\n\nvar reg1 = /^\\s*\\{{3}([\\s\\S]+)\\}{3}\\s*$/m;\nvar isExpression = (0, _memoize.default)(function (v) {\n  return reg.test(v) || reg1.test(v);\n});\nexports.isExpression = isExpression;\nvar getExpressionBody = (0, _memoize.default)(function (v) {\n  if (reg1.test(v)) {\n    return v.replace(reg1, function (word, group) {\n      return group;\n    });\n  }\n\n  if (reg.test(v)) {\n    return \"return \" + v.replace(reg, function (word, group) {\n      return group;\n    });\n  }\n\n  return v;\n});\nexports.getExpressionBody = getExpressionBody;\nvar _default = {\n  isExpression: isExpression,\n  getExpressionBody: getExpressionBody\n};\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/utils/lib/expression/index.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.getExpressionBody = exports.isExpression = void 0;
+
+var _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ "./node_modules/lodash/memoize.js"));
+
+// {{***}} 
+var reg = /^\s*\{{2}([\s\S]+)\}{2}\s*$/m; // {{{***}}}
+
+var reg1 = /^\s*\{{3}([\s\S]+)\}{3}\s*$/m;
+var isExpression = (0, _memoize.default)(function (v) {
+  return reg.test(v) || reg1.test(v);
+});
+exports.isExpression = isExpression;
+var getExpressionBody = (0, _memoize.default)(function (v) {
+  if (reg1.test(v)) {
+    return v.replace(reg1, function (word, group) {
+      return group;
+    });
+  }
+
+  if (reg.test(v)) {
+    return "return " + v.replace(reg, function (word, group) {
+      return group;
+    });
+  }
+
+  return v;
+});
+exports.getExpressionBody = getExpressionBody;
+var _default = {
+  isExpression: isExpression,
+  getExpressionBody: getExpressionBody
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -742,7 +4681,334 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.config = config;\nexports.get = get;\nexports.post = post;\nexports.formPost = formPost;\nexports.test = test;\nexports.mock = mock;\nexports.isMockUrl = isMockUrl;\nexports.getAccessToken = getAccessToken;\nexports.setAccessToken = setAccessToken;\nexports.clearAccessToken = clearAccessToken;\nexports.mockApi = exports.mockData = exports.default = void 0;\n\nvar _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ \"./node_modules/@babel/runtime/helpers/objectSpread.js\"));\n\nvar _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/typeof.js\"));\n\nvar _env = __webpack_require__(/*! ../env */ \"./node_modules/@makajs/utils/lib/env/index.js\");\n\nvar mockApi = {};\nexports.mockApi = mockApi;\nvar mockData = {};\nexports.mockData = mockData;\nvar _options = {};\n(0, _env.getGlobal)().self = (0, _env.getGlobal)();\n\n__webpack_require__(/*! whatwg-fetch */ \"./node_modules/whatwg-fetch/fetch.js\");\n\nfunction config(options) {\n  Object.assign(_options, options);\n\n  if (options.token) {\n    setAccessToken(options.token);\n  }\n}\n\nfunction mock(url, handler) {\n  /*url = {\n  \t'test/url1':()=>{},\n  \t'test/url2':()=>{}\n  }*/\n  if (url && (0, _typeof2.default)(url) == \"object\") {\n    Object.keys(url).forEach(function (u) {\n      mock(u, url[u]);\n    });\n  } //url=v1/*/\n  //handler={\n  //\tperson:()=>{}\n  //}\n  //\n  else if (url.indexOf(\"*\") != -1) {\n      var paths = url.split('*');\n      var pre = paths.shift();\n      Object.keys(handler).forEach(function (key) {\n        var theUrl = pre + key + paths.join('*');\n        mock(theUrl, handler[key]);\n      });\n    } else {\n      mockApi[url] = handler;\n    }\n}\n\nfunction isMockUrl(url) {\n  if (!_options.excludeMockUrls) return _options.mock;\n\n  if (_options.excludeMockUrls.find(function (o) {\n    if (o === url) return true;\n    if (o.test && o.test(url)) return true;\n    return false;\n  })) {\n    return !_options.mock;\n  } else {\n    return _options.mock;\n  }\n}\n\nfunction get(url, headers, option) {\n  if (!option || option.ignoreAOP !== true) {\n    before();\n  }\n\n  if (isMockUrl(url)) {\n    return new Promise(function (resolve, reject) {\n      setTimeout(function () {\n        try {\n          if (getAccessToken()) {\n            headers = headers ? (0, _objectSpread2.default)({}, headers, {\n              token: getAccessToken()\n            }) : {\n              token: getAccessToken()\n            };\n          }\n\n          var resp = mockApi[url](headers);\n\n          if (resp.then && resp.catch) {\n            resp.then(function (r) {\n              resp = after(resp, url, undefined, headers);\n              return resolve(resp);\n            }).catch(reject);\n            return resp;\n          } else if (!option || option.ignoreAOP !== true) {\n            resp = after(resp, url, undefined, headers);\n          }\n\n          resolve(resp);\n        } catch (e) {\n          reject(e);\n        }\n      }, 0);\n    });\n  }\n\n  headers = {\n    method: 'GET',\n    headers: (0, _objectSpread2.default)({\n      'Accept': 'application/json',\n      'Content-Type': 'application/json'\n    }, headers, {\n      token: getAccessToken(),\n      \"Authorization\": getAccessToken() ? \"Bearer \" + getAccessToken() : ''\n    })\n  };\n  return new Promise(function (resolve, reject) {\n    fetch(url, headers).then(function (response) {\n      var json = {};\n      var contentType = response.headers.get('Content-Type').split(\";\")[0];\n\n      if (contentType == 'application/json') {\n        json = response.json();\n      } else if (contentType == 'application/octet-stream') {\n        response.blob().then(function (blob) {\n          var a = document.createElement('a');\n          var url = window.URL.createObjectURL(blob);\n          var name = response.headers.get('Content-Disposition');\n          name = name.split('name=')[1].split(';')[0];\n          a.href = url;\n          a.download = name;\n          a.click();\n          window.URL.revokeObjectURL(url);\n        });\n      }\n\n      return json;\n    }).then(function (responseJson) {\n      responseJson = after(responseJson, url, undefined, headers);\n      resolve(responseJson);\n    }).catch(function (error) {\n      return reject(error);\n    });\n  });\n}\n\nfunction post(url, data, headers, option) {\n  if (!option || option.ignoreAOP !== true) {\n    before(url, data, headers);\n  }\n\n  if (isMockUrl(url)) {\n    return new Promise(function (resolve, reject) {\n      setTimeout(function () {\n        try {\n          if (getAccessToken()) {\n            headers = headers ? (0, _objectSpread2.default)({}, headers, {\n              token: getAccessToken()\n            }) : {\n              token: getAccessToken()\n            };\n          }\n\n          var mockFun = mockApi[url];\n\n          if (!mockFun || typeof mockFun != 'function') {\n            throw url + ':handler is invalid';\n          }\n\n          var resp = mockFun(data, headers);\n\n          if (resp.then && resp.catch) {\n            resp.then(function (r) {\n              r = after(r, url, data, headers);\n              return resolve(r);\n            }).catch(reject);\n            return resp;\n          } else if (!option || option.ignoreAOP !== true) {\n            resp = after(resp, url, data, headers);\n          }\n\n          resolve(resp);\n        } catch (e) {\n          reject(e);\n        }\n      }, 0);\n    });\n  }\n\n  headers = {\n    method: 'POST',\n    headers: (0, _objectSpread2.default)({\n      'Accept': 'application/json',\n      'Content-Type': 'application/json'\n    }, headers, {\n      token: getAccessToken(),\n      \"Authorization\": getAccessToken() ? \"Bearer \" + getAccessToken() : ''\n    }),\n    body: JSON.stringify(data)\n  };\n\n  if (option && option.type == 'file') {\n    headers.body = option.body;\n    delete headers.headers['Content-Type'];\n  }\n\n  return new Promise(function (resolve, reject) {\n    fetch(url, headers).then(function (response) {\n      var json = {};\n      var contentType = response.headers.get('Content-Type').split(\";\")[0];\n      var contentDisposition = response.headers.get('Content-Disposition');\n\n      if (contentType == 'application/json') {\n        json = response.json();\n      } else if (contentDisposition != null) {\n        response.blob().then(function (blob) {\n          var a = document.createElement('a');\n          var url = window.URL.createObjectURL(blob);\n          var name = response.headers.get('Content-Disposition');\n          name = name.split('name=')[1].split(';')[0];\n          a.href = url;\n          a.download = decodeURI(name);\n          a.click();\n          window.URL.revokeObjectURL(url);\n        });\n      }\n\n      return json;\n    }).then(function (responseJson) {\n      responseJson = after(responseJson, url, data, headers);\n      resolve(responseJson);\n    }).catch(function (error) {\n      return reject(error);\n    });\n  });\n}\n\nfunction formPost(url, data, isFree) {\n  data = data || {};\n  var accessToken = getAccessToken(); //toke in sessionStorage\n\n  if (!!accessToken && !isFree) {\n    data.token = accessToken;\n  }\n\n  var postForm = document.createElement(\"form\"); //form object\n\n  postForm.method = \"post\";\n  postForm.action = url;\n  postForm.target = \"_blank\";\n  var keys = Object.keys(data);\n\n  for (var _i = 0; _i < keys.length; _i++) {\n    var k = keys[_i];\n    var emailInput = document.createElement(\"input\"); //email input\n\n    emailInput.setAttribute(\"name\", k);\n    emailInput.setAttribute(\"value\", data[k]);\n    postForm.appendChild(emailInput);\n  }\n\n  document.body.appendChild(postForm);\n  postForm.submit();\n  document.body.removeChild(postForm);\n}\n\nfunction test(url, data, result) {\n  return new Promise(function (resolve, reject) {\n    setTimeout(function () {\n      resolve(result);\n    }, 0);\n  });\n}\n\nfunction before(url, data, headers) {\n  if (_options.before) {\n    _options.before(url, data, headers);\n  }\n}\n\nfunction after(response, url, data, headers) {\n  if (_options.after) {\n    return _options.after(response, url, data, headers);\n  }\n\n  return response;\n}\n\nfunction getAccessToken() {\n  return sessionStorage['_accessToken'] || '';\n}\n\nfunction setAccessToken(token) {\n  sessionStorage['_accessToken'] = token;\n}\n\nfunction clearAccessToken() {\n  sessionStorage['_accessToken'] = '';\n}\n\nvar _default = {\n  config: config,\n  get: get,\n  post: post,\n  formPost: formPost,\n  test: test,\n  mockData: mockData,\n  mock: mock,\n  mockApi: mockApi,\n  isMockUrl: isMockUrl,\n  getAccessToken: getAccessToken,\n  setAccessToken: setAccessToken,\n  clearAccessToken: clearAccessToken\n};\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/utils/lib/fetch/index.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.config = config;
+exports.get = get;
+exports.post = post;
+exports.formPost = formPost;
+exports.test = test;
+exports.mock = mock;
+exports.isMockUrl = isMockUrl;
+exports.getAccessToken = getAccessToken;
+exports.setAccessToken = setAccessToken;
+exports.clearAccessToken = clearAccessToken;
+exports.mockApi = exports.mockData = exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
+var _env = __webpack_require__(/*! ../env */ "./node_modules/@makajs/utils/lib/env/index.js");
+
+var mockApi = {};
+exports.mockApi = mockApi;
+var mockData = {};
+exports.mockData = mockData;
+var _options = {};
+(0, _env.getGlobal)().self = (0, _env.getGlobal)();
+
+__webpack_require__(/*! whatwg-fetch */ "./node_modules/whatwg-fetch/fetch.js");
+
+function config(options) {
+  Object.assign(_options, options);
+
+  if (options.token) {
+    setAccessToken(options.token);
+  }
+}
+
+function mock(url, handler) {
+  /*url = {
+  	'test/url1':()=>{},
+  	'test/url2':()=>{}
+  }*/
+  if (url && (0, _typeof2.default)(url) == "object") {
+    Object.keys(url).forEach(function (u) {
+      mock(u, url[u]);
+    });
+  } //url=v1/*/
+  //handler={
+  //	person:()=>{}
+  //}
+  //
+  else if (url.indexOf("*") != -1) {
+      var paths = url.split('*');
+      var pre = paths.shift();
+      Object.keys(handler).forEach(function (key) {
+        var theUrl = pre + key + paths.join('*');
+        mock(theUrl, handler[key]);
+      });
+    } else {
+      mockApi[url] = handler;
+    }
+}
+
+function isMockUrl(url) {
+  if (!_options.excludeMockUrls) return _options.mock;
+
+  if (_options.excludeMockUrls.find(function (o) {
+    if (o === url) return true;
+    if (o.test && o.test(url)) return true;
+    return false;
+  })) {
+    return !_options.mock;
+  } else {
+    return _options.mock;
+  }
+}
+
+function get(url, headers, option) {
+  if (!option || option.ignoreAOP !== true) {
+    before();
+  }
+
+  if (isMockUrl(url)) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try {
+          if (getAccessToken()) {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
+              token: getAccessToken()
+            }) : {
+              token: getAccessToken()
+            };
+          }
+
+          var resp = mockApi[url](headers);
+
+          if (resp.then && resp.catch) {
+            resp.then(function (r) {
+              resp = after(resp, url, undefined, headers);
+              return resolve(resp);
+            }).catch(reject);
+            return resp;
+          } else if (!option || option.ignoreAOP !== true) {
+            resp = after(resp, url, undefined, headers);
+          }
+
+          resolve(resp);
+        } catch (e) {
+          reject(e);
+        }
+      }, 0);
+    });
+  }
+
+  headers = {
+    method: 'GET',
+    headers: (0, _objectSpread2.default)({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, headers, {
+      token: getAccessToken(),
+      "Authorization": getAccessToken() ? "Bearer " + getAccessToken() : ''
+    })
+  };
+  return new Promise(function (resolve, reject) {
+    fetch(url, headers).then(function (response) {
+      var json = {};
+      var contentType = response.headers.get('Content-Type').split(";")[0];
+
+      if (contentType == 'application/json') {
+        json = response.json();
+      } else if (contentType == 'application/octet-stream') {
+        response.blob().then(function (blob) {
+          var a = document.createElement('a');
+          var url = window.URL.createObjectURL(blob);
+          var name = response.headers.get('Content-Disposition');
+          name = name.split('name=')[1].split(';')[0];
+          a.href = url;
+          a.download = name;
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+      }
+
+      return json;
+    }).then(function (responseJson) {
+      responseJson = after(responseJson, url, undefined, headers);
+      resolve(responseJson);
+    }).catch(function (error) {
+      return reject(error);
+    });
+  });
+}
+
+function post(url, data, headers, option) {
+  if (!option || option.ignoreAOP !== true) {
+    before(url, data, headers);
+  }
+
+  if (isMockUrl(url)) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try {
+          if (getAccessToken()) {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
+              token: getAccessToken()
+            }) : {
+              token: getAccessToken()
+            };
+          }
+
+          var mockFun = mockApi[url];
+
+          if (!mockFun || typeof mockFun != 'function') {
+            throw url + ':handler is invalid';
+          }
+
+          var resp = mockFun(data, headers);
+
+          if (resp.then && resp.catch) {
+            resp.then(function (r) {
+              r = after(r, url, data, headers);
+              return resolve(r);
+            }).catch(reject);
+            return resp;
+          } else if (!option || option.ignoreAOP !== true) {
+            resp = after(resp, url, data, headers);
+          }
+
+          resolve(resp);
+        } catch (e) {
+          reject(e);
+        }
+      }, 0);
+    });
+  }
+
+  headers = {
+    method: 'POST',
+    headers: (0, _objectSpread2.default)({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, headers, {
+      token: getAccessToken(),
+      "Authorization": getAccessToken() ? "Bearer " + getAccessToken() : ''
+    }),
+    body: JSON.stringify(data)
+  };
+
+  if (option && option.type == 'file') {
+    headers.body = option.body;
+    delete headers.headers['Content-Type'];
+  }
+
+  return new Promise(function (resolve, reject) {
+    fetch(url, headers).then(function (response) {
+      var json = {};
+      var contentType = response.headers.get('Content-Type').split(";")[0];
+      var contentDisposition = response.headers.get('Content-Disposition');
+
+      if (contentType == 'application/json') {
+        json = response.json();
+      } else if (contentDisposition != null) {
+        response.blob().then(function (blob) {
+          var a = document.createElement('a');
+          var url = window.URL.createObjectURL(blob);
+          var name = response.headers.get('Content-Disposition');
+          name = name.split('name=')[1].split(';')[0];
+          a.href = url;
+          a.download = decodeURI(name);
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+      }
+
+      return json;
+    }).then(function (responseJson) {
+      responseJson = after(responseJson, url, data, headers);
+      resolve(responseJson);
+    }).catch(function (error) {
+      return reject(error);
+    });
+  });
+}
+
+function formPost(url, data, isFree) {
+  data = data || {};
+  var accessToken = getAccessToken(); //toke in sessionStorage
+
+  if (!!accessToken && !isFree) {
+    data.token = accessToken;
+  }
+
+  var postForm = document.createElement("form"); //form object
+
+  postForm.method = "post";
+  postForm.action = url;
+  postForm.target = "_blank";
+  var keys = Object.keys(data);
+
+  for (var _i = 0, _keys = keys; _i < _keys.length; _i++) {
+    var k = _keys[_i];
+    var emailInput = document.createElement("input"); //email input
+
+    emailInput.setAttribute("name", k);
+    emailInput.setAttribute("value", data[k]);
+    postForm.appendChild(emailInput);
+  }
+
+  document.body.appendChild(postForm);
+  postForm.submit();
+  document.body.removeChild(postForm);
+}
+
+function test(url, data, result) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve(result);
+    }, 0);
+  });
+}
+
+function before(url, data, headers) {
+  if (_options.before) {
+    _options.before(url, data, headers);
+  }
+}
+
+function after(response, url, data, headers) {
+  if (_options.after) {
+    return _options.after(response, url, data, headers);
+  }
+
+  return response;
+}
+
+function getAccessToken() {
+  return sessionStorage['_accessToken'] || '';
+}
+
+function setAccessToken(token) {
+  sessionStorage['_accessToken'] = token;
+}
+
+function clearAccessToken() {
+  sessionStorage['_accessToken'] = '';
+}
+
+var _default = {
+  config: config,
+  get: get,
+  post: post,
+  formPost: formPost,
+  test: test,
+  mockData: mockData,
+  mock: mock,
+  mockApi: mockApi,
+  isMockUrl: isMockUrl,
+  getAccessToken: getAccessToken,
+  setAccessToken: setAccessToken,
+  clearAccessToken: clearAccessToken
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -754,7 +5020,81 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nObject.defineProperty(exports, \"fetch\", {\n  enumerable: true,\n  get: function get() {\n    return _fetch.default;\n  }\n});\nObject.defineProperty(exports, \"path\", {\n  enumerable: true,\n  get: function get() {\n    return _path.default;\n  }\n});\nObject.defineProperty(exports, \"expression\", {\n  enumerable: true,\n  get: function get() {\n    return _expression.default;\n  }\n});\nObject.defineProperty(exports, \"string\", {\n  enumerable: true,\n  get: function get() {\n    return _string.default;\n  }\n});\nObject.defineProperty(exports, \"exception\", {\n  enumerable: true,\n  get: function get() {\n    return _exception.default;\n  }\n});\nObject.defineProperty(exports, \"navigate\", {\n  enumerable: true,\n  get: function get() {\n    return _navigate.default;\n  }\n});\nObject.defineProperty(exports, \"getGlobal\", {\n  enumerable: true,\n  get: function get() {\n    return _env.getGlobal;\n  }\n});\nexports.default = void 0;\n\nvar _fetch = _interopRequireDefault(__webpack_require__(/*! ./fetch */ \"./node_modules/@makajs/utils/lib/fetch/index.js\"));\n\nvar _path = _interopRequireDefault(__webpack_require__(/*! ./path */ \"./node_modules/@makajs/utils/lib/path/index.js\"));\n\nvar _expression = _interopRequireDefault(__webpack_require__(/*! ./expression */ \"./node_modules/@makajs/utils/lib/expression/index.js\"));\n\nvar _string = _interopRequireDefault(__webpack_require__(/*! ./string */ \"./node_modules/@makajs/utils/lib/string/index.js\"));\n\nvar _exception = _interopRequireDefault(__webpack_require__(/*! ./exception */ \"./node_modules/@makajs/utils/lib/exception/index.js\"));\n\nvar _navigate = _interopRequireDefault(__webpack_require__(/*! ./navigate */ \"./node_modules/@makajs/utils/lib/navigate/index.js\"));\n\nvar _env = __webpack_require__(/*! ./env */ \"./node_modules/@makajs/utils/lib/env/index.js\");\n\nvar _default = {\n  fetch: _fetch.default,\n  string: _string.default,\n  path: _path.default,\n  expression: _expression.default,\n  exception: _exception.default,\n  navigate: _navigate.default,\n  getGlobal: _env.getGlobal\n};\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/utils/lib/index.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "fetch", {
+  enumerable: true,
+  get: function get() {
+    return _fetch.default;
+  }
+});
+Object.defineProperty(exports, "path", {
+  enumerable: true,
+  get: function get() {
+    return _path.default;
+  }
+});
+Object.defineProperty(exports, "expression", {
+  enumerable: true,
+  get: function get() {
+    return _expression.default;
+  }
+});
+Object.defineProperty(exports, "string", {
+  enumerable: true,
+  get: function get() {
+    return _string.default;
+  }
+});
+Object.defineProperty(exports, "exception", {
+  enumerable: true,
+  get: function get() {
+    return _exception.default;
+  }
+});
+Object.defineProperty(exports, "navigate", {
+  enumerable: true,
+  get: function get() {
+    return _navigate.default;
+  }
+});
+Object.defineProperty(exports, "getGlobal", {
+  enumerable: true,
+  get: function get() {
+    return _env.getGlobal;
+  }
+});
+exports.default = void 0;
+
+var _fetch = _interopRequireDefault(__webpack_require__(/*! ./fetch */ "./node_modules/@makajs/utils/lib/fetch/index.js"));
+
+var _path = _interopRequireDefault(__webpack_require__(/*! ./path */ "./node_modules/@makajs/utils/lib/path/index.js"));
+
+var _expression = _interopRequireDefault(__webpack_require__(/*! ./expression */ "./node_modules/@makajs/utils/lib/expression/index.js"));
+
+var _string = _interopRequireDefault(__webpack_require__(/*! ./string */ "./node_modules/@makajs/utils/lib/string/index.js"));
+
+var _exception = _interopRequireDefault(__webpack_require__(/*! ./exception */ "./node_modules/@makajs/utils/lib/exception/index.js"));
+
+var _navigate = _interopRequireDefault(__webpack_require__(/*! ./navigate */ "./node_modules/@makajs/utils/lib/navigate/index.js"));
+
+var _env = __webpack_require__(/*! ./env */ "./node_modules/@makajs/utils/lib/env/index.js");
+
+var _default = {
+  fetch: _fetch.default,
+  string: _string.default,
+  path: _path.default,
+  expression: _expression.default,
+  exception: _exception.default,
+  navigate: _navigate.default,
+  getGlobal: _env.getGlobal
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -766,7 +5106,74 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.listen = listen;\nexports.unlisten = unlisten;\nexports.goBack = goBack;\nexports.redirect = redirect;\nexports.getLocation = getLocation;\nexports.default = void 0;\n\nvar _createHashHistory = _interopRequireDefault(__webpack_require__(/*! history/createHashHistory */ \"./node_modules/history/createHashHistory.js\"));\n\nvar hashHistory;\nvar listerners = [];\n\nfunction setHistoryInstance() {\n  if (!hashHistory) hashHistory = (0, _createHashHistory.default)();\n}\n\nfunction listen(handler) {\n  setHistoryInstance();\n  var h = listerners.find(function (o) {\n    return o.listen == handler;\n  });\n\n  if (!h) {\n    h = handler;\n    var unlisten = hashHistory.listen(handler);\n    listerners.push({\n      listen: h,\n      unlisten: unlisten\n    });\n  }\n}\n\nfunction unlisten(handler) {\n  var index = listerners.findIndex(function (o) {\n    return o.listen == handler;\n  });\n  if (index == -1) return;\n  listerners[index].unlisten();\n  listerners.splice(index, 1);\n}\n\nfunction goBack() {\n  hashHistory && hashHistory.goBack();\n}\n\nfunction redirect(app) {\n  if (!hashHistory) return;\n  if (location.hash === \"#\".concat(app)) return;\n  hashHistory && hashHistory.push(app);\n}\n\nfunction getLocation() {\n  return hashHistory && hashHistory.location;\n}\n\nvar _default = {\n  listen: listen,\n  unlisten: unlisten,\n  goBack: goBack,\n  redirect: redirect,\n  getLocation: getLocation\n};\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/utils/lib/navigate/index.js?");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.listen = listen;
+exports.unlisten = unlisten;
+exports.goBack = goBack;
+exports.redirect = redirect;
+exports.getLocation = getLocation;
+exports.default = void 0;
+
+var createHashHistory = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js").createHashHistory;
+
+var hashHistory;
+var listerners = [];
+
+function setHistoryInstance() {
+  if (!hashHistory) hashHistory = createHashHistory();
+}
+
+function listen(handler) {
+  setHistoryInstance();
+  var h = listerners.find(function (o) {
+    return o.listen == handler;
+  });
+
+  if (!h) {
+    h = handler;
+    var unlisten = hashHistory.listen(handler);
+    listerners.push({
+      listen: h,
+      unlisten: unlisten
+    });
+  }
+}
+
+function unlisten(handler) {
+  var index = listerners.findIndex(function (o) {
+    return o.listen == handler;
+  });
+  if (index == -1) return;
+  listerners[index].unlisten();
+  listerners.splice(index, 1);
+}
+
+function goBack() {
+  hashHistory && hashHistory.goBack();
+}
+
+function redirect(app) {
+  if (!hashHistory) return;
+  if (location.hash === "#".concat(app)) return;
+  hashHistory && hashHistory.push(app);
+}
+
+function getLocation() {
+  return hashHistory && hashHistory.location;
+}
+
+var _default = {
+  listen: listen,
+  unlisten: unlisten,
+  goBack: goBack,
+  redirect: redirect,
+  getLocation: getLocation
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -778,7 +5185,46 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ \"./node_modules/@babel/runtime/helpers/interopRequireDefault.js\");\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = exports.parsePath = exports.existsParamsInPath = void 0;\n\nvar _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ \"./node_modules/lodash/memoize.js\"));\n\nvar existsParamsInPath = function existsParamsInPath(path) {\n  return /,/.test(path);\n};\n\nexports.existsParamsInPath = existsParamsInPath;\nvar parsePath = (0, _memoize.default)(function (path) {\n  if (!path) return;\n\n  if (path.indexOf(',') == -1) {\n    return {\n      path: path.replace(/\\s/g, '')\n    };\n  } else {\n    var segments = path.split(\",\"),\n        vars = segments.slice(1);\n    return {\n      path: segments[0].replace(/\\s/g, ''),\n      vars: vars.map(function (o) {\n        return o.replace(/\\s/g, '');\n      })\n    };\n  }\n});\nexports.parsePath = parsePath;\nvar _default = {\n  existsParamsInPath: existsParamsInPath,\n  parsePath: parsePath\n};\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/utils/lib/path/index.js?");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.parsePath = exports.existsParamsInPath = void 0;
+
+var _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ "./node_modules/lodash/memoize.js"));
+
+var existsParamsInPath = function existsParamsInPath(path) {
+  return /,/.test(path);
+};
+
+exports.existsParamsInPath = existsParamsInPath;
+var parsePath = (0, _memoize.default)(function (path) {
+  if (!path) return;
+
+  if (path.indexOf(',') == -1) {
+    return {
+      path: path.replace(/\s/g, '')
+    };
+  } else {
+    var segments = path.split(","),
+        vars = segments.slice(1);
+    return {
+      path: segments[0].replace(/\s/g, ''),
+      vars: vars.map(function (o) {
+        return o.replace(/\s/g, '');
+      })
+    };
+  }
+});
+exports.parsePath = parsePath;
+var _default = {
+  existsParamsInPath: existsParamsInPath,
+  parsePath: parsePath
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -790,7 +5236,40 @@ eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/he
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.trimLeft = trimLeft;\nexports.trimRight = trimRight;\nexports.trim = trim;\nexports.toJson = toJson;\nexports.default = void 0;\n\nfunction trimLeft(str) {\n  return str.replace(/(^\\s*)/g, \"\");\n}\n\nfunction trimRight(str) {\n  return str.replace(/(\\s*$)/g, \"\");\n}\n\nfunction trim(str) {\n  return str.replace(/(^\\s*)|(\\s*$)/g, \"\");\n}\n\nfunction toJson(str) {\n  return new Function(\"return \" + str)();\n}\n\nvar _default = {\n  trimLeft: trimLeft,\n  trimRight: trimRight,\n  trim: trim,\n  toJson: toJson\n};\nexports.default = _default;\n\n//# sourceURL=webpack://Maka/./node_modules/@makajs/utils/lib/string/index.js?");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.trimLeft = trimLeft;
+exports.trimRight = trimRight;
+exports.trim = trim;
+exports.toJson = toJson;
+exports.default = void 0;
+
+function trimLeft(str) {
+  return str.replace(/(^\s*)/g, "");
+}
+
+function trimRight(str) {
+  return str.replace(/(\s*$)/g, "");
+}
+
+function trim(str) {
+  return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+function toJson(str) {
+  return new Function("return " + str)();
+}
+
+var _default = {
+  trimLeft: trimLeft,
+  trimRight: trimRight,
+  trim: trim,
+  toJson: toJson
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -802,55 +5281,1000 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/**\n * Copyright (c) 2013-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n *\n * @typechecks\n * \n */\n\n/*eslint-disable no-self-compare */\n\n\n\nvar hasOwnProperty = Object.prototype.hasOwnProperty;\n\n/**\n * inlined Object.is polyfill to avoid requiring consumers ship their own\n * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is\n */\nfunction is(x, y) {\n  // SameValue algorithm\n  if (x === y) {\n    // Steps 1-5, 7-10\n    // Steps 6.b-6.e: +0 != -0\n    // Added the nonzero y check to make Flow happy, but it is redundant\n    return x !== 0 || y !== 0 || 1 / x === 1 / y;\n  } else {\n    // Step 6.a: NaN == NaN\n    return x !== x && y !== y;\n  }\n}\n\n/**\n * Performs equality by iterating through keys on an object and returning false\n * when any key has values which are not strictly equal between the arguments.\n * Returns true when the values of all keys are strictly equal.\n */\nfunction shallowEqual(objA, objB) {\n  if (is(objA, objB)) {\n    return true;\n  }\n\n  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {\n    return false;\n  }\n\n  var keysA = Object.keys(objA);\n  var keysB = Object.keys(objB);\n\n  if (keysA.length !== keysB.length) {\n    return false;\n  }\n\n  // Test for A's keys different from B.\n  for (var i = 0; i < keysA.length; i++) {\n    if (!hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {\n      return false;\n    }\n  }\n\n  return true;\n}\n\nmodule.exports = shallowEqual;\n\n//# sourceURL=webpack://Maka/./node_modules/fbjs/lib/shallowEqual.js?");
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @typechecks
+ * 
+ */
+
+/*eslint-disable no-self-compare */
+
+
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+/**
+ * inlined Object.is polyfill to avoid requiring consumers ship their own
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+ */
+function is(x, y) {
+  // SameValue algorithm
+  if (x === y) {
+    // Steps 1-5, 7-10
+    // Steps 6.b-6.e: +0 != -0
+    // Added the nonzero y check to make Flow happy, but it is redundant
+    return x !== 0 || y !== 0 || 1 / x === 1 / y;
+  } else {
+    // Step 6.a: NaN == NaN
+    return x !== x && y !== y;
+  }
+}
+
+/**
+ * Performs equality by iterating through keys on an object and returning false
+ * when any key has values which are not strictly equal between the arguments.
+ * Returns true when the values of all keys are strictly equal.
+ */
+function shallowEqual(objA, objB) {
+  if (is(objA, objB)) {
+    return true;
+  }
+
+  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
+    return false;
+  }
+
+  var keysA = Object.keys(objA);
+  var keysB = Object.keys(objB);
+
+  if (keysA.length !== keysB.length) {
+    return false;
+  }
+
+  // Test for A's keys different from B.
+  for (var i = 0; i < keysA.length; i++) {
+    if (!hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+module.exports = shallowEqual;
 
 /***/ }),
 
-/***/ "./node_modules/history/cjs/history.js":
+/***/ "./node_modules/history/esm/history.js":
 /*!*********************************************!*\
-  !*** ./node_modules/history/cjs/history.js ***!
+  !*** ./node_modules/history/esm/history.js ***!
   \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: createBrowserHistory, createHashHistory, createMemoryHistory, createLocation, locationsAreEqual, parsePath, createPath */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, '__esModule', { value: true });\n\nfunction _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }\n\nvar resolvePathname = _interopDefault(__webpack_require__(/*! resolve-pathname */ \"./node_modules/resolve-pathname/index.js\"));\nvar valueEqual = _interopDefault(__webpack_require__(/*! value-equal */ \"./node_modules/value-equal/index.js\"));\nvar warning = _interopDefault(__webpack_require__(/*! tiny-warning */ \"./node_modules/tiny-warning/dist/tiny-warning.esm.js\"));\nvar invariant = _interopDefault(__webpack_require__(/*! tiny-invariant */ \"./node_modules/tiny-invariant/dist/tiny-invariant.esm.js\"));\n\nfunction _extends() {\n  _extends = Object.assign || function (target) {\n    for (var i = 1; i < arguments.length; i++) {\n      var source = arguments[i];\n\n      for (var key in source) {\n        if (Object.prototype.hasOwnProperty.call(source, key)) {\n          target[key] = source[key];\n        }\n      }\n    }\n\n    return target;\n  };\n\n  return _extends.apply(this, arguments);\n}\n\nfunction addLeadingSlash(path) {\n  return path.charAt(0) === '/' ? path : '/' + path;\n}\nfunction stripLeadingSlash(path) {\n  return path.charAt(0) === '/' ? path.substr(1) : path;\n}\nfunction hasBasename(path, prefix) {\n  return new RegExp('^' + prefix + '(\\\\/|\\\\?|#|$)', 'i').test(path);\n}\nfunction stripBasename(path, prefix) {\n  return hasBasename(path, prefix) ? path.substr(prefix.length) : path;\n}\nfunction stripTrailingSlash(path) {\n  return path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path;\n}\nfunction parsePath(path) {\n  var pathname = path || '/';\n  var search = '';\n  var hash = '';\n  var hashIndex = pathname.indexOf('#');\n\n  if (hashIndex !== -1) {\n    hash = pathname.substr(hashIndex);\n    pathname = pathname.substr(0, hashIndex);\n  }\n\n  var searchIndex = pathname.indexOf('?');\n\n  if (searchIndex !== -1) {\n    search = pathname.substr(searchIndex);\n    pathname = pathname.substr(0, searchIndex);\n  }\n\n  return {\n    pathname: pathname,\n    search: search === '?' ? '' : search,\n    hash: hash === '#' ? '' : hash\n  };\n}\nfunction createPath(location) {\n  var pathname = location.pathname,\n      search = location.search,\n      hash = location.hash;\n  var path = pathname || '/';\n  if (search && search !== '?') path += search.charAt(0) === '?' ? search : \"?\" + search;\n  if (hash && hash !== '#') path += hash.charAt(0) === '#' ? hash : \"#\" + hash;\n  return path;\n}\n\nfunction createLocation(path, state, key, currentLocation) {\n  var location;\n\n  if (typeof path === 'string') {\n    // Two-arg form: push(path, state)\n    location = parsePath(path);\n    location.state = state;\n  } else {\n    // One-arg form: push(location)\n    location = _extends({}, path);\n    if (location.pathname === undefined) location.pathname = '';\n\n    if (location.search) {\n      if (location.search.charAt(0) !== '?') location.search = '?' + location.search;\n    } else {\n      location.search = '';\n    }\n\n    if (location.hash) {\n      if (location.hash.charAt(0) !== '#') location.hash = '#' + location.hash;\n    } else {\n      location.hash = '';\n    }\n\n    if (state !== undefined && location.state === undefined) location.state = state;\n  }\n\n  try {\n    location.pathname = decodeURI(location.pathname);\n  } catch (e) {\n    if (e instanceof URIError) {\n      throw new URIError('Pathname \"' + location.pathname + '\" could not be decoded. ' + 'This is likely caused by an invalid percent-encoding.');\n    } else {\n      throw e;\n    }\n  }\n\n  if (key) location.key = key;\n\n  if (currentLocation) {\n    // Resolve incomplete/relative pathname relative to current location.\n    if (!location.pathname) {\n      location.pathname = currentLocation.pathname;\n    } else if (location.pathname.charAt(0) !== '/') {\n      location.pathname = resolvePathname(location.pathname, currentLocation.pathname);\n    }\n  } else {\n    // When there is no prior location and pathname is empty, set it to /\n    if (!location.pathname) {\n      location.pathname = '/';\n    }\n  }\n\n  return location;\n}\nfunction locationsAreEqual(a, b) {\n  return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && a.key === b.key && valueEqual(a.state, b.state);\n}\n\nfunction createTransitionManager() {\n  var prompt = null;\n\n  function setPrompt(nextPrompt) {\n    warning(prompt == null, 'A history supports only one prompt at a time');\n    prompt = nextPrompt;\n    return function () {\n      if (prompt === nextPrompt) prompt = null;\n    };\n  }\n\n  function confirmTransitionTo(location, action, getUserConfirmation, callback) {\n    // TODO: If another transition starts while we're still confirming\n    // the previous one, we may end up in a weird state. Figure out the\n    // best way to handle this.\n    if (prompt != null) {\n      var result = typeof prompt === 'function' ? prompt(location, action) : prompt;\n\n      if (typeof result === 'string') {\n        if (typeof getUserConfirmation === 'function') {\n          getUserConfirmation(result, callback);\n        } else {\n          warning(false, 'A history needs a getUserConfirmation function in order to use a prompt message');\n          callback(true);\n        }\n      } else {\n        // Return false from a transition hook to cancel the transition.\n        callback(result !== false);\n      }\n    } else {\n      callback(true);\n    }\n  }\n\n  var listeners = [];\n\n  function appendListener(fn) {\n    var isActive = true;\n\n    function listener() {\n      if (isActive) fn.apply(void 0, arguments);\n    }\n\n    listeners.push(listener);\n    return function () {\n      isActive = false;\n      listeners = listeners.filter(function (item) {\n        return item !== listener;\n      });\n    };\n  }\n\n  function notifyListeners() {\n    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n      args[_key] = arguments[_key];\n    }\n\n    listeners.forEach(function (listener) {\n      return listener.apply(void 0, args);\n    });\n  }\n\n  return {\n    setPrompt: setPrompt,\n    confirmTransitionTo: confirmTransitionTo,\n    appendListener: appendListener,\n    notifyListeners: notifyListeners\n  };\n}\n\nvar canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);\nfunction getConfirmation(message, callback) {\n  callback(window.confirm(message)); // eslint-disable-line no-alert\n}\n/**\n * Returns true if the HTML5 history API is supported. Taken from Modernizr.\n *\n * https://github.com/Modernizr/Modernizr/blob/master/LICENSE\n * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js\n * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586\n */\n\nfunction supportsHistory() {\n  var ua = window.navigator.userAgent;\n  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;\n  return window.history && 'pushState' in window.history;\n}\n/**\n * Returns true if browser fires popstate on hash change.\n * IE10 and IE11 do not.\n */\n\nfunction supportsPopStateOnHashChange() {\n  return window.navigator.userAgent.indexOf('Trident') === -1;\n}\n/**\n * Returns false if using go(n) with hash history causes a full page reload.\n */\n\nfunction supportsGoWithoutReloadUsingHash() {\n  return window.navigator.userAgent.indexOf('Firefox') === -1;\n}\n/**\n * Returns true if a given popstate event is an extraneous WebKit event.\n * Accounts for the fact that Chrome on iOS fires real popstate events\n * containing undefined state when pressing the back button.\n */\n\nfunction isExtraneousPopstateEvent(event) {\n  event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;\n}\n\nvar PopStateEvent = 'popstate';\nvar HashChangeEvent = 'hashchange';\n\nfunction getHistoryState() {\n  try {\n    return window.history.state || {};\n  } catch (e) {\n    // IE 11 sometimes throws when accessing window.history.state\n    // See https://github.com/ReactTraining/history/pull/289\n    return {};\n  }\n}\n/**\n * Creates a history object that uses the HTML5 history API including\n * pushState, replaceState, and the popstate event.\n */\n\n\nfunction createBrowserHistory(props) {\n  if (props === void 0) {\n    props = {};\n  }\n\n  !canUseDOM ? invariant(false, 'Browser history needs a DOM') : void 0;\n  var globalHistory = window.history;\n  var canUseHistory = supportsHistory();\n  var needsHashChangeListener = !supportsPopStateOnHashChange();\n  var _props = props,\n      _props$forceRefresh = _props.forceRefresh,\n      forceRefresh = _props$forceRefresh === void 0 ? false : _props$forceRefresh,\n      _props$getUserConfirm = _props.getUserConfirmation,\n      getUserConfirmation = _props$getUserConfirm === void 0 ? getConfirmation : _props$getUserConfirm,\n      _props$keyLength = _props.keyLength,\n      keyLength = _props$keyLength === void 0 ? 6 : _props$keyLength;\n  var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : '';\n\n  function getDOMLocation(historyState) {\n    var _ref = historyState || {},\n        key = _ref.key,\n        state = _ref.state;\n\n    var _window$location = window.location,\n        pathname = _window$location.pathname,\n        search = _window$location.search,\n        hash = _window$location.hash;\n    var path = pathname + search + hash;\n    warning(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path \"' + path + '\" to begin with \"' + basename + '\".');\n    if (basename) path = stripBasename(path, basename);\n    return createLocation(path, state, key);\n  }\n\n  function createKey() {\n    return Math.random().toString(36).substr(2, keyLength);\n  }\n\n  var transitionManager = createTransitionManager();\n\n  function setState(nextState) {\n    _extends(history, nextState);\n\n    history.length = globalHistory.length;\n    transitionManager.notifyListeners(history.location, history.action);\n  }\n\n  function handlePopState(event) {\n    // Ignore extraneous popstate events in WebKit.\n    if (isExtraneousPopstateEvent(event)) return;\n    handlePop(getDOMLocation(event.state));\n  }\n\n  function handleHashChange() {\n    handlePop(getDOMLocation(getHistoryState()));\n  }\n\n  var forceNextPop = false;\n\n  function handlePop(location) {\n    if (forceNextPop) {\n      forceNextPop = false;\n      setState();\n    } else {\n      var action = 'POP';\n      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {\n        if (ok) {\n          setState({\n            action: action,\n            location: location\n          });\n        } else {\n          revertPop(location);\n        }\n      });\n    }\n  }\n\n  function revertPop(fromLocation) {\n    var toLocation = history.location; // TODO: We could probably make this more reliable by\n    // keeping a list of keys we've seen in sessionStorage.\n    // Instead, we just default to 0 for keys we don't know.\n\n    var toIndex = allKeys.indexOf(toLocation.key);\n    if (toIndex === -1) toIndex = 0;\n    var fromIndex = allKeys.indexOf(fromLocation.key);\n    if (fromIndex === -1) fromIndex = 0;\n    var delta = toIndex - fromIndex;\n\n    if (delta) {\n      forceNextPop = true;\n      go(delta);\n    }\n  }\n\n  var initialLocation = getDOMLocation(getHistoryState());\n  var allKeys = [initialLocation.key]; // Public interface\n\n  function createHref(location) {\n    return basename + createPath(location);\n  }\n\n  function push(path, state) {\n    warning(!(typeof path === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');\n    var action = 'PUSH';\n    var location = createLocation(path, state, createKey(), history.location);\n    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {\n      if (!ok) return;\n      var href = createHref(location);\n      var key = location.key,\n          state = location.state;\n\n      if (canUseHistory) {\n        globalHistory.pushState({\n          key: key,\n          state: state\n        }, null, href);\n\n        if (forceRefresh) {\n          window.location.href = href;\n        } else {\n          var prevIndex = allKeys.indexOf(history.location.key);\n          var nextKeys = allKeys.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);\n          nextKeys.push(location.key);\n          allKeys = nextKeys;\n          setState({\n            action: action,\n            location: location\n          });\n        }\n      } else {\n        warning(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history');\n        window.location.href = href;\n      }\n    });\n  }\n\n  function replace(path, state) {\n    warning(!(typeof path === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');\n    var action = 'REPLACE';\n    var location = createLocation(path, state, createKey(), history.location);\n    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {\n      if (!ok) return;\n      var href = createHref(location);\n      var key = location.key,\n          state = location.state;\n\n      if (canUseHistory) {\n        globalHistory.replaceState({\n          key: key,\n          state: state\n        }, null, href);\n\n        if (forceRefresh) {\n          window.location.replace(href);\n        } else {\n          var prevIndex = allKeys.indexOf(history.location.key);\n          if (prevIndex !== -1) allKeys[prevIndex] = location.key;\n          setState({\n            action: action,\n            location: location\n          });\n        }\n      } else {\n        warning(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history');\n        window.location.replace(href);\n      }\n    });\n  }\n\n  function go(n) {\n    globalHistory.go(n);\n  }\n\n  function goBack() {\n    go(-1);\n  }\n\n  function goForward() {\n    go(1);\n  }\n\n  var listenerCount = 0;\n\n  function checkDOMListeners(delta) {\n    listenerCount += delta;\n\n    if (listenerCount === 1 && delta === 1) {\n      window.addEventListener(PopStateEvent, handlePopState);\n      if (needsHashChangeListener) window.addEventListener(HashChangeEvent, handleHashChange);\n    } else if (listenerCount === 0) {\n      window.removeEventListener(PopStateEvent, handlePopState);\n      if (needsHashChangeListener) window.removeEventListener(HashChangeEvent, handleHashChange);\n    }\n  }\n\n  var isBlocked = false;\n\n  function block(prompt) {\n    if (prompt === void 0) {\n      prompt = false;\n    }\n\n    var unblock = transitionManager.setPrompt(prompt);\n\n    if (!isBlocked) {\n      checkDOMListeners(1);\n      isBlocked = true;\n    }\n\n    return function () {\n      if (isBlocked) {\n        isBlocked = false;\n        checkDOMListeners(-1);\n      }\n\n      return unblock();\n    };\n  }\n\n  function listen(listener) {\n    var unlisten = transitionManager.appendListener(listener);\n    checkDOMListeners(1);\n    return function () {\n      checkDOMListeners(-1);\n      unlisten();\n    };\n  }\n\n  var history = {\n    length: globalHistory.length,\n    action: 'POP',\n    location: initialLocation,\n    createHref: createHref,\n    push: push,\n    replace: replace,\n    go: go,\n    goBack: goBack,\n    goForward: goForward,\n    block: block,\n    listen: listen\n  };\n  return history;\n}\n\nvar HashChangeEvent$1 = 'hashchange';\nvar HashPathCoders = {\n  hashbang: {\n    encodePath: function encodePath(path) {\n      return path.charAt(0) === '!' ? path : '!/' + stripLeadingSlash(path);\n    },\n    decodePath: function decodePath(path) {\n      return path.charAt(0) === '!' ? path.substr(1) : path;\n    }\n  },\n  noslash: {\n    encodePath: stripLeadingSlash,\n    decodePath: addLeadingSlash\n  },\n  slash: {\n    encodePath: addLeadingSlash,\n    decodePath: addLeadingSlash\n  }\n};\n\nfunction getHashPath() {\n  // We can't use window.location.hash here because it's not\n  // consistent across browsers - Firefox will pre-decode it!\n  var href = window.location.href;\n  var hashIndex = href.indexOf('#');\n  return hashIndex === -1 ? '' : href.substring(hashIndex + 1);\n}\n\nfunction pushHashPath(path) {\n  window.location.hash = path;\n}\n\nfunction replaceHashPath(path) {\n  var hashIndex = window.location.href.indexOf('#');\n  window.location.replace(window.location.href.slice(0, hashIndex >= 0 ? hashIndex : 0) + '#' + path);\n}\n\nfunction createHashHistory(props) {\n  if (props === void 0) {\n    props = {};\n  }\n\n  !canUseDOM ? invariant(false, 'Hash history needs a DOM') : void 0;\n  var globalHistory = window.history;\n  var canGoWithoutReload = supportsGoWithoutReloadUsingHash();\n  var _props = props,\n      _props$getUserConfirm = _props.getUserConfirmation,\n      getUserConfirmation = _props$getUserConfirm === void 0 ? getConfirmation : _props$getUserConfirm,\n      _props$hashType = _props.hashType,\n      hashType = _props$hashType === void 0 ? 'slash' : _props$hashType;\n  var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : '';\n  var _HashPathCoders$hashT = HashPathCoders[hashType],\n      encodePath = _HashPathCoders$hashT.encodePath,\n      decodePath = _HashPathCoders$hashT.decodePath;\n\n  function getDOMLocation() {\n    var path = decodePath(getHashPath());\n    warning(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path \"' + path + '\" to begin with \"' + basename + '\".');\n    if (basename) path = stripBasename(path, basename);\n    return createLocation(path);\n  }\n\n  var transitionManager = createTransitionManager();\n\n  function setState(nextState) {\n    _extends(history, nextState);\n\n    history.length = globalHistory.length;\n    transitionManager.notifyListeners(history.location, history.action);\n  }\n\n  var forceNextPop = false;\n  var ignorePath = null;\n\n  function handleHashChange() {\n    var path = getHashPath();\n    var encodedPath = encodePath(path);\n\n    if (path !== encodedPath) {\n      // Ensure we always have a properly-encoded hash.\n      replaceHashPath(encodedPath);\n    } else {\n      var location = getDOMLocation();\n      var prevLocation = history.location;\n      if (!forceNextPop && locationsAreEqual(prevLocation, location)) return; // A hashchange doesn't always == location change.\n\n      if (ignorePath === createPath(location)) return; // Ignore this change; we already setState in push/replace.\n\n      ignorePath = null;\n      handlePop(location);\n    }\n  }\n\n  function handlePop(location) {\n    if (forceNextPop) {\n      forceNextPop = false;\n      setState();\n    } else {\n      var action = 'POP';\n      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {\n        if (ok) {\n          setState({\n            action: action,\n            location: location\n          });\n        } else {\n          revertPop(location);\n        }\n      });\n    }\n  }\n\n  function revertPop(fromLocation) {\n    var toLocation = history.location; // TODO: We could probably make this more reliable by\n    // keeping a list of paths we've seen in sessionStorage.\n    // Instead, we just default to 0 for paths we don't know.\n\n    var toIndex = allPaths.lastIndexOf(createPath(toLocation));\n    if (toIndex === -1) toIndex = 0;\n    var fromIndex = allPaths.lastIndexOf(createPath(fromLocation));\n    if (fromIndex === -1) fromIndex = 0;\n    var delta = toIndex - fromIndex;\n\n    if (delta) {\n      forceNextPop = true;\n      go(delta);\n    }\n  } // Ensure the hash is encoded properly before doing anything else.\n\n\n  var path = getHashPath();\n  var encodedPath = encodePath(path);\n  if (path !== encodedPath) replaceHashPath(encodedPath);\n  var initialLocation = getDOMLocation();\n  var allPaths = [createPath(initialLocation)]; // Public interface\n\n  function createHref(location) {\n    return '#' + encodePath(basename + createPath(location));\n  }\n\n  function push(path, state) {\n    warning(state === undefined, 'Hash history cannot push state; it is ignored');\n    var action = 'PUSH';\n    var location = createLocation(path, undefined, undefined, history.location);\n    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {\n      if (!ok) return;\n      var path = createPath(location);\n      var encodedPath = encodePath(basename + path);\n      var hashChanged = getHashPath() !== encodedPath;\n\n      if (hashChanged) {\n        // We cannot tell if a hashchange was caused by a PUSH, so we'd\n        // rather setState here and ignore the hashchange. The caveat here\n        // is that other hash histories in the page will consider it a POP.\n        ignorePath = path;\n        pushHashPath(encodedPath);\n        var prevIndex = allPaths.lastIndexOf(createPath(history.location));\n        var nextPaths = allPaths.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);\n        nextPaths.push(path);\n        allPaths = nextPaths;\n        setState({\n          action: action,\n          location: location\n        });\n      } else {\n        warning(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack');\n        setState();\n      }\n    });\n  }\n\n  function replace(path, state) {\n    warning(state === undefined, 'Hash history cannot replace state; it is ignored');\n    var action = 'REPLACE';\n    var location = createLocation(path, undefined, undefined, history.location);\n    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {\n      if (!ok) return;\n      var path = createPath(location);\n      var encodedPath = encodePath(basename + path);\n      var hashChanged = getHashPath() !== encodedPath;\n\n      if (hashChanged) {\n        // We cannot tell if a hashchange was caused by a REPLACE, so we'd\n        // rather setState here and ignore the hashchange. The caveat here\n        // is that other hash histories in the page will consider it a POP.\n        ignorePath = path;\n        replaceHashPath(encodedPath);\n      }\n\n      var prevIndex = allPaths.indexOf(createPath(history.location));\n      if (prevIndex !== -1) allPaths[prevIndex] = path;\n      setState({\n        action: action,\n        location: location\n      });\n    });\n  }\n\n  function go(n) {\n    warning(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser');\n    globalHistory.go(n);\n  }\n\n  function goBack() {\n    go(-1);\n  }\n\n  function goForward() {\n    go(1);\n  }\n\n  var listenerCount = 0;\n\n  function checkDOMListeners(delta) {\n    listenerCount += delta;\n\n    if (listenerCount === 1 && delta === 1) {\n      window.addEventListener(HashChangeEvent$1, handleHashChange);\n    } else if (listenerCount === 0) {\n      window.removeEventListener(HashChangeEvent$1, handleHashChange);\n    }\n  }\n\n  var isBlocked = false;\n\n  function block(prompt) {\n    if (prompt === void 0) {\n      prompt = false;\n    }\n\n    var unblock = transitionManager.setPrompt(prompt);\n\n    if (!isBlocked) {\n      checkDOMListeners(1);\n      isBlocked = true;\n    }\n\n    return function () {\n      if (isBlocked) {\n        isBlocked = false;\n        checkDOMListeners(-1);\n      }\n\n      return unblock();\n    };\n  }\n\n  function listen(listener) {\n    var unlisten = transitionManager.appendListener(listener);\n    checkDOMListeners(1);\n    return function () {\n      checkDOMListeners(-1);\n      unlisten();\n    };\n  }\n\n  var history = {\n    length: globalHistory.length,\n    action: 'POP',\n    location: initialLocation,\n    createHref: createHref,\n    push: push,\n    replace: replace,\n    go: go,\n    goBack: goBack,\n    goForward: goForward,\n    block: block,\n    listen: listen\n  };\n  return history;\n}\n\nfunction clamp(n, lowerBound, upperBound) {\n  return Math.min(Math.max(n, lowerBound), upperBound);\n}\n/**\n * Creates a history object that stores locations in memory.\n */\n\n\nfunction createMemoryHistory(props) {\n  if (props === void 0) {\n    props = {};\n  }\n\n  var _props = props,\n      getUserConfirmation = _props.getUserConfirmation,\n      _props$initialEntries = _props.initialEntries,\n      initialEntries = _props$initialEntries === void 0 ? ['/'] : _props$initialEntries,\n      _props$initialIndex = _props.initialIndex,\n      initialIndex = _props$initialIndex === void 0 ? 0 : _props$initialIndex,\n      _props$keyLength = _props.keyLength,\n      keyLength = _props$keyLength === void 0 ? 6 : _props$keyLength;\n  var transitionManager = createTransitionManager();\n\n  function setState(nextState) {\n    _extends(history, nextState);\n\n    history.length = history.entries.length;\n    transitionManager.notifyListeners(history.location, history.action);\n  }\n\n  function createKey() {\n    return Math.random().toString(36).substr(2, keyLength);\n  }\n\n  var index = clamp(initialIndex, 0, initialEntries.length - 1);\n  var entries = initialEntries.map(function (entry) {\n    return typeof entry === 'string' ? createLocation(entry, undefined, createKey()) : createLocation(entry, undefined, entry.key || createKey());\n  }); // Public interface\n\n  var createHref = createPath;\n\n  function push(path, state) {\n    warning(!(typeof path === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');\n    var action = 'PUSH';\n    var location = createLocation(path, state, createKey(), history.location);\n    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {\n      if (!ok) return;\n      var prevIndex = history.index;\n      var nextIndex = prevIndex + 1;\n      var nextEntries = history.entries.slice(0);\n\n      if (nextEntries.length > nextIndex) {\n        nextEntries.splice(nextIndex, nextEntries.length - nextIndex, location);\n      } else {\n        nextEntries.push(location);\n      }\n\n      setState({\n        action: action,\n        location: location,\n        index: nextIndex,\n        entries: nextEntries\n      });\n    });\n  }\n\n  function replace(path, state) {\n    warning(!(typeof path === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');\n    var action = 'REPLACE';\n    var location = createLocation(path, state, createKey(), history.location);\n    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {\n      if (!ok) return;\n      history.entries[history.index] = location;\n      setState({\n        action: action,\n        location: location\n      });\n    });\n  }\n\n  function go(n) {\n    var nextIndex = clamp(history.index + n, 0, history.entries.length - 1);\n    var action = 'POP';\n    var location = history.entries[nextIndex];\n    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {\n      if (ok) {\n        setState({\n          action: action,\n          location: location,\n          index: nextIndex\n        });\n      } else {\n        // Mimic the behavior of DOM histories by\n        // causing a render after a cancelled POP.\n        setState();\n      }\n    });\n  }\n\n  function goBack() {\n    go(-1);\n  }\n\n  function goForward() {\n    go(1);\n  }\n\n  function canGo(n) {\n    var nextIndex = history.index + n;\n    return nextIndex >= 0 && nextIndex < history.entries.length;\n  }\n\n  function block(prompt) {\n    if (prompt === void 0) {\n      prompt = false;\n    }\n\n    return transitionManager.setPrompt(prompt);\n  }\n\n  function listen(listener) {\n    return transitionManager.appendListener(listener);\n  }\n\n  var history = {\n    length: entries.length,\n    action: 'POP',\n    location: entries[index],\n    index: index,\n    entries: entries,\n    createHref: createHref,\n    push: push,\n    replace: replace,\n    go: go,\n    goBack: goBack,\n    goForward: goForward,\n    canGo: canGo,\n    block: block,\n    listen: listen\n  };\n  return history;\n}\n\nexports.createBrowserHistory = createBrowserHistory;\nexports.createHashHistory = createHashHistory;\nexports.createMemoryHistory = createMemoryHistory;\nexports.createLocation = createLocation;\nexports.locationsAreEqual = locationsAreEqual;\nexports.parsePath = parsePath;\nexports.createPath = createPath;\n\n\n//# sourceURL=webpack://Maka/./node_modules/history/cjs/history.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBrowserHistory", function() { return createBrowserHistory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createHashHistory", function() { return createHashHistory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMemoryHistory", function() { return createMemoryHistory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLocation", function() { return createLocation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "locationsAreEqual", function() { return locationsAreEqual; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parsePath", function() { return parsePath; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPath", function() { return createPath; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var resolve_pathname__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! resolve-pathname */ "./node_modules/resolve-pathname/index.js");
+/* harmony import */ var value_equal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! value-equal */ "./node_modules/value-equal/index.js");
+/* harmony import */ var tiny_warning__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tiny-warning */ "./node_modules/tiny-warning/dist/tiny-warning.esm.js");
+/* harmony import */ var tiny_invariant__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tiny-invariant */ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js");
 
-/***/ }),
 
-/***/ "./node_modules/history/createHashHistory.js":
-/*!***************************************************!*\
-  !*** ./node_modules/history/createHashHistory.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-eval("\n__webpack_require__(/*! ./warnAboutDeprecatedCJSRequire.js */ \"./node_modules/history/warnAboutDeprecatedCJSRequire.js\")('createHashHistory');\nmodule.exports = __webpack_require__(/*! ./index.js */ \"./node_modules/history/index.js\").createHashHistory;\n\n\n//# sourceURL=webpack://Maka/./node_modules/history/createHashHistory.js?");
 
-/***/ }),
 
-/***/ "./node_modules/history/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/history/index.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs/history.js */ \"./node_modules/history/cjs/history.js\");\n}\n\n\n//# sourceURL=webpack://Maka/./node_modules/history/index.js?");
+function addLeadingSlash(path) {
+  return path.charAt(0) === '/' ? path : '/' + path;
+}
+function stripLeadingSlash(path) {
+  return path.charAt(0) === '/' ? path.substr(1) : path;
+}
+function hasBasename(path, prefix) {
+  return new RegExp('^' + prefix + '(\\/|\\?|#|$)', 'i').test(path);
+}
+function stripBasename(path, prefix) {
+  return hasBasename(path, prefix) ? path.substr(prefix.length) : path;
+}
+function stripTrailingSlash(path) {
+  return path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path;
+}
+function parsePath(path) {
+  var pathname = path || '/';
+  var search = '';
+  var hash = '';
+  var hashIndex = pathname.indexOf('#');
 
-/***/ }),
+  if (hashIndex !== -1) {
+    hash = pathname.substr(hashIndex);
+    pathname = pathname.substr(0, hashIndex);
+  }
 
-/***/ "./node_modules/history/warnAboutDeprecatedCJSRequire.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/history/warnAboutDeprecatedCJSRequire.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+  var searchIndex = pathname.indexOf('?');
 
-"use strict";
-eval("\n\nvar printWarning = function() {};\n\nif (true) {\n  printWarning = function(format, subs) {\n    var index = 0;\n    var message =\n      'Warning: ' +\n      (subs.length > 0\n        ? format.replace(/%s/g, function() {\n            return subs[index++];\n          })\n        : format);\n\n    if (typeof console !== 'undefined') {\n      console.error(message);\n    }\n\n    try {\n      // --- Welcome to debugging history ---\n      // This error was thrown as a convenience so that you can use the\n      // stack trace to find the callsite that triggered this warning.\n      throw new Error(message);\n    } catch (e) {}\n  };\n}\n\nmodule.exports = function(member) {\n  printWarning(\n    'Please use `require(\"history\").%s` instead of `require(\"history/%s\")`. ' +\n      'Support for the latter will be removed in the next major release.',\n    [member, member]\n  );\n};\n\n\n//# sourceURL=webpack://Maka/./node_modules/history/warnAboutDeprecatedCJSRequire.js?");
+  if (searchIndex !== -1) {
+    search = pathname.substr(searchIndex);
+    pathname = pathname.substr(0, searchIndex);
+  }
+
+  return {
+    pathname: pathname,
+    search: search === '?' ? '' : search,
+    hash: hash === '#' ? '' : hash
+  };
+}
+function createPath(location) {
+  var pathname = location.pathname,
+      search = location.search,
+      hash = location.hash;
+  var path = pathname || '/';
+  if (search && search !== '?') path += search.charAt(0) === '?' ? search : "?" + search;
+  if (hash && hash !== '#') path += hash.charAt(0) === '#' ? hash : "#" + hash;
+  return path;
+}
+
+function createLocation(path, state, key, currentLocation) {
+  var location;
+
+  if (typeof path === 'string') {
+    // Two-arg form: push(path, state)
+    location = parsePath(path);
+    location.state = state;
+  } else {
+    // One-arg form: push(location)
+    location = Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, path);
+    if (location.pathname === undefined) location.pathname = '';
+
+    if (location.search) {
+      if (location.search.charAt(0) !== '?') location.search = '?' + location.search;
+    } else {
+      location.search = '';
+    }
+
+    if (location.hash) {
+      if (location.hash.charAt(0) !== '#') location.hash = '#' + location.hash;
+    } else {
+      location.hash = '';
+    }
+
+    if (state !== undefined && location.state === undefined) location.state = state;
+  }
+
+  try {
+    location.pathname = decodeURI(location.pathname);
+  } catch (e) {
+    if (e instanceof URIError) {
+      throw new URIError('Pathname "' + location.pathname + '" could not be decoded. ' + 'This is likely caused by an invalid percent-encoding.');
+    } else {
+      throw e;
+    }
+  }
+
+  if (key) location.key = key;
+
+  if (currentLocation) {
+    // Resolve incomplete/relative pathname relative to current location.
+    if (!location.pathname) {
+      location.pathname = currentLocation.pathname;
+    } else if (location.pathname.charAt(0) !== '/') {
+      location.pathname = Object(resolve_pathname__WEBPACK_IMPORTED_MODULE_1__["default"])(location.pathname, currentLocation.pathname);
+    }
+  } else {
+    // When there is no prior location and pathname is empty, set it to /
+    if (!location.pathname) {
+      location.pathname = '/';
+    }
+  }
+
+  return location;
+}
+function locationsAreEqual(a, b) {
+  return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && a.key === b.key && Object(value_equal__WEBPACK_IMPORTED_MODULE_2__["default"])(a.state, b.state);
+}
+
+function createTransitionManager() {
+  var prompt = null;
+
+  function setPrompt(nextPrompt) {
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(prompt == null, 'A history supports only one prompt at a time') : undefined;
+    prompt = nextPrompt;
+    return function () {
+      if (prompt === nextPrompt) prompt = null;
+    };
+  }
+
+  function confirmTransitionTo(location, action, getUserConfirmation, callback) {
+    // TODO: If another transition starts while we're still confirming
+    // the previous one, we may end up in a weird state. Figure out the
+    // best way to handle this.
+    if (prompt != null) {
+      var result = typeof prompt === 'function' ? prompt(location, action) : prompt;
+
+      if (typeof result === 'string') {
+        if (typeof getUserConfirmation === 'function') {
+          getUserConfirmation(result, callback);
+        } else {
+           true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(false, 'A history needs a getUserConfirmation function in order to use a prompt message') : undefined;
+          callback(true);
+        }
+      } else {
+        // Return false from a transition hook to cancel the transition.
+        callback(result !== false);
+      }
+    } else {
+      callback(true);
+    }
+  }
+
+  var listeners = [];
+
+  function appendListener(fn) {
+    var isActive = true;
+
+    function listener() {
+      if (isActive) fn.apply(void 0, arguments);
+    }
+
+    listeners.push(listener);
+    return function () {
+      isActive = false;
+      listeners = listeners.filter(function (item) {
+        return item !== listener;
+      });
+    };
+  }
+
+  function notifyListeners() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    listeners.forEach(function (listener) {
+      return listener.apply(void 0, args);
+    });
+  }
+
+  return {
+    setPrompt: setPrompt,
+    confirmTransitionTo: confirmTransitionTo,
+    appendListener: appendListener,
+    notifyListeners: notifyListeners
+  };
+}
+
+var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+function getConfirmation(message, callback) {
+  callback(window.confirm(message)); // eslint-disable-line no-alert
+}
+/**
+ * Returns true if the HTML5 history API is supported. Taken from Modernizr.
+ *
+ * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
+ * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
+ * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
+ */
+
+function supportsHistory() {
+  var ua = window.navigator.userAgent;
+  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
+  return window.history && 'pushState' in window.history;
+}
+/**
+ * Returns true if browser fires popstate on hash change.
+ * IE10 and IE11 do not.
+ */
+
+function supportsPopStateOnHashChange() {
+  return window.navigator.userAgent.indexOf('Trident') === -1;
+}
+/**
+ * Returns false if using go(n) with hash history causes a full page reload.
+ */
+
+function supportsGoWithoutReloadUsingHash() {
+  return window.navigator.userAgent.indexOf('Firefox') === -1;
+}
+/**
+ * Returns true if a given popstate event is an extraneous WebKit event.
+ * Accounts for the fact that Chrome on iOS fires real popstate events
+ * containing undefined state when pressing the back button.
+ */
+
+function isExtraneousPopstateEvent(event) {
+  event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;
+}
+
+var PopStateEvent = 'popstate';
+var HashChangeEvent = 'hashchange';
+
+function getHistoryState() {
+  try {
+    return window.history.state || {};
+  } catch (e) {
+    // IE 11 sometimes throws when accessing window.history.state
+    // See https://github.com/ReactTraining/history/pull/289
+    return {};
+  }
+}
+/**
+ * Creates a history object that uses the HTML5 history API including
+ * pushState, replaceState, and the popstate event.
+ */
+
+
+function createBrowserHistory(props) {
+  if (props === void 0) {
+    props = {};
+  }
+
+  !canUseDOM ?  true ? Object(tiny_invariant__WEBPACK_IMPORTED_MODULE_4__["default"])(false, 'Browser history needs a DOM') : undefined : void 0;
+  var globalHistory = window.history;
+  var canUseHistory = supportsHistory();
+  var needsHashChangeListener = !supportsPopStateOnHashChange();
+  var _props = props,
+      _props$forceRefresh = _props.forceRefresh,
+      forceRefresh = _props$forceRefresh === void 0 ? false : _props$forceRefresh,
+      _props$getUserConfirm = _props.getUserConfirmation,
+      getUserConfirmation = _props$getUserConfirm === void 0 ? getConfirmation : _props$getUserConfirm,
+      _props$keyLength = _props.keyLength,
+      keyLength = _props$keyLength === void 0 ? 6 : _props$keyLength;
+  var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : '';
+
+  function getDOMLocation(historyState) {
+    var _ref = historyState || {},
+        key = _ref.key,
+        state = _ref.state;
+
+    var _window$location = window.location,
+        pathname = _window$location.pathname,
+        search = _window$location.search,
+        hash = _window$location.hash;
+    var path = pathname + search + hash;
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".') : undefined;
+    if (basename) path = stripBasename(path, basename);
+    return createLocation(path, state, key);
+  }
+
+  function createKey() {
+    return Math.random().toString(36).substr(2, keyLength);
+  }
+
+  var transitionManager = createTransitionManager();
+
+  function setState(nextState) {
+    Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])(history, nextState);
+
+    history.length = globalHistory.length;
+    transitionManager.notifyListeners(history.location, history.action);
+  }
+
+  function handlePopState(event) {
+    // Ignore extraneous popstate events in WebKit.
+    if (isExtraneousPopstateEvent(event)) return;
+    handlePop(getDOMLocation(event.state));
+  }
+
+  function handleHashChange() {
+    handlePop(getDOMLocation(getHistoryState()));
+  }
+
+  var forceNextPop = false;
+
+  function handlePop(location) {
+    if (forceNextPop) {
+      forceNextPop = false;
+      setState();
+    } else {
+      var action = 'POP';
+      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+        if (ok) {
+          setState({
+            action: action,
+            location: location
+          });
+        } else {
+          revertPop(location);
+        }
+      });
+    }
+  }
+
+  function revertPop(fromLocation) {
+    var toLocation = history.location; // TODO: We could probably make this more reliable by
+    // keeping a list of keys we've seen in sessionStorage.
+    // Instead, we just default to 0 for keys we don't know.
+
+    var toIndex = allKeys.indexOf(toLocation.key);
+    if (toIndex === -1) toIndex = 0;
+    var fromIndex = allKeys.indexOf(fromLocation.key);
+    if (fromIndex === -1) fromIndex = 0;
+    var delta = toIndex - fromIndex;
+
+    if (delta) {
+      forceNextPop = true;
+      go(delta);
+    }
+  }
+
+  var initialLocation = getDOMLocation(getHistoryState());
+  var allKeys = [initialLocation.key]; // Public interface
+
+  function createHref(location) {
+    return basename + createPath(location);
+  }
+
+  function push(path, state) {
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(!(typeof path === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored') : undefined;
+    var action = 'PUSH';
+    var location = createLocation(path, state, createKey(), history.location);
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+      var href = createHref(location);
+      var key = location.key,
+          state = location.state;
+
+      if (canUseHistory) {
+        globalHistory.pushState({
+          key: key,
+          state: state
+        }, null, href);
+
+        if (forceRefresh) {
+          window.location.href = href;
+        } else {
+          var prevIndex = allKeys.indexOf(history.location.key);
+          var nextKeys = allKeys.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
+          nextKeys.push(location.key);
+          allKeys = nextKeys;
+          setState({
+            action: action,
+            location: location
+          });
+        }
+      } else {
+         true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history') : undefined;
+        window.location.href = href;
+      }
+    });
+  }
+
+  function replace(path, state) {
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(!(typeof path === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored') : undefined;
+    var action = 'REPLACE';
+    var location = createLocation(path, state, createKey(), history.location);
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+      var href = createHref(location);
+      var key = location.key,
+          state = location.state;
+
+      if (canUseHistory) {
+        globalHistory.replaceState({
+          key: key,
+          state: state
+        }, null, href);
+
+        if (forceRefresh) {
+          window.location.replace(href);
+        } else {
+          var prevIndex = allKeys.indexOf(history.location.key);
+          if (prevIndex !== -1) allKeys[prevIndex] = location.key;
+          setState({
+            action: action,
+            location: location
+          });
+        }
+      } else {
+         true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history') : undefined;
+        window.location.replace(href);
+      }
+    });
+  }
+
+  function go(n) {
+    globalHistory.go(n);
+  }
+
+  function goBack() {
+    go(-1);
+  }
+
+  function goForward() {
+    go(1);
+  }
+
+  var listenerCount = 0;
+
+  function checkDOMListeners(delta) {
+    listenerCount += delta;
+
+    if (listenerCount === 1 && delta === 1) {
+      window.addEventListener(PopStateEvent, handlePopState);
+      if (needsHashChangeListener) window.addEventListener(HashChangeEvent, handleHashChange);
+    } else if (listenerCount === 0) {
+      window.removeEventListener(PopStateEvent, handlePopState);
+      if (needsHashChangeListener) window.removeEventListener(HashChangeEvent, handleHashChange);
+    }
+  }
+
+  var isBlocked = false;
+
+  function block(prompt) {
+    if (prompt === void 0) {
+      prompt = false;
+    }
+
+    var unblock = transitionManager.setPrompt(prompt);
+
+    if (!isBlocked) {
+      checkDOMListeners(1);
+      isBlocked = true;
+    }
+
+    return function () {
+      if (isBlocked) {
+        isBlocked = false;
+        checkDOMListeners(-1);
+      }
+
+      return unblock();
+    };
+  }
+
+  function listen(listener) {
+    var unlisten = transitionManager.appendListener(listener);
+    checkDOMListeners(1);
+    return function () {
+      checkDOMListeners(-1);
+      unlisten();
+    };
+  }
+
+  var history = {
+    length: globalHistory.length,
+    action: 'POP',
+    location: initialLocation,
+    createHref: createHref,
+    push: push,
+    replace: replace,
+    go: go,
+    goBack: goBack,
+    goForward: goForward,
+    block: block,
+    listen: listen
+  };
+  return history;
+}
+
+var HashChangeEvent$1 = 'hashchange';
+var HashPathCoders = {
+  hashbang: {
+    encodePath: function encodePath(path) {
+      return path.charAt(0) === '!' ? path : '!/' + stripLeadingSlash(path);
+    },
+    decodePath: function decodePath(path) {
+      return path.charAt(0) === '!' ? path.substr(1) : path;
+    }
+  },
+  noslash: {
+    encodePath: stripLeadingSlash,
+    decodePath: addLeadingSlash
+  },
+  slash: {
+    encodePath: addLeadingSlash,
+    decodePath: addLeadingSlash
+  }
+};
+
+function getHashPath() {
+  // We can't use window.location.hash here because it's not
+  // consistent across browsers - Firefox will pre-decode it!
+  var href = window.location.href;
+  var hashIndex = href.indexOf('#');
+  return hashIndex === -1 ? '' : href.substring(hashIndex + 1);
+}
+
+function pushHashPath(path) {
+  window.location.hash = path;
+}
+
+function replaceHashPath(path) {
+  var hashIndex = window.location.href.indexOf('#');
+  window.location.replace(window.location.href.slice(0, hashIndex >= 0 ? hashIndex : 0) + '#' + path);
+}
+
+function createHashHistory(props) {
+  if (props === void 0) {
+    props = {};
+  }
+
+  !canUseDOM ?  true ? Object(tiny_invariant__WEBPACK_IMPORTED_MODULE_4__["default"])(false, 'Hash history needs a DOM') : undefined : void 0;
+  var globalHistory = window.history;
+  var canGoWithoutReload = supportsGoWithoutReloadUsingHash();
+  var _props = props,
+      _props$getUserConfirm = _props.getUserConfirmation,
+      getUserConfirmation = _props$getUserConfirm === void 0 ? getConfirmation : _props$getUserConfirm,
+      _props$hashType = _props.hashType,
+      hashType = _props$hashType === void 0 ? 'slash' : _props$hashType;
+  var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : '';
+  var _HashPathCoders$hashT = HashPathCoders[hashType],
+      encodePath = _HashPathCoders$hashT.encodePath,
+      decodePath = _HashPathCoders$hashT.decodePath;
+
+  function getDOMLocation() {
+    var path = decodePath(getHashPath());
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".') : undefined;
+    if (basename) path = stripBasename(path, basename);
+    return createLocation(path);
+  }
+
+  var transitionManager = createTransitionManager();
+
+  function setState(nextState) {
+    Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])(history, nextState);
+
+    history.length = globalHistory.length;
+    transitionManager.notifyListeners(history.location, history.action);
+  }
+
+  var forceNextPop = false;
+  var ignorePath = null;
+
+  function handleHashChange() {
+    var path = getHashPath();
+    var encodedPath = encodePath(path);
+
+    if (path !== encodedPath) {
+      // Ensure we always have a properly-encoded hash.
+      replaceHashPath(encodedPath);
+    } else {
+      var location = getDOMLocation();
+      var prevLocation = history.location;
+      if (!forceNextPop && locationsAreEqual(prevLocation, location)) return; // A hashchange doesn't always == location change.
+
+      if (ignorePath === createPath(location)) return; // Ignore this change; we already setState in push/replace.
+
+      ignorePath = null;
+      handlePop(location);
+    }
+  }
+
+  function handlePop(location) {
+    if (forceNextPop) {
+      forceNextPop = false;
+      setState();
+    } else {
+      var action = 'POP';
+      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+        if (ok) {
+          setState({
+            action: action,
+            location: location
+          });
+        } else {
+          revertPop(location);
+        }
+      });
+    }
+  }
+
+  function revertPop(fromLocation) {
+    var toLocation = history.location; // TODO: We could probably make this more reliable by
+    // keeping a list of paths we've seen in sessionStorage.
+    // Instead, we just default to 0 for paths we don't know.
+
+    var toIndex = allPaths.lastIndexOf(createPath(toLocation));
+    if (toIndex === -1) toIndex = 0;
+    var fromIndex = allPaths.lastIndexOf(createPath(fromLocation));
+    if (fromIndex === -1) fromIndex = 0;
+    var delta = toIndex - fromIndex;
+
+    if (delta) {
+      forceNextPop = true;
+      go(delta);
+    }
+  } // Ensure the hash is encoded properly before doing anything else.
+
+
+  var path = getHashPath();
+  var encodedPath = encodePath(path);
+  if (path !== encodedPath) replaceHashPath(encodedPath);
+  var initialLocation = getDOMLocation();
+  var allPaths = [createPath(initialLocation)]; // Public interface
+
+  function createHref(location) {
+    return '#' + encodePath(basename + createPath(location));
+  }
+
+  function push(path, state) {
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(state === undefined, 'Hash history cannot push state; it is ignored') : undefined;
+    var action = 'PUSH';
+    var location = createLocation(path, undefined, undefined, history.location);
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+      var path = createPath(location);
+      var encodedPath = encodePath(basename + path);
+      var hashChanged = getHashPath() !== encodedPath;
+
+      if (hashChanged) {
+        // We cannot tell if a hashchange was caused by a PUSH, so we'd
+        // rather setState here and ignore the hashchange. The caveat here
+        // is that other hash histories in the page will consider it a POP.
+        ignorePath = path;
+        pushHashPath(encodedPath);
+        var prevIndex = allPaths.lastIndexOf(createPath(history.location));
+        var nextPaths = allPaths.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
+        nextPaths.push(path);
+        allPaths = nextPaths;
+        setState({
+          action: action,
+          location: location
+        });
+      } else {
+         true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack') : undefined;
+        setState();
+      }
+    });
+  }
+
+  function replace(path, state) {
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(state === undefined, 'Hash history cannot replace state; it is ignored') : undefined;
+    var action = 'REPLACE';
+    var location = createLocation(path, undefined, undefined, history.location);
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+      var path = createPath(location);
+      var encodedPath = encodePath(basename + path);
+      var hashChanged = getHashPath() !== encodedPath;
+
+      if (hashChanged) {
+        // We cannot tell if a hashchange was caused by a REPLACE, so we'd
+        // rather setState here and ignore the hashchange. The caveat here
+        // is that other hash histories in the page will consider it a POP.
+        ignorePath = path;
+        replaceHashPath(encodedPath);
+      }
+
+      var prevIndex = allPaths.indexOf(createPath(history.location));
+      if (prevIndex !== -1) allPaths[prevIndex] = path;
+      setState({
+        action: action,
+        location: location
+      });
+    });
+  }
+
+  function go(n) {
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser') : undefined;
+    globalHistory.go(n);
+  }
+
+  function goBack() {
+    go(-1);
+  }
+
+  function goForward() {
+    go(1);
+  }
+
+  var listenerCount = 0;
+
+  function checkDOMListeners(delta) {
+    listenerCount += delta;
+
+    if (listenerCount === 1 && delta === 1) {
+      window.addEventListener(HashChangeEvent$1, handleHashChange);
+    } else if (listenerCount === 0) {
+      window.removeEventListener(HashChangeEvent$1, handleHashChange);
+    }
+  }
+
+  var isBlocked = false;
+
+  function block(prompt) {
+    if (prompt === void 0) {
+      prompt = false;
+    }
+
+    var unblock = transitionManager.setPrompt(prompt);
+
+    if (!isBlocked) {
+      checkDOMListeners(1);
+      isBlocked = true;
+    }
+
+    return function () {
+      if (isBlocked) {
+        isBlocked = false;
+        checkDOMListeners(-1);
+      }
+
+      return unblock();
+    };
+  }
+
+  function listen(listener) {
+    var unlisten = transitionManager.appendListener(listener);
+    checkDOMListeners(1);
+    return function () {
+      checkDOMListeners(-1);
+      unlisten();
+    };
+  }
+
+  var history = {
+    length: globalHistory.length,
+    action: 'POP',
+    location: initialLocation,
+    createHref: createHref,
+    push: push,
+    replace: replace,
+    go: go,
+    goBack: goBack,
+    goForward: goForward,
+    block: block,
+    listen: listen
+  };
+  return history;
+}
+
+function clamp(n, lowerBound, upperBound) {
+  return Math.min(Math.max(n, lowerBound), upperBound);
+}
+/**
+ * Creates a history object that stores locations in memory.
+ */
+
+
+function createMemoryHistory(props) {
+  if (props === void 0) {
+    props = {};
+  }
+
+  var _props = props,
+      getUserConfirmation = _props.getUserConfirmation,
+      _props$initialEntries = _props.initialEntries,
+      initialEntries = _props$initialEntries === void 0 ? ['/'] : _props$initialEntries,
+      _props$initialIndex = _props.initialIndex,
+      initialIndex = _props$initialIndex === void 0 ? 0 : _props$initialIndex,
+      _props$keyLength = _props.keyLength,
+      keyLength = _props$keyLength === void 0 ? 6 : _props$keyLength;
+  var transitionManager = createTransitionManager();
+
+  function setState(nextState) {
+    Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])(history, nextState);
+
+    history.length = history.entries.length;
+    transitionManager.notifyListeners(history.location, history.action);
+  }
+
+  function createKey() {
+    return Math.random().toString(36).substr(2, keyLength);
+  }
+
+  var index = clamp(initialIndex, 0, initialEntries.length - 1);
+  var entries = initialEntries.map(function (entry) {
+    return typeof entry === 'string' ? createLocation(entry, undefined, createKey()) : createLocation(entry, undefined, entry.key || createKey());
+  }); // Public interface
+
+  var createHref = createPath;
+
+  function push(path, state) {
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(!(typeof path === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored') : undefined;
+    var action = 'PUSH';
+    var location = createLocation(path, state, createKey(), history.location);
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+      var prevIndex = history.index;
+      var nextIndex = prevIndex + 1;
+      var nextEntries = history.entries.slice(0);
+
+      if (nextEntries.length > nextIndex) {
+        nextEntries.splice(nextIndex, nextEntries.length - nextIndex, location);
+      } else {
+        nextEntries.push(location);
+      }
+
+      setState({
+        action: action,
+        location: location,
+        index: nextIndex,
+        entries: nextEntries
+      });
+    });
+  }
+
+  function replace(path, state) {
+     true ? Object(tiny_warning__WEBPACK_IMPORTED_MODULE_3__["default"])(!(typeof path === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored') : undefined;
+    var action = 'REPLACE';
+    var location = createLocation(path, state, createKey(), history.location);
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+      history.entries[history.index] = location;
+      setState({
+        action: action,
+        location: location
+      });
+    });
+  }
+
+  function go(n) {
+    var nextIndex = clamp(history.index + n, 0, history.entries.length - 1);
+    var action = 'POP';
+    var location = history.entries[nextIndex];
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (ok) {
+        setState({
+          action: action,
+          location: location,
+          index: nextIndex
+        });
+      } else {
+        // Mimic the behavior of DOM histories by
+        // causing a render after a cancelled POP.
+        setState();
+      }
+    });
+  }
+
+  function goBack() {
+    go(-1);
+  }
+
+  function goForward() {
+    go(1);
+  }
+
+  function canGo(n) {
+    var nextIndex = history.index + n;
+    return nextIndex >= 0 && nextIndex < history.entries.length;
+  }
+
+  function block(prompt) {
+    if (prompt === void 0) {
+      prompt = false;
+    }
+
+    return transitionManager.setPrompt(prompt);
+  }
+
+  function listen(listener) {
+    return transitionManager.appendListener(listener);
+  }
+
+  var history = {
+    length: entries.length,
+    action: 'POP',
+    location: entries[index],
+    index: index,
+    entries: entries,
+    createHref: createHref,
+    push: push,
+    replace: replace,
+    go: go,
+    goBack: goBack,
+    goForward: goForward,
+    canGo: canGo,
+    block: block,
+    listen: listen
+  };
+  return history;
+}
+
+
+
 
 /***/ }),
 
@@ -861,7 +6285,39 @@ eval("\n\nvar printWarning = function() {};\n\nif (true) {\n  printWarning = fun
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var hashClear = __webpack_require__(/*! ./_hashClear */ \"./node_modules/lodash/_hashClear.js\"),\n    hashDelete = __webpack_require__(/*! ./_hashDelete */ \"./node_modules/lodash/_hashDelete.js\"),\n    hashGet = __webpack_require__(/*! ./_hashGet */ \"./node_modules/lodash/_hashGet.js\"),\n    hashHas = __webpack_require__(/*! ./_hashHas */ \"./node_modules/lodash/_hashHas.js\"),\n    hashSet = __webpack_require__(/*! ./_hashSet */ \"./node_modules/lodash/_hashSet.js\");\n\n/**\n * Creates a hash object.\n *\n * @private\n * @constructor\n * @param {Array} [entries] The key-value pairs to cache.\n */\nfunction Hash(entries) {\n  var index = -1,\n      length = entries == null ? 0 : entries.length;\n\n  this.clear();\n  while (++index < length) {\n    var entry = entries[index];\n    this.set(entry[0], entry[1]);\n  }\n}\n\n// Add methods to `Hash`.\nHash.prototype.clear = hashClear;\nHash.prototype['delete'] = hashDelete;\nHash.prototype.get = hashGet;\nHash.prototype.has = hashHas;\nHash.prototype.set = hashSet;\n\nmodule.exports = Hash;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_Hash.js?");
+var hashClear = __webpack_require__(/*! ./_hashClear */ "./node_modules/lodash/_hashClear.js"),
+    hashDelete = __webpack_require__(/*! ./_hashDelete */ "./node_modules/lodash/_hashDelete.js"),
+    hashGet = __webpack_require__(/*! ./_hashGet */ "./node_modules/lodash/_hashGet.js"),
+    hashHas = __webpack_require__(/*! ./_hashHas */ "./node_modules/lodash/_hashHas.js"),
+    hashSet = __webpack_require__(/*! ./_hashSet */ "./node_modules/lodash/_hashSet.js");
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+module.exports = Hash;
+
 
 /***/ }),
 
@@ -872,7 +6328,39 @@ eval("var hashClear = __webpack_require__(/*! ./_hashClear */ \"./node_modules/l
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var listCacheClear = __webpack_require__(/*! ./_listCacheClear */ \"./node_modules/lodash/_listCacheClear.js\"),\n    listCacheDelete = __webpack_require__(/*! ./_listCacheDelete */ \"./node_modules/lodash/_listCacheDelete.js\"),\n    listCacheGet = __webpack_require__(/*! ./_listCacheGet */ \"./node_modules/lodash/_listCacheGet.js\"),\n    listCacheHas = __webpack_require__(/*! ./_listCacheHas */ \"./node_modules/lodash/_listCacheHas.js\"),\n    listCacheSet = __webpack_require__(/*! ./_listCacheSet */ \"./node_modules/lodash/_listCacheSet.js\");\n\n/**\n * Creates an list cache object.\n *\n * @private\n * @constructor\n * @param {Array} [entries] The key-value pairs to cache.\n */\nfunction ListCache(entries) {\n  var index = -1,\n      length = entries == null ? 0 : entries.length;\n\n  this.clear();\n  while (++index < length) {\n    var entry = entries[index];\n    this.set(entry[0], entry[1]);\n  }\n}\n\n// Add methods to `ListCache`.\nListCache.prototype.clear = listCacheClear;\nListCache.prototype['delete'] = listCacheDelete;\nListCache.prototype.get = listCacheGet;\nListCache.prototype.has = listCacheHas;\nListCache.prototype.set = listCacheSet;\n\nmodule.exports = ListCache;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_ListCache.js?");
+var listCacheClear = __webpack_require__(/*! ./_listCacheClear */ "./node_modules/lodash/_listCacheClear.js"),
+    listCacheDelete = __webpack_require__(/*! ./_listCacheDelete */ "./node_modules/lodash/_listCacheDelete.js"),
+    listCacheGet = __webpack_require__(/*! ./_listCacheGet */ "./node_modules/lodash/_listCacheGet.js"),
+    listCacheHas = __webpack_require__(/*! ./_listCacheHas */ "./node_modules/lodash/_listCacheHas.js"),
+    listCacheSet = __webpack_require__(/*! ./_listCacheSet */ "./node_modules/lodash/_listCacheSet.js");
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+module.exports = ListCache;
+
 
 /***/ }),
 
@@ -883,7 +6371,14 @@ eval("var listCacheClear = __webpack_require__(/*! ./_listCacheClear */ \"./node
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var getNative = __webpack_require__(/*! ./_getNative */ \"./node_modules/lodash/_getNative.js\"),\n    root = __webpack_require__(/*! ./_root */ \"./node_modules/lodash/_root.js\");\n\n/* Built-in method references that are verified to be native. */\nvar Map = getNative(root, 'Map');\n\nmodule.exports = Map;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_Map.js?");
+var getNative = __webpack_require__(/*! ./_getNative */ "./node_modules/lodash/_getNative.js"),
+    root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
+
+/* Built-in method references that are verified to be native. */
+var Map = getNative(root, 'Map');
+
+module.exports = Map;
+
 
 /***/ }),
 
@@ -894,7 +6389,39 @@ eval("var getNative = __webpack_require__(/*! ./_getNative */ \"./node_modules/l
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var mapCacheClear = __webpack_require__(/*! ./_mapCacheClear */ \"./node_modules/lodash/_mapCacheClear.js\"),\n    mapCacheDelete = __webpack_require__(/*! ./_mapCacheDelete */ \"./node_modules/lodash/_mapCacheDelete.js\"),\n    mapCacheGet = __webpack_require__(/*! ./_mapCacheGet */ \"./node_modules/lodash/_mapCacheGet.js\"),\n    mapCacheHas = __webpack_require__(/*! ./_mapCacheHas */ \"./node_modules/lodash/_mapCacheHas.js\"),\n    mapCacheSet = __webpack_require__(/*! ./_mapCacheSet */ \"./node_modules/lodash/_mapCacheSet.js\");\n\n/**\n * Creates a map cache object to store key-value pairs.\n *\n * @private\n * @constructor\n * @param {Array} [entries] The key-value pairs to cache.\n */\nfunction MapCache(entries) {\n  var index = -1,\n      length = entries == null ? 0 : entries.length;\n\n  this.clear();\n  while (++index < length) {\n    var entry = entries[index];\n    this.set(entry[0], entry[1]);\n  }\n}\n\n// Add methods to `MapCache`.\nMapCache.prototype.clear = mapCacheClear;\nMapCache.prototype['delete'] = mapCacheDelete;\nMapCache.prototype.get = mapCacheGet;\nMapCache.prototype.has = mapCacheHas;\nMapCache.prototype.set = mapCacheSet;\n\nmodule.exports = MapCache;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_MapCache.js?");
+var mapCacheClear = __webpack_require__(/*! ./_mapCacheClear */ "./node_modules/lodash/_mapCacheClear.js"),
+    mapCacheDelete = __webpack_require__(/*! ./_mapCacheDelete */ "./node_modules/lodash/_mapCacheDelete.js"),
+    mapCacheGet = __webpack_require__(/*! ./_mapCacheGet */ "./node_modules/lodash/_mapCacheGet.js"),
+    mapCacheHas = __webpack_require__(/*! ./_mapCacheHas */ "./node_modules/lodash/_mapCacheHas.js"),
+    mapCacheSet = __webpack_require__(/*! ./_mapCacheSet */ "./node_modules/lodash/_mapCacheSet.js");
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+module.exports = MapCache;
+
 
 /***/ }),
 
@@ -905,7 +6432,13 @@ eval("var mapCacheClear = __webpack_require__(/*! ./_mapCacheClear */ \"./node_m
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var root = __webpack_require__(/*! ./_root */ \"./node_modules/lodash/_root.js\");\n\n/** Built-in value references. */\nvar Symbol = root.Symbol;\n\nmodule.exports = Symbol;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_Symbol.js?");
+var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+module.exports = Symbol;
+
 
 /***/ }),
 
@@ -916,7 +6449,28 @@ eval("var root = __webpack_require__(/*! ./_root */ \"./node_modules/lodash/_roo
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var eq = __webpack_require__(/*! ./eq */ \"./node_modules/lodash/eq.js\");\n\n/**\n * Gets the index at which the `key` is found in `array` of key-value pairs.\n *\n * @private\n * @param {Array} array The array to inspect.\n * @param {*} key The key to search for.\n * @returns {number} Returns the index of the matched value, else `-1`.\n */\nfunction assocIndexOf(array, key) {\n  var length = array.length;\n  while (length--) {\n    if (eq(array[length][0], key)) {\n      return length;\n    }\n  }\n  return -1;\n}\n\nmodule.exports = assocIndexOf;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_assocIndexOf.js?");
+var eq = __webpack_require__(/*! ./eq */ "./node_modules/lodash/eq.js");
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+module.exports = assocIndexOf;
+
 
 /***/ }),
 
@@ -927,7 +6481,35 @@ eval("var eq = __webpack_require__(/*! ./eq */ \"./node_modules/lodash/eq.js\");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var Symbol = __webpack_require__(/*! ./_Symbol */ \"./node_modules/lodash/_Symbol.js\"),\n    getRawTag = __webpack_require__(/*! ./_getRawTag */ \"./node_modules/lodash/_getRawTag.js\"),\n    objectToString = __webpack_require__(/*! ./_objectToString */ \"./node_modules/lodash/_objectToString.js\");\n\n/** `Object#toString` result references. */\nvar nullTag = '[object Null]',\n    undefinedTag = '[object Undefined]';\n\n/** Built-in value references. */\nvar symToStringTag = Symbol ? Symbol.toStringTag : undefined;\n\n/**\n * The base implementation of `getTag` without fallbacks for buggy environments.\n *\n * @private\n * @param {*} value The value to query.\n * @returns {string} Returns the `toStringTag`.\n */\nfunction baseGetTag(value) {\n  if (value == null) {\n    return value === undefined ? undefinedTag : nullTag;\n  }\n  return (symToStringTag && symToStringTag in Object(value))\n    ? getRawTag(value)\n    : objectToString(value);\n}\n\nmodule.exports = baseGetTag;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_baseGetTag.js?");
+var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js"),
+    getRawTag = __webpack_require__(/*! ./_getRawTag */ "./node_modules/lodash/_getRawTag.js"),
+    objectToString = __webpack_require__(/*! ./_objectToString */ "./node_modules/lodash/_objectToString.js");
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+module.exports = baseGetTag;
+
 
 /***/ }),
 
@@ -938,7 +6520,54 @@ eval("var Symbol = __webpack_require__(/*! ./_Symbol */ \"./node_modules/lodash/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var isFunction = __webpack_require__(/*! ./isFunction */ \"./node_modules/lodash/isFunction.js\"),\n    isMasked = __webpack_require__(/*! ./_isMasked */ \"./node_modules/lodash/_isMasked.js\"),\n    isObject = __webpack_require__(/*! ./isObject */ \"./node_modules/lodash/isObject.js\"),\n    toSource = __webpack_require__(/*! ./_toSource */ \"./node_modules/lodash/_toSource.js\");\n\n/**\n * Used to match `RegExp`\n * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).\n */\nvar reRegExpChar = /[\\\\^$.*+?()[\\]{}|]/g;\n\n/** Used to detect host constructors (Safari). */\nvar reIsHostCtor = /^\\[object .+?Constructor\\]$/;\n\n/** Used for built-in method references. */\nvar funcProto = Function.prototype,\n    objectProto = Object.prototype;\n\n/** Used to resolve the decompiled source of functions. */\nvar funcToString = funcProto.toString;\n\n/** Used to check objects for own properties. */\nvar hasOwnProperty = objectProto.hasOwnProperty;\n\n/** Used to detect if a method is native. */\nvar reIsNative = RegExp('^' +\n  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\\\$&')\n  .replace(/hasOwnProperty|(function).*?(?=\\\\\\()| for .+?(?=\\\\\\])/g, '$1.*?') + '$'\n);\n\n/**\n * The base implementation of `_.isNative` without bad shim checks.\n *\n * @private\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is a native function,\n *  else `false`.\n */\nfunction baseIsNative(value) {\n  if (!isObject(value) || isMasked(value)) {\n    return false;\n  }\n  var pattern = isFunction(value) ? reIsNative : reIsHostCtor;\n  return pattern.test(toSource(value));\n}\n\nmodule.exports = baseIsNative;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_baseIsNative.js?");
+var isFunction = __webpack_require__(/*! ./isFunction */ "./node_modules/lodash/isFunction.js"),
+    isMasked = __webpack_require__(/*! ./_isMasked */ "./node_modules/lodash/_isMasked.js"),
+    isObject = __webpack_require__(/*! ./isObject */ "./node_modules/lodash/isObject.js"),
+    toSource = __webpack_require__(/*! ./_toSource */ "./node_modules/lodash/_toSource.js");
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+module.exports = baseIsNative;
+
 
 /***/ }),
 
@@ -949,7 +6578,13 @@ eval("var isFunction = __webpack_require__(/*! ./isFunction */ \"./node_modules/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var root = __webpack_require__(/*! ./_root */ \"./node_modules/lodash/_root.js\");\n\n/** Used to detect overreaching core-js shims. */\nvar coreJsData = root['__core-js_shared__'];\n\nmodule.exports = coreJsData;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_coreJsData.js?");
+var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+module.exports = coreJsData;
+
 
 /***/ }),
 
@@ -960,7 +6595,12 @@ eval("var root = __webpack_require__(/*! ./_root */ \"./node_modules/lodash/_roo
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */\nvar freeGlobal = typeof global == 'object' && global && global.Object === Object && global;\n\nmodule.exports = freeGlobal;\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_freeGlobal.js?");
+/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+module.exports = freeGlobal;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -971,7 +6611,25 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `gl
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var isKeyable = __webpack_require__(/*! ./_isKeyable */ \"./node_modules/lodash/_isKeyable.js\");\n\n/**\n * Gets the data for `map`.\n *\n * @private\n * @param {Object} map The map to query.\n * @param {string} key The reference key.\n * @returns {*} Returns the map data.\n */\nfunction getMapData(map, key) {\n  var data = map.__data__;\n  return isKeyable(key)\n    ? data[typeof key == 'string' ? 'string' : 'hash']\n    : data.map;\n}\n\nmodule.exports = getMapData;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_getMapData.js?");
+var isKeyable = __webpack_require__(/*! ./_isKeyable */ "./node_modules/lodash/_isKeyable.js");
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+module.exports = getMapData;
+
 
 /***/ }),
 
@@ -982,7 +6640,24 @@ eval("var isKeyable = __webpack_require__(/*! ./_isKeyable */ \"./node_modules/l
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var baseIsNative = __webpack_require__(/*! ./_baseIsNative */ \"./node_modules/lodash/_baseIsNative.js\"),\n    getValue = __webpack_require__(/*! ./_getValue */ \"./node_modules/lodash/_getValue.js\");\n\n/**\n * Gets the native function at `key` of `object`.\n *\n * @private\n * @param {Object} object The object to query.\n * @param {string} key The key of the method to get.\n * @returns {*} Returns the function if it's native, else `undefined`.\n */\nfunction getNative(object, key) {\n  var value = getValue(object, key);\n  return baseIsNative(value) ? value : undefined;\n}\n\nmodule.exports = getNative;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_getNative.js?");
+var baseIsNative = __webpack_require__(/*! ./_baseIsNative */ "./node_modules/lodash/_baseIsNative.js"),
+    getValue = __webpack_require__(/*! ./_getValue */ "./node_modules/lodash/_getValue.js");
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+module.exports = getNative;
+
 
 /***/ }),
 
@@ -993,7 +6668,53 @@ eval("var baseIsNative = __webpack_require__(/*! ./_baseIsNative */ \"./node_mod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var Symbol = __webpack_require__(/*! ./_Symbol */ \"./node_modules/lodash/_Symbol.js\");\n\n/** Used for built-in method references. */\nvar objectProto = Object.prototype;\n\n/** Used to check objects for own properties. */\nvar hasOwnProperty = objectProto.hasOwnProperty;\n\n/**\n * Used to resolve the\n * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)\n * of values.\n */\nvar nativeObjectToString = objectProto.toString;\n\n/** Built-in value references. */\nvar symToStringTag = Symbol ? Symbol.toStringTag : undefined;\n\n/**\n * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.\n *\n * @private\n * @param {*} value The value to query.\n * @returns {string} Returns the raw `toStringTag`.\n */\nfunction getRawTag(value) {\n  var isOwn = hasOwnProperty.call(value, symToStringTag),\n      tag = value[symToStringTag];\n\n  try {\n    value[symToStringTag] = undefined;\n    var unmasked = true;\n  } catch (e) {}\n\n  var result = nativeObjectToString.call(value);\n  if (unmasked) {\n    if (isOwn) {\n      value[symToStringTag] = tag;\n    } else {\n      delete value[symToStringTag];\n    }\n  }\n  return result;\n}\n\nmodule.exports = getRawTag;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_getRawTag.js?");
+var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+module.exports = getRawTag;
+
 
 /***/ }),
 
@@ -1004,7 +6725,20 @@ eval("var Symbol = __webpack_require__(/*! ./_Symbol */ \"./node_modules/lodash/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/**\n * Gets the value at `key` of `object`.\n *\n * @private\n * @param {Object} [object] The object to query.\n * @param {string} key The key of the property to get.\n * @returns {*} Returns the property value.\n */\nfunction getValue(object, key) {\n  return object == null ? undefined : object[key];\n}\n\nmodule.exports = getValue;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_getValue.js?");
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+module.exports = getValue;
+
 
 /***/ }),
 
@@ -1015,7 +6749,22 @@ eval("/**\n * Gets the value at `key` of `object`.\n *\n * @private\n * @param {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ \"./node_modules/lodash/_nativeCreate.js\");\n\n/**\n * Removes all key-value entries from the hash.\n *\n * @private\n * @name clear\n * @memberOf Hash\n */\nfunction hashClear() {\n  this.__data__ = nativeCreate ? nativeCreate(null) : {};\n  this.size = 0;\n}\n\nmodule.exports = hashClear;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_hashClear.js?");
+var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ "./node_modules/lodash/_nativeCreate.js");
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+  this.size = 0;
+}
+
+module.exports = hashClear;
+
 
 /***/ }),
 
@@ -1026,7 +6775,24 @@ eval("var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ \"./node_mod
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/**\n * Removes `key` and its value from the hash.\n *\n * @private\n * @name delete\n * @memberOf Hash\n * @param {Object} hash The hash to modify.\n * @param {string} key The key of the value to remove.\n * @returns {boolean} Returns `true` if the entry was removed, else `false`.\n */\nfunction hashDelete(key) {\n  var result = this.has(key) && delete this.__data__[key];\n  this.size -= result ? 1 : 0;\n  return result;\n}\n\nmodule.exports = hashDelete;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_hashDelete.js?");
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+module.exports = hashDelete;
+
 
 /***/ }),
 
@@ -1037,7 +6803,37 @@ eval("/**\n * Removes `key` and its value from the hash.\n *\n * @private\n * @n
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ \"./node_modules/lodash/_nativeCreate.js\");\n\n/** Used to stand-in for `undefined` hash values. */\nvar HASH_UNDEFINED = '__lodash_hash_undefined__';\n\n/** Used for built-in method references. */\nvar objectProto = Object.prototype;\n\n/** Used to check objects for own properties. */\nvar hasOwnProperty = objectProto.hasOwnProperty;\n\n/**\n * Gets the hash value for `key`.\n *\n * @private\n * @name get\n * @memberOf Hash\n * @param {string} key The key of the value to get.\n * @returns {*} Returns the entry value.\n */\nfunction hashGet(key) {\n  var data = this.__data__;\n  if (nativeCreate) {\n    var result = data[key];\n    return result === HASH_UNDEFINED ? undefined : result;\n  }\n  return hasOwnProperty.call(data, key) ? data[key] : undefined;\n}\n\nmodule.exports = hashGet;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_hashGet.js?");
+var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ "./node_modules/lodash/_nativeCreate.js");
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+
+module.exports = hashGet;
+
 
 /***/ }),
 
@@ -1048,7 +6844,30 @@ eval("var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ \"./node_mod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ \"./node_modules/lodash/_nativeCreate.js\");\n\n/** Used for built-in method references. */\nvar objectProto = Object.prototype;\n\n/** Used to check objects for own properties. */\nvar hasOwnProperty = objectProto.hasOwnProperty;\n\n/**\n * Checks if a hash value for `key` exists.\n *\n * @private\n * @name has\n * @memberOf Hash\n * @param {string} key The key of the entry to check.\n * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.\n */\nfunction hashHas(key) {\n  var data = this.__data__;\n  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);\n}\n\nmodule.exports = hashHas;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_hashHas.js?");
+var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ "./node_modules/lodash/_nativeCreate.js");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);
+}
+
+module.exports = hashHas;
+
 
 /***/ }),
 
@@ -1059,7 +6878,30 @@ eval("var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ \"./node_mod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ \"./node_modules/lodash/_nativeCreate.js\");\n\n/** Used to stand-in for `undefined` hash values. */\nvar HASH_UNDEFINED = '__lodash_hash_undefined__';\n\n/**\n * Sets the hash `key` to `value`.\n *\n * @private\n * @name set\n * @memberOf Hash\n * @param {string} key The key of the value to set.\n * @param {*} value The value to set.\n * @returns {Object} Returns the hash instance.\n */\nfunction hashSet(key, value) {\n  var data = this.__data__;\n  this.size += this.has(key) ? 0 : 1;\n  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;\n  return this;\n}\n\nmodule.exports = hashSet;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_hashSet.js?");
+var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ "./node_modules/lodash/_nativeCreate.js");
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+  return this;
+}
+
+module.exports = hashSet;
+
 
 /***/ }),
 
@@ -1070,7 +6912,22 @@ eval("var nativeCreate = __webpack_require__(/*! ./_nativeCreate */ \"./node_mod
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/**\n * Checks if `value` is suitable for use as unique object key.\n *\n * @private\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is suitable, else `false`.\n */\nfunction isKeyable(value) {\n  var type = typeof value;\n  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')\n    ? (value !== '__proto__')\n    : (value === null);\n}\n\nmodule.exports = isKeyable;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_isKeyable.js?");
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+module.exports = isKeyable;
+
 
 /***/ }),
 
@@ -1081,7 +6938,27 @@ eval("/**\n * Checks if `value` is suitable for use as unique object key.\n *\n 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var coreJsData = __webpack_require__(/*! ./_coreJsData */ \"./node_modules/lodash/_coreJsData.js\");\n\n/** Used to detect methods masquerading as native. */\nvar maskSrcKey = (function() {\n  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');\n  return uid ? ('Symbol(src)_1.' + uid) : '';\n}());\n\n/**\n * Checks if `func` has its source masked.\n *\n * @private\n * @param {Function} func The function to check.\n * @returns {boolean} Returns `true` if `func` is masked, else `false`.\n */\nfunction isMasked(func) {\n  return !!maskSrcKey && (maskSrcKey in func);\n}\n\nmodule.exports = isMasked;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_isMasked.js?");
+var coreJsData = __webpack_require__(/*! ./_coreJsData */ "./node_modules/lodash/_coreJsData.js");
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+module.exports = isMasked;
+
 
 /***/ }),
 
@@ -1092,7 +6969,20 @@ eval("var coreJsData = __webpack_require__(/*! ./_coreJsData */ \"./node_modules
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/**\n * Removes all key-value entries from the list cache.\n *\n * @private\n * @name clear\n * @memberOf ListCache\n */\nfunction listCacheClear() {\n  this.__data__ = [];\n  this.size = 0;\n}\n\nmodule.exports = listCacheClear;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_listCacheClear.js?");
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+
+module.exports = listCacheClear;
+
 
 /***/ }),
 
@@ -1103,7 +6993,42 @@ eval("/**\n * Removes all key-value entries from the list cache.\n *\n * @privat
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ \"./node_modules/lodash/_assocIndexOf.js\");\n\n/** Used for built-in method references. */\nvar arrayProto = Array.prototype;\n\n/** Built-in value references. */\nvar splice = arrayProto.splice;\n\n/**\n * Removes `key` and its value from the list cache.\n *\n * @private\n * @name delete\n * @memberOf ListCache\n * @param {string} key The key of the value to remove.\n * @returns {boolean} Returns `true` if the entry was removed, else `false`.\n */\nfunction listCacheDelete(key) {\n  var data = this.__data__,\n      index = assocIndexOf(data, key);\n\n  if (index < 0) {\n    return false;\n  }\n  var lastIndex = data.length - 1;\n  if (index == lastIndex) {\n    data.pop();\n  } else {\n    splice.call(data, index, 1);\n  }\n  --this.size;\n  return true;\n}\n\nmodule.exports = listCacheDelete;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_listCacheDelete.js?");
+var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ "./node_modules/lodash/_assocIndexOf.js");
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/** Built-in value references. */
+var splice = arrayProto.splice;
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
+}
+
+module.exports = listCacheDelete;
+
 
 /***/ }),
 
@@ -1114,7 +7039,26 @@ eval("var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ \"./node_mod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ \"./node_modules/lodash/_assocIndexOf.js\");\n\n/**\n * Gets the list cache value for `key`.\n *\n * @private\n * @name get\n * @memberOf ListCache\n * @param {string} key The key of the value to get.\n * @returns {*} Returns the entry value.\n */\nfunction listCacheGet(key) {\n  var data = this.__data__,\n      index = assocIndexOf(data, key);\n\n  return index < 0 ? undefined : data[index][1];\n}\n\nmodule.exports = listCacheGet;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_listCacheGet.js?");
+var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ "./node_modules/lodash/_assocIndexOf.js");
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+module.exports = listCacheGet;
+
 
 /***/ }),
 
@@ -1125,7 +7069,23 @@ eval("var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ \"./node_mod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ \"./node_modules/lodash/_assocIndexOf.js\");\n\n/**\n * Checks if a list cache value for `key` exists.\n *\n * @private\n * @name has\n * @memberOf ListCache\n * @param {string} key The key of the entry to check.\n * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.\n */\nfunction listCacheHas(key) {\n  return assocIndexOf(this.__data__, key) > -1;\n}\n\nmodule.exports = listCacheHas;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_listCacheHas.js?");
+var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ "./node_modules/lodash/_assocIndexOf.js");
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+module.exports = listCacheHas;
+
 
 /***/ }),
 
@@ -1136,7 +7096,33 @@ eval("var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ \"./node_mod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ \"./node_modules/lodash/_assocIndexOf.js\");\n\n/**\n * Sets the list cache `key` to `value`.\n *\n * @private\n * @name set\n * @memberOf ListCache\n * @param {string} key The key of the value to set.\n * @param {*} value The value to set.\n * @returns {Object} Returns the list cache instance.\n */\nfunction listCacheSet(key, value) {\n  var data = this.__data__,\n      index = assocIndexOf(data, key);\n\n  if (index < 0) {\n    ++this.size;\n    data.push([key, value]);\n  } else {\n    data[index][1] = value;\n  }\n  return this;\n}\n\nmodule.exports = listCacheSet;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_listCacheSet.js?");
+var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ "./node_modules/lodash/_assocIndexOf.js");
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+module.exports = listCacheSet;
+
 
 /***/ }),
 
@@ -1147,7 +7133,28 @@ eval("var assocIndexOf = __webpack_require__(/*! ./_assocIndexOf */ \"./node_mod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var Hash = __webpack_require__(/*! ./_Hash */ \"./node_modules/lodash/_Hash.js\"),\n    ListCache = __webpack_require__(/*! ./_ListCache */ \"./node_modules/lodash/_ListCache.js\"),\n    Map = __webpack_require__(/*! ./_Map */ \"./node_modules/lodash/_Map.js\");\n\n/**\n * Removes all key-value entries from the map.\n *\n * @private\n * @name clear\n * @memberOf MapCache\n */\nfunction mapCacheClear() {\n  this.size = 0;\n  this.__data__ = {\n    'hash': new Hash,\n    'map': new (Map || ListCache),\n    'string': new Hash\n  };\n}\n\nmodule.exports = mapCacheClear;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_mapCacheClear.js?");
+var Hash = __webpack_require__(/*! ./_Hash */ "./node_modules/lodash/_Hash.js"),
+    ListCache = __webpack_require__(/*! ./_ListCache */ "./node_modules/lodash/_ListCache.js"),
+    Map = __webpack_require__(/*! ./_Map */ "./node_modules/lodash/_Map.js");
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map || ListCache),
+    'string': new Hash
+  };
+}
+
+module.exports = mapCacheClear;
+
 
 /***/ }),
 
@@ -1158,7 +7165,25 @@ eval("var Hash = __webpack_require__(/*! ./_Hash */ \"./node_modules/lodash/_Has
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var getMapData = __webpack_require__(/*! ./_getMapData */ \"./node_modules/lodash/_getMapData.js\");\n\n/**\n * Removes `key` and its value from the map.\n *\n * @private\n * @name delete\n * @memberOf MapCache\n * @param {string} key The key of the value to remove.\n * @returns {boolean} Returns `true` if the entry was removed, else `false`.\n */\nfunction mapCacheDelete(key) {\n  var result = getMapData(this, key)['delete'](key);\n  this.size -= result ? 1 : 0;\n  return result;\n}\n\nmodule.exports = mapCacheDelete;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_mapCacheDelete.js?");
+var getMapData = __webpack_require__(/*! ./_getMapData */ "./node_modules/lodash/_getMapData.js");
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  var result = getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+module.exports = mapCacheDelete;
+
 
 /***/ }),
 
@@ -1169,7 +7194,23 @@ eval("var getMapData = __webpack_require__(/*! ./_getMapData */ \"./node_modules
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var getMapData = __webpack_require__(/*! ./_getMapData */ \"./node_modules/lodash/_getMapData.js\");\n\n/**\n * Gets the map value for `key`.\n *\n * @private\n * @name get\n * @memberOf MapCache\n * @param {string} key The key of the value to get.\n * @returns {*} Returns the entry value.\n */\nfunction mapCacheGet(key) {\n  return getMapData(this, key).get(key);\n}\n\nmodule.exports = mapCacheGet;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_mapCacheGet.js?");
+var getMapData = __webpack_require__(/*! ./_getMapData */ "./node_modules/lodash/_getMapData.js");
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+module.exports = mapCacheGet;
+
 
 /***/ }),
 
@@ -1180,7 +7221,23 @@ eval("var getMapData = __webpack_require__(/*! ./_getMapData */ \"./node_modules
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var getMapData = __webpack_require__(/*! ./_getMapData */ \"./node_modules/lodash/_getMapData.js\");\n\n/**\n * Checks if a map value for `key` exists.\n *\n * @private\n * @name has\n * @memberOf MapCache\n * @param {string} key The key of the entry to check.\n * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.\n */\nfunction mapCacheHas(key) {\n  return getMapData(this, key).has(key);\n}\n\nmodule.exports = mapCacheHas;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_mapCacheHas.js?");
+var getMapData = __webpack_require__(/*! ./_getMapData */ "./node_modules/lodash/_getMapData.js");
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+module.exports = mapCacheHas;
+
 
 /***/ }),
 
@@ -1191,7 +7248,29 @@ eval("var getMapData = __webpack_require__(/*! ./_getMapData */ \"./node_modules
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var getMapData = __webpack_require__(/*! ./_getMapData */ \"./node_modules/lodash/_getMapData.js\");\n\n/**\n * Sets the map `key` to `value`.\n *\n * @private\n * @name set\n * @memberOf MapCache\n * @param {string} key The key of the value to set.\n * @param {*} value The value to set.\n * @returns {Object} Returns the map cache instance.\n */\nfunction mapCacheSet(key, value) {\n  var data = getMapData(this, key),\n      size = data.size;\n\n  data.set(key, value);\n  this.size += data.size == size ? 0 : 1;\n  return this;\n}\n\nmodule.exports = mapCacheSet;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_mapCacheSet.js?");
+var getMapData = __webpack_require__(/*! ./_getMapData */ "./node_modules/lodash/_getMapData.js");
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  var data = getMapData(this, key),
+      size = data.size;
+
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+
+module.exports = mapCacheSet;
+
 
 /***/ }),
 
@@ -1202,7 +7281,13 @@ eval("var getMapData = __webpack_require__(/*! ./_getMapData */ \"./node_modules
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var getNative = __webpack_require__(/*! ./_getNative */ \"./node_modules/lodash/_getNative.js\");\n\n/* Built-in method references that are verified to be native. */\nvar nativeCreate = getNative(Object, 'create');\n\nmodule.exports = nativeCreate;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_nativeCreate.js?");
+var getNative = __webpack_require__(/*! ./_getNative */ "./node_modules/lodash/_getNative.js");
+
+/* Built-in method references that are verified to be native. */
+var nativeCreate = getNative(Object, 'create');
+
+module.exports = nativeCreate;
+
 
 /***/ }),
 
@@ -1213,7 +7298,29 @@ eval("var getNative = __webpack_require__(/*! ./_getNative */ \"./node_modules/l
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/** Used for built-in method references. */\nvar objectProto = Object.prototype;\n\n/**\n * Used to resolve the\n * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)\n * of values.\n */\nvar nativeObjectToString = objectProto.toString;\n\n/**\n * Converts `value` to a string using `Object.prototype.toString`.\n *\n * @private\n * @param {*} value The value to convert.\n * @returns {string} Returns the converted string.\n */\nfunction objectToString(value) {\n  return nativeObjectToString.call(value);\n}\n\nmodule.exports = objectToString;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_objectToString.js?");
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+module.exports = objectToString;
+
 
 /***/ }),
 
@@ -1224,7 +7331,16 @@ eval("/** Used for built-in method references. */\nvar objectProto = Object.prot
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ \"./node_modules/lodash/_freeGlobal.js\");\n\n/** Detect free variable `self`. */\nvar freeSelf = typeof self == 'object' && self && self.Object === Object && self;\n\n/** Used as a reference to the global object. */\nvar root = freeGlobal || freeSelf || Function('return this')();\n\nmodule.exports = root;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_root.js?");
+var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "./node_modules/lodash/_freeGlobal.js");
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root;
+
 
 /***/ }),
 
@@ -1235,7 +7351,33 @@ eval("var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ \"./node_modules
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/** Used for built-in method references. */\nvar funcProto = Function.prototype;\n\n/** Used to resolve the decompiled source of functions. */\nvar funcToString = funcProto.toString;\n\n/**\n * Converts `func` to its source code.\n *\n * @private\n * @param {Function} func The function to convert.\n * @returns {string} Returns the source code.\n */\nfunction toSource(func) {\n  if (func != null) {\n    try {\n      return funcToString.call(func);\n    } catch (e) {}\n    try {\n      return (func + '');\n    } catch (e) {}\n  }\n  return '';\n}\n\nmodule.exports = toSource;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/_toSource.js?");
+/** Used for built-in method references. */
+var funcProto = Function.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+module.exports = toSource;
+
 
 /***/ }),
 
@@ -1246,7 +7388,44 @@ eval("/** Used for built-in method references. */\nvar funcProto = Function.prot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/**\n * Performs a\n * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\n * comparison between two values to determine if they are equivalent.\n *\n * @static\n * @memberOf _\n * @since 4.0.0\n * @category Lang\n * @param {*} value The value to compare.\n * @param {*} other The other value to compare.\n * @returns {boolean} Returns `true` if the values are equivalent, else `false`.\n * @example\n *\n * var object = { 'a': 1 };\n * var other = { 'a': 1 };\n *\n * _.eq(object, object);\n * // => true\n *\n * _.eq(object, other);\n * // => false\n *\n * _.eq('a', 'a');\n * // => true\n *\n * _.eq('a', Object('a'));\n * // => false\n *\n * _.eq(NaN, NaN);\n * // => true\n */\nfunction eq(value, other) {\n  return value === other || (value !== value && other !== other);\n}\n\nmodule.exports = eq;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/eq.js?");
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+module.exports = eq;
+
 
 /***/ }),
 
@@ -1257,7 +7436,44 @@ eval("/**\n * Performs a\n * [`SameValueZero`](http://ecma-international.org/ecm
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ \"./node_modules/lodash/_baseGetTag.js\"),\n    isObject = __webpack_require__(/*! ./isObject */ \"./node_modules/lodash/isObject.js\");\n\n/** `Object#toString` result references. */\nvar asyncTag = '[object AsyncFunction]',\n    funcTag = '[object Function]',\n    genTag = '[object GeneratorFunction]',\n    proxyTag = '[object Proxy]';\n\n/**\n * Checks if `value` is classified as a `Function` object.\n *\n * @static\n * @memberOf _\n * @since 0.1.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is a function, else `false`.\n * @example\n *\n * _.isFunction(_);\n * // => true\n *\n * _.isFunction(/abc/);\n * // => false\n */\nfunction isFunction(value) {\n  if (!isObject(value)) {\n    return false;\n  }\n  // The use of `Object#toString` avoids issues with the `typeof` operator\n  // in Safari 9 which returns 'object' for typed arrays and other constructors.\n  var tag = baseGetTag(value);\n  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;\n}\n\nmodule.exports = isFunction;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/isFunction.js?");
+var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
+    isObject = __webpack_require__(/*! ./isObject */ "./node_modules/lodash/isObject.js");
+
+/** `Object#toString` result references. */
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+module.exports = isFunction;
+
 
 /***/ }),
 
@@ -1268,7 +7484,38 @@ eval("var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ \"./node_modules
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/**\n * Checks if `value` is the\n * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)\n * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)\n *\n * @static\n * @memberOf _\n * @since 0.1.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is an object, else `false`.\n * @example\n *\n * _.isObject({});\n * // => true\n *\n * _.isObject([1, 2, 3]);\n * // => true\n *\n * _.isObject(_.noop);\n * // => true\n *\n * _.isObject(null);\n * // => false\n */\nfunction isObject(value) {\n  var type = typeof value;\n  return value != null && (type == 'object' || type == 'function');\n}\n\nmodule.exports = isObject;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/isObject.js?");
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
+module.exports = isObject;
+
 
 /***/ }),
 
@@ -1279,7 +7526,80 @@ eval("/**\n * Checks if `value` is the\n * [language type](http://www.ecma-inter
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var MapCache = __webpack_require__(/*! ./_MapCache */ \"./node_modules/lodash/_MapCache.js\");\n\n/** Error message constants. */\nvar FUNC_ERROR_TEXT = 'Expected a function';\n\n/**\n * Creates a function that memoizes the result of `func`. If `resolver` is\n * provided, it determines the cache key for storing the result based on the\n * arguments provided to the memoized function. By default, the first argument\n * provided to the memoized function is used as the map cache key. The `func`\n * is invoked with the `this` binding of the memoized function.\n *\n * **Note:** The cache is exposed as the `cache` property on the memoized\n * function. Its creation may be customized by replacing the `_.memoize.Cache`\n * constructor with one whose instances implement the\n * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)\n * method interface of `clear`, `delete`, `get`, `has`, and `set`.\n *\n * @static\n * @memberOf _\n * @since 0.1.0\n * @category Function\n * @param {Function} func The function to have its output memoized.\n * @param {Function} [resolver] The function to resolve the cache key.\n * @returns {Function} Returns the new memoized function.\n * @example\n *\n * var object = { 'a': 1, 'b': 2 };\n * var other = { 'c': 3, 'd': 4 };\n *\n * var values = _.memoize(_.values);\n * values(object);\n * // => [1, 2]\n *\n * values(other);\n * // => [3, 4]\n *\n * object.a = 2;\n * values(object);\n * // => [1, 2]\n *\n * // Modify the result cache.\n * values.cache.set(object, ['a', 'b']);\n * values(object);\n * // => ['a', 'b']\n *\n * // Replace `_.memoize.Cache`.\n * _.memoize.Cache = WeakMap;\n */\nfunction memoize(func, resolver) {\n  if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {\n    throw new TypeError(FUNC_ERROR_TEXT);\n  }\n  var memoized = function() {\n    var args = arguments,\n        key = resolver ? resolver.apply(this, args) : args[0],\n        cache = memoized.cache;\n\n    if (cache.has(key)) {\n      return cache.get(key);\n    }\n    var result = func.apply(this, args);\n    memoized.cache = cache.set(key, result) || cache;\n    return result;\n  };\n  memoized.cache = new (memoize.Cache || MapCache);\n  return memoized;\n}\n\n// Expose `MapCache`.\nmemoize.Cache = MapCache;\n\nmodule.exports = memoize;\n\n\n//# sourceURL=webpack://Maka/./node_modules/lodash/memoize.js?");
+var MapCache = __webpack_require__(/*! ./_MapCache */ "./node_modules/lodash/_MapCache.js");
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/**
+ * Creates a function that memoizes the result of `func`. If `resolver` is
+ * provided, it determines the cache key for storing the result based on the
+ * arguments provided to the memoized function. By default, the first argument
+ * provided to the memoized function is used as the map cache key. The `func`
+ * is invoked with the `this` binding of the memoized function.
+ *
+ * **Note:** The cache is exposed as the `cache` property on the memoized
+ * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ * constructor with one whose instances implement the
+ * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
+ * method interface of `clear`, `delete`, `get`, `has`, and `set`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to have its output memoized.
+ * @param {Function} [resolver] The function to resolve the cache key.
+ * @returns {Function} Returns the new memoized function.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': 2 };
+ * var other = { 'c': 3, 'd': 4 };
+ *
+ * var values = _.memoize(_.values);
+ * values(object);
+ * // => [1, 2]
+ *
+ * values(other);
+ * // => [3, 4]
+ *
+ * object.a = 2;
+ * values(object);
+ * // => [1, 2]
+ *
+ * // Modify the result cache.
+ * values.cache.set(object, ['a', 'b']);
+ * values(object);
+ * // => ['a', 'b']
+ *
+ * // Replace `_.memoize.Cache`.
+ * _.memoize.Cache = WeakMap;
+ */
+function memoize(func, resolver) {
+  if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  var memoized = function() {
+    var args = arguments,
+        key = resolver ? resolver.apply(this, args) : args[0],
+        cache = memoized.cache;
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    var result = func.apply(this, args);
+    memoized.cache = cache.set(key, result) || cache;
+    return result;
+  };
+  memoized.cache = new (memoize.Cache || MapCache);
+  return memoized;
+}
+
+// Expose `MapCache`.
+memoize.Cache = MapCache;
+
+module.exports = memoize;
+
 
 /***/ }),
 
@@ -1290,7 +7610,232 @@ eval("var MapCache = __webpack_require__(/*! ./_MapCache */ \"./node_modules/lod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.\n//\n// Permission is hereby granted, free of charge, to any person obtaining a\n// copy of this software and associated documentation files (the\n// \"Software\"), to deal in the Software without restriction, including\n// without limitation the rights to use, copy, modify, merge, publish,\n// distribute, sublicense, and/or sell copies of the Software, and to permit\n// persons to whom the Software is furnished to do so, subject to the\n// following conditions:\n//\n// The above copyright notice and this permission notice shall be included\n// in all copies or substantial portions of the Software.\n//\n// THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\n// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN\n// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,\n// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR\n// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE\n// USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n// resolves . and .. elements in a path array with directory names there\n// must be no slashes, empty elements, or device names (c:\\) in the array\n// (so also no leading and trailing slashes - it does not distinguish\n// relative and absolute paths)\nfunction normalizeArray(parts, allowAboveRoot) {\n  // if the path tries to go above the root, `up` ends up > 0\n  var up = 0;\n  for (var i = parts.length - 1; i >= 0; i--) {\n    var last = parts[i];\n    if (last === '.') {\n      parts.splice(i, 1);\n    } else if (last === '..') {\n      parts.splice(i, 1);\n      up++;\n    } else if (up) {\n      parts.splice(i, 1);\n      up--;\n    }\n  }\n\n  // if the path is allowed to go above the root, restore leading ..s\n  if (allowAboveRoot) {\n    for (; up--; up) {\n      parts.unshift('..');\n    }\n  }\n\n  return parts;\n}\n\n// Split a filename into [root, dir, basename, ext], unix version\n// 'root' is just a slash, or nothing.\nvar splitPathRe =\n    /^(\\/?|)([\\s\\S]*?)((?:\\.{1,2}|[^\\/]+?|)(\\.[^.\\/]*|))(?:[\\/]*)$/;\nvar splitPath = function(filename) {\n  return splitPathRe.exec(filename).slice(1);\n};\n\n// path.resolve([from ...], to)\n// posix version\nexports.resolve = function() {\n  var resolvedPath = '',\n      resolvedAbsolute = false;\n\n  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {\n    var path = (i >= 0) ? arguments[i] : process.cwd();\n\n    // Skip empty and invalid entries\n    if (typeof path !== 'string') {\n      throw new TypeError('Arguments to path.resolve must be strings');\n    } else if (!path) {\n      continue;\n    }\n\n    resolvedPath = path + '/' + resolvedPath;\n    resolvedAbsolute = path.charAt(0) === '/';\n  }\n\n  // At this point the path should be resolved to a full absolute path, but\n  // handle relative paths to be safe (might happen when process.cwd() fails)\n\n  // Normalize the path\n  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {\n    return !!p;\n  }), !resolvedAbsolute).join('/');\n\n  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';\n};\n\n// path.normalize(path)\n// posix version\nexports.normalize = function(path) {\n  var isAbsolute = exports.isAbsolute(path),\n      trailingSlash = substr(path, -1) === '/';\n\n  // Normalize the path\n  path = normalizeArray(filter(path.split('/'), function(p) {\n    return !!p;\n  }), !isAbsolute).join('/');\n\n  if (!path && !isAbsolute) {\n    path = '.';\n  }\n  if (path && trailingSlash) {\n    path += '/';\n  }\n\n  return (isAbsolute ? '/' : '') + path;\n};\n\n// posix version\nexports.isAbsolute = function(path) {\n  return path.charAt(0) === '/';\n};\n\n// posix version\nexports.join = function() {\n  var paths = Array.prototype.slice.call(arguments, 0);\n  return exports.normalize(filter(paths, function(p, index) {\n    if (typeof p !== 'string') {\n      throw new TypeError('Arguments to path.join must be strings');\n    }\n    return p;\n  }).join('/'));\n};\n\n\n// path.relative(from, to)\n// posix version\nexports.relative = function(from, to) {\n  from = exports.resolve(from).substr(1);\n  to = exports.resolve(to).substr(1);\n\n  function trim(arr) {\n    var start = 0;\n    for (; start < arr.length; start++) {\n      if (arr[start] !== '') break;\n    }\n\n    var end = arr.length - 1;\n    for (; end >= 0; end--) {\n      if (arr[end] !== '') break;\n    }\n\n    if (start > end) return [];\n    return arr.slice(start, end - start + 1);\n  }\n\n  var fromParts = trim(from.split('/'));\n  var toParts = trim(to.split('/'));\n\n  var length = Math.min(fromParts.length, toParts.length);\n  var samePartsLength = length;\n  for (var i = 0; i < length; i++) {\n    if (fromParts[i] !== toParts[i]) {\n      samePartsLength = i;\n      break;\n    }\n  }\n\n  var outputParts = [];\n  for (var i = samePartsLength; i < fromParts.length; i++) {\n    outputParts.push('..');\n  }\n\n  outputParts = outputParts.concat(toParts.slice(samePartsLength));\n\n  return outputParts.join('/');\n};\n\nexports.sep = '/';\nexports.delimiter = ':';\n\nexports.dirname = function(path) {\n  var result = splitPath(path),\n      root = result[0],\n      dir = result[1];\n\n  if (!root && !dir) {\n    // No dirname whatsoever\n    return '.';\n  }\n\n  if (dir) {\n    // It has a dirname, strip trailing slash\n    dir = dir.substr(0, dir.length - 1);\n  }\n\n  return root + dir;\n};\n\n\nexports.basename = function(path, ext) {\n  var f = splitPath(path)[2];\n  // TODO: make this comparison case-insensitive on windows?\n  if (ext && f.substr(-1 * ext.length) === ext) {\n    f = f.substr(0, f.length - ext.length);\n  }\n  return f;\n};\n\n\nexports.extname = function(path) {\n  return splitPath(path)[3];\n};\n\nfunction filter (xs, f) {\n    if (xs.filter) return xs.filter(f);\n    var res = [];\n    for (var i = 0; i < xs.length; i++) {\n        if (f(xs[i], i, xs)) res.push(xs[i]);\n    }\n    return res;\n}\n\n// String.prototype.substr - negative index don't work in IE8\nvar substr = 'ab'.substr(-1) === 'b'\n    ? function (str, start, len) { return str.substr(start, len) }\n    : function (str, start, len) {\n        if (start < 0) start = str.length + start;\n        return str.substr(start, len);\n    }\n;\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../process/browser.js */ \"./node_modules/process/browser.js\")))\n\n//# sourceURL=webpack://Maka/./node_modules/path-browserify/index.js?");
+/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// Split a filename into [root, dir, basename, ext], unix version
+// 'root' is just a slash, or nothing.
+var splitPathRe =
+    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
+var splitPath = function(filename) {
+  return splitPathRe.exec(filename).slice(1);
+};
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function(path) {
+  var result = splitPath(path),
+      root = result[0],
+      dir = result[1];
+
+  if (!root && !dir) {
+    // No dirname whatsoever
+    return '.';
+  }
+
+  if (dir) {
+    // It has a dirname, strip trailing slash
+    dir = dir.substr(0, dir.length - 1);
+  }
+
+  return root + dir;
+};
+
+
+exports.basename = function(path, ext) {
+  var f = splitPath(path)[2];
+  // TODO: make this comparison case-insensitive on windows?
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+
+exports.extname = function(path) {
+  return splitPath(path)[3];
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -1301,7 +7846,191 @@ eval("/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. a
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// shim for using process in browser\nvar process = module.exports = {};\n\n// cached from whatever global is present so that test runners that stub it\n// don't break things.  But we need to wrap it in a try catch in case it is\n// wrapped in strict mode code which doesn't define any globals.  It's inside a\n// function because try/catches deoptimize in certain engines.\n\nvar cachedSetTimeout;\nvar cachedClearTimeout;\n\nfunction defaultSetTimout() {\n    throw new Error('setTimeout has not been defined');\n}\nfunction defaultClearTimeout () {\n    throw new Error('clearTimeout has not been defined');\n}\n(function () {\n    try {\n        if (typeof setTimeout === 'function') {\n            cachedSetTimeout = setTimeout;\n        } else {\n            cachedSetTimeout = defaultSetTimout;\n        }\n    } catch (e) {\n        cachedSetTimeout = defaultSetTimout;\n    }\n    try {\n        if (typeof clearTimeout === 'function') {\n            cachedClearTimeout = clearTimeout;\n        } else {\n            cachedClearTimeout = defaultClearTimeout;\n        }\n    } catch (e) {\n        cachedClearTimeout = defaultClearTimeout;\n    }\n} ())\nfunction runTimeout(fun) {\n    if (cachedSetTimeout === setTimeout) {\n        //normal enviroments in sane situations\n        return setTimeout(fun, 0);\n    }\n    // if setTimeout wasn't available but was latter defined\n    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {\n        cachedSetTimeout = setTimeout;\n        return setTimeout(fun, 0);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedSetTimeout(fun, 0);\n    } catch(e){\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally\n            return cachedSetTimeout.call(null, fun, 0);\n        } catch(e){\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error\n            return cachedSetTimeout.call(this, fun, 0);\n        }\n    }\n\n\n}\nfunction runClearTimeout(marker) {\n    if (cachedClearTimeout === clearTimeout) {\n        //normal enviroments in sane situations\n        return clearTimeout(marker);\n    }\n    // if clearTimeout wasn't available but was latter defined\n    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {\n        cachedClearTimeout = clearTimeout;\n        return clearTimeout(marker);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedClearTimeout(marker);\n    } catch (e){\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally\n            return cachedClearTimeout.call(null, marker);\n        } catch (e){\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.\n            // Some versions of I.E. have different rules for clearTimeout vs setTimeout\n            return cachedClearTimeout.call(this, marker);\n        }\n    }\n\n\n\n}\nvar queue = [];\nvar draining = false;\nvar currentQueue;\nvar queueIndex = -1;\n\nfunction cleanUpNextTick() {\n    if (!draining || !currentQueue) {\n        return;\n    }\n    draining = false;\n    if (currentQueue.length) {\n        queue = currentQueue.concat(queue);\n    } else {\n        queueIndex = -1;\n    }\n    if (queue.length) {\n        drainQueue();\n    }\n}\n\nfunction drainQueue() {\n    if (draining) {\n        return;\n    }\n    var timeout = runTimeout(cleanUpNextTick);\n    draining = true;\n\n    var len = queue.length;\n    while(len) {\n        currentQueue = queue;\n        queue = [];\n        while (++queueIndex < len) {\n            if (currentQueue) {\n                currentQueue[queueIndex].run();\n            }\n        }\n        queueIndex = -1;\n        len = queue.length;\n    }\n    currentQueue = null;\n    draining = false;\n    runClearTimeout(timeout);\n}\n\nprocess.nextTick = function (fun) {\n    var args = new Array(arguments.length - 1);\n    if (arguments.length > 1) {\n        for (var i = 1; i < arguments.length; i++) {\n            args[i - 1] = arguments[i];\n        }\n    }\n    queue.push(new Item(fun, args));\n    if (queue.length === 1 && !draining) {\n        runTimeout(drainQueue);\n    }\n};\n\n// v8 likes predictible objects\nfunction Item(fun, array) {\n    this.fun = fun;\n    this.array = array;\n}\nItem.prototype.run = function () {\n    this.fun.apply(null, this.array);\n};\nprocess.title = 'browser';\nprocess.browser = true;\nprocess.env = {};\nprocess.argv = [];\nprocess.version = ''; // empty string to avoid regexp issues\nprocess.versions = {};\n\nfunction noop() {}\n\nprocess.on = noop;\nprocess.addListener = noop;\nprocess.once = noop;\nprocess.off = noop;\nprocess.removeListener = noop;\nprocess.removeAllListeners = noop;\nprocess.emit = noop;\nprocess.prependListener = noop;\nprocess.prependOnceListener = noop;\n\nprocess.listeners = function (name) { return [] }\n\nprocess.binding = function (name) {\n    throw new Error('process.binding is not supported');\n};\n\nprocess.cwd = function () { return '/' };\nprocess.chdir = function (dir) {\n    throw new Error('process.chdir is not supported');\n};\nprocess.umask = function() { return 0; };\n\n\n//# sourceURL=webpack://Maka/./node_modules/process/browser.js?");
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
 
 /***/ }),
 
@@ -1313,7 +8042,33 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/**\n * Copyright (c) 2013-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n *\n * @providesModule shallowCompare\n */\n\n\n\nvar shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ \"./node_modules/fbjs/lib/shallowEqual.js\");\n\n/**\n * Does a shallow comparison for props and state.\n * See ReactComponentWithPureRenderMixin\n * See also https://facebook.github.io/react/docs/shallow-compare.html\n */\nfunction shallowCompare(instance, nextProps, nextState) {\n  return (\n    !shallowEqual(instance.props, nextProps) ||\n    !shallowEqual(instance.state, nextState)\n  );\n}\n\nmodule.exports = shallowCompare;\n\n\n//# sourceURL=webpack://Maka/./node_modules/react-addons-shallow-compare/index.js?");
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @providesModule shallowCompare
+ */
+
+
+
+var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ "./node_modules/fbjs/lib/shallowEqual.js");
+
+/**
+ * Does a shallow comparison for props and state.
+ * See ReactComponentWithPureRenderMixin
+ * See also https://facebook.github.io/react/docs/shallow-compare.html
+ */
+function shallowCompare(instance, nextProps, nextState) {
+  return (
+    !shallowEqual(instance.props, nextProps) ||
+    !shallowEqual(instance.state, nextState)
+  );
+}
+
+module.exports = shallowCompare;
+
 
 /***/ }),
 
@@ -1324,7 +8079,733 @@ eval("/**\n * Copyright (c) 2013-present, Facebook, Inc.\n *\n * This source cod
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\nvar runtime = (function (exports) {\n  \"use strict\";\n\n  var Op = Object.prototype;\n  var hasOwn = Op.hasOwnProperty;\n  var undefined; // More compressible than void 0.\n  var $Symbol = typeof Symbol === \"function\" ? Symbol : {};\n  var iteratorSymbol = $Symbol.iterator || \"@@iterator\";\n  var asyncIteratorSymbol = $Symbol.asyncIterator || \"@@asyncIterator\";\n  var toStringTagSymbol = $Symbol.toStringTag || \"@@toStringTag\";\n\n  function wrap(innerFn, outerFn, self, tryLocsList) {\n    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.\n    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;\n    var generator = Object.create(protoGenerator.prototype);\n    var context = new Context(tryLocsList || []);\n\n    // The ._invoke method unifies the implementations of the .next,\n    // .throw, and .return methods.\n    generator._invoke = makeInvokeMethod(innerFn, self, context);\n\n    return generator;\n  }\n  exports.wrap = wrap;\n\n  // Try/catch helper to minimize deoptimizations. Returns a completion\n  // record like context.tryEntries[i].completion. This interface could\n  // have been (and was previously) designed to take a closure to be\n  // invoked without arguments, but in all the cases we care about we\n  // already have an existing method we want to call, so there's no need\n  // to create a new function object. We can even get away with assuming\n  // the method takes exactly one argument, since that happens to be true\n  // in every case, so we don't have to touch the arguments object. The\n  // only additional allocation required is the completion record, which\n  // has a stable shape and so hopefully should be cheap to allocate.\n  function tryCatch(fn, obj, arg) {\n    try {\n      return { type: \"normal\", arg: fn.call(obj, arg) };\n    } catch (err) {\n      return { type: \"throw\", arg: err };\n    }\n  }\n\n  var GenStateSuspendedStart = \"suspendedStart\";\n  var GenStateSuspendedYield = \"suspendedYield\";\n  var GenStateExecuting = \"executing\";\n  var GenStateCompleted = \"completed\";\n\n  // Returning this object from the innerFn has the same effect as\n  // breaking out of the dispatch switch statement.\n  var ContinueSentinel = {};\n\n  // Dummy constructor functions that we use as the .constructor and\n  // .constructor.prototype properties for functions that return Generator\n  // objects. For full spec compliance, you may wish to configure your\n  // minifier not to mangle the names of these two functions.\n  function Generator() {}\n  function GeneratorFunction() {}\n  function GeneratorFunctionPrototype() {}\n\n  // This is a polyfill for %IteratorPrototype% for environments that\n  // don't natively support it.\n  var IteratorPrototype = {};\n  IteratorPrototype[iteratorSymbol] = function () {\n    return this;\n  };\n\n  var getProto = Object.getPrototypeOf;\n  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));\n  if (NativeIteratorPrototype &&\n      NativeIteratorPrototype !== Op &&\n      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {\n    // This environment has a native %IteratorPrototype%; use it instead\n    // of the polyfill.\n    IteratorPrototype = NativeIteratorPrototype;\n  }\n\n  var Gp = GeneratorFunctionPrototype.prototype =\n    Generator.prototype = Object.create(IteratorPrototype);\n  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;\n  GeneratorFunctionPrototype.constructor = GeneratorFunction;\n  GeneratorFunctionPrototype[toStringTagSymbol] =\n    GeneratorFunction.displayName = \"GeneratorFunction\";\n\n  // Helper for defining the .next, .throw, and .return methods of the\n  // Iterator interface in terms of a single ._invoke method.\n  function defineIteratorMethods(prototype) {\n    [\"next\", \"throw\", \"return\"].forEach(function(method) {\n      prototype[method] = function(arg) {\n        return this._invoke(method, arg);\n      };\n    });\n  }\n\n  exports.isGeneratorFunction = function(genFun) {\n    var ctor = typeof genFun === \"function\" && genFun.constructor;\n    return ctor\n      ? ctor === GeneratorFunction ||\n        // For the native GeneratorFunction constructor, the best we can\n        // do is to check its .name property.\n        (ctor.displayName || ctor.name) === \"GeneratorFunction\"\n      : false;\n  };\n\n  exports.mark = function(genFun) {\n    if (Object.setPrototypeOf) {\n      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);\n    } else {\n      genFun.__proto__ = GeneratorFunctionPrototype;\n      if (!(toStringTagSymbol in genFun)) {\n        genFun[toStringTagSymbol] = \"GeneratorFunction\";\n      }\n    }\n    genFun.prototype = Object.create(Gp);\n    return genFun;\n  };\n\n  // Within the body of any async function, `await x` is transformed to\n  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test\n  // `hasOwn.call(value, \"__await\")` to determine if the yielded value is\n  // meant to be awaited.\n  exports.awrap = function(arg) {\n    return { __await: arg };\n  };\n\n  function AsyncIterator(generator) {\n    function invoke(method, arg, resolve, reject) {\n      var record = tryCatch(generator[method], generator, arg);\n      if (record.type === \"throw\") {\n        reject(record.arg);\n      } else {\n        var result = record.arg;\n        var value = result.value;\n        if (value &&\n            typeof value === \"object\" &&\n            hasOwn.call(value, \"__await\")) {\n          return Promise.resolve(value.__await).then(function(value) {\n            invoke(\"next\", value, resolve, reject);\n          }, function(err) {\n            invoke(\"throw\", err, resolve, reject);\n          });\n        }\n\n        return Promise.resolve(value).then(function(unwrapped) {\n          // When a yielded Promise is resolved, its final value becomes\n          // the .value of the Promise<{value,done}> result for the\n          // current iteration.\n          result.value = unwrapped;\n          resolve(result);\n        }, function(error) {\n          // If a rejected Promise was yielded, throw the rejection back\n          // into the async generator function so it can be handled there.\n          return invoke(\"throw\", error, resolve, reject);\n        });\n      }\n    }\n\n    var previousPromise;\n\n    function enqueue(method, arg) {\n      function callInvokeWithMethodAndArg() {\n        return new Promise(function(resolve, reject) {\n          invoke(method, arg, resolve, reject);\n        });\n      }\n\n      return previousPromise =\n        // If enqueue has been called before, then we want to wait until\n        // all previous Promises have been resolved before calling invoke,\n        // so that results are always delivered in the correct order. If\n        // enqueue has not been called before, then it is important to\n        // call invoke immediately, without waiting on a callback to fire,\n        // so that the async generator function has the opportunity to do\n        // any necessary setup in a predictable way. This predictability\n        // is why the Promise constructor synchronously invokes its\n        // executor callback, and why async functions synchronously\n        // execute code before the first await. Since we implement simple\n        // async functions in terms of async generators, it is especially\n        // important to get this right, even though it requires care.\n        previousPromise ? previousPromise.then(\n          callInvokeWithMethodAndArg,\n          // Avoid propagating failures to Promises returned by later\n          // invocations of the iterator.\n          callInvokeWithMethodAndArg\n        ) : callInvokeWithMethodAndArg();\n    }\n\n    // Define the unified helper method that is used to implement .next,\n    // .throw, and .return (see defineIteratorMethods).\n    this._invoke = enqueue;\n  }\n\n  defineIteratorMethods(AsyncIterator.prototype);\n  AsyncIterator.prototype[asyncIteratorSymbol] = function () {\n    return this;\n  };\n  exports.AsyncIterator = AsyncIterator;\n\n  // Note that simple async functions are implemented on top of\n  // AsyncIterator objects; they just return a Promise for the value of\n  // the final result produced by the iterator.\n  exports.async = function(innerFn, outerFn, self, tryLocsList) {\n    var iter = new AsyncIterator(\n      wrap(innerFn, outerFn, self, tryLocsList)\n    );\n\n    return exports.isGeneratorFunction(outerFn)\n      ? iter // If outerFn is a generator, return the full iterator.\n      : iter.next().then(function(result) {\n          return result.done ? result.value : iter.next();\n        });\n  };\n\n  function makeInvokeMethod(innerFn, self, context) {\n    var state = GenStateSuspendedStart;\n\n    return function invoke(method, arg) {\n      if (state === GenStateExecuting) {\n        throw new Error(\"Generator is already running\");\n      }\n\n      if (state === GenStateCompleted) {\n        if (method === \"throw\") {\n          throw arg;\n        }\n\n        // Be forgiving, per 25.3.3.3.3 of the spec:\n        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume\n        return doneResult();\n      }\n\n      context.method = method;\n      context.arg = arg;\n\n      while (true) {\n        var delegate = context.delegate;\n        if (delegate) {\n          var delegateResult = maybeInvokeDelegate(delegate, context);\n          if (delegateResult) {\n            if (delegateResult === ContinueSentinel) continue;\n            return delegateResult;\n          }\n        }\n\n        if (context.method === \"next\") {\n          // Setting context._sent for legacy support of Babel's\n          // function.sent implementation.\n          context.sent = context._sent = context.arg;\n\n        } else if (context.method === \"throw\") {\n          if (state === GenStateSuspendedStart) {\n            state = GenStateCompleted;\n            throw context.arg;\n          }\n\n          context.dispatchException(context.arg);\n\n        } else if (context.method === \"return\") {\n          context.abrupt(\"return\", context.arg);\n        }\n\n        state = GenStateExecuting;\n\n        var record = tryCatch(innerFn, self, context);\n        if (record.type === \"normal\") {\n          // If an exception is thrown from innerFn, we leave state ===\n          // GenStateExecuting and loop back for another invocation.\n          state = context.done\n            ? GenStateCompleted\n            : GenStateSuspendedYield;\n\n          if (record.arg === ContinueSentinel) {\n            continue;\n          }\n\n          return {\n            value: record.arg,\n            done: context.done\n          };\n\n        } else if (record.type === \"throw\") {\n          state = GenStateCompleted;\n          // Dispatch the exception by looping back around to the\n          // context.dispatchException(context.arg) call above.\n          context.method = \"throw\";\n          context.arg = record.arg;\n        }\n      }\n    };\n  }\n\n  // Call delegate.iterator[context.method](context.arg) and handle the\n  // result, either by returning a { value, done } result from the\n  // delegate iterator, or by modifying context.method and context.arg,\n  // setting context.delegate to null, and returning the ContinueSentinel.\n  function maybeInvokeDelegate(delegate, context) {\n    var method = delegate.iterator[context.method];\n    if (method === undefined) {\n      // A .throw or .return when the delegate iterator has no .throw\n      // method always terminates the yield* loop.\n      context.delegate = null;\n\n      if (context.method === \"throw\") {\n        // Note: [\"return\"] must be used for ES3 parsing compatibility.\n        if (delegate.iterator[\"return\"]) {\n          // If the delegate iterator has a return method, give it a\n          // chance to clean up.\n          context.method = \"return\";\n          context.arg = undefined;\n          maybeInvokeDelegate(delegate, context);\n\n          if (context.method === \"throw\") {\n            // If maybeInvokeDelegate(context) changed context.method from\n            // \"return\" to \"throw\", let that override the TypeError below.\n            return ContinueSentinel;\n          }\n        }\n\n        context.method = \"throw\";\n        context.arg = new TypeError(\n          \"The iterator does not provide a 'throw' method\");\n      }\n\n      return ContinueSentinel;\n    }\n\n    var record = tryCatch(method, delegate.iterator, context.arg);\n\n    if (record.type === \"throw\") {\n      context.method = \"throw\";\n      context.arg = record.arg;\n      context.delegate = null;\n      return ContinueSentinel;\n    }\n\n    var info = record.arg;\n\n    if (! info) {\n      context.method = \"throw\";\n      context.arg = new TypeError(\"iterator result is not an object\");\n      context.delegate = null;\n      return ContinueSentinel;\n    }\n\n    if (info.done) {\n      // Assign the result of the finished delegate to the temporary\n      // variable specified by delegate.resultName (see delegateYield).\n      context[delegate.resultName] = info.value;\n\n      // Resume execution at the desired location (see delegateYield).\n      context.next = delegate.nextLoc;\n\n      // If context.method was \"throw\" but the delegate handled the\n      // exception, let the outer generator proceed normally. If\n      // context.method was \"next\", forget context.arg since it has been\n      // \"consumed\" by the delegate iterator. If context.method was\n      // \"return\", allow the original .return call to continue in the\n      // outer generator.\n      if (context.method !== \"return\") {\n        context.method = \"next\";\n        context.arg = undefined;\n      }\n\n    } else {\n      // Re-yield the result returned by the delegate method.\n      return info;\n    }\n\n    // The delegate iterator is finished, so forget it and continue with\n    // the outer generator.\n    context.delegate = null;\n    return ContinueSentinel;\n  }\n\n  // Define Generator.prototype.{next,throw,return} in terms of the\n  // unified ._invoke helper method.\n  defineIteratorMethods(Gp);\n\n  Gp[toStringTagSymbol] = \"Generator\";\n\n  // A Generator should always return itself as the iterator object when the\n  // @@iterator function is called on it. Some browsers' implementations of the\n  // iterator prototype chain incorrectly implement this, causing the Generator\n  // object to not be returned from this call. This ensures that doesn't happen.\n  // See https://github.com/facebook/regenerator/issues/274 for more details.\n  Gp[iteratorSymbol] = function() {\n    return this;\n  };\n\n  Gp.toString = function() {\n    return \"[object Generator]\";\n  };\n\n  function pushTryEntry(locs) {\n    var entry = { tryLoc: locs[0] };\n\n    if (1 in locs) {\n      entry.catchLoc = locs[1];\n    }\n\n    if (2 in locs) {\n      entry.finallyLoc = locs[2];\n      entry.afterLoc = locs[3];\n    }\n\n    this.tryEntries.push(entry);\n  }\n\n  function resetTryEntry(entry) {\n    var record = entry.completion || {};\n    record.type = \"normal\";\n    delete record.arg;\n    entry.completion = record;\n  }\n\n  function Context(tryLocsList) {\n    // The root entry object (effectively a try statement without a catch\n    // or a finally block) gives us a place to store values thrown from\n    // locations where there is no enclosing try statement.\n    this.tryEntries = [{ tryLoc: \"root\" }];\n    tryLocsList.forEach(pushTryEntry, this);\n    this.reset(true);\n  }\n\n  exports.keys = function(object) {\n    var keys = [];\n    for (var key in object) {\n      keys.push(key);\n    }\n    keys.reverse();\n\n    // Rather than returning an object with a next method, we keep\n    // things simple and return the next function itself.\n    return function next() {\n      while (keys.length) {\n        var key = keys.pop();\n        if (key in object) {\n          next.value = key;\n          next.done = false;\n          return next;\n        }\n      }\n\n      // To avoid creating an additional object, we just hang the .value\n      // and .done properties off the next function object itself. This\n      // also ensures that the minifier will not anonymize the function.\n      next.done = true;\n      return next;\n    };\n  };\n\n  function values(iterable) {\n    if (iterable) {\n      var iteratorMethod = iterable[iteratorSymbol];\n      if (iteratorMethod) {\n        return iteratorMethod.call(iterable);\n      }\n\n      if (typeof iterable.next === \"function\") {\n        return iterable;\n      }\n\n      if (!isNaN(iterable.length)) {\n        var i = -1, next = function next() {\n          while (++i < iterable.length) {\n            if (hasOwn.call(iterable, i)) {\n              next.value = iterable[i];\n              next.done = false;\n              return next;\n            }\n          }\n\n          next.value = undefined;\n          next.done = true;\n\n          return next;\n        };\n\n        return next.next = next;\n      }\n    }\n\n    // Return an iterator with no values.\n    return { next: doneResult };\n  }\n  exports.values = values;\n\n  function doneResult() {\n    return { value: undefined, done: true };\n  }\n\n  Context.prototype = {\n    constructor: Context,\n\n    reset: function(skipTempReset) {\n      this.prev = 0;\n      this.next = 0;\n      // Resetting context._sent for legacy support of Babel's\n      // function.sent implementation.\n      this.sent = this._sent = undefined;\n      this.done = false;\n      this.delegate = null;\n\n      this.method = \"next\";\n      this.arg = undefined;\n\n      this.tryEntries.forEach(resetTryEntry);\n\n      if (!skipTempReset) {\n        for (var name in this) {\n          // Not sure about the optimal order of these conditions:\n          if (name.charAt(0) === \"t\" &&\n              hasOwn.call(this, name) &&\n              !isNaN(+name.slice(1))) {\n            this[name] = undefined;\n          }\n        }\n      }\n    },\n\n    stop: function() {\n      this.done = true;\n\n      var rootEntry = this.tryEntries[0];\n      var rootRecord = rootEntry.completion;\n      if (rootRecord.type === \"throw\") {\n        throw rootRecord.arg;\n      }\n\n      return this.rval;\n    },\n\n    dispatchException: function(exception) {\n      if (this.done) {\n        throw exception;\n      }\n\n      var context = this;\n      function handle(loc, caught) {\n        record.type = \"throw\";\n        record.arg = exception;\n        context.next = loc;\n\n        if (caught) {\n          // If the dispatched exception was caught by a catch block,\n          // then let that catch block handle the exception normally.\n          context.method = \"next\";\n          context.arg = undefined;\n        }\n\n        return !! caught;\n      }\n\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        var record = entry.completion;\n\n        if (entry.tryLoc === \"root\") {\n          // Exception thrown outside of any try block that could handle\n          // it, so set the completion value of the entire function to\n          // throw the exception.\n          return handle(\"end\");\n        }\n\n        if (entry.tryLoc <= this.prev) {\n          var hasCatch = hasOwn.call(entry, \"catchLoc\");\n          var hasFinally = hasOwn.call(entry, \"finallyLoc\");\n\n          if (hasCatch && hasFinally) {\n            if (this.prev < entry.catchLoc) {\n              return handle(entry.catchLoc, true);\n            } else if (this.prev < entry.finallyLoc) {\n              return handle(entry.finallyLoc);\n            }\n\n          } else if (hasCatch) {\n            if (this.prev < entry.catchLoc) {\n              return handle(entry.catchLoc, true);\n            }\n\n          } else if (hasFinally) {\n            if (this.prev < entry.finallyLoc) {\n              return handle(entry.finallyLoc);\n            }\n\n          } else {\n            throw new Error(\"try statement without catch or finally\");\n          }\n        }\n      }\n    },\n\n    abrupt: function(type, arg) {\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        if (entry.tryLoc <= this.prev &&\n            hasOwn.call(entry, \"finallyLoc\") &&\n            this.prev < entry.finallyLoc) {\n          var finallyEntry = entry;\n          break;\n        }\n      }\n\n      if (finallyEntry &&\n          (type === \"break\" ||\n           type === \"continue\") &&\n          finallyEntry.tryLoc <= arg &&\n          arg <= finallyEntry.finallyLoc) {\n        // Ignore the finally entry if control is not jumping to a\n        // location outside the try/catch block.\n        finallyEntry = null;\n      }\n\n      var record = finallyEntry ? finallyEntry.completion : {};\n      record.type = type;\n      record.arg = arg;\n\n      if (finallyEntry) {\n        this.method = \"next\";\n        this.next = finallyEntry.finallyLoc;\n        return ContinueSentinel;\n      }\n\n      return this.complete(record);\n    },\n\n    complete: function(record, afterLoc) {\n      if (record.type === \"throw\") {\n        throw record.arg;\n      }\n\n      if (record.type === \"break\" ||\n          record.type === \"continue\") {\n        this.next = record.arg;\n      } else if (record.type === \"return\") {\n        this.rval = this.arg = record.arg;\n        this.method = \"return\";\n        this.next = \"end\";\n      } else if (record.type === \"normal\" && afterLoc) {\n        this.next = afterLoc;\n      }\n\n      return ContinueSentinel;\n    },\n\n    finish: function(finallyLoc) {\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        if (entry.finallyLoc === finallyLoc) {\n          this.complete(entry.completion, entry.afterLoc);\n          resetTryEntry(entry);\n          return ContinueSentinel;\n        }\n      }\n    },\n\n    \"catch\": function(tryLoc) {\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        if (entry.tryLoc === tryLoc) {\n          var record = entry.completion;\n          if (record.type === \"throw\") {\n            var thrown = record.arg;\n            resetTryEntry(entry);\n          }\n          return thrown;\n        }\n      }\n\n      // The context.catch method must only be called with a location\n      // argument that corresponds to a known catch block.\n      throw new Error(\"illegal catch attempt\");\n    },\n\n    delegateYield: function(iterable, resultName, nextLoc) {\n      this.delegate = {\n        iterator: values(iterable),\n        resultName: resultName,\n        nextLoc: nextLoc\n      };\n\n      if (this.method === \"next\") {\n        // Deliberately forget the last sent value so that we don't\n        // accidentally pass it on to the delegate.\n        this.arg = undefined;\n      }\n\n      return ContinueSentinel;\n    }\n  };\n\n  // Regardless of whether this script is executing as a CommonJS module\n  // or not, return the runtime object so that we can declare the variable\n  // regeneratorRuntime in the outer scope, which allows this module to be\n  // injected easily by `bin/regenerator --include-runtime script.js`.\n  return exports;\n\n}(\n  // If this script is executing as a CommonJS module, use module.exports\n  // as the regeneratorRuntime namespace. Otherwise create a new empty\n  // object. Either way, the resulting object will be used to initialize\n  // the regeneratorRuntime variable at the top of this file.\n   true ? module.exports : undefined\n));\n\ntry {\n  regeneratorRuntime = runtime;\n} catch (accidentalStrictMode) {\n  // This module should not be running in strict mode, so the above\n  // assignment should always work unless something is misconfigured. Just\n  // in case runtime.js accidentally runs in strict mode, we can escape\n  // strict mode using a global Function call. This could conceivably fail\n  // if a Content Security Policy forbids using Function, but in that case\n  // the proper solution is to fix the accidental strict mode problem. If\n  // you've misconfigured your bundler to force strict mode and applied a\n  // CSP to forbid Function, and you're not willing to fix either of those\n  // problems, please detail your unique predicament in a GitHub issue.\n  Function(\"r\", \"regeneratorRuntime = r\")(runtime);\n}\n\n\n//# sourceURL=webpack://Maka/./node_modules/regenerator-runtime/runtime.js?");
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : undefined
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
 
 /***/ }),
 
@@ -1336,7 +8817,77 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nfunction isAbsolute(pathname) {\n  return pathname.charAt(0) === '/';\n}\n\n// About 1.5x faster than the two-arg version of Array#splice()\nfunction spliceOne(list, index) {\n  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) {\n    list[i] = list[k];\n  }\n\n  list.pop();\n}\n\n// This implementation is based heavily on node's url.parse\nfunction resolvePathname(to) {\n  var from = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n\n  var toParts = to && to.split('/') || [];\n  var fromParts = from && from.split('/') || [];\n\n  var isToAbs = to && isAbsolute(to);\n  var isFromAbs = from && isAbsolute(from);\n  var mustEndAbs = isToAbs || isFromAbs;\n\n  if (to && isAbsolute(to)) {\n    // to is absolute\n    fromParts = toParts;\n  } else if (toParts.length) {\n    // to is relative, drop the filename\n    fromParts.pop();\n    fromParts = fromParts.concat(toParts);\n  }\n\n  if (!fromParts.length) return '/';\n\n  var hasTrailingSlash = void 0;\n  if (fromParts.length) {\n    var last = fromParts[fromParts.length - 1];\n    hasTrailingSlash = last === '.' || last === '..' || last === '';\n  } else {\n    hasTrailingSlash = false;\n  }\n\n  var up = 0;\n  for (var i = fromParts.length; i >= 0; i--) {\n    var part = fromParts[i];\n\n    if (part === '.') {\n      spliceOne(fromParts, i);\n    } else if (part === '..') {\n      spliceOne(fromParts, i);\n      up++;\n    } else if (up) {\n      spliceOne(fromParts, i);\n      up--;\n    }\n  }\n\n  if (!mustEndAbs) for (; up--; up) {\n    fromParts.unshift('..');\n  }if (mustEndAbs && fromParts[0] !== '' && (!fromParts[0] || !isAbsolute(fromParts[0]))) fromParts.unshift('');\n\n  var result = fromParts.join('/');\n\n  if (hasTrailingSlash && result.substr(-1) !== '/') result += '/';\n\n  return result;\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (resolvePathname);\n\n//# sourceURL=webpack://Maka/./node_modules/resolve-pathname/index.js?");
+__webpack_require__.r(__webpack_exports__);
+function isAbsolute(pathname) {
+  return pathname.charAt(0) === '/';
+}
+
+// About 1.5x faster than the two-arg version of Array#splice()
+function spliceOne(list, index) {
+  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) {
+    list[i] = list[k];
+  }
+
+  list.pop();
+}
+
+// This implementation is based heavily on node's url.parse
+function resolvePathname(to) {
+  var from = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+  var toParts = to && to.split('/') || [];
+  var fromParts = from && from.split('/') || [];
+
+  var isToAbs = to && isAbsolute(to);
+  var isFromAbs = from && isAbsolute(from);
+  var mustEndAbs = isToAbs || isFromAbs;
+
+  if (to && isAbsolute(to)) {
+    // to is absolute
+    fromParts = toParts;
+  } else if (toParts.length) {
+    // to is relative, drop the filename
+    fromParts.pop();
+    fromParts = fromParts.concat(toParts);
+  }
+
+  if (!fromParts.length) return '/';
+
+  var hasTrailingSlash = void 0;
+  if (fromParts.length) {
+    var last = fromParts[fromParts.length - 1];
+    hasTrailingSlash = last === '.' || last === '..' || last === '';
+  } else {
+    hasTrailingSlash = false;
+  }
+
+  var up = 0;
+  for (var i = fromParts.length; i >= 0; i--) {
+    var part = fromParts[i];
+
+    if (part === '.') {
+      spliceOne(fromParts, i);
+    } else if (part === '..') {
+      spliceOne(fromParts, i);
+      up++;
+    } else if (up) {
+      spliceOne(fromParts, i);
+      up--;
+    }
+  }
+
+  if (!mustEndAbs) for (; up--; up) {
+    fromParts.unshift('..');
+  }if (mustEndAbs && fromParts[0] !== '' && (!fromParts[0] || !isAbsolute(fromParts[0]))) fromParts.unshift('');
+
+  var result = fromParts.join('/');
+
+  if (hasTrailingSlash && result.substr(-1) !== '/') result += '/';
+
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (resolvePathname);
 
 /***/ }),
 
@@ -1348,7 +8899,23 @@ eval("__webpack_require__.r(__webpack_exports__);\nfunction isAbsolute(pathname)
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nvar isProduction = \"development\" === 'production';\nvar prefix = 'Invariant failed';\nfunction invariant(condition, message) {\n  if (condition) {\n    return;\n  }\n\n  if (isProduction) {\n    throw new Error(prefix);\n  } else {\n    throw new Error(prefix + \": \" + (message || ''));\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (invariant);\n\n\n//# sourceURL=webpack://Maka/./node_modules/tiny-invariant/dist/tiny-invariant.esm.js?");
+__webpack_require__.r(__webpack_exports__);
+var isProduction = "development" === 'production';
+var prefix = 'Invariant failed';
+function invariant(condition, message) {
+  if (condition) {
+    return;
+  }
+
+  if (isProduction) {
+    throw new Error(prefix);
+  } else {
+    throw new Error(prefix + ": " + (message || ''));
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (invariant);
+
 
 /***/ }),
 
@@ -1360,7 +8927,28 @@ eval("__webpack_require__.r(__webpack_exports__);\nvar isProduction = \"developm
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nvar isProduction = \"development\" === 'production';\nfunction warning(condition, message) {\n  if (!isProduction) {\n    if (condition) {\n      return;\n    }\n\n    var text = \"Warning: \" + message;\n\n    if (typeof console !== 'undefined') {\n      console.warn(text);\n    }\n\n    try {\n      throw Error(text);\n    } catch (x) {}\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (warning);\n\n\n//# sourceURL=webpack://Maka/./node_modules/tiny-warning/dist/tiny-warning.esm.js?");
+__webpack_require__.r(__webpack_exports__);
+var isProduction = "development" === 'production';
+function warning(condition, message) {
+  if (!isProduction) {
+    if (condition) {
+      return;
+    }
+
+    var text = "Warning: " + message;
+
+    if (typeof console !== 'undefined') {
+      console.warn(text);
+    }
+
+    try {
+      throw Error(text);
+    } catch (x) {}
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (warning);
+
 
 /***/ }),
 
@@ -1372,7 +8960,45 @@ eval("__webpack_require__.r(__webpack_exports__);\nvar isProduction = \"developm
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nfunction valueEqual(a, b) {\n  if (a === b) return true;\n\n  if (a == null || b == null) return false;\n\n  if (Array.isArray(a)) {\n    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {\n      return valueEqual(item, b[index]);\n    });\n  }\n\n  var aType = typeof a === 'undefined' ? 'undefined' : _typeof(a);\n  var bType = typeof b === 'undefined' ? 'undefined' : _typeof(b);\n\n  if (aType !== bType) return false;\n\n  if (aType === 'object') {\n    var aValue = a.valueOf();\n    var bValue = b.valueOf();\n\n    if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);\n\n    var aKeys = Object.keys(a);\n    var bKeys = Object.keys(b);\n\n    if (aKeys.length !== bKeys.length) return false;\n\n    return aKeys.every(function (key) {\n      return valueEqual(a[key], b[key]);\n    });\n  }\n\n  return false;\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (valueEqual);\n\n//# sourceURL=webpack://Maka/./node_modules/value-equal/index.js?");
+__webpack_require__.r(__webpack_exports__);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function valueEqual(a, b) {
+  if (a === b) return true;
+
+  if (a == null || b == null) return false;
+
+  if (Array.isArray(a)) {
+    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
+      return valueEqual(item, b[index]);
+    });
+  }
+
+  var aType = typeof a === 'undefined' ? 'undefined' : _typeof(a);
+  var bType = typeof b === 'undefined' ? 'undefined' : _typeof(b);
+
+  if (aType !== bType) return false;
+
+  if (aType === 'object') {
+    var aValue = a.valueOf();
+    var bValue = b.valueOf();
+
+    if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);
+
+    var aKeys = Object.keys(a);
+    var bKeys = Object.keys(b);
+
+    if (aKeys.length !== bKeys.length) return false;
+
+    return aKeys.every(function (key) {
+      return valueEqual(a[key], b[key]);
+    });
+  }
+
+  return false;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (valueEqual);
 
 /***/ }),
 
@@ -1383,7 +9009,27 @@ eval("__webpack_require__.r(__webpack_exports__);\nvar _typeof = typeof Symbol =
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn this;\n})();\n\ntry {\n\t// This works if eval is allowed (see CSP)\n\tg = g || new Function(\"return this\")();\n} catch (e) {\n\t// This works if the window reference is available\n\tif (typeof window === \"object\") g = window;\n}\n\n// g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\nmodule.exports = g;\n\n\n//# sourceURL=webpack://Maka/(webpack)/buildin/global.js?");
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ }),
 
@@ -1395,7 +9041,529 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Headers\", function() { return Headers; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Request\", function() { return Request; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Response\", function() { return Response; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DOMException\", function() { return DOMException; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"fetch\", function() { return fetch; });\nvar support = {\n  searchParams: 'URLSearchParams' in self,\n  iterable: 'Symbol' in self && 'iterator' in Symbol,\n  blob:\n    'FileReader' in self &&\n    'Blob' in self &&\n    (function() {\n      try {\n        new Blob()\n        return true\n      } catch (e) {\n        return false\n      }\n    })(),\n  formData: 'FormData' in self,\n  arrayBuffer: 'ArrayBuffer' in self\n}\n\nfunction isDataView(obj) {\n  return obj && DataView.prototype.isPrototypeOf(obj)\n}\n\nif (support.arrayBuffer) {\n  var viewClasses = [\n    '[object Int8Array]',\n    '[object Uint8Array]',\n    '[object Uint8ClampedArray]',\n    '[object Int16Array]',\n    '[object Uint16Array]',\n    '[object Int32Array]',\n    '[object Uint32Array]',\n    '[object Float32Array]',\n    '[object Float64Array]'\n  ]\n\n  var isArrayBufferView =\n    ArrayBuffer.isView ||\n    function(obj) {\n      return obj && viewClasses.indexOf(Object.prototype.toString.call(obj)) > -1\n    }\n}\n\nfunction normalizeName(name) {\n  if (typeof name !== 'string') {\n    name = String(name)\n  }\n  if (/[^a-z0-9\\-#$%&'*+.^_`|~]/i.test(name)) {\n    throw new TypeError('Invalid character in header field name')\n  }\n  return name.toLowerCase()\n}\n\nfunction normalizeValue(value) {\n  if (typeof value !== 'string') {\n    value = String(value)\n  }\n  return value\n}\n\n// Build a destructive iterator for the value list\nfunction iteratorFor(items) {\n  var iterator = {\n    next: function() {\n      var value = items.shift()\n      return {done: value === undefined, value: value}\n    }\n  }\n\n  if (support.iterable) {\n    iterator[Symbol.iterator] = function() {\n      return iterator\n    }\n  }\n\n  return iterator\n}\n\nfunction Headers(headers) {\n  this.map = {}\n\n  if (headers instanceof Headers) {\n    headers.forEach(function(value, name) {\n      this.append(name, value)\n    }, this)\n  } else if (Array.isArray(headers)) {\n    headers.forEach(function(header) {\n      this.append(header[0], header[1])\n    }, this)\n  } else if (headers) {\n    Object.getOwnPropertyNames(headers).forEach(function(name) {\n      this.append(name, headers[name])\n    }, this)\n  }\n}\n\nHeaders.prototype.append = function(name, value) {\n  name = normalizeName(name)\n  value = normalizeValue(value)\n  var oldValue = this.map[name]\n  this.map[name] = oldValue ? oldValue + ', ' + value : value\n}\n\nHeaders.prototype['delete'] = function(name) {\n  delete this.map[normalizeName(name)]\n}\n\nHeaders.prototype.get = function(name) {\n  name = normalizeName(name)\n  return this.has(name) ? this.map[name] : null\n}\n\nHeaders.prototype.has = function(name) {\n  return this.map.hasOwnProperty(normalizeName(name))\n}\n\nHeaders.prototype.set = function(name, value) {\n  this.map[normalizeName(name)] = normalizeValue(value)\n}\n\nHeaders.prototype.forEach = function(callback, thisArg) {\n  for (var name in this.map) {\n    if (this.map.hasOwnProperty(name)) {\n      callback.call(thisArg, this.map[name], name, this)\n    }\n  }\n}\n\nHeaders.prototype.keys = function() {\n  var items = []\n  this.forEach(function(value, name) {\n    items.push(name)\n  })\n  return iteratorFor(items)\n}\n\nHeaders.prototype.values = function() {\n  var items = []\n  this.forEach(function(value) {\n    items.push(value)\n  })\n  return iteratorFor(items)\n}\n\nHeaders.prototype.entries = function() {\n  var items = []\n  this.forEach(function(value, name) {\n    items.push([name, value])\n  })\n  return iteratorFor(items)\n}\n\nif (support.iterable) {\n  Headers.prototype[Symbol.iterator] = Headers.prototype.entries\n}\n\nfunction consumed(body) {\n  if (body.bodyUsed) {\n    return Promise.reject(new TypeError('Already read'))\n  }\n  body.bodyUsed = true\n}\n\nfunction fileReaderReady(reader) {\n  return new Promise(function(resolve, reject) {\n    reader.onload = function() {\n      resolve(reader.result)\n    }\n    reader.onerror = function() {\n      reject(reader.error)\n    }\n  })\n}\n\nfunction readBlobAsArrayBuffer(blob) {\n  var reader = new FileReader()\n  var promise = fileReaderReady(reader)\n  reader.readAsArrayBuffer(blob)\n  return promise\n}\n\nfunction readBlobAsText(blob) {\n  var reader = new FileReader()\n  var promise = fileReaderReady(reader)\n  reader.readAsText(blob)\n  return promise\n}\n\nfunction readArrayBufferAsText(buf) {\n  var view = new Uint8Array(buf)\n  var chars = new Array(view.length)\n\n  for (var i = 0; i < view.length; i++) {\n    chars[i] = String.fromCharCode(view[i])\n  }\n  return chars.join('')\n}\n\nfunction bufferClone(buf) {\n  if (buf.slice) {\n    return buf.slice(0)\n  } else {\n    var view = new Uint8Array(buf.byteLength)\n    view.set(new Uint8Array(buf))\n    return view.buffer\n  }\n}\n\nfunction Body() {\n  this.bodyUsed = false\n\n  this._initBody = function(body) {\n    this._bodyInit = body\n    if (!body) {\n      this._bodyText = ''\n    } else if (typeof body === 'string') {\n      this._bodyText = body\n    } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {\n      this._bodyBlob = body\n    } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {\n      this._bodyFormData = body\n    } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {\n      this._bodyText = body.toString()\n    } else if (support.arrayBuffer && support.blob && isDataView(body)) {\n      this._bodyArrayBuffer = bufferClone(body.buffer)\n      // IE 10-11 can't handle a DataView body.\n      this._bodyInit = new Blob([this._bodyArrayBuffer])\n    } else if (support.arrayBuffer && (ArrayBuffer.prototype.isPrototypeOf(body) || isArrayBufferView(body))) {\n      this._bodyArrayBuffer = bufferClone(body)\n    } else {\n      this._bodyText = body = Object.prototype.toString.call(body)\n    }\n\n    if (!this.headers.get('content-type')) {\n      if (typeof body === 'string') {\n        this.headers.set('content-type', 'text/plain;charset=UTF-8')\n      } else if (this._bodyBlob && this._bodyBlob.type) {\n        this.headers.set('content-type', this._bodyBlob.type)\n      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {\n        this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')\n      }\n    }\n  }\n\n  if (support.blob) {\n    this.blob = function() {\n      var rejected = consumed(this)\n      if (rejected) {\n        return rejected\n      }\n\n      if (this._bodyBlob) {\n        return Promise.resolve(this._bodyBlob)\n      } else if (this._bodyArrayBuffer) {\n        return Promise.resolve(new Blob([this._bodyArrayBuffer]))\n      } else if (this._bodyFormData) {\n        throw new Error('could not read FormData body as blob')\n      } else {\n        return Promise.resolve(new Blob([this._bodyText]))\n      }\n    }\n\n    this.arrayBuffer = function() {\n      if (this._bodyArrayBuffer) {\n        return consumed(this) || Promise.resolve(this._bodyArrayBuffer)\n      } else {\n        return this.blob().then(readBlobAsArrayBuffer)\n      }\n    }\n  }\n\n  this.text = function() {\n    var rejected = consumed(this)\n    if (rejected) {\n      return rejected\n    }\n\n    if (this._bodyBlob) {\n      return readBlobAsText(this._bodyBlob)\n    } else if (this._bodyArrayBuffer) {\n      return Promise.resolve(readArrayBufferAsText(this._bodyArrayBuffer))\n    } else if (this._bodyFormData) {\n      throw new Error('could not read FormData body as text')\n    } else {\n      return Promise.resolve(this._bodyText)\n    }\n  }\n\n  if (support.formData) {\n    this.formData = function() {\n      return this.text().then(decode)\n    }\n  }\n\n  this.json = function() {\n    return this.text().then(JSON.parse)\n  }\n\n  return this\n}\n\n// HTTP methods whose capitalization should be normalized\nvar methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']\n\nfunction normalizeMethod(method) {\n  var upcased = method.toUpperCase()\n  return methods.indexOf(upcased) > -1 ? upcased : method\n}\n\nfunction Request(input, options) {\n  options = options || {}\n  var body = options.body\n\n  if (input instanceof Request) {\n    if (input.bodyUsed) {\n      throw new TypeError('Already read')\n    }\n    this.url = input.url\n    this.credentials = input.credentials\n    if (!options.headers) {\n      this.headers = new Headers(input.headers)\n    }\n    this.method = input.method\n    this.mode = input.mode\n    this.signal = input.signal\n    if (!body && input._bodyInit != null) {\n      body = input._bodyInit\n      input.bodyUsed = true\n    }\n  } else {\n    this.url = String(input)\n  }\n\n  this.credentials = options.credentials || this.credentials || 'same-origin'\n  if (options.headers || !this.headers) {\n    this.headers = new Headers(options.headers)\n  }\n  this.method = normalizeMethod(options.method || this.method || 'GET')\n  this.mode = options.mode || this.mode || null\n  this.signal = options.signal || this.signal\n  this.referrer = null\n\n  if ((this.method === 'GET' || this.method === 'HEAD') && body) {\n    throw new TypeError('Body not allowed for GET or HEAD requests')\n  }\n  this._initBody(body)\n}\n\nRequest.prototype.clone = function() {\n  return new Request(this, {body: this._bodyInit})\n}\n\nfunction decode(body) {\n  var form = new FormData()\n  body\n    .trim()\n    .split('&')\n    .forEach(function(bytes) {\n      if (bytes) {\n        var split = bytes.split('=')\n        var name = split.shift().replace(/\\+/g, ' ')\n        var value = split.join('=').replace(/\\+/g, ' ')\n        form.append(decodeURIComponent(name), decodeURIComponent(value))\n      }\n    })\n  return form\n}\n\nfunction parseHeaders(rawHeaders) {\n  var headers = new Headers()\n  // Replace instances of \\r\\n and \\n followed by at least one space or horizontal tab with a space\n  // https://tools.ietf.org/html/rfc7230#section-3.2\n  var preProcessedHeaders = rawHeaders.replace(/\\r?\\n[\\t ]+/g, ' ')\n  preProcessedHeaders.split(/\\r?\\n/).forEach(function(line) {\n    var parts = line.split(':')\n    var key = parts.shift().trim()\n    if (key) {\n      var value = parts.join(':').trim()\n      headers.append(key, value)\n    }\n  })\n  return headers\n}\n\nBody.call(Request.prototype)\n\nfunction Response(bodyInit, options) {\n  if (!options) {\n    options = {}\n  }\n\n  this.type = 'default'\n  this.status = options.status === undefined ? 200 : options.status\n  this.ok = this.status >= 200 && this.status < 300\n  this.statusText = 'statusText' in options ? options.statusText : 'OK'\n  this.headers = new Headers(options.headers)\n  this.url = options.url || ''\n  this._initBody(bodyInit)\n}\n\nBody.call(Response.prototype)\n\nResponse.prototype.clone = function() {\n  return new Response(this._bodyInit, {\n    status: this.status,\n    statusText: this.statusText,\n    headers: new Headers(this.headers),\n    url: this.url\n  })\n}\n\nResponse.error = function() {\n  var response = new Response(null, {status: 0, statusText: ''})\n  response.type = 'error'\n  return response\n}\n\nvar redirectStatuses = [301, 302, 303, 307, 308]\n\nResponse.redirect = function(url, status) {\n  if (redirectStatuses.indexOf(status) === -1) {\n    throw new RangeError('Invalid status code')\n  }\n\n  return new Response(null, {status: status, headers: {location: url}})\n}\n\nvar DOMException = self.DOMException\ntry {\n  new DOMException()\n} catch (err) {\n  DOMException = function(message, name) {\n    this.message = message\n    this.name = name\n    var error = Error(message)\n    this.stack = error.stack\n  }\n  DOMException.prototype = Object.create(Error.prototype)\n  DOMException.prototype.constructor = DOMException\n}\n\nfunction fetch(input, init) {\n  return new Promise(function(resolve, reject) {\n    var request = new Request(input, init)\n\n    if (request.signal && request.signal.aborted) {\n      return reject(new DOMException('Aborted', 'AbortError'))\n    }\n\n    var xhr = new XMLHttpRequest()\n\n    function abortXhr() {\n      xhr.abort()\n    }\n\n    xhr.onload = function() {\n      var options = {\n        status: xhr.status,\n        statusText: xhr.statusText,\n        headers: parseHeaders(xhr.getAllResponseHeaders() || '')\n      }\n      options.url = 'responseURL' in xhr ? xhr.responseURL : options.headers.get('X-Request-URL')\n      var body = 'response' in xhr ? xhr.response : xhr.responseText\n      resolve(new Response(body, options))\n    }\n\n    xhr.onerror = function() {\n      reject(new TypeError('Network request failed'))\n    }\n\n    xhr.ontimeout = function() {\n      reject(new TypeError('Network request failed'))\n    }\n\n    xhr.onabort = function() {\n      reject(new DOMException('Aborted', 'AbortError'))\n    }\n\n    xhr.open(request.method, request.url, true)\n\n    if (request.credentials === 'include') {\n      xhr.withCredentials = true\n    } else if (request.credentials === 'omit') {\n      xhr.withCredentials = false\n    }\n\n    if ('responseType' in xhr && support.blob) {\n      xhr.responseType = 'blob'\n    }\n\n    request.headers.forEach(function(value, name) {\n      xhr.setRequestHeader(name, value)\n    })\n\n    if (request.signal) {\n      request.signal.addEventListener('abort', abortXhr)\n\n      xhr.onreadystatechange = function() {\n        // DONE (success or failure)\n        if (xhr.readyState === 4) {\n          request.signal.removeEventListener('abort', abortXhr)\n        }\n      }\n    }\n\n    xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)\n  })\n}\n\nfetch.polyfill = true\n\nif (!self.fetch) {\n  self.fetch = fetch\n  self.Headers = Headers\n  self.Request = Request\n  self.Response = Response\n}\n\n\n//# sourceURL=webpack://Maka/./node_modules/whatwg-fetch/fetch.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Headers", function() { return Headers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Request", function() { return Request; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Response", function() { return Response; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOMException", function() { return DOMException; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetch", function() { return fetch; });
+var support = {
+  searchParams: 'URLSearchParams' in self,
+  iterable: 'Symbol' in self && 'iterator' in Symbol,
+  blob:
+    'FileReader' in self &&
+    'Blob' in self &&
+    (function() {
+      try {
+        new Blob()
+        return true
+      } catch (e) {
+        return false
+      }
+    })(),
+  formData: 'FormData' in self,
+  arrayBuffer: 'ArrayBuffer' in self
+}
+
+function isDataView(obj) {
+  return obj && DataView.prototype.isPrototypeOf(obj)
+}
+
+if (support.arrayBuffer) {
+  var viewClasses = [
+    '[object Int8Array]',
+    '[object Uint8Array]',
+    '[object Uint8ClampedArray]',
+    '[object Int16Array]',
+    '[object Uint16Array]',
+    '[object Int32Array]',
+    '[object Uint32Array]',
+    '[object Float32Array]',
+    '[object Float64Array]'
+  ]
+
+  var isArrayBufferView =
+    ArrayBuffer.isView ||
+    function(obj) {
+      return obj && viewClasses.indexOf(Object.prototype.toString.call(obj)) > -1
+    }
+}
+
+function normalizeName(name) {
+  if (typeof name !== 'string') {
+    name = String(name)
+  }
+  if (/[^a-z0-9\-#$%&'*+.^_`|~]/i.test(name)) {
+    throw new TypeError('Invalid character in header field name')
+  }
+  return name.toLowerCase()
+}
+
+function normalizeValue(value) {
+  if (typeof value !== 'string') {
+    value = String(value)
+  }
+  return value
+}
+
+// Build a destructive iterator for the value list
+function iteratorFor(items) {
+  var iterator = {
+    next: function() {
+      var value = items.shift()
+      return {done: value === undefined, value: value}
+    }
+  }
+
+  if (support.iterable) {
+    iterator[Symbol.iterator] = function() {
+      return iterator
+    }
+  }
+
+  return iterator
+}
+
+function Headers(headers) {
+  this.map = {}
+
+  if (headers instanceof Headers) {
+    headers.forEach(function(value, name) {
+      this.append(name, value)
+    }, this)
+  } else if (Array.isArray(headers)) {
+    headers.forEach(function(header) {
+      this.append(header[0], header[1])
+    }, this)
+  } else if (headers) {
+    Object.getOwnPropertyNames(headers).forEach(function(name) {
+      this.append(name, headers[name])
+    }, this)
+  }
+}
+
+Headers.prototype.append = function(name, value) {
+  name = normalizeName(name)
+  value = normalizeValue(value)
+  var oldValue = this.map[name]
+  this.map[name] = oldValue ? oldValue + ', ' + value : value
+}
+
+Headers.prototype['delete'] = function(name) {
+  delete this.map[normalizeName(name)]
+}
+
+Headers.prototype.get = function(name) {
+  name = normalizeName(name)
+  return this.has(name) ? this.map[name] : null
+}
+
+Headers.prototype.has = function(name) {
+  return this.map.hasOwnProperty(normalizeName(name))
+}
+
+Headers.prototype.set = function(name, value) {
+  this.map[normalizeName(name)] = normalizeValue(value)
+}
+
+Headers.prototype.forEach = function(callback, thisArg) {
+  for (var name in this.map) {
+    if (this.map.hasOwnProperty(name)) {
+      callback.call(thisArg, this.map[name], name, this)
+    }
+  }
+}
+
+Headers.prototype.keys = function() {
+  var items = []
+  this.forEach(function(value, name) {
+    items.push(name)
+  })
+  return iteratorFor(items)
+}
+
+Headers.prototype.values = function() {
+  var items = []
+  this.forEach(function(value) {
+    items.push(value)
+  })
+  return iteratorFor(items)
+}
+
+Headers.prototype.entries = function() {
+  var items = []
+  this.forEach(function(value, name) {
+    items.push([name, value])
+  })
+  return iteratorFor(items)
+}
+
+if (support.iterable) {
+  Headers.prototype[Symbol.iterator] = Headers.prototype.entries
+}
+
+function consumed(body) {
+  if (body.bodyUsed) {
+    return Promise.reject(new TypeError('Already read'))
+  }
+  body.bodyUsed = true
+}
+
+function fileReaderReady(reader) {
+  return new Promise(function(resolve, reject) {
+    reader.onload = function() {
+      resolve(reader.result)
+    }
+    reader.onerror = function() {
+      reject(reader.error)
+    }
+  })
+}
+
+function readBlobAsArrayBuffer(blob) {
+  var reader = new FileReader()
+  var promise = fileReaderReady(reader)
+  reader.readAsArrayBuffer(blob)
+  return promise
+}
+
+function readBlobAsText(blob) {
+  var reader = new FileReader()
+  var promise = fileReaderReady(reader)
+  reader.readAsText(blob)
+  return promise
+}
+
+function readArrayBufferAsText(buf) {
+  var view = new Uint8Array(buf)
+  var chars = new Array(view.length)
+
+  for (var i = 0; i < view.length; i++) {
+    chars[i] = String.fromCharCode(view[i])
+  }
+  return chars.join('')
+}
+
+function bufferClone(buf) {
+  if (buf.slice) {
+    return buf.slice(0)
+  } else {
+    var view = new Uint8Array(buf.byteLength)
+    view.set(new Uint8Array(buf))
+    return view.buffer
+  }
+}
+
+function Body() {
+  this.bodyUsed = false
+
+  this._initBody = function(body) {
+    this._bodyInit = body
+    if (!body) {
+      this._bodyText = ''
+    } else if (typeof body === 'string') {
+      this._bodyText = body
+    } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+      this._bodyBlob = body
+    } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+      this._bodyFormData = body
+    } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+      this._bodyText = body.toString()
+    } else if (support.arrayBuffer && support.blob && isDataView(body)) {
+      this._bodyArrayBuffer = bufferClone(body.buffer)
+      // IE 10-11 can't handle a DataView body.
+      this._bodyInit = new Blob([this._bodyArrayBuffer])
+    } else if (support.arrayBuffer && (ArrayBuffer.prototype.isPrototypeOf(body) || isArrayBufferView(body))) {
+      this._bodyArrayBuffer = bufferClone(body)
+    } else {
+      this._bodyText = body = Object.prototype.toString.call(body)
+    }
+
+    if (!this.headers.get('content-type')) {
+      if (typeof body === 'string') {
+        this.headers.set('content-type', 'text/plain;charset=UTF-8')
+      } else if (this._bodyBlob && this._bodyBlob.type) {
+        this.headers.set('content-type', this._bodyBlob.type)
+      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+        this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
+      }
+    }
+  }
+
+  if (support.blob) {
+    this.blob = function() {
+      var rejected = consumed(this)
+      if (rejected) {
+        return rejected
+      }
+
+      if (this._bodyBlob) {
+        return Promise.resolve(this._bodyBlob)
+      } else if (this._bodyArrayBuffer) {
+        return Promise.resolve(new Blob([this._bodyArrayBuffer]))
+      } else if (this._bodyFormData) {
+        throw new Error('could not read FormData body as blob')
+      } else {
+        return Promise.resolve(new Blob([this._bodyText]))
+      }
+    }
+
+    this.arrayBuffer = function() {
+      if (this._bodyArrayBuffer) {
+        return consumed(this) || Promise.resolve(this._bodyArrayBuffer)
+      } else {
+        return this.blob().then(readBlobAsArrayBuffer)
+      }
+    }
+  }
+
+  this.text = function() {
+    var rejected = consumed(this)
+    if (rejected) {
+      return rejected
+    }
+
+    if (this._bodyBlob) {
+      return readBlobAsText(this._bodyBlob)
+    } else if (this._bodyArrayBuffer) {
+      return Promise.resolve(readArrayBufferAsText(this._bodyArrayBuffer))
+    } else if (this._bodyFormData) {
+      throw new Error('could not read FormData body as text')
+    } else {
+      return Promise.resolve(this._bodyText)
+    }
+  }
+
+  if (support.formData) {
+    this.formData = function() {
+      return this.text().then(decode)
+    }
+  }
+
+  this.json = function() {
+    return this.text().then(JSON.parse)
+  }
+
+  return this
+}
+
+// HTTP methods whose capitalization should be normalized
+var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']
+
+function normalizeMethod(method) {
+  var upcased = method.toUpperCase()
+  return methods.indexOf(upcased) > -1 ? upcased : method
+}
+
+function Request(input, options) {
+  options = options || {}
+  var body = options.body
+
+  if (input instanceof Request) {
+    if (input.bodyUsed) {
+      throw new TypeError('Already read')
+    }
+    this.url = input.url
+    this.credentials = input.credentials
+    if (!options.headers) {
+      this.headers = new Headers(input.headers)
+    }
+    this.method = input.method
+    this.mode = input.mode
+    this.signal = input.signal
+    if (!body && input._bodyInit != null) {
+      body = input._bodyInit
+      input.bodyUsed = true
+    }
+  } else {
+    this.url = String(input)
+  }
+
+  this.credentials = options.credentials || this.credentials || 'same-origin'
+  if (options.headers || !this.headers) {
+    this.headers = new Headers(options.headers)
+  }
+  this.method = normalizeMethod(options.method || this.method || 'GET')
+  this.mode = options.mode || this.mode || null
+  this.signal = options.signal || this.signal
+  this.referrer = null
+
+  if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+    throw new TypeError('Body not allowed for GET or HEAD requests')
+  }
+  this._initBody(body)
+}
+
+Request.prototype.clone = function() {
+  return new Request(this, {body: this._bodyInit})
+}
+
+function decode(body) {
+  var form = new FormData()
+  body
+    .trim()
+    .split('&')
+    .forEach(function(bytes) {
+      if (bytes) {
+        var split = bytes.split('=')
+        var name = split.shift().replace(/\+/g, ' ')
+        var value = split.join('=').replace(/\+/g, ' ')
+        form.append(decodeURIComponent(name), decodeURIComponent(value))
+      }
+    })
+  return form
+}
+
+function parseHeaders(rawHeaders) {
+  var headers = new Headers()
+  // Replace instances of \r\n and \n followed by at least one space or horizontal tab with a space
+  // https://tools.ietf.org/html/rfc7230#section-3.2
+  var preProcessedHeaders = rawHeaders.replace(/\r?\n[\t ]+/g, ' ')
+  preProcessedHeaders.split(/\r?\n/).forEach(function(line) {
+    var parts = line.split(':')
+    var key = parts.shift().trim()
+    if (key) {
+      var value = parts.join(':').trim()
+      headers.append(key, value)
+    }
+  })
+  return headers
+}
+
+Body.call(Request.prototype)
+
+function Response(bodyInit, options) {
+  if (!options) {
+    options = {}
+  }
+
+  this.type = 'default'
+  this.status = options.status === undefined ? 200 : options.status
+  this.ok = this.status >= 200 && this.status < 300
+  this.statusText = 'statusText' in options ? options.statusText : 'OK'
+  this.headers = new Headers(options.headers)
+  this.url = options.url || ''
+  this._initBody(bodyInit)
+}
+
+Body.call(Response.prototype)
+
+Response.prototype.clone = function() {
+  return new Response(this._bodyInit, {
+    status: this.status,
+    statusText: this.statusText,
+    headers: new Headers(this.headers),
+    url: this.url
+  })
+}
+
+Response.error = function() {
+  var response = new Response(null, {status: 0, statusText: ''})
+  response.type = 'error'
+  return response
+}
+
+var redirectStatuses = [301, 302, 303, 307, 308]
+
+Response.redirect = function(url, status) {
+  if (redirectStatuses.indexOf(status) === -1) {
+    throw new RangeError('Invalid status code')
+  }
+
+  return new Response(null, {status: status, headers: {location: url}})
+}
+
+var DOMException = self.DOMException
+try {
+  new DOMException()
+} catch (err) {
+  DOMException = function(message, name) {
+    this.message = message
+    this.name = name
+    var error = Error(message)
+    this.stack = error.stack
+  }
+  DOMException.prototype = Object.create(Error.prototype)
+  DOMException.prototype.constructor = DOMException
+}
+
+function fetch(input, init) {
+  return new Promise(function(resolve, reject) {
+    var request = new Request(input, init)
+
+    if (request.signal && request.signal.aborted) {
+      return reject(new DOMException('Aborted', 'AbortError'))
+    }
+
+    var xhr = new XMLHttpRequest()
+
+    function abortXhr() {
+      xhr.abort()
+    }
+
+    xhr.onload = function() {
+      var options = {
+        status: xhr.status,
+        statusText: xhr.statusText,
+        headers: parseHeaders(xhr.getAllResponseHeaders() || '')
+      }
+      options.url = 'responseURL' in xhr ? xhr.responseURL : options.headers.get('X-Request-URL')
+      var body = 'response' in xhr ? xhr.response : xhr.responseText
+      resolve(new Response(body, options))
+    }
+
+    xhr.onerror = function() {
+      reject(new TypeError('Network request failed'))
+    }
+
+    xhr.ontimeout = function() {
+      reject(new TypeError('Network request failed'))
+    }
+
+    xhr.onabort = function() {
+      reject(new DOMException('Aborted', 'AbortError'))
+    }
+
+    xhr.open(request.method, request.url, true)
+
+    if (request.credentials === 'include') {
+      xhr.withCredentials = true
+    } else if (request.credentials === 'omit') {
+      xhr.withCredentials = false
+    }
+
+    if ('responseType' in xhr && support.blob) {
+      xhr.responseType = 'blob'
+    }
+
+    request.headers.forEach(function(value, name) {
+      xhr.setRequestHeader(name, value)
+    })
+
+    if (request.signal) {
+      request.signal.addEventListener('abort', abortXhr)
+
+      xhr.onreadystatechange = function() {
+        // DONE (success or failure)
+        if (xhr.readyState === 4) {
+          request.signal.removeEventListener('abort', abortXhr)
+        }
+      }
+    }
+
+    xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)
+  })
+}
+
+fetch.polyfill = true
+
+if (!self.fetch) {
+  self.fetch = fetch
+  self.Headers = Headers
+  self.Request = Request
+  self.Response = Response
+}
+
 
 /***/ }),
 
@@ -1407,7 +9575,268 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"init\", function() { return init; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"config\", function() { return config; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"load\", function() { return load; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getComponent\", function() { return getComponent; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getAction\", function() { return getAction; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"asyncGetAction\", function() { return asyncGetAction; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"registerComponent\", function() { return registerComponent; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"registerAction\", function() { return registerAction; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"registerTemplate\", function() { return registerTemplate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"removeApp\", function() { return removeApp; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"registerPlugin\", function() { return registerPlugin; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"removePlugin\", function() { return removePlugin; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"actionMixin\", function() { return actionMixin; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"appInstances\", function() { return appInstances; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setHoc\", function() { return setHoc; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"fetch\", function() { return fetch; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"navigate\", function() { return navigate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createElement\", function() { return createElement; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createAppElement\", function() { return createAppElement; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"appFactory\", function() { return appFactory; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pluginFactory\", function() { return pluginFactory; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"actionFactory\", function() { return actionFactory; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"componentFactory\", function() { return componentFactory; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"templateFactory\", function() { return templateFactory; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"store\", function() { return store; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"context\", function() { return context; });\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ \"./node_modules/@babel/runtime/regenerator/index.js\");\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ \"./node_modules/@babel/runtime/helpers/extends.js\");\n/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"./node_modules/@babel/runtime/helpers/asyncToGenerator.js\");\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ \"react-dom\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ \"react-redux\");\n/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @makajs/app-loader */ \"./node_modules/@makajs/app-loader/lib/index.js\");\n/* harmony import */ var _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6__);\n/* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, \"appLoader\", function() { return _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a; });\n/* harmony import */ var _makajs_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @makajs/utils */ \"./node_modules/@makajs/utils/lib/index.js\");\n/* harmony import */ var _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_makajs_utils__WEBPACK_IMPORTED_MODULE_7__);\n/* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, \"utils\", function() { return _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a; });\n/* harmony import */ var _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @makajs/meta-engine */ \"./node_modules/@makajs/meta-engine/lib/index.js\");\n/* harmony import */ var _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8__);\n/* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, \"metaEngine\", function() { return _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a; });\n\n\n\n\n\n\n\n\n\nvar globalObj = _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a.getGlobal();\n_makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a.fetch.config({\n  mock: true\n});\nvar store = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.init({\n  defaultComponent: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.defaultComponent,\n  defaultAction: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.defaultAction,\n  defaultReducer: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.defaultReducer,\n  componentWrapper: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.wrapper\n});\n_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory.registerComponent(\"AppLoader\", _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.AppLoader);\nvar Hoc,\n    isProduction = false,\n    createElement = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement,\n    getComponent = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory.getComponent.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory),\n    getAction = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory.getAction.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory),\n    asyncGetAction = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory.asyncGetAction.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory),\n    registerComponent = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory.registerComponent.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory),\n    registerAction = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory.registerAction.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory),\n    registerTemplate = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.templateFactory.registerTemplate.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.templateFactory),\n    removeApp = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.removeApp,\n    registerPlugin = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.registerPlugin.bind(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.pluginFactory),\n    removePlugin = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.removePlugin.bind(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.pluginFactory),\n    actionMixin = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionMixin,\n    fetch = _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a.fetch,\n    navigate = _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a.navigate,\n    appInstances = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.appInstances,\n    actionFactory = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory,\n    componentFactory = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory,\n    templateFactory = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.templateFactory,\n    pluginFactory = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.pluginFactory,\n    appFactory = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.appFactory,\n    context = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.contextManager; //Initialize maka environment\n\nfunction init(option) {\n  _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.init(option);\n} //Configure the metadata engine\n\n\nfunction config(option) {\n  _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.config(option);\n} //load app\n\n\nfunction load(_x) {\n  return _load.apply(this, arguments);\n}\n\nfunction _load() {\n  _load = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(\n  /*#__PURE__*/\n  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(app) {\n    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            _context.next = 2;\n            return _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.loadApp(app, isProduction);\n\n          case 2:\n            return _context.abrupt(\"return\", _context.sent);\n\n          case 3:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee);\n  }));\n  return _load.apply(this, arguments);\n}\n\nvar createAppElementInternal = function createAppElementInternal(appName, appProps) {\n  return function (props) {\n    return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__[\"Provider\"], {\n      store: store\n    }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.AppLoader, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({\n      name: appName\n    }, appProps, props)));\n  };\n};\n\nfunction createAppElement(appName, appProps) {\n  var Internal = createAppElementInternal(appName, appProps);\n\n  if (Hoc) {\n    return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Hoc, null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Internal, null));\n  } else {\n    return Internal;\n  }\n} //Set high order component\n\n\nfunction setHoc(hoc) {\n  Hoc = hoc;\n}\n\nfunction render(_x2, _x3, _x4) {\n  return _render.apply(this, arguments);\n}\n\nfunction _render() {\n  _render = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(\n  /*#__PURE__*/\n  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(appName, targetDomId, disableRoute) {\n    var props,\n        appNameNoQuery,\n        _args2 = arguments;\n    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {\n      while (1) {\n        switch (_context2.prev = _context2.next) {\n          case 0:\n            props = _args2.length > 3 && _args2[3] !== undefined ? _args2[3] : {};\n            appNameNoQuery = appName.split('?')[0];\n\n            if (_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.existsApp(appNameNoQuery)) {\n              _context2.next = 5;\n              break;\n            }\n\n            _context2.next = 5;\n            return _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.loadApp(appNameNoQuery, isProduction);\n\n          case 5:\n            if (!disableRoute) {\n              _context2.next = 8;\n              break;\n            }\n\n            if (Hoc) {\n              Object(react_dom__WEBPACK_IMPORTED_MODULE_4__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Hoc, null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__[\"Provider\"], {\n                store: store\n              }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.AppLoader, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({\n                name: appName\n              }, props)))), document.getElementById(targetDomId));\n            } else {\n              Object(react_dom__WEBPACK_IMPORTED_MODULE_4__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__[\"Provider\"], {\n                store: store\n              }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.AppLoader, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({\n                name: appName\n              }, props))), document.getElementById(targetDomId));\n            }\n\n            return _context2.abrupt(\"return\");\n\n          case 8:\n            if (Hoc) {\n              Object(react_dom__WEBPACK_IMPORTED_MODULE_4__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Hoc, null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__[\"Provider\"], {\n                store: store\n              }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.rootElement, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({\n                appName: appName\n              }, props)))), document.getElementById(targetDomId));\n            } else {\n              Object(react_dom__WEBPACK_IMPORTED_MODULE_4__[\"render\"])(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__[\"Provider\"], {\n                store: store\n              }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.rootElement, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({\n                appName: appName\n              }, props))), document.getElementById(targetDomId));\n            }\n\n          case 9:\n          case \"end\":\n            return _context2.stop();\n        }\n      }\n    }, _callee2);\n  }));\n  return _render.apply(this, arguments);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  appLoader: _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a,\n  utils: _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a,\n  metaEngine: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a,\n  init: init,\n  config: config,\n  load: load,\n  getComponent: getComponent,\n  getAction: getAction,\n  asyncGetAction: asyncGetAction,\n  registerComponent: registerComponent,\n  registerAction: registerAction,\n  registerTemplate: registerTemplate,\n  removeApp: removeApp,\n  registerPlugin: registerPlugin,\n  removePlugin: removePlugin,\n  actionMixin: actionMixin,\n  appInstances: appInstances,\n  setHoc: setHoc,\n  fetch: fetch,\n  navigate: navigate,\n  createElement: createElement,\n  createAppElement: createAppElement,\n  render: render,\n  appFactory: appFactory,\n  pluginFactory: pluginFactory,\n  actionFactory: actionFactory,\n  componentFactory: componentFactory,\n  templateFactory: templateFactory,\n  store: store,\n  context: context\n});\n\n\n//# sourceURL=webpack://Maka/./src/index.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "init", function() { return init; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "load", function() { return load; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getComponent", function() { return getComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAction", function() { return getAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "asyncGetAction", function() { return asyncGetAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerComponent", function() { return registerComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerAction", function() { return registerAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerTemplate", function() { return registerTemplate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeApp", function() { return removeApp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerPlugin", function() { return registerPlugin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removePlugin", function() { return removePlugin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actionMixin", function() { return actionMixin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appInstances", function() { return appInstances; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHoc", function() { return setHoc; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetch", function() { return fetch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "navigate", function() { return navigate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAppElement", function() { return createAppElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appFactory", function() { return appFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pluginFactory", function() { return pluginFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actionFactory", function() { return actionFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "componentFactory", function() { return componentFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "templateFactory", function() { return templateFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "context", function() { return context; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @makajs/app-loader */ "./node_modules/@makajs/app-loader/lib/index.js");
+/* harmony import */ var _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, "appLoader", function() { return _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a; });
+/* harmony import */ var _makajs_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+/* harmony import */ var _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_makajs_utils__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, "utils", function() { return _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a; });
+/* harmony import */ var _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @makajs/meta-engine */ "./node_modules/@makajs/meta-engine/lib/index.js");
+/* harmony import */ var _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, "metaEngine", function() { return _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a; });
+
+
+
+
+
+
+
+
+
+var globalObj = _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a.getGlobal();
+globalObj.self = globalObj;
+_makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a.fetch.config({
+  mock: true
+});
+var store = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.init({
+  defaultComponent: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.defaultComponent,
+  defaultAction: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.defaultAction,
+  defaultReducer: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.defaultReducer,
+  componentWrapper: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.wrapper
+});
+_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory.registerComponent("AppLoader", _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.AppLoader);
+var Hoc,
+    isProduction = false,
+    createElement = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement,
+    getComponent = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory.getComponent.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory),
+    getAction = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory.getAction.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory),
+    asyncGetAction = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory.asyncGetAction.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory),
+    registerComponent = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory.registerComponent.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory),
+    registerAction = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory.registerAction.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory),
+    registerTemplate = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.templateFactory.registerTemplate.bind(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.templateFactory),
+    removeApp = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.removeApp,
+    registerPlugin = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.registerPlugin.bind(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.pluginFactory),
+    removePlugin = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.removePlugin.bind(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.pluginFactory),
+    actionMixin = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionMixin,
+    fetch = _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a.fetch,
+    navigate = _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a.navigate,
+    appInstances = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.appInstances,
+    actionFactory = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.actionFactory,
+    componentFactory = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.componentFactory,
+    templateFactory = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.templateFactory,
+    pluginFactory = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.pluginFactory,
+    appFactory = _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.appFactory,
+    context = _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.contextManager; //Initialize maka environment
+
+function init(option) {
+  _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.init(option);
+} //Configure the metadata engine
+
+
+function config(option) {
+  _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.config(option);
+} //load app
+
+
+function load(_x) {
+  return _load.apply(this, arguments);
+}
+
+function _load() {
+  _load = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(app) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.loadApp(app, isProduction);
+
+          case 2:
+            return _context.abrupt("return", _context.sent);
+
+          case 3:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _load.apply(this, arguments);
+}
+
+var createAppElementInternal = function createAppElementInternal(appName, appProps) {
+  return function (props) {
+    return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__["Provider"], {
+      store: store
+    }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.AppLoader, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({
+      name: appName
+    }, appProps, props)));
+  };
+};
+
+function createAppElement(appName, appProps) {
+  var Internal = createAppElementInternal(appName, appProps);
+
+  if (Hoc) {
+    return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Hoc, null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Internal, null));
+  } else {
+    return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Internal, null);
+  }
+} //Set high order component
+
+
+function setHoc(hoc) {
+  Hoc = hoc;
+}
+
+function render(_x2, _x3, _x4) {
+  return _render.apply(this, arguments);
+}
+
+function _render() {
+  _render = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(appName, targetDomId, disableRoute) {
+    var props,
+        appNameNoQuery,
+        _args2 = arguments;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            props = _args2.length > 3 && _args2[3] !== undefined ? _args2[3] : {};
+            appNameNoQuery = appName.split('?')[0];
+
+            if (_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.existsApp(appNameNoQuery)) {
+              _context2.next = 5;
+              break;
+            }
+
+            _context2.next = 5;
+            return _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.loadApp(appNameNoQuery, isProduction);
+
+          case 5:
+            if (!disableRoute) {
+              _context2.next = 8;
+              break;
+            }
+
+            if (Hoc) {
+              Object(react_dom__WEBPACK_IMPORTED_MODULE_4__["render"])(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Hoc, null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__["Provider"], {
+                store: store
+              }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.AppLoader, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({
+                name: appName
+              }, props)))), document.getElementById(targetDomId));
+            } else {
+              Object(react_dom__WEBPACK_IMPORTED_MODULE_4__["render"])(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__["Provider"], {
+                store: store
+              }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a.AppLoader, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({
+                name: appName
+              }, props))), document.getElementById(targetDomId));
+            }
+
+            return _context2.abrupt("return");
+
+          case 8:
+            if (Hoc) {
+              Object(react_dom__WEBPACK_IMPORTED_MODULE_4__["render"])(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Hoc, null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__["Provider"], {
+                store: store
+              }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.rootElement, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({
+                appName: appName
+              }, props)))), document.getElementById(targetDomId));
+            } else {
+              Object(react_dom__WEBPACK_IMPORTED_MODULE_4__["render"])(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__["Provider"], {
+                store: store
+              }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a.rootElement, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({
+                appName: appName
+              }, props))), document.getElementById(targetDomId));
+            }
+
+          case 9:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return _render.apply(this, arguments);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  appLoader: _makajs_app_loader__WEBPACK_IMPORTED_MODULE_6___default.a,
+  utils: _makajs_utils__WEBPACK_IMPORTED_MODULE_7___default.a,
+  metaEngine: _makajs_meta_engine__WEBPACK_IMPORTED_MODULE_8___default.a,
+  init: init,
+  config: config,
+  load: load,
+  getComponent: getComponent,
+  getAction: getAction,
+  asyncGetAction: asyncGetAction,
+  registerComponent: registerComponent,
+  registerAction: registerAction,
+  registerTemplate: registerTemplate,
+  removeApp: removeApp,
+  registerPlugin: registerPlugin,
+  removePlugin: removePlugin,
+  actionMixin: actionMixin,
+  appInstances: appInstances,
+  setHoc: setHoc,
+  fetch: fetch,
+  navigate: navigate,
+  createElement: createElement,
+  createAppElement: createAppElement,
+  render: render,
+  appFactory: appFactory,
+  pluginFactory: pluginFactory,
+  actionFactory: actionFactory,
+  componentFactory: componentFactory,
+  templateFactory: templateFactory,
+  store: store,
+  context: context
+});
+
 
 /***/ }),
 
@@ -1418,7 +9847,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! ./src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://Maka/multi_./src/index.js?");
+module.exports = __webpack_require__(/*! ./src/index.js */"./src/index.js");
+
 
 /***/ }),
 
@@ -1429,7 +9859,7 @@ eval("module.exports = __webpack_require__(/*! ./src/index.js */\"./src/index.js
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = __WEBPACK_EXTERNAL_MODULE_immutable__;\n\n//# sourceURL=webpack://Maka/external_%7B%22root%22:%22Immutable%22,%22commonjs2%22:%22immutable%22,%22commonjs%22:%22immutable%22,%22amd%22:%22immutable%22%7D?");
+module.exports = __WEBPACK_EXTERNAL_MODULE_immutable__;
 
 /***/ }),
 
@@ -1440,7 +9870,7 @@ eval("module.exports = __WEBPACK_EXTERNAL_MODULE_immutable__;\n\n//# sourceURL=w
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = __WEBPACK_EXTERNAL_MODULE_prop_types__;\n\n//# sourceURL=webpack://Maka/external_%7B%22root%22:%22PropTypes%22,%22commonjs2%22:%22prop-types%22,%22commonjs%22:%22prop-types%22,%22amd%22:%22prop-types%22%7D?");
+module.exports = __WEBPACK_EXTERNAL_MODULE_prop_types__;
 
 /***/ }),
 
@@ -1451,7 +9881,7 @@ eval("module.exports = __WEBPACK_EXTERNAL_MODULE_prop_types__;\n\n//# sourceURL=
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = __WEBPACK_EXTERNAL_MODULE_react__;\n\n//# sourceURL=webpack://Maka/external_%7B%22root%22:%22React%22,%22commonjs2%22:%22react%22,%22commonjs%22:%22react%22,%22amd%22:%22react%22%7D?");
+module.exports = __WEBPACK_EXTERNAL_MODULE_react__;
 
 /***/ }),
 
@@ -1462,7 +9892,7 @@ eval("module.exports = __WEBPACK_EXTERNAL_MODULE_react__;\n\n//# sourceURL=webpa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = __WEBPACK_EXTERNAL_MODULE_react_dom__;\n\n//# sourceURL=webpack://Maka/external_%7B%22root%22:%22ReactDOM%22,%22commonjs2%22:%22react-dom%22,%22commonjs%22:%22react-dom%22,%22amd%22:%22react-dom%22%7D?");
+module.exports = __WEBPACK_EXTERNAL_MODULE_react_dom__;
 
 /***/ }),
 
@@ -1473,7 +9903,7 @@ eval("module.exports = __WEBPACK_EXTERNAL_MODULE_react_dom__;\n\n//# sourceURL=w
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = __WEBPACK_EXTERNAL_MODULE_react_redux__;\n\n//# sourceURL=webpack://Maka/external_%7B%22root%22:%22ReactRedux%22,%22commonjs2%22:%22react-redux%22,%22commonjs%22:%22react-redux%22,%22amd%22:%22react-redux%22%7D?");
+module.exports = __WEBPACK_EXTERNAL_MODULE_react_redux__;
 
 /***/ }),
 
@@ -1484,9 +9914,10 @@ eval("module.exports = __WEBPACK_EXTERNAL_MODULE_react_redux__;\n\n//# sourceURL
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = __WEBPACK_EXTERNAL_MODULE_redux__;\n\n//# sourceURL=webpack://Maka/external_%7B%22root%22:%22Redux%22,%22commonjs2%22:%22redux%22,%22commonjs%22:%22redux%22,%22amd%22:%22redux%22%7D?");
+module.exports = __WEBPACK_EXTERNAL_MODULE_redux__;
 
 /***/ })
 
 /******/ });
 });
+//# sourceMappingURL=maka-sdk.js.map

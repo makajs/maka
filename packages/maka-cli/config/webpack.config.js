@@ -21,7 +21,23 @@ const windowObj = `(function(){
 
 module.exports = function (option) {
     var { isProd, outputPath, isStart } = option,
-        minimizer = isProd ? [new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }), new OptimizeCSSAssetsPlugin({})] : [],
+        minimizer = isProd ? [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    ie8: false,
+                    ecma: 8,
+                    compress: {
+                        unused: false,
+                    },
+                    output: {
+                        comments: false,
+                        beautify: false,
+                    },
+                },
+                cache: true, parallel: true, sourceMap: false
+            }),
+            new OptimizeCSSAssetsPlugin({})
+        ] : [],
         outputJsFileName = isProd ? `${appName}.min.js` : `${appName}.js`,
         outputCssFieldName = isProd ? `${appName}.min.css` : `${appName}.css`,
         externals = {
@@ -70,7 +86,9 @@ module.exports = function (option) {
                 [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-decorators"), {
                     "legacy": true
                 }],
-                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-class-properties")]
+                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-class-properties")],
+                [path.resolve(__dirname, '..', 'node_modules', "styled-jsx/babel")],
+                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-syntax-dynamic-import")],
             ]
         }
     }, {
@@ -84,6 +102,9 @@ module.exports = function (option) {
         use: [MiniCssExtractPlugin.loader, path.resolve(__dirname, '..', 'node_modules', 'css-loader'), {
             loader: path.resolve(__dirname, '..', 'node_modules', 'less-loader'),
             options: {
+                modifyVars: {
+                    'ant-prefix': 'maka-ant',
+                },
                 javascriptEnabled: true
             }
         }]
@@ -120,7 +141,10 @@ module.exports = function (option) {
         mode: isProd ? 'production' : 'development',
         ...ext,
         optimization: {
-            minimizer
+            minimizer,
+            splitChunks: {
+                chunks: 'async',
+            },
         },
         entry: [
             paths.appIndexJs
@@ -128,7 +152,7 @@ module.exports = function (option) {
         output: {
             filename: outputJsFileName,
             path: outputPath,
-            library: "MakaApp-" + appName,
+            library: "maka-app-" + appName,
             libraryTarget: "umd",
             globalObject: windowObj,
             publicPath: "publicPathPlaceholder"
@@ -142,6 +166,11 @@ module.exports = function (option) {
         },
         plugins: [
             new webpack.DefinePlugin(env.stringified),
+            /*
+            new webpack.ProvidePlugin({
+                'self': __dirname + '/src/globalObj.js',
+                'window': __dirname + '/src/globalObj.js',
+            }),*/
             new DynamicPublicPathPlugin({
                 externalPublicPath: `window['__pub_${appName}__']`,
             }),

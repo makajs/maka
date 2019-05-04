@@ -4,7 +4,7 @@ module.exports = async (ctx, next) => {
         connection: {
             host: '127.0.0.1',
             user: 'root',
-            password: '123456',
+            password: 'zljmysql2018',
             database: 'maka'
         },
         debug: true, //指明是否开启debug模式，默认为true表示开启

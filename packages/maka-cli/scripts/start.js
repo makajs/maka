@@ -59,6 +59,7 @@ async function main() {
   copyDep()
   createMainJsFile()
   createHtmlFile()
+  copyAssets()
   var ret = getServerOption()
   var port = await choosePort(ret.host, ret.port)
   startServer({ ...ret, port })
@@ -109,6 +110,7 @@ function createMainJsFile() {
     content = content.replace('<ext>', '')
   }
   fs.writeFileSync(path.resolve(outputPath, isDev ? 'main.js' : 'main.min.js'), content);
+  fs.writeFileSync(path.resolve(outputPath, isDev ? 'maka-main.js' : 'maka-main.min.js'), content);
 }
 
 function createHtmlFile() {
@@ -119,6 +121,15 @@ function createHtmlFile() {
   }
   fs.writeFileSync(path.resolve(outputPath, 'index.html'), html);
 }
+
+function copyAssets() {
+  let assetsPath = path.resolve(paths.appPath, 'assets')
+  if (fs.existsSync(assetsPath)) {
+    let target = outputPath
+    fs.copySync(assetsPath, target)
+  }
+}
+
 
 
 function getServerOption() {

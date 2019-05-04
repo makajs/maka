@@ -61,6 +61,8 @@ module.exports = {
     appProdBuild: resolveApp('build/prod'),
     appPackage: resolveApp('build/pkg'),
     appPackageDev: resolveApp('build/pkg-dev'),
+    appDeploy: resolveApp('build/deploy'),
+    appDeployDev: resolveApp('build/deploy-dev'),
     appPublic: resolveApp('dist'),
     appIndexJs: resolveAppIndex('index.js'),
     appPackageJson: resolveApp('package.json'),

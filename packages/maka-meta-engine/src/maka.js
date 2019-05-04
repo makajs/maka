@@ -69,7 +69,7 @@ function metaToComponent(meta, props, data) {
         return meta
     }
     else if (metaType == 'object') {
-        if (meta.component) {
+        if (meta.component || meta._for || meta._function) {
 
             if (meta._visible === false)
                 return null

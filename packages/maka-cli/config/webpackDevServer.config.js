@@ -10,10 +10,10 @@ const serverOption = packageJson.server
 const protocol = serverOption.https === 'true' ? 'https' : 'http';
 const host = serverOption.host || '0.0.0.0';
 
-module.exports = function(proxy, allowedHost) {
+module.exports = function (proxy, allowedHost) {
   return {
-    disableHostCheck:
-      !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true',
+    disableHostCheck:true,
+      //!proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true',
     compress: true,
     clientLogLevel: 'none',
     contentBase: paths.appPublic,

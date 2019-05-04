@@ -4,11 +4,29 @@ const webpack = require("webpack"),
 
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 
+const windowObj = `(function(){
+    return (typeof window !== 'undefined' && window ) ||
+    (typeof global !== 'undefined' && global ) 
+}())`
+
+
 module.exports = {
     mode: env || 'development',
+    devtool: 'cheap-module-source-map',
     optimization: {
         minimizer: env === 'production' ? [
             new UglifyJsPlugin({
+                uglifyOptions: {
+                    ie8: false,
+                    ecma: 8,
+                    compress: {
+                        unused: false,
+                    },
+                    output: {
+                        comments: false,
+                        beautify: false,
+                    },
+                },
                 cache: true,
                 parallel: true,
                 sourceMap: false
@@ -18,19 +36,28 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {
-                isProduction: env === 'production'
-            }
-        })
+                isProduction: env === 'production',
+            },
+            //window: windowObj,
+            //self: selfObj,
+            //global: globalObj
+        }),
+        /*
+        new webpack.ProvidePlugin({
+            'self': __dirname + '/src/globalObj.js',
+            'window': __dirname + '/src/globalObj.js',
+        })*/
     ],
     entry: ["./src/index.js"],
     output: {
         filename: env === 'production' ? 'maka-sdk.min.js' : 'maka-sdk.js',
         path: path.join(__dirname, `/dist${env === 'production' ? '/release' : '/debug'}`),
         library: 'Maka',
-        libraryTarget: 'umd'
+        libraryTarget: 'umd',
+        globalObject: windowObj
     },
     resolve: {
-        extensions: [".js"]
+        extensions: [".js"],
     },
     externals: {
         "react": {

@@ -33,7 +33,8 @@ jss.forEach(js => {
     request(js, function (err, res, body) {
         var o = path.parse(js)
         var base = o.base
-        base = base.replace('production.min', 'development')
+        if(!isProduction)
+            base = base.replace('production.min', 'development')
         fs.createWriteStream(`dist/${isProduction ? 'release/' : 'debug/'}` + base).write(body)
     })
 })

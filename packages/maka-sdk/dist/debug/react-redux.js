@@ -1,10 +1,18 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('redux')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'react', 'redux'], factory) :
-  (global = global || self, factory(global.ReactRedux = {}, global.React, global.Redux));
-}(this, function (exports, React, redux) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('redux'), require('react-dom')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'react', 'redux', 'react-dom'], factory) :
+  (global = global || self, factory(global.ReactRedux = {}, global.React, global.Redux, global.ReactDOM));
+}(this, function (exports, React, redux, reactDom) { 'use strict';
 
   var React__default = 'default' in React ? React['default'] : React;
+
+  function _assertThisInitialized(self) {
+    if (self === void 0) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return self;
+  }
 
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
@@ -13,7 +21,7 @@
   }
 
   function unwrapExports (x) {
-  	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
+  	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
   }
 
   function createCommonjsModule(fn, module) {
@@ -1069,6 +1077,116 @@
 
   var ReactReduxContext = React__default.createContext(null);
 
+  // Default to a dummy "batch" implementation that just runs the callback
+  function defaultNoopBatch(callback) {
+    callback();
+  }
+
+  var batch = defaultNoopBatch; // Allow injecting another batching function later
+
+  var setBatch = function setBatch(newBatch) {
+    return batch = newBatch;
+  }; // Supply a getter just to skip dealing with ESM bindings
+
+  var getBatch = function getBatch() {
+    return batch;
+  };
+
+  // well as nesting subscriptions of descendant components, so that we can ensure the
+  // ancestor components re-render before descendants
+
+  var CLEARED = null;
+  var nullListeners = {
+    notify: function notify() {}
+  };
+
+  function createListenerCollection() {
+    var batch = getBatch(); // the current/next pattern is copied from redux's createStore code.
+    // TODO: refactor+expose that code to be reusable here?
+
+    var current = [];
+    var next = [];
+    return {
+      clear: function clear() {
+        next = CLEARED;
+        current = CLEARED;
+      },
+      notify: function notify() {
+        var listeners = current = next;
+        batch(function () {
+          for (var i = 0; i < listeners.length; i++) {
+            listeners[i]();
+          }
+        });
+      },
+      get: function get() {
+        return next;
+      },
+      subscribe: function subscribe(listener) {
+        var isSubscribed = true;
+        if (next === current) next = current.slice();
+        next.push(listener);
+        return function unsubscribe() {
+          if (!isSubscribed || current === CLEARED) return;
+          isSubscribed = false;
+          if (next === current) next = current.slice();
+          next.splice(next.indexOf(listener), 1);
+        };
+      }
+    };
+  }
+
+  var Subscription =
+  /*#__PURE__*/
+  function () {
+    function Subscription(store, parentSub) {
+      this.store = store;
+      this.parentSub = parentSub;
+      this.unsubscribe = null;
+      this.listeners = nullListeners;
+      this.handleChangeWrapper = this.handleChangeWrapper.bind(this);
+    }
+
+    var _proto = Subscription.prototype;
+
+    _proto.addNestedSub = function addNestedSub(listener) {
+      this.trySubscribe();
+      return this.listeners.subscribe(listener);
+    };
+
+    _proto.notifyNestedSubs = function notifyNestedSubs() {
+      this.listeners.notify();
+    };
+
+    _proto.handleChangeWrapper = function handleChangeWrapper() {
+      if (this.onStateChange) {
+        this.onStateChange();
+      }
+    };
+
+    _proto.isSubscribed = function isSubscribed() {
+      return Boolean(this.unsubscribe);
+    };
+
+    _proto.trySubscribe = function trySubscribe() {
+      if (!this.unsubscribe) {
+        this.unsubscribe = this.parentSub ? this.parentSub.addNestedSub(this.handleChangeWrapper) : this.store.subscribe(this.handleChangeWrapper);
+        this.listeners = createListenerCollection();
+      }
+    };
+
+    _proto.tryUnsubscribe = function tryUnsubscribe() {
+      if (this.unsubscribe) {
+        this.unsubscribe();
+        this.unsubscribe = null;
+        this.listeners.clear();
+        this.listeners = nullListeners;
+      }
+    };
+
+    return Subscription;
+  }();
+
   var Provider =
   /*#__PURE__*/
   function (_Component) {
@@ -1079,10 +1197,14 @@
 
       _this = _Component.call(this, props) || this;
       var store = props.store;
+      _this.notifySubscribers = _this.notifySubscribers.bind(_assertThisInitialized(_this));
+      var subscription = new Subscription(store);
+      subscription.onStateChange = _this.notifySubscribers;
       _this.state = {
-        storeState: store.getState(),
-        store: store
+        store: store,
+        subscription: subscription
       };
+      _this.previousState = store.getState();
       return _this;
     }
 
@@ -1090,51 +1212,33 @@
 
     _proto.componentDidMount = function componentDidMount() {
       this._isMounted = true;
-      this.subscribe();
+      this.state.subscription.trySubscribe();
+
+      if (this.previousState !== this.props.store.getState()) {
+        this.state.subscription.notifyNestedSubs();
+      }
     };
 
     _proto.componentWillUnmount = function componentWillUnmount() {
       if (this.unsubscribe) this.unsubscribe();
+      this.state.subscription.tryUnsubscribe();
       this._isMounted = false;
     };
 
     _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
       if (this.props.store !== prevProps.store) {
-        if (this.unsubscribe) this.unsubscribe();
-        this.subscribe();
+        this.state.subscription.tryUnsubscribe();
+        var subscription = new Subscription(this.props.store);
+        subscription.onStateChange = this.notifySubscribers;
+        this.setState({
+          store: this.props.store,
+          subscription: subscription
+        });
       }
     };
 
-    _proto.subscribe = function subscribe() {
-      var _this2 = this;
-
-      var store = this.props.store;
-      this.unsubscribe = store.subscribe(function () {
-        var newStoreState = store.getState();
-
-        if (!_this2._isMounted) {
-          return;
-        }
-
-        _this2.setState(function (providerState) {
-          // If the value is the same, skip the unnecessary state update.
-          if (providerState.storeState === newStoreState) {
-            return null;
-          }
-
-          return {
-            storeState: newStoreState
-          };
-        });
-      }); // Actions might have been dispatched between render and mount - handle those
-
-      var postMountStoreState = store.getState();
-
-      if (postMountStoreState !== this.state.storeState) {
-        this.setState({
-          storeState: postMountStoreState
-        });
-      }
+    _proto.notifySubscribers = function notifySubscribers() {
+      this.state.subscription.notifyNestedSubs();
     };
 
     _proto.render = function render() {
@@ -1156,14 +1260,6 @@
     context: propTypes.object,
     children: propTypes.any
   };
-
-  function _assertThisInitialized(self) {
-    if (self === void 0) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }
-
-    return self;
-  }
 
   function _extends() {
     _extends = Object.assign || function (target) {
@@ -1337,6 +1433,9 @@
 
   var invariant_1 = invariant;
 
+  var EMPTY_ARRAY = [];
+  var NO_SUBSCRIPTION_ARRAY = [null, null];
+
   var stringifyComponent = function stringifyComponent(Comp) {
     try {
       return JSON.stringify(Comp);
@@ -1345,18 +1444,33 @@
     }
   };
 
+  function storeStateUpdatesReducer(state, action) {
+    var updateCount = state[1];
+    return [action.payload, updateCount + 1];
+  }
+
+  var initStateUpdates = function initStateUpdates() {
+    return [null, 0];
+  }; // React currently throws a warning when using useLayoutEffect on the server.
+  // To get around it, we can conditionally useEffect on the server (no-op) and
+  // useLayoutEffect in the browser. We need useLayoutEffect because we want
+  // `connect` to perform sync updates to a ref to save the latest props after
+  // a render is actually committed to the DOM.
+
+
+  var useIsomorphicLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
   function connectAdvanced(
   /*
     selectorFactory is a func that is responsible for returning the selector function used to
     compute new props from state, props, and dispatch. For example:
-       export default connectAdvanced((dispatch, options) => (state, props) => ({
+        export default connectAdvanced((dispatch, options) => (state, props) => ({
         thing: state.things[props.thingId],
         saveThing: fields => dispatch(actionCreators.saveThing(props.thingId, fields)),
       }))(YourComponent)
-     Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
+      Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
     outside of their selector as an optimization. Options passed to connectAdvanced are passed to
     the selectorFactory, along with displayName and WrappedComponent, as the second argument.
-     Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
+      Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
     props. Do not use connectAdvanced directly without memoizing results between calls to your
     selector, otherwise the Connect component will re-render on every state or props change.
   */
@@ -1387,9 +1501,9 @@
         context = _ref2$context === void 0 ? ReactReduxContext : _ref2$context,
         connectOptions = _objectWithoutPropertiesLoose(_ref2, ["getDisplayName", "methodName", "renderCountProp", "shouldHandleStateChanges", "storeKey", "withRef", "forwardRef", "context"]);
 
-    invariant_1(renderCountProp === undefined, "renderCountProp is removed. render counting is built into the latest React dev tools profiling extension");
+    invariant_1(renderCountProp === undefined, "renderCountProp is removed. render counting is built into the latest React Dev Tools profiling extension");
     invariant_1(!withRef, 'withRef is removed. To access the wrapped instance, use a ref on the connected component');
-    var customStoreWarningMessage = 'To use a custom Redux store for specific components,  create a custom React context with ' + "React.createContext(), and pass the context object to React Redux's Provider and specific components" + ' like:  <Provider context={MyContext}><ConnectedComponent context={MyContext} /></Provider>. ' + 'You may also pass a {context : MyContext} option to connect';
+    var customStoreWarningMessage = 'To use a custom Redux store for specific components, create a custom React context with ' + "React.createContext(), and pass the context object to React Redux's Provider and specific components" + ' like: <Provider context={MyContext}><ConnectedComponent context={MyContext} /></Provider>. ' + 'You may also pass a {context : MyContext} option to connect';
     invariant_1(storeKey === 'store', 'storeKey has been removed and does not do anything. ' + customStoreWarningMessage);
     var Context = context;
     return function wrapWithConnect(WrappedComponent) {
@@ -1412,110 +1526,242 @@
       });
 
       var pure = connectOptions.pure;
-      var OuterBaseComponent = React.Component;
 
-      if (pure) {
-        OuterBaseComponent = React.PureComponent;
-      }
+      function createChildSelector(store) {
+        return selectorFactory(store.dispatch, selectorFactoryOptions);
+      } // If we aren't running in "pure" mode, we don't want to memoize values.
+      // To avoid conditionally calling hooks, we fall back to a tiny wrapper
+      // that just executes the given callback immediately.
 
-      function makeDerivedPropsSelector() {
-        var lastProps;
-        var lastState;
-        var lastDerivedProps;
-        var lastStore;
-        var lastSelectorFactoryOptions;
-        var sourceSelector;
-        return function selectDerivedProps(state, props, store, selectorFactoryOptions) {
-          if (pure && lastProps === props && lastState === state) {
-            return lastDerivedProps;
+
+      var usePureOnlyMemo = pure ? React.useMemo : function (callback) {
+        return callback();
+      };
+
+      function ConnectFunction(props) {
+        var _useMemo = React.useMemo(function () {
+          // Distinguish between actual "data" props that were passed to the wrapper component,
+          // and values needed to control behavior (forwarded refs, alternate context instances).
+          // To maintain the wrapperProps object reference, memoize this destructuring.
+          var context = props.context,
+              forwardedRef = props.forwardedRef,
+              wrapperProps = _objectWithoutPropertiesLoose(props, ["context", "forwardedRef"]);
+
+          return [context, forwardedRef, wrapperProps];
+        }, [props]),
+            propsContext = _useMemo[0],
+            forwardedRef = _useMemo[1],
+            wrapperProps = _useMemo[2];
+
+        var ContextToUse = React.useMemo(function () {
+          // Users may optionally pass in a custom context instance to use instead of our ReactReduxContext.
+          // Memoize the check that determines which context instance we should use.
+          return propsContext && propsContext.Consumer && reactIs_2(React__default.createElement(propsContext.Consumer, null)) ? propsContext : Context;
+        }, [propsContext, Context]); // Retrieve the store and ancestor subscription via context, if available
+
+        var contextValue = React.useContext(ContextToUse); // The store _must_ exist as either a prop or in context
+
+        var didStoreComeFromProps = Boolean(props.store);
+        var didStoreComeFromContext = Boolean(contextValue) && Boolean(contextValue.store);
+        invariant_1(didStoreComeFromProps || didStoreComeFromContext, "Could not find \"store\" in the context of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + "or pass a custom React context provider to <Provider> and the corresponding " + ("React context consumer to " + displayName + " in connect options."));
+        var store = props.store || contextValue.store;
+        var childPropsSelector = React.useMemo(function () {
+          // The child props selector needs the store reference as an input.
+          // Re-create this selector whenever the store changes.
+          return createChildSelector(store);
+        }, [store]);
+
+        var _useMemo2 = React.useMemo(function () {
+          if (!shouldHandleStateChanges) return NO_SUBSCRIPTION_ARRAY; // This Subscription's source should match where store came from: props vs. context. A component
+          // connected to the store via props shouldn't use subscription from context, or vice versa.
+
+          var subscription = new Subscription(store, didStoreComeFromProps ? null : contextValue.subscription); // `notifyNestedSubs` is duplicated to handle the case where the component is unmounted in
+          // the middle of the notification loop, where `subscription` will then be null. This can
+          // probably be avoided if Subscription's listeners logic is changed to not call listeners
+          // that have been unsubscribed in the  middle of the notification loop.
+
+          var notifyNestedSubs = subscription.notifyNestedSubs.bind(subscription);
+          return [subscription, notifyNestedSubs];
+        }, [store, didStoreComeFromProps, contextValue]),
+            subscription = _useMemo2[0],
+            notifyNestedSubs = _useMemo2[1]; // Determine what {store, subscription} value should be put into nested context, if necessary,
+        // and memoize that value to avoid unnecessary context updates.
+
+
+        var overriddenContextValue = React.useMemo(function () {
+          if (didStoreComeFromProps) {
+            // This component is directly subscribed to a store from props.
+            // We don't want descendants reading from this store - pass down whatever
+            // the existing context value is from the nearest connected ancestor.
+            return contextValue;
+          } // Otherwise, put this component's subscription instance into context, so that
+          // connected descendants won't update until after this component is done
+
+
+          return _extends({}, contextValue, {
+            subscription: subscription
+          });
+        }, [didStoreComeFromProps, contextValue, subscription]); // We need to force this wrapper component to re-render whenever a Redux store update
+        // causes a change to the calculated child component props (or we caught an error in mapState)
+
+        var _useReducer = React.useReducer(storeStateUpdatesReducer, EMPTY_ARRAY, initStateUpdates),
+            _useReducer$ = _useReducer[0],
+            previousStateUpdateResult = _useReducer$[0],
+            forceComponentUpdateDispatch = _useReducer[1]; // Propagate any mapState/mapDispatch errors upwards
+
+
+        if (previousStateUpdateResult && previousStateUpdateResult.error) {
+          throw previousStateUpdateResult.error;
+        } // Set up refs to coordinate values between the subscription effect and the render logic
+
+
+        var lastChildProps = React.useRef();
+        var lastWrapperProps = React.useRef(wrapperProps);
+        var childPropsFromStoreUpdate = React.useRef();
+        var renderIsScheduled = React.useRef(false);
+        var actualChildProps = usePureOnlyMemo(function () {
+          // Tricky logic here:
+          // - This render may have been triggered by a Redux store update that produced new child props
+          // - However, we may have gotten new wrapper props after that
+          // If we have new child props, and the same wrapper props, we know we should use the new child props as-is.
+          // But, if we have new wrapper props, those might change the child props, so we have to recalculate things.
+          // So, we'll use the child props from store update only if the wrapper props are the same as last time.
+          if (childPropsFromStoreUpdate.current && wrapperProps === lastWrapperProps.current) {
+            return childPropsFromStoreUpdate.current;
+          } // TODO We're reading the store directly in render() here. Bad idea?
+          // This will likely cause Bad Things (TM) to happen in Concurrent Mode.
+          // Note that we do this because on renders _not_ caused by store updates, we need the latest store state
+          // to determine what the child props should be.
+
+
+          return childPropsSelector(store.getState(), wrapperProps);
+        }, [store, previousStateUpdateResult, wrapperProps]); // We need this to execute synchronously every time we re-render. However, React warns
+        // about useLayoutEffect in SSR, so we try to detect environment and fall back to
+        // just useEffect instead to avoid the warning, since neither will run anyway.
+
+        useIsomorphicLayoutEffect(function () {
+          // We want to capture the wrapper props and child props we used for later comparisons
+          lastWrapperProps.current = wrapperProps;
+          lastChildProps.current = actualChildProps;
+          renderIsScheduled.current = false; // If the render was from a store update, clear out that reference and cascade the subscriber update
+
+          if (childPropsFromStoreUpdate.current) {
+            childPropsFromStoreUpdate.current = null;
+            notifyNestedSubs();
+          }
+        }); // Our re-subscribe logic only runs when the store/subscription setup changes
+
+        useIsomorphicLayoutEffect(function () {
+          // If we're not subscribed to the store, nothing to do here
+          if (!shouldHandleStateChanges) return; // Capture values for checking if and when this component unmounts
+
+          var didUnsubscribe = false;
+          var lastThrownError = null; // We'll run this callback every time a store subscription update propagates to this component
+
+          var checkForUpdates = function checkForUpdates() {
+            if (didUnsubscribe) {
+              // Don't run stale listeners.
+              // Redux doesn't guarantee unsubscriptions happen until next dispatch.
+              return;
+            }
+
+            var latestStoreState = store.getState();
+            var newChildProps, error;
+
+            try {
+              // Actually run the selector with the most recent store state and wrapper props
+              // to determine what the child props should be
+              newChildProps = childPropsSelector(latestStoreState, lastWrapperProps.current);
+            } catch (e) {
+              error = e;
+              lastThrownError = e;
+            }
+
+            if (!error) {
+              lastThrownError = null;
+            } // If the child props haven't changed, nothing to do here - cascade the subscription update
+
+
+            if (newChildProps === lastChildProps.current) {
+              if (!renderIsScheduled.current) {
+                notifyNestedSubs();
+              }
+            } else {
+              // Save references to the new child props.  Note that we track the "child props from store update"
+              // as a ref instead of a useState/useReducer because we need a way to determine if that value has
+              // been processed.  If this went into useState/useReducer, we couldn't clear out the value without
+              // forcing another re-render, which we don't want.
+              lastChildProps.current = newChildProps;
+              childPropsFromStoreUpdate.current = newChildProps;
+              renderIsScheduled.current = true; // If the child props _did_ change (or we caught an error), this wrapper component needs to re-render
+
+              forceComponentUpdateDispatch({
+                type: 'STORE_UPDATED',
+                payload: {
+                  latestStoreState: latestStoreState,
+                  error: error
+                }
+              });
+            }
+          }; // Actually subscribe to the nearest connected ancestor (or store)
+
+
+          subscription.onStateChange = checkForUpdates;
+          subscription.trySubscribe(); // Pull data from the store after first render in case the store has
+          // changed since we began.
+
+          checkForUpdates();
+
+          var unsubscribeWrapper = function unsubscribeWrapper() {
+            didUnsubscribe = true;
+            subscription.tryUnsubscribe();
+
+            if (lastThrownError) {
+              // It's possible that we caught an error due to a bad mapState function, but the
+              // parent re-rendered without this component and we're about to unmount.
+              // This shouldn't happen as long as we do top-down subscriptions correctly, but
+              // if we ever do those wrong, this throw will surface the error in our tests.
+              // In that case, throw the error from here so it doesn't get lost.
+              throw lastThrownError;
+            }
+          };
+
+          return unsubscribeWrapper;
+        }, [store, subscription, childPropsSelector]); // Now that all that's done, we can finally try to actually render the child component.
+        // We memoize the elements for the rendered child component as an optimization.
+
+        var renderedWrappedComponent = React.useMemo(function () {
+          return React__default.createElement(WrappedComponent, _extends({}, actualChildProps, {
+            ref: forwardedRef
+          }));
+        }, [forwardedRef, WrappedComponent, actualChildProps]); // If React sees the exact same element reference as last time, it bails out of re-rendering
+        // that child, same as if it was wrapped in React.memo() or returned false from shouldComponentUpdate.
+
+        var renderedChild = React.useMemo(function () {
+          if (shouldHandleStateChanges) {
+            // If this component is subscribed to store updates, we need to pass its own
+            // subscription instance down to our descendants. That means rendering the same
+            // Context instance, and putting a different value into the context.
+            return React__default.createElement(ContextToUse.Provider, {
+              value: overriddenContextValue
+            }, renderedWrappedComponent);
           }
 
-          if (store !== lastStore || lastSelectorFactoryOptions !== selectorFactoryOptions) {
-            lastStore = store;
-            lastSelectorFactoryOptions = selectorFactoryOptions;
-            sourceSelector = selectorFactory(store.dispatch, selectorFactoryOptions);
-          }
+          return renderedWrappedComponent;
+        }, [ContextToUse, renderedWrappedComponent, overriddenContextValue]);
+        return renderedChild;
+      } // If we're in "pure" mode, ensure our wrapper component only re-renders when incoming props have changed.
 
-          lastProps = props;
-          lastState = state;
-          var nextProps = sourceSelector(state, props);
-          lastDerivedProps = nextProps;
-          return lastDerivedProps;
-        };
-      }
 
-      function makeChildElementSelector() {
-        var lastChildProps, lastForwardRef, lastChildElement, lastComponent;
-        return function selectChildElement(WrappedComponent, childProps, forwardRef) {
-          if (childProps !== lastChildProps || forwardRef !== lastForwardRef || lastComponent !== WrappedComponent) {
-            lastChildProps = childProps;
-            lastForwardRef = forwardRef;
-            lastComponent = WrappedComponent;
-            lastChildElement = React__default.createElement(WrappedComponent, _extends({}, childProps, {
-              ref: forwardRef
-            }));
-          }
-
-          return lastChildElement;
-        };
-      }
-
-      var Connect =
-      /*#__PURE__*/
-      function (_OuterBaseComponent) {
-        _inheritsLoose(Connect, _OuterBaseComponent);
-
-        function Connect(props) {
-          var _this;
-
-          _this = _OuterBaseComponent.call(this, props) || this;
-          invariant_1(forwardRef ? !props.wrapperProps[storeKey] : !props[storeKey], 'Passing redux store in props has been removed and does not do anything. ' + customStoreWarningMessage);
-          _this.selectDerivedProps = makeDerivedPropsSelector();
-          _this.selectChildElement = makeChildElementSelector();
-          _this.indirectRenderWrappedComponent = _this.indirectRenderWrappedComponent.bind(_assertThisInitialized(_this));
-          return _this;
-        }
-
-        var _proto = Connect.prototype;
-
-        _proto.indirectRenderWrappedComponent = function indirectRenderWrappedComponent(value) {
-          // calling renderWrappedComponent on prototype from indirectRenderWrappedComponent bound to `this`
-          return this.renderWrappedComponent(value);
-        };
-
-        _proto.renderWrappedComponent = function renderWrappedComponent(value) {
-          invariant_1(value, "Could not find \"store\" in the context of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + "or pass a custom React context provider to <Provider> and the corresponding " + ("React context consumer to " + displayName + " in connect options."));
-          var storeState = value.storeState,
-              store = value.store;
-          var wrapperProps = this.props;
-          var forwardedRef;
-
-          if (forwardRef) {
-            wrapperProps = this.props.wrapperProps;
-            forwardedRef = this.props.forwardedRef;
-          }
-
-          var derivedProps = this.selectDerivedProps(storeState, wrapperProps, store, selectorFactoryOptions);
-          return this.selectChildElement(WrappedComponent, derivedProps, forwardedRef);
-        };
-
-        _proto.render = function render() {
-          var ContextToUse = this.props.context && this.props.context.Consumer && reactIs_2(React__default.createElement(this.props.context.Consumer, null)) ? this.props.context : Context;
-          return React__default.createElement(ContextToUse.Consumer, null, this.indirectRenderWrappedComponent);
-        };
-
-        return Connect;
-      }(OuterBaseComponent);
-
+      var Connect = pure ? React__default.memo(ConnectFunction) : ConnectFunction;
       Connect.WrappedComponent = WrappedComponent;
       Connect.displayName = displayName;
 
       if (forwardRef) {
         var forwarded = React__default.forwardRef(function forwardConnectRef(props, ref) {
-          return React__default.createElement(Connect, {
-            wrapperProps: props,
+          return React__default.createElement(Connect, _extends({}, props, {
             forwardedRef: ref
-          });
+          }));
         });
         forwarded.displayName = displayName;
         forwarded.WrappedComponent = WrappedComponent;
@@ -1923,10 +2169,20 @@
   }
   var connect = createConnect();
 
+  /* eslint-disable import/no-unresolved */
+
+  setBatch(reactDom.unstable_batchedUpdates);
+
+  Object.defineProperty(exports, 'batch', {
+    enumerable: true,
+    get: function () {
+      return reactDom.unstable_batchedUpdates;
+    }
+  });
   exports.Provider = Provider;
-  exports.connectAdvanced = connectAdvanced;
   exports.ReactReduxContext = ReactReduxContext;
   exports.connect = connect;
+  exports.connectAdvanced = connectAdvanced;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

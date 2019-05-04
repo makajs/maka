@@ -1,4 +1,4 @@
-import createHashHistory from 'history/createHashHistory'
+const createHashHistory = require('history').createHashHistory
 
 var hashHistory
 const listerners = []

@@ -7,6 +7,9 @@ import metaEngine from '@makajs/meta-engine'
 
 var globalObj = utils.getGlobal()
 
+
+globalObj.self = globalObj
+
 utils.fetch.config({
     mock: true
 })
@@ -69,12 +72,12 @@ const createAppElementInternal = (appName, appProps) => props => {
 }
 function createAppElement(appName, appProps) {
     var Internal = createAppElementInternal(appName, appProps)
-    
+
     if (Hoc) {
         return (<Hoc><Internal /></Hoc>)
     }
     else {
-        return Internal
+        return <Internal />
     }
 }
 
