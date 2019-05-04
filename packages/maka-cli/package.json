@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -22,11 +22,13 @@
     "@babel/core": "*",
     "@babel/plugin-proposal-class-properties": "*",
     "@babel/plugin-proposal-decorators": "*",
+    "@babel/plugin-syntax-dynamic-import": "*",
     "@babel/plugin-transform-runtime": "*",
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
     "@babel/runtime": "*",
     "@makajs/sdk": "*",
+    "acorn": "^6.1.1",
     "alphabetjs": "*",
     "art-template": "*",
     "babel-loader": "*",
@@ -46,6 +48,7 @@
     "html-loader": "*",
     "html2json-loader": "*",
     "hyperquest": "*",
+    "js-beautify": "*",
     "less": "*",
     "less-loader": "*",
     "markdown-loader": "*",
@@ -58,6 +61,8 @@
     "readline-sync": "*",
     "resolve": "*",
     "semver": "*",
+    "style-loader": "*",
+    "styled-jsx": "*",
     "tar-pack": "*",
     "typescript": "*",
     "uglifyjs-webpack-plugin": "*",
@@ -72,5 +77,7 @@
   "optionalDependencies": {
     "fsevents": "*"
   },
-  "devDependencies": {}
+  "resolutions": {
+    "webpack/acorn": "6.1.1"
+  }
 }
