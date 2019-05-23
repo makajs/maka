@@ -54,12 +54,22 @@ class action {
         lst.splice(rowIndex, 1)
         this.base.ss({ 'data.list': lst })
     }
+    dynamicView = (props) =>{
+        return {
+            component:'button',
+            children: props.children || 'dynamic view'
+        }
+    }
 }
 
 const view = {
     component: 'div',
     className: 'template',
-    children: [{
+    children: [{ 
+            component: 'tpl.Dynamic',
+            // method: '$dynamicView', //method 默认值是 $dynamicView
+            children:'buttom from dynamic view'
+        },{
         component: 'tpl.Table',
         className: 'common-table',
         columns: [{
