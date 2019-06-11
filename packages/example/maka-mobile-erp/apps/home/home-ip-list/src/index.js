@@ -1,16 +1,16 @@
-import pkgJson from './package.json'
+import pkgJson from '../package.json'
 import view from './view'
-import state from './state'
 import action from './action'
-
+import state from './state'
+import './mock'
 import './style.less'
-import './mock.js'
 
 const name = pkgJson.name
 
 export {
     name,
+    view,
     state,
-    action,
-    view
+    action
 }
+

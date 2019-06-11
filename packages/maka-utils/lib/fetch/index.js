@@ -117,7 +117,7 @@ function get(url, headers, option) {
     });
   }
 
-  headers = {
+  var request = headers = {
     method: 'GET',
     headers: (0, _objectSpread2.default)({
       'Accept': 'application/json',
@@ -127,8 +127,14 @@ function get(url, headers, option) {
       "Authorization": getAccessToken() ? "Bearer " + getAccessToken() : ''
     })
   };
+
+  if (option && option.token) {
+    request.headers['token'] = option.token;
+    request.headers["Authorization"] = "Bearer " + option.token;
+  }
+
   return new Promise(function (resolve, reject) {
-    fetch(url, headers).then(function (response) {
+    fetch(url, request).then(function (response) {
       var json = {};
       var contentType = response.headers.get('Content-Type').split(";")[0];
 
@@ -149,7 +155,7 @@ function get(url, headers, option) {
 
       return json;
     }).then(function (responseJson) {
-      responseJson = after(responseJson, url, undefined, headers);
+      responseJson = after(responseJson, url, undefined, request);
       resolve(responseJson);
     }).catch(function (error) {
       return reject(error);
@@ -200,7 +206,7 @@ function post(url, data, headers, option) {
     });
   }
 
-  headers = {
+  var request = {
     method: 'POST',
     headers: (0, _objectSpread2.default)({
       'Accept': 'application/json',
@@ -213,12 +219,17 @@ function post(url, data, headers, option) {
   };
 
   if (option && option.type == 'file') {
-    headers.body = option.body;
-    delete headers.headers['Content-Type'];
+    request.body = option.body;
+    delete request.headers['Content-Type'];
+  }
+
+  if (option && option.token) {
+    request.headers['token'] = option.token;
+    request.headers["Authorization"] = "Bearer " + option.token;
   }
 
   return new Promise(function (resolve, reject) {
-    fetch(url, headers).then(function (response) {
+    fetch(url, request).then(function (response) {
       var json = {};
       var contentType = response.headers.get('Content-Type').split(";")[0];
       var contentDisposition = response.headers.get('Content-Disposition');
@@ -240,7 +251,7 @@ function post(url, data, headers, option) {
 
       return json;
     }).then(function (responseJson) {
-      responseJson = after(responseJson, url, data, headers);
+      responseJson = after(responseJson, url, data, request);
       resolve(responseJson);
     }).catch(function (error) {
       return reject(error);

@@ -1,4 +1,4 @@
-import pkgJson from './package.json'
+import pkgJson from '../package.json'
 import view from './view'
 import action from './action'
 import state from './state'
