@@ -22,7 +22,8 @@
   "dependencies": {},
   "devDependencies": {
     "ant-design-pro": "^2.1.1",
-    "antd": "^3.12.1"
+    "antd": "^3.12.1",
+    "umi": "2.6.17" 
   },
   "server": {
     "proxy": null,

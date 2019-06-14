@@ -11,6 +11,7 @@ export default {
   'menu.form.stepform.confirm': 'Step Form(confirm transfer information)',
   'menu.form.stepform.result': 'Step Form(finished)',
   'menu.form.advancedform': 'Advanced Form',
+  'menu.form.dynamicform': 'Dynamic Form',
   'menu.list': 'List',
   'menu.list.searchtable': 'Search Table',
   'menu.list.basiclist': 'Basic List',
