@@ -102,9 +102,11 @@ module.exports = function (option) {
         use: [MiniCssExtractPlugin.loader, path.resolve(__dirname, '..', 'node_modules', 'css-loader'), {
             loader: path.resolve(__dirname, '..', 'node_modules', 'less-loader'),
             options: {
+                /*
                 modifyVars: {
                     'ant-prefix': 'maka-ant',
                 },
+                */
                 javascriptEnabled: true
             }
         }]
