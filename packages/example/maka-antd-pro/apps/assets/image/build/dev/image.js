@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["maka"], factory);
 	else if(typeof exports === 'object')
-		exports["MakaApp-image"] = factory(require("maka"));
+		exports["maka-app-image"] = factory(require("maka"));
 	else
-		root["MakaApp-image"] = factory(root["maka"]);
+		root["maka-app-image"] = factory(root["maka"]);
 })((function(){
     return (typeof window !== 'undefined' && window ) ||
     (typeof global !== 'undefined' && global ) 
@@ -99,14 +99,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ "../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js":
+/***/ "../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js":
 /*!*****************************************************************************************************!*\
   !*** /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js ***!
   \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack://MakaApp-image//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js?");
+eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack://maka-app-image//usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js?");
 
 /***/ }),
 
@@ -117,7 +117,7 @@ eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instan
 /*! exports provided: isMakaApp, name, description, version, license, author, repository, bugs, homepage, scripts, dependencies, server, subAppDir, default */
 /***/ (function(module) {
 
-eval("module.exports = {\"isMakaApp\":true,\"name\":\"image\",\"description\":\"image\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/image.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/image/issues\"},\"homepage\":\"https://github.com/makajs/image#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":\"./apps\"};\n\n//# sourceURL=webpack://MakaApp-image/./package.json?");
+eval("module.exports = {\"isMakaApp\":true,\"name\":\"image\",\"description\":\"image\",\"version\":\"1.0.0\",\"license\":\"MIT\",\"author\":\"\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/makajs/image.git\"},\"bugs\":{\"url\":\"https://github.com/makajs/image/issues\"},\"homepage\":\"https://github.com/makajs/image#readme\",\"scripts\":{\"start\":\"maka start\",\"dev\":\"maka start --dev\",\"build\":\"maka build\",\"pkg\":\"maka pkg\"},\"dependencies\":{},\"server\":{\"proxy\":null,\"port\":8000},\"subAppDir\":\"./apps\"};\n\n//# sourceURL=webpack://maka-app-image/./package.json?");
 
 /***/ }),
 
@@ -128,7 +128,7 @@ eval("module.exports = {\"isMakaApp\":true,\"name\":\"image\",\"description\":\"
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"logo.png\";\n\n//# sourceURL=webpack://MakaApp-image/./src/img/logo.png?");
+eval("module.exports = __webpack_require__.p + \"logo.png\";\n\n//# sourceURL=webpack://maka-app-image/./src/img/logo.png?");
 
 /***/ }),
 
@@ -140,7 +140,7 @@ eval("module.exports = __webpack_require__.p + \"logo.png\";\n\n//# sourceURL=we
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"state\", function() { return state; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"action\", function() { return action; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"view\", function() { return view; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck */ \"../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../package.json */ \"./package.json\", 1);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _img_logo_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./img/logo.png */ \"./src/img/logo.png\");\n/* harmony import */ var _img_logo_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_img_logo_png__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.less */ \"./src/style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_4__);\n\n\nvar _dec, _class;\n\n\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_1__.name;\nObject(maka__WEBPACK_IMPORTED_MODULE_2__[\"registerAction\"])('image', {\n  logo: _img_logo_png__WEBPACK_IMPORTED_MODULE_3___default.a\n});\nvar state = {\n  data: {}\n};\nvar action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_2__[\"actionMixin\"])('base', 'image'), _dec(_class = function action(option) {\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, action);\n\n  Object.assign(this, option.mixins);\n}) || _class);\nvar view = {\n  component: 'div',\n  className: 'image',\n  children: [{\n    component: 'img',\n    src: '{{$image.logo}}'\n  }]\n};\n\n\n//# sourceURL=webpack://MakaApp-image/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"state\", function() { return state; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"action\", function() { return action; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"view\", function() { return view; });\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck */ \"../../../../../../../../../../../../usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../package.json */ \"./package.json\", 1);\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! maka */ \"maka\");\n/* harmony import */ var maka__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(maka__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _img_logo_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./img/logo.png */ \"./src/img/logo.png\");\n/* harmony import */ var _img_logo_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_img_logo_png__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.less */ \"./src/style.less\");\n/* harmony import */ var _style_less__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_less__WEBPACK_IMPORTED_MODULE_4__);\n\n\nvar _dec, _class;\n\n\n\n\n\nvar name = _package_json__WEBPACK_IMPORTED_MODULE_1__.name;\nObject(maka__WEBPACK_IMPORTED_MODULE_2__[\"registerAction\"])('image', {\n  logo: _img_logo_png__WEBPACK_IMPORTED_MODULE_3___default.a\n});\nvar state = {\n  data: {}\n};\nvar action = (_dec = Object(maka__WEBPACK_IMPORTED_MODULE_2__[\"actionMixin\"])('base', 'image'), _dec(_class = function action(option) {\n  _usr_local_lib_node_modules_makajs_cli_node_modules_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, action);\n\n  Object.assign(this, option.mixins);\n}) || _class);\nvar view = {\n  component: 'div',\n  className: 'image',\n  children: [{\n    component: 'img',\n    src: '{{$image.logo}}'\n  }]\n};\n\n\n//# sourceURL=webpack://maka-app-image/./src/index.js?");
 
 /***/ }),
 
@@ -151,7 +151,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp-image/./src/style.less?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://maka-app-image/./src/style.less?");
 
 /***/ }),
 
@@ -162,7 +162,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://MakaApp
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages/example/maka-antd-pro/apps/assets/image/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://MakaApp-image/multi_./src/index.js?");
+eval("module.exports = __webpack_require__(/*! /Users/lisga/Desktop/code/others/maka/packages/example/maka-antd-pro/apps/assets/image/src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://maka-app-image/multi_./src/index.js?");
 
 /***/ }),
 
@@ -173,7 +173,7 @@ eval("module.exports = __webpack_require__(/*! /home/zlj/my/makajs/maka/packages
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = __WEBPACK_EXTERNAL_MODULE_maka__;\n\n//# sourceURL=webpack://MakaApp-image/external_%22maka%22?");
+eval("module.exports = __WEBPACK_EXTERNAL_MODULE_maka__;\n\n//# sourceURL=webpack://maka-app-image/external_%22maka%22?");
 
 /***/ })
 
