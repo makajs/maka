@@ -115,7 +115,8 @@ function get(url, headers, option) {
 		fetch(url, request)
 			.then(response => {
 				let json = {}
-				let contentType = response.headers.get('Content-Type').split(";")[0]
+				let contentType = response.headers.get('Content-Type');
+				contentType = contentType && contentType.split(";")[0]
 				if(contentType == 'application/json' ){
 					json = response.json()
 				}else if(contentType == 'application/octet-stream' ){
