@@ -1458,19 +1458,19 @@
   // a render is actually committed to the DOM.
 
 
-  var useIsomorphicLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+  var useIsomorphicLayoutEffect = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined' ? React.useLayoutEffect : React.useEffect;
   function connectAdvanced(
   /*
     selectorFactory is a func that is responsible for returning the selector function used to
     compute new props from state, props, and dispatch. For example:
-        export default connectAdvanced((dispatch, options) => (state, props) => ({
+       export default connectAdvanced((dispatch, options) => (state, props) => ({
         thing: state.things[props.thingId],
         saveThing: fields => dispatch(actionCreators.saveThing(props.thingId, fields)),
       }))(YourComponent)
-      Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
+     Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
     outside of their selector as an optimization. Options passed to connectAdvanced are passed to
     the selectorFactory, along with displayName and WrappedComponent, as the second argument.
-      Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
+     Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
     props. Do not use connectAdvanced directly without memoizing results between calls to your
     selector, otherwise the Connect component will re-render on every state or props change.
   */
@@ -1543,11 +1543,10 @@
           // Distinguish between actual "data" props that were passed to the wrapper component,
           // and values needed to control behavior (forwarded refs, alternate context instances).
           // To maintain the wrapperProps object reference, memoize this destructuring.
-          var context = props.context,
-              forwardedRef = props.forwardedRef,
-              wrapperProps = _objectWithoutPropertiesLoose(props, ["context", "forwardedRef"]);
+          var forwardedRef = props.forwardedRef,
+              wrapperProps = _objectWithoutPropertiesLoose(props, ["forwardedRef"]);
 
-          return [context, forwardedRef, wrapperProps];
+          return [props.context, forwardedRef, wrapperProps];
         }, [props]),
             propsContext = _useMemo[0],
             forwardedRef = _useMemo[1],
@@ -2169,6 +2168,195 @@
   }
   var connect = createConnect();
 
+  /**
+   * A hook to access the value of the `ReactReduxContext`. This is a low-level
+   * hook that you should usually not need to call directly.
+   *
+   * @returns {any} the value of the `ReactReduxContext`
+   *
+   * @example
+   *
+   * import React from 'react'
+   * import { useReduxContext } from 'react-redux'
+   *
+   * export const CounterComponent = ({ value }) => {
+   *   const { store } = useReduxContext()
+   *   return <div>{store.getState()}</div>
+   * }
+   */
+
+  function useReduxContext() {
+    var contextValue = React.useContext(ReactReduxContext);
+    invariant_1(contextValue, 'could not find react-redux context value; please ensure the component is wrapped in a <Provider>');
+    return contextValue;
+  }
+
+  /**
+   * A hook to access the redux store.
+   *
+   * @returns {any} the redux store
+   *
+   * @example
+   *
+   * import React from 'react'
+   * import { useStore } from 'react-redux'
+   *
+   * export const ExampleComponent = () => {
+   *   const store = useStore()
+   *   return <div>{store.getState()}</div>
+   * }
+   */
+
+  function useStore() {
+    var _useReduxContext = useReduxContext(),
+        store = _useReduxContext.store;
+
+    return store;
+  }
+
+  /**
+   * A hook to access the redux `dispatch` function. Note that in most cases where you
+   * might want to use this hook it is recommended to use `useActions` instead to bind
+   * action creators to the `dispatch` function.
+   *
+   * @returns {any|function} redux store's `dispatch` function
+   *
+   * @example
+   *
+   * import React, { useCallback } from 'react'
+   * import { useReduxDispatch } from 'react-redux'
+   *
+   * export const CounterComponent = ({ value }) => {
+   *   const dispatch = useDispatch()
+   *   const increaseCounter = useCallback(() => dispatch({ type: 'increase-counter' }), [])
+   *   return (
+   *     <div>
+   *       <span>{value}</span>
+   *       <button onClick={increaseCounter}>Increase counter</button>
+   *     </div>
+   *   )
+   * }
+   */
+
+  function useDispatch() {
+    var store = useStore();
+    return store.dispatch;
+  }
+
+  // To get around it, we can conditionally useEffect on the server (no-op) and
+  // useLayoutEffect in the browser. We need useLayoutEffect to ensure the store
+  // subscription callback always has the selector from the latest render commit
+  // available, otherwise a store update may happen between render and the effect,
+  // which may cause missed updates; we also must ensure the store subscription
+  // is created synchronously, otherwise a store update may occur before the
+  // subscription is created and an inconsistent state may be observed
+
+  var useIsomorphicLayoutEffect$1 = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
+  var refEquality = function refEquality(a, b) {
+    return a === b;
+  };
+  /**
+   * A hook to access the redux store's state. This hook takes a selector function
+   * as an argument. The selector is called with the store state.
+   *
+   * This hook takes an optional equality comparison function as the second parameter
+   * that allows you to customize the way the selected state is compared to determine
+   * whether the component needs to be re-rendered.
+   *
+   * @param {Function} selector the selector function
+   * @param {Function=} equalityFn the function that will be used to determine equality
+   *
+   * @returns {any} the selected state
+   *
+   * @example
+   *
+   * import React from 'react'
+   * import { useSelector } from 'react-redux'
+   *
+   * export const CounterComponent = () => {
+   *   const counter = useSelector(state => state.counter)
+   *   return <div>{counter}</div>
+   * }
+   */
+
+
+  function useSelector(selector, equalityFn) {
+    if (equalityFn === void 0) {
+      equalityFn = refEquality;
+    }
+
+    invariant_1(selector, "You must pass a selector to useSelectors");
+
+    var _useReduxContext = useReduxContext(),
+        store = _useReduxContext.store,
+        contextSub = _useReduxContext.subscription;
+
+    var _useReducer = React.useReducer(function (s) {
+      return s + 1;
+    }, 0),
+        forceRender = _useReducer[1];
+
+    var subscription = React.useMemo(function () {
+      return new Subscription(store, contextSub);
+    }, [store, contextSub]);
+    var latestSubscriptionCallbackError = React.useRef();
+    var latestSelector = React.useRef();
+    var latestSelectedState = React.useRef();
+    var selectedState;
+
+    try {
+      if (selector !== latestSelector.current || latestSubscriptionCallbackError.current) {
+        selectedState = selector(store.getState());
+      } else {
+        selectedState = latestSelectedState.current;
+      }
+    } catch (err) {
+      var errorMessage = "An error occured while selecting the store state: " + err.message + ".";
+
+      if (latestSubscriptionCallbackError.current) {
+        errorMessage += "\nThe error may be correlated with this previous error:\n" + latestSubscriptionCallbackError.current.stack + "\n\nOriginal stack trace:";
+      }
+
+      throw new Error(errorMessage);
+    }
+
+    useIsomorphicLayoutEffect$1(function () {
+      latestSelector.current = selector;
+      latestSelectedState.current = selectedState;
+      latestSubscriptionCallbackError.current = undefined;
+    });
+    useIsomorphicLayoutEffect$1(function () {
+      function checkForUpdates() {
+        try {
+          var newSelectedState = latestSelector.current(store.getState());
+
+          if (equalityFn(newSelectedState, latestSelectedState.current)) {
+            return;
+          }
+
+          latestSelectedState.current = newSelectedState;
+        } catch (err) {
+          // we ignore all errors here, since when the component
+          // is re-rendered, the selectors are called again, and
+          // will throw again, if neither props nor store state
+          // changed
+          latestSubscriptionCallbackError.current = err;
+        }
+
+        forceRender({});
+      }
+
+      subscription.onStateChange = checkForUpdates;
+      subscription.trySubscribe();
+      checkForUpdates();
+      return function () {
+        return subscription.tryUnsubscribe();
+      };
+    }, [store, subscription]);
+    return selectedState;
+  }
+
   /* eslint-disable import/no-unresolved */
 
   setBatch(reactDom.unstable_batchedUpdates);
@@ -2183,6 +2371,10 @@
   exports.ReactReduxContext = ReactReduxContext;
   exports.connect = connect;
   exports.connectAdvanced = connectAdvanced;
+  exports.shallowEqual = shallowEqual;
+  exports.useDispatch = useDispatch;
+  exports.useSelector = useSelector;
+  exports.useStore = useStore;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

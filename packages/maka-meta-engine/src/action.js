@@ -70,11 +70,15 @@ export default class action {
 			}
 		}
 
-		var initState = (this.appInfo.state && this.appInfo.state.data) || {}
-		this.ss({ 'data': initState })
+		if(component.props._notClearAppState ===true && !!this.gs('data')){
+		}
+		else{
+			var initState = (this.appInfo.state && this.appInfo.state.data) || {}
+			this.ss({ 'data': initState })
 
-		if (this.metaHandlers && this.metaHandlers.onInit) {
-			this.metaHandlers.onInit({ component, injections })
+			if (this.metaHandlers && this.metaHandlers.onInit) {
+				this.metaHandlers.onInit({ component, injections })
+			}
 		}
 	}
 

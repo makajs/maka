@@ -12,6 +12,7 @@ class actionFactory {
     registerAction(name, action, isFunction) {
         if (this.actions[name]) {
             console.log(`Action already exists. name: ${name}, please ignore!`)
+            return
         }
 
         if (isFunction) {

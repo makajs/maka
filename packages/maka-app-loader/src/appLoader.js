@@ -58,7 +58,17 @@ class AppLoader extends React.Component {
 			payload
 		} = this.props
 
-		this.props.clearAppState(fullName)
+		if(this.props._notClearAppState !== true ){
+			this.props.clearAppState(fullName)
+		}
+		else{
+			var parentApp = this.props._parentApp
+			if(parentApp){
+				if(!window.MAKA.store.getState().getIn([parentApp,'data'])){
+					this.props.clearAppState(fullName)
+				}
+			}
+		}
 	}
 
 	render() {

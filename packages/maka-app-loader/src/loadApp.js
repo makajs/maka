@@ -22,6 +22,9 @@ function fixUrl(url) {
                     if(baseUrl.indexOf('/core/v') != -1){
                         baseUrl = baseUrl.substr(0, baseUrl.indexOf('/core/v') + 1)
                     }
+                    if(baseUrl.indexOf('/maka-sdk/') != -1){
+                        baseUrl = baseUrl.substr(0, baseUrl.indexOf('/maka-sdk/') + 1)
+                    }
                 }
             }
         }

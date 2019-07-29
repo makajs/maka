@@ -31,6 +31,7 @@ function () {
     value: function registerAction(name, action, isFunction) {
       if (this.actions[name]) {
         console.log("Action already exists. name: ".concat(name, ", please ignore!"));
+        return;
       }
 
       if (isFunction) {

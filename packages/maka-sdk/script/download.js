@@ -18,10 +18,10 @@ if (isProduction)
     ]
 else
     jss = [
-        //'https://unpkg.com/react/umd/react.development.js',
-        //'https://unpkg.com/react-dom/umd/react-dom.development.js',
-        'https://unpkg.com/react/umd/react.production.min.js',
-        'https://unpkg.com/react-dom/umd/react-dom.production.min.js',
+        'https://unpkg.com/react/umd/react.development.js',
+        'https://unpkg.com/react-dom/umd/react-dom.development.js',
+        //'https://unpkg.com/react/umd/react.production.min.js',
+        //'https://unpkg.com/react-dom/umd/react-dom.production.min.js',
         'https://unpkg.com/prop-types/prop-types.js',
         'https://unpkg.com/redux/dist/redux.js',
         'https://unpkg.com/react-redux/dist/react-redux.js',

@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _default;
 
-var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _immutable = require("immutable");
 
@@ -20,6 +20,10 @@ var _createReduxConnector = _interopRequireDefault(require("./createReduxConnect
 var _config = _interopRequireDefault(require("./config"));
 
 var _utils = require("@makajs/utils");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var globalObj = (0, _utils.getGlobal)();
 
@@ -66,7 +70,7 @@ function loadApp(state, _ref2) {
     if (!forceLoad) state = state.set(fullName, (0, _immutable.Map)());else state = state.set(fullName, (0, _immutable.Map)({
       prevData: state.getIn([fullName, 'data'])
     }));
-    appInfo = (0, _objectSpread2.default)({}, appInfo);
+    appInfo = _objectSpread({}, appInfo);
 
     if (appInfo && appInfo.view && typeof appInfo.view == 'function') {
       component = _config.default.current.componentWrapper()(appInfo.view);
@@ -95,7 +99,7 @@ function loadApp(state, _ref2) {
       pluginApps.forEach(function (plugin) {
         if (plugin.pluginApi && plugin.pluginApi.afterAction) actionInternal = plugin.pluginApi.afterAction(actionInternal);
       });
-      actionInstance = (0, _objectSpread2.default)({}, actionInstance, {
+      actionInstance = _objectSpread({}, actionInstance, {
         getDirectFuns: function getDirectFuns() {
           return actionInternal;
         }
@@ -111,7 +115,9 @@ function loadApp(state, _ref2) {
     });
     var mapStateToProps = (0, _wrapMapStateToProps.default)(fullName);
     var mapDispatchToProps = (0, _wrapMapDispatchToProps.default)(fullName, actionInstance, reducerInstance);
-    var container = (0, _createReduxConnector.default)(component || appInfo.viewDecorator && appInfo.viewDecorator()(_config.default.current.defaultComponent) || _config.default.current.defaultComponent, mapStateToProps, mapDispatchToProps, null, {
+    var container = (0, _createReduxConnector.default)(component || appInfo.viewDecorator && appInfo.viewDecorator()(_config.default.current.defaultComponent) || _config.default.current.defaultComponent, mapStateToProps, mapDispatchToProps, function (stateProps, dispatchProps, ownProps) {
+      return _objectSpread({}, ownProps, {}, stateProps, {}, dispatchProps);
+    }, {
       //withRef: true, 
       pure: true
     });

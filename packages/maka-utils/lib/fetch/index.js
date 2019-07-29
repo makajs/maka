@@ -17,11 +17,15 @@ exports.setAccessToken = setAccessToken;
 exports.clearAccessToken = clearAccessToken;
 exports.mockApi = exports.mockData = exports.default = void 0;
 
-var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
 var _env = require("../env");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var mockApi = {};
 exports.mockApi = mockApi;
@@ -90,7 +94,7 @@ function get(url, headers, option) {
       setTimeout(function () {
         try {
           if (getAccessToken()) {
-            headers = headers ? (0, _objectSpread2.default)({}, headers, {
+            headers = headers ? _objectSpread({}, headers, {
               token: getAccessToken()
             }) : {
               token: getAccessToken()
@@ -119,7 +123,8 @@ function get(url, headers, option) {
 
   var request = headers = {
     method: 'GET',
-    headers: (0, _objectSpread2.default)({
+    credentials: 'same-origin',
+    headers: _objectSpread({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }, headers, {
@@ -174,7 +179,7 @@ function post(url, data, headers, option) {
       setTimeout(function () {
         try {
           if (getAccessToken()) {
-            headers = headers ? (0, _objectSpread2.default)({}, headers, {
+            headers = headers ? _objectSpread({}, headers, {
               token: getAccessToken()
             }) : {
               token: getAccessToken()
@@ -209,7 +214,8 @@ function post(url, data, headers, option) {
 
   var request = {
     method: 'POST',
-    headers: (0, _objectSpread2.default)({
+    credentials: 'same-origin',
+    headers: _objectSpread({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }, headers, {

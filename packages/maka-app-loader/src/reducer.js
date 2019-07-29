@@ -82,7 +82,9 @@ function loadApp(state, {
             component || (appInfo.viewDecorator && appInfo.viewDecorator()(config.current.defaultComponent)) || config.current.defaultComponent,
             mapStateToProps,
             mapDispatchToProps,
-            null, {
+            (stateProps, dispatchProps, ownProps)=>{
+                return { ...ownProps, ...stateProps, ...dispatchProps}
+            }, {
                 //withRef: true, 
                 pure: true
             }
