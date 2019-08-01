@@ -71,9 +71,14 @@ export default class action {
 		}
 
 		var initState = (this.appInfo.state && this.appInfo.state.data) || {}
+		//保留appState的临时方案
+		var isKeepStateApp = component.props.appQuery.indexOf("_keepstate=1")!=-1
+		if(isKeepStateApp){
+			n = this.gs('data')
+		}
 		this.ss({ 'data': initState })
 
-		if (this.metaHandlers && this.metaHandlers.onInit) {
+		if (this.metaHandlers && this.metaHandlers.onInit && !isKeepStateApp) {
 			this.metaHandlers.onInit({ component, injections })
 		}
 	}
