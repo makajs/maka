@@ -7,17 +7,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = actionMixin;
 
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread2"));
 
 var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
 var _action = _interopRequireDefault(require("./action"));
 
 var _actionFactory = _interopRequireDefault(require("./actionFactory"));
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var isPromise = function isPromise(obj) {
   return !!obj && ((0, _typeof2.default)(obj) === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
@@ -101,7 +97,7 @@ function actionMixin() {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
-                  act = new actCls(_objectSpread({}, option, {
+                  act = new actCls((0, _objectSpread2.default)({}, option, {
                     mixins: mixinInstances
                   }));
 
@@ -119,7 +115,7 @@ function actionMixin() {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
-                  act = new actCls(_objectSpread({}, option, {}, m.option, {
+                  act = new actCls((0, _objectSpread2.default)({}, option, {}, m.option, {
                     mixins: mixinInstances
                   }));
 
@@ -133,7 +129,7 @@ function actionMixin() {
         });
       }
 
-      var curr = new target(_objectSpread({}, option, {
+      var curr = new target((0, _objectSpread2.default)({}, option, {
         mixins: mixinInstances
       }));
       Object.keys(curr).forEach(function (key) {

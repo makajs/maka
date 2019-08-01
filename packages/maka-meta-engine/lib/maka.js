@@ -100,7 +100,7 @@ function metaToComponent(meta, props, data) {
           }
         }
 
-        var tmp = _for.replace('in', '#').split('#'),
+        var tmp = _for.replace(/\b(in)\b/, '#').split('#'),
             dsPath = _utils.default.string.trim(tmp[1]),
             extParaNames = tmp[0].replace('(', '').replace(')', '').split(','),
             express = "".concat(dsPath.replace(/\$/g, '$props$.'));

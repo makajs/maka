@@ -69,6 +69,9 @@ export default class action {
 				instance: component
 			}
 		}
+		if(component.props._notClearAppState === undefined){
+			component.props._notClearAppState = component.props.appQuery.indexOf('_notClearAppState=1')!=-1
+		}
 
 		if(component.props._notClearAppState ===true && !!this.gs('data')){
 		}
