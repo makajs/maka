@@ -11,8 +11,6 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _objectSpread3 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
-
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
@@ -22,6 +20,10 @@ var _appFactory = _interopRequireDefault(require("./appFactory"));
 var _config = _interopRequireDefault(require("./config"));
 
 var _utils = require("@makajs/utils");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var globalObj = (0, _utils.getGlobal)();
 var isProduction = process.env.isProduction;
@@ -43,6 +45,10 @@ function fixUrl(url) {
 
           if (baseUrl.indexOf('/core/v') != -1) {
             baseUrl = baseUrl.substr(0, baseUrl.indexOf('/core/v') + 1);
+          }
+
+          if (baseUrl.indexOf('/maka-sdk/') != -1) {
+            baseUrl = baseUrl.substr(0, baseUrl.indexOf('/maka-sdk/') + 1);
           }
         }
       }
@@ -145,7 +151,7 @@ function loadApp(app) {
               }
 
               apps = args.reduce(function (prev, curr) {
-                return curr ? (0, _objectSpread3.default)({}, prev, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;
+                return curr ? _objectSpread({}, prev, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;
               }, {});
 
               if (apps) {

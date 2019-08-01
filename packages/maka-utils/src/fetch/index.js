@@ -97,6 +97,7 @@ function get(url, headers, option) {
 
 	let request = headers = {
 		method: 'GET',
+		credentials: 'same-origin',
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
@@ -177,6 +178,7 @@ function post(url, data, headers, option) {
 
 	let request = {
 		method: 'POST',
+		credentials: 'same-origin',
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',

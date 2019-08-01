@@ -70,16 +70,15 @@ export default class action {
 			}
 		}
 
-		var initState = (this.appInfo.state && this.appInfo.state.data) || {}
-		//保留appState的临时方案
-		var isKeepStateApp = component.props.appQuery.indexOf("_keepstate=1")!=-1
-		if(isKeepStateApp){
-			n = this.gs('data')
+		if(component.props._notClearAppState ===true && !!this.gs('data')){
 		}
-		this.ss({ 'data': initState })
+		else{
+			var initState = (this.appInfo.state && this.appInfo.state.data) || {}
+			this.ss({ 'data': initState })
 
-		if (this.metaHandlers && this.metaHandlers.onInit && !isKeepStateApp) {
-			this.metaHandlers.onInit({ component, injections })
+			if (this.metaHandlers && this.metaHandlers.onInit) {
+				this.metaHandlers.onInit({ component, injections })
+			}
 		}
 	}
 

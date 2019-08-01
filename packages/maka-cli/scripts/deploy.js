@@ -154,6 +154,7 @@ function createMainJsFile() {
     var configJson = fs.readFileSync(path.resolve(outputPath, 'config.json'), 'utf-8')
     content = content.replace('window.MAKA = maka;', `
         window.MAKA = maka;
+        window.MAKA.version = '${version}';
         maka.init({
             baseUrl: "",
             appUrls:  ${beautify.js(configJson)}

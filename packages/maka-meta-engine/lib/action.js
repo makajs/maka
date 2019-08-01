@@ -92,17 +92,19 @@ var action = function action(option) {
       };
     }
 
-    var initState = _this.appInfo.state && _this.appInfo.state.data || {};
+    if (component.props._notClearAppState === true && !!_this.gs('data')) {} else {
+      var initState = _this.appInfo.state && _this.appInfo.state.data || {};
 
-    _this.ss({
-      'data': initState
-    });
-
-    if (_this.metaHandlers && _this.metaHandlers.onInit) {
-      _this.metaHandlers.onInit({
-        component: component,
-        injections: injections
+      _this.ss({
+        'data': initState
       });
+
+      if (_this.metaHandlers && _this.metaHandlers.onInit) {
+        _this.metaHandlers.onInit({
+          component: component,
+          injections: injections
+        });
+      }
     }
   });
   (0, _defineProperty2.default)(this, "unmount", function () {

@@ -114,9 +114,9 @@ function delDir(path){
         files.forEach((file, index) => {
             let curPath = path + "/" + file;
             if(fs.statSync(curPath).isDirectory()){
-                delDir(curPath); //µÝ¹éÉ¾³ýÎÄ¼þ¼Ð
+                delDir(curPath); //é€’å½’åˆ é™¤æ–‡ä»¶å¤¹
             } else {
-                fs.unlinkSync(curPath); //É¾³ýÎÄ¼þ
+                fs.unlinkSync(curPath); //åˆ é™¤æ–‡ä»¶
             }
         });
         fs.rmdirSync(path);

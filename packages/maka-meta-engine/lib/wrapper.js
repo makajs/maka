@@ -33,6 +33,24 @@ var _config = _interopRequireDefault(require("./config"));
 
 var _utils = _interopRequireDefault(require("@makajs/utils"));
 
+function getHandler(props, eventName) {
+  return function () {
+    if (props[eventName]) {
+      props[eventName].apply(props, arguments);
+      return;
+    }
+
+    if (props.base && props.base.getAllAction) {
+      var action = props.base.getAllAction()[eventName];
+
+      if (action) {
+        action.apply(void 0, arguments);
+        return;
+      }
+    }
+  };
+}
+
 function wrapper(option) {
   return function (WrappedComponent) {
     return (
@@ -54,18 +72,18 @@ function wrapper(option) {
         (0, _createClass2.default)(internal, [{
           key: "componentWillMount",
           value: function componentWillMount() {
-            this.props.componentWillMount && this.props.componentWillMount();
+            getHandler(this.props, 'componentWillMount')();
           }
         }, {
           key: "componentDidMount",
           value: function componentDidMount() {
             this.props.initView && this.props.initView(this);
-            this.props.componentDidMount && this.props.componentDidMount();
+            getHandler(this.props, 'componentDidMount')();
           }
         }, {
           key: "shouldComponentUpdate",
           value: function shouldComponentUpdate(nextProps, nextState) {
-            if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) return true;
+            if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) return true;else if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === false) return false;
 
             if (nextState.hasError != this.state.hasError) {
               return true;
@@ -91,12 +109,12 @@ function wrapper(option) {
               });
             }
 
-            this.props.componentWillReceiveProps && this.props.componentWillReceiveProps(nextProps);
+            getHandler(this.props, 'componentWillReceiveProps')(nextProps);
           }
         }, {
           key: "componentWillUpdate",
           value: function componentWillUpdate(nextProps, nextState) {
-            this.props.componentWillUpdate && this.props.componentWillUpdate(nextProps, nextState);
+            getHandler(this.props, 'componentWillUpdate')(nextProps, nextState);
           }
         }, {
           key: "componentDidCatch",
@@ -107,18 +125,18 @@ function wrapper(option) {
               hasError: true,
               error: error
             });
-            this.props.componentDidCatch && this.props.componentDidCatch(error, info);
+            getHandler(this.props, 'componentDidCatch')(error, info);
           }
         }, {
           key: "componentWillUnmount",
           value: function componentWillUnmount() {
             this.props.unmount && this.props.unmount();
-            this.props.componentWillUnmount && this.props.componentWillUnmount();
+            getHandler(this.props, 'componentWillUnmount')();
           }
         }, {
           key: "componentDidUpdate",
           value: function componentDidUpdate() {
-            this.props.componentDidUpdate && this.props.componentDidUpdate();
+            getHandler(this.props, 'componentDidUpdate')();
           }
         }, {
           key: "render",

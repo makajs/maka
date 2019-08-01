@@ -5,6 +5,24 @@ import maka from './maka'
 import config from './config'
 import utils from '@makajs/utils'
 
+function getHandler(props, eventName) {
+	return (...args) => {
+		if (props[eventName]) {
+			props[eventName](...args)
+			return
+		}
+
+		if (props.base&& props.base.getAllAction) {
+			var action = props.base.getAllAction()[eventName]
+			if (action) {
+				action(...args)
+				return
+			}
+		}
+	}
+
+}
+
 export default function wrapper(option) {
 	return WrappedComponent => {
 		return class internal extends Component {
@@ -15,18 +33,22 @@ export default function wrapper(option) {
 			}
 
 			componentWillMount() {
-				this.props.componentWillMount && this.props.componentWillMount()
+				getHandler(this.props, 'componentWillMount')()
 			}
 
 			componentDidMount() {
 				this.props.initView && this.props.initView(this)
-				this.props.componentDidMount && this.props.componentDidMount()
+				getHandler(this.props, 'componentDidMount')()
 			}
 
 			shouldComponentUpdate(nextProps, nextState) {
 				if (this.props.shouldComponentUpdate
 					&& this.props.shouldComponentUpdate(nextProps, nextState) === true)
 					return true
+
+				else if(this.props.shouldComponentUpdate
+					&& this.props.shouldComponentUpdate(nextProps, nextState) === false)
+					return false
 
 				if (nextState.hasError != this.state.hasError) {
 					return true
@@ -49,33 +71,29 @@ export default function wrapper(option) {
 					this.setState({ hasError: false, error: undefined })
 				}
 
-				this.props.componentWillReceiveProps
-					&& this.props.componentWillReceiveProps(nextProps)
+				getHandler(this.props, 'componentWillReceiveProps')(nextProps)
 			}
 
 			componentWillUpdate(nextProps, nextState) {
-				this.props.componentWillUpdate
-					&& this.props.componentWillUpdate(nextProps, nextState)
+				getHandler(this.props, 'componentWillUpdate')(nextProps, nextState)
 			}
 
 			componentDidCatch(error, info) {
 				utils.exception.error(error)
 				this.setState({ hasError: true, error })
 
-				this.props.componentDidCatch
-					&& this.props.componentDidCatch(error, info)
+				getHandler(this.props, 'componentDidCatch')(error, info)
 			}
 
 
 			componentWillUnmount() {
 				this.props.unmount && this.props.unmount()
-				this.props.componentWillUnmount
-					&& this.props.componentWillUnmount()
+
+				getHandler(this.props, 'componentWillUnmount')()
 			}
 
 			componentDidUpdate() {
-				this.props.componentDidUpdate
-					&& this.props.componentDidUpdate()
+				getHandler(this.props, 'componentDidUpdate')()
 			}
 
 			render() {
