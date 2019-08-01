@@ -1,6 +1,6 @@
 {
   "name": "@makajs/meta-engine",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "maka meta engine",
   "main": "./lib/index.js",
   "scripts": {
