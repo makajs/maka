@@ -487,6 +487,38 @@ module.exports = _nonIterableSpread;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/objectSpread.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectSpread.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var defineProperty = __webpack_require__(/*! ./defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js":
 /*!************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/objectWithoutProperties.js ***!
@@ -781,7 +813,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
 
@@ -812,10 +844,6 @@ var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "p
 var _pluginFactory = _interopRequireDefault(__webpack_require__(/*! ./pluginFactory */ "./node_modules/@makajs/app-loader/lib/pluginFactory.js"));
 
 var _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ "./node_modules/@makajs/app-loader/lib/parseName.js"));
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var AppLoader =
 /*#__PURE__*/
@@ -870,18 +898,7 @@ function (_React$Component) {
       var _this$props2 = this.props,
           fullName = _this$props2.name,
           payload = _this$props2.payload;
-
-      if (this.props._notClearAppState !== true) {
-        this.props.clearAppState(fullName);
-      } else {
-        var parentApp = this.props._parentApp;
-
-        if (parentApp) {
-          if (!window.MAKA.store.getState().getIn([parentApp, 'data'])) {
-            this.props.clearAppState(fullName);
-          }
-        }
-      }
+      this.props.clearAppState(fullName);
     }
   }, {
     key: "render",
@@ -917,7 +934,7 @@ var _default = (0, _reactRedux.connect)(function (state, props) {
     payload: payload || (0, _immutable.Map)()
   };
 }, function (dispatch) {
-  return _objectSpread({}, (0, _redux.bindActionCreators)(actions, dispatch));
+  return (0, _objectSpread2.default)({}, (0, _redux.bindActionCreators)(actions, dispatch));
 }, null, {
   //withRef: true,
   pure: true
@@ -948,7 +965,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime
 
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js"));
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 
@@ -959,10 +976,6 @@ var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */
 var _loadApp = _interopRequireDefault(__webpack_require__(/*! ./loadApp */ "./node_modules/@makajs/app-loader/lib/loadApp.js"));
 
 var _pluginFactory = _interopRequireDefault(__webpack_require__(/*! ./pluginFactory */ "./node_modules/@makajs/app-loader/lib/pluginFactory.js"));
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var _default = function _default(actionInjections, reducerInjections) {
   return function (store) {
@@ -1011,7 +1024,7 @@ var _default = function _default(actionInjections, reducerInjections) {
                       return getState().get(fullName);
                     };
 
-                    injections = _objectSpread({
+                    injections = (0, _objectSpread2.default)({
                       currentApp: {
                         fullName: fullName,
                         name: name,
@@ -1229,17 +1242,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _options = {};
 
 function config(options) {
   if (options.appUrls && _options.appUrls) {
-    options.appUrls = _objectSpread({}, _options.appUrls, {}, options.appUrls);
+    options.appUrls = (0, _objectSpread2.default)({}, _options.appUrls, options.appUrls);
   }
 
   Object.assign(_options, options);
@@ -1500,6 +1509,8 @@ var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
+var _objectSpread3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
@@ -1509,10 +1520,6 @@ var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */
 var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
 
 var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var globalObj = (0, _utils.getGlobal)();
 var isProduction = false;
@@ -1534,10 +1541,6 @@ function fixUrl(url) {
 
           if (baseUrl.indexOf('/core/v') != -1) {
             baseUrl = baseUrl.substr(0, baseUrl.indexOf('/core/v') + 1);
-          }
-
-          if (baseUrl.indexOf('/maka-sdk/') != -1) {
-            baseUrl = baseUrl.substr(0, baseUrl.indexOf('/maka-sdk/') + 1);
           }
         }
       }
@@ -1640,7 +1643,7 @@ function loadApp(app) {
               }
 
               apps = args.reduce(function (prev, curr) {
-                return curr ? _objectSpread({}, prev, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;
+                return curr ? (0, _objectSpread3.default)({}, prev, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;
               }, {});
 
               if (apps) {
@@ -1886,7 +1889,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _default;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _immutable = __webpack_require__(/*! immutable */ "immutable");
 
@@ -1899,10 +1902,6 @@ var _createReduxConnector = _interopRequireDefault(__webpack_require__(/*! ./cre
 var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
 
 var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var globalObj = (0, _utils.getGlobal)();
 
@@ -1949,7 +1948,7 @@ function loadApp(state, _ref2) {
     if (!forceLoad) state = state.set(fullName, (0, _immutable.Map)());else state = state.set(fullName, (0, _immutable.Map)({
       prevData: state.getIn([fullName, 'data'])
     }));
-    appInfo = _objectSpread({}, appInfo);
+    appInfo = (0, _objectSpread2.default)({}, appInfo);
 
     if (appInfo && appInfo.view && typeof appInfo.view == 'function') {
       component = _config.default.current.componentWrapper()(appInfo.view);
@@ -1978,7 +1977,7 @@ function loadApp(state, _ref2) {
       pluginApps.forEach(function (plugin) {
         if (plugin.pluginApi && plugin.pluginApi.afterAction) actionInternal = plugin.pluginApi.afterAction(actionInternal);
       });
-      actionInstance = _objectSpread({}, actionInstance, {
+      actionInstance = (0, _objectSpread2.default)({}, actionInstance, {
         getDirectFuns: function getDirectFuns() {
           return actionInternal;
         }
@@ -1994,9 +1993,7 @@ function loadApp(state, _ref2) {
     });
     var mapStateToProps = (0, _wrapMapStateToProps.default)(fullName);
     var mapDispatchToProps = (0, _wrapMapDispatchToProps.default)(fullName, actionInstance, reducerInstance);
-    var container = (0, _createReduxConnector.default)(component || appInfo.viewDecorator && appInfo.viewDecorator()(_config.default.current.defaultComponent) || _config.default.current.defaultComponent, mapStateToProps, mapDispatchToProps, function (stateProps, dispatchProps, ownProps) {
-      return _objectSpread({}, ownProps, {}, stateProps, {}, dispatchProps);
-    }, {
+    var container = (0, _createReduxConnector.default)(component || appInfo.viewDecorator && appInfo.viewDecorator()(_config.default.current.defaultComponent) || _config.default.current.defaultComponent, mapStateToProps, mapDispatchToProps, null, {
       //withRef: true, 
       pure: true
     });
@@ -2264,15 +2261,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = wrapMapDispatchToProps;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _redux = __webpack_require__(/*! redux */ "redux");
 
 var _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ "./node_modules/@makajs/app-loader/lib/parseName.js"));
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function wrapMapDispatchToProps(fullName, actionCreators, reducer) {
   var parsedName = (0, _parseName.default)(fullName),
@@ -2287,7 +2280,7 @@ function wrapMapDispatchToProps(fullName, actionCreators, reducer) {
   }
 
   return function (dispatch) {
-    return _objectSpread({}, (0, _redux.bindActionCreators)(wrapActionCreators, dispatch), {}, actionCreators.getDirectFuns && actionCreators.getDirectFuns(parsedName) || {});
+    return (0, _objectSpread2.default)({}, (0, _redux.bindActionCreators)(wrapActionCreators, dispatch), actionCreators.getDirectFuns && actionCreators.getDirectFuns(parsedName) || {});
   };
 }
 
@@ -2451,19 +2444,17 @@ var action = function action(option) {
       };
     }
 
-    if (component.props._notClearAppState === true && !!_this.gs('data')) {} else {
-      var initState = _this.appInfo.state && _this.appInfo.state.data || {};
+    var initState = _this.appInfo.state && _this.appInfo.state.data || {};
 
-      _this.ss({
-        'data': initState
+    _this.ss({
+      'data': initState
+    });
+
+    if (_this.metaHandlers && _this.metaHandlers.onInit) {
+      _this.metaHandlers.onInit({
+        component: component,
+        injections: injections
       });
-
-      if (_this.metaHandlers && _this.metaHandlers.onInit) {
-        _this.metaHandlers.onInit({
-          component: component,
-          injections: injections
-        });
-      }
     }
   });
   (0, _defineProperty2.default)(this, "unmount", function () {
@@ -2869,7 +2860,6 @@ function () {
     value: function registerAction(name, action, isFunction) {
       if (this.actions[name]) {
         console.log("Action already exists. name: ".concat(name, ", please ignore!"));
-        return;
       }
 
       if (isFunction) {
@@ -2947,17 +2937,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = actionMixin;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
 var _action = _interopRequireDefault(__webpack_require__(/*! ./action */ "./node_modules/@makajs/meta-engine/lib/action.js"));
 
 var _actionFactory = _interopRequireDefault(__webpack_require__(/*! ./actionFactory */ "./node_modules/@makajs/meta-engine/lib/actionFactory.js"));
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var isPromise = function isPromise(obj) {
   return !!obj && ((0, _typeof2.default)(obj) === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
@@ -3041,7 +3027,7 @@ function actionMixin() {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
-                  act = new actCls(_objectSpread({}, option, {
+                  act = new actCls((0, _objectSpread2.default)({}, option, {
                     mixins: mixinInstances
                   }));
 
@@ -3059,7 +3045,7 @@ function actionMixin() {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
-                  act = new actCls(_objectSpread({}, option, {}, m.option, {
+                  act = new actCls((0, _objectSpread2.default)({}, option, m.option, {
                     mixins: mixinInstances
                   }));
 
@@ -3073,7 +3059,7 @@ function actionMixin() {
         });
       }
 
-      var curr = new target(_objectSpread({}, option, {
+      var curr = new target((0, _objectSpread2.default)({}, option, {
         mixins: mixinInstances
       }));
       Object.keys(curr).forEach(function (key) {
@@ -3688,7 +3674,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
@@ -3706,10 +3692,6 @@ var _wrapper = _interopRequireDefault(__webpack_require__(/*! ./wrapper */ "./no
 
 var _dec, _class;
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
 var C = (_dec = (0, _wrapper.default)(), _dec(_class =
 /*#__PURE__*/
 function (_Component) {
@@ -3723,7 +3705,7 @@ function (_Component) {
   (0, _createClass2.default)(C, [{
     key: "render",
     value: function render() {
-      return this.props.maka(_objectSpread({}, this.props, {
+      return this.props.maka((0, _objectSpread2.default)({}, this.props, {
         path: 'root'
       }));
     }
@@ -4441,24 +4423,6 @@ var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node
 
 var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
 
-function getHandler(props, eventName) {
-  return function () {
-    if (props[eventName]) {
-      props[eventName].apply(props, arguments);
-      return;
-    }
-
-    if (props.base && props.base.getAllAction) {
-      var action = props.base.getAllAction()[eventName];
-
-      if (action) {
-        action.apply(void 0, arguments);
-        return;
-      }
-    }
-  };
-}
-
 function wrapper(option) {
   return function (WrappedComponent) {
     return (
@@ -4480,18 +4444,18 @@ function wrapper(option) {
         (0, _createClass2.default)(internal, [{
           key: "componentWillMount",
           value: function componentWillMount() {
-            getHandler(this.props, 'componentWillMount')();
+            this.props.componentWillMount && this.props.componentWillMount();
           }
         }, {
           key: "componentDidMount",
           value: function componentDidMount() {
             this.props.initView && this.props.initView(this);
-            getHandler(this.props, 'componentDidMount')();
+            this.props.componentDidMount && this.props.componentDidMount();
           }
         }, {
           key: "shouldComponentUpdate",
           value: function shouldComponentUpdate(nextProps, nextState) {
-            if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) return true;else if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === false) return false;
+            if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) return true;
 
             if (nextState.hasError != this.state.hasError) {
               return true;
@@ -4517,12 +4481,12 @@ function wrapper(option) {
               });
             }
 
-            getHandler(this.props, 'componentWillReceiveProps')(nextProps);
+            this.props.componentWillReceiveProps && this.props.componentWillReceiveProps(nextProps);
           }
         }, {
           key: "componentWillUpdate",
           value: function componentWillUpdate(nextProps, nextState) {
-            getHandler(this.props, 'componentWillUpdate')(nextProps, nextState);
+            this.props.componentWillUpdate && this.props.componentWillUpdate(nextProps, nextState);
           }
         }, {
           key: "componentDidCatch",
@@ -4533,18 +4497,18 @@ function wrapper(option) {
               hasError: true,
               error: error
             });
-            getHandler(this.props, 'componentDidCatch')(error, info);
+            this.props.componentDidCatch && this.props.componentDidCatch(error, info);
           }
         }, {
           key: "componentWillUnmount",
           value: function componentWillUnmount() {
             this.props.unmount && this.props.unmount();
-            getHandler(this.props, 'componentWillUnmount')();
+            this.props.componentWillUnmount && this.props.componentWillUnmount();
           }
         }, {
           key: "componentDidUpdate",
           value: function componentDidUpdate() {
-            getHandler(this.props, 'componentDidUpdate')();
+            this.props.componentDidUpdate && this.props.componentDidUpdate();
           }
         }, {
           key: "render",
@@ -4736,15 +4700,11 @@ exports.setAccessToken = setAccessToken;
 exports.clearAccessToken = clearAccessToken;
 exports.mockApi = exports.mockData = exports.default = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
 var _env = __webpack_require__(/*! ../env */ "./node_modules/@makajs/utils/lib/env/index.js");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var mockApi = {};
 exports.mockApi = mockApi;
@@ -4813,7 +4773,7 @@ function get(url, headers, option) {
       setTimeout(function () {
         try {
           if (getAccessToken()) {
-            headers = headers ? _objectSpread({}, headers, {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
               token: getAccessToken()
             }) : {
               token: getAccessToken()
@@ -4842,8 +4802,7 @@ function get(url, headers, option) {
 
   var request = headers = {
     method: 'GET',
-    credentials: 'same-origin',
-    headers: _objectSpread({
+    headers: (0, _objectSpread2.default)({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }, headers, {
@@ -4860,8 +4819,7 @@ function get(url, headers, option) {
   return new Promise(function (resolve, reject) {
     fetch(url, request).then(function (response) {
       var json = {};
-      var contentType = response.headers.get('Content-Type');
-      contentType = contentType && contentType.split(";")[0];
+      var contentType = response.headers.get('Content-Type').split(";")[0];
 
       if (contentType == 'application/json') {
         json = response.json();
@@ -4898,7 +4856,7 @@ function post(url, data, headers, option) {
       setTimeout(function () {
         try {
           if (getAccessToken()) {
-            headers = headers ? _objectSpread({}, headers, {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
               token: getAccessToken()
             }) : {
               token: getAccessToken()
@@ -4933,8 +4891,7 @@ function post(url, data, headers, option) {
 
   var request = {
     method: 'POST',
-    credentials: 'same-origin',
-    headers: _objectSpread({
+    headers: (0, _objectSpread2.default)({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }, headers, {
@@ -7664,10 +7621,7 @@ module.exports = memoize;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
-// backported and transplited with Babel, with backwards-compat fixes
-
-// Copyright Joyent, Inc. and other Node contributors.
+/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -7717,6 +7671,14 @@ function normalizeArray(parts, allowAboveRoot) {
 
   return parts;
 }
+
+// Split a filename into [root, dir, basename, ext], unix version
+// 'root' is just a slash, or nothing.
+var splitPathRe =
+    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
+var splitPath = function(filename) {
+  return splitPathRe.exec(filename).slice(1);
+};
 
 // path.resolve([from ...], to)
 // posix version
@@ -7833,120 +7795,37 @@ exports.relative = function(from, to) {
 exports.sep = '/';
 exports.delimiter = ':';
 
-exports.dirname = function (path) {
-  if (typeof path !== 'string') path = path + '';
-  if (path.length === 0) return '.';
-  var code = path.charCodeAt(0);
-  var hasRoot = code === 47 /*/*/;
-  var end = -1;
-  var matchedSlash = true;
-  for (var i = path.length - 1; i >= 1; --i) {
-    code = path.charCodeAt(i);
-    if (code === 47 /*/*/) {
-        if (!matchedSlash) {
-          end = i;
-          break;
-        }
-      } else {
-      // We saw the first non-path separator
-      matchedSlash = false;
-    }
+exports.dirname = function(path) {
+  var result = splitPath(path),
+      root = result[0],
+      dir = result[1];
+
+  if (!root && !dir) {
+    // No dirname whatsoever
+    return '.';
   }
 
-  if (end === -1) return hasRoot ? '/' : '.';
-  if (hasRoot && end === 1) {
-    // return '//';
-    // Backwards-compat fix:
-    return '/';
+  if (dir) {
+    // It has a dirname, strip trailing slash
+    dir = dir.substr(0, dir.length - 1);
   }
-  return path.slice(0, end);
+
+  return root + dir;
 };
 
-function basename(path) {
-  if (typeof path !== 'string') path = path + '';
 
-  var start = 0;
-  var end = -1;
-  var matchedSlash = true;
-  var i;
-
-  for (i = path.length - 1; i >= 0; --i) {
-    if (path.charCodeAt(i) === 47 /*/*/) {
-        // If we reached a path separator that was not part of a set of path
-        // separators at the end of the string, stop now
-        if (!matchedSlash) {
-          start = i + 1;
-          break;
-        }
-      } else if (end === -1) {
-      // We saw the first non-path separator, mark this as the end of our
-      // path component
-      matchedSlash = false;
-      end = i + 1;
-    }
-  }
-
-  if (end === -1) return '';
-  return path.slice(start, end);
-}
-
-// Uses a mixed approach for backwards-compatibility, as ext behavior changed
-// in new Node.js versions, so only basename() above is backported here
-exports.basename = function (path, ext) {
-  var f = basename(path);
+exports.basename = function(path, ext) {
+  var f = splitPath(path)[2];
+  // TODO: make this comparison case-insensitive on windows?
   if (ext && f.substr(-1 * ext.length) === ext) {
     f = f.substr(0, f.length - ext.length);
   }
   return f;
 };
 
-exports.extname = function (path) {
-  if (typeof path !== 'string') path = path + '';
-  var startDot = -1;
-  var startPart = 0;
-  var end = -1;
-  var matchedSlash = true;
-  // Track the state of characters (if any) we see before our first dot and
-  // after any path separator we find
-  var preDotState = 0;
-  for (var i = path.length - 1; i >= 0; --i) {
-    var code = path.charCodeAt(i);
-    if (code === 47 /*/*/) {
-        // If we reached a path separator that was not part of a set of path
-        // separators at the end of the string, stop now
-        if (!matchedSlash) {
-          startPart = i + 1;
-          break;
-        }
-        continue;
-      }
-    if (end === -1) {
-      // We saw the first non-path separator, mark this as the end of our
-      // extension
-      matchedSlash = false;
-      end = i + 1;
-    }
-    if (code === 46 /*.*/) {
-        // If this is our first dot, mark it as the start of our extension
-        if (startDot === -1)
-          startDot = i;
-        else if (preDotState !== 1)
-          preDotState = 1;
-    } else if (startDot !== -1) {
-      // We saw a non-dot and non-path separator before our dot, so we should
-      // have a good chance at having a non-empty extension
-      preDotState = -1;
-    }
-  }
 
-  if (startDot === -1 || end === -1 ||
-      // We saw a non-dot character immediately before the dot
-      preDotState === 0 ||
-      // The (right-most) trimmed path component is exactly '..'
-      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
-    return '';
-  }
-  return path.slice(startDot, end);
+exports.extname = function(path) {
+  return splitPath(path)[3];
 };
 
 function filter (xs, f) {

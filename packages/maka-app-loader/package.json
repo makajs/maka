@@ -1,6 +1,6 @@
 {
   "name": "@makajs/app-loader",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "maka app loader",
   "main": "./lib/index",
   "scripts": {

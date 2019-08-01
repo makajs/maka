@@ -92,6 +92,10 @@ var action = function action(option) {
       };
     }
 
+    if (component.props._notClearAppState === undefined) {
+      component.props._notClearAppState = component.props.appQuery.indexOf('_notClearAppState=1') != -1;
+    }
+
     if (component.props._notClearAppState === true && !!_this.gs('data')) {} else {
       var initState = _this.appInfo.state && _this.appInfo.state.data || {};
 
@@ -198,13 +202,13 @@ var action = function action(option) {
     /*
     var metaHandlerKeys = this.cache.handlerKeys,
     	i, key
-    		var fun = (n) => {
+    	var fun = (n) => {
     	let handler = this.metaHandlers[n]
     	if (handler && typeof handler == 'function')
     		handler.__method_name__ = n
-    			return handler
+    		return handler
     }
-    		for (i = 0; key = metaHandlerKeys[i++];) {
+    	for (i = 0; key = metaHandlerKeys[i++];) {
     	values.push(fun(key))
     }*/
 
@@ -229,9 +233,9 @@ var action = function action(option) {
     	let handler = this.dynamicHandlers[n]
     	if (handler && typeof handler == 'function')
     		handler.__method_name__ = n
-    			return handler
+    		return handler
     }
-    		if (this.dynamicHandleKeys) {
+    	if (this.dynamicHandleKeys) {
     	for (i = 0; key = this.dynamicHandleKeys[i++];) {
     		values.push(fun1(key))
     	}
