@@ -114,7 +114,7 @@ function clearAppState(state, {
     fullName
 }) {
 
-    if (!state.has(fullName) || fullName.indexOf("_keepstate=1")!=-1) //保留appState的临时方案
+    if (!state.has(fullName))
         return state
 
     const ks = []
