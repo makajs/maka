@@ -76,9 +76,8 @@ function (_React$Component) {
       if (!req) {
         this.props.loadApp(fullName, this.props.name);
       } else if (this.props.name != nextProps.name) {
-        if (this.props._notClearAppState !== true) {
-          this.props.clearAppState(this.props.name);
-        }
+        //if(this.props._notClearAppState !== true){
+        this.props.clearAppState(this.props.name); //}
       } else {
         var cachePlugins = req.get('plugins').toJS();
         var parsedName = (0, _parseName.default)(fullName);

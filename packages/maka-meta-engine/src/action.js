@@ -69,13 +69,15 @@ export default class action {
 				instance: component
 			}
 		}
-		if(component.props._notClearAppState === undefined){
-			component.props._notClearAppState = component.props.appQuery.indexOf('_notClearAppState=1')!=-1
+
+		var _notClearAppState = component.props._notClearAppState
+		if (component.props._notClearAppState === undefined) {
+			_notClearAppState = !!(component.props.appParams && component.props.appParams["_notClearAppState"])
 		}
 
-		if(component.props._notClearAppState ===true && !!this.gs('data')){
+		if (_notClearAppState === true && !!this.gs('data')) {
 		}
-		else{
+		else {
 			var initState = (this.appInfo.state && this.appInfo.state.data) || {}
 			this.ss({ 'data': initState })
 

@@ -79,11 +79,11 @@ function () {
       /*
       if (this.appComponents && this.appComponents[appName] && this.appComponents[appName].components && this.appComponents[appName].components[firstSeg]) {
           var com = this.appComponents[appName].components[name]
-           if (com && nameSegs.length > 1) {
+            if (com && nameSegs.length > 1) {
               com = this.findChild(com, nameSegs)
           }
-           if (com) return com
-       }*/
+            if (com) return com
+        }*/
 
       var component = this.components[firstSeg];
 

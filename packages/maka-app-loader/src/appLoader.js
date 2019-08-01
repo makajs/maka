@@ -34,9 +34,9 @@ class AppLoader extends React.Component {
 			this.props.loadApp(fullName, this.props.name)
 		}
 		else if (this.props.name != nextProps.name) {
-			if(this.props._notClearAppState !== true){
+			//if(this.props._notClearAppState !== true){
 				this.props.clearAppState(this.props.name) 
-			}
+			//}
 		}
 		else{
 			let cachePlugins = req.get('plugins').toJS()

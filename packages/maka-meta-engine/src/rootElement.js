@@ -51,8 +51,9 @@ export default class Root extends React.PureComponent {
     }
 
     render() {
+        var _notClearAppState = location.hash.indexOf('_notClearAppState') != -1
         return (
-            <appLoader.AppLoader name={this.state.currentApp} />
+            <appLoader.AppLoader key={this.state.currentApp} name={this.state.currentApp} _notClearAppState={_notClearAppState} />
         );
     }
 }

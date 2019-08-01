@@ -83,8 +83,12 @@ function (_React$PureComponent) {
   }, {
     key: "render",
     value: function render() {
+      var _notClearAppState = location.hash.indexOf('_notClearAppState') != -1;
+
       return _react.default.createElement(_appLoader.default.AppLoader, {
-        name: this.state.currentApp
+        key: this.state.currentApp,
+        name: this.state.currentApp,
+        _notClearAppState: _notClearAppState
       });
     }
   }]);
