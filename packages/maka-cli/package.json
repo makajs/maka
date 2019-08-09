@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -64,8 +64,8 @@
     "style-loader": "*",
     "styled-jsx": "*",
     "tar-pack": "*",
+    "terser-webpack-plugin": "*",
     "typescript": "*",
-    "uglifyjs-webpack-plugin": "*",
     "url-loader": "*",
     "validate-npm-package-name": "*",
     "webpack": "*",
