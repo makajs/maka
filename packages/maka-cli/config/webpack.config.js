@@ -2,7 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const DynamicPublicPathPlugin = require("webpack-dynamic-public-path-2")
@@ -22,10 +22,10 @@ const windowObj = `(function(){
 module.exports = function (option) {
     var { isProd, outputPath, isStart } = option,
         minimizer = isProd ? [
-            new UglifyJsPlugin({
-                uglifyOptions: {
+            new TerserPlugin({
+                terserOptions: {
                     ie8: false,
-                    ecma: 8,
+                    //ecma: 8,
                     compress: {
                         unused: false,
                     },
