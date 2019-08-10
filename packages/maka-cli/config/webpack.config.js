@@ -56,41 +56,47 @@ module.exports = function (option) {
 
     var ext = {}
 
-    if (isStart && !isProd) {
-        ext = { devtool: 'cheap-module-source-map' }
+    if (isStart || !isProd) {
+        ext = { devtool: 'source-map' }
     }
 
     const rules = [{
         test: /\.(js|jsx|mjs)$/,
         include: paths.appSrc,
         exclude: paths.appNodeModules,
-        loader: path.resolve(__dirname, '..', 'node_modules', 'babel-loader'),
-        options: {
-            babelrc: false,
-            "presets": [
-                [path.resolve(__dirname, '..', 'node_modules', "@babel/preset-env"), {
-                    "targets": {
-                        "browsers": ["ie >= 11", "chrome >= 60"]
-                    }
-                }],
-                [path.resolve(__dirname, '..', 'node_modules', "@babel/preset-react")]
-            ],
-            "plugins": [
-                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-transform-runtime"), {
-                    "corejs": false,
-                    "helpers": true,
-                    "regenerator": true,
-                    "useESModules": false,
-                    "absoluteRuntime": path.resolve(__dirname)
-                }],
-                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-decorators"), {
-                    "legacy": true
-                }],
-                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-class-properties")],
-                [path.resolve(__dirname, '..', 'node_modules', "styled-jsx/babel")],
-                [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-syntax-dynamic-import")],
-            ]
-        }
+        use: [{
+            loader: path.resolve(__dirname, '..', 'node_modules', 'babel-loader'),
+            options: {
+                babelrc: false,
+                "presets": [
+                    [path.resolve(__dirname, '..', 'node_modules', "@babel/preset-env"), {
+                        "targets": {
+                            "browsers": ["ie >= 11", "chrome >= 60"]
+                        }
+                    }],
+                    [path.resolve(__dirname, '..', 'node_modules', "@babel/preset-react")]
+                ],
+                "plugins": [
+                    [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-transform-runtime"), {
+                        "corejs": false,
+                        "helpers": true,
+                        "regenerator": true,
+                        "useESModules": false,
+                        "absoluteRuntime": path.resolve(__dirname)
+                    }],
+                    [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-decorators"), {
+                        "legacy": true
+                    }],
+                    [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-proposal-class-properties")],
+                    [path.resolve(__dirname, '..', 'node_modules', "styled-jsx/babel")],
+                    [path.resolve(__dirname, '..', 'node_modules', "@babel/plugin-syntax-dynamic-import")],
+                    
+                ]
+            }
+        },{
+            loader:path.resolve(__dirname, '..', 'plugins', 'es5', 'loader'),
+        }]
+        
     }, {
         test: /\.html$/,
         use: path.resolve(__dirname, '..', 'node_modules', 'html2json-loader')
