@@ -5048,15 +5048,15 @@ function after(response, url, data, headers) {
 }
 
 function getAccessToken() {
-  return sessionStorage['_accessToken'] || '';
+  return localStorage['_accessToken'] || ''; //return sessionStorage['_accessToken'] || '';
 }
 
 function setAccessToken(token) {
-  sessionStorage['_accessToken'] = token;
+  localStorage['_accessToken'] = token; //sessionStorage['_accessToken'] = token;
 }
 
 function clearAccessToken() {
-  sessionStorage['_accessToken'] = '';
+  localStorage['_accessToken'] = ''; //sessionStorage['_accessToken'] = ''
 }
 
 var _default = {
