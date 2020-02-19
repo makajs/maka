@@ -1066,7 +1066,13 @@
 	}
 	});
 
-	var ReactReduxContext = React__default.createContext(null);
+	var ReactReduxContext =
+	/*#__PURE__*/
+	React__default.createContext(null);
+
+	{
+	  ReactReduxContext.displayName = 'ReactRedux';
+	}
 
 	// Default to a dummy "batch" implementation that just runs the callback
 	function defaultNoopBatch(callback) {
@@ -1086,42 +1092,69 @@
 	// well as nesting subscriptions of descendant components, so that we can ensure the
 	// ancestor components re-render before descendants
 
-	var CLEARED = null;
 	var nullListeners = {
 	  notify: function notify() {}
 	};
 
 	function createListenerCollection() {
-	  var batch = getBatch(); // the current/next pattern is copied from redux's createStore code.
-	  // TODO: refactor+expose that code to be reusable here?
-
-	  var current = [];
-	  var next = [];
+	  var batch = getBatch();
+	  var first = null;
+	  var last = null;
 	  return {
 	    clear: function clear() {
-	      next = CLEARED;
-	      current = CLEARED;
+	      first = null;
+	      last = null;
 	    },
 	    notify: function notify() {
-	      var listeners = current = next;
 	      batch(function () {
-	        for (var i = 0; i < listeners.length; i++) {
-	          listeners[i]();
+	        var listener = first;
+
+	        while (listener) {
+	          listener.callback();
+	          listener = listener.next;
 	        }
 	      });
 	    },
 	    get: function get() {
-	      return next;
+	      var listeners = [];
+	      var listener = first;
+
+	      while (listener) {
+	        listeners.push(listener);
+	        listener = listener.next;
+	      }
+
+	      return listeners;
 	    },
-	    subscribe: function subscribe(listener) {
+	    subscribe: function subscribe(callback) {
 	      var isSubscribed = true;
-	      if (next === current) next = current.slice();
-	      next.push(listener);
+	      var listener = last = {
+	        callback: callback,
+	        next: null,
+	        prev: last
+	      };
+
+	      if (listener.prev) {
+	        listener.prev.next = listener;
+	      } else {
+	        first = listener;
+	      }
+
 	      return function unsubscribe() {
-	        if (!isSubscribed || current === CLEARED) return;
+	        if (!isSubscribed || first === null) return;
 	        isSubscribed = false;
-	        if (next === current) next = current.slice();
-	        next.splice(next.indexOf(listener), 1);
+
+	        if (listener.next) {
+	          listener.next.prev = listener.prev;
+	        } else {
+	          last = listener.prev;
+	        }
+
+	        if (listener.prev) {
+	          listener.prev.next = listener.next;
+	        } else {
+	          first = listener.next;
+	        }
 	      };
 	    }
 	  };
@@ -1212,15 +1245,17 @@
 	  }, children);
 	}
 
-	Provider.propTypes = {
-	  store: propTypes.shape({
-	    subscribe: propTypes.func.isRequired,
-	    dispatch: propTypes.func.isRequired,
-	    getState: propTypes.func.isRequired
-	  }),
-	  context: propTypes.object,
-	  children: propTypes.any
-	};
+	{
+	  Provider.propTypes = {
+	    store: propTypes.shape({
+	      subscribe: propTypes.func.isRequired,
+	      dispatch: propTypes.func.isRequired,
+	      getState: propTypes.func.isRequired
+	    }),
+	    context: propTypes.object,
+	    children: propTypes.any
+	  };
+	}
 
 	function _extends() {
 	  _extends = Object.assign || function (target) {
@@ -1357,42 +1392,15 @@
 
 	var hoistNonReactStatics_cjs = hoistNonReactStatics;
 
-	/**
-	 * Copyright (c) 2013-present, Facebook, Inc.
-	 *
-	 * This source code is licensed under the MIT license found in the
-	 * LICENSE file in the root directory of this source tree.
-	 */
+	// To get around it, we can conditionally useEffect on the server (no-op) and
+	// useLayoutEffect in the browser. We need useLayoutEffect to ensure the store
+	// subscription callback always has the selector from the latest render commit
+	// available, otherwise a store update may happen between render and the effect,
+	// which may cause missed updates; we also must ensure the store subscription
+	// is created synchronously, otherwise a store update may occur before the
+	// subscription is created and an inconsistent state may be observed
 
-	var invariant = function(condition, format, a, b, c, d, e, f) {
-	  {
-	    if (format === undefined) {
-	      throw new Error('invariant requires an error message argument');
-	    }
-	  }
-
-	  if (!condition) {
-	    var error;
-	    if (format === undefined) {
-	      error = new Error(
-	        'Minified exception occurred; use the non-minified dev environment ' +
-	        'for the full error message and additional helpful warnings.'
-	      );
-	    } else {
-	      var args = [a, b, c, d, e, f];
-	      var argIndex = 0;
-	      error = new Error(
-	        format.replace(/%s/g, function() { return args[argIndex++]; })
-	      );
-	      error.name = 'Invariant Violation';
-	    }
-
-	    error.framesToPop = 1; // we don't care about invariant's own frame
-	    throw error;
-	  }
-	};
-
-	var invariant_1 = invariant;
+	var useIsomorphicLayoutEffect = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 	var EMPTY_ARRAY = [];
 	var NO_SUBSCRIPTION_ARRAY = [null, null];
@@ -1410,28 +1418,118 @@
 	  return [action.payload, updateCount + 1];
 	}
 
+	function useIsomorphicLayoutEffectWithArgs(effectFunc, effectArgs, dependencies) {
+	  useIsomorphicLayoutEffect(function () {
+	    return effectFunc.apply(void 0, effectArgs);
+	  }, dependencies);
+	}
+
+	function captureWrapperProps(lastWrapperProps, lastChildProps, renderIsScheduled, wrapperProps, actualChildProps, childPropsFromStoreUpdate, notifyNestedSubs) {
+	  // We want to capture the wrapper props and child props we used for later comparisons
+	  lastWrapperProps.current = wrapperProps;
+	  lastChildProps.current = actualChildProps;
+	  renderIsScheduled.current = false; // If the render was from a store update, clear out that reference and cascade the subscriber update
+
+	  if (childPropsFromStoreUpdate.current) {
+	    childPropsFromStoreUpdate.current = null;
+	    notifyNestedSubs();
+	  }
+	}
+
+	function subscribeUpdates(shouldHandleStateChanges, store, subscription, childPropsSelector, lastWrapperProps, lastChildProps, renderIsScheduled, childPropsFromStoreUpdate, notifyNestedSubs, forceComponentUpdateDispatch) {
+	  // If we're not subscribed to the store, nothing to do here
+	  if (!shouldHandleStateChanges) return; // Capture values for checking if and when this component unmounts
+
+	  var didUnsubscribe = false;
+	  var lastThrownError = null; // We'll run this callback every time a store subscription update propagates to this component
+
+	  var checkForUpdates = function checkForUpdates() {
+	    if (didUnsubscribe) {
+	      // Don't run stale listeners.
+	      // Redux doesn't guarantee unsubscriptions happen until next dispatch.
+	      return;
+	    }
+
+	    var latestStoreState = store.getState();
+	    var newChildProps, error;
+
+	    try {
+	      // Actually run the selector with the most recent store state and wrapper props
+	      // to determine what the child props should be
+	      newChildProps = childPropsSelector(latestStoreState, lastWrapperProps.current);
+	    } catch (e) {
+	      error = e;
+	      lastThrownError = e;
+	    }
+
+	    if (!error) {
+	      lastThrownError = null;
+	    } // If the child props haven't changed, nothing to do here - cascade the subscription update
+
+
+	    if (newChildProps === lastChildProps.current) {
+	      if (!renderIsScheduled.current) {
+	        notifyNestedSubs();
+	      }
+	    } else {
+	      // Save references to the new child props.  Note that we track the "child props from store update"
+	      // as a ref instead of a useState/useReducer because we need a way to determine if that value has
+	      // been processed.  If this went into useState/useReducer, we couldn't clear out the value without
+	      // forcing another re-render, which we don't want.
+	      lastChildProps.current = newChildProps;
+	      childPropsFromStoreUpdate.current = newChildProps;
+	      renderIsScheduled.current = true; // If the child props _did_ change (or we caught an error), this wrapper component needs to re-render
+
+	      forceComponentUpdateDispatch({
+	        type: 'STORE_UPDATED',
+	        payload: {
+	          error: error
+	        }
+	      });
+	    }
+	  }; // Actually subscribe to the nearest connected ancestor (or store)
+
+
+	  subscription.onStateChange = checkForUpdates;
+	  subscription.trySubscribe(); // Pull data from the store after first render in case the store has
+	  // changed since we began.
+
+	  checkForUpdates();
+
+	  var unsubscribeWrapper = function unsubscribeWrapper() {
+	    didUnsubscribe = true;
+	    subscription.tryUnsubscribe();
+	    subscription.onStateChange = null;
+
+	    if (lastThrownError) {
+	      // It's possible that we caught an error due to a bad mapState function, but the
+	      // parent re-rendered without this component and we're about to unmount.
+	      // This shouldn't happen as long as we do top-down subscriptions correctly, but
+	      // if we ever do those wrong, this throw will surface the error in our tests.
+	      // In that case, throw the error from here so it doesn't get lost.
+	      throw lastThrownError;
+	    }
+	  };
+
+	  return unsubscribeWrapper;
+	}
+
 	var initStateUpdates = function initStateUpdates() {
 	  return [null, 0];
-	}; // React currently throws a warning when using useLayoutEffect on the server.
-	// To get around it, we can conditionally useEffect on the server (no-op) and
-	// useLayoutEffect in the browser. We need useLayoutEffect because we want
-	// `connect` to perform sync updates to a ref to save the latest props after
-	// a render is actually committed to the DOM.
+	};
 
-
-	var useIsomorphicLayoutEffect = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 	function connectAdvanced(
 	/*
 	  selectorFactory is a func that is responsible for returning the selector function used to
 	  compute new props from state, props, and dispatch. For example:
-	     export default connectAdvanced((dispatch, options) => (state, props) => ({
+	      export default connectAdvanced((dispatch, options) => (state, props) => ({
 	      thing: state.things[props.thingId],
 	      saveThing: fields => dispatch(actionCreators.saveThing(props.thingId, fields)),
 	    }))(YourComponent)
-	   Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
+	    Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
 	  outside of their selector as an optimization. Options passed to connectAdvanced are passed to
 	  the selectorFactory, along with displayName and WrappedComponent, as the second argument.
-	   Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
+	    Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
 	  props. Do not use connectAdvanced directly without memoizing results between calls to your
 	  selector, otherwise the Connect component will re-render on every state or props change.
 	*/
@@ -1462,14 +1560,26 @@
 	      context = _ref2$context === void 0 ? ReactReduxContext : _ref2$context,
 	      connectOptions = _objectWithoutPropertiesLoose(_ref2, ["getDisplayName", "methodName", "renderCountProp", "shouldHandleStateChanges", "storeKey", "withRef", "forwardRef", "context"]);
 
-	  invariant_1(renderCountProp === undefined, "renderCountProp is removed. render counting is built into the latest React Dev Tools profiling extension");
-	  invariant_1(!withRef, 'withRef is removed. To access the wrapped instance, use a ref on the connected component');
-	  var customStoreWarningMessage = 'To use a custom Redux store for specific components, create a custom React context with ' + "React.createContext(), and pass the context object to React Redux's Provider and specific components" + ' like: <Provider context={MyContext}><ConnectedComponent context={MyContext} /></Provider>. ' + 'You may also pass a {context : MyContext} option to connect';
-	  invariant_1(storeKey === 'store', 'storeKey has been removed and does not do anything. ' + customStoreWarningMessage);
+	  {
+	    if (renderCountProp !== undefined) {
+	      throw new Error("renderCountProp is removed. render counting is built into the latest React Dev Tools profiling extension");
+	    }
+
+	    if (withRef) {
+	      throw new Error('withRef is removed. To access the wrapped instance, use a ref on the connected component');
+	    }
+
+	    var customStoreWarningMessage = 'To use a custom Redux store for specific components, create a custom React context with ' + "React.createContext(), and pass the context object to React Redux's Provider and specific components" + ' like: <Provider context={MyContext}><ConnectedComponent context={MyContext} /></Provider>. ' + 'You may also pass a {context : MyContext} option to connect';
+
+	    if (storeKey !== 'store') {
+	      throw new Error('storeKey has been removed and does not do anything. ' + customStoreWarningMessage);
+	    }
+	  }
+
 	  var Context = context;
 	  return function wrapWithConnect(WrappedComponent) {
-	    {
-	      invariant_1(reactIs_1(WrappedComponent), "You must pass a component to the function returned by " + (methodName + ". Instead received " + stringifyComponent(WrappedComponent)));
+	    if ( !reactIs_1(WrappedComponent)) {
+	      throw new Error("You must pass a component to the function returned by " + (methodName + ". Instead received " + stringifyComponent(WrappedComponent)));
 	    }
 
 	    var wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
@@ -1519,12 +1629,19 @@
 	        return propsContext && propsContext.Consumer && reactIs_2(React__default.createElement(propsContext.Consumer, null)) ? propsContext : Context;
 	      }, [propsContext, Context]); // Retrieve the store and ancestor subscription via context, if available
 
-	      var contextValue = React.useContext(ContextToUse); // The store _must_ exist as either a prop or in context
+	      var contextValue = React.useContext(ContextToUse); // The store _must_ exist as either a prop or in context.
+	      // We'll check to see if it _looks_ like a Redux store first.
+	      // This allows us to pass through a `store` prop that is just a plain value.
 
-	      var didStoreComeFromProps = Boolean(props.store);
+	      var didStoreComeFromProps = Boolean(props.store) && Boolean(props.store.getState) && Boolean(props.store.dispatch);
 	      var didStoreComeFromContext = Boolean(contextValue) && Boolean(contextValue.store);
-	      invariant_1(didStoreComeFromProps || didStoreComeFromContext, "Could not find \"store\" in the context of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + "or pass a custom React context provider to <Provider> and the corresponding " + ("React context consumer to " + displayName + " in connect options."));
-	      var store = props.store || contextValue.store;
+
+	      if ( !didStoreComeFromProps && !didStoreComeFromContext) {
+	        throw new Error("Could not find \"store\" in the context of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + "or pass a custom React context provider to <Provider> and the corresponding " + ("React context consumer to " + displayName + " in connect options."));
+	      } // Based on the previous check, one of these must be true
+
+
+	      var store = didStoreComeFromProps ? props.store : contextValue.store;
 	      var childPropsSelector = React.useMemo(function () {
 	        // The child props selector needs the store reference as an input.
 	        // Re-create this selector whenever the store changes.
@@ -1599,96 +1716,9 @@
 	      // about useLayoutEffect in SSR, so we try to detect environment and fall back to
 	      // just useEffect instead to avoid the warning, since neither will run anyway.
 
-	      useIsomorphicLayoutEffect(function () {
-	        // We want to capture the wrapper props and child props we used for later comparisons
-	        lastWrapperProps.current = wrapperProps;
-	        lastChildProps.current = actualChildProps;
-	        renderIsScheduled.current = false; // If the render was from a store update, clear out that reference and cascade the subscriber update
+	      useIsomorphicLayoutEffectWithArgs(captureWrapperProps, [lastWrapperProps, lastChildProps, renderIsScheduled, wrapperProps, actualChildProps, childPropsFromStoreUpdate, notifyNestedSubs]); // Our re-subscribe logic only runs when the store/subscription setup changes
 
-	        if (childPropsFromStoreUpdate.current) {
-	          childPropsFromStoreUpdate.current = null;
-	          notifyNestedSubs();
-	        }
-	      }); // Our re-subscribe logic only runs when the store/subscription setup changes
-
-	      useIsomorphicLayoutEffect(function () {
-	        // If we're not subscribed to the store, nothing to do here
-	        if (!shouldHandleStateChanges) return; // Capture values for checking if and when this component unmounts
-
-	        var didUnsubscribe = false;
-	        var lastThrownError = null; // We'll run this callback every time a store subscription update propagates to this component
-
-	        var checkForUpdates = function checkForUpdates() {
-	          if (didUnsubscribe) {
-	            // Don't run stale listeners.
-	            // Redux doesn't guarantee unsubscriptions happen until next dispatch.
-	            return;
-	          }
-
-	          var latestStoreState = store.getState();
-	          var newChildProps, error;
-
-	          try {
-	            // Actually run the selector with the most recent store state and wrapper props
-	            // to determine what the child props should be
-	            newChildProps = childPropsSelector(latestStoreState, lastWrapperProps.current);
-	          } catch (e) {
-	            error = e;
-	            lastThrownError = e;
-	          }
-
-	          if (!error) {
-	            lastThrownError = null;
-	          } // If the child props haven't changed, nothing to do here - cascade the subscription update
-
-
-	          if (newChildProps === lastChildProps.current) {
-	            if (!renderIsScheduled.current) {
-	              notifyNestedSubs();
-	            }
-	          } else {
-	            // Save references to the new child props.  Note that we track the "child props from store update"
-	            // as a ref instead of a useState/useReducer because we need a way to determine if that value has
-	            // been processed.  If this went into useState/useReducer, we couldn't clear out the value without
-	            // forcing another re-render, which we don't want.
-	            lastChildProps.current = newChildProps;
-	            childPropsFromStoreUpdate.current = newChildProps;
-	            renderIsScheduled.current = true; // If the child props _did_ change (or we caught an error), this wrapper component needs to re-render
-
-	            forceComponentUpdateDispatch({
-	              type: 'STORE_UPDATED',
-	              payload: {
-	                latestStoreState: latestStoreState,
-	                error: error
-	              }
-	            });
-	          }
-	        }; // Actually subscribe to the nearest connected ancestor (or store)
-
-
-	        subscription.onStateChange = checkForUpdates;
-	        subscription.trySubscribe(); // Pull data from the store after first render in case the store has
-	        // changed since we began.
-
-	        checkForUpdates();
-
-	        var unsubscribeWrapper = function unsubscribeWrapper() {
-	          didUnsubscribe = true;
-	          subscription.tryUnsubscribe();
-	          subscription.onStateChange = null;
-
-	          if (lastThrownError) {
-	            // It's possible that we caught an error due to a bad mapState function, but the
-	            // parent re-rendered without this component and we're about to unmount.
-	            // This shouldn't happen as long as we do top-down subscriptions correctly, but
-	            // if we ever do those wrong, this throw will surface the error in our tests.
-	            // In that case, throw the error from here so it doesn't get lost.
-	            throw lastThrownError;
-	          }
-	        };
-
-	        return unsubscribeWrapper;
-	      }, [store, subscription, childPropsSelector]); // Now that all that's done, we can finally try to actually render the child component.
+	      useIsomorphicLayoutEffectWithArgs(subscribeUpdates, [shouldHandleStateChanges, store, subscription, childPropsSelector, lastWrapperProps, lastChildProps, renderIsScheduled, childPropsFromStoreUpdate, notifyNestedSubs, forceComponentUpdateDispatch], [store, subscription, childPropsSelector]); // Now that all that's done, we can finally try to actually render the child component.
 	      // We memoize the elements for the rendered child component as an optimization.
 
 	      var renderedWrappedComponent = React.useMemo(function () {
@@ -1733,8 +1763,6 @@
 	  };
 	}
 
-	var hasOwn = Object.prototype.hasOwnProperty;
-
 	function is(x, y) {
 	  if (x === y) {
 	    return x !== 0 || y !== 0 || 1 / x === 1 / y;
@@ -1755,7 +1783,7 @@
 	  if (keysA.length !== keysB.length) return false;
 
 	  for (var i = 0; i < keysA.length; i++) {
-	    if (!hasOwn.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
+	    if (!Object.prototype.hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
 	      return false;
 	    }
 	  }
@@ -2128,7 +2156,8 @@
 	    }, extraOptions));
 	  };
 	}
-	var connect = createConnect();
+	var connect = /*#__PURE__*/
+	createConnect();
 
 	/**
 	 * A hook to access the value of the `ReactReduxContext`. This is a low-level
@@ -2149,14 +2178,18 @@
 
 	function useReduxContext() {
 	  var contextValue = React.useContext(ReactReduxContext);
-	  invariant_1(contextValue, 'could not find react-redux context value; please ensure the component is wrapped in a <Provider>');
+
+	  if ( !contextValue) {
+	    throw new Error('could not find react-redux context value; please ensure the component is wrapped in a <Provider>');
+	  }
+
 	  return contextValue;
 	}
 
 	/**
 	 * Hook factory, which creates a `useStore` hook bound to a given context.
 	 *
-	 * @param {Function} [context=ReactReduxContext] Context passed to your `<Provider>`.
+	 * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
 	 * @returns {Function} A `useStore` hook bound to the specified context.
 	 */
 
@@ -2191,12 +2224,14 @@
 	 * }
 	 */
 
-	var useStore = createStoreHook();
+	var useStore =
+	/*#__PURE__*/
+	createStoreHook();
 
 	/**
 	 * Hook factory, which creates a `useDispatch` hook bound to a given context.
 	 *
-	 * @param {Function} [context=ReactReduxContext] Context passed to your `<Provider>`.
+	 * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
 	 * @returns {Function} A `useDispatch` hook bound to the specified context.
 	 */
 
@@ -2233,17 +2268,9 @@
 	 * }
 	 */
 
-	var useDispatch = createDispatchHook();
-
-	// To get around it, we can conditionally useEffect on the server (no-op) and
-	// useLayoutEffect in the browser. We need useLayoutEffect to ensure the store
-	// subscription callback always has the selector from the latest render commit
-	// available, otherwise a store update may happen between render and the effect,
-	// which may cause missed updates; we also must ensure the store subscription
-	// is created synchronously, otherwise a store update may occur before the
-	// subscription is created and an inconsistent state may be observed
-
-	var useIsomorphicLayoutEffect$1 = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+	var useDispatch =
+	/*#__PURE__*/
+	createDispatchHook();
 
 	var refEquality = function refEquality(a, b) {
 	  return a === b;
@@ -2270,21 +2297,19 @@
 	      selectedState = latestSelectedState.current;
 	    }
 	  } catch (err) {
-	    var errorMessage = "An error occured while selecting the store state: " + err.message + ".";
-
 	    if (latestSubscriptionCallbackError.current) {
-	      errorMessage += "\nThe error may be correlated with this previous error:\n" + latestSubscriptionCallbackError.current.stack + "\n\nOriginal stack trace:";
+	      err.message += "\nThe error may be correlated with this previous error:\n" + latestSubscriptionCallbackError.current.stack + "\n\n";
 	    }
 
-	    throw new Error(errorMessage);
+	    throw err;
 	  }
 
-	  useIsomorphicLayoutEffect$1(function () {
+	  useIsomorphicLayoutEffect(function () {
 	    latestSelector.current = selector;
 	    latestSelectedState.current = selectedState;
 	    latestSubscriptionCallbackError.current = undefined;
 	  });
-	  useIsomorphicLayoutEffect$1(function () {
+	  useIsomorphicLayoutEffect(function () {
 	    function checkForUpdates() {
 	      try {
 	        var newSelectedState = latestSelector.current(store.getState());
@@ -2317,7 +2342,7 @@
 	/**
 	 * Hook factory, which creates a `useSelector` hook bound to a given context.
 	 *
-	 * @param {Function} [context=ReactReduxContext] Context passed to your `<Provider>`.
+	 * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
 	 * @returns {Function} A `useSelector` hook bound to the specified context.
 	 */
 
@@ -2335,7 +2360,9 @@
 	      equalityFn = refEquality;
 	    }
 
-	    invariant_1(selector, "You must pass a selector to useSelectors");
+	    if ( !selector) {
+	      throw new Error("You must pass a selector to useSelectors");
+	    }
 
 	    var _useReduxContext = useReduxContext$1(),
 	        store = _useReduxContext.store,
@@ -2368,7 +2395,9 @@
 	 * }
 	 */
 
-	var useSelector = createSelectorHook();
+	var useSelector =
+	/*#__PURE__*/
+	createSelectorHook();
 
 	setBatch(reactDom.unstable_batchedUpdates);
 
