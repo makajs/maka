@@ -468,6 +468,7 @@ var action = function action(option) {
   this.meta = (0, _immutable.fromJS)(option.appInfo.view);
   var plugins = option.plugins;
   this.cache = {};
+  option.appInfo.viewByImmutable = this.meta;
   common.setMeta(option.appInfo, plugins);
 };
 

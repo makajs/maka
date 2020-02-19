@@ -14,6 +14,8 @@ export default class action {
 		var plugins = option.plugins
 		this.cache = {}
 
+		option.appInfo.viewByImmutable = this.meta
+
 		common.setMeta(option.appInfo, plugins)
 	}
 

@@ -30,6 +30,10 @@ export default class Root extends React.PureComponent {
     }
 
     listen = (location, action) => {
+        if(history.state && history.state.orginalUrl){
+            history.replaceState(history.state.orginalUrl)
+        }
+
         var full = location.pathname + location.search
 
         if ((!full || full == '/') && this.props.appName == this.state.currentApp){
@@ -40,6 +44,10 @@ export default class Root extends React.PureComponent {
 
         full = full.substr(0, 1) == '/' ? full.substr(1) : full
         var target = full.split('/')[0]
+        if(!target){
+            return
+        }
+
         if (target == this.state.currentApp)
             return
 

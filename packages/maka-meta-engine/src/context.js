@@ -3,11 +3,15 @@ class context {
 		this._context = {}
 	}
 
-	set(key, value) {
-		if(value)
-			window.localStorage[key] = JSON.stringify(value)
-		else
+	set(key, value, option = { enableLocalStorage: false }) {
+		if (option.enableLocalStorage) {
+			if (value)
+				window.localStorage[key] = JSON.stringify(value)
+		}
+
+		if( !value && window.localStorage[key]){
 			window.localStorage.removeItem(key)
+		}
 
 		this._context[key] = value
 	}

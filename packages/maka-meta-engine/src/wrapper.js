@@ -25,6 +25,7 @@ function getHandler(props, eventName) {
 
 export default function wrapper(option) {
 	return WrappedComponent => {
+		var WC = WrappedComponent
 		return class internal extends Component {
 
 			constructor(props) {
@@ -104,7 +105,7 @@ export default function wrapper(option) {
 				if (this.props.notRender === true || this.props._notRender === true)
 					return null
 
-				if (!WrappedComponent)
+				if (!WC)
 					return null
 
 				if (!this.props.payload || !this.props.payload.get('data'))
@@ -113,7 +114,7 @@ export default function wrapper(option) {
 				if (this.props.payload.getIn(['data', '_notRender']) === true)
 					return null
 
-				return <WrappedComponent {...this.props} maka={maka} />
+				return <WC {...this.props} totoro={totoro} />
 			}
 		}
 	}

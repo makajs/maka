@@ -35,14 +35,15 @@ export function setMeta(appInfo, plugins = [], appQuery) {
         return
 
     cache.plugin = cache.plugin.set(appName, fromJS(plugins))
-    setMetaForce(appName, appInfo.view, appQuery)
+    setMetaForce(appName, appInfo.viewByImmutable || appInfo.view, appQuery)
 }
 
 export function setMetaForce(appName, meta, appQuery) {
     if (!appName || !meta)
         return
 
-    meta = fromJS(meta)
+    meta = (Immutable.isMap(meta) || Immutable.isList(meta)) ? meta : fromJS(meta)
+    //meta = fromJS(meta)
 
     meta = parseMetaTemplate(meta)
 

@@ -53,6 +53,7 @@ function getHandler(props, eventName) {
 
 function wrapper(option) {
   return function (WrappedComponent) {
+    var WC = WrappedComponent;
     return (
       /*#__PURE__*/
       function (_Component) {
@@ -150,11 +151,11 @@ function wrapper(option) {
             }
 
             if (this.props.notRender === true || this.props._notRender === true) return null;
-            if (!WrappedComponent) return null;
+            if (!WC) return null;
             if (!this.props.payload || !this.props.payload.get('data')) return null;
             if (this.props.payload.getIn(['data', '_notRender']) === true) return null;
-            return _react.default.createElement(WrappedComponent, (0, _extends2.default)({}, this.props, {
-              maka: _maka.default
+            return _react.default.createElement(WC, (0, _extends2.default)({}, this.props, {
+              totoro: totoro
             }));
           }
         }]);

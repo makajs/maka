@@ -22,7 +22,18 @@ function () {
   (0, _createClass2.default)(context, [{
     key: "set",
     value: function set(key, value) {
-      if (value) window.localStorage[key] = JSON.stringify(value);else window.localStorage.removeItem(key);
+      var option = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
+        enableLocalStorage: false
+      };
+
+      if (option.enableLocalStorage) {
+        if (value) window.localStorage[key] = JSON.stringify(value);
+      }
+
+      if (!value && window.localStorage[key]) {
+        window.localStorage.removeItem(key);
+      }
+
       this._context[key] = value;
     }
   }, {

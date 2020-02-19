@@ -38,6 +38,10 @@ function (_React$PureComponent) {
     (0, _classCallCheck2.default)(this, Root);
     _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Root).call(this, props));
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "listen", function (location, action) {
+      if (history.state && history.state.orginalUrl) {
+        history.replaceState(history.state.orginalUrl);
+      }
+
       var full = location.pathname + location.search;
 
       if ((!full || full == '/') && _this.props.appName == _this.state.currentApp) {
@@ -48,6 +52,11 @@ function (_React$PureComponent) {
 
       full = full.substr(0, 1) == '/' ? full.substr(1) : full;
       var target = full.split('/')[0];
+
+      if (!target) {
+        return;
+      }
+
       if (target == _this.state.currentApp) return;
 
       _this.setState({

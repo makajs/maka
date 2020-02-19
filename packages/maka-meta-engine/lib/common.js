@@ -53,12 +53,13 @@ function setMeta(appInfo) {
   var appName = appInfo.name;
   if (cache.meta.has(appName) && JSON.stringify(plugins.sort()) === JSON.stringify(cache.plugin.get(appName).toJS().sort())) return;
   cache.plugin = cache.plugin.set(appName, (0, _immutable.fromJS)(plugins));
-  setMetaForce(appName, appInfo.view, appQuery);
+  setMetaForce(appName, appInfo.viewByImmutable || appInfo.view, appQuery);
 }
 
 function setMetaForce(appName, meta, appQuery) {
   if (!appName || !meta) return;
-  meta = (0, _immutable.fromJS)(meta);
+  meta = _immutable.default.isMap(meta) || _immutable.default.isList(meta) ? meta : (0, _immutable.fromJS)(meta); //meta = fromJS(meta)
+
   meta = parseMetaTemplate(meta);
   var parsed = parseMeta(meta, appName);
   meta = parsed.meta;
