@@ -4,7 +4,8 @@ const chalk = require('chalk');
 const spawn = require('react-dev-utils/crossSpawn');
 
 var root = process.cwd()
-if (process.argv.length == 4) {
+
+if (process.argv[2]) {
     root = path.resolve(root, process.argv[2])
 }
 

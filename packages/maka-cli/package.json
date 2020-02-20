@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -56,7 +56,7 @@
     "optimize-css-assets-webpack-plugin": "*",
     "raw-loader": "*",
     "react": "*",
-    "react-dev-utils": "*",
+    "react-dev-utils": "10.0.0",
     "react-dom": "*",
     "readline-sync": "*",
     "resolve": "*",

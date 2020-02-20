@@ -47,8 +47,8 @@ program
 program
     .command('app <appName>')
     .description('create app')
-    .action(function (...args) {
-        let s = run('app', args);
+    .action(function (appName) {
+        let s = run('app', [appName]);
         process.exit(s);
     })
 
@@ -56,13 +56,18 @@ program
     .command('build')
     .description('build app')
     .option('-d, --dev', 'development')
-    .option('-a, --all', 'all')
-    .action(function (...args) {
+    .option('-a, --all <path>', 'all')
+    .action(function (options) {
         let s
-        if(args[args.length-1].all)
-            s = run('build-all', args)
-        else
-            s = run('build', args)
+        if (options.all) {
+            s = run('build-all', [options.all])
+        }
+        else if (options.dev) {
+            s = run('build', [true])
+        }
+        else {
+            s = run('build', [false])
+        }
         process.exit(s);
     })
 
@@ -70,8 +75,8 @@ program
     .command('pkg')
     .description('packaging app')
     .option('-d, --dev', 'development')
-    .action(function (...args) {
-        let s = run('pkg', args);
+    .action(function (options) {
+        let s = run('pkg', [options.dev ? true : false]);
         process.exit(s);
     })
 
@@ -79,8 +84,8 @@ program
     .command('deploy')
     .description('deploy app')
     .option('-d, --dev', 'development')
-    .action(function (...args) {
-        let s = run('deploy', args);
+    .action(function (options) {
+        let s = run('deploy', [options.dev ? true : false]);
         process.exit(s);
     })
 
@@ -89,8 +94,8 @@ program
     .command('start')
     .description('start app')
     .option('-d, --dev', 'development')
-    .action(function (...args) {
-        let s = run('start', args);
+    .action(function (options) {
+        let s = run('start', [options.dev ? true : false]);
         process.exit(s);
     })
 
@@ -168,8 +173,8 @@ program
 program.parse(process.argv)
 
 function run(script, args) {
+    /*
     var isDev = false
-
     if (typeof args[args.length - 1] == 'object' && args[args.length - 1].dev) {
         isDev = true
     }
@@ -181,8 +186,11 @@ function run(script, args) {
         args.pop()
 
     args.push(isDev)
+    */
+   console.log(args)
     args.splice(0, 0, require.resolve('../scripts/' + script))
     const spawn = require('react-dev-utils/crossSpawn');
+
     const result = spawn.sync(
         'node',
         args,
