@@ -155,7 +155,7 @@ function wrapper(option) {
             if (!this.props.payload || !this.props.payload.get('data')) return null;
             if (this.props.payload.getIn(['data', '_notRender']) === true) return null;
             return _react.default.createElement(WC, (0, _extends2.default)({}, this.props, {
-              totoro: totoro
+              maka: _maka.default
             }));
           }
         }]);

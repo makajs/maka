@@ -114,7 +114,7 @@ export default function wrapper(option) {
 				if (this.props.payload.getIn(['data', '_notRender']) === true)
 					return null
 
-				return <WC {...this.props} totoro={totoro} />
+				return <WC {...this.props} maka={maka} />
 			}
 		}
 	}
