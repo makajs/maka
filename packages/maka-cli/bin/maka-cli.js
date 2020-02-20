@@ -187,7 +187,6 @@ function run(script, args) {
 
     args.push(isDev)
     */
-   console.log(args)
     args.splice(0, 0, require.resolve('../scripts/' + script))
     const spawn = require('react-dev-utils/crossSpawn');
 
