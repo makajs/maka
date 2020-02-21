@@ -4927,7 +4927,7 @@ function get(url, headers, option) {
   }
 
   return new Promise(function (resolve, reject) {
-    fetch(url, request).then(function (response) {
+    fetch(fixUrl(url), request).then(function (response) {
       var json = {};
       var contentType = response.headers.get('Content-Type');
       contentType = contentType && contentType.split(";")[0];
@@ -4958,6 +4958,8 @@ function get(url, headers, option) {
 }
 
 function post(url, data, headers, option) {
+  headers = headers || {};
+
   if (!option || option.ignoreAOP !== true) {
     before(url, data, headers);
   }
@@ -5024,7 +5026,7 @@ function post(url, data, headers, option) {
   }
 
   return new Promise(function (resolve, reject) {
-    fetch(url, request).then(function (response) {
+    fetch(fixUrl(url), request).then(function (response) {
       var json = {};
       var contentType = response.headers.get('Content-Type').split(";")[0];
       var contentDisposition = response.headers.get('Content-Disposition');
