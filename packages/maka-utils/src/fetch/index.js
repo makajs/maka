@@ -63,6 +63,13 @@ function isMockUrl(url) {
 	}
 }
 
+function fixUrl(url) {
+	if(_options.prefix)
+		return `${_options.prefix}${url}`
+	else
+		return url
+}
+
 function get(url, headers, option) {
 	if (!option || option.ignoreAOP !== true) {
 		before()
