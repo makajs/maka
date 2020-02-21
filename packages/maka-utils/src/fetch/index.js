@@ -113,7 +113,7 @@ function get(url, headers, option) {
 	}
 	
 	return new Promise((resolve, reject) => {
-		fetch(url, request)
+		fetch(fixUrl(url), request)
 			.then(response => {
 				let json = {}
 				let contentType = response.headers.get('Content-Type');
@@ -142,6 +142,7 @@ function get(url, headers, option) {
 }
 
 function post(url, data, headers, option) {
+	headers = headers || {}
 	if (!option || option.ignoreAOP !== true) {
 		before(url, data, headers)
 	}
@@ -199,7 +200,7 @@ function post(url, data, headers, option) {
 	}
 
 	return new Promise((resolve, reject) => {
-		fetch(url, request)
+		fetch(fixUrl(url), request)
 			.then(response => { 
 				let json = {}
 				let contentType = response.headers.get('Content-Type').split(";")[0]
