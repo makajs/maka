@@ -81,11 +81,11 @@ program
     })
 
 program
-    .command('deploy')
-    .description('deploy app')
+    .command('deploy <version>')
+    .description('deploy app ')
     .option('-d, --dev', 'development')
-    .action(function (options) {
-        let s = run('deploy', [options.dev ? true : false]);
+    .action(function (version, options) {
+        let s = run('deploy', [version, options.dev ? true : false]);
         process.exit(s);
     })
 
