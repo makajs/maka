@@ -5,7 +5,7 @@ const Command = require('../command');
 class AutodCommand extends Command {
   constructor(rawArgv) {
     super(rawArgv);
-    this.usage = 'Usage: maka autod';
+    this.usage = 'Usage: maka2 autod';
     this.options = {
       check: {
         description: 'dependencies checker',

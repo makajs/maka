@@ -14,7 +14,7 @@ class CovCommand extends Command {
   constructor(argv) {
     super(argv);
 
-    this.usage = 'Usage: maka cov';
+    this.usage = 'Usage: maka2 cov';
 
     this.options = {
       x: {
@@ -138,6 +138,7 @@ class CovCommand extends Command {
     covArgs = covArgs.concat(testArgs);
     return covArgs;
   }
+
 }
 
 module.exports = CovCommand;

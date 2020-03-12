@@ -36,6 +36,14 @@ $ COV_EXCLUDES=ignore/*,test/**/*.test.js maka2 cov
 $ maka2 cov --nyc=-r teamcity -r text //指定nyc参数
 ```
 
+
+- `eslint代码检测`
+```js
+$ maka2 lint //不指定目录默认当前目录
+$ maka2 lint . //指定根目录
+$ maka2 lint lib/aa.js //自定具体目录
+```
+
 ## 备注
 
 - test会自动加载test/.setup.js或者test/.setup.ts

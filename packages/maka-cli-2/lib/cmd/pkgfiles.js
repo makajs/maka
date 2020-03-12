@@ -5,7 +5,7 @@ const Command = require('../command');
 class PkgfilesCommand extends Command {
   constructor(rawArgv) {
     super(rawArgv);
-    this.usage = 'Usage: maka pkgfiles';
+    this.usage = 'Usage: maka2 pkgfiles';
     this.options = {
       check: {
         description: 'assert whether it\'s same',

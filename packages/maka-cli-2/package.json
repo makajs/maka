@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli2",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "makajs cli工具新版本，基于common-bin",
   "main": "index.js",
   "bin": {
@@ -42,6 +42,8 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "maka-lint": "cross-env DEBUG=maka-cli node bin/maka-cli.js lint",
+    "maka-cov": "cross-env DEBUG=maka-cli node bin/maka-cli.js cov",
     "pkgfiles": "node bin/maka-cli.js pkgfiles",
     "cov": "nyc -r lcov -r text-summary npm run test-local",
     "cov-debug": "cross-env DEBUG=maka-cli nyc -r lcov -r text-summary npm run test-local",

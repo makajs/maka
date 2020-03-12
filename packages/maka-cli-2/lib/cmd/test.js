@@ -12,7 +12,7 @@ class TestCommand extends Command {
     super(rawArgv);
 
     // 命令用法说明
-    this.usage = 'Usage: maka test [files] [options]';
+    this.usage = 'Usage: maka2 test [files] [options]';
 
     // 设置Test命令可接受的选项，例如 --require
     this.options = {
