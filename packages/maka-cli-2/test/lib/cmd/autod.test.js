@@ -9,7 +9,7 @@ describe('test/lib/cmd/autod.test.js', () => {
   it('should autod modify', function* () {
     const cwd = path.join(__dirname, '../../fixtures/autod-missing');
     yield coffee.fork(makaCli, [ 'autod' ], { cwd })
-      //.debug()
+      // .debug()
       .expect('stdout', /"urllib": "\d+.\d+.\d+/)
       .expect('code', 0)
       .end();
@@ -18,7 +18,7 @@ describe('test/lib/cmd/autod.test.js', () => {
   it('should autod check fail', function* () {
     const cwd = path.join(__dirname, '../../fixtures/autod-missing');
     yield coffee.fork(makaCli, [ 'autod', '--check' ], { cwd })
-      //.debug()
+      // .debug()
       .expect('code', 1)
       .expect('stderr', /\[ERROR\].*Missing dependencies: \["urllib"\]/)
       .end();

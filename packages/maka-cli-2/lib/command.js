@@ -1,7 +1,6 @@
 'use strict';
 
 const path = require('path');
-const fs = require('fs');
 const BaseCommand = require('common-bin');
 
 class Command extends BaseCommand {
@@ -29,7 +28,7 @@ class Command extends BaseCommand {
 
   get context() {
     const context = super.context;
-    const { argv, debugPort, execArgvObj, cwd, env } = context;
+    const { argv, debugPort, execArgvObj, cwd } = context;
 
     // compatible
     if (debugPort) context.debug = debugPort;

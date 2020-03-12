@@ -14,7 +14,7 @@ class AutodCommand extends Command {
   }
 
   get description() {
-    //自动生成依赖
+    // 自动生成依赖
     return 'Generate pkg.dependencies and pkg.devDependencies automatically';
   }
 

@@ -10,7 +10,7 @@ describe('test/maka-cli.test.js', () => {
   describe('global options', () => {
     it('should show version', done => {
       coffee.fork(makaBin, [ '--version' ], { cwd })
-        //.debug()
+        // .debug()
         .expect('stdout', /\d+\.\d+\.\d+/)
         .expect('code', 0)
         .end(done);

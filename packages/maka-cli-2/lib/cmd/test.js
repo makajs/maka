@@ -11,60 +11,60 @@ class TestCommand extends Command {
   constructor(rawArgv) {
     super(rawArgv);
 
-    //命令用法说明
+    // 命令用法说明
     this.usage = 'Usage: maka test [files] [options]';
 
-    //设置Test命令可接受的选项，例如 --require
+    // 设置Test命令可接受的选项，例如 --require
     this.options = {
       require: {
-        description: 'require the given module', //必须给定模块
+        description: 'require the given module', // 必须给定模块
         alias: 'r',
         type: 'array',
       },
       grep: {
-        description: 'only run tests matching <pattern>', //仅运行与<模式>匹配的测试
+        description: 'only run tests matching <pattern>', // 仅运行与<模式>匹配的测试
         alias: 'g',
         type: 'array',
       },
       timeout: {
-        description: 'set test-case timeout in milliseconds', //设置测试用例超时（毫秒）
+        description: 'set test-case timeout in milliseconds', // 设置测试用例超时（毫秒）
         alias: 't',
         type: 'number',
       },
       'full-trace': {
-        description: 'display the full stack trace', //显示完整堆栈跟踪
+        description: 'display the full stack trace', // 显示完整堆栈跟踪
       },
       changed: {
-        //只测试更改的文件并匹配${cwd}/test/**/*.test。（js | ts）
-        description: 'only test with changed files and match ${cwd}/test/**/*.test.(js|ts)', 
+        // 只测试更改的文件并匹配${cwd}/test/**/*.test。（js | ts）
+        description: 'only test with changed files and match ${cwd}/test/**/*.test.(js|ts)',
         alias: 'c',
       },
       'dry-run': {
         type: 'boolean',
-        description: 'whether show test command, no test will be executed', //用户排练，显示测试命令，不执行任何测试
+        description: 'whether show test command, no test will be executed', // 用户排练，显示测试命令，不执行任何测试
         alias: 'd',
       },
     };
   }
 
   get description() {
-    return 'Run test with mocha'; //使用mocha库执行测试
+    return 'Run test with mocha'; // 使用mocha库执行测试
   }
 
   * run(context) {
-    debug('rawArgv: %s', context.rawArgv)
+    debug('rawArgv: %s', context.rawArgv);
     const opt = {
       env: Object.assign({
         NODE_ENV: 'test',
       }, context.env),
       execArgv: context.execArgv,
     };
-    //mocha命令行入口点文件
+    // mocha命令行入口点文件
     const mochaFile = require.resolve('mocha/bin/_mocha');
     const testArgs = yield this.formatTestArgs(context);
     if (!testArgs) return;
 
-    //排练，不运行
+    // 排练，不运行
     if (context.argv['dry-run']) {
       debug('test with dry-run');
       console.log(mochaFile);
@@ -74,7 +74,7 @@ class TestCommand extends Command {
 
     debug('run test: %s %s', mochaFile, testArgs.join(' '));
 
-    //使用node运行命令
+    // 使用node运行命令
     yield this.helper.forkNode(mochaFile, testArgs, opt);
   }
 
@@ -149,8 +149,8 @@ class TestCommand extends Command {
     if (testArgv.changed) {
       pattern = yield this._getChangedTestFiles();
       if (!pattern.length) {
-        //console.log('No changed test files');
-        debug('No changed test files')
+        // console.log('No changed test files');
+        debug('No changed test files');
         return;
       }
     }

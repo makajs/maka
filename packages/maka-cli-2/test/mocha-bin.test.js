@@ -9,7 +9,7 @@ describe('test/mocha-bin.test.js', () => {
 
   it('should test with mocha', () => {
     return coffee.fork(mochaBin, [ 'test/*.test.js' ], { cwd })
-      //.debug()
+      // .debug()
       .expect('stdout', /1 passing/)
       .expect('code', 0)
       .end();
