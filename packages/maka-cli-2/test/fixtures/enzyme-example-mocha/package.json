@@ -1,0 +1,32 @@
+{
+  "name": "enzyme-example-mocha",
+  "version": "0.1.0",
+  "description": "Example project with React + Enzyme + Mocha",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "mocha test/.setup.js test/**/*-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lelandrichardson/enzyme-example-mocha.git"
+  },
+  "author": "Leland Richardson <leland.richardson@airbnb.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lelandrichardson/enzyme-example-mocha/issues"
+  },
+  "homepage": "https://github.com/lelandrichardson/enzyme-example-mocha",
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-preset-airbnb": "^1.0.1",
+    "babel-register": "^6.4.3",
+    "enzyme": "^2.0.0",
+    "jsdom": "^8.0.1",
+    "react-addons-test-utils": "^0.14.7"
+  },
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  },
+  "files": []
+}

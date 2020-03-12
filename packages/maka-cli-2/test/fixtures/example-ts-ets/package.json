@@ -1,0 +1,7 @@
+{
+  "name": "real-app",
+  "egg": {
+    "typescript": true,
+    "declarations": false
+  }
+}

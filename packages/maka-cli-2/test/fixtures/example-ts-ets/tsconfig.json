@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "egg": [
+        "../../../node_modules/egg"
+      ],
+      "egg-mock": [
+        "../../../node_modules/egg-mock"
+      ]
+    }
+  },
+  "include": [
+    "./**/*"
+  ]
+}

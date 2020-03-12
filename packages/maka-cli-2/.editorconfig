@@ -1,0 +1,26 @@
+# http://editorconfig.org
+root = true
+
+# 匹配全部文件
+[*]
+# 缩进风格，可选"space"、"tab"
+indent_style = space
+# 缩进的空格数
+indent_size = 2
+# 结尾换行符，可选"lf"、"cr"、"crlf"
+end_of_line = lf
+# 设置字符集
+charset = utf-8
+# 是否将行尾空格自动删除
+trim_trailing_whitespace = true
+# 在文件结尾插入新行
+insert_final_newline = true
+
+# 匹配md结尾文件
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style = tab

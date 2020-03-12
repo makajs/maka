@@ -1,0 +1,6 @@
+{
+  "name": "example-ts-pkg",
+  "egg": {
+    "typescript": true
+  }
+}
