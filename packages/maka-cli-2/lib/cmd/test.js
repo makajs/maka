@@ -3,6 +3,7 @@
 const debug = require('debug')('maka-cli');
 const fs = require('fs');
 const path = require('path');
+const paths = require('../paths');
 const globby = require('globby');
 const Command = require('../command');
 const changed = require('jest-changed-files');
@@ -60,7 +61,7 @@ class TestCommand extends Command {
       execArgv: context.execArgv,
     };
     // mocha命令行入口点文件
-    const mochaFile = require.resolve('mocha/bin/_mocha');
+    const mochaFile = path.join(paths.ownNodeModules, 'mocha/bin/_mocha');
     const testArgs = yield this.formatTestArgs(context);
     if (!testArgs) return;
 
@@ -85,7 +86,7 @@ class TestCommand extends Command {
     // remove ts-node, ts-node and espower-typescript can't coexist
     // because espower-typescript@9 has already register ts-node
     if (argv.typescript) {
-      execArgvObj.require.splice(execArgvObj.require.indexOf(require.resolve('ts-node/register')), 1);
+      execArgvObj.require.splice(execArgvObj.require.indexOf(path.join(paths.ownNodeModules, 'ts-node/register/index.js')), 1);
     }
 
     return context;
@@ -126,20 +127,20 @@ class TestCommand extends Command {
     // clean mocha stack, inspired by https://github.com/rstacruz/mocha-clean
     // 清除mocha堆栈
     // [mocha built-in](https://github.com/mochajs/mocha/blob/master/lib/utils.js#L738) don't work with `[npminstall](https://github.com/cnpm/npminstall)`, so we will override it.
-    if (!testArgv.fullTrace) requireArr.unshift(require.resolve('../mocha-clean'));
+    if (!testArgv.fullTrace) requireArr.unshift(path.join(__dirname, '../mocha-clean.js'));
 
-    requireArr.push(require.resolve('co-mocha'));
+    requireArr.push(path.join(paths.ownNodeModules, 'co-mocha/lib/co-mocha.js'));
 
     if (requireArr.includes('intelli-espower-loader')) {
       console.warn('[maka-cli] don\'t need to manually require `intelli-espower-loader` anymore');
     } else {
-      requireArr.push(require.resolve('intelli-espower-loader'));
+      requireArr.push(path.join(paths.ownNodeModules, 'intelli-espower-loader/intelli-espower-loader.js'));
     }
 
     // for power-assert
     if (testArgv.typescript) {
       // remove ts-node in context getter on top.
-      requireArr.push(require.resolve('espower-typescript/guess'));
+      requireArr.push(path.join(paths.ownNodeModules, 'espower-typescript/guess.js'));
     }
 
     testArgv.require = requireArr;

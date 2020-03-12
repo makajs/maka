@@ -3,6 +3,7 @@
 
 const debug = require('debug')('maka-cli');
 const path = require('path');
+const paths = require('../paths');
 const rimraf = require('mz-modules/rimraf');
 const testExclude = require('test-exclude');
 
@@ -68,7 +69,7 @@ class CovCommand extends Command {
       this.addExclude(exclude);
     }
 
-    const nycCli = require.resolve('nyc/bin/nyc.js');
+    const nycCli = path.join(paths.ownNodeModules, 'nyc/bin/nyc.js');
     const coverageDir = path.join(cwd, 'coverage');
     yield rimraf(coverageDir);
     const outputDir = path.join(cwd, 'node_modules/.nyc_output');
@@ -132,7 +133,7 @@ class CovCommand extends Command {
       covArgs.push('-x');
       covArgs.push(exclude);
     }
-    covArgs.push(require.resolve('mocha/bin/_mocha'));
+    covArgs.push(path.join(paths.ownNodeModules, 'mocha/bin/_mocha'));
     const testArgs = yield this.formatTestArgs(context);
     if (!testArgs) return;
     covArgs = covArgs.concat(testArgs);

@@ -3,12 +3,18 @@
 const Command = require('../command');
 const debug = require('debug')('maka-cli');
 const EXCLUDES = Symbol('lint#excludes');
+const path = require('path');
+const paths = require('../paths');
 
 class LintCommand extends Command {
   constructor(rawArgv) {
     super(rawArgv);
     this.usage = 'Usage: maka2 lint';
     this.options = {
+      'config-style': {
+        description: '选择一种配置分割，默认index',
+        type: 'string',
+      },
     };
 
     this[EXCLUDES] = new Set([
@@ -25,7 +31,7 @@ class LintCommand extends Command {
   * run(context) {
     const { cwd, execArgv, env } = context;
     const lintArgs = yield this.getLintArgs(context);
-    const eslintCli = require.resolve('eslint/bin/eslint.js');
+    const eslintCli = path.join(paths.ownNodeModules, 'eslint/bin/eslint.js');
     if (!lintArgs) return;
 
     const opt = {
@@ -48,9 +54,7 @@ class LintCommand extends Command {
    * @protected
    */
   * getLintArgs(context) {
-    const lintArgs = [];
-
-    lintArgs.push('--config', require.resolve('eslint-config-maka/index.js'));
+    let lintArgs = [];
 
     const excludes = (process.env.COV_EXCLUDES && process.env.COV_EXCLUDES.split(',')) || [];
     for (const exclude of excludes) {
@@ -61,9 +65,11 @@ class LintCommand extends Command {
       lintArgs.push(exclude);
     }
 
-    const testArgs = yield this.formatLintArgs(context);
+    const userArgs = yield this.formatLintArgs(context);
 
-    return lintArgs.concat(testArgs);
+    lintArgs = lintArgs.concat(userArgs);
+
+    return lintArgs;
   }
 
   addExclude(exclude) {
@@ -72,6 +78,14 @@ class LintCommand extends Command {
 
   * formatLintArgs({ argv }) {
     const lintArgv = Object.assign({}, argv);
+    if (!lintArgv.configStyle) {
+      lintArgv.config = path.join(paths.ownNodeModules, 'eslint-config-maka/index.js');
+    } else {
+      lintArgv.config = path.join(paths.ownNodeModules, `eslint-config-maka/${lintArgv.configStyle}.js`);
+      delete lintArgv['config-style'];
+      delete lintArgv.configStyle;
+    }
+
     const pattern = lintArgv._.slice();
 
     if (!pattern.length) {

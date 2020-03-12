@@ -176,9 +176,9 @@ describe('test/lib/cmd/test.test.js', () => {
         /_mocha/g,
         /--timeout=12345/,
         /--exit/,
-        /--require=.*mocha-clean\.js/,
-        /--require=.*co-mocha\.js/,
-        /--require=.*intelli-espower-loader\.js/,
+        /.*mocha-clean\.js/,
+        /.*co-mocha\.js/,
+        /.*intelli-espower-loader\.js/,
         /foo\.test\.js/,
       ])
       .notExpect('stdout', /--dry-run/)

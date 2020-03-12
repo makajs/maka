@@ -1,6 +1,8 @@
 'use strict';
 
 const Command = require('../command');
+const path = require('path');
+const paths = require('../paths');
 
 class PkgfilesCommand extends Command {
   constructor(rawArgv) {
@@ -24,7 +26,7 @@ class PkgfilesCommand extends Command {
       '--entry', '*.js',
     ];
     if (argv.check) args.push('--check');
-    const pkgfiles = require.resolve('ypkgfiles/bin/ypkgfiles.js');
+    const pkgfiles = path.join(paths.ownNodeModules, 'ypkgfiles/bin/ypkgfiles.js');
     yield this.helper.forkNode(pkgfiles, args, { cwd });
   }
 }
