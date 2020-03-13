@@ -21,6 +21,9 @@ class LintCommand extends Command {
       'node_modules/',
       'coverage/',
       'test/fixtures/',
+      'dist/',
+      'test/',
+      'docs/',
     ]);
   }
 
