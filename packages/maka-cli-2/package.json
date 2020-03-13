@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli2",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "makajs cli工具新版本，基于common-bin",
   "main": "index.js",
   "bin": {
@@ -23,13 +23,11 @@
     "power-assert": "^1.6.1",
     "test-exclude": "^5.1.0",
     "ts-node": "^7",
-    "ypkgfiles": "^1.6.0"
-  },
-  "devDependencies": {
+    "ypkgfiles": "^1.6.0",
     "@types/mocha": "^5.0.0",
     "coffee": "^5.2.1",
+    "eslint-config-maka": "^1.0.1",
     "cross-env": "^7.0.2",
-    "eslint": "^4.12.1",
     "mm": "^2.5.0",
     "jsdom": "^8.0.1",
     "enzyme": "^2.0.0",
@@ -37,8 +35,9 @@
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.7",
-    "typescript": "^3",
-    "eslint-config-maka": "^1.0.1"
+    "typescript": "^3"
+  },
+  "devDependencies": {
   },
   "scripts": {
     "lint": "eslint .",
