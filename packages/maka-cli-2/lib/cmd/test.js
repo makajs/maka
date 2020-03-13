@@ -61,7 +61,7 @@ class TestCommand extends Command {
       execArgv: context.execArgv,
     };
     // mocha命令行入口点文件
-    const mochaFile = path.join(paths.ownNodeModules, 'mocha/bin/_mocha');
+    const mochaFile = paths.rr('mocha/bin/_mocha');
     const testArgs = yield this.formatTestArgs(context);
     if (!testArgs) return;
 
@@ -86,7 +86,7 @@ class TestCommand extends Command {
     // remove ts-node, ts-node and espower-typescript can't coexist
     // because espower-typescript@9 has already register ts-node
     if (argv.typescript) {
-      execArgvObj.require.splice(execArgvObj.require.indexOf(path.join(paths.ownNodeModules, 'ts-node/register/index.js')), 1);
+      execArgvObj.require.splice(execArgvObj.require.indexOf(paths.rr('ts-node/register/index.js')), 1);
     }
 
     return context;
@@ -129,18 +129,18 @@ class TestCommand extends Command {
     // [mocha built-in](https://github.com/mochajs/mocha/blob/master/lib/utils.js#L738) don't work with `[npminstall](https://github.com/cnpm/npminstall)`, so we will override it.
     if (!testArgv.fullTrace) requireArr.unshift(path.join(__dirname, '../mocha-clean.js'));
 
-    requireArr.push(path.join(paths.ownNodeModules, 'co-mocha/lib/co-mocha.js'));
+    requireArr.push(paths.rr('co-mocha'));
 
     if (requireArr.includes('intelli-espower-loader')) {
       console.warn('[maka-cli] don\'t need to manually require `intelli-espower-loader` anymore');
     } else {
-      requireArr.push(path.join(paths.ownNodeModules, 'intelli-espower-loader/intelli-espower-loader.js'));
+      requireArr.push(paths.rr('intelli-espower-loader'));
     }
 
     // for power-assert
     if (testArgv.typescript) {
       // remove ts-node in context getter on top.
-      requireArr.push(path.join(paths.ownNodeModules, 'espower-typescript/guess.js'));
+      requireArr.push(paths.rr('espower-typescript/guess.js'));
     }
 
     testArgv.require = requireArr;

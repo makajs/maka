@@ -42,6 +42,7 @@ $ maka2 cov --nyc=-r teamcity -r text //指定nyc参数
 $ maka2 lint //不指定目录默认当前目录
 $ maka2 lint . //指定根目录
 $ maka2 lint lib/aa.js //自定具体目录
+$ maka2 lint --config-style react //风格支持react、index、typescript
 ```
 
 ## 备注

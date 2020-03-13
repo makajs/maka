@@ -1,7 +1,6 @@
 'use strict';
 
 const Command = require('../command');
-const path = require('path');
 const paths = require('../paths');
 
 class AutodCommand extends Command {
@@ -24,7 +23,7 @@ class AutodCommand extends Command {
     const args = [];
     if (argv.check) args.push('--check');
     args.push('--registry=https://registry.npm.taobao.org/');
-    const autodBin = path.join(paths.ownNodeModules, 'autod/bin/autod.js');
+    const autodBin = paths.rr('autod/bin/autod.js');
     yield this.helper.forkNode(autodBin, args, { cwd });
   }
 }

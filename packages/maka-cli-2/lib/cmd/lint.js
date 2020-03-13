@@ -3,7 +3,6 @@
 const Command = require('../command');
 const debug = require('debug')('maka-cli');
 const EXCLUDES = Symbol('lint#excludes');
-const path = require('path');
 const paths = require('../paths');
 
 class LintCommand extends Command {
@@ -24,6 +23,8 @@ class LintCommand extends Command {
       'dist/',
       'test/',
       'docs/',
+      'build/',
+      'run/',
     ]);
   }
 
@@ -34,7 +35,7 @@ class LintCommand extends Command {
   * run(context) {
     const { cwd, execArgv, env } = context;
     const lintArgs = yield this.getLintArgs(context);
-    const eslintCli = path.join(paths.ownNodeModules, 'eslint/bin/eslint.js');
+    const eslintCli = paths.rr('eslint/bin/eslint.js');
     if (!lintArgs) return;
 
     const opt = {
@@ -82,9 +83,9 @@ class LintCommand extends Command {
   * formatLintArgs({ argv }) {
     const lintArgv = Object.assign({}, argv);
     if (!lintArgv.configStyle) {
-      lintArgv.config = path.join(paths.ownNodeModules, 'eslint-config-maka/index.js');
+      lintArgv.config = paths.rr('eslint-config-maka/index.js');
     } else {
-      lintArgv.config = path.join(paths.ownNodeModules, `eslint-config-maka/${lintArgv.configStyle}.js`);
+      lintArgv.config = paths.rr(`eslint-config-maka/${lintArgv.configStyle}.js`);
       delete lintArgv['config-style'];
       delete lintArgv.configStyle;
     }
