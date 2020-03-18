@@ -48,7 +48,7 @@ describe('test/lib/cmd/init.test.js', () => {
       '--registry', 'china',
       'helloworld',
     ], { cwd: tmp })
-      .debug()
+      // .debug()
       .expect('code', 0)
       .end();
 

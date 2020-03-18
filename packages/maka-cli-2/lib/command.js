@@ -15,6 +15,19 @@ class Command extends BaseCommand {
     // common-bin setter, don't care about override at sub class
     // https://github.com/node-modules/common-bin/blob/master/lib/command.js#L158
     this.options = {
+      typescript: {
+        description: 'whether enable typescript support, will load `ts-node/register` etc',
+        type: 'boolean',
+        alias: 'ts',
+        default: undefined,
+      },
+
+      declarations: {
+        description: 'whether create dts, will load `egg-ts-helper/register`',
+        type: 'boolean',
+        alias: 'dts',
+        default: undefined,
+      },
     };
   }
 
