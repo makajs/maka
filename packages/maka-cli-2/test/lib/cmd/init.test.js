@@ -42,10 +42,11 @@ describe('test/lib/cmd/init.test.js', () => {
   it('should work', function* () {
     const boilerplatePath = path.join(__dirname, '../../', 'fixtures/simple-boilerplate');
     mm(process.env, 'DEBUG', 'maka-cli');
-    yield coffee.fork(makaBin, [ 'init',
+    yield coffee.fork(makaBin, [
+      'init',
       '--template', boilerplatePath,
       '--silent',
-      '--registry', 'china',
+      // '--registry', 'china',
       'helloworld',
     ], { cwd: tmp })
       // .debug()

@@ -12,12 +12,14 @@ const inquirer = require('inquirer');
 // const yargs = require('yargs');
 const glob = require('globby');
 const is = require('is-type-of');
-const homedir = require('node-homedir');
+// const homedir = require('node-homedir');
 const compressing = require('compressing');
 const rimraf = require('mz-modules/rimraf');
 const isTextOrBinary = require('istextorbinary');
 const ProxyAgent = require('proxy-agent');
 const Command = require('../command');
+const rc = require('rc');
+
 
 require('colors');
 
@@ -367,17 +369,16 @@ class InitCommand extends Command {
       case 'npm':
         return 'https://registry.npmjs.org';
       default: {
+
+
         // https开头
         if (/^https?:/.test(key)) {
           return key.replace(/\/$/, ''); // 去除末尾反斜杠
         }
-        // 获取
-        const home = homedir();
-        let url = process.env.npm_registry || process.env.npm_config_registry || 'https://registry.npmjs.org';
-        if (fs.existsSync(path.join(home, '.cnpmrc')) || fs.existsSync(path.join(home, '.tnpmrc'))) {
-          url = 'https://registry.npm.taobao.org';
-        }
-        url = url.replace(/\/$/, '');
+
+        const result = rc('npm', { registry: 'https://registry.npmjs.org/' });
+        const url = result['npm:registry'] || result.registry || result.config_registry || 'https://registry.npm.taobao.org';
+
         return url;
 
       }

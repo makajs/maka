@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli2",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "makajs cli工具新版本，基于common-bin",
   "main": "index.js",
   "bin": {
@@ -33,6 +33,7 @@
     "npm-updater": "^3.0.3",
     "nyc": "^13.3.0",
     "power-assert": "^1.6.1",
+    "rc": "^1.2.8",
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.7",
