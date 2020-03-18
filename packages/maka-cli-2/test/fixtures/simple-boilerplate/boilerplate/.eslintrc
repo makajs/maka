@@ -1,0 +1,6 @@
+{
+  "extends": "eslint-config-maka",
+  "rules": {
+    "no-unused-vars": "off"
+  }
+}

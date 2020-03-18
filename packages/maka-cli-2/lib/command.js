@@ -2,6 +2,7 @@
 
 const path = require('path');
 const BaseCommand = require('common-bin');
+const fs = require('fs');
 
 class Command extends BaseCommand {
   constructor(rawArgv) {
@@ -28,9 +29,10 @@ class Command extends BaseCommand {
 
   get context() {
     const context = super.context;
-    const { argv, debugPort, execArgvObj, cwd } = context;
+    const { argv, debugPort, execArgvObj, cwd, env } = context;
 
     // compatible
+    // 兼容参数
     if (debugPort) context.debug = debugPort;
 
     // remove unuse args
@@ -39,7 +41,48 @@ class Command extends BaseCommand {
     // read package.json
     let baseDir = argv.baseDir || cwd;
     if (!path.isAbsolute(baseDir)) baseDir = path.join(cwd, baseDir);
+
+    const pkgFile = path.join(baseDir, 'package.json');
+    const pkgInfo = fs.existsSync(pkgFile) ? require(pkgFile) : null;
+    const makaInfo = pkgInfo && pkgInfo.maka;
     execArgvObj.require = execArgvObj.require || [];
+
+
+    // read `maka.typescript` from package.json if not pass argv
+    if (argv.typescript === undefined && makaInfo) {
+      argv.typescript = makaInfo.typescript === true;
+    }
+
+    // read `maka.declarations` from package.json if not pass argv
+    if (argv.declarations === undefined && makaInfo) {
+      argv.declarations = makaInfo.declarations === true;
+    }
+
+    // read `maka.require` from package.json
+    if (makaInfo && makaInfo.require && Array.isArray(makaInfo.require)) {
+      execArgvObj.require = execArgvObj.require.concat(makaInfo.require);
+    }
+
+    // load ts-node
+    if (argv.typescript) {
+      execArgvObj.require.push(require.resolve('ts-node/register'));
+
+      // tell maka loader to load ts file
+      env.MAKA_TYPESCRIPT = 'true';
+
+      // use type check
+      env.TS_NODE_TYPE_CHECK = process.env.TS_NODE_TYPE_CHECK || 'true';
+
+      // load files from tsconfig on startup
+      env.TS_NODE_FILES = process.env.TS_NODE_FILES || 'true';
+    }
+
+    // 暂时不支持，未来参考maka-ts-helper/register
+    // load maka-ts-helper
+    // if (argv.declarations) {
+    // execArgvObj.require.push(require.resolve('maka-ts-helper/register'));
+    // }
+
     return context;
   }
 }
