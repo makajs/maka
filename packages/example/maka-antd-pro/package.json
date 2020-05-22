@@ -25,6 +25,5 @@
     "port": 8000
   },
   "subAppDir": "./apps",
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

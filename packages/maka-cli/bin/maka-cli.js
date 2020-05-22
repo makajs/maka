@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 'use strict';
-
+// 指定脚本解释器为node
 var chalk = require('chalk');
 
 var currentNodeVersion = process.versions.node;
 var semver = currentNodeVersion.split('.');
 var major = semver[0];
+
 
 if (major < 8) {
     console.error(

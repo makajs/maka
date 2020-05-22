@@ -1,5 +1,5 @@
+#!/usr/bin/env node
 'use strict';
-
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 
@@ -20,7 +20,7 @@ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printBuildError = require('react-dev-utils/printBuildError');
 const isDev = process.argv[process.argv.length - 1] === 'true'
-const outputPath = isDev ? path.resolve(process.cwd(), 'build/dev') : path.resolve(process.cwd(), 'build/prod') 
+const outputPath = isDev ? path.resolve(process.cwd(), 'build/dev') : path.resolve(process.cwd(), 'build/prod')
 
 const createWebpackConfig = require('../config/webpack.config');
 const config = createWebpackConfig({ isProd: !isDev, outputPath: outputPath });
