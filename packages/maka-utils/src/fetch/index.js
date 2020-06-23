@@ -2,7 +2,9 @@
 import {getGlobal} from '../env'
 const mockApi = {}
 const mockData = {}
-const _options = {}
+const _options = {
+	store: localStorage
+}
 getGlobal().self = getGlobal()
 
 require('whatwg-fetch')
@@ -288,17 +290,20 @@ function after(response, url, data, headers) {
 
 
 function getAccessToken() {
-	return localStorage['_accessToken'] || '';
+	return _options.store['_accessToken'] || '';
+	// return localStorage['_accessToken'] || '';
 	//return sessionStorage['_accessToken'] || '';
 }
 
 function setAccessToken(token) {
-	localStorage['_accessToken'] = token;
+	_options.store['_accessToken'] = token
+	// localStorage['_accessToken'] = token;
 	//sessionStorage['_accessToken'] = token;
 }
 
 function clearAccessToken() {
-	localStorage['_accessToken'] = ''
+	_options.store['_accessToken'] = ''
+	// localStorage['_accessToken'] = ''
 	//sessionStorage['_accessToken'] = ''
 }
 

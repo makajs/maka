@@ -17,21 +17,19 @@ exports.setAccessToken = setAccessToken;
 exports.clearAccessToken = clearAccessToken;
 exports.mockApi = exports.mockData = exports.default = void 0;
 
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
 
 var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
 var _env = require("../env");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
 var mockApi = {};
 exports.mockApi = mockApi;
 var mockData = {};
 exports.mockData = mockData;
-var _options = {};
+var _options = {
+  store: localStorage
+};
 (0, _env.getGlobal)().self = (0, _env.getGlobal)();
 
 require('whatwg-fetch');
@@ -98,7 +96,7 @@ function get(url, headers, option) {
       setTimeout(function () {
         try {
           if (getAccessToken()) {
-            headers = headers ? _objectSpread({}, headers, {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
               token: getAccessToken()
             }) : {
               token: getAccessToken()
@@ -128,7 +126,7 @@ function get(url, headers, option) {
   var request = headers = {
     method: 'GET',
     credentials: 'same-origin',
-    headers: _objectSpread({
+    headers: (0, _objectSpread2.default)({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }, headers, {
@@ -185,7 +183,7 @@ function post(url, data, headers, option) {
       setTimeout(function () {
         try {
           if (getAccessToken()) {
-            headers = headers ? _objectSpread({}, headers, {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
               token: getAccessToken()
             }) : {
               token: getAccessToken()
@@ -221,7 +219,7 @@ function post(url, data, headers, option) {
   var request = {
     method: 'POST',
     credentials: 'same-origin',
-    headers: _objectSpread({
+    headers: (0, _objectSpread2.default)({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }, headers, {
@@ -324,15 +322,18 @@ function after(response, url, data, headers) {
 }
 
 function getAccessToken() {
-  return localStorage['_accessToken'] || ''; //return sessionStorage['_accessToken'] || '';
+  return _options.store['_accessToken'] || ''; // return localStorage['_accessToken'] || '';
+  //return sessionStorage['_accessToken'] || '';
 }
 
 function setAccessToken(token) {
-  localStorage['_accessToken'] = token; //sessionStorage['_accessToken'] = token;
+  _options.store['_accessToken'] = token; // localStorage['_accessToken'] = token;
+  //sessionStorage['_accessToken'] = token;
 }
 
 function clearAccessToken() {
-  localStorage['_accessToken'] = ''; //sessionStorage['_accessToken'] = ''
+  _options.store['_accessToken'] = ''; // localStorage['_accessToken'] = ''
+  //sessionStorage['_accessToken'] = ''
 }
 
 var _default = {
