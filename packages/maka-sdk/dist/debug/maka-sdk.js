@@ -906,11 +906,11 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
 
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
 
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 
@@ -930,16 +930,20 @@ var _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ "
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var AppLoader =
-/*#__PURE__*/
-function (_React$Component) {
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var AppLoader = /*#__PURE__*/function (_React$Component) {
   (0, _inherits2.default)(AppLoader, _React$Component);
+
+  var _super = _createSuper(AppLoader);
 
   function AppLoader(props, context) {
     (0, _classCallCheck2.default)(this, AppLoader);
-    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(AppLoader).call(this, props, context));
+    return _super.call(this, props, context);
   }
 
   (0, _createClass2.default)(AppLoader, [{
@@ -1009,7 +1013,7 @@ function (_React$Component) {
           ReduxConnector = payload.getIn(['@@require', 'container']);
 
       if (ReduxConnector) {
-        return _react.default.createElement(ReduxConnector, (0, _extends2.default)({
+        return /*#__PURE__*/_react.default.createElement(ReduxConnector, (0, _extends2.default)({
           store: this.context.store
         }, other, {
           payload: payload,
@@ -1078,248 +1082,243 @@ var _pluginFactory = _interopRequireDefault(__webpack_require__(/*! ./pluginFact
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var _default = function _default(actionInjections, reducerInjections) {
   return function (store) {
     return function (next) {
-      return (
-        /*#__PURE__*/
-        function () {
-          var _ref = (0, _asyncToGenerator2.default)(
-          /*#__PURE__*/
-          _regenerator.default.mark(function _callee(action) {
-            var getState, dispatch, _action, fullName, name, query, params, actionCreator, args, reducer, reduce, getStateByApp, injections, realAction, _fullName, prevFullName, parsedName, appInfo, plugins, pluginApps, i, plugin, _fullName2, _prevFullName, _parsedName, _appInfo, _plugins, _pluginApps;
+      return /*#__PURE__*/function () {
+        var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(action) {
+          var getState, dispatch, _action, fullName, name, query, params, actionCreator, args, reducer, reduce, getStateByApp, injections, realAction, _fullName, prevFullName, parsedName, appInfo, plugins, pluginApps, i, plugin, _fullName2, _prevFullName, _parsedName, _appInfo, _plugins, _pluginApps;
 
-            return _regenerator.default.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    getState = store.getState, dispatch = store.dispatch;
+          return _regenerator.default.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  getState = store.getState, dispatch = store.dispatch;
 
-                    if (!(typeof action === 'function')) {
-                      _context.next = 10;
-                      break;
+                  if (!(typeof action === 'function')) {
+                    _context.next = 10;
+                    break;
+                  }
+
+                  _action = action(), fullName = _action.fullName, name = _action.name, query = _action.query, params = _action.params, actionCreator = _action.actionCreator, args = _action.args, reducer = _action.reducer;
+
+                  reduce = function reduce(type) {
+                    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                      args[_key - 1] = arguments[_key];
                     }
 
-                    _action = action(), fullName = _action.fullName, name = _action.name, query = _action.query, params = _action.params, actionCreator = _action.actionCreator, args = _action.args, reducer = _action.reducer;
-
-                    reduce = function reduce(type) {
-                      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-                        args[_key - 1] = arguments[_key];
-                      }
-
-                      dispatch({
-                        type: '@@reduce',
-                        payload: {
-                          fullName: fullName,
-                          name: name,
-                          query: query,
-                          type: type,
-                          reducer: reducer,
-                          payload: args,
-                          reducerInjections: reducerInjections
-                        }
-                      });
-                    };
-
-                    getStateByApp = function getStateByApp() {
-                      return getState().get(fullName);
-                    };
-
-                    injections = _objectSpread({
-                      currentApp: {
+                    dispatch({
+                      type: '@@reduce',
+                      payload: {
                         fullName: fullName,
                         name: name,
                         query: query,
-                        params: params
-                      },
-                      store: store,
-                      reduce: reduce,
-                      getState: getStateByApp
-                    }, actionInjections);
-                    realAction = actionCreator.apply(void 0, (0, _toConsumableArray2.default)(args).concat([injections]));
+                        type: type,
+                        reducer: reducer,
+                        payload: args,
+                        reducerInjections: reducerInjections
+                      }
+                    });
+                  };
 
-                    if (typeof realAction === 'function') {
-                      realAction(injections);
-                    }
+                  getStateByApp = function getStateByApp() {
+                    return getState().get(fullName);
+                  };
 
-                    _context.next = 70;
+                  injections = _objectSpread({
+                    currentApp: {
+                      fullName: fullName,
+                      name: name,
+                      query: query,
+                      params: params
+                    },
+                    store: store,
+                    reduce: reduce,
+                    getState: getStateByApp
+                  }, actionInjections);
+                  realAction = actionCreator.apply(void 0, (0, _toConsumableArray2.default)(args).concat([injections]));
+
+                  if (typeof realAction === 'function') {
+                    realAction(injections);
+                  }
+
+                  _context.next = 70;
+                  break;
+
+                case 10:
+                  if (!(action.type && action.type == '@@loadApp')) {
+                    _context.next = 43;
                     break;
+                  }
 
-                  case 10:
-                    if (!(action.type && action.type == '@@loadApp')) {
-                      _context.next = 43;
-                      break;
-                    }
+                  _context.prev = 11;
+                  _fullName = action.payload.fullName, prevFullName = action.payload.prevFullName, parsedName = (0, _parseName.default)(_fullName);
+                  appInfo = _appFactory.default.getApp(parsedName.name);
 
-                    _context.prev = 11;
-                    _fullName = action.payload.fullName, prevFullName = action.payload.prevFullName, parsedName = (0, _parseName.default)(_fullName);
-                    appInfo = _appFactory.default.getApp(parsedName.name);
-
-                    if (appInfo) {
-                      _context.next = 17;
-                      break;
-                    }
-
+                  if (appInfo) {
                     _context.next = 17;
-                    return (0, _loadApp.default)(parsedName.name);
+                    break;
+                  }
 
-                  case 17:
-                    appInfo = _appFactory.default.getApp(parsedName.name);
+                  _context.next = 17;
+                  return (0, _loadApp.default)(parsedName.name);
 
-                    if (appInfo) {
-                      _context.next = 21;
-                      break;
-                    }
+                case 17:
+                  appInfo = _appFactory.default.getApp(parsedName.name);
 
-                    console.error("Loading app ".concat(parsedName.name, " failed"));
-                    return _context.abrupt("return", next(action));
+                  if (appInfo) {
+                    _context.next = 21;
+                    break;
+                  }
 
-                  case 21:
-                    /*plugin*/
-                    plugins = _pluginFactory.default.getPluginNames(parsedName.name);
-                    pluginApps = [];
+                  console.error("Loading app ".concat(parsedName.name, " failed"));
+                  return _context.abrupt("return", next(action));
 
-                    if (!(plugins && plugins.length > 0)) {
-                      _context.next = 34;
-                      break;
-                    }
+                case 21:
+                  /*plugin*/
+                  plugins = _pluginFactory.default.getPluginNames(parsedName.name);
+                  pluginApps = [];
 
-                    i = 0;
+                  if (!(plugins && plugins.length > 0)) {
+                    _context.next = 34;
+                    break;
+                  }
 
-                  case 25:
-                    if (!(i < plugins.length)) {
-                      _context.next = 34;
-                      break;
-                    }
+                  i = 0;
 
-                    plugin = plugins[i];
+                case 25:
+                  if (!(i < plugins.length)) {
+                    _context.next = 34;
+                    break;
+                  }
 
-                    if (_appFactory.default.getApp(plugin)) {
-                      _context.next = 30;
-                      break;
-                    }
+                  plugin = plugins[i];
 
+                  if (_appFactory.default.getApp(plugin)) {
                     _context.next = 30;
-                    return (0, _loadApp.default)(plugin);
-
-                  case 30:
-                    pluginApps.push(_appFactory.default.getApp(plugin));
-
-                  case 31:
-                    i++;
-                    _context.next = 25;
                     break;
+                  }
 
-                  case 34:
-                    return _context.abrupt("return", next({
-                      type: '@@loadAppReal',
-                      payload: {
-                        fullName: _fullName,
-                        appInfo: appInfo,
-                        prevFullName: prevFullName,
-                        action: appInfo.action,
-                        pluginApps: pluginApps,
-                        plugins: plugins
-                      }
-                    }));
+                  _context.next = 30;
+                  return (0, _loadApp.default)(plugin);
 
-                  case 37:
-                    _context.prev = 37;
-                    _context.t0 = _context["catch"](11);
-                    console.error(_context.t0);
-                    return _context.abrupt("return", next(action));
+                case 30:
+                  pluginApps.push(_appFactory.default.getApp(plugin));
 
-                  case 41:
-                    _context.next = 70;
+                case 31:
+                  i++;
+                  _context.next = 25;
+                  break;
+
+                case 34:
+                  return _context.abrupt("return", next({
+                    type: '@@loadAppReal',
+                    payload: {
+                      fullName: _fullName,
+                      appInfo: appInfo,
+                      prevFullName: prevFullName,
+                      action: appInfo.action,
+                      pluginApps: pluginApps,
+                      plugins: plugins
+                    }
+                  }));
+
+                case 37:
+                  _context.prev = 37;
+                  _context.t0 = _context["catch"](11);
+                  console.error(_context.t0);
+                  return _context.abrupt("return", next(action));
+
+                case 41:
+                  _context.next = 70;
+                  break;
+
+                case 43:
+                  if (!(action.type && action.type == '@@loadPlugin')) {
+                    _context.next = 69;
                     break;
+                  }
 
-                  case 43:
-                    if (!(action.type && action.type == '@@loadPlugin')) {
-                      _context.next = 69;
-                      break;
-                    }
+                  _context.prev = 44;
+                  _fullName2 = action.payload.fullName, _prevFullName = action.payload.prevFullName, _parsedName = (0, _parseName.default)(_fullName2);
+                  _appInfo = _appFactory.default.getApp(_parsedName.name);
+                  /*plugin*/
 
-                    _context.prev = 44;
-                    _fullName2 = action.payload.fullName, _prevFullName = action.payload.prevFullName, _parsedName = (0, _parseName.default)(_fullName2);
-                    _appInfo = _appFactory.default.getApp(_parsedName.name);
-                    /*plugin*/
+                  _plugins = _pluginFactory.default.getPluginNames(_parsedName.name);
+                  _pluginApps = [];
 
-                    _plugins = _pluginFactory.default.getPluginNames(_parsedName.name);
-                    _pluginApps = [];
+                  if (!(_plugins && _plugins.length > 0)) {
+                    _context.next = 60;
+                    break;
+                  }
 
-                    if (!(_plugins && _plugins.length > 0)) {
-                      _context.next = 60;
-                      break;
-                    }
+                  i = 0;
 
-                    i = 0;
+                case 51:
+                  if (!(i < _plugins.length)) {
+                    _context.next = 60;
+                    break;
+                  }
 
-                  case 51:
-                    if (!(i < _plugins.length)) {
-                      _context.next = 60;
-                      break;
-                    }
+                  plugin = _plugins[i];
 
-                    plugin = _plugins[i];
-
-                    if (_appFactory.default.getApp(plugin)) {
-                      _context.next = 56;
-                      break;
-                    }
-
+                  if (_appFactory.default.getApp(plugin)) {
                     _context.next = 56;
-                    return (0, _loadApp.default)(plugin);
-
-                  case 56:
-                    _pluginApps.push(_appFactory.default.getApp(plugin));
-
-                  case 57:
-                    i++;
-                    _context.next = 51;
                     break;
+                  }
 
-                  case 60:
-                    return _context.abrupt("return", next({
-                      type: '@@loadAppReal',
-                      payload: {
-                        fullName: _fullName2,
-                        appInfo: _appInfo,
-                        prevFullName: _prevFullName,
-                        action: _appInfo.action,
-                        pluginApps: _pluginApps,
-                        plugins: _plugins,
-                        forceLoad: true
-                      }
-                    }));
+                  _context.next = 56;
+                  return (0, _loadApp.default)(plugin);
 
-                  case 63:
-                    _context.prev = 63;
-                    _context.t1 = _context["catch"](44);
-                    console.error(_context.t1);
-                    return _context.abrupt("return", next(action));
+                case 56:
+                  _pluginApps.push(_appFactory.default.getApp(plugin));
 
-                  case 67:
-                    _context.next = 70;
-                    break;
+                case 57:
+                  i++;
+                  _context.next = 51;
+                  break;
 
-                  case 69:
-                    return _context.abrupt("return", next(action));
+                case 60:
+                  return _context.abrupt("return", next({
+                    type: '@@loadAppReal',
+                    payload: {
+                      fullName: _fullName2,
+                      appInfo: _appInfo,
+                      prevFullName: _prevFullName,
+                      action: _appInfo.action,
+                      pluginApps: _pluginApps,
+                      plugins: _plugins,
+                      forceLoad: true
+                    }
+                  }));
 
-                  case 70:
-                  case "end":
-                    return _context.stop();
-                }
+                case 63:
+                  _context.prev = 63;
+                  _context.t1 = _context["catch"](44);
+                  console.error(_context.t1);
+                  return _context.abrupt("return", next(action));
+
+                case 67:
+                  _context.next = 70;
+                  break;
+
+                case 69:
+                  return _context.abrupt("return", next(action));
+
+                case 70:
+                case "end":
+                  return _context.stop();
               }
-            }, _callee, null, [[11, 37], [44, 63]]);
-          }));
+            }
+          }, _callee, null, [[11, 37], [44, 63]]);
+        }));
 
-          return function (_x) {
-            return _ref.apply(this, arguments);
-          };
-        }()
-      );
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }();
     };
   };
 };
@@ -1349,13 +1348,13 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var _options = {};
 
 function config(options) {
   if (options.appUrls && _options.appUrls) {
-    options.appUrls = _objectSpread({}, _options.appUrls, {}, options.appUrls);
+    options.appUrls = _objectSpread(_objectSpread({}, _options.appUrls), options.appUrls);
   }
 
   Object.assign(_options, options);
@@ -1628,7 +1627,7 @@ var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/ut
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var globalObj = (0, _utils.getGlobal)();
 var isProduction = false;
@@ -1733,11 +1732,7 @@ function loadApp(app) {
       return;
     }
 
-    globalObj.require(urls,
-    /*#__PURE__*/
-    (0, _asyncToGenerator2.default)(
-    /*#__PURE__*/
-    _regenerator.default.mark(function _callee() {
+    globalObj.require(urls, /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
       var _len,
           args,
           _key,
@@ -1756,7 +1751,7 @@ function loadApp(app) {
               }
 
               apps = args.reduce(function (prev, curr) {
-                return curr ? _objectSpread({}, prev, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;
+                return curr ? _objectSpread(_objectSpread({}, prev), {}, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;
               }, {});
 
               if (apps) {
@@ -2018,7 +2013,7 @@ var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/ut
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var globalObj = (0, _utils.getGlobal)();
 
@@ -2094,7 +2089,7 @@ function loadApp(state, _ref2) {
       pluginApps.forEach(function (plugin) {
         if (plugin.pluginApi && plugin.pluginApi.afterAction) actionInternal = plugin.pluginApi.afterAction(actionInternal);
       });
-      actionInstance = _objectSpread({}, actionInstance, {
+      actionInstance = _objectSpread(_objectSpread({}, actionInstance), {}, {
         getDirectFuns: function getDirectFuns() {
           return actionInternal;
         }
@@ -2111,7 +2106,7 @@ function loadApp(state, _ref2) {
     var mapStateToProps = (0, _wrapMapStateToProps.default)(fullName);
     var mapDispatchToProps = (0, _wrapMapDispatchToProps.default)(fullName, actionInstance, reducerInstance);
     var container = (0, _createReduxConnector.default)(component || appInfo.viewDecorator && appInfo.viewDecorator()(_config.default.current.defaultComponent) || _config.default.current.defaultComponent, mapStateToProps, mapDispatchToProps, function (stateProps, dispatchProps, ownProps) {
-      return _objectSpread({}, ownProps, {}, stateProps, {}, dispatchProps);
+      return _objectSpread(_objectSpread(_objectSpread({}, ownProps), stateProps), dispatchProps);
     }, {
       //withRef: true, 
       pure: true
@@ -2354,9 +2349,9 @@ function start() {
     };
   }
 
-  (0, _reactDom.render)(currentConfig.rootWrapper(_react.default.createElement(_reactRedux.Provider, {
+  (0, _reactDom.render)(currentConfig.rootWrapper( /*#__PURE__*/_react.default.createElement(_reactRedux.Provider, {
     store: store
-  }, _react.default.createElement(_appLoader.default, {
+  }, /*#__PURE__*/_react.default.createElement(_appLoader.default, {
     name: currentConfig.startAppName
   }))), document.getElementById(currentConfig.targetDomId));
 }
@@ -2388,7 +2383,7 @@ var _parseName = _interopRequireDefault(__webpack_require__(/*! ./parseName */ "
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function wrapMapDispatchToProps(fullName, actionCreators, reducer) {
   var parsedName = (0, _parseName.default)(fullName),
@@ -2403,7 +2398,7 @@ function wrapMapDispatchToProps(fullName, actionCreators, reducer) {
   }
 
   return function (dispatch) {
-    return _objectSpread({}, (0, _redux.bindActionCreators)(wrapActionCreators, dispatch), {}, actionCreators.getDirectFuns && actionCreators.getDirectFuns(parsedName) || {});
+    return _objectSpread(_objectSpread({}, (0, _redux.bindActionCreators)(wrapActionCreators, dispatch)), actionCreators.getDirectFuns && actionCreators.getDirectFuns(parsedName) || {});
   };
 }
 
@@ -2679,13 +2674,13 @@ var action = function action(option) {
     /*
     var metaHandlerKeys = this.cache.handlerKeys,
     	i, key
-    		var fun = (n) => {
+    	var fun = (n) => {
     	let handler = this.metaHandlers[n]
     	if (handler && typeof handler == 'function')
     		handler.__method_name__ = n
-    			return handler
+    		return handler
     }
-    		for (i = 0; key = metaHandlerKeys[i++];) {
+    	for (i = 0; key = metaHandlerKeys[i++];) {
     	values.push(fun(key))
     }*/
 
@@ -2710,9 +2705,9 @@ var action = function action(option) {
     	let handler = this.dynamicHandlers[n]
     	if (handler && typeof handler == 'function')
     		handler.__method_name__ = n
-    			return handler
+    		return handler
     }
-    		if (this.dynamicHandleKeys) {
+    	if (this.dynamicHandleKeys) {
     	for (i = 0; key = this.dynamicHandleKeys[i++];) {
     		values.push(fun1(key))
     	}
@@ -2943,6 +2938,7 @@ var action = function action(option) {
   this.meta = (0, _immutable.fromJS)(option.appInfo.view);
   var plugins = option.plugins;
   this.cache = {};
+  option.appInfo.viewByImmutable = this.meta;
   common.setMeta(option.appInfo, plugins);
 };
 
@@ -2973,9 +2969,7 @@ var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtim
 
 var _path = __webpack_require__(/*! path */ "./node_modules/path-browserify/index.js");
 
-var actionFactory =
-/*#__PURE__*/
-function () {
+var actionFactory = /*#__PURE__*/function () {
   function actionFactory() {
     (0, _classCallCheck2.default)(this, actionFactory);
     this.actions = {};
@@ -3079,7 +3073,7 @@ var _actionFactory = _interopRequireDefault(__webpack_require__(/*! ./actionFact
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var isPromise = function isPromise(obj) {
   return !!obj && ((0, _typeof2.default)(obj) === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
@@ -3163,7 +3157,7 @@ function actionMixin() {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
-                  act = new actCls(_objectSpread({}, option, {
+                  act = new actCls(_objectSpread(_objectSpread({}, option), {}, {
                     mixins: mixinInstances
                   }));
 
@@ -3181,7 +3175,7 @@ function actionMixin() {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
-                  act = new actCls(_objectSpread({}, option, {}, m.option, {
+                  act = new actCls(_objectSpread(_objectSpread(_objectSpread({}, option), m.option), {}, {
                     mixins: mixinInstances
                   }));
 
@@ -3195,7 +3189,7 @@ function actionMixin() {
         });
       }
 
-      var curr = new target(_objectSpread({}, option, {
+      var curr = new target(_objectSpread(_objectSpread({}, option), {}, {
         mixins: mixinInstances
       }));
       Object.keys(curr).forEach(function (key) {
@@ -3286,12 +3280,13 @@ function setMeta(appInfo) {
   var appName = appInfo.name;
   if (cache.meta.has(appName) && JSON.stringify(plugins.sort()) === JSON.stringify(cache.plugin.get(appName).toJS().sort())) return;
   cache.plugin = cache.plugin.set(appName, (0, _immutable.fromJS)(plugins));
-  setMetaForce(appName, appInfo.view, appQuery);
+  setMetaForce(appName, appInfo.viewByImmutable || appInfo.view, appQuery);
 }
 
 function setMetaForce(appName, meta, appQuery) {
   if (!appName || !meta) return;
-  meta = (0, _immutable.fromJS)(meta);
+  meta = _immutable.default.isMap(meta) || _immutable.default.isList(meta) ? meta : (0, _immutable.fromJS)(meta); //meta = fromJS(meta)
+
   meta = parseMetaTemplate(meta);
   var parsed = parseMeta(meta, appName);
   meta = parsed.meta;
@@ -3586,9 +3581,13 @@ var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtim
 
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 
-var componentFactory =
-/*#__PURE__*/
-function () {
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var componentFactory = /*#__PURE__*/function () {
   function componentFactory() {
     (0, _classCallCheck2.default)(this, componentFactory);
     this.components = {};
@@ -3652,11 +3651,11 @@ function () {
       /*
       if (this.appComponents && this.appComponents[appName] && this.appComponents[appName].components && this.appComponents[appName].components[firstSeg]) {
           var com = this.appComponents[appName].components[name]
-            if (com && nameSegs.length > 1) {
+           if (com && nameSegs.length > 1) {
               com = this.findChild(com, nameSegs)
           }
-            if (com) return com
-        }*/
+           if (com) return com
+       }*/
 
       var component = this.components[firstSeg];
 
@@ -3673,12 +3672,11 @@ function () {
   }, {
     key: "findChild",
     value: function findChild(component, nameSegs) {
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+      var _iterator = _createForOfIteratorHelper(nameSegs.slice(1)),
+          _step;
 
       try {
-        for (var _iterator = nameSegs.slice(1)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var s = _step.value;
 
           if (!component[s]) {
@@ -3689,18 +3687,9 @@ function () {
           component = component[s];
         }
       } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
+        _iterator.e(err);
       } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
+        _iterator.f();
       }
 
       return component;
@@ -3762,9 +3751,7 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
 
-var context =
-/*#__PURE__*/
-function () {
+var context = /*#__PURE__*/function () {
   function context() {
     (0, _classCallCheck2.default)(this, context);
     this._context = {};
@@ -3773,7 +3760,18 @@ function () {
   (0, _createClass2.default)(context, [{
     key: "set",
     value: function set(key, value) {
-      if (value) window.localStorage[key] = JSON.stringify(value);else window.localStorage.removeItem(key);
+      var option = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
+        enableLocalStorage: false
+      };
+
+      if (option.enableLocalStorage) {
+        if (value) window.localStorage[key] = JSON.stringify(value);
+      }
+
+      if (!value && window.localStorage[key]) {
+        window.localStorage.removeItem(key);
+      }
+
       this._context[key] = value;
     }
   }, {
@@ -3816,11 +3814,11 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
 
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 
@@ -3830,22 +3828,26 @@ var _dec, _class;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var C = (_dec = (0, _wrapper.default)(), _dec(_class =
-/*#__PURE__*/
-function (_Component) {
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var C = (_dec = (0, _wrapper.default)(), _dec(_class = /*#__PURE__*/function (_Component) {
   (0, _inherits2.default)(C, _Component);
+
+  var _super = _createSuper(C);
 
   function C() {
     (0, _classCallCheck2.default)(this, C);
-    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(C).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   (0, _createClass2.default)(C, [{
     key: "render",
     value: function render() {
-      return this.props.maka(_objectSpread({}, this.props, {
+      return this.props.maka(_objectSpread(_objectSpread({}, this.props), {}, {
         path: 'root'
       }));
     }
@@ -4205,10 +4207,10 @@ function metaToComponent(meta, props, data) {
 
         allProps.key = allProps.appName;
         allProps.name = allProps.appName;
-        return _react.default.createElement(component, allProps);
+        return /*#__PURE__*/_react.default.createElement(component, allProps);
       }
 
-      if (_decorator) return _decorator(_react.default.createElement(component, allProps));else return _react.default.createElement(component, allProps);
+      if (_decorator) return _decorator( /*#__PURE__*/_react.default.createElement(component, allProps));else return /*#__PURE__*/_react.default.createElement(component, allProps);
     } else {
       return parseMetaProps(meta, props, data);
     }
@@ -4323,13 +4325,13 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
 var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
 
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
@@ -4339,17 +4341,28 @@ var _appLoader = _interopRequireDefault(__webpack_require__(/*! @makajs/app-load
 
 var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
 
-var Root =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var Root = /*#__PURE__*/function (_React$PureComponent) {
   (0, _inherits2.default)(Root, _React$PureComponent);
+
+  var _super = _createSuper(Root);
 
   function Root(props) {
     var _this;
 
     (0, _classCallCheck2.default)(this, Root);
-    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Root).call(this, props));
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "listen", function (location, action) {
+    _this = _super.call(this, props);
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "listen", function (_ref) {
+      var location = _ref.location,
+          action = _ref.action;
+
+      if (history.state && history.state.orginalUrl) {
+        history.replaceState(history.state.orginalUrl);
+      }
+
       var full = location.pathname + location.search;
 
       if ((!full || full == '/') && _this.props.appName == _this.state.currentApp) {
@@ -4360,6 +4373,11 @@ function (_React$PureComponent) {
 
       full = full.substr(0, 1) == '/' ? full.substr(1) : full;
       var target = full.split('/')[0];
+
+      if (!target) {
+        return;
+      }
+
       if (target == _this.state.currentApp) return;
 
       _this.setState({
@@ -4397,7 +4415,7 @@ function (_React$PureComponent) {
     value: function render() {
       var _notClearAppState = location.hash.indexOf('_notClearAppState') != -1;
 
-      return _react.default.createElement(_appLoader.default.AppLoader, {
+      return /*#__PURE__*/_react.default.createElement(_appLoader.default.AppLoader, {
         key: this.state.currentApp,
         name: this.state.currentApp,
         _notClearAppState: _notClearAppState
@@ -4432,9 +4450,13 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
 
-var templateFactory =
-/*#__PURE__*/
-function () {
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var templateFactory = /*#__PURE__*/function () {
   function templateFactory() {
     (0, _classCallCheck2.default)(this, templateFactory);
     this.templates = {};
@@ -4482,12 +4504,11 @@ function () {
   }, {
     key: "findChild",
     value: function findChild(template, nameSegs) {
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+      var _iterator = _createForOfIteratorHelper(nameSegs.slice(1)),
+          _step;
 
       try {
-        for (var _iterator = nameSegs.slice(1)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var s = _step.value;
 
           if (!template[s]) {
@@ -4498,18 +4519,9 @@ function () {
           template = template[s];
         }
       } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
+        _iterator.e(err);
       } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
+        _iterator.f();
       }
 
       return template;
@@ -4549,11 +4561,11 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
 
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 
@@ -4566,6 +4578,10 @@ var _maka = _interopRequireDefault(__webpack_require__(/*! ./maka */ "./node_mod
 var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/meta-engine/lib/config.js"));
 
 var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function getHandler(props, eventName) {
   return function () {
@@ -4587,114 +4603,114 @@ function getHandler(props, eventName) {
 
 function wrapper(option) {
   return function (WrappedComponent) {
-    return (
-      /*#__PURE__*/
-      function (_Component) {
-        (0, _inherits2.default)(internal, _Component);
+    var WC = WrappedComponent;
+    return /*#__PURE__*/function (_Component) {
+      (0, _inherits2.default)(internal, _Component);
 
-        function internal(props) {
-          var _this;
+      var _super = _createSuper(internal);
 
-          (0, _classCallCheck2.default)(this, internal);
-          _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(internal).call(this, props));
-          _this.state = {
-            hasError: false
-          };
-          return _this;
+      function internal(props) {
+        var _this;
+
+        (0, _classCallCheck2.default)(this, internal);
+        _this = _super.call(this, props);
+        _this.state = {
+          hasError: false
+        };
+        return _this;
+      }
+
+      (0, _createClass2.default)(internal, [{
+        key: "componentWillMount",
+        value: function componentWillMount() {
+          getHandler(this.props, 'componentWillMount')();
         }
+      }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+          this.props.initView && this.props.initView(this);
+          getHandler(this.props, 'componentDidMount')();
+        }
+      }, {
+        key: "shouldComponentUpdate",
+        value: function shouldComponentUpdate(nextProps, nextState) {
+          if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) return true;else if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === false) return false;
 
-        (0, _createClass2.default)(internal, [{
-          key: "componentWillMount",
-          value: function componentWillMount() {
-            getHandler(this.props, 'componentWillMount')();
+          if (nextState.hasError != this.state.hasError) {
+            return true;
           }
-        }, {
-          key: "componentDidMount",
-          value: function componentDidMount() {
-            this.props.initView && this.props.initView(this);
-            getHandler(this.props, 'componentDidMount')();
-          }
-        }, {
-          key: "shouldComponentUpdate",
-          value: function shouldComponentUpdate(nextProps, nextState) {
-            if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) return true;else if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === false) return false;
 
-            if (nextState.hasError != this.state.hasError) {
-              return true;
-            }
-
-            return (0, _reactAddonsShallowCompare.default)(this, nextProps, nextState);
-            /*
-            for (var o in this.props) {
-            	if (this.props[o] != nextProps[o]) {
-            		return true
-            	}
-            }
-            return false
-            */
+          return (0, _reactAddonsShallowCompare.default)(this, nextProps, nextState);
+          /*
+          for (var o in this.props) {
+          	if (this.props[o] != nextProps[o]) {
+          		return true
+          	}
           }
-        }, {
-          key: "componentWillReceiveProps",
-          value: function componentWillReceiveProps(nextProps) {
-            if (this.state.hasError) {
-              this.setState({
-                hasError: false,
-                error: undefined
-              });
-            }
-
-            getHandler(this.props, 'componentWillReceiveProps')(nextProps);
-          }
-        }, {
-          key: "componentWillUpdate",
-          value: function componentWillUpdate(nextProps, nextState) {
-            getHandler(this.props, 'componentWillUpdate')(nextProps, nextState);
-          }
-        }, {
-          key: "componentDidCatch",
-          value: function componentDidCatch(error, info) {
-            _utils.default.exception.error(error);
-
+          return false
+          */
+        }
+      }, {
+        key: "componentWillReceiveProps",
+        value: function componentWillReceiveProps(nextProps) {
+          if (this.state.hasError) {
             this.setState({
-              hasError: true,
-              error: error
+              hasError: false,
+              error: undefined
             });
-            getHandler(this.props, 'componentDidCatch')(error, info);
           }
-        }, {
-          key: "componentWillUnmount",
-          value: function componentWillUnmount() {
-            this.props.unmount && this.props.unmount();
-            getHandler(this.props, 'componentWillUnmount')();
-          }
-        }, {
-          key: "componentDidUpdate",
-          value: function componentDidUpdate() {
-            getHandler(this.props, 'componentDidUpdate')();
-          }
-        }, {
-          key: "render",
-          value: function render() {
-            if (this.state.hasError) {
-              return _react.default.createElement("div", {
-                style: {
-                  color: 'red'
-                }
-              }, this.state.error && this.state.error.message);
-            }
 
-            if (this.props.notRender === true || this.props._notRender === true) return null;
-            if (!WrappedComponent) return null;
-            if (!this.props.payload || !this.props.payload.get('data')) return null;
-            if (this.props.payload.getIn(['data', '_notRender']) === true) return null;
-            return _react.default.createElement(WrappedComponent, (0, _extends2.default)({}, this.props, {
-              maka: _maka.default
-            }));
+          getHandler(this.props, 'componentWillReceiveProps')(nextProps);
+        }
+      }, {
+        key: "componentWillUpdate",
+        value: function componentWillUpdate(nextProps, nextState) {
+          getHandler(this.props, 'componentWillUpdate')(nextProps, nextState);
+        }
+      }, {
+        key: "componentDidCatch",
+        value: function componentDidCatch(error, info) {
+          _utils.default.exception.error(error);
+
+          this.setState({
+            hasError: true,
+            error: error
+          });
+          getHandler(this.props, 'componentDidCatch')(error, info);
+        }
+      }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+          this.props.unmount && this.props.unmount();
+          getHandler(this.props, 'componentWillUnmount')();
+        }
+      }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+          getHandler(this.props, 'componentDidUpdate')();
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          if (this.state.hasError) {
+            return /*#__PURE__*/_react.default.createElement("div", {
+              style: {
+                color: 'red'
+              }
+            }, this.state.error && this.state.error.message);
           }
-        }]);
-        return internal;
-      }(_react.Component)
-    );
+
+          if (this.props.notRender === true || this.props._notRender === true) return null;
+          if (!WC) return null;
+          if (!this.props.payload || !this.props.payload.get('data')) return null;
+          if (this.props.payload.getIn(['data', '_notRender']) === true) return null;
+          return /*#__PURE__*/_react.default.createElement(WC, (0, _extends2.default)({}, this.props, {
+            maka: _maka.default
+          }));
+        }
+      }]);
+      return internal;
+    }(_react.Component);
   };
 }
 
