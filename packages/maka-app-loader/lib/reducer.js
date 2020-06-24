@@ -99,7 +99,7 @@ function loadApp(state, _ref2) {
       pluginApps.forEach(function (plugin) {
         if (plugin.pluginApi && plugin.pluginApi.afterAction) actionInternal = plugin.pluginApi.afterAction(actionInternal);
       });
-      actionInstance = _objectSpread({}, actionInstance, {
+      actionInstance = _objectSpread(_objectSpread({}, actionInstance), {}, {
         getDirectFuns: function getDirectFuns() {
           return actionInternal;
         }
@@ -116,7 +116,7 @@ function loadApp(state, _ref2) {
     var mapStateToProps = (0, _wrapMapStateToProps.default)(fullName);
     var mapDispatchToProps = (0, _wrapMapDispatchToProps.default)(fullName, actionInstance, reducerInstance);
     var container = (0, _createReduxConnector.default)(component || appInfo.viewDecorator && appInfo.viewDecorator()(_config.default.current.defaultComponent) || _config.default.current.defaultComponent, mapStateToProps, mapDispatchToProps, function (stateProps, dispatchProps, ownProps) {
-      return _objectSpread({}, ownProps, {}, stateProps, {}, dispatchProps);
+      return _objectSpread(_objectSpread(_objectSpread({}, ownProps), stateProps), dispatchProps);
     }, {
       //withRef: true, 
       pure: true

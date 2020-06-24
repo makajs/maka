@@ -101,7 +101,7 @@ function actionMixin() {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
-                  act = new actCls(_objectSpread({}, option, {
+                  act = new actCls(_objectSpread(_objectSpread({}, option), {}, {
                     mixins: mixinInstances
                   }));
 
@@ -119,7 +119,7 @@ function actionMixin() {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
-                  act = new actCls(_objectSpread({}, option, {}, m.option, {
+                  act = new actCls(_objectSpread(_objectSpread(_objectSpread({}, option), m.option), {}, {
                     mixins: mixinInstances
                   }));
 
@@ -133,7 +133,7 @@ function actionMixin() {
         });
       }
 
-      var curr = new target(_objectSpread({}, option, {
+      var curr = new target(_objectSpread(_objectSpread({}, option), {}, {
         mixins: mixinInstances
       }));
       Object.keys(curr).forEach(function (key) {

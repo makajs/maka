@@ -202,10 +202,10 @@ function metaToComponent(meta, props, data) {
 
         allProps.key = allProps.appName;
         allProps.name = allProps.appName;
-        return _react.default.createElement(component, allProps);
+        return /*#__PURE__*/_react.default.createElement(component, allProps);
       }
 
-      if (_decorator) return _decorator(_react.default.createElement(component, allProps));else return _react.default.createElement(component, allProps);
+      if (_decorator) return _decorator( /*#__PURE__*/_react.default.createElement(component, allProps));else return /*#__PURE__*/_react.default.createElement(component, allProps);
     } else {
       return parseMetaProps(meta, props, data);
     }

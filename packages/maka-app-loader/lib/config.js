@@ -17,7 +17,7 @@ var _options = {};
 
 function config(options) {
   if (options.appUrls && _options.appUrls) {
-    options.appUrls = _objectSpread({}, _options.appUrls, {}, options.appUrls);
+    options.appUrls = _objectSpread(_objectSpread({}, _options.appUrls), options.appUrls);
   }
 
   Object.assign(_options, options);

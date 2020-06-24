@@ -128,109 +128,99 @@ function loadApp(app) {
       return;
     }
 
-    globalObj.require(urls,
-    /*#__PURE__*/
-    function () {
-      var _ref = (0, _asyncToGenerator2.default)(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee() {
-        var _len,
-            args,
-            _key,
-            apps,
-            appNames,
-            i,
-            cssUrls,
-            _args = arguments;
+    globalObj.require(urls, /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var _len,
+          args,
+          _key,
+          apps,
+          appNames,
+          i,
+          cssUrls,
+          _args = arguments;
 
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                for (_len = _args.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-                  args[_key] = _args[_key];
-                }
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              for (_len = _args.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = _args[_key];
+              }
 
-                apps = args.reduce(function (prev, curr) {
-                  return curr ? _objectSpread({}, prev, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;
-                }, {});
+              apps = args.reduce(function (prev, curr) {
+                return curr ? _objectSpread(_objectSpread({}, prev), {}, (0, _defineProperty2.default)({}, curr.name, curr)) : curr;
+              }, {});
 
-                if (apps) {
-                  _context.next = 6;
-                  break;
-                }
-
-                console.error('Not application found at ' + urls.join(';'));
-                _context.next = 19;
+              if (apps) {
+                _context.next = 6;
                 break;
+              }
 
-              case 6:
-                appNames = Object.keys(apps);
-                i = 0;
+              console.error('Not application found at ' + urls.join(';'));
+              _context.next = 19;
+              break;
 
-              case 8:
-                if (!(i < appNames.length)) {
-                  _context.next = 16;
-                  break;
-                }
+            case 6:
+              appNames = Object.keys(apps);
+              i = 0;
 
-                _context.t0 = apps[appNames[i]].beforeRegister;
+            case 8:
+              if (!(i < appNames.length)) {
+                _context.next = 16;
+                break;
+              }
 
-                if (!_context.t0) {
-                  _context.next = 13;
-                  break;
-                }
+              _context.t0 = apps[appNames[i]].beforeRegister;
 
+              if (!_context.t0) {
                 _context.next = 13;
-                return apps[appNames[i]].beforeRegister();
-
-              case 13:
-                i++;
-                _context.next = 8;
                 break;
+              }
 
-              case 16:
-                _appFactory.default.registerApps(apps);
-                /*
-                appConfig(appFactory.getApps(), {
-                    "*": { apps: { ...appFactory.getApps() } },
-                    ...options
-                })
-                */
+              _context.next = 13;
+              return apps[appNames[i]].beforeRegister();
+
+            case 13:
+              i++;
+              _context.next = 8;
+              break;
+
+            case 16:
+              _appFactory.default.registerApps(apps);
+              /*
+              appConfig(appFactory.getApps(), {
+                  "*": { apps: { ...appFactory.getApps() } },
+                  ...options
+              })
+              */
 
 
-                cssUrls = urls.map(function (u) {
-                  if (u.indexOf('http') != -1) return "css!".concat(u.replace('.js', '.css'));
-                  return "css!".concat(u);
-                });
-                /*
-                globalObj.require(cssUrls, async (...args) => {
-                    for (var i = 0; i < appNames.length; i++) {
-                        apps[appNames[i]].afterRegister && (await apps[appNames[i]].afterRegister())
-                    }
-                    resolve(null)
-                })*/
-
-                globalObj.require(cssUrls, function () {
-                  resolve(null);
-
+              cssUrls = urls.map(function (u) {
+                if (u.indexOf('http') != -1) return "css!".concat(u.replace('.js', '.css'));
+                return "css!".concat(u);
+              });
+              /*
+              globalObj.require(cssUrls, async (...args) => {
                   for (var i = 0; i < appNames.length; i++) {
-                    apps[appNames[i]].afterRegister && apps[appNames[i]].afterRegister();
+                      apps[appNames[i]].afterRegister && (await apps[appNames[i]].afterRegister())
                   }
-                });
+                  resolve(null)
+              })*/
 
-              case 19:
-              case "end":
-                return _context.stop();
-            }
+              globalObj.require(cssUrls, function () {
+                resolve(null);
+
+                for (var i = 0; i < appNames.length; i++) {
+                  apps[appNames[i]].afterRegister && apps[appNames[i]].afterRegister();
+                }
+              });
+
+            case 19:
+            case "end":
+              return _context.stop();
           }
-        }, _callee);
-      }));
-
-      return function () {
-        return _ref.apply(this, arguments);
-      };
-    }());
+        }
+      }, _callee);
+    })));
   });
 }
 /*

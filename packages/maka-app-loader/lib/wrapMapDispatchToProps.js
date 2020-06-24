@@ -30,7 +30,7 @@ function wrapMapDispatchToProps(fullName, actionCreators, reducer) {
   }
 
   return function (dispatch) {
-    return _objectSpread({}, (0, _redux.bindActionCreators)(wrapActionCreators, dispatch), {}, actionCreators.getDirectFuns && actionCreators.getDirectFuns(parsedName) || {});
+    return _objectSpread(_objectSpread({}, (0, _redux.bindActionCreators)(wrapActionCreators, dispatch)), actionCreators.getDirectFuns && actionCreators.getDirectFuns(parsedName) || {});
   };
 }
 

@@ -30,243 +30,238 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 var _default = function _default(actionInjections, reducerInjections) {
   return function (store) {
     return function (next) {
-      return (
-        /*#__PURE__*/
-        function () {
-          var _ref = (0, _asyncToGenerator2.default)(
-          /*#__PURE__*/
-          _regenerator.default.mark(function _callee(action) {
-            var getState, dispatch, _action, fullName, name, query, params, actionCreator, args, reducer, reduce, getStateByApp, injections, realAction, _fullName, prevFullName, parsedName, appInfo, plugins, pluginApps, i, plugin, _fullName2, _prevFullName, _parsedName, _appInfo, _plugins, _pluginApps;
+      return /*#__PURE__*/function () {
+        var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(action) {
+          var getState, dispatch, _action, fullName, name, query, params, actionCreator, args, reducer, reduce, getStateByApp, injections, realAction, _fullName, prevFullName, parsedName, appInfo, plugins, pluginApps, i, plugin, _fullName2, _prevFullName, _parsedName, _appInfo, _plugins, _pluginApps;
 
-            return _regenerator.default.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    getState = store.getState, dispatch = store.dispatch;
+          return _regenerator.default.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  getState = store.getState, dispatch = store.dispatch;
 
-                    if (!(typeof action === 'function')) {
-                      _context.next = 10;
-                      break;
+                  if (!(typeof action === 'function')) {
+                    _context.next = 10;
+                    break;
+                  }
+
+                  _action = action(), fullName = _action.fullName, name = _action.name, query = _action.query, params = _action.params, actionCreator = _action.actionCreator, args = _action.args, reducer = _action.reducer;
+
+                  reduce = function reduce(type) {
+                    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                      args[_key - 1] = arguments[_key];
                     }
 
-                    _action = action(), fullName = _action.fullName, name = _action.name, query = _action.query, params = _action.params, actionCreator = _action.actionCreator, args = _action.args, reducer = _action.reducer;
-
-                    reduce = function reduce(type) {
-                      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-                        args[_key - 1] = arguments[_key];
-                      }
-
-                      dispatch({
-                        type: '@@reduce',
-                        payload: {
-                          fullName: fullName,
-                          name: name,
-                          query: query,
-                          type: type,
-                          reducer: reducer,
-                          payload: args,
-                          reducerInjections: reducerInjections
-                        }
-                      });
-                    };
-
-                    getStateByApp = function getStateByApp() {
-                      return getState().get(fullName);
-                    };
-
-                    injections = _objectSpread({
-                      currentApp: {
+                    dispatch({
+                      type: '@@reduce',
+                      payload: {
                         fullName: fullName,
                         name: name,
                         query: query,
-                        params: params
-                      },
-                      store: store,
-                      reduce: reduce,
-                      getState: getStateByApp
-                    }, actionInjections);
-                    realAction = actionCreator.apply(void 0, (0, _toConsumableArray2.default)(args).concat([injections]));
+                        type: type,
+                        reducer: reducer,
+                        payload: args,
+                        reducerInjections: reducerInjections
+                      }
+                    });
+                  };
 
-                    if (typeof realAction === 'function') {
-                      realAction(injections);
-                    }
+                  getStateByApp = function getStateByApp() {
+                    return getState().get(fullName);
+                  };
 
-                    _context.next = 70;
+                  injections = _objectSpread({
+                    currentApp: {
+                      fullName: fullName,
+                      name: name,
+                      query: query,
+                      params: params
+                    },
+                    store: store,
+                    reduce: reduce,
+                    getState: getStateByApp
+                  }, actionInjections);
+                  realAction = actionCreator.apply(void 0, (0, _toConsumableArray2.default)(args).concat([injections]));
+
+                  if (typeof realAction === 'function') {
+                    realAction(injections);
+                  }
+
+                  _context.next = 70;
+                  break;
+
+                case 10:
+                  if (!(action.type && action.type == '@@loadApp')) {
+                    _context.next = 43;
                     break;
+                  }
 
-                  case 10:
-                    if (!(action.type && action.type == '@@loadApp')) {
-                      _context.next = 43;
-                      break;
-                    }
+                  _context.prev = 11;
+                  _fullName = action.payload.fullName, prevFullName = action.payload.prevFullName, parsedName = (0, _parseName.default)(_fullName);
+                  appInfo = _appFactory.default.getApp(parsedName.name);
 
-                    _context.prev = 11;
-                    _fullName = action.payload.fullName, prevFullName = action.payload.prevFullName, parsedName = (0, _parseName.default)(_fullName);
-                    appInfo = _appFactory.default.getApp(parsedName.name);
-
-                    if (appInfo) {
-                      _context.next = 17;
-                      break;
-                    }
-
+                  if (appInfo) {
                     _context.next = 17;
-                    return (0, _loadApp.default)(parsedName.name);
+                    break;
+                  }
 
-                  case 17:
-                    appInfo = _appFactory.default.getApp(parsedName.name);
+                  _context.next = 17;
+                  return (0, _loadApp.default)(parsedName.name);
 
-                    if (appInfo) {
-                      _context.next = 21;
-                      break;
-                    }
+                case 17:
+                  appInfo = _appFactory.default.getApp(parsedName.name);
 
-                    console.error("Loading app ".concat(parsedName.name, " failed"));
-                    return _context.abrupt("return", next(action));
+                  if (appInfo) {
+                    _context.next = 21;
+                    break;
+                  }
 
-                  case 21:
-                    /*plugin*/
-                    plugins = _pluginFactory.default.getPluginNames(parsedName.name);
-                    pluginApps = [];
+                  console.error("Loading app ".concat(parsedName.name, " failed"));
+                  return _context.abrupt("return", next(action));
 
-                    if (!(plugins && plugins.length > 0)) {
-                      _context.next = 34;
-                      break;
-                    }
+                case 21:
+                  /*plugin*/
+                  plugins = _pluginFactory.default.getPluginNames(parsedName.name);
+                  pluginApps = [];
 
-                    i = 0;
+                  if (!(plugins && plugins.length > 0)) {
+                    _context.next = 34;
+                    break;
+                  }
 
-                  case 25:
-                    if (!(i < plugins.length)) {
-                      _context.next = 34;
-                      break;
-                    }
+                  i = 0;
 
-                    plugin = plugins[i];
+                case 25:
+                  if (!(i < plugins.length)) {
+                    _context.next = 34;
+                    break;
+                  }
 
-                    if (_appFactory.default.getApp(plugin)) {
-                      _context.next = 30;
-                      break;
-                    }
+                  plugin = plugins[i];
 
+                  if (_appFactory.default.getApp(plugin)) {
                     _context.next = 30;
-                    return (0, _loadApp.default)(plugin);
-
-                  case 30:
-                    pluginApps.push(_appFactory.default.getApp(plugin));
-
-                  case 31:
-                    i++;
-                    _context.next = 25;
                     break;
+                  }
 
-                  case 34:
-                    return _context.abrupt("return", next({
-                      type: '@@loadAppReal',
-                      payload: {
-                        fullName: _fullName,
-                        appInfo: appInfo,
-                        prevFullName: prevFullName,
-                        action: appInfo.action,
-                        pluginApps: pluginApps,
-                        plugins: plugins
-                      }
-                    }));
+                  _context.next = 30;
+                  return (0, _loadApp.default)(plugin);
 
-                  case 37:
-                    _context.prev = 37;
-                    _context.t0 = _context["catch"](11);
-                    console.error(_context.t0);
-                    return _context.abrupt("return", next(action));
+                case 30:
+                  pluginApps.push(_appFactory.default.getApp(plugin));
 
-                  case 41:
-                    _context.next = 70;
+                case 31:
+                  i++;
+                  _context.next = 25;
+                  break;
+
+                case 34:
+                  return _context.abrupt("return", next({
+                    type: '@@loadAppReal',
+                    payload: {
+                      fullName: _fullName,
+                      appInfo: appInfo,
+                      prevFullName: prevFullName,
+                      action: appInfo.action,
+                      pluginApps: pluginApps,
+                      plugins: plugins
+                    }
+                  }));
+
+                case 37:
+                  _context.prev = 37;
+                  _context.t0 = _context["catch"](11);
+                  console.error(_context.t0);
+                  return _context.abrupt("return", next(action));
+
+                case 41:
+                  _context.next = 70;
+                  break;
+
+                case 43:
+                  if (!(action.type && action.type == '@@loadPlugin')) {
+                    _context.next = 69;
                     break;
+                  }
 
-                  case 43:
-                    if (!(action.type && action.type == '@@loadPlugin')) {
-                      _context.next = 69;
-                      break;
-                    }
+                  _context.prev = 44;
+                  _fullName2 = action.payload.fullName, _prevFullName = action.payload.prevFullName, _parsedName = (0, _parseName.default)(_fullName2);
+                  _appInfo = _appFactory.default.getApp(_parsedName.name);
+                  /*plugin*/
 
-                    _context.prev = 44;
-                    _fullName2 = action.payload.fullName, _prevFullName = action.payload.prevFullName, _parsedName = (0, _parseName.default)(_fullName2);
-                    _appInfo = _appFactory.default.getApp(_parsedName.name);
-                    /*plugin*/
+                  _plugins = _pluginFactory.default.getPluginNames(_parsedName.name);
+                  _pluginApps = [];
 
-                    _plugins = _pluginFactory.default.getPluginNames(_parsedName.name);
-                    _pluginApps = [];
+                  if (!(_plugins && _plugins.length > 0)) {
+                    _context.next = 60;
+                    break;
+                  }
 
-                    if (!(_plugins && _plugins.length > 0)) {
-                      _context.next = 60;
-                      break;
-                    }
+                  i = 0;
 
-                    i = 0;
+                case 51:
+                  if (!(i < _plugins.length)) {
+                    _context.next = 60;
+                    break;
+                  }
 
-                  case 51:
-                    if (!(i < _plugins.length)) {
-                      _context.next = 60;
-                      break;
-                    }
+                  plugin = _plugins[i];
 
-                    plugin = _plugins[i];
-
-                    if (_appFactory.default.getApp(plugin)) {
-                      _context.next = 56;
-                      break;
-                    }
-
+                  if (_appFactory.default.getApp(plugin)) {
                     _context.next = 56;
-                    return (0, _loadApp.default)(plugin);
-
-                  case 56:
-                    _pluginApps.push(_appFactory.default.getApp(plugin));
-
-                  case 57:
-                    i++;
-                    _context.next = 51;
                     break;
+                  }
 
-                  case 60:
-                    return _context.abrupt("return", next({
-                      type: '@@loadAppReal',
-                      payload: {
-                        fullName: _fullName2,
-                        appInfo: _appInfo,
-                        prevFullName: _prevFullName,
-                        action: _appInfo.action,
-                        pluginApps: _pluginApps,
-                        plugins: _plugins,
-                        forceLoad: true
-                      }
-                    }));
+                  _context.next = 56;
+                  return (0, _loadApp.default)(plugin);
 
-                  case 63:
-                    _context.prev = 63;
-                    _context.t1 = _context["catch"](44);
-                    console.error(_context.t1);
-                    return _context.abrupt("return", next(action));
+                case 56:
+                  _pluginApps.push(_appFactory.default.getApp(plugin));
 
-                  case 67:
-                    _context.next = 70;
-                    break;
+                case 57:
+                  i++;
+                  _context.next = 51;
+                  break;
 
-                  case 69:
-                    return _context.abrupt("return", next(action));
+                case 60:
+                  return _context.abrupt("return", next({
+                    type: '@@loadAppReal',
+                    payload: {
+                      fullName: _fullName2,
+                      appInfo: _appInfo,
+                      prevFullName: _prevFullName,
+                      action: _appInfo.action,
+                      pluginApps: _pluginApps,
+                      plugins: _plugins,
+                      forceLoad: true
+                    }
+                  }));
 
-                  case 70:
-                  case "end":
-                    return _context.stop();
-                }
+                case 63:
+                  _context.prev = 63;
+                  _context.t1 = _context["catch"](44);
+                  console.error(_context.t1);
+                  return _context.abrupt("return", next(action));
+
+                case 67:
+                  _context.next = 70;
+                  break;
+
+                case 69:
+                  return _context.abrupt("return", next(action));
+
+                case 70:
+                case "end":
+                  return _context.stop();
               }
-            }, _callee, null, [[11, 37], [44, 63]]);
-          }));
+            }
+          }, _callee, null, [[11, 37], [44, 63]]);
+        }));
 
-          return function (_x) {
-            return _ref.apply(this, arguments);
-          };
-        }()
-      );
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }();
     };
   };
 };

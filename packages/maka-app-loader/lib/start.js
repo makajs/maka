@@ -50,9 +50,9 @@ function start() {
     };
   }
 
-  (0, _reactDom.render)(currentConfig.rootWrapper(_react.default.createElement(_reactRedux.Provider, {
+  (0, _reactDom.render)(currentConfig.rootWrapper( /*#__PURE__*/_react.default.createElement(_reactRedux.Provider, {
     store: store
-  }, _react.default.createElement(_appLoader.default, {
+  }, /*#__PURE__*/_react.default.createElement(_appLoader.default, {
     name: currentConfig.startAppName
   }))), document.getElementById(currentConfig.targetDomId));
 }

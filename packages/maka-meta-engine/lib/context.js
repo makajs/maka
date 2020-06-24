@@ -11,9 +11,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var context =
-/*#__PURE__*/
-function () {
+var context = /*#__PURE__*/function () {
   function context() {
     (0, _classCallCheck2.default)(this, context);
     this._context = {};
