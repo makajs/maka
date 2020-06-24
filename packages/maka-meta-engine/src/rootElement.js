@@ -29,7 +29,7 @@ export default class Root extends React.PureComponent {
             navigate.redirect('/' + full)
     }
 
-    listen = (location, action) => {
+    listen = ({location, action}) => {
         if(history.state && history.state.orginalUrl){
             history.replaceState(history.state.orginalUrl)
         }

@@ -41,7 +41,10 @@ var Root = /*#__PURE__*/function (_React$PureComponent) {
 
     (0, _classCallCheck2.default)(this, Root);
     _this = _super.call(this, props);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "listen", function (location, action) {
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "listen", function (_ref) {
+      var location = _ref.location,
+          action = _ref.action;
+
       if (history.state && history.state.orginalUrl) {
         history.replaceState(history.state.orginalUrl);
       }
