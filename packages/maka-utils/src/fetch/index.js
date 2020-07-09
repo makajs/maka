@@ -152,6 +152,15 @@ function get(url, headers, option) {
 
 function post(url, data, headers, option) {
 	headers = headers || {}
+	option = option || {}
+	if(data && data._option){
+		option = Object.assign(option, data._option)
+		delete data._option
+	}
+	if(data && data._headers){
+		headers = Object.assign(headers, data._headers)
+		delete data._headers
+	}
 	if (!option || option.ignoreAOP !== true) {
 		before(url, data, headers)
 	}
@@ -185,7 +194,6 @@ function post(url, data, headers, option) {
 			}, 0)
 		})
 	}
-
 	let request = {
 		method: 'POST',
 		credentials: 'same-origin',
