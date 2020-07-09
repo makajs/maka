@@ -239,6 +239,10 @@ function post(url, data, headers, option) {
     request.headers["Authorization"] = "Bearer " + option.token;
   }
 
+  if (option && option.signal) {
+    request.signal = option.signal;
+  }
+
   return new Promise(function (resolve, reject) {
     fetch(fixUrl(url), request).then(function (response) {
       var json = {};

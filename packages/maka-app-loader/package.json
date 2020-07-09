@@ -1,6 +1,6 @@
 {
   "name": "@makajs/app-loader",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "maka app loader",
   "main": "./lib/index",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/makajs/maka/packages/maka-app-loader#readme",
   "dependencies": {
-    "@makajs/utils": "*",
+    "@makajs/utils": "^0.0.23",
     "immutable": "*",
     "prop-types": "*",
     "react": "*",

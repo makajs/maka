@@ -1,6 +1,6 @@
 {
   "name": "@makajs/sdk",
-  "version": "0.0.61",
+  "version": "0.0.62",
   "description": "maka sdk",
   "main": "lib/index.js",
   "scripts": {
