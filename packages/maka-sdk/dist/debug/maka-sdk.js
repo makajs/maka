@@ -834,7 +834,7 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
 
-var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/index.js");
 
 var globalObj = (0, _utils.getGlobal)();
 
@@ -1576,7 +1576,7 @@ var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node
 
 var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ "./node_modules/@makajs/app-loader/lib/appFactory.js"));
 
-var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/index.js");
 
 var globalObj = (0, _utils.getGlobal)();
 
@@ -1623,7 +1623,7 @@ var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */
 
 var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
 
-var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/index.js");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -1914,7 +1914,7 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/index.js");
 
 var globalObj = (0, _utils.getGlobal)();
 
@@ -2009,7 +2009,7 @@ var _createReduxConnector = _interopRequireDefault(__webpack_require__(/*! ./cre
 
 var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/app-loader/lib/config.js"));
 
-var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/index.js");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -2206,7 +2206,7 @@ exports.default = removeApp;
 
 var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ "./node_modules/@makajs/app-loader/lib/appFactory.js"));
 
-var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/index.js");
 
 var globalObj = (0, _utils.getGlobal)();
 var isProduction = false;
@@ -2328,7 +2328,7 @@ var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node
 
 var _appFactory = _interopRequireDefault(__webpack_require__(/*! ./appFactory */ "./node_modules/@makajs/app-loader/lib/appFactory.js"));
 
-var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/index.js");
 
 var globalObj = (0, _utils.getGlobal)();
 
@@ -2460,6 +2460,781 @@ function wrapMapStateToProps(fullName) {
 
 /***/ }),
 
+/***/ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/env/index.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/env/index.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.getGlobal = void 0;
+
+var getGlobal = function getGlobal() {
+  // the only reliable means to get the global object is
+  // `Function('return this')()`
+  // However, this causes CSP violations in Chrome apps.
+  if (typeof self !== 'undefined') {
+    return self;
+  }
+
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+
+  if (typeof global !== 'undefined') {
+    return global;
+  }
+
+  throw new Error('unable to locate global object');
+};
+
+exports.getGlobal = getGlobal;
+var _default = {
+  getGlobal: getGlobal
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/exception/index.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/exception/index.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.error = error;
+exports.clear = clear;
+exports.getExceptions = getExceptions;
+exports.default = void 0;
+var exceptions = [];
+
+function error(err) {
+  console.error(err);
+  exceptions.unshift(err);
+}
+
+function clear() {
+  exceptions.splice(0, exceptions.length);
+}
+
+function getExceptions() {
+  return exceptions;
+}
+
+var _default = {
+  error: error,
+  clear: clear,
+  getExceptions: getExceptions
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/expression/index.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/expression/index.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.getExpressionBody = exports.isExpression = void 0;
+
+var _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ "./node_modules/lodash/memoize.js"));
+
+// {{***}} 
+var reg = /^\s*\{{2}([\s\S]+)\}{2}\s*$/m; // {{{***}}}
+
+var reg1 = /^\s*\{{3}([\s\S]+)\}{3}\s*$/m;
+var isExpression = (0, _memoize.default)(function (v) {
+  return reg.test(v) || reg1.test(v);
+});
+exports.isExpression = isExpression;
+var getExpressionBody = (0, _memoize.default)(function (v) {
+  if (reg1.test(v)) {
+    return v.replace(reg1, function (word, group) {
+      return group;
+    });
+  }
+
+  if (reg.test(v)) {
+    return "return " + v.replace(reg, function (word, group) {
+      return group;
+    });
+  }
+
+  return v;
+});
+exports.getExpressionBody = getExpressionBody;
+var _default = {
+  isExpression: isExpression,
+  getExpressionBody: getExpressionBody
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/fetch/index.js":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/fetch/index.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.config = config;
+exports.get = get;
+exports.post = post;
+exports.formPost = formPost;
+exports.test = test;
+exports.mock = mock;
+exports.isMockUrl = isMockUrl;
+exports.getAccessToken = getAccessToken;
+exports.setAccessToken = setAccessToken;
+exports.clearAccessToken = clearAccessToken;
+exports.mockApi = exports.mockData = exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
+var _env = __webpack_require__(/*! ../env */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/env/index.js");
+
+var mockApi = {};
+exports.mockApi = mockApi;
+var mockData = {};
+exports.mockData = mockData;
+var _options = {
+  store: localStorage
+};
+(0, _env.getGlobal)().self = (0, _env.getGlobal)();
+
+__webpack_require__(/*! whatwg-fetch */ "./node_modules/whatwg-fetch/fetch.js");
+
+function config(options) {
+  Object.assign(_options, options);
+
+  if (options.token) {
+    setAccessToken(options.token);
+  }
+}
+
+function mock(url, handler) {
+  /*url = {
+  	'test/url1':()=>{},
+  	'test/url2':()=>{}
+  }*/
+  if (url && (0, _typeof2.default)(url) == "object") {
+    Object.keys(url).forEach(function (u) {
+      mock(u, url[u]);
+    });
+  } //url=v1/*/
+  //handler={
+  //	person:()=>{}
+  //}
+  //
+  else if (url.indexOf("*") != -1) {
+      var paths = url.split('*');
+      var pre = paths.shift();
+      Object.keys(handler).forEach(function (key) {
+        var theUrl = pre + key + paths.join('*');
+        mock(theUrl, handler[key]);
+      });
+    } else {
+      mockApi[url] = handler;
+    }
+}
+
+function isMockUrl(url) {
+  if (!_options.excludeMockUrls) return _options.mock;
+
+  if (_options.excludeMockUrls.find(function (o) {
+    if (o === url) return true;
+    if (o.test && o.test(url)) return true;
+    return false;
+  })) {
+    return !_options.mock;
+  } else {
+    return _options.mock;
+  }
+}
+
+function fixUrl(url) {
+  if (_options.prefix) return "".concat(_options.prefix).concat(url);else return url;
+}
+
+function get(url, headers, option) {
+  if (!option || option.ignoreAOP !== true) {
+    before();
+  }
+
+  if (isMockUrl(url)) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try {
+          if (getAccessToken()) {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
+              token: getAccessToken()
+            }) : {
+              token: getAccessToken()
+            };
+          }
+
+          var resp = mockApi[url](headers);
+
+          if (resp.then && resp.catch) {
+            resp.then(function (r) {
+              resp = after(resp, url, undefined, headers);
+              return resolve(resp);
+            }).catch(reject);
+            return resp;
+          } else if (!option || option.ignoreAOP !== true) {
+            resp = after(resp, url, undefined, headers);
+          }
+
+          resolve(resp);
+        } catch (e) {
+          reject(e);
+        }
+      }, 0);
+    });
+  }
+
+  var request = headers = {
+    method: 'GET',
+    credentials: 'same-origin',
+    headers: (0, _objectSpread2.default)({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, headers, {
+      token: getAccessToken(),
+      "Authorization": getAccessToken() ? "Bearer " + getAccessToken() : ''
+    })
+  };
+
+  if (option && option.token) {
+    request.headers['token'] = option.token;
+    request.headers["Authorization"] = "Bearer " + option.token;
+  }
+
+  return new Promise(function (resolve, reject) {
+    fetch(fixUrl(url), request).then(function (response) {
+      var json = {};
+      var contentType = response.headers.get('Content-Type');
+      contentType = contentType && contentType.split(";")[0];
+
+      if (contentType == 'application/json') {
+        json = response.json();
+      } else if (contentType == 'application/octet-stream') {
+        response.blob().then(function (blob) {
+          var a = document.createElement('a');
+          var url = window.URL.createObjectURL(blob);
+          var name = response.headers.get('Content-Disposition');
+          name = name.split('name=')[1].split(';')[0];
+          a.href = url;
+          a.download = name;
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+      }
+
+      return json;
+    }).then(function (responseJson) {
+      responseJson = after(responseJson, url, undefined, request);
+      resolve(responseJson);
+    }).catch(function (error) {
+      return reject(error);
+    });
+  });
+}
+
+function post(url, data, headers, option) {
+  headers = headers || {};
+  option = option || {};
+
+  if (data && data._option) {
+    option = Object.assign(option, data._option);
+    delete data._option;
+  }
+
+  if (data && data._headers) {
+    headers = Object.assign(headers, data._headers);
+    delete data._headers;
+  }
+
+  if (!option || option.ignoreAOP !== true) {
+    before(url, data, headers);
+  }
+
+  if (isMockUrl(url)) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try {
+          if (getAccessToken()) {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
+              token: getAccessToken()
+            }) : {
+              token: getAccessToken()
+            };
+          }
+
+          var mockFun = mockApi[url];
+
+          if (!mockFun || typeof mockFun != 'function') {
+            throw url + ':handler is invalid';
+          }
+
+          var resp = mockFun(data, headers);
+
+          if (resp.then && resp.catch) {
+            resp.then(function (r) {
+              r = after(r, url, data, headers);
+              return resolve(r);
+            }).catch(reject);
+            return resp;
+          } else if (!option || option.ignoreAOP !== true) {
+            resp = after(resp, url, data, headers);
+          }
+
+          resolve(resp);
+        } catch (e) {
+          reject(e);
+        }
+      }, 0);
+    });
+  }
+
+  var request = {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: (0, _objectSpread2.default)({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, headers, {
+      token: getAccessToken(),
+      "Authorization": getAccessToken() ? "Bearer " + getAccessToken() : ''
+    }),
+    body: JSON.stringify(data)
+  };
+
+  if (option && option.type == 'file') {
+    request.body = option.body;
+    delete request.headers['Content-Type'];
+  }
+
+  if (option && option.token) {
+    request.headers['token'] = option.token;
+    request.headers["Authorization"] = "Bearer " + option.token;
+  }
+
+  if (option && option.signal) {
+    request.signal = option.signal;
+  }
+
+  return new Promise(function (resolve, reject) {
+    fetch(fixUrl(url), request).then(function (response) {
+      var json = {};
+      var contentType = response.headers.get('Content-Type').split(";")[0];
+      var contentDisposition = response.headers.get('Content-Disposition');
+
+      if (contentType == 'application/json') {
+        json = response.json();
+      } else if (contentDisposition != null) {
+        response.blob().then(function (blob) {
+          var a = document.createElement('a');
+          var url = window.URL.createObjectURL(blob);
+          var name = response.headers.get('Content-Disposition');
+          name = name.split('name=')[1].split(';')[0];
+          a.href = url;
+          a.download = decodeURI(name);
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+      }
+
+      return json;
+    }).then(function (responseJson) {
+      responseJson = after(responseJson, url, data, request);
+      resolve(responseJson);
+    }).catch(function (error) {
+      return reject(error);
+    });
+  });
+}
+
+function formPost(url, data, isFree) {
+  data = data || {};
+  var accessToken = getAccessToken(); //toke in sessionStorage
+
+  if (!!accessToken && !isFree) {
+    data.token = accessToken;
+  }
+
+  var postForm = document.createElement("form"); //form object
+
+  postForm.method = "post";
+  postForm.action = url;
+  postForm.target = "_blank";
+  var keys = Object.keys(data);
+
+  for (var _i = 0, _keys = keys; _i < _keys.length; _i++) {
+    var k = _keys[_i];
+    var emailInput = document.createElement("input"); //email input
+
+    emailInput.setAttribute("name", k);
+    emailInput.setAttribute("value", data[k]);
+    postForm.appendChild(emailInput);
+  }
+
+  document.body.appendChild(postForm);
+  postForm.submit();
+  document.body.removeChild(postForm);
+}
+
+function test(url, data, result) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve(result);
+    }, 0);
+  });
+}
+
+function before(url, data, headers) {
+  if (_options.before) {
+    _options.before(url, data, headers);
+  }
+}
+
+function after(response, url, data, headers) {
+  if (_options.after) {
+    return _options.after(response, url, data, headers);
+  }
+
+  return response;
+}
+
+function getAccessToken() {
+  return _options.store['_accessToken'] || ''; // return localStorage['_accessToken'] || '';
+  //return sessionStorage['_accessToken'] || '';
+}
+
+function setAccessToken(token) {
+  _options.store['_accessToken'] = token; // localStorage['_accessToken'] = token;
+  //sessionStorage['_accessToken'] = token;
+}
+
+function clearAccessToken() {
+  _options.store['_accessToken'] = ''; // localStorage['_accessToken'] = ''
+  //sessionStorage['_accessToken'] = ''
+}
+
+var _default = {
+  config: config,
+  get: get,
+  post: post,
+  formPost: formPost,
+  test: test,
+  mockData: mockData,
+  mock: mock,
+  mockApi: mockApi,
+  isMockUrl: isMockUrl,
+  getAccessToken: getAccessToken,
+  setAccessToken: setAccessToken,
+  clearAccessToken: clearAccessToken
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/index.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/index.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "fetch", {
+  enumerable: true,
+  get: function get() {
+    return _fetch.default;
+  }
+});
+Object.defineProperty(exports, "path", {
+  enumerable: true,
+  get: function get() {
+    return _path.default;
+  }
+});
+Object.defineProperty(exports, "expression", {
+  enumerable: true,
+  get: function get() {
+    return _expression.default;
+  }
+});
+Object.defineProperty(exports, "string", {
+  enumerable: true,
+  get: function get() {
+    return _string.default;
+  }
+});
+Object.defineProperty(exports, "exception", {
+  enumerable: true,
+  get: function get() {
+    return _exception.default;
+  }
+});
+Object.defineProperty(exports, "navigate", {
+  enumerable: true,
+  get: function get() {
+    return _navigate.default;
+  }
+});
+Object.defineProperty(exports, "getGlobal", {
+  enumerable: true,
+  get: function get() {
+    return _env.getGlobal;
+  }
+});
+exports.default = void 0;
+
+var _fetch = _interopRequireDefault(__webpack_require__(/*! ./fetch */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/fetch/index.js"));
+
+var _path = _interopRequireDefault(__webpack_require__(/*! ./path */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/path/index.js"));
+
+var _expression = _interopRequireDefault(__webpack_require__(/*! ./expression */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/expression/index.js"));
+
+var _string = _interopRequireDefault(__webpack_require__(/*! ./string */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/string/index.js"));
+
+var _exception = _interopRequireDefault(__webpack_require__(/*! ./exception */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/exception/index.js"));
+
+var _navigate = _interopRequireDefault(__webpack_require__(/*! ./navigate */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/navigate/index.js"));
+
+var _env = __webpack_require__(/*! ./env */ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/env/index.js");
+
+var _default = {
+  fetch: _fetch.default,
+  string: _string.default,
+  path: _path.default,
+  expression: _expression.default,
+  exception: _exception.default,
+  navigate: _navigate.default,
+  getGlobal: _env.getGlobal
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/navigate/index.js":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/navigate/index.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.listen = listen;
+exports.unlisten = unlisten;
+exports.goBack = goBack;
+exports.redirect = redirect;
+exports.getLocation = getLocation;
+exports.default = void 0;
+
+var createHashHistory = __webpack_require__(/*! history */ "./node_modules/history/index.js").createHashHistory;
+
+var hashHistory;
+var listerners = [];
+
+function setHistoryInstance() {
+  if (!hashHistory) hashHistory = createHashHistory();
+}
+
+function listen(handler) {
+  setHistoryInstance();
+  var h = listerners.find(function (o) {
+    return o.listen == handler;
+  });
+
+  if (!h) {
+    h = handler;
+    var unlisten = hashHistory.listen(handler);
+    listerners.push({
+      listen: h,
+      unlisten: unlisten
+    });
+  }
+}
+
+function unlisten(handler) {
+  var index = listerners.findIndex(function (o) {
+    return o.listen == handler;
+  });
+  if (index == -1) return;
+  listerners[index].unlisten();
+  listerners.splice(index, 1);
+}
+
+function goBack() {
+  hashHistory && hashHistory.goBack();
+}
+
+function redirect(app) {
+  if (!hashHistory) return;
+  if (location.hash === "#".concat(app)) return;
+  hashHistory && hashHistory.push(app);
+}
+
+function getLocation() {
+  return hashHistory && hashHistory.location;
+}
+
+var _default = {
+  listen: listen,
+  unlisten: unlisten,
+  goBack: goBack,
+  redirect: redirect,
+  getLocation: getLocation
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/path/index.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/path/index.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.parsePath = exports.existsParamsInPath = void 0;
+
+var _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ "./node_modules/lodash/memoize.js"));
+
+var existsParamsInPath = function existsParamsInPath(path) {
+  return /,/.test(path);
+};
+
+exports.existsParamsInPath = existsParamsInPath;
+var parsePath = (0, _memoize.default)(function (path) {
+  if (!path) return;
+
+  if (path.indexOf(',') == -1) {
+    return {
+      path: path.replace(/\s/g, '')
+    };
+  } else {
+    var segments = path.split(","),
+        vars = segments.slice(1);
+    return {
+      path: segments[0].replace(/\s/g, ''),
+      vars: vars.map(function (o) {
+        return o.replace(/\s/g, '');
+      })
+    };
+  }
+});
+exports.parsePath = parsePath;
+var _default = {
+  existsParamsInPath: existsParamsInPath,
+  parsePath: parsePath
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/string/index.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@makajs/app-loader/node_modules/@makajs/utils/lib/string/index.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.trimLeft = trimLeft;
+exports.trimRight = trimRight;
+exports.trim = trim;
+exports.toJson = toJson;
+exports.default = void 0;
+
+function trimLeft(str) {
+  return str.replace(/(^\s*)/g, "");
+}
+
+function trimRight(str) {
+  return str.replace(/(\s*$)/g, "");
+}
+
+function trim(str) {
+  return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+function toJson(str) {
+  return new Function("return " + str)();
+}
+
+var _default = {
+  trimLeft: trimLeft,
+  trimRight: trimRight,
+  trim: trim,
+  toJson: toJson
+};
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@makajs/meta-engine/lib/action.js":
 /*!********************************************************!*\
   !*** ./node_modules/@makajs/meta-engine/lib/action.js ***!
@@ -2493,7 +3268,7 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 
 var common = _interopRequireWildcard(__webpack_require__(/*! ./common */ "./node_modules/@makajs/meta-engine/lib/common.js"));
 
-var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
+var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/index.js"));
 
 var _immutable = __webpack_require__(/*! immutable */ "immutable");
 
@@ -3247,7 +4022,7 @@ exports.updateField = updateField;
 
 var _immutable = _interopRequireWildcard(__webpack_require__(/*! immutable */ "immutable"));
 
-var _utils = _interopRequireWildcard(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
+var _utils = _interopRequireWildcard(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/index.js"));
 
 var _templateFactory = _interopRequireDefault(__webpack_require__(/*! ./templateFactory */ "./node_modules/@makajs/meta-engine/lib/templateFactory.js"));
 
@@ -4022,7 +4797,7 @@ var _componentFactory = _interopRequireDefault(__webpack_require__(/*! ./compone
 
 var _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ "./node_modules/lodash/memoize.js"));
 
-var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
+var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/index.js"));
 
 var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/meta-engine/lib/config.js"));
 
@@ -4339,7 +5114,7 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 
 var _appLoader = _interopRequireDefault(__webpack_require__(/*! @makajs/app-loader */ "./node_modules/@makajs/app-loader/lib/index.js"));
 
-var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js");
+var _utils = __webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/index.js");
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 
@@ -4577,7 +5352,7 @@ var _maka = _interopRequireDefault(__webpack_require__(/*! ./maka */ "./node_mod
 
 var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ "./node_modules/@makajs/meta-engine/lib/config.js"));
 
-var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/utils/lib/index.js"));
+var _utils = _interopRequireDefault(__webpack_require__(/*! @makajs/utils */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/index.js"));
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 
@@ -4713,6 +5488,781 @@ function wrapper(option) {
     }(_react.Component);
   };
 }
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/env/index.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/env/index.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.getGlobal = void 0;
+
+var getGlobal = function getGlobal() {
+  // the only reliable means to get the global object is
+  // `Function('return this')()`
+  // However, this causes CSP violations in Chrome apps.
+  if (typeof self !== 'undefined') {
+    return self;
+  }
+
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+
+  if (typeof global !== 'undefined') {
+    return global;
+  }
+
+  throw new Error('unable to locate global object');
+};
+
+exports.getGlobal = getGlobal;
+var _default = {
+  getGlobal: getGlobal
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/exception/index.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/exception/index.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.error = error;
+exports.clear = clear;
+exports.getExceptions = getExceptions;
+exports.default = void 0;
+var exceptions = [];
+
+function error(err) {
+  console.error(err);
+  exceptions.unshift(err);
+}
+
+function clear() {
+  exceptions.splice(0, exceptions.length);
+}
+
+function getExceptions() {
+  return exceptions;
+}
+
+var _default = {
+  error: error,
+  clear: clear,
+  getExceptions: getExceptions
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/expression/index.js":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/expression/index.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.getExpressionBody = exports.isExpression = void 0;
+
+var _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ "./node_modules/lodash/memoize.js"));
+
+// {{***}} 
+var reg = /^\s*\{{2}([\s\S]+)\}{2}\s*$/m; // {{{***}}}
+
+var reg1 = /^\s*\{{3}([\s\S]+)\}{3}\s*$/m;
+var isExpression = (0, _memoize.default)(function (v) {
+  return reg.test(v) || reg1.test(v);
+});
+exports.isExpression = isExpression;
+var getExpressionBody = (0, _memoize.default)(function (v) {
+  if (reg1.test(v)) {
+    return v.replace(reg1, function (word, group) {
+      return group;
+    });
+  }
+
+  if (reg.test(v)) {
+    return "return " + v.replace(reg, function (word, group) {
+      return group;
+    });
+  }
+
+  return v;
+});
+exports.getExpressionBody = getExpressionBody;
+var _default = {
+  isExpression: isExpression,
+  getExpressionBody: getExpressionBody
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/fetch/index.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/fetch/index.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.config = config;
+exports.get = get;
+exports.post = post;
+exports.formPost = formPost;
+exports.test = test;
+exports.mock = mock;
+exports.isMockUrl = isMockUrl;
+exports.getAccessToken = getAccessToken;
+exports.setAccessToken = setAccessToken;
+exports.clearAccessToken = clearAccessToken;
+exports.mockApi = exports.mockData = exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
+var _env = __webpack_require__(/*! ../env */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/env/index.js");
+
+var mockApi = {};
+exports.mockApi = mockApi;
+var mockData = {};
+exports.mockData = mockData;
+var _options = {
+  store: localStorage
+};
+(0, _env.getGlobal)().self = (0, _env.getGlobal)();
+
+__webpack_require__(/*! whatwg-fetch */ "./node_modules/whatwg-fetch/fetch.js");
+
+function config(options) {
+  Object.assign(_options, options);
+
+  if (options.token) {
+    setAccessToken(options.token);
+  }
+}
+
+function mock(url, handler) {
+  /*url = {
+  	'test/url1':()=>{},
+  	'test/url2':()=>{}
+  }*/
+  if (url && (0, _typeof2.default)(url) == "object") {
+    Object.keys(url).forEach(function (u) {
+      mock(u, url[u]);
+    });
+  } //url=v1/*/
+  //handler={
+  //	person:()=>{}
+  //}
+  //
+  else if (url.indexOf("*") != -1) {
+      var paths = url.split('*');
+      var pre = paths.shift();
+      Object.keys(handler).forEach(function (key) {
+        var theUrl = pre + key + paths.join('*');
+        mock(theUrl, handler[key]);
+      });
+    } else {
+      mockApi[url] = handler;
+    }
+}
+
+function isMockUrl(url) {
+  if (!_options.excludeMockUrls) return _options.mock;
+
+  if (_options.excludeMockUrls.find(function (o) {
+    if (o === url) return true;
+    if (o.test && o.test(url)) return true;
+    return false;
+  })) {
+    return !_options.mock;
+  } else {
+    return _options.mock;
+  }
+}
+
+function fixUrl(url) {
+  if (_options.prefix) return "".concat(_options.prefix).concat(url);else return url;
+}
+
+function get(url, headers, option) {
+  if (!option || option.ignoreAOP !== true) {
+    before();
+  }
+
+  if (isMockUrl(url)) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try {
+          if (getAccessToken()) {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
+              token: getAccessToken()
+            }) : {
+              token: getAccessToken()
+            };
+          }
+
+          var resp = mockApi[url](headers);
+
+          if (resp.then && resp.catch) {
+            resp.then(function (r) {
+              resp = after(resp, url, undefined, headers);
+              return resolve(resp);
+            }).catch(reject);
+            return resp;
+          } else if (!option || option.ignoreAOP !== true) {
+            resp = after(resp, url, undefined, headers);
+          }
+
+          resolve(resp);
+        } catch (e) {
+          reject(e);
+        }
+      }, 0);
+    });
+  }
+
+  var request = headers = {
+    method: 'GET',
+    credentials: 'same-origin',
+    headers: (0, _objectSpread2.default)({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, headers, {
+      token: getAccessToken(),
+      "Authorization": getAccessToken() ? "Bearer " + getAccessToken() : ''
+    })
+  };
+
+  if (option && option.token) {
+    request.headers['token'] = option.token;
+    request.headers["Authorization"] = "Bearer " + option.token;
+  }
+
+  return new Promise(function (resolve, reject) {
+    fetch(fixUrl(url), request).then(function (response) {
+      var json = {};
+      var contentType = response.headers.get('Content-Type');
+      contentType = contentType && contentType.split(";")[0];
+
+      if (contentType == 'application/json') {
+        json = response.json();
+      } else if (contentType == 'application/octet-stream') {
+        response.blob().then(function (blob) {
+          var a = document.createElement('a');
+          var url = window.URL.createObjectURL(blob);
+          var name = response.headers.get('Content-Disposition');
+          name = name.split('name=')[1].split(';')[0];
+          a.href = url;
+          a.download = name;
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+      }
+
+      return json;
+    }).then(function (responseJson) {
+      responseJson = after(responseJson, url, undefined, request);
+      resolve(responseJson);
+    }).catch(function (error) {
+      return reject(error);
+    });
+  });
+}
+
+function post(url, data, headers, option) {
+  headers = headers || {};
+  option = option || {};
+
+  if (data && data._option) {
+    option = Object.assign(option, data._option);
+    delete data._option;
+  }
+
+  if (data && data._headers) {
+    headers = Object.assign(headers, data._headers);
+    delete data._headers;
+  }
+
+  if (!option || option.ignoreAOP !== true) {
+    before(url, data, headers);
+  }
+
+  if (isMockUrl(url)) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try {
+          if (getAccessToken()) {
+            headers = headers ? (0, _objectSpread2.default)({}, headers, {
+              token: getAccessToken()
+            }) : {
+              token: getAccessToken()
+            };
+          }
+
+          var mockFun = mockApi[url];
+
+          if (!mockFun || typeof mockFun != 'function') {
+            throw url + ':handler is invalid';
+          }
+
+          var resp = mockFun(data, headers);
+
+          if (resp.then && resp.catch) {
+            resp.then(function (r) {
+              r = after(r, url, data, headers);
+              return resolve(r);
+            }).catch(reject);
+            return resp;
+          } else if (!option || option.ignoreAOP !== true) {
+            resp = after(resp, url, data, headers);
+          }
+
+          resolve(resp);
+        } catch (e) {
+          reject(e);
+        }
+      }, 0);
+    });
+  }
+
+  var request = {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: (0, _objectSpread2.default)({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, headers, {
+      token: getAccessToken(),
+      "Authorization": getAccessToken() ? "Bearer " + getAccessToken() : ''
+    }),
+    body: JSON.stringify(data)
+  };
+
+  if (option && option.type == 'file') {
+    request.body = option.body;
+    delete request.headers['Content-Type'];
+  }
+
+  if (option && option.token) {
+    request.headers['token'] = option.token;
+    request.headers["Authorization"] = "Bearer " + option.token;
+  }
+
+  if (option && option.signal) {
+    request.signal = option.signal;
+  }
+
+  return new Promise(function (resolve, reject) {
+    fetch(fixUrl(url), request).then(function (response) {
+      var json = {};
+      var contentType = response.headers.get('Content-Type').split(";")[0];
+      var contentDisposition = response.headers.get('Content-Disposition');
+
+      if (contentType == 'application/json') {
+        json = response.json();
+      } else if (contentDisposition != null) {
+        response.blob().then(function (blob) {
+          var a = document.createElement('a');
+          var url = window.URL.createObjectURL(blob);
+          var name = response.headers.get('Content-Disposition');
+          name = name.split('name=')[1].split(';')[0];
+          a.href = url;
+          a.download = decodeURI(name);
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+      }
+
+      return json;
+    }).then(function (responseJson) {
+      responseJson = after(responseJson, url, data, request);
+      resolve(responseJson);
+    }).catch(function (error) {
+      return reject(error);
+    });
+  });
+}
+
+function formPost(url, data, isFree) {
+  data = data || {};
+  var accessToken = getAccessToken(); //toke in sessionStorage
+
+  if (!!accessToken && !isFree) {
+    data.token = accessToken;
+  }
+
+  var postForm = document.createElement("form"); //form object
+
+  postForm.method = "post";
+  postForm.action = url;
+  postForm.target = "_blank";
+  var keys = Object.keys(data);
+
+  for (var _i = 0, _keys = keys; _i < _keys.length; _i++) {
+    var k = _keys[_i];
+    var emailInput = document.createElement("input"); //email input
+
+    emailInput.setAttribute("name", k);
+    emailInput.setAttribute("value", data[k]);
+    postForm.appendChild(emailInput);
+  }
+
+  document.body.appendChild(postForm);
+  postForm.submit();
+  document.body.removeChild(postForm);
+}
+
+function test(url, data, result) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve(result);
+    }, 0);
+  });
+}
+
+function before(url, data, headers) {
+  if (_options.before) {
+    _options.before(url, data, headers);
+  }
+}
+
+function after(response, url, data, headers) {
+  if (_options.after) {
+    return _options.after(response, url, data, headers);
+  }
+
+  return response;
+}
+
+function getAccessToken() {
+  return _options.store['_accessToken'] || ''; // return localStorage['_accessToken'] || '';
+  //return sessionStorage['_accessToken'] || '';
+}
+
+function setAccessToken(token) {
+  _options.store['_accessToken'] = token; // localStorage['_accessToken'] = token;
+  //sessionStorage['_accessToken'] = token;
+}
+
+function clearAccessToken() {
+  _options.store['_accessToken'] = ''; // localStorage['_accessToken'] = ''
+  //sessionStorage['_accessToken'] = ''
+}
+
+var _default = {
+  config: config,
+  get: get,
+  post: post,
+  formPost: formPost,
+  test: test,
+  mockData: mockData,
+  mock: mock,
+  mockApi: mockApi,
+  isMockUrl: isMockUrl,
+  getAccessToken: getAccessToken,
+  setAccessToken: setAccessToken,
+  clearAccessToken: clearAccessToken
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/index.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/index.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "fetch", {
+  enumerable: true,
+  get: function get() {
+    return _fetch.default;
+  }
+});
+Object.defineProperty(exports, "path", {
+  enumerable: true,
+  get: function get() {
+    return _path.default;
+  }
+});
+Object.defineProperty(exports, "expression", {
+  enumerable: true,
+  get: function get() {
+    return _expression.default;
+  }
+});
+Object.defineProperty(exports, "string", {
+  enumerable: true,
+  get: function get() {
+    return _string.default;
+  }
+});
+Object.defineProperty(exports, "exception", {
+  enumerable: true,
+  get: function get() {
+    return _exception.default;
+  }
+});
+Object.defineProperty(exports, "navigate", {
+  enumerable: true,
+  get: function get() {
+    return _navigate.default;
+  }
+});
+Object.defineProperty(exports, "getGlobal", {
+  enumerable: true,
+  get: function get() {
+    return _env.getGlobal;
+  }
+});
+exports.default = void 0;
+
+var _fetch = _interopRequireDefault(__webpack_require__(/*! ./fetch */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/fetch/index.js"));
+
+var _path = _interopRequireDefault(__webpack_require__(/*! ./path */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/path/index.js"));
+
+var _expression = _interopRequireDefault(__webpack_require__(/*! ./expression */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/expression/index.js"));
+
+var _string = _interopRequireDefault(__webpack_require__(/*! ./string */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/string/index.js"));
+
+var _exception = _interopRequireDefault(__webpack_require__(/*! ./exception */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/exception/index.js"));
+
+var _navigate = _interopRequireDefault(__webpack_require__(/*! ./navigate */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/navigate/index.js"));
+
+var _env = __webpack_require__(/*! ./env */ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/env/index.js");
+
+var _default = {
+  fetch: _fetch.default,
+  string: _string.default,
+  path: _path.default,
+  expression: _expression.default,
+  exception: _exception.default,
+  navigate: _navigate.default,
+  getGlobal: _env.getGlobal
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/navigate/index.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/navigate/index.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.listen = listen;
+exports.unlisten = unlisten;
+exports.goBack = goBack;
+exports.redirect = redirect;
+exports.getLocation = getLocation;
+exports.default = void 0;
+
+var createHashHistory = __webpack_require__(/*! history */ "./node_modules/history/index.js").createHashHistory;
+
+var hashHistory;
+var listerners = [];
+
+function setHistoryInstance() {
+  if (!hashHistory) hashHistory = createHashHistory();
+}
+
+function listen(handler) {
+  setHistoryInstance();
+  var h = listerners.find(function (o) {
+    return o.listen == handler;
+  });
+
+  if (!h) {
+    h = handler;
+    var unlisten = hashHistory.listen(handler);
+    listerners.push({
+      listen: h,
+      unlisten: unlisten
+    });
+  }
+}
+
+function unlisten(handler) {
+  var index = listerners.findIndex(function (o) {
+    return o.listen == handler;
+  });
+  if (index == -1) return;
+  listerners[index].unlisten();
+  listerners.splice(index, 1);
+}
+
+function goBack() {
+  hashHistory && hashHistory.goBack();
+}
+
+function redirect(app) {
+  if (!hashHistory) return;
+  if (location.hash === "#".concat(app)) return;
+  hashHistory && hashHistory.push(app);
+}
+
+function getLocation() {
+  return hashHistory && hashHistory.location;
+}
+
+var _default = {
+  listen: listen,
+  unlisten: unlisten,
+  goBack: goBack,
+  redirect: redirect,
+  getLocation: getLocation
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/path/index.js":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/path/index.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.parsePath = exports.existsParamsInPath = void 0;
+
+var _memoize = _interopRequireDefault(__webpack_require__(/*! lodash/memoize */ "./node_modules/lodash/memoize.js"));
+
+var existsParamsInPath = function existsParamsInPath(path) {
+  return /,/.test(path);
+};
+
+exports.existsParamsInPath = existsParamsInPath;
+var parsePath = (0, _memoize.default)(function (path) {
+  if (!path) return;
+
+  if (path.indexOf(',') == -1) {
+    return {
+      path: path.replace(/\s/g, '')
+    };
+  } else {
+    var segments = path.split(","),
+        vars = segments.slice(1);
+    return {
+      path: segments[0].replace(/\s/g, ''),
+      vars: vars.map(function (o) {
+        return o.replace(/\s/g, '');
+      })
+    };
+  }
+});
+exports.parsePath = parsePath;
+var _default = {
+  existsParamsInPath: existsParamsInPath,
+  parsePath: parsePath
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/string/index.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@makajs/meta-engine/node_modules/@makajs/utils/lib/string/index.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.trimLeft = trimLeft;
+exports.trimRight = trimRight;
+exports.trim = trim;
+exports.toJson = toJson;
+exports.default = void 0;
+
+function trimLeft(str) {
+  return str.replace(/(^\s*)/g, "");
+}
+
+function trimRight(str) {
+  return str.replace(/(\s*$)/g, "");
+}
+
+function trim(str) {
+  return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+function toJson(str) {
+  return new Function("return " + str)();
+}
+
+var _default = {
+  trimLeft: trimLeft,
+  trimRight: trimRight,
+  trim: trim,
+  toJson: toJson
+};
+exports.default = _default;
 
 /***/ }),
 
@@ -5371,7 +6921,8 @@ function unlisten(handler) {
 }
 
 function goBack() {
-  hashHistory && hashHistory.goBack();
+  hashHistory && hashHistory.back && hashHistory.back(); //history 升级后接口变化 goBack 变成了 back
+  //hashHistory && hashHistory.goBack && hashHistory.goBack()
 }
 
 function redirect(app) {

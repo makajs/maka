@@ -1,6 +1,6 @@
 {
   "name": "@makajs/sdk",
-  "version": "0.0.63",
+  "version": "0.0.65",
   "description": "maka sdk",
   "main": "lib/index.js",
   "scripts": {
@@ -29,8 +29,8 @@
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
     "@babel/runtime": "*",
-    "@makajs/app-loader": "*",
-    "@makajs/meta-engine": "*",
+    "@makajs/app-loader": "0.0.28",
+    "@makajs/meta-engine": "0.0.45",
     "@makajs/utils": "*",
     "babel-loader": "*",
     "cross-env": "*",

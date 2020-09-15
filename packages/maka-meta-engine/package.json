@@ -1,6 +1,6 @@
 {
   "name": "@makajs/meta-engine",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "description": "maka meta engine",
   "main": "./lib/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/makajs/maka/packages/maka-meta-engine#readme",
   "dependencies": {
-    "@makajs/app-loader": "*",
+    "@makajs/app-loader": "0.0.28",
     "@makajs/utils": "*",
     "immutable": "*",
     "lodash": "*",

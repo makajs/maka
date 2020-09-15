@@ -32,7 +32,9 @@ function unlisten(handler) {
 
 
 function goBack() {
-    hashHistory && hashHistory.goBack()
+    hashHistory && hashHistory.back && hashHistory.back()
+    //history 升级后接口变化 goBack 变成了 back
+    //hashHistory && hashHistory.goBack && hashHistory.goBack()
 }
 
 function redirect(app) {
