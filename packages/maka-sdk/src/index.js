@@ -69,16 +69,16 @@ const createAppElementInternal = (appName, appProps) => props => {
         <Provider store={store}>
             <appLoader.AppLoader name={appName} {...appProps} {...props}  ></appLoader.AppLoader>
         </Provider>
-    )
+    ) 
 }
 function createAppElement(appName, appProps) {
     var Internal = createAppElementInternal(appName, appProps)
 
     if (Hoc) {
-        return (<Hoc><Internal /></Hoc>)
+        return (<Hoc appName={appName} appProps={appProps} ><Internal /></Hoc>)
     }
     else {
-        return <Internal />
+        return <Internal appName={appName} appProps={appProps}/>
     }
 }
 

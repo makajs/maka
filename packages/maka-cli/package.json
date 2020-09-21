@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "1.0.43",
+  "version": "1.0.45",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -27,7 +27,7 @@
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
     "@babel/runtime": "*",
-    "@makajs/sdk": "*",
+    "@makajs/sdk": "^0.0.68",
     "acorn": "^6.1.1",
     "alphabetjs": "*",
     "art-template": "*",
