@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli2",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "makajs cli工具新版本，基于common-bin",
   "main": "index.js",
   "bin": {
@@ -42,7 +42,6 @@
     "typescript": "^3",
     "ypkgfiles": "^1.6.0"
   },
-  "devDependencies": {},
   "scripts": {
     "lint": "eslint .",
     "maka-lint": "cross-env DEBUG=maka-cli node bin/maka-cli.js lint",
