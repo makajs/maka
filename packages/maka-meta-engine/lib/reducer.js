@@ -13,7 +13,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _immutable = _interopRequireWildcard(require("immutable"));
+var _immutable = _interopRequireDefault(require("immutable"));
 
 var _context = _interopRequireDefault(require("./context"));
 
@@ -31,15 +31,17 @@ var reducer = function reducer(_option) {
     });
   });
   (0, _defineProperty2.default)(this, "initByImmutable", function (state, option) {
-    var data = option.data; //Clear the attribute in the state that is not @@, which is added by maka-app-loader
+    var data = option.data; // Clear the attribute in the state that is not @@, which is added by maka-app-loader
 
     var keys = [];
     state.mapKeys(function (key) {
-      if (key.indexOf('@@') === -1) keys.push(key);
+      if (key.indexOf('@@') === -1) {
+        keys.push(key);
+      }
     });
     keys.forEach(function (key) {
       state = state.remove(key);
-    }); //Setting status
+    }); // Setting status
 
     return state.set('data', data);
   });

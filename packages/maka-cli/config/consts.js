@@ -1,3 +1,3 @@
 module.exports = {
-    makaServerUrl: 'https://hub.makajs.org'
-}
+  makaServerUrl: 'https://hub.makajs.org',
+};

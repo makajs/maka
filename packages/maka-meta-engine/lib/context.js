@@ -25,7 +25,9 @@ var context = /*#__PURE__*/function () {
       };
 
       if (option.enableLocalStorage) {
-        if (value) window.localStorage[key] = JSON.stringify(value);
+        if (value) {
+          window.localStorage[key] = JSON.stringify(value);
+        }
       }
 
       if (!value && window.localStorage[key]) {

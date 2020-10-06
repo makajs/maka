@@ -11,8 +11,6 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _config = _interopRequireDefault(require("./config"));
-
 var _utils = require("@makajs/utils");
 
 var globalObj = (0, _utils.getGlobal)();

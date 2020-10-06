@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli2",
-  "version": "1.0.10",
+  "version": "2.0.0",
   "description": "makajs cli工具新版本，基于common-bin",
   "main": "index.js",
   "bin": {

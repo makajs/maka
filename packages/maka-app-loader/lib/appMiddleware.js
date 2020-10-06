@@ -32,7 +32,7 @@ var _default = function _default(actionInjections, reducerInjections) {
     return function (next) {
       return /*#__PURE__*/function () {
         var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(action) {
-          var getState, dispatch, _action, fullName, name, query, params, actionCreator, args, reducer, reduce, getStateByApp, injections, realAction, _fullName, prevFullName, parsedName, appInfo, plugins, pluginApps, i, plugin, _fullName2, _prevFullName, _parsedName, _appInfo, _plugins, _pluginApps;
+          var getState, dispatch, _action, fullName, name, query, params, actionCreator, args, reducer, reduce, getStateByApp, injections, realAction, _fullName, prevFullName, parsedName, appInfo, plugins, pluginApps, i, _fullName2, _prevFullName, _parsedName, _appInfo, _plugins, _pluginApps, _i;
 
           return _regenerator.default.wrap(function _callee$(_context) {
             while (1) {
@@ -87,12 +87,12 @@ var _default = function _default(actionInjections, reducerInjections) {
                     realAction(injections);
                   }
 
-                  _context.next = 70;
+                  _context.next = 68;
                   break;
 
                 case 10:
-                  if (!(action.type && action.type == '@@loadApp')) {
-                    _context.next = 43;
+                  if (!(action.type && action.type === '@@loadApp')) {
+                    _context.next = 42;
                     break;
                   }
 
@@ -120,12 +120,12 @@ var _default = function _default(actionInjections, reducerInjections) {
                   return _context.abrupt("return", next(action));
 
                 case 21:
-                  /*plugin*/
+                  /* plugin*/
                   plugins = _pluginFactory.default.getPluginNames(parsedName.name);
                   pluginApps = [];
 
                   if (!(plugins && plugins.length > 0)) {
-                    _context.next = 34;
+                    _context.next = 33;
                     break;
                   }
 
@@ -133,29 +133,27 @@ var _default = function _default(actionInjections, reducerInjections) {
 
                 case 25:
                   if (!(i < plugins.length)) {
-                    _context.next = 34;
+                    _context.next = 33;
                     break;
                   }
 
-                  plugin = plugins[i];
-
-                  if (_appFactory.default.getApp(plugin)) {
-                    _context.next = 30;
+                  if (_appFactory.default.getApp(plugins[i])) {
+                    _context.next = 29;
                     break;
                   }
 
-                  _context.next = 30;
-                  return (0, _loadApp.default)(plugin);
+                  _context.next = 29;
+                  return (0, _loadApp.default)(plugins[i]);
+
+                case 29:
+                  pluginApps.push(_appFactory.default.getApp(plugins[i]));
 
                 case 30:
-                  pluginApps.push(_appFactory.default.getApp(plugin));
-
-                case 31:
                   i++;
                   _context.next = 25;
                   break;
 
-                case 34:
+                case 33:
                   return _context.abrupt("return", next({
                     type: '@@loadAppReal',
                     payload: {
@@ -168,62 +166,60 @@ var _default = function _default(actionInjections, reducerInjections) {
                     }
                   }));
 
-                case 37:
-                  _context.prev = 37;
+                case 36:
+                  _context.prev = 36;
                   _context.t0 = _context["catch"](11);
                   console.error(_context.t0);
                   return _context.abrupt("return", next(action));
 
-                case 41:
-                  _context.next = 70;
+                case 40:
+                  _context.next = 68;
                   break;
 
-                case 43:
-                  if (!(action.type && action.type == '@@loadPlugin')) {
-                    _context.next = 69;
+                case 42:
+                  if (!(action.type && action.type === '@@loadPlugin')) {
+                    _context.next = 67;
                     break;
                   }
 
-                  _context.prev = 44;
+                  _context.prev = 43;
                   _fullName2 = action.payload.fullName, _prevFullName = action.payload.prevFullName, _parsedName = (0, _parseName.default)(_fullName2);
                   _appInfo = _appFactory.default.getApp(_parsedName.name);
-                  /*plugin*/
+                  /* plugin*/
 
                   _plugins = _pluginFactory.default.getPluginNames(_parsedName.name);
                   _pluginApps = [];
 
                   if (!(_plugins && _plugins.length > 0)) {
-                    _context.next = 60;
+                    _context.next = 58;
                     break;
                   }
 
-                  i = 0;
+                  _i = 0;
 
-                case 51:
-                  if (!(i < _plugins.length)) {
-                    _context.next = 60;
+                case 50:
+                  if (!(_i < _plugins.length)) {
+                    _context.next = 58;
                     break;
                   }
 
-                  plugin = _plugins[i];
-
-                  if (_appFactory.default.getApp(plugin)) {
-                    _context.next = 56;
+                  if (_appFactory.default.getApp(_plugins[_i])) {
+                    _context.next = 54;
                     break;
                   }
 
-                  _context.next = 56;
-                  return (0, _loadApp.default)(plugin);
+                  _context.next = 54;
+                  return (0, _loadApp.default)(_plugins[_i]);
 
-                case 56:
-                  _pluginApps.push(_appFactory.default.getApp(plugin));
+                case 54:
+                  _pluginApps.push(_appFactory.default.getApp(_plugins[_i]));
 
-                case 57:
-                  i++;
-                  _context.next = 51;
+                case 55:
+                  _i++;
+                  _context.next = 50;
                   break;
 
-                case 60:
+                case 58:
                   return _context.abrupt("return", next({
                     type: '@@loadAppReal',
                     payload: {
@@ -237,25 +233,25 @@ var _default = function _default(actionInjections, reducerInjections) {
                     }
                   }));
 
-                case 63:
-                  _context.prev = 63;
-                  _context.t1 = _context["catch"](44);
+                case 61:
+                  _context.prev = 61;
+                  _context.t1 = _context["catch"](43);
                   console.error(_context.t1);
                   return _context.abrupt("return", next(action));
 
-                case 67:
-                  _context.next = 70;
+                case 65:
+                  _context.next = 68;
                   break;
 
-                case 69:
+                case 67:
                   return _context.abrupt("return", next(action));
 
-                case 70:
+                case 68:
                 case "end":
                   return _context.stop();
               }
             }
-          }, _callee, null, [[11, 37], [44, 63]]);
+          }, _callee, null, [[11, 36], [43, 61]]);
         }));
 
         return function (_x) {

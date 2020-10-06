@@ -9,7 +9,7 @@ exports.default = exports.getExpressionBody = exports.isExpression = void 0;
 
 var _memoize = _interopRequireDefault(require("lodash/memoize"));
 
-// {{***}} 
+// {{***}}
 var reg = /^\s*\{{2}([\s\S]+)\}{2}\s*$/m; // {{{***}}}
 
 var reg1 = /^\s*\{{3}([\s\S]+)\}{3}\s*$/m;
@@ -25,7 +25,7 @@ var getExpressionBody = (0, _memoize.default)(function (v) {
   }
 
   if (reg.test(v)) {
-    return "return " + v.replace(reg, function (word, group) {
+    return 'return ' + v.replace(reg, function (word, group) {
       return group;
     });
   }

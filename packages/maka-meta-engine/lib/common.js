@@ -31,7 +31,7 @@ var cache = {
   plugin: (0, _immutable.Map)()
 };
 
-globalObj['__getCache'] = function () {
+globalObj.__getCache = function () {
   return cache;
 };
 
@@ -41,9 +41,9 @@ function uid(appName) {
   if (!uids[appName]) {
     uids[appName] = 0;
     return appName + uids[appName]++;
-  } else {
-    return uids[appName]++;
   }
+
+  return uids[appName]++;
 }
 
 function setMeta(appInfo) {
@@ -51,14 +51,21 @@ function setMeta(appInfo) {
   var appQuery = arguments.length > 2 ? arguments[2] : undefined;
   if (!appInfo || !appInfo.view) return;
   var appName = appInfo.name;
-  if (cache.meta.has(appName) && JSON.stringify(plugins.sort()) === JSON.stringify(cache.plugin.get(appName).toJS().sort())) return;
+
+  if (cache.meta.has(appName) && JSON.stringify(plugins.sort()) === JSON.stringify(cache.plugin.get(appName).toJS().sort())) {
+    return;
+  }
+
   cache.plugin = cache.plugin.set(appName, (0, _immutable.fromJS)(plugins));
   setMetaForce(appName, appInfo.viewByImmutable || appInfo.view, appQuery);
 }
 
 function setMetaForce(appName, meta, appQuery) {
-  if (!appName || !meta) return;
-  meta = _immutable.default.isMap(meta) || _immutable.default.isList(meta) ? meta : (0, _immutable.fromJS)(meta); //meta = fromJS(meta)
+  if (!appName || !meta) {
+    return;
+  }
+
+  meta = _immutable.Map.isMap(meta) || _immutable.List.isList(meta) ? meta : (0, _immutable.fromJS)(meta); // meta = fromJS(meta)
 
   meta = parseMetaTemplate(meta);
   var parsed = parseMeta(meta, appName);
@@ -80,33 +87,37 @@ function getMeta(appInfo, fullpath, propertys, appQuery) {
     return meta.toJS();
   }
 
-  var parsedPath = parsePath(fullpath),
-      vars = parsedPath.vars;
-  var path = metaMap.get(parsedPath.path);
-  var currentMeta = path ? meta.getIn(path.split('.')) : meta; //Empty attribute, get all attributes under the path
+  var parsedPath = parsePath(fullpath); // vars = parsedPath.vars;
 
-  if (!propertys) return currentMeta.toJS();
-  var ret = {}; //Attribute is an array
+  var path = metaMap.get(parsedPath.path);
+  var currentMeta = path ? meta.getIn(path.split('.')) : meta; // Empty attribute, get all attributes under the path
+
+  if (!propertys) {
+    return currentMeta.toJS();
+  }
+
+  var ret = {}; // Attribute is an array
 
   if (propertys instanceof Array) {
     var i, p;
 
     for (i = 0; p = propertys[i++];) {
+      //eslint-disable-line
       var val = currentMeta.getIn(p.split('.'));
       ret[p] = val && val.toJS ? val.toJS() : val;
     }
     /*
-    propertys.forEach(p => {
-        let val = currentMeta.getIn(p.split('.'))
-        ret[p] = (val && val.toJS) ? val.toJS() : val
-    })*/
+        propertys.forEach(p => {
+            let val = currentMeta.getIn(p.split('.'))
+            ret[p] = (val && val.toJS) ? val.toJS() : val
+        })*/
 
 
     return ret;
-  } //Attribute is a string
+  } // Attribute is a string
 
 
-  if (typeof propertys == 'string') {
+  if (typeof propertys === 'string') {
     var _val = currentMeta.getIn(propertys.split('.'));
 
     return _val && _val.toJS ? _val.toJS() : _val;
@@ -132,7 +143,7 @@ function getField(state, fieldPath) {
 function getFields(state, fieldPaths) {
   var ret = {};
   fieldPaths.forEach(function (o) {
-    return ret[o] = getField(state, o);
+    ret[o] = getField(state, o);
   });
   return ret;
 }
@@ -140,17 +151,17 @@ function getFields(state, fieldPaths) {
 function setField(state, fieldPath, value) {
   if (fieldPath instanceof Array) {
     return state.setIn(fieldPath, value && (0, _immutable.fromJS)(value));
-  } else {
-    return state.setIn(fieldPath.split('.'), value && (0, _immutable.fromJS)(value));
   }
+
+  return state.setIn(fieldPath.split('.'), value && (0, _immutable.fromJS)(value));
 }
 
 function setFields(state, values) {
-  var keys = Object.keys(values),
-      i,
-      key;
+  var keys = Object.keys(values);
+  var i, key;
 
   for (i = 0; key = keys[i++];) {
+    //eslint-disable-line
     state = setField(state, key, values[key]);
   }
 
@@ -160,9 +171,9 @@ function setFields(state, values) {
 function updateField(state, fieldPath, fn) {
   if (fieldPath instanceof Array) {
     return state.updateIn(fieldPath, fn);
-  } else {
-    return state.updateIn(fieldPath.split('.'), fn);
   }
+
+  return state.updateIn(fieldPath.split('.'), fn);
 }
 
 function parseMetaTemplate(meta) {
@@ -201,7 +212,7 @@ function parseMetaTemplate(meta) {
   parseProp(meta, '');
   templates.forEach(function (t) {
     var seg = t[0].split('.');
-    var curr = seg == '' ? (0, _immutable.fromJS)(t[1](meta.toJS())) : (0, _immutable.fromJS)(t[1](meta.getIn(seg).toJS()));
+    var curr = seg === '' ? (0, _immutable.fromJS)(t[1](meta.toJS())) : (0, _immutable.fromJS)(t[1](meta.getIn(seg).toJS()));
 
     if (curr instanceof _immutable.default.List && meta.getIn(seg.slice(0, seg.length - 1)) instanceof _immutable.default.List) {
       var index = seg.pop();
@@ -213,7 +224,7 @@ function parseMetaTemplate(meta) {
         });
         return ll;
       });
-    } else if (seg == '') {
+    } else if (seg === '') {
       meta = curr;
     } else {
       meta = meta.setIn(seg, curr);
@@ -221,50 +232,50 @@ function parseMetaTemplate(meta) {
   });
   return meta;
 }
-
+/*
 function parseMetaTemplate1(meta) {
-  var templates = [];
+  const templates = [];
 
-  var parseProp = function parseProp(propValue, path) {
-    if (!(propValue instanceof _immutable.default.Map)) {
+  const parseProp = (propValue, path) => {
+    if (!(propValue instanceof Immutable.Map)) {
       return;
     }
-
     if (propValue.get('component')) {
-      var component = _utils.default.string.trim(propValue.get('component'));
-
-      var template = _templateFactory.default.getTemplate(component);
-
+      const component = utils.string.trim(propValue.get('component'));
+      const template = templateFactory.getTemplate(component);
       if (template) {
-        templates.unshift([path, (0, _immutable.fromJS)(template(propValue.toJS()))]);
+
+        templates.unshift([ path, fromJS(template(propValue.toJS())) ]);
         return;
       }
+
     }
 
-    propValue.keySeq().toArray().forEach(function (p) {
-      var v = propValue.get(p);
-
-      if (v instanceof _immutable.default.List) {
-        v.forEach(function (c, index) {
-          var currentPath = path ? "".concat(path, ".").concat(p, ".").concat(index) : "".concat(p, ".").concat(index);
+    propValue.keySeq().toArray().forEach(p => {
+      const v = propValue.get(p);
+      if (v instanceof Immutable.List) {
+        v.forEach((c, index) => {
+          const currentPath = path ? `${path}.${p}.${index}` : `${p}.${index}`;
           parseProp(c, currentPath);
         });
       } else {
-        var currentPath = path ? "".concat(path, ".").concat(p) : p;
+        const currentPath = path ? `${path}.${p}` : p;
         parseProp(v, currentPath);
       }
     });
   };
-
   parseProp(meta, '');
-  templates.forEach(function (t) {
-    var seg = t[0].split('.');
-
-    if (t[1] instanceof _immutable.default.List && meta.getIn(seg.slice(0, seg.length - 1)) instanceof _immutable.default.List) {
-      var index = seg.pop();
-      meta = meta.updateIn(seg, function (ll) {
+  templates.forEach(t => {
+    const seg = t[0].split('.');
+    if (
+      (t[1] instanceof Immutable.List) &&
+            (meta.getIn(seg.slice(0, seg.length - 1)) instanceof Immutable.List)
+    ) {
+      let index = seg.pop();
+      meta = meta.updateIn(seg, ll => {
         ll = ll.remove(index);
-        t[1].forEach(function (o) {
+
+        t[1].forEach(o => {
           ll = ll.insert(index, o);
           index++;
         });
@@ -277,7 +288,8 @@ function parseMetaTemplate1(meta) {
     }
   });
   return meta;
-}
+}*/
+
 
 function parseMeta(meta, appName) {
   var map = (0, _immutable.Map)();
@@ -286,12 +298,12 @@ function parseMeta(meta, appName) {
     if (!(propValue instanceof _immutable.default.Map)) {
       return;
     }
-    /*if (propValue.get('name') && propValue.get('component')) {
-        const name = utils.string.trim(propValue.get('name'))
-        parentPath = parentPath ? `${parentPath}.${name}` : name
-        ret = ret.set(parentPath, parentRealPath)
-    }
-    else*/
+    /* if (propValue.get('name') && propValue.get('component')) {
+            const name = utils.string.trim(propValue.get('name'))
+            parentPath = parentPath ? `${parentPath}.${name}` : name
+            ret = ret.set(parentPath, parentRealPath)
+        }
+        else*/
 
 
     if (propValue.get('component') || propValue.get('_for') || propValue.get('_function')) {

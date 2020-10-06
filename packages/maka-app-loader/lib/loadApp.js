@@ -36,18 +36,18 @@ function fixUrl(url) {
   var baseUrl = _config.default.current.baseUrl;
 
   if (!baseUrl) {
-    var scripts = document.querySelectorAll("script");
+    var scripts = document.querySelectorAll('script');
 
     for (var i = 0; i < scripts.length; i++) {
-      if (scripts[i].src && (scripts[i].src.indexOf('maka-main.js') != -1 || scripts[i].src.indexOf('maka-main.min.js') != -1)) {
-        if (scripts[i].src.indexOf('http') != -1) {
+      if (scripts[i].src && (scripts[i].src.indexOf('maka-main.js') !== -1 || scripts[i].src.indexOf('maka-main.min.js') !== -1)) {
+        if (scripts[i].src.indexOf('http') !== -1) {
           baseUrl = scripts[i].src.substr(0, scripts[i].src.lastIndexOf('/') + 1);
 
-          if (baseUrl.indexOf('/core/v') != -1) {
+          if (baseUrl.indexOf('/core/v') !== -1) {
             baseUrl = baseUrl.substr(0, baseUrl.indexOf('/core/v') + 1);
           }
 
-          if (baseUrl.indexOf('/maka-sdk/') != -1) {
+          if (baseUrl.indexOf('/maka-sdk/') !== -1) {
             baseUrl = baseUrl.substr(0, baseUrl.indexOf('/maka-sdk/') + 1);
           }
         }
@@ -55,11 +55,11 @@ function fixUrl(url) {
     }
   }
 
-  if (baseUrl && url.indexOf('http') == -1) {
+  if (baseUrl && url.indexOf('http') === -1) {
     url = baseUrl + url;
   }
 
-  if (url.indexOf('http') != -1 && url.indexOf('.js') == -1) {
+  if (url.indexOf('http') !== -1 && url.indexOf('.js') === -1) {
     url = url + (isProduction ? '.min.js' : '.js');
   }
 
@@ -67,7 +67,7 @@ function fixUrl(url) {
 }
 
 function getUrl(app) {
-  if (typeof app == 'string') {
+  if (typeof app === 'string') {
     app = fixName(app);
 
     if (_config.default.current.appUrls) {
@@ -75,12 +75,18 @@ function getUrl(app) {
 
       if (ret) {
         return fixUrl(ret);
-      } else {
-        return fixUrl(app);
       }
-    } else return fixUrl(app);
-  } else if ((0, _typeof2.default)(app) == 'object') {
-    if (app.url) return fixUrl(app.url);else return getUrl(app.name);
+
+      return fixUrl(app);
+    }
+
+    return fixUrl(app);
+  } else if ((0, _typeof2.default)(app) === 'object') {
+    if (app.url) {
+      return fixUrl(app.url);
+    }
+
+    return getUrl(app.name);
   }
 }
 
@@ -89,7 +95,7 @@ function findNameByUrl(url) {
 
   if (_config.default.current.appUrls) {
     var hit = Object.keys(_config.default.current.appUrls).find(function (k) {
-      return _config.default.current.appUrls[k].url == url;
+      return _config.default.current.appUrls[k].url === url;
     });
     ret = hit;
   }
@@ -109,8 +115,11 @@ function loadApp(app) {
     urls.push(getUrl(app));
   }
 
-  if (!globalObj.require || urls.length == 0) return Promise.resolve(null);
-  return new Promise(function (resolve, reject) {
+  if (!globalObj.require || urls.length === 0) {
+    return Promise.resolve(null);
+  }
+
+  return new Promise(function (resolve) {
     urls = urls.filter(function (url) {
       var appName = findNameByUrl(url);
       var pub = url.indexOf('/') ? url.substr(0, url.lastIndexOf('/') + 1) : '';
@@ -118,12 +127,18 @@ function loadApp(app) {
       return !_appFactory.default.existsApp(appName);
     });
     urls = urls.map(function (u) {
-      if (u.indexOf('http') != -1) return u;
-      if (u.indexOf('.js') != -1) return u.replace('.js', '');
+      if (u.indexOf('http') !== -1) {
+        return u;
+      }
+
+      if (u.indexOf('.js') !== -1) {
+        return u.replace('.js', '');
+      }
+
       return isProduction ? u + '.min' : u;
     });
 
-    if (!urls || urls.length == 0) {
+    if (!urls || urls.length === 0) {
       resolve(null);
       return;
     }
@@ -187,30 +202,33 @@ function loadApp(app) {
             case 16:
               _appFactory.default.registerApps(apps);
               /*
-              appConfig(appFactory.getApps(), {
-                  "*": { apps: { ...appFactory.getApps() } },
-                  ...options
-              })
-              */
+                      appConfig(appFactory.getApps(), {
+                          "*": { apps: { ...appFactory.getApps() } },
+                          ...options
+                      })
+                      */
 
 
               cssUrls = urls.map(function (u) {
-                if (u.indexOf('http') != -1) return "css!".concat(u.replace('.js', '.css'));
+                if (u.indexOf('http') !== -1) {
+                  return "css!".concat(u.replace('.js', '.css'));
+                }
+
                 return "css!".concat(u);
               });
               /*
-              globalObj.require(cssUrls, async (...args) => {
-                  for (var i = 0; i < appNames.length; i++) {
-                      apps[appNames[i]].afterRegister && (await apps[appNames[i]].afterRegister())
-                  }
-                  resolve(null)
-              })*/
+                      globalObj.require(cssUrls, async (...args) => {
+                          for (var i = 0; i < appNames.length; i++) {
+                              apps[appNames[i]].afterRegister && (await apps[appNames[i]].afterRegister())
+                          }
+                          resolve(null)
+                      })*/
 
               globalObj.require(cssUrls, function () {
                 resolve(null);
 
-                for (var i = 0; i < appNames.length; i++) {
-                  apps[appNames[i]].afterRegister && apps[appNames[i]].afterRegister();
+                for (var _i = 0; _i < appNames.length; _i++) {
+                  apps[appNames[_i]].afterRegister && apps[appNames[_i]].afterRegister();
                 }
               });
 

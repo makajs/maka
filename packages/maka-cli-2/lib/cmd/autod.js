@@ -1,4 +1,4 @@
-'use strict';
+
 
 const Command = require('../command');
 const paths = require('../paths');

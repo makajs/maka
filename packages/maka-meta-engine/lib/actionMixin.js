@@ -33,7 +33,9 @@ var functionWrapper = function functionWrapper(fn, base) {
 
     var beforeRet = fn._before && fn._before.apply(that, args);
 
-    if (beforeRet === false || isPromise(beforeRet)) {} else if (typeof beforeRet == 'function') {
+    if (beforeRet === false || isPromise(beforeRet)) {//eslint-disable-line
+      // 暂时不处理
+    } else if (typeof beforeRet === 'function') {
       return beforeRet;
     } else {
       var ret = fn.apply(that, args);
@@ -50,11 +52,13 @@ var functionWrapper = function functionWrapper(fn, base) {
             return reject(e);
           });
         });
-      } else {
-        if (fn._after) {
-          return fn._after.apply(that, (args || []).concat(ret));
-        } else return ret;
       }
+
+      if (fn._after) {
+        return fn._after.apply(that, (args || []).concat(ret));
+      }
+
+      return ret;
     }
   };
 
@@ -77,11 +81,10 @@ function actionMixin() {
 
   return function (target) {
     return function (option) {
-      var ret = {};
       var mixinInstances = {};
       var base = new _action.default(option);
       Object.keys(base).forEach(function (key) {
-        if (typeof base[key] == 'function' && key != 'getAllAction') {
+        if (typeof base[key] === 'function' && key !== 'getAllAction') {
           base[key] = functionWrapper(base[key], base);
         }
       });
@@ -89,15 +92,15 @@ function actionMixin() {
 
       if (mixins && mixins.length > 0) {
         mixins.forEach(function (m) {
-          if (m != 'base') {
+          if (m !== 'base') {
             var actCls, act;
 
-            if (typeof m == 'string') {
+            if (typeof m === 'string') {
               actCls = _actionFactory.default.getAction(m);
 
-              if ((0, _typeof2.default)(actCls) == 'object') {
+              if ((0, _typeof2.default)(actCls) === 'object') {
                 mixinInstances[m] = actCls;
-              } else if (typeof actCls == 'function') {
+              } else if (typeof actCls === 'function') {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
@@ -110,12 +113,12 @@ function actionMixin() {
                   }
                 }
               }
-            } else if ((0, _typeof2.default)(m) == 'object' && m.name) {
+            } else if ((0, _typeof2.default)(m) === 'object' && m.name) {
               actCls = _actionFactory.default.getAction(m.name);
 
-              if ((0, _typeof2.default)(actCls) == 'object') {
+              if ((0, _typeof2.default)(actCls) === 'object') {
                 mixinInstances[m] = actCls;
-              } else if (typeof actCls == 'function') {
+              } else if (typeof actCls === 'function') {
                 if (actCls._isFunction) {
                   mixinInstances[m] = actCls;
                 } else {
@@ -137,13 +140,13 @@ function actionMixin() {
         mixins: mixinInstances
       }));
       Object.keys(curr).forEach(function (key) {
-        if (typeof curr[key] == 'function') {
+        if (typeof curr[key] === 'function') {
           curr[key] = functionWrapper(curr[key], base);
         }
       });
       var ret = curr;
       Object.keys(mixinInstances).forEach(function (k) {
-        return ret[k] = mixinInstances[k];
+        ret[k] = mixinInstances[k];
       });
       var retWrapper = {
         getDirectFuns: function getDirectFuns() {

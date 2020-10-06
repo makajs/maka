@@ -1,236 +1,221 @@
-import React from 'react'
-import componentFactory from './componentFactory'
-import memoize from 'lodash/memoize'
-import utils from '@makajs/utils'
-import config from './config'
+import React from 'react';
+import componentFactory from './componentFactory';
+import utils from '@makajs/utils';
+import config from './config';
 
 function parseMetaProps(meta, props, data) {
-    const ret = {}
+  const ret = {};
 
-    Object.keys(meta).forEach(key => {
-        let v = meta[key],
-            t = typeof v
+  Object.keys(meta).forEach(key => {
+    const v = meta[key],
+      t = typeof v;
 
-        if (v instanceof Array) {
-            ret[key] = []
+    if (v instanceof Array) {
+      ret[key] = [];
 
-            var i, c;
+      let i,
+        c;
 
-            for (i = 0; c = v[i++];) {
-                if (c instanceof Array) {
-                    ret[key] = c
-                }
-                else {
-                    let mc = metaToComponent(c, props, data)
-                    if (mc instanceof Array)
-                        ret[key] = ret[key].concat(mc)
-                    else
-                        ret[key].push(mc)
-                }
-            }
+      for (i = 0; c = v[i++];) { // eslint-disable-line
+        if (c instanceof Array) {
+          ret[key] = c;
+        } else {
+          const mc = metaToComponent(c, props, data);
+          if (mc instanceof Array) { ret[key] = ret[key].concat(mc); } else { ret[key].push(mc); }
         }
-        else if (t == 'object') {
-            if (v && v._notParse) {
-                delete v._notParse
-                ret[key] = v
-            }
-            else {
-                ret[key] = metaToComponent(v, props, data)
-            }
-        }
-        else {
-            ret[key] = v
-        }
-    })
+      }
+    } else if (t === 'object') {
+      if (v && v._notParse) {
+        delete v._notParse;
+        ret[key] = v;
+      } else {
+        ret[key] = metaToComponent(v, props, data);
+      }
+    } else {
+      ret[key] = v;
+    }
+  });
 
-    return ret
+  return ret;
 }
 
-const toFunction = memoize((v) => {
-    return new Function(v)
-})
+/*
+const toFunction = memoize(v => {
+  return new Function(v);
+});
+*/
 
 function metaToComponent(meta, props, data) {
-    if (!meta)
-        return meta
+  if (!meta) { return meta; }
 
-    const metaType = typeof meta
+  const metaType = typeof meta;
 
-    if (metaType == 'object' && meta['$$typeof']) {
-        return meta
-    }
-    else if (metaType == 'object' && meta['_isAMomentObject']) {
-        return meta
-    }
-    else if (metaType == 'object' && meta instanceof Date) {
-        return meta
-    }
-    else if (metaType == 'object' && meta instanceof Promise) {
-        return meta
-    }
-    else if (metaType == 'object') {
-        if (meta.component || meta._for || meta._function) {
+  if (metaType === 'object' && meta.$$typeof) {
+    return meta;
+  } else if (metaType === 'object' && meta._isAMomentObject) {
+    return meta;
+  } else if (metaType === 'object' && meta instanceof Date) {
+    return meta;
+  } else if (metaType === 'object' && meta instanceof Promise) {
+    return meta;
+  } else if (metaType === 'object') {
+    if (meta.component || meta._for || meta._function) {
 
-            if (meta._visible === false)
-                return null
+      if (meta._visible === false) { return null; }
 
-            if (typeof meta._visible === 'function' && meta._visible() === false)
-                return null
+      if (typeof meta._visible === 'function' && meta._visible() === false) { return null; }
 
-            if (typeof meta.component == 'function') {
-                meta.component = meta.component()
-            }
+      if (typeof meta.component === 'function') {
+        meta.component = meta.component();
+      }
 
-            //_for: 'data.list' or 'data.list[_index].sub'
-            if (meta._for) {
-                let _for = meta._for,
-                    paraNames = ['data', '$props$'],
-                    paraValues = [data, props]
+      // _for: 'data.list' or 'data.list[_index].sub'
+      if (meta._for) {
+        const _for = meta._for,
+          paraNames = [ 'data', '$props$' ],
+          paraValues = [ data, props ];
 
-                if (meta['_vars']) {
-                    paraNames.push('_vars')
-                    paraValues.push(meta['_vars'])
-                }
+        if (meta._vars) {
+          paraNames.push('_vars');
+          paraValues.push(meta._vars);
+        }
 
-                if (meta._extParas) {
-                    let extParaKeys = Object.keys(meta._extParas)
-                    if (extParaKeys && extParaKeys.length > 0) {
-                        extParaKeys.forEach(k => {
-                            paraNames.push(k)
-                            paraValues.push(meta._extParas[k])
-                        })
-                    }
-                }
+        if (meta._extParas) {
+          const extParaKeys = Object.keys(meta._extParas);
+          if (extParaKeys && extParaKeys.length > 0) {
+            extParaKeys.forEach(k => {
+              paraNames.push(k);
+              paraValues.push(meta._extParas[k]);
+            });
+          }
+        }
 
-                let tmp = _for.replace(/\b(in)\b/, '#').split('#'),
-                    dsPath = utils.string.trim(tmp[1]),
-                    extParaNames = tmp[0].replace('(', '').replace(')', '').split(','),
-                    express = `${dsPath.replace(/\$/g, '$props$.')}`
-                
-                if(config.current.transformer){
-                    express = config.current.transformer(express)
-                }
+        const tmp = _for.replace(/\b(in)\b/, '#').split('#'),
+          dsPath = utils.string.trim(tmp[1]),
+          extParaNames = tmp[0].replace('(', '').replace(')', '').split(',');
+        let express = `${dsPath.replace(/\$/g, '$props$.')}`; //eslint-disable-line
 
-                let items = (new Function(...paraNames, `return ${dsPath.replace(/\$/g, '$props$.')}`))
-                    .apply(null, paraValues)
+        if (config.current.transformer) {
+          express = config.current.transformer(express);
+        }
 
-                if (!items || items.length == 0) return
-                return items.map((o, index) => {
-                    let _vars = meta['_vars']
-                    _vars = !_vars ? index + '' : ',' + index
-                    //let _vars = meta['_vars'] || []
-                    //_vars.push({ _index: index, _item: o })
+        const items = (new Function(...paraNames, `return ${dsPath.replace(/\$/g, '$props$.')}`))
+          .apply(null, paraValues);
 
-                    let _extParas = meta._extParas || {}
-                    _extParas[utils.string.trim(extParaNames[0])] = o
-                    extParaNames.length > 1 && (_extParas[utils.string.trim(extParaNames[1])] = index)
+        if (!items || items.length === 0) return;
+        return items.map((o, index) => {
+          let _vars = meta._vars;
+          _vars = !_vars ? index + '' : ',' + index;
+          // let _vars = meta['_vars'] || []
+          // _vars.push({ _index: index, _item: o })
 
-                    let childMeta = props.base.gm(meta.path, undefined, data, _vars, _extParas)
-                    delete childMeta._for
-                    return metaToComponent(childMeta, props, data)
-                })
-            }
+          const _extParas = meta._extParas || {};
+          _extParas[utils.string.trim(extParaNames[0])] = o;
+          extParaNames.length > 1 && (_extParas[utils.string.trim(extParaNames[1])] = index);
 
-            //_function: '(arg1,arg2)
-            if (meta._function !== undefined) {
-                let _function = meta._function.replace('(', '').replace(')', '')
-                return (...args) => {
-                    let _extParas = meta._extParas || {}
+          const childMeta = props.base.gm(meta.path, undefined, data, _vars, _extParas);
+          delete childMeta._for;
+          return metaToComponent(childMeta, props, data);
+        });
+      }
 
-                    _function.split(',').forEach((paraName, index) => {
-                        _extParas[utils.string.trim(paraName)] = args[index]
-                    })
+      // _function: '(arg1,arg2)
+      if (meta._function !== undefined) {
+        const _function = meta._function.replace('(', '').replace(')', '');
+        return (...args) => {
+          const _extParas = meta._extParas || {};
 
-                    var childMeta = props.base.gm(meta.path, undefined, data, meta['_vars'], _extParas)
-                    childMeta._function = undefined
+          _function.split(',').forEach((paraName, index) => {
+            _extParas[utils.string.trim(paraName)] = args[index];
+          });
 
-                    if (childMeta._firstReturn) {
-                        return childMeta._firstReturn
-                    }
-                    else {
-                        return metaToComponent(childMeta, props, data)
-                    }
-                }
-            }
+          const childMeta = props.base.gm(meta.path, undefined, data, meta._vars, _extParas);
+          childMeta._function = undefined;
 
-            let _decorator = meta._decorator
+          if (childMeta._firstReturn) {
+            return childMeta._firstReturn;
+          }
 
-            const componentName = meta.component,
-                component = componentFactory.getComponent(componentName)
+          return metaToComponent(childMeta, props, data);
+
+        };
+      }
+
+      const _decorator = meta._decorator;
+
+      const componentName = meta.component,
+        component = componentFactory.getComponent(componentName);
 
 
-            var allProps = parseMetaProps(meta, props, data)
-            if (!allProps.key) {
-                //let strVars = (meta._vars && meta._vars.map(o => o._index).join(',')) || ''
-                let strVars = meta._vars || ''
-                allProps.key = strVars ? meta.path + ',' + strVars : meta.path
+      const allProps = parseMetaProps(meta, props, data);
+      if (!allProps.key) {
+        // let strVars = (meta._vars && meta._vars.map(o => o._index).join(',')) || ''
+        const strVars = meta._vars || '';
+        allProps.key = strVars ? meta.path + ',' + strVars : meta.path;
 
-            }
+      }
 
-            delete allProps.component
-            delete allProps._name
-            delete allProps.path
-            delete allProps._decorator
+      delete allProps.component;
+      delete allProps._name;
+      delete allProps.path;
+      delete allProps._decorator;
 
 
-            //allProps = omit(allProps, ['clearAppState', 'component', 'name', 'getDirectFuns', 'initView', 'payload'])
-            if (componentName == 'AppLoader') {
-                var propKeys = Object.keys(props),
-                    i, key
+      // allProps = omit(allProps, ['clearAppState', 'component', 'name', 'getDirectFuns', 'initView', 'payload'])
+      if (componentName === 'AppLoader') {
+        const propKeys = Object.keys(props);
+        let i,
+          key;
 
-                for (i = 0; key = propKeys[i++];) {
-                    if (allProps[key] == undefined) {
-                        allProps[key] = props[key]
-                    }
-                }
+        for (i = 0; key = propKeys[i++];) { //eslint-disable-line
+          if (allProps[key] === undefined) {
+            allProps[key] = props[key];
+          }
+        }
 
-                //Remove attributes that are not required by some components
-                delete allProps.clearAppState
-                delete allProps.getDirectFuns
-                delete allProps.initView
-                delete allProps.payload
-                delete allProps.componentWillMount
-                delete allProps.componentDidMount
-                delete allProps.shouldComponentUpdate
-                delete allProps.componentWillReceiveProps
-                delete allProps.componentWillUpdate
-                delete allProps.componentDidCatch
-                delete allProps.componentWillUnmount
-                delete allProps.componentDidUpdate
-                delete allProps.unmount
+        // Remove attributes that are not required by some components
+        delete allProps.clearAppState;
+        delete allProps.getDirectFuns;
+        delete allProps.initView;
+        delete allProps.payload;
+        delete allProps.componentWillMount;
+        delete allProps.componentDidMount;
+        delete allProps.shouldComponentUpdate;
+        delete allProps.componentWillReceiveProps;
+        delete allProps.componentWillUpdate;
+        delete allProps.componentDidCatch;
+        delete allProps.componentWillUnmount;
+        delete allProps.componentDidUpdate;
+        delete allProps.unmount;
 
-                if (!allProps.appName)
-                    return null
+        if (!allProps.appName) { return null; }
 
-                /*if (allProps._notRender === true && !existsApp(allProps.appName)) {
+        /* if (allProps._notRender === true && !existsApp(allProps.appName)) {
                     return null
                 }*/
 
-                allProps.key = allProps.appName
-                allProps.name = allProps.appName
-                return React.createElement(component, allProps)
-            }
+        allProps.key = allProps.appName;
+        allProps.name = allProps.appName;
+        return React.createElement(component, allProps);
+      }
 
-            if (_decorator)
-                return _decorator(React.createElement(component, allProps))
-            else
-                return React.createElement(component, allProps)
-        }
-        else {
-            return parseMetaProps(meta, props, data)
-        }
+      if (_decorator) { return _decorator(React.createElement(component, allProps)); }
+      return React.createElement(component, allProps);
     }
-    else {
-        return meta
-    }
+
+    return parseMetaProps(meta, props, data);
+
+  }
+
+  return meta;
+
 }
 
-const MonkeyKing = (props) => {
-    const { base } = props
-    const data = base.gs()
-    if(!data)
-        return null
-    return metaToComponent(base.gm(undefined, undefined, data), props, data)
-}
+const MonkeyKing = props => {
+  const { base } = props;
+  const data = base.gs();
+  if (!data) { return null; }
+  return metaToComponent(base.gm(undefined, undefined, data), props, data);
+};
 
-export default MonkeyKing
+export default MonkeyKing;

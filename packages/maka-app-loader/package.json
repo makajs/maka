@@ -1,10 +1,11 @@
 {
   "name": "@makajs/app-loader",
-  "version": "0.0.28",
+  "version": "2.0.0",
   "description": "maka app loader",
   "main": "./lib/index",
   "scripts": {
-    "compile": "babel -d lib/ src/"
+    "compile": "babel -d lib/ src/",
+    "build": "yarn compile"
   },
   "repository": {
     "type": "git",
@@ -16,20 +17,20 @@
   },
   "homepage": "https://github.com/makajs/maka/packages/maka-app-loader#readme",
   "dependencies": {
-    "@makajs/utils": "*",
-    "immutable": "*",
-    "prop-types": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-redux": "*",
-    "redux": "*"
+    "@makajs/utils": "^2.0.0",
+    "immutable": "4.0.0-rc.12",
+    "prop-types": "^15",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-redux": "^7",
+    "redux": "^4"
   },
   "devDependencies": {
-    "@babel/cli": "*",
-    "@babel/core": "*",
-    "@babel/plugin-proposal-class-properties": "*",
-    "@babel/plugin-transform-runtime": "*",
-    "@babel/preset-env": "*",
-    "@babel/preset-react": "*"
+    "@babel/cli": "^7",
+    "@babel/core": "^7",
+    "@babel/plugin-proposal-class-properties": "^7",
+    "@babel/plugin-transform-runtime": "^7",
+    "@babel/preset-env": "^7",
+    "@babel/preset-react": "^7"
   }
 }

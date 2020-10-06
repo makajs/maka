@@ -1,4 +1,4 @@
-'use strict';
+
 
 const Command = require('../command');
 const debug = require('debug')('maka-cli');

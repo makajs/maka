@@ -1,0 +1,10 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "scripts": {
+    "build": "lerna run build --scope=@makajs/utils --scope=@makajs/app-loader --scope=@makajs/meta-engine --scope=@makajs/sdk"
+  }
+}

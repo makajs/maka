@@ -1,4 +1,4 @@
-'use strict';
+
 
 const debug = require('debug')('maka-cli');
 const os = require('os');
@@ -9,16 +9,14 @@ const urllib = require('urllib');
 const updater = require('npm-updater');
 const mkdirp = require('mkdirp');
 const inquirer = require('inquirer');
-// const yargs = require('yargs');
 const glob = require('globby');
 const is = require('is-type-of');
-// const homedir = require('node-homedir');
 const compressing = require('compressing');
 const rimraf = require('mz-modules/rimraf');
 const isTextOrBinary = require('istextorbinary');
 const ProxyAgent = require('proxy-agent');
 const Command = require('../command');
-const rc = require('rc');
+// const rc = require('rc');
 
 
 require('colors');
@@ -109,7 +107,8 @@ class InitCommand extends Command {
     }
 
     // 查找npm registry地址
-    this.registryUrl = this.getRegistryByType(argv.registry);
+    // this.registryUrl = this.getRegistryByType(argv.registry);
+    this.registryUrl = this.getRegistryByType();
     debug('use registry: %s ', this.registryUrl);
 
     if (this.needUpdate) {
@@ -357,10 +356,12 @@ class InitCommand extends Command {
 
   /**
    * 通过参数获取 registryUrl
-   * @param {String} key - short name, support `china / npm / npmrc`, default to read from .npmrc
    * @return {String} registryUrl
    */
-  getRegistryByType(key) {
+  getRegistryByType() {
+    // 简单处理直接返回淘宝镜像地址
+    return 'https://registry.npm.taobao.org';
+    /*
     debug('processenv', process.env.npm_registry, process.env.npm_config_registry);
     switch (key) {
       // china，npm特殊处理
@@ -382,7 +383,7 @@ class InitCommand extends Command {
         return url;
 
       }
-    }
+    }*/
   }
 
   /**

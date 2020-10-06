@@ -1,52 +1,50 @@
 class templateFactory {
-    constructor() {
-        this.templates = {}
-    }
+  constructor() {
+    this.templates = {};
+  }
 
-    getTemplates(){
-        return this.templates
-    }
-    
-    registerTemplate(name, templateHandler) {
-        if (this.templates[name]) {
-            console.log(`Template already exists. name: ${name},please ignore!`)
-            return
-        }
-        this.templates[name] = templateHandler
-    }
+  getTemplates() {
+    return this.templates;
+  }
 
-    registerTemplates(templates) {
-        if (!templates || templates.length == 0)
-            return
-        templates.forEach(t => this.registerTemplate(t.name, t.templateHandler))
+  registerTemplate(name, templateHandler) {
+    if (this.templates[name]) {
+      console.log(`Template already exists. name: ${name},please ignore!`);
+      return;
     }
+    this.templates[name] = templateHandler;
+  }
 
-    getTemplate(name) {
-        if (!name)
-            throw 'template name can not null'
-        const nameSegs = name.split('.'),
-            firstSeg = nameSegs[0]
+  registerTemplates(templates) {
+    if (!templates || templates.length === 0) { return; }
+    templates.forEach(t => this.registerTemplate(t.name, t.templateHandler));
+  }
 
-        var template = this.templates[firstSeg]
-        if (template && nameSegs.length > 1) {
-            template = this.findChild(template, nameSegs)
-        }
-        return template
+  getTemplate(name) {
+    if (!name) { throw 'template name can not null'; }
+    const nameSegs = name.split('.'),
+      firstSeg = nameSegs[0];
+
+    let template = this.templates[firstSeg];
+    if (template && nameSegs.length > 1) {
+      template = this.findChild(template, nameSegs);
     }
+    return template;
+  }
 
-    findChild(template, nameSegs) {
-        for (let s of nameSegs.slice(1)) {
-            if (!template[s]) {
-                template = undefined
-                return
-            }
+  findChild(template, nameSegs) {
+    for (const s of nameSegs.slice(1)) {
+      if (!template[s]) {
+        template = undefined;
+        return;
+      }
 
-            template = template[s]
-        }
-        return template
+      template = template[s];
     }
+    return template;
+  }
 }
 
-const instance = new templateFactory()
+const instance = new templateFactory();
 
-export default instance
+export default instance;

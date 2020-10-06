@@ -24,7 +24,11 @@ function wrapMapDispatchToProps(fullName, actionCreators, reducer) {
 
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i];
-    if (key === 'directFuns') continue;
+
+    if (key === 'directFuns') {
+      continue;
+    }
+
     var wrapActionCreator = wrapAction(actionCreators[key], reducer, parsedName.fullName, parsedName.name, parsedName.query, parsedName.params);
     wrapActionCreators[key] = wrapActionCreator;
   }

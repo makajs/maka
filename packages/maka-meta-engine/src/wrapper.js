@@ -1,122 +1,113 @@
-import React, { Component } from 'react'
-import shallowCompare from 'react-addons-shallow-compare'
-import ReactDOM from 'react-dom'
-import maka from './maka'
-import config from './config'
-import utils from '@makajs/utils'
+import React, { Component } from 'react';
+import shallowCompare from 'react-addons-shallow-compare';
+import maka from './maka';
+import utils from '@makajs/utils';
 
 function getHandler(props, eventName) {
-	return (...args) => {
-		if (props[eventName]) {
-			props[eventName](...args)
-			return
-		}
+  return (...args) => {
+    if (props[eventName]) {
+      props[eventName](...args);
+      return;
+    }
 
-		if (props.base&& props.base.getAllAction) {
-			var action = props.base.getAllAction()[eventName]
-			if (action) {
-				action(...args)
-				return
-			}
-		}
-	}
+    if (props.base && props.base.getAllAction) {
+      const action = props.base.getAllAction()[eventName];
+      if (action) {
+        action(...args);
+        return;
+      }
+    }
+  };
 
 }
 
-export default function wrapper(option) {
-	return WrappedComponent => {
-		var WC = WrappedComponent
-		return class internal extends Component {
+export default function wrapper() {
+  return WrappedComponent => {
+    const WC = WrappedComponent;
+    return class internal extends Component {
 
-			constructor(props) {
-				super(props)
-				this.state = { hasError: false }
-			}
+      constructor(props) {
+        super(props);
+        this.state = { hasError: false };
+      }
 
-			componentWillMount() {
-				getHandler(this.props, 'componentWillMount')()
-			}
+      componentWillMount() {
+        getHandler(this.props, 'componentWillMount')();
+      }
 
-			componentDidMount() {
-				this.props.initView && this.props.initView(this)
-				getHandler(this.props, 'componentDidMount')()
-			}
+      componentDidMount() {
+        this.props.initView && this.props.initView(this);
+        getHandler(this.props, 'componentDidMount')();
+      }
 
-			shouldComponentUpdate(nextProps, nextState) {
-				if (this.props.shouldComponentUpdate
-					&& this.props.shouldComponentUpdate(nextProps, nextState) === true)
-					return true
+      componentWillReceiveProps(nextProps) {
+        if (this.state.hasError) {
+          this.setState({ hasError: false, error: undefined });
+        }
 
-				else if(this.props.shouldComponentUpdate
-					&& this.props.shouldComponentUpdate(nextProps, nextState) === false)
-					return false
+        getHandler(this.props, 'componentWillReceiveProps')(nextProps);
+      }
 
-				if (nextState.hasError != this.state.hasError) {
-					return true
-				}
+      shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.shouldComponentUpdate
+          && this.props.shouldComponentUpdate(nextProps, nextState) === true) { return true; } else if (this.props.shouldComponentUpdate
+            && this.props.shouldComponentUpdate(nextProps, nextState) === false) { return false; }
 
-				return shallowCompare(this, nextProps, nextState);
-				/*
-				for (var o in this.props) {
-					if (this.props[o] != nextProps[o]) {
-						return true
-					}
-				}
-				return false
-				*/
-			}
+        if (nextState.hasError !== this.state.hasError) {
+          return true;
+        }
 
-
-			componentWillReceiveProps(nextProps) {
-				if (this.state.hasError) {
-					this.setState({ hasError: false, error: undefined })
-				}
-
-				getHandler(this.props, 'componentWillReceiveProps')(nextProps)
-			}
-
-			componentWillUpdate(nextProps, nextState) {
-				getHandler(this.props, 'componentWillUpdate')(nextProps, nextState)
-			}
-
-			componentDidCatch(error, info) {
-				utils.exception.error(error)
-				this.setState({ hasError: true, error })
-
-				getHandler(this.props, 'componentDidCatch')(error, info)
-			}
+        return shallowCompare(this, nextProps, nextState);
+        /*
+        for (var o in this.props) {
+          if (this.props[o] != nextProps[o]) {
+            return true
+          }
+        }
+        return false
+        */
+      }
 
 
-			componentWillUnmount() {
-				this.props.unmount && this.props.unmount()
+      componentWillUpdate(nextProps, nextState) {
+        getHandler(this.props, 'componentWillUpdate')(nextProps, nextState);
+      }
 
-				getHandler(this.props, 'componentWillUnmount')()
-			}
+      componentDidUpdate() {
+        getHandler(this.props, 'componentDidUpdate')();
+      }
 
-			componentDidUpdate() {
-				getHandler(this.props, 'componentDidUpdate')()
-			}
+      componentDidCatch(error, info) {
+        utils.exception.error(error);
+        this.setState({ hasError: true, error });
 
-			render() {
-				if (this.state.hasError) {
-					return <div style={{ color: 'red' }}>{this.state.error && this.state.error.message}</div>
-				}
+        getHandler(this.props, 'componentDidCatch')(error, info);
+      }
 
-				if (this.props.notRender === true || this.props._notRender === true)
-					return null
 
-				if (!WC)
-					return null
+      componentWillUnmount() {
+        this.props.unmount && this.props.unmount();
 
-				if (!this.props.payload || !this.props.payload.get('data'))
-					return null
+        getHandler(this.props, 'componentWillUnmount')();
+      }
 
-				if (this.props.payload.getIn(['data', '_notRender']) === true)
-					return null
 
-				return <WC {...this.props} maka={maka} />
-			}
-		}
-	}
+      render() {
+        if (this.state.hasError) {
+          return <div style={{ color: 'red' }}>{this.state.error && this.state.error.message}</div>;
+        }
+
+        if (this.props.notRender === true || this.props._notRender === true) { return null; }
+
+        if (!WC) { return null; }
+
+        if (!this.props.payload || !this.props.payload.get('data')) { return null; }
+
+        if (this.props.payload.getIn([ 'data', '_notRender' ]) === true) { return null; }
+
+        return <WC {...this.props} maka={maka} />;
+      }
+    };
+  };
 }
 

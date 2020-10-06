@@ -1,226 +1,222 @@
-import React from 'react'
-import * as common from './common'
-import utils from '@makajs/utils'
-import { fromJS } from 'immutable'
-import contextManager from './context'
-import config from './config'
+import * as common from './common';
+import utils from '@makajs/utils';
+import { fromJS } from 'immutable';
+import contextManager from './context';
+import config from './config';
 
-export const appInstances = {}
+export const appInstances = {};
 
 export default class action {
-	constructor(option) {
-		this.appInfo = option.appInfo
-		this.meta = fromJS(option.appInfo.view)
-		var plugins = option.plugins
-		this.cache = {}
+  constructor(option) {
+    this.appInfo = option.appInfo;
+    this.meta = fromJS(option.appInfo.view);
+    const plugins = option.plugins;
+    this.cache = {};
 
-		option.appInfo.viewByImmutable = this.meta
+    option.appInfo.viewByImmutable = this.meta;
 
-		common.setMeta(option.appInfo, plugins)
-	}
+    common.setMeta(option.appInfo, plugins);
+  }
 
 	config = ({ metaHandlers }) => {
-		this.metaHandlers = metaHandlers
-		this.cache.handlerKeys = Object.keys(metaHandlers)
-		this.allActionKeys = this.cache.handlerKeys
-		this.allAction = this.metaHandlers
+	  this.metaHandlers = metaHandlers;
+	  this.cache.handlerKeys = Object.keys(metaHandlers);
+	  this.allActionKeys = this.cache.handlerKeys;
+	  this.allAction = this.metaHandlers;
 	}
 
 	getAllAction = () => {
-		return this.allAction
+	  return this.allAction;
 	}
 
 	setMetaForce = (appName, meta) => {
-		common.setMetaForce(appName, meta, this.component && this.component.props.appQuery)
+	  common.setMetaForce(appName, meta, this.component && this.component.props.appQuery);
 	}
 
-	setActionForce = (actions) => {
-		if (actions) {
-			this.cache.expression = {}
-			this.cache.expressionParams = undefined
-			var actionKeys = Object.keys(actions)
-			/*
+	setActionForce = actions => {
+	  if (actions) {
+	    this.cache.expression = {};
+	    this.cache.expressionParams = undefined;
+	    const actionKeys = Object.keys(actions);
+	    /*
 			this.dynamicHandleKeys = actionKeys.map(k => "$" + k)
 			this.dynamicHandlers = {}
 			actionKeys.forEach((key) => {
 				this.dynamicHandlers["$" + key] = actions[key]
 			})*/
 
-			this.allActionKeys = actionKeys
-			this.allAction = actions
-			this.cache.handlerKeys.forEach(key => {
-				if (this.allActionKeys.indexOf(key) == -1) {
-					this.allActionKeys.push(key)
-					this.allAction[key] = this.metaHandlers[key]
-				}
-			})
-		}
+	    this.allActionKeys = actionKeys;
+	    this.allAction = actions;
+	    this.cache.handlerKeys.forEach(key => {
+	      if (this.allActionKeys.indexOf(key) === -1) {
+	        this.allActionKeys.push(key);
+	        this.allAction[key] = this.metaHandlers[key];
+	      }
+	    });
+	  }
 	}
 
 	initView = (component, injections) => {
-		this.component = component || { props: {} }
-		this.injections = injections
-		this.metaHandlers.component = this.component
-		this.metaHandlers.injections = this.injections
+	  this.component = component || { props: {} };
+	  this.injections = injections;
+	  this.metaHandlers.component = this.component;
+	  this.metaHandlers.injections = this.injections;
 
-		if (component.props.appFullName) {
-			appInstances[component.props.appFullName] = {
-				appName: component.props.appName,
-				appQuery: component.props.appQuery,
-				//app: config.getApps()[component.props.appName],
-				instance: component
-			}
-		}
+	  if (component.props.appFullName) {
+	    appInstances[component.props.appFullName] = {
+	      appName: component.props.appName,
+	      appQuery: component.props.appQuery,
+	      // app: config.getApps()[component.props.appName],
+	      instance: component,
+	    };
+	  }
 
-		var _notClearAppState = component.props._notClearAppState
-		if (component.props._notClearAppState === undefined) {
-			_notClearAppState = !!(component.props.appParams && component.props.appParams["_notClearAppState"])
-		}
+	  let _notClearAppState = component.props._notClearAppState;
+	  if (component.props._notClearAppState === undefined) {
+	    _notClearAppState = !!(component.props.appParams && component.props.appParams._notClearAppState);
+	  }
 
-		if (_notClearAppState === true && !!this.gs('data')) {
-		}
-		else {
-			var initState = (this.appInfo.state && this.appInfo.state.data) || {}
-			this.ss({ 'data': initState })
+	  if (_notClearAppState === true && !!this.gs('data')) { //eslint-disable-line
 
-			if (this.metaHandlers && this.metaHandlers.onInit) {
-				this.metaHandlers.onInit({ component, injections })
-			}
-		}
+	  } else {
+	    const initState = (this.appInfo.state && this.appInfo.state.data) || {};
+	    this.ss({ data: initState });
+
+	    if (this.metaHandlers && this.metaHandlers.onInit) {
+	      this.metaHandlers.onInit({ component, injections });
+	    }
+	  }
 	}
 
 	unmount = () => {
-		delete appInstances[this.component.appFullName]
+	  delete appInstances[this.component.appFullName];
 	}
 
 	componentWillMount = () => {
-		this.metaHandlers
-			&& this.metaHandlers['componentWillMount']
-			&& this.metaHandlers['componentWillMount'] != this.componentWillMount
-			&& this.metaHandlers['componentWillMount']()
+	  this.metaHandlers
+			&& this.metaHandlers.componentWillMount
+			&& this.metaHandlers.componentWillMount !== this.componentWillMount
+			&& this.metaHandlers.componentWillMount();
 	}
 
 	componentDidMount = () => {
-		this.metaHandlers
-			&& this.metaHandlers['componentDidMount']
-			&& this.metaHandlers['componentDidMount'] != this.componentDidMount
-			&& this.metaHandlers['componentDidMount']()
+	  this.metaHandlers
+			&& this.metaHandlers.componentDidMount
+			&& this.metaHandlers.componentDidMount !== this.componentDidMount
+			&& this.metaHandlers.componentDidMount();
 	}
 
 	shouldComponentUpdate = (nextProps, nextState) => {
-		this.metaHandlers
-			&& this.metaHandlers['shouldComponentUpdate']
-			&& this.metaHandlers['shouldComponentUpdate'] != this.shouldComponentUpdate
-			&& this.metaHandlers['shouldComponentUpdate'](nextProps, nextState)
+	  this.metaHandlers
+			&& this.metaHandlers.shouldComponentUpdate
+			&& this.metaHandlers.shouldComponentUpdate !== this.shouldComponentUpdate
+			&& this.metaHandlers.shouldComponentUpdate(nextProps, nextState);
 	}
 
-	componentWillReceiveProps = (nextProps) => {
-		this.metaHandlers
-			&& this.metaHandlers['componentWillReceiveProps']
-			&& this.metaHandlers['componentWillReceiveProps'] != this.componentWillReceiveProps
-			&& this.metaHandlers['componentWillReceiveProps'](nextProps)
+	componentWillReceiveProps = nextProps => {
+	  this.metaHandlers
+			&& this.metaHandlers.componentWillReceiveProps
+			&& this.metaHandlers.componentWillReceiveProps !== this.componentWillReceiveProps
+			&& this.metaHandlers.componentWillReceiveProps(nextProps);
 	}
 
 	componentWillUpdate = (nextProps, nextState) => {
-		this.metaHandlers
-			&& this.metaHandlers['componentWillUpdate']
-			&& this.metaHandlers['componentWillUpdate'] != this.componentWillUpdate
-			&& this.metaHandlers['componentWillUpdate'](nextProps, nextState)
+	  this.metaHandlers
+			&& this.metaHandlers.componentWillUpdate
+			&& this.metaHandlers.componentWillUpdate !== this.componentWillUpdate
+			&& this.metaHandlers.componentWillUpdate(nextProps, nextState);
 	}
 
 	componentDidCatch = (error, info) => {
-		this.metaHandlers
-			&& this.metaHandlers['componentDidCatch']
-			&& this.metaHandlers['componentDidCatch'] != this.componentDidCatch
-			&& this.metaHandlers['componentDidCatch'](error, info)
+	  this.metaHandlers
+			&& this.metaHandlers.componentDidCatch
+			&& this.metaHandlers.componentDidCatch !== this.componentDidCatch
+			&& this.metaHandlers.componentDidCatch(error, info);
 	}
 
 	componentWillUnmount = () => {
-		this.metaHandlers
-			&& this.metaHandlers['componentWillUnmount']
-			&& this.metaHandlers['componentWillUnmount'] != this.componentWillUnmount
-			&& this.metaHandlers['componentWillUnmount']()
+	  this.metaHandlers
+			&& this.metaHandlers.componentWillUnmount
+			&& this.metaHandlers.componentWillUnmount !== this.componentWillUnmount
+			&& this.metaHandlers.componentWillUnmount();
 	}
 
 	componentDidUpdate = () => {
-		this.metaHandlers
-			&& this.metaHandlers['componentDidUpdate']
-			&& this.metaHandlers['componentDidUpdate'] != this.componentDidUpdate
-			&& this.metaHandlers['componentDidUpdate']()
+	  this.metaHandlers
+			&& this.metaHandlers.componentDidUpdate
+			&& this.metaHandlers.componentDidUpdate !== this.componentDidUpdate
+			&& this.metaHandlers.componentDidUpdate();
 	}
 
 	getAppInstances = () => {
-		return appInstances
+	  return appInstances;
 	}
 
-	getState = (fieldPath) => {
-		return common.getField(this.injections.getState(), fieldPath)
+	getState = fieldPath => {
+	  return common.getField(this.injections.getState(), fieldPath);
 	}
 
 	setState = (fieldPath, value) => {
-		if (value) {
-			return this.injections.reduce('setField', fieldPath, value)
-		}
-		else {
-			return this.injections.reduce('setFields', fieldPath)
-		}
+	  if (value) {
+	    return this.injections.reduce('setField', fieldPath, value);
+	  }
+
+	  return this.injections.reduce('setFields', fieldPath);
+
 	}
 
 	parseExpreesion = (v, extParas) => {
-		if (!this.cache.expression)
-			this.cache.expression = {}
+	  if (!this.cache.expression) { this.cache.expression = {}; }
 
-		var key = v
-		if (extParas && extParas.length > 0) {
-			key = key + extParas.toString()
-		}
-		if (this.cache.expression[key]) {
-			return this.cache.expression[key]
-		}
+	  let key = v;
+	  if (extParas && extParas.length > 0) {
+	    key = key + extParas.toString();
+	  }
+	  if (this.cache.expression[key]) {
+	    return this.cache.expression[key];
+	  }
 
-		if (!this.cache.expressionParams) {
-			this.cache.expressionParams = ['data']
-				//.concat(Object.keys(this.metaHandlers)
-				//.concat(this.cache.handlerKeys.map(k => "$" + k))
-				.concat(this.allActionKeys.map(k => "$" + k))
-				.concat(['_path', '_vars'])
+	  if (!this.cache.expressionParams) {
+	    this.cache.expressionParams = [ 'data' ]
+	    // .concat(Object.keys(this.metaHandlers)
+	    // .concat(this.cache.handlerKeys.map(k => "$" + k))
+	      .concat(this.allActionKeys.map(k => '$' + k))
+	      .concat([ '_path', '_vars' ]);
 
-			/*
+	    /*
 			if (this.dynamicHandleKeys) {
 				this.cache.expressionParams = this.cache.expressionParams.concat(this.dynamicHandleKeys)
 			}*/
-		}
+	  }
 
-		var params = this.cache.expressionParams
+	  let params = this.cache.expressionParams;
 
-		if (extParas && extParas.length > 0) {
-			params = params.concat(extParas)
-		}
+	  if (extParas && extParas.length > 0) {
+	    params = params.concat(extParas);
+	  }
 
 
+	  let body = utils.expression.getExpressionBody(v);
 
-		var body = utils.expression.getExpressionBody(v)
+	  if (config.current.transformer) {
+	    if (body.substr(0, 6) === 'return') {
+	      body = body.substr(6);
+	      body = config.current.transformer(body);
+	      body = 'return ' + body;
+	    } else {
+	      body = config.transformer(body);
+	    }
+	  }
 
-		if (config.current.transformer) {
-			if (body.substr(0, 6) === 'return') {
-				body = body.substr(6)
-				body = config.current.transformer(body)
-				body = 'return ' + body
-			}
-			else {
-				body = config.transformer(body)
-			}
-		}
-
-		this.cache.expression[v] = new Function(...params, body)
-		return this.cache.expression[v]
+	  this.cache.expression[v] = new Function(...params, body);
+	  return this.cache.expression[v];
 	}
 
 	execExpression = (expressContent, data, path, vars, extParas) => {
-		var values = [data]
+	  const values = [ data ];
 
-		//var metaHandlerKeys = Object.keys(this.metaHandlers),
-		/*
+	  // var metaHandlerKeys = Object.keys(this.metaHandlers),
+	  /*
 		var metaHandlerKeys = this.cache.handlerKeys,
 			i, key
 
@@ -236,24 +232,25 @@ export default class action {
 			values.push(fun(key))
 		}*/
 
-		var actionKeys = this.allActionKeys, i, key
+	  const actionKeys = this.allActionKeys;
+	  let i,
+	    key;
 
-		var fun = (n) => {
-			let handler = this.allAction[n]
-			if (handler && typeof handler == 'function')
-				handler.__method_name__ = n
+	  const fun = n => {
+	    const handler = this.allAction[n];
+	    if (handler && typeof handler === 'function') { handler.__method_name__ = n; }
 
-			return handler
-		}
+	    return handler;
+	  };
 
-		for (i = 0; key = actionKeys[i++];) {
-			values.push(fun(key))
-		}
+	  for (i = 0; key = actionKeys[i++];) { //eslint-disable-line
+	    values.push(fun(key));
+	  }
 
-		values.push(path)
-		values.push((vars || '').split(','))
+	  values.push(path);
+	  values.push((vars || '').split(','));
 
-		/*
+	  /*
 		var fun1 = (n) => {
 			let handler = this.dynamicHandlers[n]
 			if (handler && typeof handler == 'function')
@@ -268,226 +265,215 @@ export default class action {
 			}
 		}*/
 
-		var extParaKeys
-		if (extParas) {
-			extParaKeys = Object.keys(extParas)
+	  let extParaKeys;
+	  if (extParas) {
+	    extParaKeys = Object.keys(extParas);
 
-			if (extParaKeys && extParaKeys.length > 0) {
-				extParaKeys.forEach(k => {
-					values.push(extParas[k])
-				})
-			}
-		}
-		try {
-			return this.parseExpreesion(expressContent, extParaKeys).apply(this, values)
-		}
-		catch (e) {
-			this.metaHandlers
+	    if (extParaKeys && extParaKeys.length > 0) {
+	      extParaKeys.forEach(k => {
+	        values.push(extParas[k]);
+	      });
+	    }
+	  }
+	  try {
+	    return this.parseExpreesion(expressContent, extParaKeys).apply(this, values);
+	  } catch (e) {
+	    this.metaHandlers
 				&& this.metaHandlers.componentDidCatch
-				&& this.metaHandlers.componentDidCatch != this.componentDidCatch
-				&& this.metaHandlers.componentDidCatch(e)
-			setTimeout(() => {
-				console.error(`expression parsing error：${expressContent}`)
-				utils.exception.error(e)
-			}, 500)
+				&& this.metaHandlers.componentDidCatch !== this.componentDidCatch
+				&& this.metaHandlers.componentDidCatch(e);
+	    setTimeout(() => {
+	      console.error(`expression parsing error：${expressContent}`);
+	      utils.exception.error(e);
+	    }, 500);
 
-		}
+	  }
 	}
 
-	needUpdate = (meta) => {
-		if (!meta)
-			return false
+	needUpdate = meta => {
+	  if (!meta) { return false; }
 
-		const t = typeof meta
+	  const t = typeof meta;
 
-		if (t == 'string' && utils.expression.isExpression(meta))
-			return true
+	  if (t === 'string' && utils.expression.isExpression(meta)) { return true; }
 
-		if (t != 'object')
-			return false
+	  if (t !== 'object') { return false; }
 
-		if (meta._notParse === true) {
-			return false
-		}
+	  if (meta._notParse === true) {
+	    return false;
+	  }
 
-		return !(t != 'object'
-			|| !!meta['$$typeof']
+	  return !(t !== 'object'
+			|| !!meta.$$typeof
 			|| !!meta._isAMomentObject
 			|| !!meta._power
-			|| meta._visible === false)
+			|| meta._visible === false);
 	}
 
 	updateMeta = (meta, data, path, vars, extParas) => {
-		//path && (meta.path = path)
-		if (meta instanceof Array) {
-			for (let i = 0; i < meta.length; i++) {
-				let sub = meta[i]
-				let currentPath = path
+	  // path && (meta.path = path)
+	  if (meta instanceof Array) {
+	    for (let i = 0; i < meta.length; i++) {
+	      let sub = meta[i];
+	      let currentPath = path;
 
-				if (!sub)
-					continue
+	      if (!sub) { continue; }
 
-				if (sub._for) {
-					sub._vars = vars
-					sub._extParas = extParas
-					sub.path = `${path}.${sub._name}`
-					continue
-				}
+	      if (sub._for) {
+	        sub._vars = vars;
+	        sub._extParas = extParas;
+	        sub.path = `${path}.${sub._name}`;
+	        continue;
+	      }
 
-				if (sub._function) {
-					sub._vars = vars
-					sub._extParas = extParas
-					sub.path = `${path}.${sub._name}`
-					continue
-				}
+	      if (sub._function) {
+	        sub._vars = vars;
+	        sub._extParas = extParas;
+	        sub.path = `${path}.${sub._name}`;
+	        continue;
+	      }
 
-				let subType = typeof sub, isExpression = false, isMeta = false
+	      let subType = typeof sub,
+	        isExpression = false,
+	        isMeta = false;
 
-				if (subType == 'string' && utils.expression.isExpression(sub)) {
-					sub = this.execExpression(sub, data, path, vars, extParas)
-					isExpression = true
-					if (sub && sub._isMeta === true)
-						isMeta = true
+	      if (subType === 'string' && utils.expression.isExpression(sub)) {
+	        sub = this.execExpression(sub, data, path, vars, extParas);
+	        isExpression = true;
+	        if (sub && sub._isMeta === true) { isMeta = true; }
 
-					if (sub && sub._isMeta === true) {
-						isMeta = true
-						meta[i] = sub.value
-					}
-					else {
-						meta[i] = sub
-					}
-				}
+	        if (sub && sub._isMeta === true) {
+	          isMeta = true;
+	          meta[i] = sub.value;
+	        } else {
+	          meta[i] = sub;
+	        }
+	      }
 
-				if (!this.needUpdate(sub))
-					continue
+	      if (!this.needUpdate(sub)) { continue; }
 
-				if (isExpression && !isMeta) {
-					continue
-				}
+	      if (isExpression && !isMeta) {
+	        continue;
+	      }
 
-				subType = typeof sub
+	      subType = typeof sub;
 
-				if (sub instanceof Array) {
-					currentPath = `${path}.${i}`
-					this.updateMeta(sub, data, currentPath, vars, extParas)
-					continue
-				}
-				if (sub._name && sub.component) {
-					currentPath = `${path}.${sub._name}`
-					sub.path = currentPath
-					this.updateMeta(sub, data, currentPath, vars, extParas)
-					continue
-				}
-				currentPath = `${path}.${i}`
-				this.updateMeta(sub, data, currentPath, vars, extParas)
-			}
-			return
-		}
+	      if (sub instanceof Array) {
+	        currentPath = `${path}.${i}`;
+	        this.updateMeta(sub, data, currentPath, vars, extParas);
+	        continue;
+	      }
+	      if (sub._name && sub.component) {
+	        currentPath = `${path}.${sub._name}`;
+	        sub.path = currentPath;
+	        this.updateMeta(sub, data, currentPath, vars, extParas);
+	        continue;
+	      }
+	      currentPath = `${path}.${i}`;
+	      this.updateMeta(sub, data, currentPath, vars, extParas);
+	    }
+	    return;
+	  }
 
-		var excludeProps = meta._excludeProps
-		if (excludeProps && utils.expression.isExpression(excludeProps)) {
-			excludeProps = this.execExpression(excludeProps, data, path, vars, extParas)
-		}
+	  let excludeProps = meta._excludeProps;
+	  if (excludeProps && utils.expression.isExpression(excludeProps)) {
+	    excludeProps = this.execExpression(excludeProps, data, path, vars, extParas);
+	  }
 
-		if (excludeProps && excludeProps instanceof Array) {
-			for (var i = 0; i < excludeProps.length; i++) {
-				if (meta[excludeProps[i]])
-					delete meta[excludeProps[i]]
-			}
-			delete meta['_excludeProps']
-		}
+	  if (excludeProps && excludeProps instanceof Array) {
+	    for (let i = 0; i < excludeProps.length; i++) {
+	      if (meta[excludeProps[i]]) { delete meta[excludeProps[i]]; }
+	    }
+	    delete meta._excludeProps;
+	  }
 
-		var keys = Object.keys(meta),
-			j, key
+	  const keys = Object.keys(meta);
+	  let j,
+	    key;
 
-		for (j = 0; key = keys[j++];) {
-			let v = meta[key],
-				t = typeof v,
-				currentPath = `${path}.${key}`
+	  for (j = 0; key = keys[j++];) { //eslint-disable-line
+	    let v = meta[key];
+	    const t = typeof v,
+	      currentPath = `${path}.${key}`;
 
-			if (!v)
-				continue
+	    if (!v) { continue; }
 
-			if (key == '_vars' || key == '_extParas')
-				continue
+	    if (key === '_vars' || key === '_extParas') { continue; }
 
-			let isExpression = false, isMeta = false
-			if (t == 'string' && utils.expression.isExpression(v)) {
-				isExpression = true
-				v = this.execExpression(v, data, currentPath, vars, extParas)
-				if (key == '...' && v && typeof v == 'object') {
-					Object.keys(v).forEach(kk => {
-						meta[kk] = v[kk]
-					})
-					delete meta['...']
-				} else {
-					if (v && v._isMeta === true) {
-						isMeta = true
-						meta[key] = v.value
-					}
-					else {
-						meta[key] = v
-					}
-				}
-			}
+	    let isExpression = false,
+	      isMeta = false;
+	    if (t === 'string' && utils.expression.isExpression(v)) {
+	      isExpression = true;
+	      v = this.execExpression(v, data, currentPath, vars, extParas);
+	      if (key === '...' && v && typeof v === 'object') {
+	        Object.keys(v).forEach(kk => {
+	          meta[kk] = v[kk];
+	        });
+	        delete meta['...'];
+	      } else {
+	        if (v && v._isMeta === true) {
+	          isMeta = true;
+	          meta[key] = v.value;
+	        } else {
+	          meta[key] = v;
+	        }
+	      }
+	    }
 
-			if (!this.needUpdate(v))
-				continue
+	    if (!this.needUpdate(v)) { continue; }
 
 
-			if (v._for) {
-				v._vars = vars
-				v._extParas = extParas
-				v.path = `${path}.${key}.${v._name}`
-				continue
-			}
+	    if (v._for) {
+	      v._vars = vars;
+	      v._extParas = extParas;
+	      v.path = `${path}.${key}.${v._name}`;
+	      continue;
+	    }
 
-			if (v._function) {
-				v._vars = vars
-				v._extParas = extParas
-				v.path = `${path}.${key}.${v._name}`
-				continue
-			}
+	    if (v._function) {
+	      v._vars = vars;
+	      v._extParas = extParas;
+	      v.path = `${path}.${key}.${v._name}`;
+	      continue;
+	    }
 
-			if (isExpression && !isMeta) {
-				continue
-			}
+	    if (isExpression && !isMeta) {
+	      continue;
+	    }
 
-			if (v._name && v.component) {
-				v.path = `${path}.${key}.${v._name}`
-				this.updateMeta(v, data, `${path}.${key}.${v._name}`, vars, extParas)
-				continue
-			}
+	    if (v._name && v.component) {
+	      v.path = `${path}.${key}.${v._name}`;
+	      this.updateMeta(v, data, `${path}.${key}.${v._name}`, vars, extParas);
+	      continue;
+	    }
 
-			if (v instanceof Array) {
-				this.updateMeta(v, data, currentPath, vars, extParas)
-				continue
-			}
+	    if (v instanceof Array) {
+	      this.updateMeta(v, data, currentPath, vars, extParas);
+	      continue;
+	    }
 
-			this.updateMeta(v, data, currentPath, vars, extParas)
-		}
+	    this.updateMeta(v, data, currentPath, vars, extParas);
+	  }
 	}
 
 	getMeta = (path, propertys, data, vars, extParas) => {
-		const meta = common.getMeta(this.appInfo, path, propertys, this.component.props.appQuery)
+	  const meta = common.getMeta(this.appInfo, path, propertys, this.component.props.appQuery);
 
-		if (!path) {
-			var metaMap = common.getMetaMap(this.appInfo, this.component.props.appQuery)
-			path = metaMap.keySeq().toList().find(o => o.indexOf('.') == -1)
-		}
+	  if (!path) {
+	    const metaMap = common.getMetaMap(this.appInfo, this.component.props.appQuery);
+	    path = metaMap.keySeq().toList().find(o => o.indexOf('.') === -1);
+	  }
 
-		if (!data)
-			data = common.getField(this.injections.getState())
+	  if (!data) { data = common.getField(this.injections.getState()); }
 
-		meta._power = undefined
-		meta._for = undefined
-		meta._function = undefined
-		meta.path = path
-		if (vars)
-			meta._vars = vars
+	  meta._power = undefined;
+	  meta._for = undefined;
+	  meta._function = undefined;
+	  meta.path = path;
+	  if (vars) { meta._vars = vars; }
 
-		this.updateMeta(meta, data, path, vars, extParas)
-		return meta
+	  this.updateMeta(meta, data, path, vars, extParas);
+	  return meta;
 	}
 
 

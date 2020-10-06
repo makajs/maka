@@ -1,19 +1,19 @@
-'use strict';
+
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
-const path = require('path');
+// const path = require('path');
 const paths = require('./paths');
 const packageJson = require(paths.appPackageJson);
 
-const serverOption = packageJson.server
+const serverOption = packageJson.server;
 const protocol = serverOption.https === 'true' ? 'https' : 'http';
 const host = serverOption.host || '0.0.0.0';
 
-module.exports = function (proxy, allowedHost) {
+module.exports = function(proxy, allowedHost) {
   return {
-    disableHostCheck:true,
-      //!proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true',
+    disableHostCheck: true,
+    // !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true',
     compress: true,
     clientLogLevel: 'none',
     contentBase: paths.appPublic,
@@ -24,7 +24,7 @@ module.exports = function (proxy, allowedHost) {
       ignored: ignoredFiles(paths.appSrc),
     },
     https: protocol === 'https',
-    host: host,
+    host,
     overlay: false,
     historyApiFallback: {
       disableDotRule: false,
@@ -36,7 +36,7 @@ module.exports = function (proxy, allowedHost) {
       app.use(noopServiceWorkerMiddleware());
     },
     headers: {
-      "Access-Control-Allow-Origin": "*"
-    }
+      'Access-Control-Allow-Origin': '*',
+    },
   };
 };

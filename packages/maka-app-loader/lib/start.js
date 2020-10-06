@@ -39,7 +39,11 @@ function start() {
   _appFactory.default.registerApps(currentConfig.apps);
 
   var mw = [(0, _appMiddleware.default)(currentConfig.actionInjections || {}, currentConfig.reducerInjections || {})];
-  if (currentConfig.middlewares) mw = mw.concat(currentConfig.middlewares);
+
+  if (currentConfig.middlewares) {
+    mw = mw.concat(currentConfig.middlewares);
+  }
+
   var store = (0, _redux.createStore)(_reducer.default, (0, _immutable.Map)(), _redux.applyMiddleware.apply(void 0, (0, _toConsumableArray2.default)(mw)));
   globalObj.reduxStore = store;
   globalObj.__maka_store__ = store;

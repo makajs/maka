@@ -25,11 +25,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactAddonsShallowCompare = _interopRequireDefault(require("react-addons-shallow-compare"));
 
-var _reactDom = _interopRequireDefault(require("react-dom"));
-
 var _maka = _interopRequireDefault(require("./maka"));
-
-var _config = _interopRequireDefault(require("./config"));
 
 var _utils = _interopRequireDefault(require("@makajs/utils"));
 
@@ -55,7 +51,7 @@ function getHandler(props, eventName) {
   };
 }
 
-function wrapper(option) {
+function wrapper() {
   return function (WrappedComponent) {
     var WC = WrappedComponent;
     return /*#__PURE__*/function (_Component) {
@@ -86,25 +82,6 @@ function wrapper(option) {
           getHandler(this.props, 'componentDidMount')();
         }
       }, {
-        key: "shouldComponentUpdate",
-        value: function shouldComponentUpdate(nextProps, nextState) {
-          if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) return true;else if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === false) return false;
-
-          if (nextState.hasError != this.state.hasError) {
-            return true;
-          }
-
-          return (0, _reactAddonsShallowCompare.default)(this, nextProps, nextState);
-          /*
-          for (var o in this.props) {
-          	if (this.props[o] != nextProps[o]) {
-          		return true
-          	}
-          }
-          return false
-          */
-        }
-      }, {
         key: "componentWillReceiveProps",
         value: function componentWillReceiveProps(nextProps) {
           if (this.state.hasError) {
@@ -117,9 +94,37 @@ function wrapper(option) {
           getHandler(this.props, 'componentWillReceiveProps')(nextProps);
         }
       }, {
+        key: "shouldComponentUpdate",
+        value: function shouldComponentUpdate(nextProps, nextState) {
+          if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === true) {
+            return true;
+          } else if (this.props.shouldComponentUpdate && this.props.shouldComponentUpdate(nextProps, nextState) === false) {
+            return false;
+          }
+
+          if (nextState.hasError !== this.state.hasError) {
+            return true;
+          }
+
+          return (0, _reactAddonsShallowCompare.default)(this, nextProps, nextState);
+          /*
+          for (var o in this.props) {
+            if (this.props[o] != nextProps[o]) {
+              return true
+            }
+          }
+          return false
+          */
+        }
+      }, {
         key: "componentWillUpdate",
         value: function componentWillUpdate(nextProps, nextState) {
           getHandler(this.props, 'componentWillUpdate')(nextProps, nextState);
+        }
+      }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+          getHandler(this.props, 'componentDidUpdate')();
         }
       }, {
         key: "componentDidCatch",
@@ -139,11 +144,6 @@ function wrapper(option) {
           getHandler(this.props, 'componentWillUnmount')();
         }
       }, {
-        key: "componentDidUpdate",
-        value: function componentDidUpdate() {
-          getHandler(this.props, 'componentDidUpdate')();
-        }
-      }, {
         key: "render",
         value: function render() {
           if (this.state.hasError) {
@@ -154,10 +154,22 @@ function wrapper(option) {
             }, this.state.error && this.state.error.message);
           }
 
-          if (this.props.notRender === true || this.props._notRender === true) return null;
-          if (!WC) return null;
-          if (!this.props.payload || !this.props.payload.get('data')) return null;
-          if (this.props.payload.getIn(['data', '_notRender']) === true) return null;
+          if (this.props.notRender === true || this.props._notRender === true) {
+            return null;
+          }
+
+          if (!WC) {
+            return null;
+          }
+
+          if (!this.props.payload || !this.props.payload.get('data')) {
+            return null;
+          }
+
+          if (this.props.payload.getIn(['data', '_notRender']) === true) {
+            return null;
+          }
+
           return /*#__PURE__*/_react.default.createElement(WC, (0, _extends2.default)({}, this.props, {
             maka: _maka.default
           }));

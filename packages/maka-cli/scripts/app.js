@@ -1,11 +1,11 @@
-'use strict';
+
 
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
-const spawn = require('react-dev-utils/crossSpawn');
+// const spawn = require('react-dev-utils/crossSpawn');
 
-let projectName = process.argv[2];
+const projectName = process.argv[2];
 
 if (typeof projectName === 'undefined') {
   console.error('Please enter appName:');
@@ -15,57 +15,56 @@ if (typeof projectName === 'undefined') {
   console.log();
   process.exit(0);
 }
-console.log(chalk.green(`Start creating an app...`));
+console.log(chalk.green('Start creating an app...'));
 
 const root = path.resolve(projectName);
 const appName = path.basename(root);
 
 try {
-  createDir(root, appName)
-  createPackageJson(root, appName)
-  init(appName, root)
-}
-catch (reason) {
-  exceptionHandler(reason, root)
+  createDir(root, appName);
+  createPackageJson(root, appName);
+  init(appName, root);
+} catch (reason) {
+  exceptionHandler(reason, root);
 }
 
 function createDir(root, name) {
-  console.log(`  ${chalk.bold('[1/3]')} Create a directory (${root})`)
+  console.log(`  ${chalk.bold('[1/3]')} Create a directory (${root})`);
   fs.ensureDirSync(name);
   process.chdir(root);
 }
 
 
 function createPackageJson(root, name) {
-  console.log(`  ${chalk.bold('[2/3]')} Create a package.json file`)
+  console.log(`  ${chalk.bold('[2/3]')} Create a package.json file`);
   const packageJson = {
     isMakaApp: true,
-    name: name,
+    name,
     description: name,
     version: '1.0.0',
     license: 'MIT',
     author: '',
     repository: {
-      "type": "git",
-      "url": `https://github.com/makajs/${name}.git`
+      type: 'git',
+      url: `https://github.com/makajs/${name}.git`,
     },
     bugs: {
-      url: `https://github.com/makajs/${name}/issues`
+      url: `https://github.com/makajs/${name}/issues`,
     },
     homepage: `https://github.com/makajs/${name}#readme`,
     scripts: {
-      'start': 'maka start',
-      'dev': 'maka start --dev',
-      'build': 'maka build',
-      'pkg': 'maka pkg'
+      start: 'maka start',
+      dev: 'maka start --dev',
+      build: 'maka build',
+      pkg: 'maka pkg',
     },
     dependencies: {
     },
     server: {
-      "proxy": null,
-      "port": 8000
+      proxy: null,
+      port: 8000,
     },
-    subAppDir: './apps'
+    subAppDir: './apps',
   };
 
   fs.writeFileSync(
@@ -75,8 +74,8 @@ function createPackageJson(root, name) {
 }
 
 function init(name, root) {
-  console.log(`  ${chalk.bold('[3/3]')} Initialize the application...`)
-  const paths = require('../config/paths');
+  console.log(`  ${chalk.bold('[3/3]')} Initialize the application...`);
+  // const paths = require('../config/paths');
   const initScriptPath = path.resolve(
     __dirname,
     '..',
@@ -85,8 +84,8 @@ function init(name, root) {
   );
   const originalDirectory = process.cwd();
   const init = require(initScriptPath);
-  console.log(root)
-  init(root, name, originalDirectory)
+  console.log(root);
+  init(root, name, originalDirectory);
 }
 
 

@@ -1,43 +1,42 @@
-import Immutable, { Map, List } from 'immutable'
+import Immutable from 'immutable';
 
-import contextManager from './context'
+import contextManager from './context';
 
-import * as common from './common'
+import * as common from './common';
 
 class reducer {
-	constructor(option) {
-		this.appInfo = option.appInfo
-	}
+  constructor(option) {
+    this.appInfo = option.appInfo;
+  }
 
 	init = (state, option) => {
-		const {
-			data = {},
-		} = option
+	  const {
+	    data = {},
+	  } = option;
 
-		return this.initByImmutable(state, {
-			data: Immutable.fromJS(data),
-		})
+	  return this.initByImmutable(state, {
+	    data: Immutable.fromJS(data),
+	  });
 	}
 
 	initByImmutable = (state, option) => {
-		const {
-			data,
-		} = option
+	  const {
+	    data,
+	  } = option;
 
-		//Clear the attribute in the state that is not @@, which is added by maka-app-loader
-		const keys = []
-		state.mapKeys(key => {
-			if (key.indexOf('@@') === -1)
-				keys.push(key)
-		})
+	  // Clear the attribute in the state that is not @@, which is added by maka-app-loader
+	  const keys = [];
+	  state.mapKeys(key => {
+	    if (key.indexOf('@@') === -1) { keys.push(key); }
+	  });
 
-		keys.forEach(key => {
-			state = state.remove(key)
-		})
+	  keys.forEach(key => {
+	    state = state.remove(key);
+	  });
 
-		//Setting status
-		return state
-			.set('data', data)
+	  // Setting status
+	  return state
+	    .set('data', data);
 	}
 
 	getMeta = common.getMeta
@@ -65,5 +64,5 @@ class reducer {
 }
 
 export default function creator(option) {
-	return new reducer(option)
+  return new reducer(option);
 }

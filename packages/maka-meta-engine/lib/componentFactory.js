@@ -42,20 +42,23 @@ var componentFactory = /*#__PURE__*/function () {
       this.components[name] = component;
     }
     /*
-    registerAppComponent(appName, componentName, component) {
-        this.appComponents[appName] = this.appComponents[appName] || {}
-        this.appComponents[appName].components = this.appComponents[appName].components || {}
-        if (this.appComponents[appName].components[componentName])
-            throw `existed. app:${appName}, name: ${componentName}`
-        this.appComponents[appName].components[componentName] = component
-    }*/
+      registerAppComponent(appName, componentName, component) {
+          this.appComponents[appName] = this.appComponents[appName] || {}
+          this.appComponents[appName].components = this.appComponents[appName].components || {}
+          if (this.appComponents[appName].components[componentName])
+              throw `existed. app:${appName}, name: ${componentName}`
+          this.appComponents[appName].components[componentName] = component
+      }*/
 
   }, {
     key: "registerComponents",
     value: function registerComponents(components) {
       var _this = this;
 
-      if (!components || components.length == 0) return;
+      if (!components || components.length === 0) {
+        return;
+      }
+
       components.forEach(function (c) {
         return _this.registerComponent(c.name, c.component);
       });
@@ -63,31 +66,36 @@ var componentFactory = /*#__PURE__*/function () {
   }, {
     key: "getComponent",
     value: function getComponent(name) {
-      if (!name) throw 'component name can not null';
+      if (!name) {
+        throw 'component name can not null';
+      }
 
       if (name === 'Fragment') {
         return _react.default.Fragment;
       }
 
-      if (name === "Suspense") return _react.default.Suspense;
+      if (name === 'Suspense') {
+        return _react.default.Suspense;
+      }
       /*
-      if (name.substring(0, 2) == '::') {
-          if(name.substr(2))
-              return  name.substr(2) 
-          else
-              throw `No components. name: ::`
-      }*/
+          if (name.substring(0, 2) == '::') {
+              if(name.substr(2))
+                  return  name.substr(2)
+              else
+                  throw `No components. name: ::`
+          }*/
+
 
       var nameSegs = name.split('.'),
           firstSeg = nameSegs[0];
       /*
-      if (this.appComponents && this.appComponents[appName] && this.appComponents[appName].components && this.appComponents[appName].components[firstSeg]) {
-          var com = this.appComponents[appName].components[name]
-           if (com && nameSegs.length > 1) {
-              com = this.findChild(com, nameSegs)
-          }
-           if (com) return com
-       }*/
+          if (this.appComponents && this.appComponents[appName] && this.appComponents[appName].components && this.appComponents[appName].components[firstSeg]) {
+              var com = this.appComponents[appName].components[name]
+               if (com && nameSegs.length > 1) {
+                  com = this.findChild(com, nameSegs)
+              }
+               if (com) return com
+           }*/
 
       var component = this.components[firstSeg];
 
@@ -96,7 +104,7 @@ var componentFactory = /*#__PURE__*/function () {
       }
 
       if (!component) {
-        return name; //throw `No components. name: ${name}`
+        return name; // throw `No components. name: ${name}`
       }
 
       return component;

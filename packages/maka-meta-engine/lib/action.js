@@ -19,8 +19,6 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _react = _interopRequireDefault(require("react"));
-
 var common = _interopRequireWildcard(require("./common"));
 
 var _utils = _interopRequireDefault(require("@makajs/utils"));
@@ -60,14 +58,14 @@ var action = function action(option) {
       this.dynamicHandleKeys = actionKeys.map(k => "$" + k)
       this.dynamicHandlers = {}
       actionKeys.forEach((key) => {
-      	this.dynamicHandlers["$" + key] = actions[key]
+      this.dynamicHandlers["$" + key] = actions[key]
       })*/
 
       _this.allActionKeys = actionKeys;
       _this.allAction = actions;
 
       _this.cache.handlerKeys.forEach(function (key) {
-        if (_this.allActionKeys.indexOf(key) == -1) {
+        if (_this.allActionKeys.indexOf(key) === -1) {
           _this.allActionKeys.push(key);
 
           _this.allAction[key] = _this.metaHandlers[key];
@@ -87,7 +85,7 @@ var action = function action(option) {
       appInstances[component.props.appFullName] = {
         appName: component.props.appName,
         appQuery: component.props.appQuery,
-        //app: config.getApps()[component.props.appName],
+        // app: config.getApps()[component.props.appName],
         instance: component
       };
     }
@@ -95,14 +93,15 @@ var action = function action(option) {
     var _notClearAppState = component.props._notClearAppState;
 
     if (component.props._notClearAppState === undefined) {
-      _notClearAppState = !!(component.props.appParams && component.props.appParams["_notClearAppState"]);
+      _notClearAppState = !!(component.props.appParams && component.props.appParams._notClearAppState);
     }
 
-    if (_notClearAppState === true && !!_this.gs('data')) {} else {
+    if (_notClearAppState === true && !!_this.gs('data')) {//eslint-disable-line
+    } else {
       var initState = _this.appInfo.state && _this.appInfo.state.data || {};
 
       _this.ss({
-        'data': initState
+        data: initState
       });
 
       if (_this.metaHandlers && _this.metaHandlers.onInit) {
@@ -117,28 +116,28 @@ var action = function action(option) {
     delete appInstances[_this.component.appFullName];
   });
   (0, _defineProperty2.default)(this, "componentWillMount", function () {
-    _this.metaHandlers && _this.metaHandlers['componentWillMount'] && _this.metaHandlers['componentWillMount'] != _this.componentWillMount && _this.metaHandlers['componentWillMount']();
+    _this.metaHandlers && _this.metaHandlers.componentWillMount && _this.metaHandlers.componentWillMount !== _this.componentWillMount && _this.metaHandlers.componentWillMount();
   });
   (0, _defineProperty2.default)(this, "componentDidMount", function () {
-    _this.metaHandlers && _this.metaHandlers['componentDidMount'] && _this.metaHandlers['componentDidMount'] != _this.componentDidMount && _this.metaHandlers['componentDidMount']();
+    _this.metaHandlers && _this.metaHandlers.componentDidMount && _this.metaHandlers.componentDidMount !== _this.componentDidMount && _this.metaHandlers.componentDidMount();
   });
   (0, _defineProperty2.default)(this, "shouldComponentUpdate", function (nextProps, nextState) {
-    _this.metaHandlers && _this.metaHandlers['shouldComponentUpdate'] && _this.metaHandlers['shouldComponentUpdate'] != _this.shouldComponentUpdate && _this.metaHandlers['shouldComponentUpdate'](nextProps, nextState);
+    _this.metaHandlers && _this.metaHandlers.shouldComponentUpdate && _this.metaHandlers.shouldComponentUpdate !== _this.shouldComponentUpdate && _this.metaHandlers.shouldComponentUpdate(nextProps, nextState);
   });
   (0, _defineProperty2.default)(this, "componentWillReceiveProps", function (nextProps) {
-    _this.metaHandlers && _this.metaHandlers['componentWillReceiveProps'] && _this.metaHandlers['componentWillReceiveProps'] != _this.componentWillReceiveProps && _this.metaHandlers['componentWillReceiveProps'](nextProps);
+    _this.metaHandlers && _this.metaHandlers.componentWillReceiveProps && _this.metaHandlers.componentWillReceiveProps !== _this.componentWillReceiveProps && _this.metaHandlers.componentWillReceiveProps(nextProps);
   });
   (0, _defineProperty2.default)(this, "componentWillUpdate", function (nextProps, nextState) {
-    _this.metaHandlers && _this.metaHandlers['componentWillUpdate'] && _this.metaHandlers['componentWillUpdate'] != _this.componentWillUpdate && _this.metaHandlers['componentWillUpdate'](nextProps, nextState);
+    _this.metaHandlers && _this.metaHandlers.componentWillUpdate && _this.metaHandlers.componentWillUpdate !== _this.componentWillUpdate && _this.metaHandlers.componentWillUpdate(nextProps, nextState);
   });
   (0, _defineProperty2.default)(this, "componentDidCatch", function (error, info) {
-    _this.metaHandlers && _this.metaHandlers['componentDidCatch'] && _this.metaHandlers['componentDidCatch'] != _this.componentDidCatch && _this.metaHandlers['componentDidCatch'](error, info);
+    _this.metaHandlers && _this.metaHandlers.componentDidCatch && _this.metaHandlers.componentDidCatch !== _this.componentDidCatch && _this.metaHandlers.componentDidCatch(error, info);
   });
   (0, _defineProperty2.default)(this, "componentWillUnmount", function () {
-    _this.metaHandlers && _this.metaHandlers['componentWillUnmount'] && _this.metaHandlers['componentWillUnmount'] != _this.componentWillUnmount && _this.metaHandlers['componentWillUnmount']();
+    _this.metaHandlers && _this.metaHandlers.componentWillUnmount && _this.metaHandlers.componentWillUnmount !== _this.componentWillUnmount && _this.metaHandlers.componentWillUnmount();
   });
   (0, _defineProperty2.default)(this, "componentDidUpdate", function () {
-    _this.metaHandlers && _this.metaHandlers['componentDidUpdate'] && _this.metaHandlers['componentDidUpdate'] != _this.componentDidUpdate && _this.metaHandlers['componentDidUpdate']();
+    _this.metaHandlers && _this.metaHandlers.componentDidUpdate && _this.metaHandlers.componentDidUpdate !== _this.componentDidUpdate && _this.metaHandlers.componentDidUpdate();
   });
   (0, _defineProperty2.default)(this, "getAppInstances", function () {
     return appInstances;
@@ -149,12 +148,15 @@ var action = function action(option) {
   (0, _defineProperty2.default)(this, "setState", function (fieldPath, value) {
     if (value) {
       return _this.injections.reduce('setField', fieldPath, value);
-    } else {
-      return _this.injections.reduce('setFields', fieldPath);
     }
+
+    return _this.injections.reduce('setFields', fieldPath);
   });
   (0, _defineProperty2.default)(this, "parseExpreesion", function (v, extParas) {
-    if (!_this.cache.expression) _this.cache.expression = {};
+    if (!_this.cache.expression) {
+      _this.cache.expression = {};
+    }
+
     var key = v;
 
     if (extParas && extParas.length > 0) {
@@ -166,14 +168,14 @@ var action = function action(option) {
     }
 
     if (!_this.cache.expressionParams) {
-      _this.cache.expressionParams = ['data'] //.concat(Object.keys(this.metaHandlers)
-      //.concat(this.cache.handlerKeys.map(k => "$" + k))
+      _this.cache.expressionParams = ['data'] // .concat(Object.keys(this.metaHandlers)
+      // .concat(this.cache.handlerKeys.map(k => "$" + k))
       .concat(_this.allActionKeys.map(function (k) {
-        return "$" + k;
+        return '$' + k;
       })).concat(['_path', '_vars']);
       /*
       if (this.dynamicHandleKeys) {
-      	this.cache.expressionParams = this.cache.expressionParams.concat(this.dynamicHandleKeys)
+      this.cache.expressionParams = this.cache.expressionParams.concat(this.dynamicHandleKeys)
       }*/
     }
 
@@ -199,32 +201,36 @@ var action = function action(option) {
     return _this.cache.expression[v];
   });
   (0, _defineProperty2.default)(this, "execExpression", function (expressContent, data, path, vars, extParas) {
-    var values = [data]; //var metaHandlerKeys = Object.keys(this.metaHandlers),
+    var values = [data]; // var metaHandlerKeys = Object.keys(this.metaHandlers),
 
     /*
     var metaHandlerKeys = this.cache.handlerKeys,
-    	i, key
-    	var fun = (n) => {
-    	let handler = this.metaHandlers[n]
-    	if (handler && typeof handler == 'function')
-    		handler.__method_name__ = n
-    		return handler
+    i, key
+    var fun = (n) => {
+    let handler = this.metaHandlers[n]
+    if (handler && typeof handler == 'function')
+    	handler.__method_name__ = n
+    	return handler
     }
-    	for (i = 0; key = metaHandlerKeys[i++];) {
-    	values.push(fun(key))
+    for (i = 0; key = metaHandlerKeys[i++];) {
+    values.push(fun(key))
     }*/
 
-    var actionKeys = _this.allActionKeys,
-        i,
-        key;
+    var actionKeys = _this.allActionKeys;
+    var i, key;
 
     var fun = function fun(n) {
       var handler = _this.allAction[n];
-      if (handler && typeof handler == 'function') handler.__method_name__ = n;
+
+      if (handler && typeof handler === 'function') {
+        handler.__method_name__ = n;
+      }
+
       return handler;
     };
 
     for (i = 0; key = actionKeys[i++];) {
+      //eslint-disable-line
       values.push(fun(key));
     }
 
@@ -232,15 +238,15 @@ var action = function action(option) {
     values.push((vars || '').split(','));
     /*
     var fun1 = (n) => {
-    	let handler = this.dynamicHandlers[n]
-    	if (handler && typeof handler == 'function')
-    		handler.__method_name__ = n
-    		return handler
+    let handler = this.dynamicHandlers[n]
+    if (handler && typeof handler == 'function')
+    	handler.__method_name__ = n
+    	return handler
     }
-    	if (this.dynamicHandleKeys) {
-    	for (i = 0; key = this.dynamicHandleKeys[i++];) {
-    		values.push(fun1(key))
-    	}
+    if (this.dynamicHandleKeys) {
+    for (i = 0; key = this.dynamicHandleKeys[i++];) {
+    	values.push(fun1(key))
+    }
     }*/
 
     var extParaKeys;
@@ -258,7 +264,7 @@ var action = function action(option) {
     try {
       return _this.parseExpreesion(expressContent, extParaKeys).apply(_this, values);
     } catch (e) {
-      _this.metaHandlers && _this.metaHandlers.componentDidCatch && _this.metaHandlers.componentDidCatch != _this.componentDidCatch && _this.metaHandlers.componentDidCatch(e);
+      _this.metaHandlers && _this.metaHandlers.componentDidCatch && _this.metaHandlers.componentDidCatch !== _this.componentDidCatch && _this.metaHandlers.componentDidCatch(e);
       setTimeout(function () {
         console.error("expression parsing error\uFF1A".concat(expressContent));
 
@@ -267,24 +273,36 @@ var action = function action(option) {
     }
   });
   (0, _defineProperty2.default)(this, "needUpdate", function (meta) {
-    if (!meta) return false;
+    if (!meta) {
+      return false;
+    }
+
     var t = (0, _typeof2.default)(meta);
-    if (t == 'string' && _utils.default.expression.isExpression(meta)) return true;
-    if (t != 'object') return false;
+
+    if (t === 'string' && _utils.default.expression.isExpression(meta)) {
+      return true;
+    }
+
+    if (t !== 'object') {
+      return false;
+    }
 
     if (meta._notParse === true) {
       return false;
     }
 
-    return !(t != 'object' || !!meta['$$typeof'] || !!meta._isAMomentObject || !!meta._power || meta._visible === false);
+    return !(t !== 'object' || !!meta.$$typeof || !!meta._isAMomentObject || !!meta._power || meta._visible === false);
   });
   (0, _defineProperty2.default)(this, "updateMeta", function (meta, data, path, vars, extParas) {
-    //path && (meta.path = path)
+    // path && (meta.path = path)
     if (meta instanceof Array) {
-      for (var _i = 0; _i < meta.length; _i++) {
-        var sub = meta[_i];
+      for (var i = 0; i < meta.length; i++) {
+        var sub = meta[i];
         var currentPath = path;
-        if (!sub) continue;
+
+        if (!sub) {
+          continue;
+        }
 
         if (sub._for) {
           sub._vars = vars;
@@ -304,20 +322,25 @@ var action = function action(option) {
             isExpression = false,
             isMeta = false;
 
-        if (subType == 'string' && _utils.default.expression.isExpression(sub)) {
+        if (subType === 'string' && _utils.default.expression.isExpression(sub)) {
           sub = _this.execExpression(sub, data, path, vars, extParas);
           isExpression = true;
-          if (sub && sub._isMeta === true) isMeta = true;
 
           if (sub && sub._isMeta === true) {
             isMeta = true;
-            meta[_i] = sub.value;
+          }
+
+          if (sub && sub._isMeta === true) {
+            isMeta = true;
+            meta[i] = sub.value;
           } else {
-            meta[_i] = sub;
+            meta[i] = sub;
           }
         }
 
-        if (!_this.needUpdate(sub)) continue;
+        if (!_this.needUpdate(sub)) {
+          continue;
+        }
 
         if (isExpression && !isMeta) {
           continue;
@@ -326,7 +349,7 @@ var action = function action(option) {
         subType = (0, _typeof2.default)(sub);
 
         if (sub instanceof Array) {
-          currentPath = "".concat(path, ".").concat(_i);
+          currentPath = "".concat(path, ".").concat(i);
 
           _this.updateMeta(sub, data, currentPath, vars, extParas);
 
@@ -342,7 +365,7 @@ var action = function action(option) {
           continue;
         }
 
-        currentPath = "".concat(path, ".").concat(_i);
+        currentPath = "".concat(path, ".").concat(i);
 
         _this.updateMeta(sub, data, currentPath, vars, extParas);
       }
@@ -357,31 +380,40 @@ var action = function action(option) {
     }
 
     if (excludeProps && excludeProps instanceof Array) {
-      for (var i = 0; i < excludeProps.length; i++) {
-        if (meta[excludeProps[i]]) delete meta[excludeProps[i]];
+      for (var _i = 0; _i < excludeProps.length; _i++) {
+        if (meta[excludeProps[_i]]) {
+          delete meta[excludeProps[_i]];
+        }
       }
 
-      delete meta['_excludeProps'];
+      delete meta._excludeProps;
     }
 
-    var keys = Object.keys(meta),
-        j,
-        key;
+    var keys = Object.keys(meta);
+    var j, key;
 
     var _loop = function _loop() {
-      var v = meta[key],
-          t = (0, _typeof2.default)(v),
+      //eslint-disable-line
+      var v = meta[key];
+      var t = (0, _typeof2.default)(v),
           currentPath = "".concat(path, ".").concat(key);
-      if (!v) return "continue";
-      if (key == '_vars' || key == '_extParas') return "continue";
+
+      if (!v) {
+        return "continue";
+      }
+
+      if (key === '_vars' || key === '_extParas') {
+        return "continue";
+      }
+
       var isExpression = false,
           isMeta = false;
 
-      if (t == 'string' && _utils.default.expression.isExpression(v)) {
+      if (t === 'string' && _utils.default.expression.isExpression(v)) {
         isExpression = true;
         v = _this.execExpression(v, data, currentPath, vars, extParas);
 
-        if (key == '...' && v && (0, _typeof2.default)(v) == 'object') {
+        if (key === '...' && v && (0, _typeof2.default)(v) === 'object') {
           Object.keys(v).forEach(function (kk) {
             meta[kk] = v[kk];
           });
@@ -396,7 +428,9 @@ var action = function action(option) {
         }
       }
 
-      if (!_this.needUpdate(v)) return "continue";
+      if (!_this.needUpdate(v)) {
+        return "continue";
+      }
 
       if (v._for) {
         v._vars = vars;
@@ -445,16 +479,22 @@ var action = function action(option) {
     if (!path) {
       var metaMap = common.getMetaMap(_this.appInfo, _this.component.props.appQuery);
       path = metaMap.keySeq().toList().find(function (o) {
-        return o.indexOf('.') == -1;
+        return o.indexOf('.') === -1;
       });
     }
 
-    if (!data) data = common.getField(_this.injections.getState());
+    if (!data) {
+      data = common.getField(_this.injections.getState());
+    }
+
     meta._power = undefined;
     meta._for = undefined;
     meta._function = undefined;
     meta.path = path;
-    if (vars) meta._vars = vars;
+
+    if (vars) {
+      meta._vars = vars;
+    }
 
     _this.updateMeta(meta, data, path, vars, extParas);
 

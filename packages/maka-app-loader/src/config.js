@@ -1,14 +1,14 @@
-var _options = {}
+const _options = {};
 
 function config(options) {
-	if(options.appUrls && _options.appUrls){
-		options.appUrls = {
-			..._options.appUrls, ...options.appUrls
-		}
-	}
-	Object.assign(_options, options)
+  if (options.appUrls && _options.appUrls) {
+    options.appUrls = {
+      ..._options.appUrls, ...options.appUrls,
+    };
+  }
+  Object.assign(_options, options);
 }
 
-config.current = _options
+config.current = _options;
 
-export default config
+export default config;

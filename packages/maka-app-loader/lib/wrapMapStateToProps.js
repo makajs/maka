@@ -9,8 +9,6 @@ exports.default = wrapMapStateToProps;
 
 var _parseName = _interopRequireDefault(require("./parseName"));
 
-var _immutable = require("immutable");
-
 function wrapMapStateToProps(fullName) {
   var parsedName = (0, _parseName.default)(fullName);
   return function (state) {

@@ -16,37 +16,45 @@ var hashHistory;
 var listerners = [];
 
 function setHistoryInstance() {
-  if (!hashHistory) hashHistory = createHashHistory();
+  if (!hashHistory) {
+    hashHistory = createHashHistory();
+  }
 }
 
 function listen(handler) {
   setHistoryInstance();
   var h = listerners.find(function (o) {
-    return o.listen == handler;
+    return o.listen === handler;
   });
 
   if (!h) {
     h = handler;
-    var unlisten = hashHistory.listen(handler);
+
+    var _unlisten = hashHistory.listen(handler);
+
     listerners.push({
       listen: h,
-      unlisten: unlisten
+      unlisten: _unlisten
     });
   }
 }
 
 function unlisten(handler) {
   var index = listerners.findIndex(function (o) {
-    return o.listen == handler;
+    return o.listen === handler;
   });
-  if (index == -1) return;
+
+  if (index === -1) {
+    return;
+  }
+
   listerners[index].unlisten();
   listerners.splice(index, 1);
 }
 
 function goBack() {
-  hashHistory && hashHistory.back && hashHistory.back(); //history 升级后接口变化 goBack 变成了 back
-  //hashHistory && hashHistory.goBack && hashHistory.goBack()
+  hashHistory && hashHistory.back && hashHistory.back(); // history 升级后接口变化 goBack 变成了 back
+  // hashHistory && hashHistory.goBack && hashHistory.goBack()
 }
 
 function redirect(app) {

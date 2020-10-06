@@ -1,5 +1,5 @@
 /* istanbul ignore next */
-'use strict';
+
 
 const debug = require('debug')('maka-cli');
 const path = require('path');

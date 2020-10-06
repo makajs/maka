@@ -1,4 +1,4 @@
-'use strict';
+
 
 const path = require('path');
 const BaseCommand = require('common-bin');
@@ -21,13 +21,13 @@ class Command extends BaseCommand {
         alias: 'ts',
         default: undefined,
       },
-
+      /* 暂时不支持ts-helper
       declarations: {
         description: 'whether create dts, will load `egg-ts-helper/register`',
         type: 'boolean',
         alias: 'dts',
         default: undefined,
-      },
+      },*/
     };
   }
 

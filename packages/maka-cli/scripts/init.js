@@ -1,4 +1,4 @@
-'use strict';
+
 
 process.on('unhandledRejection', err => {
   throw err;
@@ -8,13 +8,13 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const utils = require('./utils');
-const paths = require('../config/paths');
+// const paths = require('../config/paths');
 const Alphabet = require('alphabetjs');
 
-module.exports = function (
+module.exports = function(
   appPath,
-  appName,
-  originalDirectory
+  appName
+  // originalDirectory
 ) {
   const appPackage = require(path.join(appPath, 'package.json'));
   const useYarn = true;
@@ -23,20 +23,20 @@ module.exports = function (
   if (fs.existsSync(templatePath)) {
     fs.copySync(templatePath, appPath);
 
-    var styleContent = fs.readFileSync(path.join(appPath, 'style.less'), 'utf-8');
+    let styleContent = fs.readFileSync(path.join(appPath, 'style.less'), 'utf-8');
     styleContent = styleContent.replace(/<appName>/g, utils.fixName(appPackage.name));
     fs.writeFileSync(path.join(appPath, 'style.less'), styleContent);
 
 
-    var indexContent = fs.readFileSync(path.join(appPath, 'index.js'), 'utf-8');
+    let indexContent = fs.readFileSync(path.join(appPath, 'index.js'), 'utf-8');
     indexContent = indexContent.replace(/<appName>/g, utils.fixName(appPackage.name));
     fs.writeFileSync(path.join(appPath, 'index.js'), indexContent);
 
-    var htmlContent = fs.readFileSync(path.join(appPath, 'index.html'), 'utf-8');
+    let htmlContent = fs.readFileSync(path.join(appPath, 'index.html'), 'utf-8');
     htmlContent = htmlContent.replace(/<appName>/g, utils.fixName(appPackage.name));
     fs.writeFileSync(path.join(appPath, 'index.html'), htmlContent);
 
-    var readmeContent = fs.readFileSync(path.join(appPath, 'README.md'), 'utf-8');
+    let readmeContent = fs.readFileSync(path.join(appPath, 'README.md'), 'utf-8');
     readmeContent = readmeContent.replace(/<appName>/g, utils.fixName(appPackage.name));
     fs.writeFileSync(path.join(appPath, 'README.md'), readmeContent);
 
@@ -53,7 +53,7 @@ module.exports = function (
     [],
     err => {
       if (err) {
-        //Alternate content already exists
+        // Alternate content already exists
         if (err.code === 'EEXIST') {
           const data = fs.readFileSync(path.join(appPath, 'gitignore'));
           fs.appendFileSync(path.join(appPath, '.gitignore'), data);
@@ -71,7 +71,7 @@ module.exports = function (
     [],
     err => {
       if (err) {
-        //Alternate content already exists
+        // Alternate content already exists
         if (err.code === 'EEXIST') {
           const data = fs.readFileSync(path.join(appPath, 'npmignore'));
           fs.appendFileSync(path.join(appPath, '.npmignore'), data);
@@ -83,12 +83,13 @@ module.exports = function (
     }
   );
 
+  /*
   let cdpath;
   if (originalDirectory && path.join(originalDirectory, appName) === appPath) {
     cdpath = appName;
   } else {
     cdpath = appPath;
-  }
+  }*/
 
   const displayedCommand = useYarn ? 'yarn' : 'npm';
 
@@ -114,6 +115,6 @@ module.exports = function (
   console.log(chalk.cyan('  cd'), appName);
   console.log(`  ${chalk.cyan(`${displayedCommand} start`)}`);
   console.log();
-  const str = Alphabet('MAKA', 'stereo')
-  console.log(str)
+  const str = Alphabet('MAKA', 'stereo');
+  console.log(str);
 };

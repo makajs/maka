@@ -54,9 +54,9 @@ var AppLoader = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(AppLoader);
 
-  function AppLoader(props, context) {
+  function AppLoader() {
     (0, _classCallCheck2.default)(this, AppLoader);
-    return _super.call(this, props, context);
+    return _super.apply(this, arguments);
   }
 
   (0, _createClass2.default)(AppLoader, [{
@@ -79,9 +79,9 @@ var AppLoader = /*#__PURE__*/function (_React$Component) {
 
       if (!req) {
         this.props.loadApp(fullName, this.props.name);
-      } else if (this.props.name != nextProps.name) {
-        //if(this.props._notClearAppState !== true){
-        this.props.clearAppState(this.props.name); //}
+      } else if (this.props.name !== nextProps.name) {
+        // if(this.props._notClearAppState !== true){
+        this.props.clearAppState(this.props.name); // }
       } else {
         var cachePlugins = req.get('plugins').toJS();
         var parsedName = (0, _parseName.default)(fullName);
@@ -94,15 +94,13 @@ var AppLoader = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "shouldComponentUpdate",
-    value: function shouldComponentUpdate(nextProps, nextState) {
+    value: function shouldComponentUpdate() {
       return true;
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      var _this$props2 = this.props,
-          fullName = _this$props2.name,
-          payload = _this$props2.payload;
+      var fullName = this.props.name;
 
       if (this.props._notClearAppState !== true) {
         this.props.clearAppState(fullName);
@@ -119,10 +117,10 @@ var AppLoader = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props3 = this.props,
-          fullName = _this$props3.name,
-          payload = _this$props3.payload,
-          other = (0, _objectWithoutProperties2.default)(_this$props3, ["name", "payload"]),
+      var _this$props2 = this.props,
+          fullName = _this$props2.name,
+          payload = _this$props2.payload,
+          other = (0, _objectWithoutProperties2.default)(_this$props2, ["name", "payload"]),
           ReduxConnector = payload.getIn(['@@require', 'container']);
 
       if (ReduxConnector) {
@@ -132,9 +130,9 @@ var AppLoader = /*#__PURE__*/function (_React$Component) {
           payload: payload,
           key: fullName
         }));
-      } else {
-        return null;
       }
+
+      return null;
     }
   }]);
   return AppLoader;
@@ -152,7 +150,7 @@ var _default = (0, _reactRedux.connect)(function (state, props) {
 }, function (dispatch) {
   return _objectSpread({}, (0, _redux.bindActionCreators)(actions, dispatch));
 }, null, {
-  //withRef: true,
+  // withRef: true,
   pure: true
 })(AppLoader);
 

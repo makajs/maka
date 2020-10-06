@@ -1,24 +1,24 @@
-import React from 'react'
+import React from 'react';
 
 class componentFactory {
-    constructor() {
-        this.components = {}
-        this.appComponents = {}
-    }
+  constructor() {
+    this.components = {};
+    this.appComponents = {};
+  }
 
-    getComponents(){
-        return this.components
-    }
+  getComponents() {
+    return this.components;
+  }
 
-    registerComponent(name, component) {
-        if (this.components[name]) {
-            console.log(`Component already exists. name: ${name},please ignore!`)
-            return
-        }
-        this.components[name] = component
+  registerComponent(name, component) {
+    if (this.components[name]) {
+      console.log(`Component already exists. name: ${name},please ignore!`);
+      return;
     }
+    this.components[name] = component;
+  }
 
-    /*
+  /*
     registerAppComponent(appName, componentName, component) {
         this.appComponents[appName] = this.appComponents[appName] || {}
         this.appComponents[appName].components = this.appComponents[appName].components || {}
@@ -27,35 +27,32 @@ class componentFactory {
         this.appComponents[appName].components[componentName] = component
     }*/
 
-    registerComponents(components) {
-        if (!components || components.length == 0)
-            return
-        components.forEach(c => this.registerComponent(c.name, c.component))
+  registerComponents(components) {
+    if (!components || components.length === 0) { return; }
+    components.forEach(c => this.registerComponent(c.name, c.component));
+  }
+
+  getComponent(name) {
+    if (!name) { throw 'component name can not null'; }
+
+    if (name === 'Fragment') {
+      return React.Fragment;
     }
 
-    getComponent(name) {
-        if (!name)
-            throw 'component name can not null'
+    if (name === 'Suspense') { return React.Suspense; }
 
-        if(name === 'Fragment'){
-            return React.Fragment
-        }
-
-        if(name === "Suspense")
-            return React.Suspense
-
-        /*
+    /*
         if (name.substring(0, 2) == '::') {
             if(name.substr(2))
-                return  name.substr(2) 
+                return  name.substr(2)
             else
                 throw `No components. name: ::`
         }*/
 
-        const nameSegs = name.split('.'),
-            firstSeg = nameSegs[0]
+    const nameSegs = name.split('.'),
+      firstSeg = nameSegs[0];
 
-        /*
+    /*
         if (this.appComponents && this.appComponents[appName] && this.appComponents[appName].components && this.appComponents[appName].components[firstSeg]) {
             var com = this.appComponents[appName].components[name]
 
@@ -67,33 +64,33 @@ class componentFactory {
 
         }*/
 
-        var component = this.components[firstSeg]
+    let component = this.components[firstSeg];
 
-        if (component && nameSegs.length > 1) {
-            component = this.findChild(component, nameSegs)
-        }
-
-        if (!component) {
-            return name
-            //throw `No components. name: ${name}`
-        }
-
-        return component
+    if (component && nameSegs.length > 1) {
+      component = this.findChild(component, nameSegs);
     }
 
-    findChild(component, nameSegs) {
-        for (let s of nameSegs.slice(1)) {
-            if (!component[s]) {
-                component = undefined
-                return
-            }
-
-            component = component[s]
-        }
-        return component
+    if (!component) {
+      return name;
+      // throw `No components. name: ${name}`
     }
+
+    return component;
+  }
+
+  findChild(component, nameSegs) {
+    for (const s of nameSegs.slice(1)) {
+      if (!component[s]) {
+        component = undefined;
+        return;
+      }
+
+      component = component[s];
+    }
+    return component;
+  }
 }
 
-const instance = new componentFactory()
+const instance = new componentFactory();
 
-export default instance
+export default instance;

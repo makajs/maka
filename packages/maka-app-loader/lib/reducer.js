@@ -35,13 +35,13 @@ function _default() {
       payload = _ref.payload;
 
   switch (type) {
-    case "@@loadAppReal":
+    case '@@loadAppReal':
       return loadApp(state, payload);
 
-    case "@@reduce":
+    case '@@reduce':
       return reduce(state, payload);
 
-    case "@@clearAppState":
+    case '@@clearAppState':
       return clearAppState(state, payload);
 
     default:
@@ -67,24 +67,35 @@ function loadApp(state, _ref2) {
       return state;
     }
 
-    if (!forceLoad) state = state.set(fullName, (0, _immutable.Map)());else state = state.set(fullName, (0, _immutable.Map)({
-      prevData: state.getIn([fullName, 'data'])
-    }));
+    if (!forceLoad) {
+      state = state.set(fullName, (0, _immutable.Map)());
+    } else {
+      state = state.set(fullName, (0, _immutable.Map)({
+        prevData: state.getIn([fullName, 'data'])
+      }));
+    }
+
     appInfo = _objectSpread({}, appInfo);
 
-    if (appInfo && appInfo.view && typeof appInfo.view == 'function') {
+    if (appInfo && appInfo.view && typeof appInfo.view === 'function') {
       component = _config.default.current.componentWrapper()(appInfo.view);
     }
 
     if (pluginApps && pluginApps.length > 0) {
       for (var i = 0; i < pluginApps.length; i++) {
         var plugin = pluginApps[i];
-        if (plugin.pluginApi && plugin.pluginApi.afterState) appInfo.state = plugin.pluginApi.afterState((0, _immutable.fromJS)(appInfo.state).toJS());
-        if (plugin.pluginApi && plugin.pluginApi.afterView) appInfo.view = plugin.pluginApi.afterView((0, _immutable.fromJS)(appInfo.view).toJS());
+
+        if (plugin.pluginApi && plugin.pluginApi.afterState) {
+          appInfo.state = plugin.pluginApi.afterState((0, _immutable.fromJS)(appInfo.state).toJS());
+        }
+
+        if (plugin.pluginApi && plugin.pluginApi.afterView) {
+          appInfo.view = plugin.pluginApi.afterView((0, _immutable.fromJS)(appInfo.view).toJS());
+        }
       }
     }
 
-    var actionInstance = typeof action == 'function' ? action({
+    var actionInstance = typeof action === 'function' ? action({
       appInfo: appInfo,
       fullName: fullName,
       plugins: plugins
@@ -97,7 +108,9 @@ function loadApp(state, _ref2) {
 
     if (pluginApps && pluginApps.length > 0) {
       pluginApps.forEach(function (plugin) {
-        if (plugin.pluginApi && plugin.pluginApi.afterAction) actionInternal = plugin.pluginApi.afterAction(actionInternal);
+        if (plugin.pluginApi && plugin.pluginApi.afterAction) {
+          actionInternal = plugin.pluginApi.afterAction(actionInternal);
+        }
       });
       actionInstance = _objectSpread(_objectSpread({}, actionInstance), {}, {
         getDirectFuns: function getDirectFuns() {
@@ -106,7 +119,7 @@ function loadApp(state, _ref2) {
       });
     }
 
-    var reducerInstance = typeof reducer == 'function' ? reducer({
+    var reducerInstance = typeof reducer === 'function' ? reducer({
       appInfo: appInfo,
       fullName: fullName
     }) : _config.default.current.defaultReducer({
@@ -118,7 +131,7 @@ function loadApp(state, _ref2) {
     var container = (0, _createReduxConnector.default)(component || appInfo.viewDecorator && appInfo.viewDecorator()(_config.default.current.defaultComponent) || _config.default.current.defaultComponent, mapStateToProps, mapDispatchToProps, function (stateProps, dispatchProps, ownProps) {
       return _objectSpread(_objectSpread(_objectSpread({}, ownProps), stateProps), dispatchProps);
     }, {
-      //withRef: true, 
+      // withRef: true,
       pure: true
     });
     state = state.setIn([fullName, '@@require'], (0, _immutable.Map)({
@@ -134,7 +147,7 @@ function loadApp(state, _ref2) {
     }));
   }
 
-  if (prevFullName && prevFullName != fullName) {
+  if (prevFullName && prevFullName !== fullName) {
     state = clearAppState(state, {
       fullName: prevFullName
     });
@@ -145,16 +158,25 @@ function loadApp(state, _ref2) {
 
 function clearAppState(state, _ref3) {
   var fullName = _ref3.fullName;
-  if (!state.has(fullName)) return state;
+
+  if (!state.has(fullName)) {
+    return state;
+  }
+
   var ks = [];
   state.get(fullName).mapKeys(function (k) {
-    if (k != '@@require') ks.push(k);
+    if (k !== '@@require') {
+      ks.push(k);
+    }
+
     return k;
   });
   ks.forEach(function (k) {
-    if (k) state = state.update(fullName, function (x) {
-      return x.remove(k);
-    });
+    if (k) {
+      state = state.update(fullName, function (x) {
+        return x.remove(k);
+      });
+    }
   });
   return state;
 }
@@ -169,7 +191,7 @@ function reduce(state, _ref4) {
   var oldState = state.get(fullName);
   var newState = reducer[type].apply(this, [oldState].concat(payload));
 
-  if (typeof newState === "function") {
+  if (typeof newState === 'function') {
     newState = newState(injectFunsForReducer);
   }
 
@@ -185,11 +207,13 @@ function reduce(state, _ref4) {
       newState: newState,
       startTime: startDate.getHours() + ':' + startDate.getMinutes() + ':' + startDate.getSeconds() + '.' + startDate.getMilliseconds(),
       endTime: endDate.getHours() + ':' + endDate.getMinutes() + ':' + endDate.getSeconds() + '.' + endDate.getMilliseconds(),
-      elapsedTime: Math.abs(startDate.getTime() - endDate.getTime()) //(1000*60*60*24)
+      elapsedTime: Math.abs(startDate.getTime() - endDate.getTime()) // (1000*60*60*24)
 
     });
   } else {
-    if (globalObj.__maka_actions__) globalObj.__maka_actions__ = undefined;
+    if (globalObj.__maka_actions__) {
+      globalObj.__maka_actions__ = undefined;
+    }
   }
 
   return state.set(fullName, newState);

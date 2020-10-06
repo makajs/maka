@@ -1,1 +1,0 @@
-# account-setting-notification-view

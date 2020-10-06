@@ -1,4 +1,4 @@
-'use strict';
+
 
 const debug = require('debug')('maka-cli');
 const fs = require('fs');

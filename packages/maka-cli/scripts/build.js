@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-'use strict';
+
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 
@@ -19,35 +19,34 @@ const paths = require('../config/paths');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printBuildError = require('react-dev-utils/printBuildError');
-const isDev = process.argv[process.argv.length - 1] === 'true'
-const outputPath = isDev ? path.resolve(process.cwd(), 'build/dev') : path.resolve(process.cwd(), 'build/prod')
+const isDev = process.argv[process.argv.length - 1] === 'true';
+const outputPath = isDev ? path.resolve(process.cwd(), 'build/dev') : path.resolve(process.cwd(), 'build/prod');
 
 const createWebpackConfig = require('../config/webpack.config');
-const config = createWebpackConfig({ isProd: !isDev, outputPath: outputPath });
+const config = createWebpackConfig({ isProd: !isDev, outputPath });
 
-//file does not exist
-if (!checkRequiredFiles([paths.appIndexJs])) {
+// file does not exist
+if (!checkRequiredFiles([ paths.appIndexJs ])) {
   process.exit(0);
 }
 
-console.log(chalk.green(`Start compiling ...`));
+console.log(chalk.green('Start compiling ...'));
 
 try {
-  main()
-}
-catch (err) {
+  main();
+} catch (err) {
   console.log(chalk.red('Compile failed.\n'));
-  //Output compilation exception
+  // Output compilation exception
   printBuildError(err);
   process.exit(0);
 }
 
 
 async function main() {
-  emptyDir()
-  var ret = await build()
+  emptyDir();
+  const ret = await build();
   if (ret.warnings) {
-    //Warning
+    // Warning
     if (ret.warnings.length) {
       console.log(chalk.yellow('Compile warning.\n'));
       console.log(ret.warnings.join('\n\n'));
@@ -58,15 +57,15 @@ async function main() {
 }
 
 function emptyDir() {
-  console.log(`  ${chalk.bold('[1/2]')} empty directory:${outputPath}`)
-  //empty files in the directory
+  console.log(`  ${chalk.bold('[1/2]')} empty directory:${outputPath}`);
+  // empty files in the directory
   fs.emptyDirSync(outputPath);
 }
 
 function build(previousFileSizes) {
-  console.log(`  ${chalk.bold('[2/2]')} compile app...`)
+  console.log(`  ${chalk.bold('[2/2]')} compile app...`);
 
-  let compiler = webpack(config);
+  const compiler = webpack(config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       if (err) {
@@ -74,7 +73,7 @@ function build(previousFileSizes) {
       }
       const messages = formatWebpackMessages(stats.toJson({}, true));
 
-      //Compile exception
+      // Compile exception
       if (messages.errors.length) {
         if (messages.errors.length > 1) {
           messages.errors.length = 1;

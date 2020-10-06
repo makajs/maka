@@ -1,10 +1,11 @@
 {
   "name": "@makajs/meta-engine",
-  "version": "0.0.45",
+  "version": "2.0.0",
   "description": "maka meta engine",
   "main": "./lib/index.js",
   "scripts": {
-    "compile": "babel -d lib/ src/"
+    "compile": "babel -d lib/ src/",
+    "build": "yarn compile"
   },
   "repository": {
     "type": "git",
@@ -16,21 +17,21 @@
   },
   "homepage": "https://github.com/makajs/maka/packages/maka-meta-engine#readme",
   "dependencies": {
-    "@makajs/app-loader": "0.0.28",
-    "@makajs/utils": "*",
-    "immutable": "*",
-    "lodash": "*",
-    "react": "*",
-    "react-addons-shallow-compare": "*",
-    "react-dom": "*"
+    "@makajs/app-loader": "^2.0.0",
+    "@makajs/utils": "^2.0.0",
+    "immutable": "4.0.0-rc.12",
+    "lodash": "^4",
+    "react": "^16",
+    "react-addons-shallow-compare": "^15",
+    "react-dom": "^16"
   },
   "devDependencies": {
-    "@babel/cli": "*",
-    "@babel/core": "*",
-    "@babel/plugin-proposal-class-properties": "*",
-    "@babel/plugin-proposal-decorators": "*",
-    "@babel/plugin-transform-runtime": "*",
-    "@babel/preset-env": "*",
-    "@babel/preset-react": "*"
+    "@babel/cli": "^7",
+    "@babel/core": "^7",
+    "@babel/plugin-proposal-class-properties": "^7",
+    "@babel/plugin-proposal-decorators": "^7",
+    "@babel/plugin-transform-runtime": "^7",
+    "@babel/preset-env": "^7",
+    "@babel/preset-react": "^7"
   }
 }

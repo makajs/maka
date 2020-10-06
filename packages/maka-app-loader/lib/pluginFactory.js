@@ -23,8 +23,8 @@ var pluginFactory = function pluginFactory() {
     if (!name || !forApp) return;
 
     if (_this.plugins.findIndex(function (o) {
-      return o.name == name;
-    }) != -1) {
+      return o.name === name;
+    }) !== -1) {
       console.log("Already registered this plugin\uFF0Cname: ".concat(name, ",please ignore"));
       return;
     }
@@ -45,21 +45,23 @@ var pluginFactory = function pluginFactory() {
     if (!name) return;
 
     var index = _this.plugins.findIndex(function (o) {
-      return o.name == name;
+      return o.name === name;
     });
 
-    if (index != -1) _this.plugins.splice(index, 1);
+    if (index !== -1) {
+      _this.plugins.splice(index, 1);
+    }
   });
   (0, _defineProperty2.default)(this, "existsPlugin", function (forApp) {
     if (!forApp) return;
     return _this.plugins.findIndex(function (o) {
       return o.forApp === forApp || o.regExp && o.regExp.test(forApp);
-    }) != -1;
+    }) !== -1;
   });
   (0, _defineProperty2.default)(this, "filter", function (appName) {
     if (!appName) return [];
     return _this.plugins.filter(function (o) {
-      return o.forApp === appName || o.regExp && o.regExp.test(forApp);
+      return o.forApp === appName || o.regExp && o.regExp.test(o.forApp);
     });
   });
   (0, _defineProperty2.default)(this, "getPluginNames", function (appName) {

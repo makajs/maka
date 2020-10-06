@@ -43,7 +43,10 @@ var templateFactory = /*#__PURE__*/function () {
     value: function registerTemplates(templates) {
       var _this = this;
 
-      if (!templates || templates.length == 0) return;
+      if (!templates || templates.length === 0) {
+        return;
+      }
+
       templates.forEach(function (t) {
         return _this.registerTemplate(t.name, t.templateHandler);
       });
@@ -51,7 +54,10 @@ var templateFactory = /*#__PURE__*/function () {
   }, {
     key: "getTemplate",
     value: function getTemplate(name) {
-      if (!name) throw 'template name can not null';
+      if (!name) {
+        throw 'template name can not null';
+      }
+
       var nameSegs = name.split('.'),
           firstSeg = nameSegs[0];
       var template = this.templates[firstSeg];

@@ -17,20 +17,20 @@ exports.existsParamsInPath = existsParamsInPath;
 var parsePath = (0, _memoize.default)(function (path) {
   if (!path) return;
 
-  if (path.indexOf(',') == -1) {
+  if (path.indexOf(',') === -1) {
     return {
       path: path.replace(/\s/g, '')
     };
-  } else {
-    var segments = path.split(","),
-        vars = segments.slice(1);
-    return {
-      path: segments[0].replace(/\s/g, ''),
-      vars: vars.map(function (o) {
-        return o.replace(/\s/g, '');
-      })
-    };
   }
+
+  var segments = path.split(','),
+      vars = segments.slice(1);
+  return {
+    path: segments[0].replace(/\s/g, ''),
+    vars: vars.map(function (o) {
+      return o.replace(/\s/g, '');
+    })
+  };
 });
 exports.parsePath = parsePath;
 var _default = {

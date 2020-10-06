@@ -67,10 +67,6 @@ Object.defineProperty(exports, "removeApp", {
 });
 exports.removePlugin = exports.existsPlugin = exports.getPluginsByAppName = exports.registerPlugin = exports.existsApp = exports.getApps = exports.getApp = exports.registerApps = exports.registerApp = exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
-
-var _reactDom = require("react-dom");
-
 var _appLoader = _interopRequireDefault(require("./appLoader"));
 
 var _appMiddleware = _interopRequireDefault(require("./appMiddleware"));

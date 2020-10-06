@@ -1,48 +1,46 @@
-import config from './config'
-
-import { getGlobal } from '@makajs/utils'
-var globalObj = getGlobal()
+import { getGlobal } from '@makajs/utils';
+const globalObj = getGlobal();
 
 class appFactory {
-    constructor() {
-        this.apps = {}
-        globalObj.__maka_apps__ = this.apps
-    }
+  constructor() {
+    this.apps = {};
+    globalObj.__maka_apps__ = this.apps;
+  }
 
     registerApp = (name, app) => {
-        if (this.apps[name]) {
-            console.log(`Already registered this app，name: ${name},please ignore`)
-            return
-        }
+      if (this.apps[name]) {
+        console.log(`Already registered this app，name: ${name},please ignore`);
+        return;
+      }
 
-        this.apps[name] = app
+      this.apps[name] = app;
     }
 
-    registerApps = (apps) => {
-        Object.assign(this.apps, apps)
+    registerApps = apps => {
+      Object.assign(this.apps, apps);
     }
 
-    existsApp = (name) => {
-        name = name.replace(/(\.js)|(\.min\.js)/, '')
-        return !!this.apps[name]
+    existsApp = name => {
+      name = name.replace(/(\.js)|(\.min\.js)/, '');
+      return !!this.apps[name];
     }
 
-    getApp = (name) => {
-        name = name.replace(/(\.js)|(\.min\.js)/, '')
-        return this.apps[name]
+    getApp = name => {
+      name = name.replace(/(\.js)|(\.min\.js)/, '');
+      return this.apps[name];
     }
 
     getApps = () => {
-        return this.apps
+      return this.apps;
     }
 
-    removeApp = (name) => {
-        delete this.apps[name]
+    removeApp = name => {
+      delete this.apps[name];
     }
 
 
 }
 
-const appFactoryInstance = new appFactory()
+const appFactoryInstance = new appFactory();
 
-export default appFactoryInstance
+export default appFactoryInstance;

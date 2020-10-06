@@ -11,8 +11,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _path = require("path");
-
+// import { resolve } from 'path';
 var actionFactory = /*#__PURE__*/function () {
   function actionFactory() {
     (0, _classCallCheck2.default)(this, actionFactory);
@@ -43,7 +42,10 @@ var actionFactory = /*#__PURE__*/function () {
     value: function registerActions(actions) {
       var _this = this;
 
-      if (!actions || actions.length == 0) return;
+      if (!actions || actions.length === 0) {
+        return;
+      }
+
       actions.forEach(function (c) {
         return _this.registerAction(c.name, c.action, c.isFunction);
       });
@@ -51,7 +53,10 @@ var actionFactory = /*#__PURE__*/function () {
   }, {
     key: "getAction",
     value: function getAction(name) {
-      if (!name) throw "Action name cannot be empty";
+      if (!name) {
+        throw 'Action name cannot be empty';
+      }
+
       var action = this.actions[name];
 
       if (!action) {
@@ -65,8 +70,11 @@ var actionFactory = /*#__PURE__*/function () {
     value: function asyncGetAction(name) {
       var _this2 = this;
 
-      if (!name) throw "Action name cannot be empty";
-      return new Promise(function (resolve, reject) {
+      if (!name) {
+        throw 'Action name cannot be empty';
+      }
+
+      return new Promise(function (resolve) {
         var getAction = function getAction() {
           setTimeout(function () {
             if (_this2.actions[name]) {

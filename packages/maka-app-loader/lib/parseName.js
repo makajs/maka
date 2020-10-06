@@ -21,8 +21,8 @@ function parseName(fullName) {
 function parseQuery(query) {
   var ret = {},
       seg = query.replace(/^\?/, '').split('&'),
-      len = seg.length,
-      i = 0,
+      len = seg.length;
+  var i = 0,
       s;
 
   for (; i < len; i++) {

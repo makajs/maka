@@ -42,8 +42,7 @@ var Root = /*#__PURE__*/function (_React$PureComponent) {
     (0, _classCallCheck2.default)(this, Root);
     _this = _super.call(this, props);
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "listen", function (_ref) {
-      var location = _ref.location,
-          action = _ref.action;
+      var location = _ref.location;
 
       if (history.state && history.state.orginalUrl) {
         history.replaceState(history.state.orginalUrl);
@@ -51,20 +50,22 @@ var Root = /*#__PURE__*/function (_React$PureComponent) {
 
       var full = location.pathname + location.search;
 
-      if ((!full || full == '/') && _this.props.appName == _this.state.currentApp) {
+      if ((!full || full === '/') && _this.props.appName === _this.state.currentApp) {
         _utils.navigate.redirect(_this.state.currentApp);
 
         return;
       }
 
-      full = full.substr(0, 1) == '/' ? full.substr(1) : full;
+      full = full.substr(0, 1) === '/' ? full.substr(1) : full;
       var target = full.split('/')[0];
 
       if (!target) {
         return;
       }
 
-      if (target == _this.state.currentApp) return;
+      if (target === _this.state.currentApp) {
+        return;
+      }
 
       _this.setState({
         currentApp: target
@@ -73,21 +74,28 @@ var Root = /*#__PURE__*/function (_React$PureComponent) {
 
     _utils.navigate.listen(_this.listen);
 
+    var _location = _utils.navigate.getLocation();
+
     var currentApp,
-        _location = _utils.navigate.getLocation(),
         _full = _location.pathname + _location.search;
 
-    if (!_full || _full == '/') {
+    if (!_full || _full === '/') {
       currentApp = props.appName;
     } else {
-      _full = _full.substr(0, 1) == '/' ? _full.substr(1) : _full;
+      _full = _full.substr(0, 1) === '/' ? _full.substr(1) : _full;
       currentApp = _full.split('/')[0];
     }
 
     _this.state = {
       currentApp: currentApp
     };
-    if (!_full || _full == '/') _utils.navigate.redirect('/' + currentApp);else _utils.navigate.redirect('/' + _full);
+
+    if (!_full || _full === '/') {
+      _utils.navigate.redirect('/' + currentApp);
+    } else {
+      _utils.navigate.redirect('/' + _full);
+    }
+
     return _this;
   }
 
@@ -99,7 +107,7 @@ var Root = /*#__PURE__*/function (_React$PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _notClearAppState = location.hash.indexOf('_notClearAppState') != -1;
+      var _notClearAppState = location.hash.indexOf('_notClearAppState') !== -1;
 
       return /*#__PURE__*/_react.default.createElement(_appLoader.default.AppLoader, {
         key: this.state.currentApp,
