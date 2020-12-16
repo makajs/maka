@@ -185,12 +185,12 @@ module.exports = function (option) {
             new CaseSensitivePathsPlugin(),
             new MiniCssExtractPlugin({ filename: outputCssFieldName })
         ],
-        node: {
-            dgram: 'empty',
-            fs: 'empty',
-            net: 'empty',
-            tls: 'empty',
-            child_process: 'empty',
-        }
+        // node: {
+        //     dgram: 'empty',
+        //     fs: 'empty',
+        //     net: 'empty',
+        //     tls: 'empty',
+        //     child_process: 'empty',
+        // }
     }
 }
