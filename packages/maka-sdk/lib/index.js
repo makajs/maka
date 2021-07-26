@@ -165,9 +165,15 @@ function createAppElement(appName, appProps) {
   var Internal = createAppElementInternal(appName, appProps);
 
   if (Hoc) {
-    return /*#__PURE__*/_react.default.createElement(Hoc, null, /*#__PURE__*/_react.default.createElement(Internal, null));
+    return /*#__PURE__*/_react.default.createElement(Hoc, {
+      appName: appName,
+      appProps: appProps
+    }, /*#__PURE__*/_react.default.createElement(Internal, null));
   } else {
-    return /*#__PURE__*/_react.default.createElement(Internal, null);
+    return /*#__PURE__*/_react.default.createElement(Internal, {
+      appName: appName,
+      appProps: appProps
+    });
   }
 } //Set high order component
 

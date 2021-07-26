@@ -1,17 +1,25 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('redux'), require('react-dom')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react', 'redux', 'react-dom'], factory) :
-	(global = global || self, factory(global.ReactRedux = {}, global.React, global.Redux, global.ReactDOM));
-}(this, function (exports, React, redux, reactDom) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactRedux = {}, global.React, global.ReactDOM));
+}(this, (function (exports, React, reactDom) { 'use strict';
 
-	var React__default = 'default' in React ? React['default'] : React;
+	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-	function unwrapExports (x) {
-		return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+	var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+
+	function createCommonjsModule(fn, basedir, module) {
+		return module = {
+			path: basedir,
+			exports: {},
+			require: function (path, base) {
+				return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+			}
+		}, fn(module, module.exports), module.exports;
 	}
 
-	function createCommonjsModule(fn, module) {
-		return module = { exports: {} }, fn(module, module.exports), module.exports;
+	function commonjsRequire () {
+		throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
 	}
 
 	var reactIs_development = createCommonjsModule(function (module, exports) {
@@ -21,21 +29,18 @@
 	{
 	  (function() {
 
-	Object.defineProperty(exports, '__esModule', { value: true });
-
 	// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 	// nor polyfill, then a plain number is used for performance.
 	var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-
 	var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
 	var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
 	var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
 	var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
 	var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
 	var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-	var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace;
-	// TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+	var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
 	// (unstable) APIs that have been removed. Can we remove the symbols?
+
 	var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
 	var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
 	var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
@@ -43,71 +48,20 @@
 	var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
 	var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
 	var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+	var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
 	var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
 	var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+	var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 	function isValidElementType(type) {
-	  return typeof type === 'string' || typeof type === 'function' ||
-	  // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-	  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE);
+	  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+	  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 	}
-
-	/**
-	 * Forked from fbjs/warning:
-	 * https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
-	 *
-	 * Only change is we use console.warn instead of console.error,
-	 * and do nothing when 'console' is not supported.
-	 * This really simplifies the code.
-	 * ---
-	 * Similar to invariant but only logs a warning if the condition is not met.
-	 * This can be used to log issues in development environments in critical
-	 * paths. Removing the logging code for production environments will keep the
-	 * same logic and follow the same code paths.
-	 */
-
-	var lowPriorityWarning = function () {};
-
-	{
-	  var printWarning = function (format) {
-	    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	      args[_key - 1] = arguments[_key];
-	    }
-
-	    var argIndex = 0;
-	    var message = 'Warning: ' + format.replace(/%s/g, function () {
-	      return args[argIndex++];
-	    });
-	    if (typeof console !== 'undefined') {
-	      console.warn(message);
-	    }
-	    try {
-	      // --- Welcome to debugging React ---
-	      // This error was thrown as a convenience so that you can use this stack
-	      // to find the callsite that caused this warning to fire.
-	      throw new Error(message);
-	    } catch (x) {}
-	  };
-
-	  lowPriorityWarning = function (condition, format) {
-	    if (format === undefined) {
-	      throw new Error('`lowPriorityWarning(condition, format, ...args)` requires a warning ' + 'message argument');
-	    }
-	    if (!condition) {
-	      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-	        args[_key2 - 2] = arguments[_key2];
-	      }
-
-	      printWarning.apply(undefined, [format].concat(args));
-	    }
-	  };
-	}
-
-	var lowPriorityWarning$1 = lowPriorityWarning;
 
 	function typeOf(object) {
 	  if (typeof object === 'object' && object !== null) {
 	    var $$typeof = object.$$typeof;
+
 	    switch ($$typeof) {
 	      case REACT_ELEMENT_TYPE:
 	        var type = object.type;
@@ -120,29 +74,32 @@
 	          case REACT_STRICT_MODE_TYPE:
 	          case REACT_SUSPENSE_TYPE:
 	            return type;
+
 	          default:
 	            var $$typeofType = type && type.$$typeof;
 
 	            switch ($$typeofType) {
 	              case REACT_CONTEXT_TYPE:
 	              case REACT_FORWARD_REF_TYPE:
+	              case REACT_LAZY_TYPE:
+	              case REACT_MEMO_TYPE:
 	              case REACT_PROVIDER_TYPE:
 	                return $$typeofType;
+
 	              default:
 	                return $$typeof;
 	            }
+
 	        }
-	      case REACT_LAZY_TYPE:
-	      case REACT_MEMO_TYPE:
+
 	      case REACT_PORTAL_TYPE:
 	        return $$typeof;
 	    }
 	  }
 
 	  return undefined;
-	}
+	} // AsyncMode is deprecated along with isAsyncMode
 
-	// AsyncMode is deprecated along with isAsyncMode
 	var AsyncMode = REACT_ASYNC_MODE_TYPE;
 	var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
 	var ContextConsumer = REACT_CONTEXT_TYPE;
@@ -156,17 +113,17 @@
 	var Profiler = REACT_PROFILER_TYPE;
 	var StrictMode = REACT_STRICT_MODE_TYPE;
 	var Suspense = REACT_SUSPENSE_TYPE;
+	var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
 
-	var hasWarnedAboutDeprecatedIsAsyncMode = false;
-
-	// AsyncMode should be deprecated
 	function isAsyncMode(object) {
 	  {
 	    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-	      hasWarnedAboutDeprecatedIsAsyncMode = true;
-	      lowPriorityWarning$1(false, 'The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+	      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+	      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
 	    }
 	  }
+
 	  return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
 	}
 	function isConcurrentMode(object) {
@@ -206,7 +163,6 @@
 	  return typeOf(object) === REACT_SUSPENSE_TYPE;
 	}
 
-	exports.typeOf = typeOf;
 	exports.AsyncMode = AsyncMode;
 	exports.ConcurrentMode = ConcurrentMode;
 	exports.ContextConsumer = ContextConsumer;
@@ -220,7 +176,6 @@
 	exports.Profiler = Profiler;
 	exports.StrictMode = StrictMode;
 	exports.Suspense = Suspense;
-	exports.isValidElementType = isValidElementType;
 	exports.isAsyncMode = isAsyncMode;
 	exports.isConcurrentMode = isConcurrentMode;
 	exports.isContextConsumer = isContextConsumer;
@@ -234,39 +189,11 @@
 	exports.isProfiler = isProfiler;
 	exports.isStrictMode = isStrictMode;
 	exports.isSuspense = isSuspense;
+	exports.isValidElementType = isValidElementType;
+	exports.typeOf = typeOf;
 	  })();
 	}
 	});
-
-	unwrapExports(reactIs_development);
-	var reactIs_development_1 = reactIs_development.typeOf;
-	var reactIs_development_2 = reactIs_development.AsyncMode;
-	var reactIs_development_3 = reactIs_development.ConcurrentMode;
-	var reactIs_development_4 = reactIs_development.ContextConsumer;
-	var reactIs_development_5 = reactIs_development.ContextProvider;
-	var reactIs_development_6 = reactIs_development.Element;
-	var reactIs_development_7 = reactIs_development.ForwardRef;
-	var reactIs_development_8 = reactIs_development.Fragment;
-	var reactIs_development_9 = reactIs_development.Lazy;
-	var reactIs_development_10 = reactIs_development.Memo;
-	var reactIs_development_11 = reactIs_development.Portal;
-	var reactIs_development_12 = reactIs_development.Profiler;
-	var reactIs_development_13 = reactIs_development.StrictMode;
-	var reactIs_development_14 = reactIs_development.Suspense;
-	var reactIs_development_15 = reactIs_development.isValidElementType;
-	var reactIs_development_16 = reactIs_development.isAsyncMode;
-	var reactIs_development_17 = reactIs_development.isConcurrentMode;
-	var reactIs_development_18 = reactIs_development.isContextConsumer;
-	var reactIs_development_19 = reactIs_development.isContextProvider;
-	var reactIs_development_20 = reactIs_development.isElement;
-	var reactIs_development_21 = reactIs_development.isForwardRef;
-	var reactIs_development_22 = reactIs_development.isFragment;
-	var reactIs_development_23 = reactIs_development.isLazy;
-	var reactIs_development_24 = reactIs_development.isMemo;
-	var reactIs_development_25 = reactIs_development.isPortal;
-	var reactIs_development_26 = reactIs_development.isProfiler;
-	var reactIs_development_27 = reactIs_development.isStrictMode;
-	var reactIs_development_28 = reactIs_development.isSuspense;
 
 	var reactIs = createCommonjsModule(function (module) {
 
@@ -274,8 +201,6 @@
 	  module.exports = reactIs_development;
 	}
 	});
-	var reactIs_1 = reactIs.isValidElementType;
-	var reactIs_2 = reactIs.isContextConsumer;
 
 	/*
 	object-assign
@@ -1066,9 +991,7 @@
 	}
 	});
 
-	var ReactReduxContext =
-	/*#__PURE__*/
-	React__default.createContext(null);
+	var ReactReduxContext = /*#__PURE__*/React__default['default'].createContext(null);
 
 	{
 	  ReactReduxContext.displayName = 'ReactRedux';
@@ -1160,9 +1083,7 @@
 	  };
 	}
 
-	var Subscription =
-	/*#__PURE__*/
-	function () {
+	var Subscription = /*#__PURE__*/function () {
 	  function Subscription(store, parentSub) {
 	    this.store = store;
 	    this.parentSub = parentSub;
@@ -1211,6 +1132,16 @@
 	  return Subscription;
 	}();
 
+	// To get around it, we can conditionally useEffect on the server (no-op) and
+	// useLayoutEffect in the browser. We need useLayoutEffect to ensure the store
+	// subscription callback always has the selector from the latest render commit
+	// available, otherwise a store update may happen between render and the effect,
+	// which may cause missed updates; we also must ensure the store subscription
+	// is created synchronously, otherwise a store update may occur before the
+	// subscription is created and an inconsistent state may be observed
+
+	var useIsomorphicLayoutEffect = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 	function Provider(_ref) {
 	  var store = _ref.store,
 	      context = _ref.context,
@@ -1226,7 +1157,7 @@
 	  var previousState = React.useMemo(function () {
 	    return store.getState();
 	  }, [store]);
-	  React.useEffect(function () {
+	  useIsomorphicLayoutEffect(function () {
 	    var subscription = contextValue.subscription;
 	    subscription.trySubscribe();
 
@@ -1240,7 +1171,7 @@
 	    };
 	  }, [contextValue, previousState]);
 	  var Context = context || ReactReduxContext;
-	  return React__default.createElement(Context.Provider, {
+	  return /*#__PURE__*/React__default['default'].createElement(Context.Provider, {
 	    value: contextValue
 	  }, children);
 	}
@@ -1294,56 +1225,55 @@
 	 * Copyright 2015, Yahoo! Inc.
 	 * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
 	 */
-
 	var REACT_STATICS = {
-	    childContextTypes: true,
-	    contextType: true,
-	    contextTypes: true,
-	    defaultProps: true,
-	    displayName: true,
-	    getDefaultProps: true,
-	    getDerivedStateFromError: true,
-	    getDerivedStateFromProps: true,
-	    mixins: true,
-	    propTypes: true,
-	    type: true
+	  childContextTypes: true,
+	  contextType: true,
+	  contextTypes: true,
+	  defaultProps: true,
+	  displayName: true,
+	  getDefaultProps: true,
+	  getDerivedStateFromError: true,
+	  getDerivedStateFromProps: true,
+	  mixins: true,
+	  propTypes: true,
+	  type: true
 	};
-
 	var KNOWN_STATICS = {
-	    name: true,
-	    length: true,
-	    prototype: true,
-	    caller: true,
-	    callee: true,
-	    arguments: true,
-	    arity: true
+	  name: true,
+	  length: true,
+	  prototype: true,
+	  caller: true,
+	  callee: true,
+	  arguments: true,
+	  arity: true
 	};
-
 	var FORWARD_REF_STATICS = {
-	    '$$typeof': true,
-	    render: true,
-	    defaultProps: true,
-	    displayName: true,
-	    propTypes: true
+	  '$$typeof': true,
+	  render: true,
+	  defaultProps: true,
+	  displayName: true,
+	  propTypes: true
 	};
-
 	var MEMO_STATICS = {
-	    '$$typeof': true,
-	    compare: true,
-	    defaultProps: true,
-	    displayName: true,
-	    propTypes: true,
-	    type: true
+	  '$$typeof': true,
+	  compare: true,
+	  defaultProps: true,
+	  displayName: true,
+	  propTypes: true,
+	  type: true
 	};
-
 	var TYPE_STATICS = {};
 	TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+	TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
 
 	function getStatics(component) {
-	    if (reactIs.isMemo(component)) {
-	        return MEMO_STATICS;
-	    }
-	    return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
+	  // React v16.11 and below
+	  if (reactIs.isMemo(component)) {
+	    return MEMO_STATICS;
+	  } // React v16.12 and above
+
+
+	  return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
 	}
 
 	var defineProperty = Object.defineProperty;
@@ -1352,55 +1282,44 @@
 	var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 	var getPrototypeOf = Object.getPrototypeOf;
 	var objectPrototype = Object.prototype;
-
 	function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
-	    if (typeof sourceComponent !== 'string') {
-	        // don't hoist over string (html) components
+	  if (typeof sourceComponent !== 'string') {
+	    // don't hoist over string (html) components
+	    if (objectPrototype) {
+	      var inheritedComponent = getPrototypeOf(sourceComponent);
 
-	        if (objectPrototype) {
-	            var inheritedComponent = getPrototypeOf(sourceComponent);
-	            if (inheritedComponent && inheritedComponent !== objectPrototype) {
-	                hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
-	            }
-	        }
-
-	        var keys = getOwnPropertyNames(sourceComponent);
-
-	        if (getOwnPropertySymbols$1) {
-	            keys = keys.concat(getOwnPropertySymbols$1(sourceComponent));
-	        }
-
-	        var targetStatics = getStatics(targetComponent);
-	        var sourceStatics = getStatics(sourceComponent);
-
-	        for (var i = 0; i < keys.length; ++i) {
-	            var key = keys[i];
-	            if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
-	                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
-	                try {
-	                    // Avoid failures from read-only properties
-	                    defineProperty(targetComponent, key, descriptor);
-	                } catch (e) {}
-	            }
-	        }
-
-	        return targetComponent;
+	      if (inheritedComponent && inheritedComponent !== objectPrototype) {
+	        hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+	      }
 	    }
 
-	    return targetComponent;
+	    var keys = getOwnPropertyNames(sourceComponent);
+
+	    if (getOwnPropertySymbols$1) {
+	      keys = keys.concat(getOwnPropertySymbols$1(sourceComponent));
+	    }
+
+	    var targetStatics = getStatics(targetComponent);
+	    var sourceStatics = getStatics(sourceComponent);
+
+	    for (var i = 0; i < keys.length; ++i) {
+	      var key = keys[i];
+
+	      if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
+	        var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+
+	        try {
+	          // Avoid failures from read-only properties
+	          defineProperty(targetComponent, key, descriptor);
+	        } catch (e) {}
+	      }
+	    }
+	  }
+
+	  return targetComponent;
 	}
 
 	var hoistNonReactStatics_cjs = hoistNonReactStatics;
-
-	// To get around it, we can conditionally useEffect on the server (no-op) and
-	// useLayoutEffect in the browser. We need useLayoutEffect to ensure the store
-	// subscription callback always has the selector from the latest render commit
-	// available, otherwise a store update may happen between render and the effect,
-	// which may cause missed updates; we also must ensure the store subscription
-	// is created synchronously, otherwise a store update may occur before the
-	// subscription is created and an inconsistent state may be observed
-
-	var useIsomorphicLayoutEffect = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 	var EMPTY_ARRAY = [];
 	var NO_SUBSCRIPTION_ARRAY = [null, null];
@@ -1578,7 +1497,7 @@
 
 	  var Context = context;
 	  return function wrapWithConnect(WrappedComponent) {
-	    if ( !reactIs_1(WrappedComponent)) {
+	    if ( !reactIs.isValidElementType(WrappedComponent)) {
 	      throw new Error("You must pass a component to the function returned by " + (methodName + ". Instead received " + stringifyComponent(WrappedComponent)));
 	    }
 
@@ -1626,7 +1545,7 @@
 	      var ContextToUse = React.useMemo(function () {
 	        // Users may optionally pass in a custom context instance to use instead of our ReactReduxContext.
 	        // Memoize the check that determines which context instance we should use.
-	        return propsContext && propsContext.Consumer && reactIs_2(React__default.createElement(propsContext.Consumer, null)) ? propsContext : Context;
+	        return propsContext && propsContext.Consumer && reactIs.isContextConsumer( /*#__PURE__*/React__default['default'].createElement(propsContext.Consumer, null)) ? propsContext : Context;
 	      }, [propsContext, Context]); // Retrieve the store and ancestor subscription via context, if available
 
 	      var contextValue = React.useContext(ContextToUse); // The store _must_ exist as either a prop or in context.
@@ -1722,7 +1641,7 @@
 	      // We memoize the elements for the rendered child component as an optimization.
 
 	      var renderedWrappedComponent = React.useMemo(function () {
-	        return React__default.createElement(WrappedComponent, _extends({}, actualChildProps, {
+	        return /*#__PURE__*/React__default['default'].createElement(WrappedComponent, _extends({}, actualChildProps, {
 	          ref: reactReduxForwardedRef
 	        }));
 	      }, [reactReduxForwardedRef, WrappedComponent, actualChildProps]); // If React sees the exact same element reference as last time, it bails out of re-rendering
@@ -1733,7 +1652,7 @@
 	          // If this component is subscribed to store updates, we need to pass its own
 	          // subscription instance down to our descendants. That means rendering the same
 	          // Context instance, and putting a different value into the context.
-	          return React__default.createElement(ContextToUse.Provider, {
+	          return /*#__PURE__*/React__default['default'].createElement(ContextToUse.Provider, {
 	            value: overriddenContextValue
 	          }, renderedWrappedComponent);
 	        }
@@ -1744,13 +1663,13 @@
 	    } // If we're in "pure" mode, ensure our wrapper component only re-renders when incoming props have changed.
 
 
-	    var Connect = pure ? React__default.memo(ConnectFunction) : ConnectFunction;
+	    var Connect = pure ? React__default['default'].memo(ConnectFunction) : ConnectFunction;
 	    Connect.WrappedComponent = WrappedComponent;
-	    Connect.displayName = displayName;
+	    Connect.displayName = ConnectFunction.displayName = displayName;
 
 	    if (forwardRef) {
-	      var forwarded = React__default.forwardRef(function forwardConnectRef(props, ref) {
-	        return React__default.createElement(Connect, _extends({}, props, {
+	      var forwarded = React__default['default'].forwardRef(function forwardConnectRef(props, ref) {
+	        return /*#__PURE__*/React__default['default'].createElement(Connect, _extends({}, props, {
 	          reactReduxForwardedRef: ref
 	        }));
 	      });
@@ -1789,6 +1708,26 @@
 	  }
 
 	  return true;
+	}
+
+	function bindActionCreators(actionCreators, dispatch) {
+	  var boundActionCreators = {};
+
+	  var _loop = function _loop(key) {
+	    var actionCreator = actionCreators[key];
+
+	    if (typeof actionCreator === 'function') {
+	      boundActionCreators[key] = function () {
+	        return dispatch(actionCreator.apply(void 0, arguments));
+	      };
+	    }
+	  };
+
+	  for (var key in actionCreators) {
+	    _loop(key);
+	  }
+
+	  return boundActionCreators;
 	}
 
 	/**
@@ -1915,7 +1854,7 @@
 	}
 	function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
 	  return mapDispatchToProps && typeof mapDispatchToProps === 'object' ? wrapMapToPropsConstant(function (dispatch) {
-	    return redux.bindActionCreators(mapDispatchToProps, dispatch);
+	    return bindActionCreators(mapDispatchToProps, dispatch);
 	  }) : undefined;
 	}
 	var defaultMapDispatchToPropsFactories = [whenMapDispatchToPropsIsFunction, whenMapDispatchToPropsIsMissing, whenMapDispatchToPropsIsObject];
@@ -1931,7 +1870,7 @@
 	var defaultMapStateToPropsFactories = [whenMapStateToPropsIsFunction, whenMapStateToPropsIsMissing];
 
 	function defaultMergeProps(stateProps, dispatchProps, ownProps) {
-	  return _extends({}, ownProps, {}, stateProps, {}, dispatchProps);
+	  return _extends({}, ownProps, stateProps, dispatchProps);
 	}
 	function wrapMergePropsFunc(mergeProps) {
 	  return function initMergePropsProxy(dispatch, _ref) {
@@ -2156,8 +2095,7 @@
 	    }, extraOptions));
 	  };
 	}
-	var connect = /*#__PURE__*/
-	createConnect();
+	var connect = /*#__PURE__*/createConnect();
 
 	/**
 	 * A hook to access the value of the `ReactReduxContext`. This is a low-level
@@ -2224,9 +2162,7 @@
 	 * }
 	 */
 
-	var useStore =
-	/*#__PURE__*/
-	createStoreHook();
+	var useStore = /*#__PURE__*/createStoreHook();
 
 	/**
 	 * Hook factory, which creates a `useDispatch` hook bound to a given context.
@@ -2268,9 +2204,7 @@
 	 * }
 	 */
 
-	var useDispatch =
-	/*#__PURE__*/
-	createDispatchHook();
+	var useDispatch = /*#__PURE__*/createDispatchHook();
 
 	var refEquality = function refEquality(a, b) {
 	  return a === b;
@@ -2294,7 +2228,13 @@
 
 	  try {
 	    if (selector !== latestSelector.current || storeState !== latestStoreState.current || latestSubscriptionCallbackError.current) {
-	      selectedState = selector(storeState);
+	      var newSelectedState = selector(storeState); // ensure latest selected state is reused so that a custom equality function can result in identical references
+
+	      if (latestSelectedState.current === undefined || !equalityFn(newSelectedState, latestSelectedState.current)) {
+	        selectedState = newSelectedState;
+	      } else {
+	        selectedState = latestSelectedState.current;
+	      }
 	    } else {
 	      selectedState = latestSelectedState.current;
 	    }
@@ -2315,13 +2255,16 @@
 	  useIsomorphicLayoutEffect(function () {
 	    function checkForUpdates() {
 	      try {
-	        var newSelectedState = latestSelector.current(store.getState());
+	        var newStoreState = store.getState();
 
-	        if (equalityFn(newSelectedState, latestSelectedState.current)) {
+	        var _newSelectedState = latestSelector.current(newStoreState);
+
+	        if (equalityFn(_newSelectedState, latestSelectedState.current)) {
 	          return;
 	        }
 
-	        latestSelectedState.current = newSelectedState;
+	        latestSelectedState.current = _newSelectedState;
+	        latestStoreState.current = newStoreState;
 	      } catch (err) {
 	        // we ignore all errors here, since when the component
 	        // is re-rendered, the selectors are called again, and
@@ -2363,8 +2306,18 @@
 	      equalityFn = refEquality;
 	    }
 
-	    if ( !selector) {
-	      throw new Error("You must pass a selector to useSelector");
+	    {
+	      if (!selector) {
+	        throw new Error("You must pass a selector to useSelector");
+	      }
+
+	      if (typeof selector !== 'function') {
+	        throw new Error("You must pass a function as a selector to useSelector");
+	      }
+
+	      if (typeof equalityFn !== 'function') {
+	        throw new Error("You must pass a function as an equality function to useSelector");
+	      }
 	    }
 
 	    var _useReduxContext = useReduxContext$1(),
@@ -2400,9 +2353,7 @@
 	 * }
 	 */
 
-	var useSelector =
-	/*#__PURE__*/
-	createSelectorHook();
+	var useSelector = /*#__PURE__*/createSelectorHook();
 
 	setBatch(reactDom.unstable_batchedUpdates);
 
@@ -2426,4 +2377,4 @@
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));

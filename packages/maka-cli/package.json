@@ -1,6 +1,6 @@
 {
   "name": "@makajs/cli",
-  "version": "1.0.46",
+  "version": "1.0.50",
   "description": "maka cli",
   "license": "MIT",
   "repository": {
@@ -27,7 +27,7 @@
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
     "@babel/runtime": "*",
-    "@makajs/sdk": "^0.0.68",
+    "@makajs/sdk": "^0.0.73",
     "acorn": "^6.1.1",
     "alphabetjs": "*",
     "art-template": "*",
@@ -55,9 +55,9 @@
     "mini-css-extract-plugin": "*",
     "optimize-css-assets-webpack-plugin": "*",
     "raw-loader": "*",
-    "react": "*",
+    "react": "16.14.0",
     "react-dev-utils": "10.0.0",
-    "react-dom": "*",
+    "react-dom": "16.14.0",
     "readline-sync": "*",
     "resolve": "*",
     "semver": "*",

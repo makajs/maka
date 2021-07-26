@@ -1,6 +1,6 @@
 {
   "name": "@makajs/sdk",
-  "version": "0.0.68",
+  "version": "0.0.73",
   "description": "maka sdk",
   "main": "lib/index.js",
   "scripts": {
@@ -29,16 +29,16 @@
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
     "@babel/runtime": "*",
-    "@makajs/app-loader": "0.0.28",
-    "@makajs/meta-engine": "0.0.45",
+    "@makajs/app-loader": "0.0.29",
+    "@makajs/meta-engine": "0.0.47",
     "@makajs/utils": "*",
     "babel-loader": "*",
     "cross-env": "*",
-    "react": "*",
-    "react-dom": "*",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
     "request": "*",
     "uglifyjs-webpack-plugin": "*",
-    "webpack": "*",
-    "webpack-cli": "*"
+    "webpack": "4.32.2",
+    "webpack-cli": "3.3.2"
   }
 }

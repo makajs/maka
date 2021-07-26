@@ -8,8 +8,8 @@ var jss
 
 if (isProduction)
     jss = [
-        'https://unpkg.com/react/umd/react.production.min.js',
-        'https://unpkg.com/react-dom/umd/react-dom.production.min.js',
+        'https://unpkg.com/react@16.14.0/umd/react.production.min.js',
+        'https://unpkg.com/react-dom@16.14.0/umd/react-dom.production.min.js',
         'https://unpkg.com/prop-types/prop-types.min.js',
         'https://unpkg.com/redux/dist/redux.min.js',
         'https://unpkg.com/react-redux/dist/react-redux.min.js',
@@ -18,8 +18,8 @@ if (isProduction)
     ]
 else
     jss = [
-        'https://unpkg.com/react/umd/react.development.js',
-        'https://unpkg.com/react-dom/umd/react-dom.development.js',
+        'https://unpkg.com/react@16.14.0/umd/react.development.js',
+        'https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js',
         //'https://unpkg.com/react/umd/react.production.min.js',
         //'https://unpkg.com/react-dom/umd/react-dom.production.min.js',
         'https://unpkg.com/prop-types/prop-types.js',

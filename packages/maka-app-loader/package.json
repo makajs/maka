@@ -1,6 +1,6 @@
 {
   "name": "@makajs/app-loader",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "maka app loader",
   "main": "./lib/index",
   "scripts": {
@@ -19,8 +19,8 @@
     "@makajs/utils": "*",
     "immutable": "*",
     "prop-types": "*",
-    "react": "*",
-    "react-dom": "*",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
     "react-redux": "*",
     "redux": "*"
   },
