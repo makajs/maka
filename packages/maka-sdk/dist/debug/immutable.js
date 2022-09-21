@@ -250,6 +250,11 @@
   }
 
   function hasIterator(maybeIterable) {
+    if (Array.isArray(maybeIterable)) {
+      // IE11 trick as it does not support `Symbol.iterator`
+      return true;
+    }
+
     return !!getIteratorFn(maybeIterable);
   }
 
@@ -270,6 +275,16 @@
     if (typeof iteratorFn === 'function') {
       return iteratorFn;
     }
+  }
+
+  function isEntriesIterable(maybeIterable) {
+    var iteratorFn = getIteratorFn(maybeIterable);
+    return iteratorFn && iteratorFn === maybeIterable.entries;
+  }
+
+  function isKeysIterable(maybeIterable) {
+    var iteratorFn = getIteratorFn(maybeIterable);
+    return iteratorFn && iteratorFn === maybeIterable.keys;
   }
 
   var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -295,7 +310,7 @@
 
   var Seq = /*@__PURE__*/(function (Collection) {
     function Seq(value) {
-      return value === null || value === undefined
+      return value === undefined || value === null
         ? emptySequence()
         : isImmutable(value)
         ? value.toSeq()
@@ -363,7 +378,7 @@
 
   var KeyedSeq = /*@__PURE__*/(function (Seq) {
     function KeyedSeq(value) {
-      return value === null || value === undefined
+      return value === undefined || value === null
         ? emptySequence().toKeyedSeq()
         : isCollection(value)
         ? isKeyed(value)
@@ -387,7 +402,7 @@
 
   var IndexedSeq = /*@__PURE__*/(function (Seq) {
     function IndexedSeq(value) {
-      return value === null || value === undefined
+      return value === undefined || value === null
         ? emptySequence()
         : isCollection(value)
         ? isKeyed(value)
@@ -493,7 +508,9 @@
 
   var ObjectSeq = /*@__PURE__*/(function (KeyedSeq) {
     function ObjectSeq(object) {
-      var keys = Object.keys(object);
+      var keys = Object.keys(object).concat(
+        Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(object) : []
+      );
       this._object = object;
       this._keys = keys;
       this.size = keys.length;
@@ -602,11 +619,7 @@
   }
 
   function keyedSeqFromValue(value) {
-    var seq = Array.isArray(value)
-      ? new ArraySeq(value)
-      : hasIterator(value)
-      ? new CollectionSeq(value)
-      : undefined;
+    var seq = maybeIndexedSeqFromValue(value);
     if (seq) {
       return seq.fromEntrySeq();
     }
@@ -632,7 +645,11 @@
   function seqFromValue(value) {
     var seq = maybeIndexedSeqFromValue(value);
     if (seq) {
-      return seq;
+      return isEntriesIterable(value)
+        ? seq.fromEntrySeq()
+        : isKeysIterable(value)
+        ? seq.toSetSeq()
+        : seq;
     }
     if (typeof value === 'object') {
       return new ObjectSeq(value);
@@ -2277,13 +2294,31 @@
 
   function deepMergerWith(merger) {
     function deepMerger(oldValue, newValue, key) {
-      return isDataStructure(oldValue) && isDataStructure(newValue)
+      return isDataStructure(oldValue) &&
+        isDataStructure(newValue) &&
+        areMergeable(oldValue, newValue)
         ? mergeWithSources(oldValue, [newValue], deepMerger)
         : merger
         ? merger(oldValue, newValue, key)
         : newValue;
     }
     return deepMerger;
+  }
+
+  /**
+   * It's unclear what the desired behavior is for merging two collections that
+   * fall into separate categories between keyed, indexed, or set-like, so we only
+   * consider them mergeable if they fall into the same category.
+   */
+  function areMergeable(oldDataStructure, newDataStructure) {
+    var oldSeq = Seq(oldDataStructure);
+    var newSeq = Seq(newDataStructure);
+    // This logic assumes that a sequence can only fall into one of the three
+    // categories mentioned above (since there's no `isSetLike()` method).
+    return (
+      isIndexed(oldSeq) === isIndexed(newSeq) &&
+      isKeyed(oldSeq) === isKeyed(newSeq)
+    );
   }
 
   function mergeDeep() {
@@ -2335,7 +2370,7 @@
 
   var Map = /*@__PURE__*/(function (KeyedCollection) {
     function Map(value) {
-      return value === null || value === undefined
+      return value === undefined || value === null
         ? emptyMap()
         : isMap(value) && !isOrdered(value)
         ? value
@@ -3126,7 +3161,7 @@
   var List = /*@__PURE__*/(function (IndexedCollection) {
     function List(value) {
       var empty = emptyList();
-      if (value === null || value === undefined) {
+      if (value === undefined || value === null) {
         return empty;
       }
       if (isList(value)) {
@@ -3776,7 +3811,7 @@
 
   var OrderedMap = /*@__PURE__*/(function (Map) {
     function OrderedMap(value) {
-      return value === null || value === undefined
+      return value === undefined || value === null
         ? emptyOrderedMap()
         : isOrderedMap(value)
         ? value
@@ -3944,7 +3979,7 @@
 
   var Stack = /*@__PURE__*/(function (IndexedCollection) {
     function Stack(value) {
-      return value === null || value === undefined
+      return value === undefined || value === null
         ? emptyStack()
         : isStack(value)
         ? value
@@ -4278,7 +4313,7 @@
 
   var Set = /*@__PURE__*/(function (SetCollection) {
     function Set(value) {
-      return value === null || value === undefined
+      return value === undefined || value === null
         ? emptySet()
         : isSet(value) && !isOrdered(value)
         ? value
@@ -5301,14 +5336,16 @@
     },
   });
 
-  SetCollection.prototype.has = CollectionPrototype.includes;
-  SetCollection.prototype.contains = SetCollection.prototype.includes;
+  var SetCollectionPrototype = SetCollection.prototype;
+  SetCollectionPrototype.has = CollectionPrototype.includes;
+  SetCollectionPrototype.contains = SetCollectionPrototype.includes;
+  SetCollectionPrototype.keys = SetCollectionPrototype.values;
 
   // Mixin subclasses
 
-  mixin(KeyedSeq, KeyedCollection.prototype);
-  mixin(IndexedSeq, IndexedCollection.prototype);
-  mixin(SetSeq, SetCollection.prototype);
+  mixin(KeyedSeq, KeyedCollectionPrototype);
+  mixin(IndexedSeq, IndexedCollectionPrototype);
+  mixin(SetSeq, SetCollectionPrototype);
 
   // #pragma Helper functions
 
@@ -5397,7 +5434,7 @@
 
   var OrderedSet = /*@__PURE__*/(function (Set) {
     function OrderedSet(value) {
-      return value === null || value === undefined
+      return value === undefined || value === null
         ? emptyOrderedSet()
         : isOrderedSet(value)
         ? value
@@ -5551,7 +5588,8 @@
 
   Record.prototype.equals = function equals (other) {
     return (
-      this === other || (other && recordSeq(this).equals(recordSeq(other)))
+      this === other ||
+      (isRecord(other) && recordSeq(this).equals(recordSeq(other)))
     );
   };
 
@@ -5805,12 +5843,11 @@
   }
 
   function fromJSWith(stack, converter, value, key, keyPath, parentValue) {
-    var toSeq = Array.isArray(value)
-      ? IndexedSeq
-      : isPlainObject(value)
-      ? KeyedSeq
-      : null;
-    if (toSeq) {
+    if (
+      typeof value !== 'string' &&
+      !isImmutable(value) &&
+      (isArrayLike(value) || hasIterator(value) || isPlainObject(value))
+    ) {
       if (~stack.indexOf(value)) {
         throw new TypeError('Cannot convert circular structure to Immutable');
       }
@@ -5819,7 +5856,7 @@
       var converted = converter.call(
         parentValue,
         key,
-        toSeq(value).map(function (v, k) { return fromJSWith(stack, converter, v, k, keyPath, value); }
+        Seq(value).map(function (v, k) { return fromJSWith(stack, converter, v, k, keyPath, value); }
         ),
         keyPath && keyPath.slice()
       );
@@ -5831,10 +5868,11 @@
   }
 
   function defaultConverter(k, v) {
-    return isKeyed(v) ? v.toMap() : v.toList();
+    // Effectively the opposite of "Collection.toSeq()"
+    return isIndexed(v) ? v.toList() : isKeyed(v) ? v.toMap() : v.toSet();
   }
 
-  var version = "4.0.0-rc.14";
+  var version = "4.1.0";
 
   var Immutable = {
     version: version,

@@ -33,7 +33,7 @@ function parseMetaProps(meta, props, data) {
 
       for (i = 0; c = v[i++];) {
         if (c instanceof Array) {
-          ret[key] = c;
+          ret[key].push(c);
         } else {
           var mc = metaToComponent(c, props, data);
           if (mc instanceof Array) ret[key] = ret[key].concat(mc);else ret[key].push(mc);

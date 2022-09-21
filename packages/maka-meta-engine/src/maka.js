@@ -18,7 +18,7 @@ function parseMetaProps(meta, props, data) {
 
             for (i = 0; c = v[i++];) {
                 if (c instanceof Array) {
-                    ret[key] = c
+                    ret[key].push(c)
                 }
                 else {
                     let mc = metaToComponent(c, props, data)
